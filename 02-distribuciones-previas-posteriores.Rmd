@@ -250,10 +250,10 @@ Se presenta el número de soldados prusianos muertos por una patada de caballo (
 | Unidades | Ocurrencias |  
 |----------|-------------|
 | 144      | 0           |   
-|     91   |  1          |  
-|   32     |  2          |   
+|    91    | 1           |  
+|    32    | 2           |   
 |       11 | 3           |  
-|         2|4            |  
+|         2| 4           |  
 
 * Muestra de Poisson: $X_1 = 0, X_2 = 1, X_3 = 1,\dots, X_{280} = 0 \sim \text{Poi}(\lambda)$.
 
