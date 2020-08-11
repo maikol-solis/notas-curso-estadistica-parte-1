@@ -1,0 +1,20 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc_depth: 5
+    toc:
+      before: |
+        <li><a href="./">Curso de Estadística</a></li>
+      after: 
+    download: ["pdf"]
+  dev: svg
+bookdown::pdf_book:
+  toc_depth: 5
+  includes:
+    in_header: "_preamble.tex"
+  latex_engine: pdflatex
+  citation_package: biblatex
+  keep_tex: yes
+  keep_md: yes
+  dev: cairo_pdf
+#bookdown::epub_book: default

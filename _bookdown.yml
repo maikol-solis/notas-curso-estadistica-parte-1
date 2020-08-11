@@ -1,0 +1,23 @@
+book_filename: "Notas-Curso-Estadistica"
+output_dir: "docs"
+view: https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/%s
+edit: https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/%s
+delete_merged_file: true
+before_chapter_script: ["_common.R"]
+language:
+  label:
+    fig: 'Figura '
+    tab: 'Tabla '
+    eq: 'Ecuación '
+    thm: 'Teorema '
+    lem: 'Lema '
+    def: 'Definición '
+    cor: 'Corolario '
+    prp: 'Proposición '
+    exm: 'Ejemplo '
+    exr: 'Ejercicio '
+    proof: 'Demostración. '
+    remark: 'Nota: '
+    solution: 'Solución. '
+  ui:
+    chapter_name: 'Capítulo '
