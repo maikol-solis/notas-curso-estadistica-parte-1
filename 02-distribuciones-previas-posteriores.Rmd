@@ -250,7 +250,7 @@ Se presenta el número de soldados prusianos muertos por una patada de caballo (
 | Unidades | Ocurrencias |  
 |----------|-------------|
 | 144      | 0           |   
-|     91   | 1           |  
+|    91    | 1           |  
 |   32     | 2           |   
 |       11 | 3           |  
 |         2| 4           |  
