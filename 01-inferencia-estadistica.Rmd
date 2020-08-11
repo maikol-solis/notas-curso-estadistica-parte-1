@@ -1,0 +1,154 @@
+# Inferencia estadística
+
+**Definición:** Hacer afirmaciones probabilísticas respecto a (acerca de)
+cantidades desconocidas.
+
+## Ejemplo
+
+***Pregunta**: ¿Será posible modelar cuánto dura un componente electrónico en
+fallar?
+
+**Solución**: Podemos responder esta pregunta dividiéndola en dos partes:
+
+1. **Modelo probabilístico:** Asuma que los tiempos de vida del componente son
+   exponenciales (en años).
+2. **Parámetro:** Sea $\theta > 0$ la tasa de fallo (unidades: 1/Tiempo(años)). 
+    
+Es decir, tenemos un modelo (exponencial) y estamos decretando que su información estará concentrada en el parámetro \(\theta\).
+
+
+**Observación**: El parámetro \(\theta\) contiene la información del modelo,
+pero ¿Cómo obtenemos esa información
+
+**Muestra**: Secuencia (sucesión) de variables aleatorias independientes $X_1,X_2,\dots, X_n,\dots$. Tomemos una muestra $X_1,X_2,\dots, X_n,\dots \stackrel{i.i.d}{\sim} \text{Exp}(\theta)$.
+
+**Objetivos**
+
+* Estimar $X_m, X_{m+1}, \dots$ si se observa $X_1, X_{m-1}, \dots$ (Predicción).
+
+* Estimar $\theta$ usando información.
+
+**Datos**: Realizaciones de variables aleatorias $X_1,\dots,X_m$ pertenecientes a la muestra.
+
+
+**Estimación de $\theta$**
+
+Dado que $\mathbb{E}(X) = \dfrac{1}{\theta}$ con $X \sim \text{Exp}(\theta)$, por la ley de grandes números se tiene que
+
+\begin{equation*}
+\underbrace{\dfrac{1}{n} \sum_{i=1}{X_i}}_{\bar{X}_n} \xrightarrow[n\to \infty]{\mathbb{P}}\mathbb{E}(X) = \dfrac{1}{\theta}
+\end{equation*}
+
+por propiedad de convergencia en probabilidad.
+
+Un posible candidato para estimar $\theta$ es $\dfrac{1}{\bar X_n}$, bajo el supuesto por Ley de Grandes Números que $\theta$ es una constante (frecuentista). 
+
+**Realidad**: $\theta$ no necesariamente es determinístico (factores externos, por la naturaleza del fenómeno).
+
+Asumimos un modelo probabilístico para $\theta$ (tasa siempre positiva):
+
+\begin{equation*}
+\theta \sim \Gamma(\alpha_0,\beta_0)
+\end{equation*}
+Luego, según estudios previos la tasa esperada es 0.5/año
+\begin{equation*}
+\mathbb{E}(\theta) = \dfrac{1}{2} = \dfrac{\alpha_0}{\beta_0}.
+\end{equation*}
+
+Un primer indicio de que se podría establecer que  $\alpha_0 = 1$ y de $\beta_0 = 2$.
+
+## Modelo estadístico
+
+Vamos a definir como típicamente se define un modelo estadístico. 
+
+1. Variables aleatorias observables / hipotéticamente observables:
+
+     \begin{equation*}
+     \underbrace{X_t}_{\text{Observable}} = \underbrace{Y_t}_{\text{Hip. observable}} + \underbrace{\epsilon}_{\text{Ruido}}
+     \end{equation*}
+
+    En otras palabras \(Y_t\) sería la el dato _"verdadero"_ que pasó
+      exactamente en el fenómeno analizado. Esta observación es afectada por
+      muchos factores no observables (por ejemplo: errores de medición, cambio
+      de las condiciones de la economía, etc.). La variable \(\epsilon\) captura
+      toda esa aleatoriedad que no es parte del fénomeno.
+
+    Claramente ni \(Y_t\) ni \(\epsilon\) se pueden medir y la mejor
+      representación del nuestro es fenómeno es a partir de \(X_t\).
+
+
+2. Distribución conjunta de una muestra de variables observables.
+
+    Es decir cual es el supuesto general que estoy usando para describir mis
+    observaciones. 
+
+3. Parámetros que son hipotéticamente observables (desconocidos).
+
+   ¿Cuál sería la mejor calibración de los componentes del modelo anterior de
+   modo que mi modelo se ajuste a los datos?
+
+4. (Opcional) Distribución conjunta de los parámetros.
+
+   En el caso de Bayes, los parámetro dejan de ser simple valores puntuales y se
+   convierten en distribuciones completas. 
+
+* **Inferencia estadística**: procedimiento que genera afirmaciones probabilísticas de un modelo estadístico.
+
+**Ejemplo de inferencias**:
+
+1) Estimar $\theta$ a través de $\dfrac{1}{\bar X_n}$.
+
+2) ¿Qué tan probable es que el promedio de las siguientes observaciones es al menos 2?
+\begin{equation*}
+\dfrac{1}{10}\sum_{i= m+1}^{m+10} X_i > 2
+\end{equation*}
+
+3) ¿Qué tan cierto es que $\theta\leq0.4$ después de observar la muestra?
+
+* **Parámetro**: característica (s) que determinan la distribución conjunta de las variables aleatorias de interés.
+
+* **Espacio paramétrico** $\Omega$ (espacio de parámetros, puede ser de probabilidad)
+
+**Ejemplos**:
+
+  * $\theta$ > 0 (ejemplo anterior); $\Omega = (0,+\infty)$.
+  * $X_1,\dots,X_n \sim N(\mu, \sigma^2)$, $(\mu,\sigma^2)$ parámetros; $\Omega$ = $\mathbb{R}\times[0,+\infty)$.
+  
+### Ejemplo: clientes de un banco
+
+¿Qué tan probable es que un cliente no pague su crédito hoy?
+
+* **Datos**: $X_i = \begin{cases}1& \text{el cliente } \#i  \text{ no pagó}\\0 & \text{el cliente } \#i  \text{ pagó}\end{cases}$.
+
+* **Muestra**: $X_1,\dots,X_{10000}$ (realización al día de hoy).
+
+* **Modelos**: $X_1,\dots, X_{10000} \stackrel{i.i.d}{\sim} \text{Ber}(p)$ con $p\in[0,1]$.
+
+* **Parámetro**: $p$, $\Omega = [0,1]$.
+
+* **Inferencias**:
+  - Estimar $p$ (probabilidad de impago).
+  - Suponga que $L(X_i)$ es el saldo en la cuenta del cliente $\#i$ (con riesgo).
+ 
+\begin{equation*}
+\mathbb{P}\left(\sum_{i=1}^{10000}L(X_i)>u\right)=\text{Probabilidad de ruina}
+\end{equation*}
+
+## Estadístico
+
+**Definición**. Si $X_1,\dots,X_n$ es una muestra observable. Sea $r$ una función real de $n$ variables:
+\begin{equation*}
+T = r(X_1,\dots,X_n)
+\end{equation*}
+es un estadístico.
+
+**Nota**: $T$ también es aleatorio.
+
+**Ejemplos**: 
+
+- $\hat p = \dfrac{1}{10000}\displaystyle\sum_{i=1}^{10000}X_i = \dfrac{\#\text{ no pagan}}{\text{Total}} = r(X_1,\dots,X_{10000})$
+
+- $L_m = \max L(X_i)$ (saldo del cliente más riesgoso).
+
+- $R_m = \max L(X_i) - \min L(X_i), 1\leq i\leq 10000$
+
