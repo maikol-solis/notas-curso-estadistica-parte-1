@@ -41,7 +41,7 @@ fallar?
 Es decir, tenemos un modelo (exponencial) y estamos decretando que su información estará concentrada en el parámetro \(\theta\).
 
 
-**Observación**: El parámetro \(\theta\) contiene la información del modelo,
+**Nota**: El parámetro \(\theta\) contiene la información del modelo,
 pero ¿Cómo obtenemos esa información
 
 **Muestra**: Secuencia (sucesión) de variables aleatorias independientes $X_1,X_2,\dots, X_n,\dots$. Tomemos una muestra $X_1,X_2,\dots, X_n,\dots \stackrel{i.i.d}{\sim} \text{Exp}(\theta)$.
@@ -103,7 +103,7 @@ Vamos a definir como típicamente se define un modelo estadístico.
 
 2. Distribución conjunta de una muestra de variables observables.
 
-    Es decir cual es el supuesto general que estoy usando para describir mis
+    Es decir cuál es el supuesto general que estoy usando para describir mis
     observaciones. 
 
 3. Parámetros que son hipotéticamente observables (desconocidos).
@@ -120,14 +120,14 @@ Vamos a definir como típicamente se define un modelo estadístico.
 
 **Ejemplo de inferencias**:
 
-1) Estimar $\theta$ a través de $\dfrac{1}{\bar X_n}$.
+1. Estimar $\theta$ a través de $\dfrac{1}{\bar X_n}$.
 
-2) ¿Qué tan probable es que el promedio de las siguientes observaciones es al menos 2?
+2. ¿Qué tan probable es que el promedio de las siguientes observaciones es al menos 2?
 \begin{equation*}
 \dfrac{1}{10}\sum_{i= m+1}^{m+10} X_i > 2
 \end{equation*}
 
-3) ¿Qué tan cierto es que $\theta\leq0.4$ después de observar la muestra?
+3. ¿Qué tan cierto es que $\theta\leq0.4$ después de observar la muestra?
 
 * **Parámetro**: característica (s) que determinan la distribución conjunta de las variables aleatorias de interés.
 
@@ -138,7 +138,7 @@ Vamos a definir como típicamente se define un modelo estadístico.
   * $\theta$ > 0 (ejemplo anterior); $\Omega = (0,+\infty)$.
   * $X_1,\dots,X_n \sim N(\mu, \sigma^2)$, $(\mu,\sigma^2)$ parámetros; $\Omega$ = $\mathbb{R}\times[0,+\infty)$.
   
-### Ejemplo: clientes de un banco
+**Ejemplo:** Clientes de un banco
 
 ¿Qué tan probable es que un cliente no pague su crédito hoy?
 
@@ -150,9 +150,10 @@ Vamos a definir como típicamente se define un modelo estadístico.
 
 * **Parámetro**: $p$, $\Omega = [0,1]$.
 
-* **Inferencias**:
-  - Estimar $p$ (probabilidad de impago).
-  - Suponga que $L(X_i)$ es el saldo en la cuenta del cliente $\#i$ (con riesgo).
+ 
+* **Inferencias:** 
+  - Estimar \(p\) (probabilidad de impago). 
+  - Suponga que $L(X_i)$ es el saldo en la cuenta del cliente $\#i$.
  
 \begin{equation*}
 \mathbb{P}\left(\sum_{i=1}^{10000}L(X_i)>u\right)=\text{Probabilidad de ruina}
@@ -176,6 +177,7 @@ es un estadístico.
 
 - $R_m = \max L(X_i) - \min L(X_i), 1\leq i\leq 10000$
 
+    
 
 <!--chapter:end:01-inferencia-estadistica.Rmd-->
 
