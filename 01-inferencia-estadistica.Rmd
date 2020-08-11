@@ -79,7 +79,7 @@ Vamos a definir como típicamente se define un modelo estadístico.
 
 2. Distribución conjunta de una muestra de variables observables.
 
-    Es decir cual es el supuesto general que estoy usando para describir mis
+    Es decir cuál es el supuesto general que estoy usando para describir mis
     observaciones. 
 
 3. Parámetros que son hipotéticamente observables (desconocidos).
