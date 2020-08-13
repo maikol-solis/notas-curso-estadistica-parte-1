@@ -1,3 +1,5 @@
+# Densidades previas conjugadas y estimadores de Bayes
+
 # Distribución previa (distribución a priori)
 
 Suponga que tenemos un modelo estadístico con parámetro $\theta$. Su $\theta$ es aleatorio entonces su densidad (antes de observar cualquier muestra) se llama **densidad previa**: $\pi$.
