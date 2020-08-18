@@ -1,6 +1,6 @@
 # Densidades previas conjugadas y estimadores de Bayes
-
-# Distribución previa (distribución a priori)
+    
+## Distribución previa (distribución a priori)
 
 Suponga que tenemos un modelo estadístico con parámetro $\theta$. Su $\theta$ es aleatorio entonces su densidad (antes de observar cualquier muestra) se llama **densidad previa**: $\pi$.
 
@@ -10,9 +10,15 @@ $$ \pi(\theta) = \dfrac{1}{\Gamma(\alpha)}\beta^\alpha\theta^{\alpha-1}e^{\beta\
 
 **Ejemplo**: Sea $\theta$ la probabilidad de obtener cara al tirar una moneda.
 
-* Moneda justa: $\theta = \dfrac{1}{2}$ con probabilidad previa $0.8$ ($\pi(\frac{1}{2}) = 0.8$).
+En este caso antes de modelar exactamente el \(\theta\), lo importante es
+modelar el tipo de moneda. Es decir, supongamos que tenemos dos opciones
 
-* Moneda de dos caras: $\theta = 1$  con probabilidad previa $0.2$ ($\pi(1) = 0.2$).
+- *Moneda justa:* $\theta = \dfrac{1}{2}$ con probabilidad previa $0.8$ ($\pi(\frac{1}{2}) = 0.8$).
+
+- *Moneda con solo una cara:* $\theta = 1$  con probabilidad previa $0.2$ ($\pi(1) = 0.2$).
+
+En este ejemplo si tuviéramos 100 monedas con probabilidad previa \(\pi\)
+entonces 20 tendrían solo una cara y 80 serían monedas normales. 
 
 **Notas**:
 
@@ -20,12 +26,23 @@ $$ \pi(\theta) = \dfrac{1}{\Gamma(\alpha)}\beta^\alpha\theta^{\alpha-1}e^{\beta\
 
 - $\pi$ es definida antes de obtener la muestra.
 
-**Ejemplo** (Componentes eléctricos)
+**Ejemplo** (Componentes eléctricos) Supoga que se quiere conocer el tiempo de
+vida de cierto componente eléctrico. Sabemos que este tiempo se puede modelar
+con una distribución exponencial con parámetro \(\theta\) desconocido.
+Este parámetro asumimos que tiene una distribución previa Gamma.
 
-Criterio experto: $\mathbb{E}[\theta] = 0.0002^K$, $\sqrt{\text{Var}(\theta)} = 0.0001^K$.
+Un experto en componentes eléctricos conoce mucho de su área y sabe
+que el parámetro \(\theta\) tiene las siguientes características: 
 
-Bajo la misma densidad $\pi$:
-$$ \mathbb{E}[\theta] = \dfrac{\alpha}{\beta}, \text{Var}(\theta) = \dfrac{\alpha}{\beta^2}$$
+\begin{equation*}
+\mathbb{E}[\theta] = 0.0002, \quad \sqrt{\text{Var}(\theta)} = 0.0001.
+\end{equation*}
+
+Como sabemos que la previa  $\pi$ es Gamma, podemos deducir lo siguiente:
+
+\begin{equation*}
+ \mathbb{E}[\theta] = \dfrac{\alpha}{\beta}, \text{Var}(\theta) = \dfrac{\alpha}{\beta^2}
+\end{equation*}
 
 $$\implies \begin{cases}\dfrac{\alpha}{\beta} = 2\times 10^{-4}\\\sqrt{\dfrac{\alpha}{\beta^2}} = 1 \times 10^{-4}\end{cases} \implies \beta = 20000, \alpha = 4$$
 
@@ -37,25 +54,40 @@ $$\implies \begin{cases}\dfrac{\alpha}{\beta} = 2\times 10^{-4}\\\sqrt{\dfrac{\a
 
 - Densidad de $X$ condicional en $\theta$: $f_n(x|\theta)$.
 
-**Supuesto**: $x$ viene de una muestra aleatoria  si y solo si $X$ es condicionalmente independiente dado $\theta$.
+**Supuesto**: $X$ viene de una muestra aleatoria  si y solo si $X$ es condicionalmente independiente dado $\theta$.
 
 **Consecuencia**: $$f_n(X|\theta) = f(X_1|\theta)\cdot f(X_2|\theta)\cdots f(X_n|\theta)$$
 
 **Ejemplo**
 
 Si $X = (X_1,\dots, X_n)$ es una muestra tal que $X_i\sim \text{Exp}(\theta)$,
-$$ f_n(X|\theta) = \begin{cases}\prod_{i=1}^n \theta e^{-\theta X_i} & \text{si } X_i>0\\
+
+\begin{align*}
+f_n(X|\theta) &= \begin{cases}\prod_{i=1}^n \theta e^{-\theta X_i} & \text{si } X_i>0\\
 0 & \text{si no}
-\end{cases} = \begin{cases}\theta^n e^{-\theta\sum_{i=1}^n X_i} & X_i > 0 \forall i\\ 0 & \text{si no}\end{cases}$$
+\end{cases}  \\
+&= \begin{cases}\theta^n e^{-\theta\sum_{i=1}^n X_i} & X_i > 0  \\ 0 & \text{si no}\end{cases}
+\end{align*}
  
 ## Densidad posterior
 
-**Definición**. Considere un modelo estadístico con parámetro $\theta$ y muestra aleatoria $X_1,\dots, X_n$. La densidad condicional de $\theta$ dado $X_1,\dots,X_n$ se llama *densidad posterior*: $\pi(\theta|X)$
 
 
-**Teorema**. Bajo las condiciones anteriores:
-$$\pi(\theta|X) = \dfrac{f(X_1|\theta)\cdots f(X_n|\theta)\pi(\theta)}{g_n(X)}$$
-para $\theta \in \Omega$, donde $g_n$ es una constante de normalización.
+
+**Definición**. Considere un modelo estadístico con parámetro $\theta$ y muestra
+aleatoria $X_1,\dots, X_n$. La densidad condicional de $\theta$ dado
+$X_1,\dots,X_n$ se llama *densidad posterior*: $\pi(\theta|X)$
+
+
+**Teorema**. Bajo las condiciones anteriores: 
+
+\begin{equation*}
+\pi(\theta|X) =
+\dfrac{f(X_1|\theta)\cdots f(X_n|\theta)\pi(\theta)}{g_n(X)} 
+\end{equation*} 
+
+para $\theta \in \Omega$, donde $g_n$ es una constante de
+normalización.
 
 *Prueba*:
 \begin{align*}
@@ -100,6 +132,23 @@ Es sensible al tamaño de la muestra (una muestra grande implica un efecto de la
 
 **Hiperparámetros**: parámetros de la previa o posterior.
 
+
+## Proceso de modelación de parámetros. 
+
+De ahora en adelante vamos a entender un modelo como el conjunto de los datos
+\(X_1, \ldots, X_n\), la función de densidad \(f\) y el parámetro de la densidad
+\(\theta\). Estos dos últimos resumen el comportamiento de los datos.
+
+Ahora para identificar este modelo se hace por partes,
+
+1. La información previa \(\pi(\theta)\) es la información extra o basado en la
+   experiencia que tengo del mdoelo. 
+2. Los datos es la información observada. La función de densidad \(f\) filtra y
+   mejora la información de la previa. 
+3. La densidad posterior es la "mezcla" entre la información y los datos
+   observados. Es una versión más informada de la distribución del parámetro. 
+ 
+
 ## Función de verosimilitud
 
 Bajo el modelo estadístico anterior a $f_n(X|\theta)$ se le llama **verosimilitud** o **función de verosimilitud**.
@@ -109,7 +158,10 @@ Bajo el modelo estadístico anterior a $f_n(X|\theta)$ se le llama **verosimilit
 **Ejemplo**.
 
 Sea $\theta$ la proporción de aparatos defectuosos, con $\theta \in [0,1]$
-$$ X_i = \begin{cases}1 & \text{falló} \\ 2 & \text{no falló}\end{cases}$$
+$$ X_i = \begin{cases}
+ 0 & \text{falló} \\
+ 1 & \text{no falló}
+ \end{cases}$$
 
 $\{X_i\}_{i=1}^n$ es una muestra aleatoria y $X_i \sim Ber(\theta)$.
 
@@ -123,14 +175,19 @@ $$\pi(\theta) = 1_{\{0\leq\theta\leq 1\}}$$
 * **Posterior**:
 
 Por el teorema de Bayes,
-$$\pi(\theta|X) \propto \theta^y (1-\theta)^{n-y}\cdot 1 = \theta^{\overbrace{y+1}^{\alpha}-1}(1-\theta)^{\overbrace{n-y+1}^{\beta}-1} \implies \theta|X \sim \text{Beta}(y+1,n-y+1)$$
+\begin{align*}
+\pi(\theta|X) \propto \theta^y (1-\theta)^{n-y}\cdot 1  \\
+&= \theta^{\overbrace{y+1}^{\alpha}-1}(1-\theta)^{\overbrace{n-y+1}^{\beta}-1}
+&\implies \theta|X \sim \text{Beta}(y+1,n-y+1)
+\end{align*}
 
 * **Predicción**. 
 
 *Supuesto*: los datos son secuenciales. Calculamos la distribución posterior secuencialmente:
 \begin{align*}
 \pi(\theta|X_1) & \propto \pi(\theta) f(X_1|\theta)\\
-\pi(\theta|X_1,X_2) &\propto \pi(\theta) f(X_1,X_2|\theta) = \pi(\theta) f(X_1|\theta) f(X_2|\theta) \text{ (por independencia condicional)}
+\pi(\theta|X_1,X_2) &\propto \pi(\theta) f(X_1,X_2|\theta) \\
+&= \pi(\theta) f(X_1|\theta) f(X_2|\theta) \text{ (por independencia condicional)}
 \\ & = \pi(\theta|X_1)f(X_2|\theta)\\
 \vdots &  \\
 \pi(\theta|X_1,\dots,X_n) & \propto f(X_n|\theta)\pi(\theta|X_1,\dots, X_{n-1})
@@ -163,15 +220,17 @@ La vida media se calcula como $\dfrac{1}{2} = P(X_6>u|X)$.
 **Ejemplos**:
 
 * La familia Beta es familia conjugada para muestras según una Bernoulli.
-
+ 
 *  La familia Gama es familia conjugada para muestras exponenciales.
 
-* Para el caso Poisson, si $X_1,\dots,X_n\sim Poi(\lambda)$,entonces la familia Gamma es familia conjugada. 
+* Para el caso Poisson, si $X_1,\dots,X_n\sim Poi(\lambda)$,entonces la familia
+  Gamma es familia conjugada.
 
-La función de densidad de una Poisson es $P(X_i = k) = e^{-\lambda}\dfrac{\lambda^k}{k!}$. La verosimilitud corresponde a 
+La función de densidad de una Poisson es \(P(X_i = k) = e^{-\lambda}\dfrac{\lambda^k}{k!}\). La verosimilitud corresponde a 
 $$ f_n(X|\lambda) = \prod_{i=1}^{n}e^{-\lambda}\dfrac{\lambda^X_i}{X_i!} = \dfrac{e^{-n\lambda\lambda^y}}{\prod_{i=1}^n X_i}.$$
 La previa de $\lambda$ está definida por $\pi(\lambda)\propto\lambda^{\alpha-1}e^{-\beta\lambda}$. Por lo tanto, la posterior es
-$$ \pi(\lambda|X) \propto \lambda^{y+\alpha-1}e^{-(\beta+n)\lambda} \implies \lambda|X \sim \Gamma(y+\alpha,\beta+n)$$
+$$ \pi(\lambda|X) \propto \lambda^{y+\alpha-1}e^{-(\beta+n)\lambda} \implies
+ \lambda|X \sim \Gamma(y+\alpha,\beta+n)$$ 
 
 * En el caso normal, si $X_1,\dots,X_n\sim N(\theta,\sigma^2)$,entonces la familia normal es conjugada si $\sigma^2$ es conocido.
 
@@ -180,7 +239,7 @@ $$\mu_1 = \dfrac{\sigma^2\mu_0 + nV_0^2 \bar X_n}{\sigma^2 + nV_0^2}  = \dfrac{\
 
 Combina de manera ponderada la previa y la de los datos.
 
-**Ejemplo 7.3.6**
+**Ejemplo**
 
 Considere una verosimilitud Poisson($\lambda$) y una previa
 $$ \pi(\lambda) = \begin{cases}2e^{-2\lambda} & \lambda> 0 \\ 0 & \lambda \geq 0\end{cases} \quad \lambda \sim \Gamma(1,2)$$
@@ -263,8 +322,12 @@ Se presenta el número de soldados prusianos muertos por una patada de caballo (
 
 * Posterior: $\lambda|X \sim \Gamma(y+\alpha, n+\beta) = \Gamma(196 + \alpha, 280 + \beta)$.
 
-Sustituyendo, 
-$$\alpha=\beta = 0 \implies \pi(\lambda) \propto \lambda_{\alpha-1}e^{-\lambda\beta} = \dfrac{1}{\lambda}$$
+Sustituyendo, \(\alpha=\beta = 0\)
+\begin{align*}
+\pi(\lambda) &= \dfrac{1}{\Gamma(\alpha)}\beta^\alpha\lambda^{\alpha-1}e^{\beta\lambda}  \\
+\\ \propto \lambda^{\alpha-1}e^{-\lambda\beta} \\
+&=\dfrac{1}{\lambda}
+\end{align*}
 donde $\displaystyle\int_{0}^{\infty}\dfrac{1}{\lambda} d\lambda = \infty$. 
 
 Por teorema de Bayes, $$\theta|X \sim \Gamma(196,280)$$
@@ -372,3 +435,4 @@ Es estimador se calcula de la siguiente manera:
 
 Por otro lado, vea que $\mathbb{E}(\theta|X) = \dfrac{4}{8.6}$. El estimador *plug-in* correspondería a
 $$\dfrac{1}{\mathbb{E}(\theta|X)} = \dfrac{8.6}{4} = 2.15.$$
+
