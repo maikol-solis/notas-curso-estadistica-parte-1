@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 3 Distribución previa (distribución a priori) | Notas Curso de Estadística (Parte I)</title>
-  <meta name="description" content="Capítulo 3 Distribución previa (distribución a priori) | Notas Curso de Estadística (Parte I)" />
+  <title>Capítulo 3 Densidades previas conjugadas y estimadores de Bayes | Notas Curso de Estadística (Parte I)</title>
+  <meta name="description" content="Capítulo 3 Densidades previas conjugadas y estimadores de Bayes | Notas Curso de Estadística (Parte I)" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 3 Distribución previa (distribución a priori) | Notas Curso de Estadística (Parte I)" />
+  <meta property="og:title" content="Capítulo 3 Densidades previas conjugadas y estimadores de Bayes | Notas Curso de Estadística (Parte I)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 3 Distribución previa (distribución a priori) | Notas Curso de Estadística (Parte I)" />
+  <meta name="twitter:title" content="Capítulo 3 Densidades previas conjugadas y estimadores de Bayes | Notas Curso de Estadística (Parte I)" />
   
   
   
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="inferencia-estadística.html"/>
-
+<link rel="next" href="estimación-por-máxima-verosimilitud.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -77,20 +77,47 @@
 <li class="chapter" data-level="2.2" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#modelo-estadístico"><i class="fa fa-check"></i><b>2.2</b> Modelo estadístico</a></li>
 <li class="chapter" data-level="2.3" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#estadístico"><i class="fa fa-check"></i><b>2.3</b> Estadístico</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="distribución-previa-distribución-a-priori.html"><a href="distribución-previa-distribución-a-priori.html"><i class="fa fa-check"></i><b>3</b> Distribución previa (distribución a priori)</a>
+<li class="chapter" data-level="3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><i class="fa fa-check"></i><b>3</b> Densidades previas conjugadas y estimadores de Bayes</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="distribución-previa-distribución-a-priori.html"><a href="distribución-previa-distribución-a-priori.html#densidad-posterior"><i class="fa fa-check"></i><b>3.1</b> Densidad posterior</a></li>
-<li class="chapter" data-level="3.2" data-path="distribución-previa-distribución-a-priori.html"><a href="distribución-previa-distribución-a-priori.html#función-de-verosimilitud"><i class="fa fa-check"></i><b>3.2</b> Función de verosimilitud</a></li>
-<li class="chapter" data-level="3.3" data-path="distribución-previa-distribución-a-priori.html"><a href="distribución-previa-distribución-a-priori.html#familias-conjugadas"><i class="fa fa-check"></i><b>3.3</b> Familias conjugadas</a></li>
-<li class="chapter" data-level="3.4" data-path="distribución-previa-distribución-a-priori.html"><a href="distribución-previa-distribución-a-priori.html#densidades-previas-impropias"><i class="fa fa-check"></i><b>3.4</b> Densidades previas impropias</a></li>
-<li class="chapter" data-level="3.5" data-path="distribución-previa-distribución-a-priori.html"><a href="distribución-previa-distribución-a-priori.html#funciones-de-pérdida"><i class="fa fa-check"></i><b>3.5</b> Funciones de pérdida</a>
+<li class="chapter" data-level="3.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-previa-distribución-a-priori"><i class="fa fa-check"></i><b>3.1</b> Distribución previa (distribución a priori)</a></li>
+<li class="chapter" data-level="3.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#densidad-posterior"><i class="fa fa-check"></i><b>3.2</b> Densidad posterior</a></li>
+<li class="chapter" data-level="3.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#proceso-de-modelación-de-parámetros."><i class="fa fa-check"></i><b>3.3</b> Proceso de modelación de parámetros.</a></li>
+<li class="chapter" data-level="3.4" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-verosimilitud"><i class="fa fa-check"></i><b>3.4</b> Función de verosimilitud</a></li>
+<li class="chapter" data-level="3.5" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#familias-conjugadas"><i class="fa fa-check"></i><b>3.5</b> Familias conjugadas</a></li>
+<li class="chapter" data-level="3.6" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#densidades-previas-impropias"><i class="fa fa-check"></i><b>3.6</b> Densidades previas impropias</a></li>
+<li class="chapter" data-level="3.7" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#funciones-de-pérdida"><i class="fa fa-check"></i><b>3.7</b> Funciones de pérdida</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="distribución-previa-distribución-a-priori.html"><a href="distribución-previa-distribución-a-priori.html#función-de-pérdida-cuadrática"><i class="fa fa-check"></i><b>3.5.1</b> Función de pérdida cuadrática</a></li>
-<li class="chapter" data-level="3.5.2" data-path="distribución-previa-distribución-a-priori.html"><a href="distribución-previa-distribución-a-priori.html#función-de-pérdida-absoluta"><i class="fa fa-check"></i><b>3.5.2</b> Función de pérdida absoluta</a></li>
-<li class="chapter" data-level="3.5.3" data-path="distribución-previa-distribución-a-priori.html"><a href="distribución-previa-distribución-a-priori.html#otras-funciones-de-pérdida"><i class="fa fa-check"></i><b>3.5.3</b> Otras funciones de pérdida</a></li>
+<li class="chapter" data-level="3.7.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-pérdida-cuadrática"><i class="fa fa-check"></i><b>3.7.1</b> Función de pérdida cuadrática</a></li>
+<li class="chapter" data-level="3.7.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-pérdida-absoluta"><i class="fa fa-check"></i><b>3.7.2</b> Función de pérdida absoluta</a></li>
+<li class="chapter" data-level="3.7.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#otras-funciones-de-pérdida"><i class="fa fa-check"></i><b>3.7.3</b> Otras funciones de pérdida</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="distribución-previa-distribución-a-priori.html"><a href="distribución-previa-distribución-a-priori.html#efecto-de-muestras-grandes"><i class="fa fa-check"></i><b>3.6</b> Efecto de muestras grandes</a></li>
-<li class="chapter" data-level="3.7" data-path="distribución-previa-distribución-a-priori.html"><a href="distribución-previa-distribución-a-priori.html#consistencia"><i class="fa fa-check"></i><b>3.7</b> Consistencia</a></li>
+<li class="chapter" data-level="3.8" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#efecto-de-muestras-grandes"><i class="fa fa-check"></i><b>3.8</b> Efecto de muestras grandes</a></li>
+<li class="chapter" data-level="3.9" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>3.9</b> Consistencia</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html"><i class="fa fa-check"></i><b>4</b> Estimación por máxima verosimilitud</a></li>
+<li class="chapter" data-level="5" data-path="propiedades-del-mle.html"><a href="propiedades-del-mle.html"><i class="fa fa-check"></i><b>5</b> Propiedades del MLE</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="propiedades-del-mle.html"><a href="propiedades-del-mle.html#propiedad-de-invarianza"><i class="fa fa-check"></i><b>5.1</b> Propiedad de invarianza</a></li>
+<li class="chapter" data-level="5.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>5.2</b> Consistencia</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cálculo-numérico.html"><a href="cálculo-numérico.html"><i class="fa fa-check"></i><b>6</b> Cálculo numérico</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="cálculo-numérico.html"><a href="cálculo-numérico.html#método-de-los-momentos"><i class="fa fa-check"></i><b>6.1</b> Método de los momentos</a></li>
+<li class="chapter" data-level="6.2" data-path="cálculo-numérico.html"><a href="cálculo-numérico.html#método-delta"><i class="fa fa-check"></i><b>6.2</b> Método Delta</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html"><i class="fa fa-check"></i><b>7</b> Estadísticos Suficientes y Criterio de Factorización</a></li>
+<li class="chapter" data-level="8" data-path="estadísticos-suficientes.html"><a href="estadísticos-suficientes.html"><i class="fa fa-check"></i><b>8</b> Estadísticos suficientes</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="estadísticos-suficientes.html"><a href="estadísticos-suficientes.html#teorema-de-factorización-de-fisher"><i class="fa fa-check"></i><b>8.1</b> Teorema de Factorización de Fisher</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="estadístico-suficiente-multivariado-.html"><a href="estadístico-suficiente-multivariado-.html"><i class="fa fa-check"></i><b>9</b> Estadístico suficiente multivariado.</a></li>
+<li class="chapter" data-level="10" data-path="estadísticos-minimales.html"><a href="estadísticos-minimales.html"><i class="fa fa-check"></i><b>10</b> Estadísticos minimales</a></li>
+<li class="chapter" data-level="11" data-path="mejorando-estimadores.html"><a href="mejorando-estimadores.html"><i class="fa fa-check"></i><b>11</b> Mejorando estimadores</a></li>
+<li class="chapter" data-level="12" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html"><i class="fa fa-check"></i><b>12</b> Distribución muestral de un estadístico</a></li>
+<li class="chapter" data-level="13" data-path="distribución-muestral.html"><a href="distribución-muestral.html"><i class="fa fa-check"></i><b>13</b> Distribución muestral</a></li>
+<li class="chapter" data-level="14" data-path="distribución-chi2.html"><a href="distribución-chi2.html"><i class="fa fa-check"></i><b>14</b> Distribución <span class="math inline">\(\chi^2\)</span></a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="distribución-chi2.html"><a href="distribución-chi2.html#distribución-t"><i class="fa fa-check"></i><b>14.1</b> Distribución <span class="math inline">\(t\)</span></a></li>
 </ul></li>
 </ul>
 
@@ -109,25 +136,40 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="distribución-previa-distribución-a-priori" class="section level1" number="3">
-<h1><span class="header-section-number">Capítulo 3</span> Distribución previa (distribución a priori)</h1>
+<div id="densidades-previas-conjugadas-y-estimadores-de-bayes" class="section level1" number="3">
+<h1><span class="header-section-number">Capítulo 3</span> Densidades previas conjugadas y estimadores de Bayes</h1>
+<div id="distribución-previa-distribución-a-priori" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Distribución previa (distribución a priori)</h2>
 <p>Suponga que tenemos un modelo estadístico con parámetro <span class="math inline">\(\theta\)</span>. Su <span class="math inline">\(\theta\)</span> es aleatorio entonces su densidad (antes de observar cualquier muestra) se llama <strong>densidad previa</strong>: <span class="math inline">\(\pi\)</span>.</p>
 <p><strong>Ejemplo</strong>: <span class="math inline">\(X_1,\dots, X_n \sim \text{Exp}(\theta)\)</span> y <span class="math inline">\(\theta\)</span> es aleatorio tal que <span class="math inline">\(\theta \sim \Gamma(\stackrel{\alpha}{1},\stackrel{\beta}{2})\)</span> entonces</p>
 <p><span class="math display">\[ \pi(\theta) = \dfrac{1}{\Gamma(\alpha)}\beta^\alpha\theta^{\alpha-1}e^{\beta\theta} = 2e^{-2\theta}, \quad \theta &gt; 0\]</span></p>
 <p><strong>Ejemplo</strong>: Sea <span class="math inline">\(\theta\)</span> la probabilidad de obtener cara al tirar una moneda.</p>
+<p>En este caso antes de modelar exactamente el <span class="math inline">\(\theta\)</span>, lo importante es
+modelar el tipo de moneda. Es decir, supongamos que tenemos dos opciones</p>
 <ul>
-<li><p>Moneda justa: <span class="math inline">\(\theta = \dfrac{1}{2}\)</span> con probabilidad previa <span class="math inline">\(0.8\)</span> (<span class="math inline">\(\pi(\frac{1}{2}) = 0.8\)</span>).</p></li>
-<li><p>Moneda de dos caras: <span class="math inline">\(\theta = 1\)</span> con probabilidad previa <span class="math inline">\(0.2\)</span> (<span class="math inline">\(\pi(1) = 0.2\)</span>).</p></li>
+<li><p><em>Moneda justa:</em> <span class="math inline">\(\theta = \dfrac{1}{2}\)</span> con probabilidad previa <span class="math inline">\(0.8\)</span> (<span class="math inline">\(\pi(\frac{1}{2}) = 0.8\)</span>).</p></li>
+<li><p><em>Moneda con solo una cara:</em> <span class="math inline">\(\theta = 1\)</span> con probabilidad previa <span class="math inline">\(0.2\)</span> (<span class="math inline">\(\pi(1) = 0.2\)</span>).</p></li>
 </ul>
+<p>En este ejemplo si tuviéramos 100 monedas con probabilidad previa <span class="math inline">\(\pi\)</span>
+entonces 20 tendrían solo una cara y 80 serían monedas normales.</p>
 <p><strong>Notas</strong>:</p>
 <ul>
 <li><p><span class="math inline">\(\pi\)</span> está definida en <span class="math inline">\(\Omega\)</span> (espacio paramétrico).</p></li>
 <li><p><span class="math inline">\(\pi\)</span> es definida antes de obtener la muestra.</p></li>
 </ul>
-<p><strong>Ejemplo</strong> (Componentes eléctricos)</p>
-<p>Criterio experto: <span class="math inline">\(\mathbb{E}[\theta] = 0.0002^K\)</span>, <span class="math inline">\(\sqrt{\text{Var}(\theta)} = 0.0001^K\)</span>.</p>
-<p>Bajo la misma densidad <span class="math inline">\(\pi\)</span>:
-<span class="math display">\[ \mathbb{E}[\theta] = \dfrac{\alpha}{\beta}, \text{Var}(\theta) = \dfrac{\alpha}{\beta^2}\]</span></p>
+<p><strong>Ejemplo</strong> (Componentes eléctricos) Supoga que se quiere conocer el tiempo de
+vida de cierto componente eléctrico. Sabemos que este tiempo se puede modelar
+con una distribución exponencial con parámetro <span class="math inline">\(\theta\)</span> desconocido.
+Este parámetro asumimos que tiene una distribución previa Gamma.</p>
+<p>Un experto en componentes eléctricos conoce mucho de su área y sabe
+que el parámetro <span class="math inline">\(\theta\)</span> tiene las siguientes características:</p>
+<p><span class="math display">\[\begin{equation*}
+\mathbb{E}[\theta] = 0.0002, \quad \sqrt{\text{Var}(\theta)} = 0.0001.
+\end{equation*}\]</span></p>
+<p>Como sabemos que la previa <span class="math inline">\(\pi\)</span> es Gamma, podemos deducir lo siguiente:</p>
+<p><span class="math display">\[\begin{equation*}
+ \mathbb{E}[\theta] = \dfrac{\alpha}{\beta}, \text{Var}(\theta) = \dfrac{\alpha}{\beta^2}
+\end{equation*}\]</span></p>
 <p><span class="math display">\[\implies \begin{cases}\dfrac{\alpha}{\beta} = 2\times 10^{-4}\\\sqrt{\dfrac{\alpha}{\beta^2}} = 1 \times 10^{-4}\end{cases} \implies \beta = 20000, \alpha = 4\]</span></p>
 <p><strong>Notación</strong>:</p>
 <ul>
@@ -135,19 +177,29 @@
 <li><p>Densidad conjunta de <span class="math inline">\(X\)</span>: <span class="math inline">\(f_\theta(x)\)</span>.</p></li>
 <li><p>Densidad de <span class="math inline">\(X\)</span> condicional en <span class="math inline">\(\theta\)</span>: <span class="math inline">\(f_n(x|\theta)\)</span>.</p></li>
 </ul>
-<p><strong>Supuesto</strong>: <span class="math inline">\(x\)</span> viene de una muestra aleatoria si y solo si <span class="math inline">\(X\)</span> es condicionalmente independiente dado <span class="math inline">\(\theta\)</span>.</p>
+<p><strong>Supuesto</strong>: <span class="math inline">\(X\)</span> viene de una muestra aleatoria si y solo si <span class="math inline">\(X\)</span> es condicionalmente independiente dado <span class="math inline">\(\theta\)</span>.</p>
 <p><strong>Consecuencia</strong>: <span class="math display">\[f_n(X|\theta) = f(X_1|\theta)\cdot f(X_2|\theta)\cdots f(X_n|\theta)\]</span></p>
 <p><strong>Ejemplo</strong></p>
-<p>Si <span class="math inline">\(X = (X_1,\dots, X_n)\)</span> es una muestra tal que <span class="math inline">\(X_i\sim \text{Exp}(\theta)\)</span>,
-<span class="math display">\[ f_n(X|\theta) = \begin{cases}\prod_{i=1}^n \theta e^{-\theta X_i} &amp; \text{si } X_i&gt;0\\
+<p>Si <span class="math inline">\(X = (X_1,\dots, X_n)\)</span> es una muestra tal que <span class="math inline">\(X_i\sim \text{Exp}(\theta)\)</span>,</p>
+<p><span class="math display">\[\begin{align*}
+f_n(X|\theta) &amp;= \begin{cases}\prod_{i=1}^n \theta e^{-\theta X_i} &amp; \text{si } X_i&gt;0\\
 0 &amp; \text{si no}
-\end{cases} = \begin{cases}\theta^n e^{-\theta\sum_{i=1}^n X_i} &amp; X_i &gt; 0 \forall i\\ 0 &amp; \text{si no}\end{cases}\]</span></p>
-<div id="densidad-posterior" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Densidad posterior</h2>
-<p><strong>Definición</strong>. Considere un modelo estadístico con parámetro <span class="math inline">\(\theta\)</span> y muestra aleatoria <span class="math inline">\(X_1,\dots, X_n\)</span>. La densidad condicional de <span class="math inline">\(\theta\)</span> dado <span class="math inline">\(X_1,\dots,X_n\)</span> se llama <em>densidad posterior</em>: <span class="math inline">\(\pi(\theta|X)\)</span></p>
-<p><strong>Teorema</strong>. Bajo las condiciones anteriores:
-<span class="math display">\[\pi(\theta|X) = \dfrac{f(X_1|\theta)\cdots f(X_n|\theta)\pi(\theta)}{g_n(X)}\]</span>
-para <span class="math inline">\(\theta \in \Omega\)</span>, donde <span class="math inline">\(g_n\)</span> es una constante de normalización.</p>
+\end{cases}  \\
+&amp;= \begin{cases}\theta^n e^{-\theta\sum_{i=1}^n X_i} &amp; X_i &gt; 0  \\ 0 &amp; \text{si no}\end{cases}
+\end{align*}\]</span></p>
+</div>
+<div id="densidad-posterior" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Densidad posterior</h2>
+<p><strong>Definición</strong>. Considere un modelo estadístico con parámetro <span class="math inline">\(\theta\)</span> y muestra
+aleatoria <span class="math inline">\(X_1,\dots, X_n\)</span>. La densidad condicional de <span class="math inline">\(\theta\)</span> dado
+<span class="math inline">\(X_1,\dots,X_n\)</span> se llama <em>densidad posterior</em>: <span class="math inline">\(\pi(\theta|X)\)</span></p>
+<p><strong>Teorema</strong>. Bajo las condiciones anteriores:</p>
+<p><span class="math display">\[\begin{equation*}
+\pi(\theta|X) =
+\dfrac{f(X_1|\theta)\cdots f(X_n|\theta)\pi(\theta)}{g_n(X)} 
+\end{equation*}\]</span></p>
+<p>para <span class="math inline">\(\theta \in \Omega\)</span>, donde <span class="math inline">\(g_n\)</span> es una constante de
+normalización.</p>
 <p><em>Prueba</em>:
 <span class="math display">\[\begin{align*}
 \pi(\theta|X) &amp; = \dfrac{\pi(\theta,X)}{\text{marginal de X}} = \dfrac{\pi(\theta,X)}{\int \pi(\theta,X)\;d\theta}= \dfrac{P(X|\theta)\cdot \pi(\theta)}{\int \pi(\theta,X)\;d\theta}\\
@@ -169,13 +221,31 @@ por lo que <span class="math inline">\(\theta|X \sim \Gamma(9,36178)\)</span></p
 <p>Es sensible al tamaño de la muestra (una muestra grande implica un efecto de la previa menor).</p>
 <p><strong>Hiperparámetros</strong>: parámetros de la previa o posterior.</p>
 </div>
-<div id="función-de-verosimilitud" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Función de verosimilitud</h2>
+<div id="proceso-de-modelación-de-parámetros." class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Proceso de modelación de parámetros.</h2>
+<p>De ahora en adelante vamos a entender un modelo como el conjunto de los datos
+<span class="math inline">\(X_1, \ldots, X_n\)</span>, la función de densidad <span class="math inline">\(f\)</span> y el parámetro de la densidad
+<span class="math inline">\(\theta\)</span>. Estos dos últimos resumen el comportamiento de los datos.</p>
+<p>Ahora para identificar este modelo se hace por partes,</p>
+<ol style="list-style-type: decimal">
+<li>La información previa <span class="math inline">\(\pi(\theta)\)</span> es la información extra o basado en la
+experiencia que tengo del mdoelo.</li>
+<li>Los datos es la información observada. La función de densidad <span class="math inline">\(f\)</span> filtra y
+mejora la información de la previa.</li>
+<li>La densidad posterior es la “mezcla” entre la información y los datos
+observados. Es una versión más informada de la distribución del parámetro.</li>
+</ol>
+</div>
+<div id="función-de-verosimilitud" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Función de verosimilitud</h2>
 <p>Bajo el modelo estadístico anterior a <span class="math inline">\(f_n(X|\theta)\)</span> se le llama <strong>verosimilitud</strong> o <strong>función de verosimilitud</strong>.</p>
 <p><strong>Observación</strong>. En el caso de una función de verosimilitud, el argumento es <span class="math inline">\(\theta\)</span>.</p>
 <p><strong>Ejemplo</strong>.</p>
 <p>Sea <span class="math inline">\(\theta\)</span> la proporción de aparatos defectuosos, con <span class="math inline">\(\theta \in [0,1]\)</span>
-<span class="math display">\[ X_i = \begin{cases}1 &amp; \text{falló} \\ 2 &amp; \text{no falló}\end{cases}\]</span></p>
+<span class="math display">\[ X_i = \begin{cases}
+ 0 &amp; \text{falló} \\
+ 1 &amp; \text{no falló}
+ \end{cases}\]</span></p>
 <p><span class="math inline">\(\{X_i\}_{i=1}^n\)</span> es una muestra aleatoria y <span class="math inline">\(X_i \sim Ber(\theta)\)</span>.</p>
 <ul>
 <li><strong>Verosimilitud</strong></li>
@@ -187,14 +257,19 @@ por lo que <span class="math inline">\(\theta|X \sim \Gamma(9,36178)\)</span></p
 <li><p><strong>Posterior</strong>:</p></li>
 </ul>
 <p>Por el teorema de Bayes,
-<span class="math display">\[\pi(\theta|X) \propto \theta^y (1-\theta)^{n-y}\cdot 1 = \theta^{\overbrace{y+1}^{\alpha}-1}(1-\theta)^{\overbrace{n-y+1}^{\beta}-1} \implies \theta|X \sim \text{Beta}(y+1,n-y+1)\]</span></p>
+<span class="math display">\[\begin{align*}
+\pi(\theta|X) \propto \theta^y (1-\theta)^{n-y}\cdot 1  \\
+&amp;= \theta^{\overbrace{y+1}^{\alpha}-1}(1-\theta)^{\overbrace{n-y+1}^{\beta}-1}
+&amp;\implies \theta|X \sim \text{Beta}(y+1,n-y+1)
+\end{align*}\]</span></p>
 <ul>
 <li><strong>Predicción</strong>.</li>
 </ul>
 <p><em>Supuesto</em>: los datos son secuenciales. Calculamos la distribución posterior secuencialmente:
 <span class="math display">\[\begin{align*}
 \pi(\theta|X_1) &amp; \propto \pi(\theta) f(X_1|\theta)\\
-\pi(\theta|X_1,X_2) &amp;\propto \pi(\theta) f(X_1,X_2|\theta) = \pi(\theta) f(X_1|\theta) f(X_2|\theta) \text{ (por independencia condicional)}
+\pi(\theta|X_1,X_2) &amp;\propto \pi(\theta) f(X_1,X_2|\theta) \\
+&amp;= \pi(\theta) f(X_1|\theta) f(X_2|\theta) \text{ (por independencia condicional)}
 \\ &amp; = \pi(\theta|X_1)f(X_2|\theta)\\
 \vdots &amp;  \\
 \pi(\theta|X_1,\dots,X_n) &amp; \propto f(X_n|\theta)\pi(\theta|X_1,\dots, X_{n-1})
@@ -213,26 +288,28 @@ Entonces,
 <span class="math display">\[ P(X_6&gt;3000) = \int_{3000}^{\infty} \dfrac{9.55\times10^{41}}{(X_6+36178)^{10}}\; dX_6 = 0.4882\]</span></p>
 <p>La vida media se calcula como <span class="math inline">\(\dfrac{1}{2} = P(X_6&gt;u|X)\)</span>.</p>
 </div>
-<div id="familias-conjugadas" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Familias conjugadas</h2>
+<div id="familias-conjugadas" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Familias conjugadas</h2>
 <p><strong>Definición</strong>. Sea <span class="math inline">\(X_1,\dots, X_n\)</span> i.i.d. condicional dado <span class="math inline">\(\theta\)</span> con densidad <span class="math inline">\(f(X|\theta)\)</span>. Sea <span class="math inline">\(\psi\)</span> la familia de posibles densidades previas sobre <span class="math inline">\(\Omega\)</span>. Si, sin importar los datos, la posterior pertenece a <span class="math inline">\(\psi\)</span>, entonces decimos que <span class="math inline">\(\psi\)</span> es una familia conjugada de previas.</p>
 <p><strong>Ejemplos</strong>:</p>
 <ul>
 <li><p>La familia Beta es familia conjugada para muestras según una Bernoulli.</p></li>
 <li><p>La familia Gama es familia conjugada para muestras exponenciales.</p></li>
-<li><p>Para el caso Poisson, si <span class="math inline">\(X_1,\dots,X_n\sim Poi(\lambda)\)</span>,entonces la familia Gamma es familia conjugada.</p></li>
+<li><p>Para el caso Poisson, si <span class="math inline">\(X_1,\dots,X_n\sim Poi(\lambda)\)</span>,entonces la familia
+Gamma es familia conjugada.</p></li>
 </ul>
 <p>La función de densidad de una Poisson es <span class="math inline">\(P(X_i = k) = e^{-\lambda}\dfrac{\lambda^k}{k!}\)</span>. La verosimilitud corresponde a
 <span class="math display">\[ f_n(X|\lambda) = \prod_{i=1}^{n}e^{-\lambda}\dfrac{\lambda^X_i}{X_i!} = \dfrac{e^{-n\lambda\lambda^y}}{\prod_{i=1}^n X_i}.\]</span>
 La previa de <span class="math inline">\(\lambda\)</span> está definida por <span class="math inline">\(\pi(\lambda)\propto\lambda^{\alpha-1}e^{-\beta\lambda}\)</span>. Por lo tanto, la posterior es
-<span class="math display">\[ \pi(\lambda|X) \propto \lambda^{y+\alpha-1}e^{-(\beta+n)\lambda} \implies \lambda|X \sim \Gamma(y+\alpha,\beta+n)\]</span></p>
+<span class="math display">\[ \pi(\lambda|X) \propto \lambda^{y+\alpha-1}e^{-(\beta+n)\lambda} \implies
+ \lambda|X \sim \Gamma(y+\alpha,\beta+n)\]</span></p>
 <ul>
 <li>En el caso normal, si <span class="math inline">\(X_1,\dots,X_n\sim N(\theta,\sigma^2)\)</span>,entonces la familia normal es conjugada si <span class="math inline">\(\sigma^2\)</span> es conocido.</li>
 </ul>
 <p>Si <span class="math inline">\(\theta \sim N(\mu_0,V_0^2) \implies \theta|X \sim N(\mu_1, V_1^2)\)</span> donde,
 <span class="math display">\[\mu_1 = \dfrac{\sigma^2\mu_0 + nV_0^2 \bar X_n}{\sigma^2 + nV_0^2}  = \dfrac{\sigma^2}{\sigma^2 + nV_0^2}\mu_0 + \dfrac{nV_0^2}{\sigma^2 + nV_0^2}\bar X_n\]</span></p>
 <p>Combina de manera ponderada la previa y la de los datos.</p>
-<p><strong>Ejemplo 7.3.6</strong></p>
+<p><strong>Ejemplo</strong></p>
 <p>Considere una verosimilitud Poisson(<span class="math inline">\(\lambda\)</span>) y una previa
 <span class="math display">\[ \pi(\lambda) = \begin{cases}2e^{-2\lambda} &amp; \lambda&gt; 0 \\ 0 &amp; \lambda \geq 0\end{cases} \quad \lambda \sim \Gamma(1,2)\]</span></p>
 <p>Supongamos que es una muestra aleatoria de tamaño <span class="math inline">\(n\)</span>. ¿Cuál es el número de observciones para reducir la varianza, a lo sumo, a 0.01?</p>
@@ -277,8 +354,8 @@ Por lo tanto, <span class="math display">\[\pi(\theta|X) \propto \exp\left[-\dfr
 Buscamos que <span class="math inline">\(V_1\leq 0.01\)</span>, entonces
 <span class="math display">\[ \dfrac{4}{4n+1}\leq 0.01 \implies n\geq 99.75 \text{ (al menos 100 observaciones)}\]</span></p>
 </div>
-<div id="densidades-previas-impropias" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Densidades previas impropias</h2>
+<div id="densidades-previas-impropias" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Densidades previas impropias</h2>
 <p><strong>Definición</strong>. Sea <span class="math inline">\(\pi\)</span> una función positiva cuyo dominio está en <span class="math inline">\(\Omega\)</span>. Suponga que <span class="math inline">\(\int\pi(\theta)\;d\theta = \infty\)</span>. Entonces decimos que <span class="math inline">\(\pi\)</span> es una <strong>densidad impropia</strong>.</p>
 <p><strong>Ejemplo</strong>: <span class="math inline">\(\theta \sim \text{Unif}(\mathbb{R})\)</span>, <span class="math inline">\(\lambda \sim \text{Unif}(0,\infty)\)</span>.</p>
 <p>Una técnica para seleccionar distribuciones impropia es sustituir los hiperparámetros previos por 0.</p>
@@ -319,13 +396,17 @@ Buscamos que <span class="math inline">\(V_1\leq 0.01\)</span>, entonces
 <li><p>Previa: <span class="math inline">\(\lambda \sim \Gamma(\alpha, \beta)\)</span>.</p></li>
 <li><p>Posterior: <span class="math inline">\(\lambda|X \sim \Gamma(y+\alpha, n+\beta) = \Gamma(196 + \alpha, 280 + \beta)\)</span>.</p></li>
 </ul>
-<p>Sustituyendo,
-<span class="math display">\[\alpha=\beta = 0 \implies \pi(\lambda) \propto \lambda_{\alpha-1}e^{-\lambda\beta} = \dfrac{1}{\lambda}\]</span>
+<p>Sustituyendo, <span class="math inline">\(\alpha=\beta = 0\)</span>
+<span class="math display">\[\begin{align*}
+\pi(\lambda) &amp;= \dfrac{1}{\Gamma(\alpha)}\beta^\alpha\lambda^{\alpha-1}e^{\beta\lambda}  \\
+\\ \propto \lambda^{\alpha-1}e^{-\lambda\beta} \\
+&amp;=\dfrac{1}{\lambda}
+\end{align*}\]</span>
 donde <span class="math inline">\(\displaystyle\int_{0}^{\infty}\dfrac{1}{\lambda} d\lambda = \infty\)</span>.</p>
 <p>Por teorema de Bayes, <span class="math display">\[\theta|X \sim \Gamma(196,280)\]</span></p>
 </div>
-<div id="funciones-de-pérdida" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Funciones de pérdida</h2>
+<div id="funciones-de-pérdida" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Funciones de pérdida</h2>
 <p><strong>Definición</strong>. Sean <span class="math inline">\(X_1,\dots, X_n\)</span> datos observables cuyo modelo está indexado por <span class="math inline">\(\theta\in\Omega\)</span>. Un estimador de <span class="math inline">\(\theta\)</span> es cualquier estadístico <span class="math inline">\(\delta(X_1,\dots, X_n)\)</span>.</p>
 <p><strong>Notación</strong>:</p>
 <ul>
@@ -340,8 +421,8 @@ con <span class="math inline">\(a\)</span> un número real.</p>
 <span class="math display">\[ \mathbb{E}[L(\theta,a)] = \int_{\Omega}L(\theta, a) \pi(\theta)\;d\theta\]</span>
 la cual es una función de <span class="math inline">\(a\)</span>, que a su vez es función de <span class="math inline">\(X_1,\dots,X_n\)</span>. Asuma que <span class="math inline">\(a\)</span> se selecciona el minimizar esta esperanza. A ese estimador <span class="math inline">\(a = \delta^*(X_1,\dots, X_n)\)</span> se le llama <strong>estimador bayesiano</strong>, si ponderamos los parámetros con respecto a la posterior.</p>
 <p><span class="math display">\[\mathbb{E}[L(\theta, \delta^*)|X] = \int_{\Omega}L(\theta, a) \pi(\theta)\;d\theta = \min_a \mathbb{E}[L(\theta|a)X]. \]</span></p>
-<div id="función-de-pérdida-cuadrática" class="section level3" number="3.5.1">
-<h3><span class="header-section-number">3.5.1</span> Función de pérdida cuadrática</h3>
+<div id="función-de-pérdida-cuadrática" class="section level3" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Función de pérdida cuadrática</h3>
 <p><span class="math display">\[ L(\theta, a) = (\theta-a)^2\]</span></p>
 <p>En el caso en que <span class="math inline">\(\theta\)</span> es real y <span class="math inline">\(\mathbb{E}[\theta|X]\)</span> es finita, entonces
 <span class="math display">\[ \delta^*(X_1,\dots, X_n) = \mathbb{E}[\theta|X] \text{ cuando } L(\theta,a) = (\theta-a)^2. \]</span></p>
@@ -349,8 +430,8 @@ la cual es una función de <span class="math inline">\(a\)</span>, que a su vez 
 <p>El estimador de <span class="math inline">\(\theta\)</span> es
 <span class="math display">\[ \delta^*(X_1,\dots, X_n) = \dfrac{\alpha+y}{\alpha + \beta + n} = \overbrace{\dfrac{\alpha}{\alpha + \beta} }^{\text{Esperanza previa}}\cdot \dfrac{\alpha +\beta}{\alpha +\beta + n} + \overbrace{\dfrac{y}{n}}^{\bar X}\cdot \dfrac{n}{\alpha +\beta + n}.  \]</span></p>
 </div>
-<div id="función-de-pérdida-absoluta" class="section level3" number="3.5.2">
-<h3><span class="header-section-number">3.5.2</span> Función de pérdida absoluta</h3>
+<div id="función-de-pérdida-absoluta" class="section level3" number="3.7.2">
+<h3><span class="header-section-number">3.7.2</span> Función de pérdida absoluta</h3>
 <p><span class="math display">\[ L(\theta,a) = |\theta-a|\]</span></p>
 <p>La pérdida esperada es
 <span class="math display">\[ f(a) = \mathbb{E}[L(\theta,a)|X] = \int_{-\infty}^{+\infty}|\theta-a|\pi(\theta|X)\;d\theta = \int_{a}^{+\infty}(\theta-a)\pi(\theta|X)\;d\theta + \int_{-\infty}^{a}(a-\theta)\pi(\theta|X)\;d\theta \]</span></p>
@@ -362,8 +443,8 @@ la cual es una función de <span class="math inline">\(a\)</span>, que a su vez 
 <span class="math display">\[ \dfrac{1}{\text{Beta}(\alpha+y, \beta+n-y)}\int_{-\infty}^{X_{0.5}}\theta^{\alpha+y-1} (1-\theta)^{\beta+n-y-1}\;d\theta = \dfrac12\]</span>
 Resuelva para <span class="math inline">\(X_{0.5}\)</span>.</p>
 </div>
-<div id="otras-funciones-de-pérdida" class="section level3" number="3.5.3">
-<h3><span class="header-section-number">3.5.3</span> Otras funciones de pérdida</h3>
+<div id="otras-funciones-de-pérdida" class="section level3" number="3.7.3">
+<h3><span class="header-section-number">3.7.3</span> Otras funciones de pérdida</h3>
 <ul>
 <li><p><span class="math inline">\(L(\theta,a) = |\theta-a|^k\)</span>, <span class="math inline">\(k\ne 1,2\)</span>, <span class="math inline">\(0&lt;k&lt;1\)</span>.</p></li>
 <li><p><span class="math inline">\(L(\theta,a) = \lambda(\theta)|\theta-a|^2\)</span> (<span class="math inline">\(\lambda(\theta)\)</span> penaliza la magnitud del parámetro).</p></li>
@@ -371,8 +452,8 @@ Resuelva para <span class="math inline">\(X_{0.5}\)</span>.</p>
 </ul>
 </div>
 </div>
-<div id="efecto-de-muestras-grandes" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Efecto de muestras grandes</h2>
+<div id="efecto-de-muestras-grandes" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Efecto de muestras grandes</h2>
 <p><strong>Ejemplo</strong>: ítemes malos (proporción: <span class="math inline">\(\theta\)</span>), <span class="math inline">\(\theta \in [0,1]\)</span>. Función de pérdida cuadrática. El tamaño de muestra son <span class="math inline">\(n=100\)</span> ítemes, de los cuales <span class="math inline">\(y=10\)</span> están malos.</p>
 <p><span class="math display">\[ X_1,\dots,X_n\sim \text{Ber}(\theta)\]</span></p>
 <ul>
@@ -385,8 +466,8 @@ Resuelva para <span class="math inline">\(X_{0.5}\)</span>.</p>
 <p><span class="math display">\[ \mathbb{E}[\theta|X] = \dfrac{1+10}{1+2+100} = \dfrac{11}{103}=0.107\]</span></p>
 <p>La media es <span class="math inline">\(\bar X_n = \dfrac{10}{100} = 0.1\)</span>.</p>
 </div>
-<div id="consistencia" class="section level2" number="3.7">
-<h2><span class="header-section-number">3.7</span> Consistencia</h2>
+<div id="consistencia" class="section level2" number="3.9">
+<h2><span class="header-section-number">3.9</span> Consistencia</h2>
 <p><strong>Definición</strong>. Un estimador de <span class="math inline">\(\theta\)</span> <span class="math inline">\(\delta(X_1,\dots, X_n)\)</span> es consistente si <span class="math display">\[\delta(X_1,\dots, X_n)\xrightarrow[n\to \infty]{\mathbb{P}}\theta.\]</span></p>
 <p>Bajo pérdida cuadrática, <span class="math inline">\(\mathbb{E}[\theta|X] = W_1\mathbb{E}[\theta] + X_2\bar X_n = \delta^*\)</span>. Sabemos, por ley de grandes números, que <span class="math inline">\(\bar X_n \xrightarrow[n\to \infty]{\mathbb{P}}\theta\)</span>. Además, <span class="math inline">\(W_1\xrightarrow[n\to \infty]{}0\)</span> y <span class="math inline">\(W_2\xrightarrow[n\to \infty]{}1\)</span>.</p>
 <p>En los ejemplos que hemos analizado
@@ -413,8 +494,8 @@ Sea <span class="math inline">\(\psi = h(\theta)\)</span>. Un <strong>estimador<
           </div>
         </div>
       </div>
-<a href="inferencia-estadística.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="inferencia-estadística.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estimación-por-máxima-verosimilitud.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

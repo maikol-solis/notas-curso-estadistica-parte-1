@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)</title>
-  <meta name="description" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <title>Capítulo 4 Estimación por máxima verosimilitud | Notas Curso de Estadística (Parte I)</title>
+  <meta name="description" content="Capítulo 4 Estimación por máxima verosimilitud | Notas Curso de Estadística (Parte I)" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <meta property="og:title" content="Capítulo 4 Estimación por máxima verosimilitud | Notas Curso de Estadística (Parte I)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <meta name="twitter:title" content="Capítulo 4 Estimación por máxima verosimilitud | Notas Curso de Estadística (Parte I)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"/>
+<link rel="prev" href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"/>
+<link rel="next" href="propiedades-del-mle.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -136,135 +136,64 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="inferencia-estadística" class="section level1" number="2">
-<h1><span class="header-section-number">Capítulo 2</span> Inferencia estadística</h1>
-<p><strong>Definición:</strong> Hacer afirmaciones probabilísticas respecto a (acerca de)
-cantidades desconocidas.</p>
-<div id="ejemplo" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Ejemplo</h2>
-<p>*<strong>Pregunta</strong>: ¿Será posible modelar cuánto dura un componente electrónico en
-fallar?</p>
-<p><strong>Solución</strong>: Podemos responder esta pregunta dividiéndola en dos partes:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Modelo probabilístico:</strong> Asuma que los tiempos de vida del componente son
-exponenciales (en años).</li>
-<li><strong>Parámetro:</strong> Sea <span class="math inline">\(\theta &gt; 0\)</span> la tasa de fallo (unidades: 1/Tiempo(años)).</li>
-</ol>
-<p>Es decir, tenemos un modelo (exponencial) y estamos decretando que su información estará concentrada en el parámetro <span class="math inline">\(\theta\)</span>.</p>
-<p><strong>Nota</strong>: El parámetro <span class="math inline">\(\theta\)</span> contiene la información del modelo,
-pero ¿Cómo obtenemos esa información</p>
-<p><strong>Muestra</strong>: Secuencia (sucesión) de variables aleatorias independientes <span class="math inline">\(X_1,X_2,\dots, X_n,\dots\)</span>. Tomemos una muestra <span class="math inline">\(X_1,X_2,\dots, X_n,\dots \stackrel{i.i.d}{\sim} \text{Exp}(\theta)\)</span>.</p>
-<p><strong>Objetivos</strong></p>
-<ul>
-<li><p>Estimar <span class="math inline">\(X_m, X_{m+1}, \dots\)</span> si se observa <span class="math inline">\(X_1, X_{m-1}, \dots\)</span> (Predicción).</p></li>
-<li><p>Estimar <span class="math inline">\(\theta\)</span> usando información.</p></li>
-</ul>
-<p><strong>Datos</strong>: Realizaciones de variables aleatorias <span class="math inline">\(X_1,\dots,X_m\)</span> pertenecientes a la muestra.</p>
-<p><strong>Estimación de <span class="math inline">\(\theta\)</span></strong></p>
-<p>Dado que <span class="math inline">\(\mathbb{E}(X) = \dfrac{1}{\theta}\)</span> con <span class="math inline">\(X \sim \text{Exp}(\theta)\)</span>, por la ley de grandes números se tiene que</p>
-<p><span class="math display">\[\begin{equation*}
-\underbrace{\dfrac{1}{n} \sum_{i=1}{X_i}}_{\bar{X}_n} \xrightarrow[n\to \infty]{\mathbb{P}}\mathbb{E}(X) = \dfrac{1}{\theta}
-\end{equation*}\]</span></p>
-<p>por propiedad de convergencia en probabilidad.</p>
-<p>Un posible candidato para estimar <span class="math inline">\(\theta\)</span> es <span class="math inline">\(\dfrac{1}{\bar X_n}\)</span>, bajo el supuesto por Ley de Grandes Números que <span class="math inline">\(\theta\)</span> es una constante (frecuentista).</p>
-<p><strong>Realidad</strong>: <span class="math inline">\(\theta\)</span> no necesariamente es determinístico (factores externos, por la naturaleza del fenómeno).</p>
-<p>Asumimos un modelo probabilístico para <span class="math inline">\(\theta\)</span> (tasa siempre positiva):</p>
-<p><span class="math display">\[\begin{equation*}
-\theta \sim \Gamma(\alpha_0,\beta_0)
-\end{equation*}\]</span>
-Luego, según estudios previos la tasa esperada es 0.5/año
-<span class="math display">\[\begin{equation*}
-\mathbb{E}(\theta) = \dfrac{1}{2} = \dfrac{\alpha_0}{\beta_0}.
-\end{equation*}\]</span></p>
-<p>Un primer indicio de que se podría establecer que <span class="math inline">\(\alpha_0 = 1\)</span> y de <span class="math inline">\(\beta_0 = 2\)</span>.</p>
-</div>
-<div id="modelo-estadístico" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Modelo estadístico</h2>
-<p>Vamos a definir como típicamente se define un modelo estadístico.</p>
-<ol style="list-style-type: decimal">
-<li><p>Variables aleatorias observables / hipotéticamente observables:</p>
-<p><span class="math display">\[\begin{equation*}
-  \underbrace{X_t}_{\text{Observable}} = \underbrace{Y_t}_{\text{Hip. observable}} + \underbrace{\epsilon}_{\text{Ruido}}
-  \end{equation*}\]</span></p>
-<p>En otras palabras <span class="math inline">\(Y_t\)</span> sería la el dato <em>“verdadero”</em> que pasó
-exactamente en el fenómeno analizado. Esta observación es afectada por
-muchos factores no observables (por ejemplo: errores de medición, cambio
-de las condiciones de la economía, etc.). La variable <span class="math inline">\(\epsilon\)</span> captura
-toda esa aleatoriedad que no es parte del fénomeno.</p>
-<p>Claramente ni <span class="math inline">\(Y_t\)</span> ni <span class="math inline">\(\epsilon\)</span> se pueden medir y la mejor
-representación del nuestro es fenómeno es a partir de <span class="math inline">\(X_t\)</span>.</p></li>
-<li><p>Distribución conjunta de una muestra de variables observables.</p>
-<p>Es decir cuál es el supuesto general que estoy usando para describir mis
-observaciones.</p></li>
-<li><p>Parámetros que son hipotéticamente observables (desconocidos).</p>
-<p>¿Cuál sería la mejor calibración de los componentes del modelo anterior de
-modo que mi modelo se ajuste a los datos?</p></li>
-<li><p>(Opcional) Distribución conjunta de los parámetros.</p>
-<p>En el caso de Bayes, los parámetro dejan de ser simple valores puntuales y se
-convierten en distribuciones completas.</p></li>
-</ol>
-<ul>
-<li><strong>Inferencia estadística</strong>: procedimiento que genera afirmaciones probabilísticas de un modelo estadístico.</li>
-</ul>
-<p><strong>Ejemplo de inferencias</strong>:</p>
-<ol style="list-style-type: decimal">
-<li><p>Estimar <span class="math inline">\(\theta\)</span> a través de <span class="math inline">\(\dfrac{1}{\bar X_n}\)</span>.</p></li>
-<li><p>¿Qué tan probable es que el promedio de las siguientes observaciones es al menos 2?
-<span class="math display">\[\begin{equation*}
-\dfrac{1}{10}\sum_{i= m+1}^{m+10} X_i &gt; 2
-\end{equation*}\]</span></p></li>
-<li><p>¿Qué tan cierto es que <span class="math inline">\(\theta\leq0.4\)</span> después de observar la muestra?</p></li>
-</ol>
-<ul>
-<li><p><strong>Parámetro</strong>: característica (s) que determinan la distribución conjunta de las variables aleatorias de interés.</p></li>
-<li><p><strong>Espacio paramétrico</strong> <span class="math inline">\(\Omega\)</span> (espacio de parámetros, puede ser de probabilidad)</p></li>
-</ul>
-<p><strong>Ejemplos</strong>:</p>
-<ul>
-<li><span class="math inline">\(\theta\)</span> &gt; 0 (ejemplo anterior); <span class="math inline">\(\Omega = (0,+\infty)\)</span>.</li>
-<li><span class="math inline">\(X_1,\dots,X_n \sim N(\mu, \sigma^2)\)</span>, <span class="math inline">\((\mu,\sigma^2)\)</span> parámetros; <span class="math inline">\(\Omega\)</span> = <span class="math inline">\(\mathbb{R}\times[0,+\infty)\)</span>.</li>
-</ul>
-<p><strong>Ejemplo:</strong> Clientes de un banco</p>
-<p>¿Qué tan probable es que un cliente no pague su crédito hoy?</p>
-<ul>
-<li><p><strong>Datos</strong>: <span class="math inline">\(X_i = \begin{cases}1&amp; \text{el cliente } \#i \text{ no pagó}\\0 &amp; \text{el cliente } \#i \text{ pagó}\end{cases}\)</span>.</p></li>
-<li><p><strong>Muestra</strong>: <span class="math inline">\(X_1,\dots,X_{10000}\)</span> (realización al día de hoy).</p></li>
-<li><p><strong>Modelos</strong>: <span class="math inline">\(X_1,\dots, X_{10000} \stackrel{i.i.d}{\sim} \text{Ber}(p)\)</span> con <span class="math inline">\(p\in[0,1]\)</span>.</p></li>
-<li><p><strong>Parámetro</strong>: <span class="math inline">\(p\)</span>, <span class="math inline">\(\Omega = [0,1]\)</span>.</p></li>
-<li><p><strong>Inferencias:</strong></p>
-<ul>
-<li>Estimar <span class="math inline">\(p\)</span> (probabilidad de impago).</li>
-<li>Suponga que <span class="math inline">\(L(X_i)\)</span> es el saldo en la cuenta del cliente <span class="math inline">\(\#i\)</span>.</li>
-</ul></li>
-</ul>
-<p><span class="math display">\[\begin{equation*}
-\mathbb{P}\left(\sum_{i=1}^{10000}L(X_i)&gt;u\right)=\text{Probabilidad de ruina}
-\end{equation*}\]</span></p>
-</div>
-<div id="estadístico" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Estadístico</h2>
-<p><strong>Definición</strong>. Si <span class="math inline">\(X_1,\dots,X_n\)</span> es una muestra observable. Sea <span class="math inline">\(r\)</span> una función real de <span class="math inline">\(n\)</span> variables:
-<span class="math display">\[\begin{equation*}
-T = r(X_1,\dots,X_n)
-\end{equation*}\]</span>
-es un estadístico.</p>
-<p><strong>Nota</strong>: <span class="math inline">\(T\)</span> también es aleatorio.</p>
-<p><strong>Ejemplos</strong>:</p>
-<ul>
-<li><p><span class="math inline">\(\hat p = \dfrac{1}{10000}\displaystyle\sum_{i=1}^{10000}X_i = \dfrac{\#\text{ no pagan}}{\text{Total}} = r(X_1,\dots,X_{10000})\)</span></p></li>
-<li><p><span class="math inline">\(L_m = \max L(X_i)\)</span> (saldo del cliente más riesgoso).</p></li>
-<li><p><span class="math inline">\(R_m = \max L(X_i) - \min L(X_i), 1\leq i\leq 10000\)</span></p></li>
-</ul>
-
-</div>
+<div id="estimación-por-máxima-verosimilitud" class="section level1" number="4">
+<h1><span class="header-section-number">Capítulo 4</span> Estimación por máxima verosimilitud</h1>
+<p>¿Será posible estimar sin una densidad previa? Se debería ajustar la noción de muestra a independencia dado el valor de un parámetro.</p>
+<p>Recuerde que, para <span class="math inline">\(X_1,\dots, X_n \stackrel{i.i.d}{\sim} f(X|\theta)\)</span> con <span class="math inline">\(\theta\)</span> fijo, la <strong>función de verosimilitud</strong> se define como
+<span class="math display">\[ f_n(X|\theta) = \pi(X_i|\theta) = G(\theta|X).\]</span></p>
+<p>Si <span class="math inline">\(\theta_1,\theta_2\in \Omega\)</span>, <span class="math inline">\(\theta\)</span> es el valor real del parámetro. Si la muestra es fija, evaluamos, para <span class="math inline">\(\theta_1\)</span>, <span class="math inline">\(f_n(X|\theta_1) = G(\theta_1|X)\)</span> y, de igual forma para <span class="math inline">\(\theta_2\)</span>, <span class="math inline">\(f_n(X|\theta_2) = G(\theta_2|X)\)</span>. Supongamos que
+<span class="math display">\[f_n(X|\theta_1) &gt;f_n(X|\theta_2) \implies G(\theta_1|X)&gt;G(\theta_2|X) \text{ (principio de verosimilitud)}\]</span></p>
+<p><strong>Interpretación</strong>. Es más verosímil (realista) que el verdadero parámetro sea <span class="math inline">\(\theta_1\)</span> que <span class="math inline">\(\theta_2\)</span> dada la muestra.</p>
+<p><strong>Definición</strong>. Para cada <span class="math inline">\(x\in \mathcal{X}\)</span> (espacio muestral), sea <span class="math inline">\(\delta(x) \in \delta\)</span> estimador de <span class="math inline">\(\theta\)</span> tal que <span class="math inline">\(f_n(x|\theta)\)</span> es máximo. A <span class="math inline">\(\delta(x)\)</span> se le llama <strong>MLE (estimador de máxima verosimilitud)</strong>.</p>
+<p><strong>Ejemplo</strong>. Si <span class="math inline">\(X_1,\dots, X_n \sim \text{Exp}(\theta)\)</span>, estime <span class="math inline">\(\theta\)</span>.</p>
+<p>Determinamos la función de verosimilitud,
+<span class="math display">\[f_n(X|\theta) = \prod_{i=1}^n \dfrac{1}\theta e^{-X_i/\theta} = \dfrac1{\theta^n} \exp\left(\dfrac{1}\theta \sum_{i=1}^nX_i\right) = \theta^{-n}e^{-y/\theta}.\]</span></p>
+<p>Considere la <strong>log-verosimilitud</strong></p>
+<p><span class="math display">\[L(\theta|X) = \ln f_n(X|\theta) = -n\ln \theta - \dfrac{y}{\theta}\]</span></p>
+<p>Como es una transformación monótona creciente, la función de verosimilitud se maximiza si la log-verosimilitud es máxima. Entonces,</p>
+<p><span class="math display">\[\dfrac{\partial}{\partial\theta} L(\theta|X) = \dfrac{-n}{\theta}+\dfrac{y}{\theta^2} = 0\implies \dfrac{1}{\theta}\left(-n+\dfrac{y}\theta\right)=0 \implies \hat\theta = \dfrac{y}{n} = \bar X_n.\]</span>
+Para verificar que es un máximo:</p>
+<p><span class="math display">\[\dfrac{\partial^2 L}{\partial\theta^2} = \left. \dfrac{n}{\theta^2} -\dfrac{2y}{\theta^3}\right\vert_{\theta = \frac{y}{n}} = \dfrac{1}{\hat\theta^2} \bigg[n-\dfrac{2y}{\frac yn}\bigg] = \dfrac{-n}{\hat\theta^2} &lt; 0.\]</span></p>
+<p>Entonces <span class="math inline">\(\hat\theta = \bar X_n\)</span> es el MLE de <span class="math inline">\(\theta\)</span>.</p>
+<p><strong>Ejemplo</strong>. En una prueba sobre alguna enfermedad, en un <span class="math inline">\(90\%\)</span> da la verdadera condición (enfermo) y en un <span class="math inline">\(10\%\)</span> la prueba se equivoca (que diga que la persona esté enferma cuando está sana). Considere una variable aleatoria <span class="math inline">\(\text{Bernoulli}(\theta)\)</span>,<span class="math inline">\(\theta \in \{0.9,0.1\}\)</span>
+Una muestra sería
+<span class="math display">\[x = \begin{cases}1 &amp; \text{si la prueba es positiva}\\0&amp; \text{si no}\end{cases}\]</span>
+Si <span class="math inline">\(x=0\)</span>, entonces <span class="math inline">\(f(0|\theta) = \begin{cases}0.9 &amp; \text{si }\theta = 0.1\\0.1&amp; \text{si }\theta = 0.9\end{cases}\)</span>.</p>
+<p>Si <span class="math inline">\(x=1\)</span>, entonces <span class="math inline">\(f(1|\theta) = \begin{cases}0.1 &amp; \text{si }\theta = 0.1\\0.9&amp; \text{si }\theta = 0.9\end{cases}\)</span>.</p>
+<p>El MLE corresponde a
+<span class="math display">\[\hat\theta = \begin{cases}0.1 &amp; \text{si }x= 0\\0.9&amp; \text{si }x= 1\end{cases}\]</span>
+<strong>Ejemplo</strong>. Para el caso normal, <span class="math inline">\(X_1,\dots, X_n \sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\sigma^2\)</span> conocida, estime <span class="math inline">\(\mu\)</span>.</p>
+<p><span class="math display">\[f_n(x|\mu) = \prod_{i=1}^n \dfrac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\dfrac{(x_i-\mu)^2}{2\sigma^2}\right) = (2\pi\sigma^2)^{-n/2}\exp\left(-\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\mu)^2\right).\]</span></p>
+<p>La log-verosimilitud es de la forma
+<span class="math display">\[ L(\mu|x) = \dfrac{-n}{2}\ln(2\pi\sigma^2)-\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\mu)^2.\]</span></p>
+<p>Basta con minimizar <span class="math inline">\(Q(\mu) = \sum_{i=1}^n(x_i-\mu)^2\)</span>.</p>
+<p><span class="math display">\[ \dfrac{\partial Q}{\partial\mu} = -2\sum_{i=1}^n(x_i-\mu) \implies n\mu = \sum_{i=1}^nx_i \implies \hat\mu = \bar x_n.\]</span></p>
+<p>No hace falta verificar la condición de segundo orden, pues <span class="math inline">\(Q\)</span> es una función cuadrática de <span class="math inline">\(\mu\)</span> y tiene un único máximo.</p>
+<p><span class="math display">\[ \hat\mu_{MLE} = \bar x_n \quad (*)\]</span></p>
+<p>Ahora, si <span class="math inline">\(X_1,\dots, X_n \sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\theta = (\mu,\sigma^2)\)</span> desconocido, por <span class="math inline">\((*)\)</span>,
+<span class="math display">\[ L(\sigma^2|X_1,\dots, X_n) = \dfrac n2 \ln(2\pi\sigma^2)--\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\bar x_n)^2\]</span></p>
+<p><span class="math display">\[ \dfrac{\partial L}{\partial\sigma^2} = -\dfrac n2 \dfrac1{2\pi\sigma^2} + \dfrac1{2(\sigma^2)^2} \sum_{i=1}^n(x_i-\bar x_n)^2= 0 \]</span>
+Entonces
+<span class="math display">\[ \sigma^2 = \dfrac 1n \sum_{i=1}^n(x_i-\mu)^2 \text{ (varianza muestral)}\]</span></p>
+<p>Las condiciones de segundo orden quedan como ejercicio.</p>
+<p><strong>Nota</strong>. Si <span class="math inline">\(\theta_{MLE}\)</span> de <span class="math inline">\(\theta\)</span>, entonces <span class="math inline">\(h(\theta_{MLE})\)</span> es el MLE de <span class="math inline">\(h(\theta)\)</span>.</p>
+<p>Sea <span class="math inline">\(h(x,y) = \sqrt{y}\)</span> (es inyectiva). <span class="math inline">\(h(\bar x_n, \hat\sigma^2) = \sqrt{\hat\sigma^2} = \hat\sigma\)</span>.</p>
+<p>El MLE de <span class="math inline">\(\dfrac{\sigma}{\mu} = \dfrac{\hat \sigma}{\bar x_n}\)</span>.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \stackrel{i.i.d}{\sim} \text{Unif}(0)\)</span>. Estime <span class="math inline">\(\theta\)</span> <span class="math inline">\((\theta &gt; 0)\)</span>. Suponga que <span class="math inline">\(x_i&gt;0 \forall i\)</span>.</p>
+<p><span class="math display">\[f(X|\theta) = \dfrac 1\theta \cdot 1_{[0,\theta]}(x)\]</span></p>
+<p>La verosimilitud es
+<span class="math display">\[f_n(x|\theta) = \prod_{i=1}^{n} f(x_i|\theta) = \dfrac 1{\theta^n} \prod_{i=1}^n 1_{\{0\leq x_i\leq \theta\}} \quad 0\leq x_i \leq \theta \;\forall i\]</span>
+Vea que <span class="math inline">\(f_n(x|\theta)\)</span> es positivo si y solo si <span class="math inline">\(O\leq X_{(n)}\leq \theta\)</span>.</p>
+<p>El valor de la muestra <span class="math inline">\(\{X_1,\dots, X_n\}\)</span> en la <span class="math inline">\(i\)</span>-ésima posición cuando los datos se ordenan de menor a mayor se denota <span class="math inline">\(X_{(i)}\)</span> (estadístico de orden). En este caso, <span class="math inline">\(X_{(n)} = \max\{X_1,\dots, X_n\}\)</span>.
+Entonces <span class="math inline">\(\hat\theta_{MLE} = x_{(n)}\)</span>.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="propiedades-del-mle.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -295,7 +224,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/01-inferencia-estadistica.Rmd",
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/03-maxima-verosimilitud.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -303,7 +232,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/01-inferencia-estadistica.Rmd",
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/03-maxima-verosimilitud.Rmd",
 "text": null
 },
 "download": ["Notas-Curso-Estadistica.pdf"],

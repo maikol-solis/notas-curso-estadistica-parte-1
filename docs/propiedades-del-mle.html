@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)</title>
-  <meta name="description" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <title>Capítulo 5 Propiedades del MLE | Notas Curso de Estadística (Parte I)</title>
+  <meta name="description" content="Capítulo 5 Propiedades del MLE | Notas Curso de Estadística (Parte I)" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <meta property="og:title" content="Capítulo 5 Propiedades del MLE | Notas Curso de Estadística (Parte I)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <meta name="twitter:title" content="Capítulo 5 Propiedades del MLE | Notas Curso de Estadística (Parte I)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"/>
+<link rel="prev" href="estimación-por-máxima-verosimilitud.html"/>
+<link rel="next" href="cálculo-numérico.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -136,126 +136,41 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="inferencia-estadística" class="section level1" number="2">
-<h1><span class="header-section-number">Capítulo 2</span> Inferencia estadística</h1>
-<p><strong>Definición:</strong> Hacer afirmaciones probabilísticas respecto a (acerca de)
-cantidades desconocidas.</p>
-<div id="ejemplo" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Ejemplo</h2>
-<p>*<strong>Pregunta</strong>: ¿Será posible modelar cuánto dura un componente electrónico en
-fallar?</p>
-<p><strong>Solución</strong>: Podemos responder esta pregunta dividiéndola en dos partes:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Modelo probabilístico:</strong> Asuma que los tiempos de vida del componente son
-exponenciales (en años).</li>
-<li><strong>Parámetro:</strong> Sea <span class="math inline">\(\theta &gt; 0\)</span> la tasa de fallo (unidades: 1/Tiempo(años)).</li>
-</ol>
-<p>Es decir, tenemos un modelo (exponencial) y estamos decretando que su información estará concentrada en el parámetro <span class="math inline">\(\theta\)</span>.</p>
-<p><strong>Nota</strong>: El parámetro <span class="math inline">\(\theta\)</span> contiene la información del modelo,
-pero ¿Cómo obtenemos esa información</p>
-<p><strong>Muestra</strong>: Secuencia (sucesión) de variables aleatorias independientes <span class="math inline">\(X_1,X_2,\dots, X_n,\dots\)</span>. Tomemos una muestra <span class="math inline">\(X_1,X_2,\dots, X_n,\dots \stackrel{i.i.d}{\sim} \text{Exp}(\theta)\)</span>.</p>
-<p><strong>Objetivos</strong></p>
+<div id="propiedades-del-mle" class="section level1" number="5">
+<h1><span class="header-section-number">Capítulo 5</span> Propiedades del MLE</h1>
+<div id="propiedad-de-invarianza" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Propiedad de invarianza</h2>
+<p><strong>Teorema</strong>. Si <span class="math inline">\(\hat\theta\)</span> es el MLE de <span class="math inline">\(\hat\theta\)</span> y si <span class="math inline">\(g\)</span> es biyectiva, entonces <span class="math inline">\(g(\theta)\)</span> es el MLE de <span class="math inline">\(g(\theta)\)</span>.</p>
+<p><em>Prueba</em>:</p>
+<p>Sea <span class="math inline">\(\Gamma\)</span> el espacio paramétrico <span class="math inline">\(g(\Omega)\)</span>. Como <span class="math inline">\(g\)</span> es biyectiva entonces <span class="math inline">\(h:\)</span> inversa de <span class="math inline">\(g\)</span>: <span class="math inline">\(\theta = h(\psi), \psi \in \Gamma\)</span>.</p>
+<p>Reparametrizando la verosimilitud,
+<span class="math display">\[f_n(x|\theta) = f_n(x|h(\psi)). \]</span></p>
+<p>El MLE de <span class="math inline">\(\psi:\hat\psi\)</span> satisface que <span class="math inline">\(f_n(x|h(\hat\psi))\)</span> es máximo.</p>
+<p>Como <span class="math inline">\(f_n(x|\theta)\)</span> se maximiza cuando <span class="math inline">\(\theta = \hat \theta\)</span>, entonces <span class="math inline">\(f_n(x|h(\psi))\)</span> se maximiza cuando <span class="math inline">\(\hat \theta = h(\psi)\)</span> para algún <span class="math inline">\(\psi\)</span>.</p>
+<p>Se concluye que <span class="math inline">\(\hat\theta = h(\hat\psi) \implies \hat\psi = g(\hat \theta)\)</span>.</p>
+<p><strong>Ejemplo</strong>: <span class="math inline">\(g(\theta) = \dfrac 1\theta\)</span> es biyectiva si <span class="math inline">\(\theta &gt; 0\)</span>. Así,</p>
+<p><span class="math display">\[ \hat{\dfrac 1 \theta} = \dfrac 1{\hat \theta} = \dfrac{1}{\frac 1{\hat X_n}} = \hat X_n \quad(\theta \text{ es parámetro de tasa}).\]</span>
+¿Qué pasa si <span class="math inline">\(h\)</span> no es biyectiva?</p>
+<p><strong>Definicion (Generalización del MLE)</strong>. Si <span class="math inline">\(g\)</span> es una función de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(G\)</span> la imagen de <span class="math inline">\(\Omega\)</span> bajo <span class="math inline">\(g\)</span>. Para cada <span class="math inline">\(t\in G\)</span> defina
+<span class="math display">\[ G_t = \{\theta: g(\theta) = t\}\]</span>
+Defina <span class="math inline">\(L^*(t) = \displaystyle\max_{\theta\in G_t} \ln f_n(x|\theta)\)</span>. El MLE de <span class="math inline">\(g(\theta) (=\hat t)\)</span> satisface <span class="math inline">\(L^*(\hat t) = \displaystyle\max_{t \in G} L^*(t)\)</span>.</p>
+<p><strong>Teorema</strong>. Si <span class="math inline">\(\hat \theta\)</span> es el MLE de <span class="math inline">\(\theta\)</span> entonces <span class="math inline">\(g(\hat\theta)\)</span> es el MLE de <span class="math inline">\(g(\theta)\)</span> (<span class="math inline">\(g\)</span> es arbitraria).</p>
+<p><em>Prueba</em>. Basta probar <span class="math inline">\(L^*(\hat t) = \ln f_n(x|\hat \theta)\)</span>. Se cumple que <span class="math inline">\(\hat\theta\in G_{\hat t}\)</span>. Como <span class="math inline">\(\hat \theta\)</span> maximiza <span class="math inline">\(f_n(x|\theta)\)</span> <span class="math inline">\(\forall \theta\)</span>, también lo hace si <span class="math inline">\(\theta \in G_{\hat t}\)</span>. Entonces <span class="math inline">\(\hat t = g(\hat \theta)\)</span> (no pueden existir 2 máximos en un conjunto con la misma imagen).</p>
+<p><strong>Ejemplos</strong>.<span class="math inline">\(X_1,\dots, X_n \sim N(\mu, \sigma^2)\)</span>.</p>
 <ul>
-<li><p>Estimar <span class="math inline">\(X_m, X_{m+1}, \dots\)</span> si se observa <span class="math inline">\(X_1, X_{m-1}, \dots\)</span> (Predicción).</p></li>
-<li><p>Estimar <span class="math inline">\(\theta\)</span> usando información.</p></li>
+<li><p>Si <span class="math inline">\(h(\mu, \sigma^2) = \sigma\)</span> (no es biyectiva) <span class="math inline">\(\implies h(\hat X_n,\hat\sigma^2) = \sqrt{\hat\sigma^2}\)</span> es el MLE de <span class="math inline">\(\sigma\)</span>.</p></li>
+<li><p><span class="math inline">\(h(\mu,\sigma^2) = \dfrac{\sigma^*}{\mu}\)</span> (coeficiente de variación). <span class="math inline">\(\dfrac{\hat{\sigma}}{\bar X_n}\)</span> es el MLE de CV.</p></li>
+<li><p><span class="math inline">\(h(\mu, \sigma^2) = \mu^2 + \sigma^2\)</span>. <span class="math inline">\(\mathbb{E}[X^2] - \mu^2 = \sigma^2 \implies \mathbb{E}[X^2] = \mu^2 + \sigma^2\)</span>. El MLE de <span class="math inline">\(\mathbb{E}[X^2]\)</span> es <span class="math inline">\(\bar X_n^2 + \hat \sigma ^2\)</span>.</p></li>
 </ul>
-<p><strong>Datos</strong>: Realizaciones de variables aleatorias <span class="math inline">\(X_1,\dots,X_m\)</span> pertenecientes a la muestra.</p>
-<p><strong>Estimación de <span class="math inline">\(\theta\)</span></strong></p>
-<p>Dado que <span class="math inline">\(\mathbb{E}(X) = \dfrac{1}{\theta}\)</span> con <span class="math inline">\(X \sim \text{Exp}(\theta)\)</span>, por la ley de grandes números se tiene que</p>
-<p><span class="math display">\[\begin{equation*}
-\underbrace{\dfrac{1}{n} \sum_{i=1}{X_i}}_{\bar{X}_n} \xrightarrow[n\to \infty]{\mathbb{P}}\mathbb{E}(X) = \dfrac{1}{\theta}
-\end{equation*}\]</span></p>
-<p>por propiedad de convergencia en probabilidad.</p>
-<p>Un posible candidato para estimar <span class="math inline">\(\theta\)</span> es <span class="math inline">\(\dfrac{1}{\bar X_n}\)</span>, bajo el supuesto por Ley de Grandes Números que <span class="math inline">\(\theta\)</span> es una constante (frecuentista).</p>
-<p><strong>Realidad</strong>: <span class="math inline">\(\theta\)</span> no necesariamente es determinístico (factores externos, por la naturaleza del fenómeno).</p>
-<p>Asumimos un modelo probabilístico para <span class="math inline">\(\theta\)</span> (tasa siempre positiva):</p>
-<p><span class="math display">\[\begin{equation*}
-\theta \sim \Gamma(\alpha_0,\beta_0)
-\end{equation*}\]</span>
-Luego, según estudios previos la tasa esperada es 0.5/año
-<span class="math display">\[\begin{equation*}
-\mathbb{E}(\theta) = \dfrac{1}{2} = \dfrac{\alpha_0}{\beta_0}.
-\end{equation*}\]</span></p>
-<p>Un primer indicio de que se podría establecer que <span class="math inline">\(\alpha_0 = 1\)</span> y de <span class="math inline">\(\beta_0 = 2\)</span>.</p>
 </div>
-<div id="modelo-estadístico" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Modelo estadístico</h2>
-<p>Vamos a definir como típicamente se define un modelo estadístico.</p>
-<ol style="list-style-type: decimal">
-<li><p>Variables aleatorias observables / hipotéticamente observables:</p>
-<p><span class="math display">\[\begin{equation*}
-  \underbrace{X_t}_{\text{Observable}} = \underbrace{Y_t}_{\text{Hip. observable}} + \underbrace{\epsilon}_{\text{Ruido}}
-  \end{equation*}\]</span></p>
-<p>En otras palabras <span class="math inline">\(Y_t\)</span> sería la el dato <em>“verdadero”</em> que pasó
-exactamente en el fenómeno analizado. Esta observación es afectada por
-muchos factores no observables (por ejemplo: errores de medición, cambio
-de las condiciones de la economía, etc.). La variable <span class="math inline">\(\epsilon\)</span> captura
-toda esa aleatoriedad que no es parte del fénomeno.</p>
-<p>Claramente ni <span class="math inline">\(Y_t\)</span> ni <span class="math inline">\(\epsilon\)</span> se pueden medir y la mejor
-representación del nuestro es fenómeno es a partir de <span class="math inline">\(X_t\)</span>.</p></li>
-<li><p>Distribución conjunta de una muestra de variables observables.</p>
-<p>Es decir cuál es el supuesto general que estoy usando para describir mis
-observaciones.</p></li>
-<li><p>Parámetros que son hipotéticamente observables (desconocidos).</p>
-<p>¿Cuál sería la mejor calibración de los componentes del modelo anterior de
-modo que mi modelo se ajuste a los datos?</p></li>
-<li><p>(Opcional) Distribución conjunta de los parámetros.</p>
-<p>En el caso de Bayes, los parámetro dejan de ser simple valores puntuales y se
-convierten en distribuciones completas.</p></li>
-</ol>
-<ul>
-<li><strong>Inferencia estadística</strong>: procedimiento que genera afirmaciones probabilísticas de un modelo estadístico.</li>
-</ul>
-<p><strong>Ejemplo de inferencias</strong>:</p>
-<ol style="list-style-type: decimal">
-<li><p>Estimar <span class="math inline">\(\theta\)</span> a través de <span class="math inline">\(\dfrac{1}{\bar X_n}\)</span>.</p></li>
-<li><p>¿Qué tan probable es que el promedio de las siguientes observaciones es al menos 2?
-<span class="math display">\[\begin{equation*}
-\dfrac{1}{10}\sum_{i= m+1}^{m+10} X_i &gt; 2
-\end{equation*}\]</span></p></li>
-<li><p>¿Qué tan cierto es que <span class="math inline">\(\theta\leq0.4\)</span> después de observar la muestra?</p></li>
-</ol>
-<ul>
-<li><p><strong>Parámetro</strong>: característica (s) que determinan la distribución conjunta de las variables aleatorias de interés.</p></li>
-<li><p><strong>Espacio paramétrico</strong> <span class="math inline">\(\Omega\)</span> (espacio de parámetros, puede ser de probabilidad)</p></li>
-</ul>
-<p><strong>Ejemplos</strong>:</p>
-<ul>
-<li><span class="math inline">\(\theta\)</span> &gt; 0 (ejemplo anterior); <span class="math inline">\(\Omega = (0,+\infty)\)</span>.</li>
-<li><span class="math inline">\(X_1,\dots,X_n \sim N(\mu, \sigma^2)\)</span>, <span class="math inline">\((\mu,\sigma^2)\)</span> parámetros; <span class="math inline">\(\Omega\)</span> = <span class="math inline">\(\mathbb{R}\times[0,+\infty)\)</span>.</li>
-</ul>
-<p><strong>Ejemplo:</strong> Clientes de un banco</p>
-<p>¿Qué tan probable es que un cliente no pague su crédito hoy?</p>
-<ul>
-<li><p><strong>Datos</strong>: <span class="math inline">\(X_i = \begin{cases}1&amp; \text{el cliente } \#i \text{ no pagó}\\0 &amp; \text{el cliente } \#i \text{ pagó}\end{cases}\)</span>.</p></li>
-<li><p><strong>Muestra</strong>: <span class="math inline">\(X_1,\dots,X_{10000}\)</span> (realización al día de hoy).</p></li>
-<li><p><strong>Modelos</strong>: <span class="math inline">\(X_1,\dots, X_{10000} \stackrel{i.i.d}{\sim} \text{Ber}(p)\)</span> con <span class="math inline">\(p\in[0,1]\)</span>.</p></li>
-<li><p><strong>Parámetro</strong>: <span class="math inline">\(p\)</span>, <span class="math inline">\(\Omega = [0,1]\)</span>.</p></li>
-<li><p><strong>Inferencias:</strong></p>
-<ul>
-<li>Estimar <span class="math inline">\(p\)</span> (probabilidad de impago).</li>
-<li>Suponga que <span class="math inline">\(L(X_i)\)</span> es el saldo en la cuenta del cliente <span class="math inline">\(\#i\)</span>.</li>
-</ul></li>
-</ul>
-<p><span class="math display">\[\begin{equation*}
-\mathbb{P}\left(\sum_{i=1}^{10000}L(X_i)&gt;u\right)=\text{Probabilidad de ruina}
-\end{equation*}\]</span></p>
-</div>
-<div id="estadístico" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Estadístico</h2>
-<p><strong>Definición</strong>. Si <span class="math inline">\(X_1,\dots,X_n\)</span> es una muestra observable. Sea <span class="math inline">\(r\)</span> una función real de <span class="math inline">\(n\)</span> variables:
-<span class="math display">\[\begin{equation*}
-T = r(X_1,\dots,X_n)
-\end{equation*}\]</span>
-es un estadístico.</p>
-<p><strong>Nota</strong>: <span class="math inline">\(T\)</span> también es aleatorio.</p>
-<p><strong>Ejemplos</strong>:</p>
-<ul>
-<li><p><span class="math inline">\(\hat p = \dfrac{1}{10000}\displaystyle\sum_{i=1}^{10000}X_i = \dfrac{\#\text{ no pagan}}{\text{Total}} = r(X_1,\dots,X_{10000})\)</span></p></li>
-<li><p><span class="math inline">\(L_m = \max L(X_i)\)</span> (saldo del cliente más riesgoso).</p></li>
-<li><p><span class="math inline">\(R_m = \max L(X_i) - \min L(X_i), 1\leq i\leq 10000\)</span></p></li>
-</ul>
-
+<div id="consistencia" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Consistencia</h2>
+<p>Los estimadores bayesianos son de la forma
+<span class="math display">\[EB = W_1\mathbb{E}[\text{Previa}] + W_2\hat X_n.\]</span>
+El estimador bayesiano “combina” la esperanza de la previa y el <span class="math inline">\(\hat\theta_{MLE}\)</span>. El <span class="math inline">\(\hat\theta_{MLE}\)</span> “hereda la consistencia del estimador bayesiano”.</p>
+<p><span class="math display">\[EB = W_1\mathbb{E}[\text{Previa}] + W_2 \hat\theta_{MLE}.\]</span>
+<strong>Afirmación</strong>. Bajo “condiciones usuales”,
+<span class="math display">\[\hat\theta_{MLE} \xrightarrow[n\to \infty]{\mathbb P}\theta.\]</span></p>
 </div>
 </div>
             </section>
@@ -263,8 +178,8 @@ es un estadístico.</p>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="estimación-por-máxima-verosimilitud.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cálculo-numérico.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -295,7 +210,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/01-inferencia-estadistica.Rmd",
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/03-maxima-verosimilitud.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -303,7 +218,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/01-inferencia-estadistica.Rmd",
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/03-maxima-verosimilitud.Rmd",
 "text": null
 },
 "download": ["Notas-Curso-Estadistica.pdf"],

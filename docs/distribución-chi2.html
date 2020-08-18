@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)</title>
-  <meta name="description" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <title>Capítulo 14 Distribución \(\chi^2\) | Notas Curso de Estadística (Parte I)</title>
+  <meta name="description" content="Capítulo 14 Distribución \(\chi^2\) | Notas Curso de Estadística (Parte I)" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <meta property="og:title" content="Capítulo 14 Distribución \(\chi^2\) | Notas Curso de Estadística (Parte I)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <meta name="twitter:title" content="Capítulo 14 Distribución \(\chi^2\) | Notas Curso de Estadística (Parte I)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"/>
+<link rel="prev" href="distribución-muestral.html"/>
+
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -136,125 +136,97 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="inferencia-estadística" class="section level1" number="2">
-<h1><span class="header-section-number">Capítulo 2</span> Inferencia estadística</h1>
-<p><strong>Definición:</strong> Hacer afirmaciones probabilísticas respecto a (acerca de)
-cantidades desconocidas.</p>
-<div id="ejemplo" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Ejemplo</h2>
-<p>*<strong>Pregunta</strong>: ¿Será posible modelar cuánto dura un componente electrónico en
-fallar?</p>
-<p><strong>Solución</strong>: Podemos responder esta pregunta dividiéndola en dos partes:</p>
+<div id="distribución-chi2" class="section level1" number="14">
+<h1><span class="header-section-number">Capítulo 14</span> Distribución <span class="math inline">\(\chi^2\)</span></h1>
+<p><strong>Definición</strong>. Para <span class="math inline">\(m&gt;0\)</span> definimos
+<span class="math display">\[ \chi^2_m \sim \Gamma\left(\dfrac m2, \dfrac 12 \right)\]</span></p>
+<p>la distribución <strong>chi-cuadrado</strong> con <span class="math inline">\(m\)</span> grados de libertad.</p>
+<p><strong>Propiedades</strong>:</p>
+<ul>
+<li><p><span class="math inline">\(\mathbb E[X] = m\)</span>.</p></li>
+<li><p><span class="math inline">\(\text{Var} (X) = 2m\)</span>.</p></li>
+<li><p>Para <span class="math inline">\(X_i \sim \chi^2_{m_i}\)</span>, <span class="math inline">\(i = 1,\dots, k\)</span>, independientes, entonces</p></li>
+</ul>
+<p><span class="math display">\[\sum_{i=1}^k X_i \sim \chi^2_{\sum m_i}\]</span></p>
+<ul>
+<li><p>Si <span class="math inline">\(X\sim N(0,1) \implies Y = X^2\sim \chi^2_1\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(X_i \stackrel{i.i.d}{\sim} N(0,1) \implies \sum_{i=1}^m X_i^2 = \chi^2_m\)</span>.</p></li>
+</ul>
+<p><strong>Ejemplo</strong>. Si <span class="math inline">\(X_1,\dots,X_n \sim N(\mu,\sigma^2) \implies Z = \dfrac{X_i-\mu}{\sigma} \sim N(0,1)\)</span> <span class="math inline">\(\forall i\)</span>.</p>
+<p>Entonces
+<span class="math display">\[\sum Z_i^2 \sim \chi^2_n \implies \sum \dfrac{(X_i-\mu)^2}{\sigma^2}\sim \chi^2_n \quad (*) \]</span></p>
+<p>Además, si <span class="math inline">\(\mu\)</span> es conocido y <span class="math inline">\(\sigma^2\)</span> desconocido, entonces
+<span class="math display">\[\hat\sigma_0^2=\dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2\]</span>
+Su prueba queda como ejercicio.</p>
+<p>De esta manera, observe que, de <span class="math inline">\((*)\)</span>,</p>
+<p><span class="math display">\[\dfrac{n}{\sigma^2} \dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2 = n\dfrac{\hat\sigma^2}{\sigma^2} \sim \chi^2_n \]</span></p>
+<p>La principal limitación es que <span class="math inline">\(\mu\)</span> es conocida. Asuma que también es desconocida. ¿Cuál es la distribución muestral de <span class="math inline">\((\bar X_n,\hat\sigma^2)\)</span>?</p>
+<p><strong>Teorema</strong>. Bajo las condiciones anteriores,</p>
 <ol style="list-style-type: decimal">
-<li><strong>Modelo probabilístico:</strong> Asuma que los tiempos de vida del componente son
-exponenciales (en años).</li>
-<li><strong>Parámetro:</strong> Sea <span class="math inline">\(\theta &gt; 0\)</span> la tasa de fallo (unidades: 1/Tiempo(años)).</li>
+<li><p><span class="math inline">\(\bar X_n\)</span> y <span class="math inline">\(\hat \sigma_n\)</span> son independientes aunque <span class="math inline">\(\hat \sigma_n\)</span> es función de <span class="math inline">\(\bar X_n\)</span>.</p></li>
+<li><p>La distribución muestral de <span class="math inline">\(\bar X_n\)</span> es <span class="math inline">\(N\left(\mu,\dfrac{\sigma^2}{n}\right)\)</span>.</p></li>
+<li><p><span class="math inline">\(n\dfrac{\hat \sigma^2}{\sigma^2} =\sum_{i=1}^n \dfrac{(X_i-\mu)^2}{\sigma^2} \sim \chi^2_{n-1}\)</span>.</p></li>
 </ol>
-<p>Es decir, tenemos un modelo (exponencial) y estamos decretando que su información estará concentrada en el parámetro <span class="math inline">\(\theta\)</span>.</p>
-<p><strong>Nota</strong>: El parámetro <span class="math inline">\(\theta\)</span> contiene la información del modelo,
-pero ¿Cómo obtenemos esa información</p>
-<p><strong>Muestra</strong>: Secuencia (sucesión) de variables aleatorias independientes <span class="math inline">\(X_1,X_2,\dots, X_n,\dots\)</span>. Tomemos una muestra <span class="math inline">\(X_1,X_2,\dots, X_n,\dots \stackrel{i.i.d}{\sim} \text{Exp}(\theta)\)</span>.</p>
-<p><strong>Objetivos</strong></p>
-<ul>
-<li><p>Estimar <span class="math inline">\(X_m, X_{m+1}, \dots\)</span> si se observa <span class="math inline">\(X_1, X_{m-1}, \dots\)</span> (Predicción).</p></li>
-<li><p>Estimar <span class="math inline">\(\theta\)</span> usando información.</p></li>
-</ul>
-<p><strong>Datos</strong>: Realizaciones de variables aleatorias <span class="math inline">\(X_1,\dots,X_m\)</span> pertenecientes a la muestra.</p>
-<p><strong>Estimación de <span class="math inline">\(\theta\)</span></strong></p>
-<p>Dado que <span class="math inline">\(\mathbb{E}(X) = \dfrac{1}{\theta}\)</span> con <span class="math inline">\(X \sim \text{Exp}(\theta)\)</span>, por la ley de grandes números se tiene que</p>
-<p><span class="math display">\[\begin{equation*}
-\underbrace{\dfrac{1}{n} \sum_{i=1}{X_i}}_{\bar{X}_n} \xrightarrow[n\to \infty]{\mathbb{P}}\mathbb{E}(X) = \dfrac{1}{\theta}
-\end{equation*}\]</span></p>
-<p>por propiedad de convergencia en probabilidad.</p>
-<p>Un posible candidato para estimar <span class="math inline">\(\theta\)</span> es <span class="math inline">\(\dfrac{1}{\bar X_n}\)</span>, bajo el supuesto por Ley de Grandes Números que <span class="math inline">\(\theta\)</span> es una constante (frecuentista).</p>
-<p><strong>Realidad</strong>: <span class="math inline">\(\theta\)</span> no necesariamente es determinístico (factores externos, por la naturaleza del fenómeno).</p>
-<p>Asumimos un modelo probabilístico para <span class="math inline">\(\theta\)</span> (tasa siempre positiva):</p>
-<p><span class="math display">\[\begin{equation*}
-\theta \sim \Gamma(\alpha_0,\beta_0)
-\end{equation*}\]</span>
-Luego, según estudios previos la tasa esperada es 0.5/año
-<span class="math display">\[\begin{equation*}
-\mathbb{E}(\theta) = \dfrac{1}{2} = \dfrac{\alpha_0}{\beta_0}.
-\end{equation*}\]</span></p>
-<p>Un primer indicio de que se podría establecer que <span class="math inline">\(\alpha_0 = 1\)</span> y de <span class="math inline">\(\beta_0 = 2\)</span>.</p>
-</div>
-<div id="modelo-estadístico" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Modelo estadístico</h2>
-<p>Vamos a definir como típicamente se define un modelo estadístico.</p>
+<p>De álgebra lineal, recuerde que una matriz <span class="math inline">\(A_{n\times n}\)</span>es ortogonal si cumple que <span class="math inline">\(A^{-1} = A\)</span>, <span class="math inline">\(\det(A) = 1\)</span>. Si <span class="math inline">\(X, Y\in \mathbb R ^{n}\)</span>, <span class="math inline">\(AX =Y\)</span>, <span class="math inline">\(A\)</span> ortogonal, entonces <span class="math display">\[ \|Y\|_2^2 =  \|X\|_2^2 \quad (\Delta\Delta)\]</span></p>
+<p><strong>Teorema</strong>. Si <span class="math inline">\(X_1,\dots,X_n \sim N(0,1)\)</span>, <span class="math inline">\(A\)</span> es ortogonal <span class="math inline">\(n\times n\)</span> y <span class="math inline">\(Y=AX\)</span> donde <span class="math inline">\(X = (X_1,\dots,X_n)^T\)</span> entonces <span class="math inline">\(Y_1,\dots,Y_n \sim N(0,1)\)</span>.</p>
+<p><em>Prueba</em>. Ver 8.3.1.</p>
+<p>Si <span class="math inline">\(X_1,\dots,X_n \sim N(0,1)\)</span>, use Gram-Schmidt con vector inicial <span class="math inline">\(u = \dfrac 1{\sqrt n} 1_{n\times1}\)</span>.
+Generamos <span class="math inline">\(A = \begin{bmatrix}u\\\vdots\end{bmatrix}\)</span>. Defina <span class="math inline">\(Y =AX\)</span>. Entonces
+<span class="math display">\[ Y_1 = uX = \dfrac 1{\sqrt{n}}\sum_{i=1}^n X_i = \sqrt{n} \bar X_n.\]</span></p>
+<p>Por la propiedad <span class="math inline">\((\Delta \Delta)\)</span>, <span class="math inline">\(\displaystyle\sum_{i=1}^n Y_i^2 = \displaystyle\sum_{i=1}^n X_i^2\)</span>. Entonces,
+<span class="math display">\[ \sum_{i=2}^nY_i^2 = \sum_{i=1}^nY_i^2 - Y_1^2 = \sum_{i=1}^nX_i^2-n\bar X_n^2\sum_{i=1}^n(X_i-\bar X_n)^2. \]</span></p>
+<p>Como <span class="math inline">\(Y_1^2\)</span> y <span class="math inline">\(\sum_{i=2}^nY_i^2\)</span> son independientes, entonces <span class="math inline">\(\bar X_n\)</span> y <span class="math inline">\(\dfrac{1}n \sum_{i=1}^n(X_i-\bar X_n)^2\)</span> son independientes.</p>
+<p>Note que <span class="math inline">\(\sum_{i=2}^n Y_i^2 \sim \chi^2_{n-1}\)</span> ya que <span class="math inline">\(Y_i \stackrel{i.i.d}{\sim} N(0,1)\)</span>.</p>
+<p>Si <span class="math inline">\(X_1,\dots,X_n \sim N(\mu, \sigma^2)\)</span>, tome <span class="math inline">\(Z_i = \dfrac{X_i-\mu}\sigma\)</span> y repita todo lo anterior.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots,X_n\sim N(\mu,\sigma^2)\)</span> (<span class="math inline">\(\mu,\sigma\)</span> desconocidos). Los MLE son</p>
+<p><span class="math display">\[\hat \mu = \bar X_n,\quad \hat\sigma = \bigg[\dfrac{1}{n}\sum_{i=1}^n(X_i-\bar X_n)^2 \bigg]^{\frac 12}.\]</span></p>
+<p>Encuentre <span class="math inline">\(n\)</span> tal que
+<span class="math display">\[p = \mathbb P \bigg[|\hat\mu-\mu|&lt;\dfrac 65, |\hat\sigma-\sigma|&lt;\dfrac 65\bigg] \geq \dfrac 12. \]</span></p>
+<p>Por independencia de <span class="math inline">\(\bar X_n\)</span> y <span class="math inline">\(\hat\sigma^2_n\)</span>,
+<span class="math display">\[p=  \mathbb P \bigg[|\hat\mu-\mu|&lt;\dfrac \sigma5\bigg] \mathbb P \bigg[|\hat\sigma-\sigma|&lt;\dfrac \sigma5\bigg]\]</span></p>
+<p>Por un lado,
+<span class="math display">\[\mathbb P \bigg[|\hat\mu-\mu|&lt;\dfrac 65\bigg] = \mathbb P \bigg[-\dfrac{\sqrt n}5\leq \underbrace{\dfrac{\sqrt{n}(\hat\mu-\mu)}\sigma}_{N(0,1)} &lt;\dfrac {\sqrt n}{5}\bigg] = \Phi\left(\dfrac{\sqrt n}{5}\right)-\Phi\left(-\dfrac{\sqrt n}{5}\right).\]</span></p>
+<p>Además,</p>
+<p><span class="math display">\[\begin{align*} 
+\mathbb P \bigg[|\hat\sigma-\sigma|&lt;\dfrac \sigma5\bigg] &amp; = \mathbb P \bigg[\dfrac 45 \dfrac{\hat\sigma}{\sigma}&lt;\dfrac 65\bigg]\\
+&amp; = \mathbb P \bigg[0.64 n \dfrac{n\hat\sigma}{\sigma}&lt;1.44n\bigg]\\
+&amp; = F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n)
+\end{align*}\]</span></p>
+<p>Estime <span class="math inline">\(n\)</span> de manera que
+<span class="math display">\[\bigg[1-2\Phi\left(-\dfrac{\sqrt n}{5}\right)\bigg][F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n)] \geq \dfrac 12.\]</span></p>
+<p>Se resuelve numéricamente, y si <span class="math inline">\(n=21\)</span> se cumple.</p>
+<div id="distribución-t" class="section level2" number="14.1">
+<h2><span class="header-section-number">14.1</span> Distribución <span class="math inline">\(t\)</span></h2>
+<p><strong>Definición</strong>. Sea <span class="math inline">\(Y\)</span> y <span class="math inline">\(Z\)</span> dos variables independientes tal que <span class="math inline">\(Y\sim \chi^2_m\)</span> y <span class="math inline">\(Z\sim N(0,1)\)</span>. Si
+<span class="math display">\[X := \dfrac Z{\sqrt{\dfrac Ym}},\]</span>
+tiene una distribución <strong><span class="math inline">\(t\)</span> de Student</strong> con <span class="math inline">\(m\)</span> grados de libertad. Tiene como densidad
+<span class="math display">\[f_X(x) = \dfrac{\Gamma\left(\dfrac{m+1}2\right)}{\sqrt{m\pi}\Gamma\left(\dfrac m2 \right)}\left(1+\dfrac{x^2}m\right)^{-\frac{m+1}2}, \quad x\in \mathbb R.\]</span></p>
+<p><strong>Propiedades</strong>:</p>
 <ol style="list-style-type: decimal">
-<li><p>Variables aleatorias observables / hipotéticamente observables:</p>
-<p><span class="math display">\[\begin{equation*}
-  \underbrace{X_t}_{\text{Observable}} = \underbrace{Y_t}_{\text{Hip. observable}} + \underbrace{\epsilon}_{\text{Ruido}}
-  \end{equation*}\]</span></p>
-<p>En otras palabras <span class="math inline">\(Y_t\)</span> sería la el dato <em>“verdadero”</em> que pasó
-exactamente en el fenómeno analizado. Esta observación es afectada por
-muchos factores no observables (por ejemplo: errores de medición, cambio
-de las condiciones de la economía, etc.). La variable <span class="math inline">\(\epsilon\)</span> captura
-toda esa aleatoriedad que no es parte del fénomeno.</p>
-<p>Claramente ni <span class="math inline">\(Y_t\)</span> ni <span class="math inline">\(\epsilon\)</span> se pueden medir y la mejor
-representación del nuestro es fenómeno es a partir de <span class="math inline">\(X_t\)</span>.</p></li>
-<li><p>Distribución conjunta de una muestra de variables observables.</p>
-<p>Es decir cuál es el supuesto general que estoy usando para describir mis
-observaciones.</p></li>
-<li><p>Parámetros que son hipotéticamente observables (desconocidos).</p>
-<p>¿Cuál sería la mejor calibración de los componentes del modelo anterior de
-modo que mi modelo se ajuste a los datos?</p></li>
-<li><p>(Opcional) Distribución conjunta de los parámetros.</p>
-<p>En el caso de Bayes, los parámetro dejan de ser simple valores puntuales y se
-convierten en distribuciones completas.</p></li>
+<li><p><span class="math inline">\(f_X\)</span> es simétrica.</p></li>
+<li><p>La media de <span class="math inline">\(X\)</span> no existe si <span class="math inline">\(m\leq 1\)</span>. Si la media existe, es 0.</p></li>
+<li><p>Las colas de una <span class="math inline">\(t\)</span> de Student son más pesadas que una <span class="math inline">\(N(0,1)\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(m\)</span> es entero, los primeros <span class="math inline">\(m-1\)</span> momentos de <span class="math inline">\(X\)</span> existen y no hay momentos de orden superior.</p></li>
+<li><p>Si <span class="math inline">\(m&gt;2\)</span>, <span class="math inline">\(\text{Var}\left(X \right)=\dfrac m{m-2}\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(m=1\)</span>, <span class="math inline">\(X\sim \text{Cauchy}\)</span>.</p></li>
+<li><p><strong>Ejercicio</strong>: <span class="math inline">\(f_x(x)\xrightarrow[m\to \infty]{}\Phi(x)\)</span> (sirve como aproximación). La discrepancia de ambas está en la cola y se disipa cuando <span class="math inline">\(m\)</span> es grande.</p></li>
 </ol>
-<ul>
-<li><strong>Inferencia estadística</strong>: procedimiento que genera afirmaciones probabilísticas de un modelo estadístico.</li>
-</ul>
-<p><strong>Ejemplo de inferencias</strong>:</p>
-<ol style="list-style-type: decimal">
-<li><p>Estimar <span class="math inline">\(\theta\)</span> a través de <span class="math inline">\(\dfrac{1}{\bar X_n}\)</span>.</p></li>
-<li><p>¿Qué tan probable es que el promedio de las siguientes observaciones es al menos 2?
-<span class="math display">\[\begin{equation*}
-\dfrac{1}{10}\sum_{i= m+1}^{m+10} X_i &gt; 2
-\end{equation*}\]</span></p></li>
-<li><p>¿Qué tan cierto es que <span class="math inline">\(\theta\leq0.4\)</span> después de observar la muestra?</p></li>
-</ol>
-<ul>
-<li><p><strong>Parámetro</strong>: característica (s) que determinan la distribución conjunta de las variables aleatorias de interés.</p></li>
-<li><p><strong>Espacio paramétrico</strong> <span class="math inline">\(\Omega\)</span> (espacio de parámetros, puede ser de probabilidad)</p></li>
-</ul>
-<p><strong>Ejemplos</strong>:</p>
-<ul>
-<li><span class="math inline">\(\theta\)</span> &gt; 0 (ejemplo anterior); <span class="math inline">\(\Omega = (0,+\infty)\)</span>.</li>
-<li><span class="math inline">\(X_1,\dots,X_n \sim N(\mu, \sigma^2)\)</span>, <span class="math inline">\((\mu,\sigma^2)\)</span> parámetros; <span class="math inline">\(\Omega\)</span> = <span class="math inline">\(\mathbb{R}\times[0,+\infty)\)</span>.</li>
-</ul>
-<p><strong>Ejemplo:</strong> Clientes de un banco</p>
-<p>¿Qué tan probable es que un cliente no pague su crédito hoy?</p>
-<ul>
-<li><p><strong>Datos</strong>: <span class="math inline">\(X_i = \begin{cases}1&amp; \text{el cliente } \#i \text{ no pagó}\\0 &amp; \text{el cliente } \#i \text{ pagó}\end{cases}\)</span>.</p></li>
-<li><p><strong>Muestra</strong>: <span class="math inline">\(X_1,\dots,X_{10000}\)</span> (realización al día de hoy).</p></li>
-<li><p><strong>Modelos</strong>: <span class="math inline">\(X_1,\dots, X_{10000} \stackrel{i.i.d}{\sim} \text{Ber}(p)\)</span> con <span class="math inline">\(p\in[0,1]\)</span>.</p></li>
-<li><p><strong>Parámetro</strong>: <span class="math inline">\(p\)</span>, <span class="math inline">\(\Omega = [0,1]\)</span>.</p></li>
-<li><p><strong>Inferencias:</strong></p>
-<ul>
-<li>Estimar <span class="math inline">\(p\)</span> (probabilidad de impago).</li>
-<li>Suponga que <span class="math inline">\(L(X_i)\)</span> es el saldo en la cuenta del cliente <span class="math inline">\(\#i\)</span>.</li>
-</ul></li>
-</ul>
-<p><span class="math display">\[\begin{equation*}
-\mathbb{P}\left(\sum_{i=1}^{10000}L(X_i)&gt;u\right)=\text{Probabilidad de ruina}
-\end{equation*}\]</span></p>
-</div>
-<div id="estadístico" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Estadístico</h2>
-<p><strong>Definición</strong>. Si <span class="math inline">\(X_1,\dots,X_n\)</span> es una muestra observable. Sea <span class="math inline">\(r\)</span> una función real de <span class="math inline">\(n\)</span> variables:
-<span class="math display">\[\begin{equation*}
-T = r(X_1,\dots,X_n)
-\end{equation*}\]</span>
-es un estadístico.</p>
-<p><strong>Nota</strong>: <span class="math inline">\(T\)</span> también es aleatorio.</p>
-<p><strong>Ejemplos</strong>:</p>
-<ul>
-<li><p><span class="math inline">\(\hat p = \dfrac{1}{10000}\displaystyle\sum_{i=1}^{10000}X_i = \dfrac{\#\text{ no pagan}}{\text{Total}} = r(X_1,\dots,X_{10000})\)</span></p></li>
-<li><p><span class="math inline">\(L_m = \max L(X_i)\)</span> (saldo del cliente más riesgoso).</p></li>
-<li><p><span class="math inline">\(R_m = \max L(X_i) - \min L(X_i), 1\leq i\leq 10000\)</span></p></li>
-</ul>
+<p>Recuerde que, por el teorema 8.3.1, <span class="math inline">\(\bar X_n\)</span> y <span class="math inline">\(Y=\dfrac{n\hat\sigma^2}{\sigma}\)</span> son independientes, con <span class="math inline">\(\bar X_n \sim N\left(\mu, \dfrac{\sigma^2}{n}\right)\)</span> y <span class="math inline">\(Y\sim \chi^2_{n-1}\)</span>. Además,
+<span class="math display">\[Z = \sqrt n\dfrac{\bar X_n-\mu}{\sigma} \sim N(0,1).\]</span></p>
+<p>Sea</p>
+<p><span class="math display">\[T = \dfrac Z{\sqrt{\dfrac Y{n-1}}} = \dfrac{\sqrt n \dfrac{\bar X_n-\mu}{\sigma}} {\sqrt{\dfrac{\dfrac{n\hat\sigma^2}{\sigma^2}}{n-1}}} = \dfrac{\bar X_n-\mu}{\sqrt{\dfrac{\hat\sigma}{n-1}}}\]</span>
+el cual no depende de <span class="math inline">\(\sigma\)</span>.</p>
+<p><strong>Teorema</strong>. Si <span class="math inline">\(X_1,\dots, X_n \stackrel{i.i.d}{\sim} N(\mu,\sigma^2)\)</span>, defina
+<span class="math display">\[\sigma&#39; = \bigg[\dfrac 1{n-1}\sum_{i=1}^n(X_i-\bar X_n)^2\bigg]^\frac 12.\]</span>
+Entonces
+<span class="math display">\[\dfrac{\sqrt{n}(\bar X_n-\mu)}{\sigma&#39;} \sim t_{n-1}\]</span></p>
+<p><strong>Nota</strong>. <span class="math inline">\(\sigma&#39; = \left(\dfrac n{n-1}\right)^\frac 12 \hat\sigma\)</span> (si <span class="math inline">\(n\)</span> es grande, <span class="math inline">\(\sigma&#39; = \hat\sigma\)</span>).</p>
+<p><em>Prueba</em>. Sean
+<span class="math display">\[S_n^2=\sum_{i=1}^n(X_i-\bar X_n)^2, \quad Z =  \sqrt n \dfrac{\bar X_n-\mu}{\sigma}. \]</span>
+Dado que <span class="math inline">\(Y = \dfrac{S_n^2}{\sigma^2}\sim \chi^2_{n-1}\)</span>, entonces</p>
+<p><span class="math display">\[\begin{align*} 
+U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} &amp; = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{\sigma^2(n-1)}}} \\ &amp; = \dfrac{\sqrt n (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{n-1}}}\\&amp; =  \dfrac{\sqrt n (\bar X_n-\mu)}{\sigma&#39;} \sim t_{n-1}.
+\end{align*}\]</span></p>
 
 </div>
 </div>
@@ -263,8 +235,8 @@ es un estadístico.</p>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="distribución-muestral.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -295,7 +267,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/01-inferencia-estadistica.Rmd",
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/05-distribucion-muestral.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -303,7 +275,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/01-inferencia-estadistica.Rmd",
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/05-distribucion-muestral.Rmd",
 "text": null
 },
 "download": ["Notas-Curso-Estadistica.pdf"],

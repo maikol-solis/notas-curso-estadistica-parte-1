@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)</title>
-  <meta name="description" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <title>Capítulo 6 Cálculo numérico | Notas Curso de Estadística (Parte I)</title>
+  <meta name="description" content="Capítulo 6 Cálculo numérico | Notas Curso de Estadística (Parte I)" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <meta property="og:title" content="Capítulo 6 Cálculo numérico | Notas Curso de Estadística (Parte I)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <meta name="twitter:title" content="Capítulo 6 Cálculo numérico | Notas Curso de Estadística (Parte I)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"/>
+<link rel="prev" href="propiedades-del-mle.html"/>
+<link rel="next" href="estadísticos-suficientes-y-criterio-de-factorización.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -136,125 +136,79 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="inferencia-estadística" class="section level1" number="2">
-<h1><span class="header-section-number">Capítulo 2</span> Inferencia estadística</h1>
-<p><strong>Definición:</strong> Hacer afirmaciones probabilísticas respecto a (acerca de)
-cantidades desconocidas.</p>
-<div id="ejemplo" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Ejemplo</h2>
-<p>*<strong>Pregunta</strong>: ¿Será posible modelar cuánto dura un componente electrónico en
-fallar?</p>
-<p><strong>Solución</strong>: Podemos responder esta pregunta dividiéndola en dos partes:</p>
+<div id="cálculo-numérico" class="section level1" number="6">
+<h1><span class="header-section-number">Capítulo 6</span> Cálculo numérico</h1>
+<div id="método-de-los-momentos" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Método de los momentos</h2>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \sim \Gamma(\alpha,1)\)</span>. Estime <span class="math inline">\(\alpha\)</span>.
+<span class="math display">\[f_n(x|\alpha) = \dfrac{1}{\Gamma(\alpha)}x^{\alpha-1}e^{-x}.\]</span></p>
+<p>Verosimilitud: <span class="math inline">\(f_n(x|\alpha) = \dfrac 1 {\Gamma(\alpha)^n}(\prod x_i)e^{\sum x_i}\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+\dfrac{\partial}{\partial \alpha} L(\alpha|x) &amp; = \dfrac{\partial}{\partial \alpha} \bigg[ -n\ln \Gamma(\alpha) + (\alpha-1)\ln(\pi x_i) - \sum x_i\bigg]\\
+&amp; = -n\dfrac{1}{\Gamma(\alpha)} \dfrac d{d\alpha}\Gamma(\alpha) + \ln (\prod x_i) = 0
+\end{align*}\]</span></p>
+<p><strong>Definición</strong>. Asumimos que <span class="math inline">\(X_1,\dots, X_n \sim F\)</span> indexada con un parámetro <span class="math inline">\(\theta \in \mathbb{R}^k\)</span> y que al menos tiene <span class="math inline">\(k\)</span> momentos finitos. Para <span class="math inline">\(j = 1,\dots, k\)</span> sea <span class="math inline">\(\mu_j(\theta) = \mathbb{E}[X_1^j|\theta]\)</span>. Suponga que <span class="math inline">\(\mu(\theta) = (\mu_1(\theta),\dots,\mu_2(\theta))\)</span> es biyectiva. Sea <span class="math inline">\(M\)</span> la inversa de <span class="math inline">\(\mu\)</span>,
+<span class="math display">\[ M(\mu(\theta)) = \theta =M(\mu_1(\theta),\dots,\mu_2(\theta)) \]</span>
+y defina los momentos empíricos
+<span class="math display">\[ m_j = \dfrac 1n \sum_{i=1}^n X_i^j, \quad j=1,\dots, k.\]</span>
+El estimador según el método de los momentos es
+<span class="math display">\[\hat\theta = M(m_1,\dots,m_k).\]</span>
+Del ejemplo anterior, <span class="math inline">\(\mu_1(\alpha) = \mathbb{E}[x_1|\alpha] = \alpha\)</span>.Dado que <span class="math inline">\(m_1 = \hat x_n\)</span>, el sistema por resolver es
+<span class="math display">\[ \mu_1(\alpha) = m_1 \Longleftrightarrow \alpha = \bar x_n\]</span>
+El estimador por método de momentos es <span class="math inline">\(\hat \alpha = \bar X_n\)</span>.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \stackrel{i.i.d}{\sim} \Gamma(\alpha, \beta)\)</span>. La varianza de <span class="math inline">\(X\)</span> es
+<span class="math display">\[ \dfrac{\alpha}{\beta^2} = \text{Var}X = \mathbb{E}[X^2]-\mathbb{E}[X]^2 = \mathbb{E}[X^2] - \dfrac{\alpha^2}{\beta^2}.\]</span>
+Se debe resolver el sistema
+<span class="math display">\[ \begin{cases}\mu_1(\theta) = \dfrac{\alpha}\beta = \bar X_n = m_1&amp; (1)\\\mu_2(\theta) = \dfrac{\alpha(\alpha+1)}{\beta^2}=m_2 &amp; (2)\end{cases}\]</span></p>
+<p>De <span class="math inline">\((1)\)</span>, <span class="math inline">\(\alpha = m_1\beta\)</span>. Sustituyendo en <span class="math inline">\((2)\)</span>,</p>
+<p><span class="math display">\[m_2 = \dfrac{m_1\beta(m_1\beta+1)}{\beta^2} = m_1^2+\dfrac{m_1}\beta = m_2\implies m_2-m_1^2 = \dfrac{m_1}{\beta}.\]</span>
+De esta manera,
+<span class="math display">\[ \hat\beta = \dfrac{m_1}{m_2-m_1^2},\quad  \hat\alpha = \dfrac{m_1^2}{m_2-m_1^2}\]</span>
+<strong>Teorema</strong>. Si <span class="math inline">\(X_1,X_2,\dots\)</span> i.i.d con distribución indexada por <span class="math inline">\(\theta \in \mathbb{R}^k\)</span>. Suponga que los <span class="math inline">\(k\)</span> momoentos teóricos son finitos <span class="math inline">\(\forall \theta\)</span> y suponga que <span class="math inline">\(M\)</span> es continua. Entonces el estimador por el método de momentos es consistente.</p>
+<p>¿Cuál es el comportamiento en la distribución de <span class="math inline">\(\hat\theta\)</span> cuando la muestra es grande?</p>
+<p>Del teorema del límite central,
+<span class="math display">\[ \dfrac{\bar X_n-\theta}{\dfrac{\sigma}{\sqrt{n}}} = \dfrac{\sqrt{n}(\bar X_n-\theta)}{\sigma} \xrightarrow{d} N(0,1)\]</span>
+<span class="math display">\[\text{Var}(\bar X_n) = \dfrac 1{n^2}\sum \text{Var}(X_1) = \dfrac{\sigma^2}n\]</span></p>
+<p>Implica que se debe multiplicar la media muestral por una constante para hacer la desviación visibile y, con ello, hacer inferencia del parámetro.</p>
+<p><strong>Caso general</strong>. Si <span class="math inline">\(f(X|\theta)\)</span> es “suficientemente suave” como función de <span class="math inline">\(\theta\)</span>, es puede comprobar que la verosimilitud tiende a una normal conforme <span class="math inline">\(n \to \infty\)</span>. Es decir,
+<span class="math display">\[ f(X|\theta)\propto \exp\Bigg[\dfrac{-1}{2\frac{V_n(\theta)}{n}}(\theta-\hat\theta)\Bigg], \quad n \to \infty\quad(*) \]</span>
+donde <span class="math inline">\(\hat\theta\)</span> es el MLE de <span class="math inline">\(\theta\)</span>.</p>
+<p><span class="math display">\[V_n(\theta)\xrightarrow[n\to \infty]{}V_{\infty}(\theta)&lt;\infty\]</span></p>
+<p><strong>Notas</strong>:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Modelo probabilístico:</strong> Asuma que los tiempos de vida del componente son
-exponenciales (en años).</li>
-<li><strong>Parámetro:</strong> Sea <span class="math inline">\(\theta &gt; 0\)</span> la tasa de fallo (unidades: 1/Tiempo(años)).</li>
+<li><p>Si <span class="math inline">\(n \to \infty\)</span> la normal en <span class="math inline">\((*)\)</span> tiene muchísima precisión y es concentrada alrededor de <span class="math inline">\(\hat\theta\)</span>.</p></li>
+<li><p>En el caso bayesiano, ninguna previa en <span class="math inline">\(\theta\)</span> puede anular el efecto en la verosimilitud cuando <span class="math inline">\(n\to \infty\)</span>.</p></li>
+<li><p>Por <span class="math inline">\((*)\)</span> el MLE se distribute asintóticamente como <span class="math display">\[N\left(\theta, \dfrac{V_\infty(\theta)}{n}\right),\]</span> <span class="math inline">\(Var(X_n)\xrightarrow[n\to \infty]{} 0\)</span> y <span class="math inline">\(\mathbb{E}[X_n] = X \implies X_n \xrightarrow[n\to \infty]{\mathbb P} X\)</span> (confirma que el MLE es consistente).</p></li>
 </ol>
-<p>Es decir, tenemos un modelo (exponencial) y estamos decretando que su información estará concentrada en el parámetro <span class="math inline">\(\theta\)</span>.</p>
-<p><strong>Nota</strong>: El parámetro <span class="math inline">\(\theta\)</span> contiene la información del modelo,
-pero ¿Cómo obtenemos esa información</p>
-<p><strong>Muestra</strong>: Secuencia (sucesión) de variables aleatorias independientes <span class="math inline">\(X_1,X_2,\dots, X_n,\dots\)</span>. Tomemos una muestra <span class="math inline">\(X_1,X_2,\dots, X_n,\dots \stackrel{i.i.d}{\sim} \text{Exp}(\theta)\)</span>.</p>
-<p><strong>Objetivos</strong></p>
-<ul>
-<li><p>Estimar <span class="math inline">\(X_m, X_{m+1}, \dots\)</span> si se observa <span class="math inline">\(X_1, X_{m-1}, \dots\)</span> (Predicción).</p></li>
-<li><p>Estimar <span class="math inline">\(\theta\)</span> usando información.</p></li>
-</ul>
-<p><strong>Datos</strong>: Realizaciones de variables aleatorias <span class="math inline">\(X_1,\dots,X_m\)</span> pertenecientes a la muestra.</p>
-<p><strong>Estimación de <span class="math inline">\(\theta\)</span></strong></p>
-<p>Dado que <span class="math inline">\(\mathbb{E}(X) = \dfrac{1}{\theta}\)</span> con <span class="math inline">\(X \sim \text{Exp}(\theta)\)</span>, por la ley de grandes números se tiene que</p>
-<p><span class="math display">\[\begin{equation*}
-\underbrace{\dfrac{1}{n} \sum_{i=1}{X_i}}_{\bar{X}_n} \xrightarrow[n\to \infty]{\mathbb{P}}\mathbb{E}(X) = \dfrac{1}{\theta}
-\end{equation*}\]</span></p>
-<p>por propiedad de convergencia en probabilidad.</p>
-<p>Un posible candidato para estimar <span class="math inline">\(\theta\)</span> es <span class="math inline">\(\dfrac{1}{\bar X_n}\)</span>, bajo el supuesto por Ley de Grandes Números que <span class="math inline">\(\theta\)</span> es una constante (frecuentista).</p>
-<p><strong>Realidad</strong>: <span class="math inline">\(\theta\)</span> no necesariamente es determinístico (factores externos, por la naturaleza del fenómeno).</p>
-<p>Asumimos un modelo probabilístico para <span class="math inline">\(\theta\)</span> (tasa siempre positiva):</p>
-<p><span class="math display">\[\begin{equation*}
-\theta \sim \Gamma(\alpha_0,\beta_0)
-\end{equation*}\]</span>
-Luego, según estudios previos la tasa esperada es 0.5/año
-<span class="math display">\[\begin{equation*}
-\mathbb{E}(\theta) = \dfrac{1}{2} = \dfrac{\alpha_0}{\beta_0}.
-\end{equation*}\]</span></p>
-<p>Un primer indicio de que se podría establecer que <span class="math inline">\(\alpha_0 = 1\)</span> y de <span class="math inline">\(\beta_0 = 2\)</span>.</p>
 </div>
-<div id="modelo-estadístico" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Modelo estadístico</h2>
-<p>Vamos a definir como típicamente se define un modelo estadístico.</p>
-<ol style="list-style-type: decimal">
-<li><p>Variables aleatorias observables / hipotéticamente observables:</p>
-<p><span class="math display">\[\begin{equation*}
-  \underbrace{X_t}_{\text{Observable}} = \underbrace{Y_t}_{\text{Hip. observable}} + \underbrace{\epsilon}_{\text{Ruido}}
-  \end{equation*}\]</span></p>
-<p>En otras palabras <span class="math inline">\(Y_t\)</span> sería la el dato <em>“verdadero”</em> que pasó
-exactamente en el fenómeno analizado. Esta observación es afectada por
-muchos factores no observables (por ejemplo: errores de medición, cambio
-de las condiciones de la economía, etc.). La variable <span class="math inline">\(\epsilon\)</span> captura
-toda esa aleatoriedad que no es parte del fénomeno.</p>
-<p>Claramente ni <span class="math inline">\(Y_t\)</span> ni <span class="math inline">\(\epsilon\)</span> se pueden medir y la mejor
-representación del nuestro es fenómeno es a partir de <span class="math inline">\(X_t\)</span>.</p></li>
-<li><p>Distribución conjunta de una muestra de variables observables.</p>
-<p>Es decir cuál es el supuesto general que estoy usando para describir mis
-observaciones.</p></li>
-<li><p>Parámetros que son hipotéticamente observables (desconocidos).</p>
-<p>¿Cuál sería la mejor calibración de los componentes del modelo anterior de
-modo que mi modelo se ajuste a los datos?</p></li>
-<li><p>(Opcional) Distribución conjunta de los parámetros.</p>
-<p>En el caso de Bayes, los parámetro dejan de ser simple valores puntuales y se
-convierten en distribuciones completas.</p></li>
-</ol>
-<ul>
-<li><strong>Inferencia estadística</strong>: procedimiento que genera afirmaciones probabilísticas de un modelo estadístico.</li>
-</ul>
-<p><strong>Ejemplo de inferencias</strong>:</p>
-<ol style="list-style-type: decimal">
-<li><p>Estimar <span class="math inline">\(\theta\)</span> a través de <span class="math inline">\(\dfrac{1}{\bar X_n}\)</span>.</p></li>
-<li><p>¿Qué tan probable es que el promedio de las siguientes observaciones es al menos 2?
-<span class="math display">\[\begin{equation*}
-\dfrac{1}{10}\sum_{i= m+1}^{m+10} X_i &gt; 2
-\end{equation*}\]</span></p></li>
-<li><p>¿Qué tan cierto es que <span class="math inline">\(\theta\leq0.4\)</span> después de observar la muestra?</p></li>
-</ol>
-<ul>
-<li><p><strong>Parámetro</strong>: característica (s) que determinan la distribución conjunta de las variables aleatorias de interés.</p></li>
-<li><p><strong>Espacio paramétrico</strong> <span class="math inline">\(\Omega\)</span> (espacio de parámetros, puede ser de probabilidad)</p></li>
-</ul>
-<p><strong>Ejemplos</strong>:</p>
-<ul>
-<li><span class="math inline">\(\theta\)</span> &gt; 0 (ejemplo anterior); <span class="math inline">\(\Omega = (0,+\infty)\)</span>.</li>
-<li><span class="math inline">\(X_1,\dots,X_n \sim N(\mu, \sigma^2)\)</span>, <span class="math inline">\((\mu,\sigma^2)\)</span> parámetros; <span class="math inline">\(\Omega\)</span> = <span class="math inline">\(\mathbb{R}\times[0,+\infty)\)</span>.</li>
-</ul>
-<p><strong>Ejemplo:</strong> Clientes de un banco</p>
-<p>¿Qué tan probable es que un cliente no pague su crédito hoy?</p>
-<ul>
-<li><p><strong>Datos</strong>: <span class="math inline">\(X_i = \begin{cases}1&amp; \text{el cliente } \#i \text{ no pagó}\\0 &amp; \text{el cliente } \#i \text{ pagó}\end{cases}\)</span>.</p></li>
-<li><p><strong>Muestra</strong>: <span class="math inline">\(X_1,\dots,X_{10000}\)</span> (realización al día de hoy).</p></li>
-<li><p><strong>Modelos</strong>: <span class="math inline">\(X_1,\dots, X_{10000} \stackrel{i.i.d}{\sim} \text{Ber}(p)\)</span> con <span class="math inline">\(p\in[0,1]\)</span>.</p></li>
-<li><p><strong>Parámetro</strong>: <span class="math inline">\(p\)</span>, <span class="math inline">\(\Omega = [0,1]\)</span>.</p></li>
-<li><p><strong>Inferencias:</strong></p>
-<ul>
-<li>Estimar <span class="math inline">\(p\)</span> (probabilidad de impago).</li>
-<li>Suponga que <span class="math inline">\(L(X_i)\)</span> es el saldo en la cuenta del cliente <span class="math inline">\(\#i\)</span>.</li>
-</ul></li>
-</ul>
-<p><span class="math display">\[\begin{equation*}
-\mathbb{P}\left(\sum_{i=1}^{10000}L(X_i)&gt;u\right)=\text{Probabilidad de ruina}
-\end{equation*}\]</span></p>
-</div>
-<div id="estadístico" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Estadístico</h2>
-<p><strong>Definición</strong>. Si <span class="math inline">\(X_1,\dots,X_n\)</span> es una muestra observable. Sea <span class="math inline">\(r\)</span> una función real de <span class="math inline">\(n\)</span> variables:
-<span class="math display">\[\begin{equation*}
-T = r(X_1,\dots,X_n)
-\end{equation*}\]</span>
-es un estadístico.</p>
-<p><strong>Nota</strong>: <span class="math inline">\(T\)</span> también es aleatorio.</p>
-<p><strong>Ejemplos</strong>:</p>
-<ul>
-<li><p><span class="math inline">\(\hat p = \dfrac{1}{10000}\displaystyle\sum_{i=1}^{10000}X_i = \dfrac{\#\text{ no pagan}}{\text{Total}} = r(X_1,\dots,X_{10000})\)</span></p></li>
-<li><p><span class="math inline">\(L_m = \max L(X_i)\)</span> (saldo del cliente más riesgoso).</p></li>
-<li><p><span class="math inline">\(R_m = \max L(X_i) - \min L(X_i), 1\leq i\leq 10000\)</span></p></li>
-</ul>
+<div id="método-delta" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Método Delta</h2>
+<p>Si <span class="math inline">\(Y_1,Y_2,\dots\)</span> es una sucesión de variables aleatorias y sea <span class="math inline">\(F^*\)</span> su c.d.f. continua. Sea <span class="math inline">\(\theta\in \mathbb R\)</span> y <span class="math inline">\(\{a_n\}\)</span> sucesión de números positivos tal que <span class="math inline">\(a_n \nearrow\infty\)</span>. Suponga que <span class="math inline">\(a_n(Y_n-\theta) \xrightarrow{d} F^*\)</span>. Si <span class="math inline">\(\alpha\)</span> es una función tal que <span class="math inline">\(\alpha&#39;(\theta)\ne 0\)</span>, entonces
+<span class="math display">\[\dfrac{a_n}{\alpha&#39;(\theta)}[\alpha(Y_n)-\alpha(\theta)] \xrightarrow{d} F^*\]</span></p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,X_2,\dots\)</span> i.i.d. de variables con media <span class="math inline">\(\mu\)</span> y varianza <span class="math inline">\(\sigma^2\)</span>. Sea <span class="math inline">\(\alpha\)</span> una función tal que <span class="math inline">\(\alpha&#39;(\mu)\neq 0\)</span>. Por el T.L.C,
+<span class="math display">\[ \dfrac{\sqrt{n}}{\sigma}(X_n-\mu)\xrightarrow{d}N(0,1)\]</span></p>
+<p>Entonces por el método Delta</p>
+<p><span class="math display">\[ \dfrac{\sqrt{n}}{\sigma\alpha&#39;(\mu)}[\alpha(\bar X_n)-\alpha(\mu)]\xrightarrow{d}N(0,1) \]</span></p>
+<p>Si <span class="math inline">\(\alpha(\mu) = \dfrac 1\mu\)</span> <span class="math inline">\((\mu\neq 0) \implies -\dfrac{1}{\mu^2} = \alpha&#39;(\mu)\)</span>. Entonces por el método Delta</p>
+<p><span class="math display">\[ \dfrac{\sqrt{n}}{\sigma}\mu^2\bigg[\dfrac 1{\bar X_n}-\dfrac 1\mu\bigg]\xrightarrow{d}N(0,1) \]</span></p>
+<p><strong>Ejemplo (7.6.11)</strong></p>
+<p>Si <span class="math inline">\(X_1,X_2\dots \stackrel{i.i.d}{\sim} \text{Exp}(\theta)\)</span>. Sea <span class="math inline">\(T_n = \sum X_i \implies \hat\theta = \dfrac 1{\bar X_n} = \dfrac n{T_n}\)</span>.</p>
+<p>Note que <span class="math inline">\(\dfrac{1}{\hat{\theta}} = \bar X_n\)</span> y
+<span class="math display">\[ \dfrac{\sqrt{n}}{\sigma}\bigg[\bar X_n-\dfrac 1\theta\bigg]\xrightarrow[n\to\infty]{d}N(0,1) .\]</span></p>
+<p>La varianza de una exponencial es <span class="math inline">\(\sigma^2 = \text{Var}(X_1) = \dfrac1{\theta^2}\)</span>, entonces
+<span class="math display">\[ \theta\sqrt{n}\bigg[\bar X_n-\dfrac 1\theta\bigg]\xrightarrow[n\to\infty]{d}N(0,1) .\]</span>
+El método Delta nos dice, con <span class="math inline">\(\alpha(\mu) = \dfrac 1\mu\)</span>, <span class="math inline">\(\alpha&#39;(\mu) = -\dfrac 1{\mu^2}\)</span>, el comportamiento asintótico de MLE:</p>
+<p><span class="math display">\[\begin{align*}
+\dfrac{\theta\sqrt{n}}{\alpha&#39;(1/\theta)}\bigg[\bar \alpha(X_n)-\alpha\left(\dfrac 1\theta\right)\bigg] 
+&amp; = \dfrac{\theta\sqrt{n}}{\dfrac{1}{1/\theta}}\bigg[ \dfrac 1{\bar X_n} -\theta\bigg]\xrightarrow[n\to\infty]{d}N(0,1) \\
+&amp; = \dfrac{\sqrt{n}}{\theta}\bigg[\dfrac 1{\bar X_n} -\theta\bigg]\xrightarrow[n\to\infty]{d}N(0,1) 
+\end{align*}\]</span></p>
+<p>El MLE <span class="math inline">\(\hat\theta = \dfrac 1{\bar X_n}\)</span> es asintóticamente normal con media <span class="math inline">\(\theta\)</span> y varianza <span class="math inline">\(\dfrac{V_n(\theta)}{n} = \dfrac{\theta^2}n\)</span>.</p>
+<p><strong>Caso bayesiano</strong>. Tome una previa conjugada <span class="math inline">\(\theta \sim \Gamma(\alpha,\beta)\)</span>, posterior <span class="math inline">\(\theta \sim \Gamma(\alpha+n,\beta+y)\)</span>, <span class="math inline">\(y = \sum X_i\)</span>. Supongamos que es entero positivo.
+<span class="math display">\[\Gamma(\alpha+n,\beta+y) \sim \sum_{i=1}^{\alpha+n}e^{\beta+y}\]</span>
+Por el T.L.C., la distribución posterior <span class="math inline">\(\theta|X\)</span> se distribuye como una normal con media <span class="math inline">\(\dfrac{\alpha+n}{\beta+y}\)</span> y varianza <span class="math inline">\(\dfrac{\alpha+n}{(\beta+y)^2}\)</span>. Tomando una previa poco informativa, (<span class="math inline">\(\alpha, \beta\)</span> son pequeños), la media es
+<span class="math display">\[\dfrac ny = \dfrac 1{\bar X_1} = \hat\theta_{MLE}\]</span> y la varianza
+<span class="math display">\[\dfrac 1{y^2/n} = \dfrac{\theta^2}n = \dfrac{V_n(\hat\theta)}{n}.\]</span></p>
 
 </div>
 </div>
@@ -263,8 +217,8 @@ es un estadístico.</p>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="propiedades-del-mle.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estadísticos-suficientes-y-criterio-de-factorización.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -295,7 +249,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/01-inferencia-estadistica.Rmd",
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/03-maxima-verosimilitud.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -303,7 +257,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/01-inferencia-estadistica.Rmd",
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/03-maxima-verosimilitud.Rmd",
 "text": null
 },
 "download": ["Notas-Curso-Estadistica.pdf"],

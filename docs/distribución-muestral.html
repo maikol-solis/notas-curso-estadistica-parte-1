@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)</title>
-  <meta name="description" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <title>Capítulo 13 Distribución muestral | Notas Curso de Estadística (Parte I)</title>
+  <meta name="description" content="Capítulo 13 Distribución muestral | Notas Curso de Estadística (Parte I)" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <meta property="og:title" content="Capítulo 13 Distribución muestral | Notas Curso de Estadística (Parte I)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 Inferencia estadística | Notas Curso de Estadística (Parte I)" />
+  <meta name="twitter:title" content="Capítulo 13 Distribución muestral | Notas Curso de Estadística (Parte I)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"/>
+<link rel="prev" href="distribución-muestral-de-un-estadístico.html"/>
+<link rel="next" href="distribución-chi2.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -136,135 +136,48 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="inferencia-estadística" class="section level1" number="2">
-<h1><span class="header-section-number">Capítulo 2</span> Inferencia estadística</h1>
-<p><strong>Definición:</strong> Hacer afirmaciones probabilísticas respecto a (acerca de)
-cantidades desconocidas.</p>
-<div id="ejemplo" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Ejemplo</h2>
-<p>*<strong>Pregunta</strong>: ¿Será posible modelar cuánto dura un componente electrónico en
-fallar?</p>
-<p><strong>Solución</strong>: Podemos responder esta pregunta dividiéndola en dos partes:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Modelo probabilístico:</strong> Asuma que los tiempos de vida del componente son
-exponenciales (en años).</li>
-<li><strong>Parámetro:</strong> Sea <span class="math inline">\(\theta &gt; 0\)</span> la tasa de fallo (unidades: 1/Tiempo(años)).</li>
-</ol>
-<p>Es decir, tenemos un modelo (exponencial) y estamos decretando que su información estará concentrada en el parámetro <span class="math inline">\(\theta\)</span>.</p>
-<p><strong>Nota</strong>: El parámetro <span class="math inline">\(\theta\)</span> contiene la información del modelo,
-pero ¿Cómo obtenemos esa información</p>
-<p><strong>Muestra</strong>: Secuencia (sucesión) de variables aleatorias independientes <span class="math inline">\(X_1,X_2,\dots, X_n,\dots\)</span>. Tomemos una muestra <span class="math inline">\(X_1,X_2,\dots, X_n,\dots \stackrel{i.i.d}{\sim} \text{Exp}(\theta)\)</span>.</p>
-<p><strong>Objetivos</strong></p>
+<div id="distribución-muestral" class="section level1" number="13">
+<h1><span class="header-section-number">Capítulo 13</span> Distribución muestral</h1>
+<p><strong>Definición</strong>. Suponga que <span class="math inline">\(X_1,\dots,X_n\)</span> es una muestra con parámetro <span class="math inline">\(\theta\)</span> con parámetro <span class="math inline">\(\theta\)</span> (desconocido). Sea <span class="math inline">\(T=r(X_1,\dots,X_n,\theta)\)</span>. La distribución de <span class="math inline">\(T\)</span> dado <span class="math inline">\(\theta\)</span> se llama <strong>distribución muestral</strong>.</p>
+<p><strong>Ejemplo</strong>. Si <span class="math inline">\(X_1,\dots,X_n \sim N(\mu,\sigma^2)\)</span>. El MLE de <span class="math inline">\(\mu\)</span> es <span class="math display">\[\bar X_n = \dfrac 1n \sum_{i=1}^n X_i.\]</span>
+La distribución muestral del estadístico <span class="math inline">\(\bar X_n\)</span> es
+<span class="math display">\[ \bar X_n \sim N\left(\mu, \dfrac{\sigma^2}n \right)\]</span></p>
 <ul>
-<li><p>Estimar <span class="math inline">\(X_m, X_{m+1}, \dots\)</span> si se observa <span class="math inline">\(X_1, X_{m-1}, \dots\)</span> (Predicción).</p></li>
-<li><p>Estimar <span class="math inline">\(\theta\)</span> usando información.</p></li>
+<li><p><span class="math inline">\(\mathbb E[\bar X_n] = \dfrac 1n\displaystyle\sum_{i=1}^n\mathbb E[X_i] = \dfrac 1n\cdot n \mathbb E[X_1] = \mu\)</span>.</p></li>
+<li><p><span class="math inline">\(\text{Var}(\bar X_n) = \text{Var}\left(\dfrac 1n \displaystyle\sum_{i=1}^n X_i\right) = \dfrac{1}{n^2}\cdot n\cdot \text{Var}(X_1) = \dfrac{\sigma^2}n\)</span>.</p></li>
 </ul>
-<p><strong>Datos</strong>: Realizaciones de variables aleatorias <span class="math inline">\(X_1,\dots,X_m\)</span> pertenecientes a la muestra.</p>
-<p><strong>Estimación de <span class="math inline">\(\theta\)</span></strong></p>
-<p>Dado que <span class="math inline">\(\mathbb{E}(X) = \dfrac{1}{\theta}\)</span> con <span class="math inline">\(X \sim \text{Exp}(\theta)\)</span>, por la ley de grandes números se tiene que</p>
-<p><span class="math display">\[\begin{equation*}
-\underbrace{\dfrac{1}{n} \sum_{i=1}{X_i}}_{\bar{X}_n} \xrightarrow[n\to \infty]{\mathbb{P}}\mathbb{E}(X) = \dfrac{1}{\theta}
-\end{equation*}\]</span></p>
-<p>por propiedad de convergencia en probabilidad.</p>
-<p>Un posible candidato para estimar <span class="math inline">\(\theta\)</span> es <span class="math inline">\(\dfrac{1}{\bar X_n}\)</span>, bajo el supuesto por Ley de Grandes Números que <span class="math inline">\(\theta\)</span> es una constante (frecuentista).</p>
-<p><strong>Realidad</strong>: <span class="math inline">\(\theta\)</span> no necesariamente es determinístico (factores externos, por la naturaleza del fenómeno).</p>
-<p>Asumimos un modelo probabilístico para <span class="math inline">\(\theta\)</span> (tasa siempre positiva):</p>
-<p><span class="math display">\[\begin{equation*}
-\theta \sim \Gamma(\alpha_0,\beta_0)
-\end{equation*}\]</span>
-Luego, según estudios previos la tasa esperada es 0.5/año
-<span class="math display">\[\begin{equation*}
-\mathbb{E}(\theta) = \dfrac{1}{2} = \dfrac{\alpha_0}{\beta_0}.
-\end{equation*}\]</span></p>
-<p>Un primer indicio de que se podría establecer que <span class="math inline">\(\alpha_0 = 1\)</span> y de <span class="math inline">\(\beta_0 = 2\)</span>.</p>
-</div>
-<div id="modelo-estadístico" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Modelo estadístico</h2>
-<p>Vamos a definir como típicamente se define un modelo estadístico.</p>
-<ol style="list-style-type: decimal">
-<li><p>Variables aleatorias observables / hipotéticamente observables:</p>
-<p><span class="math display">\[\begin{equation*}
-  \underbrace{X_t}_{\text{Observable}} = \underbrace{Y_t}_{\text{Hip. observable}} + \underbrace{\epsilon}_{\text{Ruido}}
-  \end{equation*}\]</span></p>
-<p>En otras palabras <span class="math inline">\(Y_t\)</span> sería la el dato <em>“verdadero”</em> que pasó
-exactamente en el fenómeno analizado. Esta observación es afectada por
-muchos factores no observables (por ejemplo: errores de medición, cambio
-de las condiciones de la economía, etc.). La variable <span class="math inline">\(\epsilon\)</span> captura
-toda esa aleatoriedad que no es parte del fénomeno.</p>
-<p>Claramente ni <span class="math inline">\(Y_t\)</span> ni <span class="math inline">\(\epsilon\)</span> se pueden medir y la mejor
-representación del nuestro es fenómeno es a partir de <span class="math inline">\(X_t\)</span>.</p></li>
-<li><p>Distribución conjunta de una muestra de variables observables.</p>
-<p>Es decir cuál es el supuesto general que estoy usando para describir mis
-observaciones.</p></li>
-<li><p>Parámetros que son hipotéticamente observables (desconocidos).</p>
-<p>¿Cuál sería la mejor calibración de los componentes del modelo anterior de
-modo que mi modelo se ajuste a los datos?</p></li>
-<li><p>(Opcional) Distribución conjunta de los parámetros.</p>
-<p>En el caso de Bayes, los parámetro dejan de ser simple valores puntuales y se
-convierten en distribuciones completas.</p></li>
-</ol>
-<ul>
-<li><strong>Inferencia estadística</strong>: procedimiento que genera afirmaciones probabilísticas de un modelo estadístico.</li>
-</ul>
-<p><strong>Ejemplo de inferencias</strong>:</p>
-<ol style="list-style-type: decimal">
-<li><p>Estimar <span class="math inline">\(\theta\)</span> a través de <span class="math inline">\(\dfrac{1}{\bar X_n}\)</span>.</p></li>
-<li><p>¿Qué tan probable es que el promedio de las siguientes observaciones es al menos 2?
-<span class="math display">\[\begin{equation*}
-\dfrac{1}{10}\sum_{i= m+1}^{m+10} X_i &gt; 2
-\end{equation*}\]</span></p></li>
-<li><p>¿Qué tan cierto es que <span class="math inline">\(\theta\leq0.4\)</span> después de observar la muestra?</p></li>
-</ol>
-<ul>
-<li><p><strong>Parámetro</strong>: característica (s) que determinan la distribución conjunta de las variables aleatorias de interés.</p></li>
-<li><p><strong>Espacio paramétrico</strong> <span class="math inline">\(\Omega\)</span> (espacio de parámetros, puede ser de probabilidad)</p></li>
-</ul>
-<p><strong>Ejemplos</strong>:</p>
-<ul>
-<li><span class="math inline">\(\theta\)</span> &gt; 0 (ejemplo anterior); <span class="math inline">\(\Omega = (0,+\infty)\)</span>.</li>
-<li><span class="math inline">\(X_1,\dots,X_n \sim N(\mu, \sigma^2)\)</span>, <span class="math inline">\((\mu,\sigma^2)\)</span> parámetros; <span class="math inline">\(\Omega\)</span> = <span class="math inline">\(\mathbb{R}\times[0,+\infty)\)</span>.</li>
-</ul>
-<p><strong>Ejemplo:</strong> Clientes de un banco</p>
-<p>¿Qué tan probable es que un cliente no pague su crédito hoy?</p>
-<ul>
-<li><p><strong>Datos</strong>: <span class="math inline">\(X_i = \begin{cases}1&amp; \text{el cliente } \#i \text{ no pagó}\\0 &amp; \text{el cliente } \#i \text{ pagó}\end{cases}\)</span>.</p></li>
-<li><p><strong>Muestra</strong>: <span class="math inline">\(X_1,\dots,X_{10000}\)</span> (realización al día de hoy).</p></li>
-<li><p><strong>Modelos</strong>: <span class="math inline">\(X_1,\dots, X_{10000} \stackrel{i.i.d}{\sim} \text{Ber}(p)\)</span> con <span class="math inline">\(p\in[0,1]\)</span>.</p></li>
-<li><p><strong>Parámetro</strong>: <span class="math inline">\(p\)</span>, <span class="math inline">\(\Omega = [0,1]\)</span>.</p></li>
-<li><p><strong>Inferencias:</strong></p>
-<ul>
-<li>Estimar <span class="math inline">\(p\)</span> (probabilidad de impago).</li>
-<li>Suponga que <span class="math inline">\(L(X_i)\)</span> es el saldo en la cuenta del cliente <span class="math inline">\(\#i\)</span>.</li>
-</ul></li>
-</ul>
-<p><span class="math display">\[\begin{equation*}
-\mathbb{P}\left(\sum_{i=1}^{10000}L(X_i)&gt;u\right)=\text{Probabilidad de ruina}
-\end{equation*}\]</span></p>
-</div>
-<div id="estadístico" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Estadístico</h2>
-<p><strong>Definición</strong>. Si <span class="math inline">\(X_1,\dots,X_n\)</span> es una muestra observable. Sea <span class="math inline">\(r\)</span> una función real de <span class="math inline">\(n\)</span> variables:
-<span class="math display">\[\begin{equation*}
-T = r(X_1,\dots,X_n)
-\end{equation*}\]</span>
-es un estadístico.</p>
-<p><strong>Nota</strong>: <span class="math inline">\(T\)</span> también es aleatorio.</p>
-<p><strong>Ejemplos</strong>:</p>
-<ul>
-<li><p><span class="math inline">\(\hat p = \dfrac{1}{10000}\displaystyle\sum_{i=1}^{10000}X_i = \dfrac{\#\text{ no pagan}}{\text{Total}} = r(X_1,\dots,X_{10000})\)</span></p></li>
-<li><p><span class="math inline">\(L_m = \max L(X_i)\)</span> (saldo del cliente más riesgoso).</p></li>
-<li><p><span class="math inline">\(R_m = \max L(X_i) - \min L(X_i), 1\leq i\leq 10000\)</span></p></li>
-</ul>
-
-</div>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_i:\)</span> tiempo de vida de un aparato. <span class="math inline">\(X_1,\dots,X_n \stackrel{i.i.d}{\sim} \text{Exp}(\theta)\)</span>. La previa de <span class="math inline">\(\theta\)</span> es <span class="math inline">\(\Gamma(1,2)\)</span>. Solamente observamos <span class="math inline">\(n=3\)</span>. La posterior sería
+<span class="math display">\[\theta|X \sim \Gamma(1+3,2+\sum_{i=1}^3 X_i). \]</span></p>
+<p>El estimador bayesiano, bajo pérdida cuadrática, es
+<span class="math display">\[\mathbb E[\theta|X] =  \dfrac 4{2+\sum X_i} = \hat\theta\]</span></p>
+<p>Problema: estimar <span class="math inline">\(\mathbb P(|\hat\theta-\theta|&lt;0.1)\)</span>.</p>
+<p>Vea que <span class="math inline">\(P(|\hat\theta-\theta|&lt;0.1) = \mathbb E[P(|\hat\theta-\theta|&lt;0.1|\theta)]\)</span></p>
+<p>Sea</p>
+<p><span class="math display">\[\begin{align*}
+F(t|\theta) = \mathbb P(\hat\theta\leq t|\theta)&amp;= \mathbb P\left( \dfrac 4{2+T}\leq t\bigg|\theta\right) \\
+&amp; = \mathbb P\left( 2+T \geq \dfrac 4t\bigg|\theta\right)\\
+&amp; = \mathbb P\left( T \geq \dfrac 4t-2\bigg|\theta\right)\\
+\end{align*}\]</span></p>
+<p><strong>Nota</strong>. Suma de exponenciales es una gamma.</p>
+<p>Entonces <span class="math inline">\(T\sim \Gamma(3,\theta)\)</span>, por lo que <span class="math inline">\(F(t|\theta) = 1-G_{\Gamma(3,0)}\left( \dfrac 4t-2\right)\)</span>.</p>
+<p>De esta manera,
+<span class="math display">\[\begin{align*} 
+\mathbb P[|\hat\theta-\theta|&lt;0.1|\theta]  &amp; = \mathbb[-0.1+\theta &lt; \hat\theta &lt; 0.1 +\theta|\theta]\\
+&amp; = G_{\Gamma(3,0)}\left(\dfrac 4{0.1+\theta} - 2\right)+G_{\Gamma(3,0)}\left(\dfrac 4{-0.1+\theta} - 2\right)
+\end{align*}\]</span></p>
+<p>y se toma la esperanza. Otra solución es cambiar la probabilidad de forma que no dependa de <span class="math inline">\(\theta\)</span>.
+<span class="math display">\[\mathbb P \left(\bigg| \underbrace{\dfrac{\hat\theta_{MLE}}\theta-1}_{\text{Cambio relativo}} \bigg| &lt; 0.1\bigg|\theta \right) = \mathbb P \left( \bigg| \dfrac{3}{\theta T}-1 \bigg| &lt; 0.1 \bigg| \theta \right) = \Delta\]</span></p>
+<p>Si <span class="math inline">\(T\sim\Gamma(3,0) \implies \theta T \sim \Gamma(3,1)\)</span>.</p>
+<p>Por lo tanto,
+<span class="math display">\[\Delta = \mathbb P \left(0.9&lt;\dfrac 3{\theta T}&lt;1.1\bigg|\theta\right) = \mathbb P \left(\dfrac 3{1.1}&lt;\theta T&lt;\dfrac 3{0.9}\right) = 13,4\%\]</span></p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="distribución-muestral-de-un-estadístico.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="distribución-chi2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -295,7 +208,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/01-inferencia-estadistica.Rmd",
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/05-distribucion-muestral.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -303,7 +216,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/01-inferencia-estadistica.Rmd",
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/05-distribucion-muestral.Rmd",
 "text": null
 },
 "download": ["Notas-Curso-Estadistica.pdf"],
