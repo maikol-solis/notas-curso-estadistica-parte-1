@@ -13,12 +13,13 @@ Una función de verosimilitud se va a describir a través de un número. El obje
 
 *Prueba* (Discreta). $f_n(x|\theta) = \mathbb P(X=x|\theta)$
 
-"$\Leftarrow$" Sea $A(t) = \{x\in \mathbb R| r(x) =t\}$. Para $\theta \in \mathbb R $, $x\in A(t)$,
-\begin{align*}
+"$\Leftarrow$" Sea \(A(t) = \{x\in \mathbb R| r(x) =t\}\). Para \(\theta \in \mathbb R \), \(x\in A(t)\),
 
+\begin{align*}
 \mathbb P(X=x|T=t) & = \dfrac{\mathbb P(X=x\cap T=t)}{\mathbb P (T=t)} = \dfrac{\mathbb P (X=x)}{P(T=t)} = \dfrac{f_n(x|\theta)}{\displaystyle\sum_{y \in A(t)}f_n(y|\theta)} \\
 & = \dfrac{u(x)v(r(x),\theta)}{\displaystyle\sum_{y \in A(t)} u(y)v(r(y),\theta)} = \dfrac{u(x)}{\displaystyle\sum_{y \in A(t)}u(y)}
 \end{align*}
+
 no depende de $\theta$. 
 
 Si $x\notin A(t) \implies \mathbb P(X=x|T=t) = 0$ no depende de $\theta$.
@@ -114,8 +115,9 @@ Como $g$ es biyectiva entonces $(\bar X_n, \sigma_n^2)$ es un estadístico sufic
  La verosimilitud es de la forma
  
 \[f_n(x|(a,b)) = \prod_{i=1}^n1_{[a,b]}(x_i) = \underbrace{\dfrac 1{(b-a)^n} 1_{\{(Z,W): Z>a, W<b\}}(x_{(1)},x_{(n)})}_{v(r_1,r_2,(a,b))}\cdot \underbrace{1}_{u(x)}\]
-Por teorema de factorización $(X_{(1)},X_{(n)})$ es un estadístico suficiente para $(a,b)$.
 
+Por teorema de factorización $(X_{(1)},X_{(n)})$ es un estadístico suficiente para $(a,b)$.
+    
 # Estadísticos minimales
 
 **Idea:** un estadístico suficiente que garantice una partición de $\mathcal X$ (espacio muestral) de la manera más simple posible.
@@ -200,7 +202,6 @@ Vea que
 \mathbb E[Y_i|T = t] = \mathbb P(X_i = 1 | T = t) & = \dfrac{\mathbb P(X_i = 1, T=t)}{\mathbb P(T=t)}\\
 & = \dfrac{\mathbb P(X_i = 1, \sum_{j\ne i} X_j = t-1)}{\mathbb P(T=t)}\\
 & = \dfrac{\mathbb P(X_i = 1) \mathbb P(\sum_{j\ne i} X_j = t-1)}{\mathbb P(T=t)} = \Delta
-
 \end{align*}
 
  * $\mathbb P(X_i = 1) = \theta e^{-\theta}$

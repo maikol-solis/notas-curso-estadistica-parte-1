@@ -37,10 +37,8 @@ Entonces $T\sim \Gamma(3,\theta)$,  por lo que $F(t|\theta) = 1-G_{\Gamma(3,0)}\
 
 De esta manera, 
 \begin{align*} 
-
 \mathbb P[|\hat\theta-\theta|<0.1|\theta]  & = \mathbb[-0.1+\theta < \hat\theta < 0.1 +\theta|\theta]\\
 & = G_{\Gamma(3,0)}\left(\dfrac 4{0.1+\theta} - 2\right)+G_{\Gamma(3,0)}\left(\dfrac 4{-0.1+\theta} - 2\right)
-
 \end{align*}
 
 y se toma la esperanza. Otra solución es cambiar la probabilidad de forma que no dependa de $\theta$. 
@@ -131,11 +129,9 @@ Por un lado,
 Además,
 
 \begin{align*} 
-
 \mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg] & = \mathbb P \bigg[\dfrac 45 \dfrac{\hat\sigma}{\sigma}<\dfrac 65\bigg]\\
 & = \mathbb P \bigg[0.64 n \dfrac{n\hat\sigma}{\sigma}<1.44n\bigg]\\
 & = F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n)
-
 \end{align*}
 
 Estime $n$ de manera que
@@ -189,8 +185,7 @@ Dado que $Y = \dfrac{S_n^2}{\sigma^2}\sim \chi^2_{n-1}$, entonces
 
 
 \begin{align*} 
-
 U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} & = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{\sigma^2(n-1)}}} \\ & = \dfrac{\sqrt n (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{n-1}}}\\& =  \dfrac{\sqrt n (\bar X_n-\mu)}{\sigma'} \sim t_{n-1}.
- \end{align*}
+\end{align*}
 
 
