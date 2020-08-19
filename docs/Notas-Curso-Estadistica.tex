@@ -48,6 +48,46 @@
   urlcolor=Blue,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -146,7 +186,7 @@
 
 \title{Notas Curso de Estadística (Parte I)}
 \author{Maikol Solís}
-\date{Actualizado el 18 agosto, 2020}
+\date{Actualizado el 19 August, 2020}
 
 \begin{document}
 \maketitle
@@ -479,7 +519,7 @@ Con 5 observaciones (horas): 2911, 3403, 3237, 3509, 3118.
 \[y = \sum_{i=1}^{5}X_i = 16478, \quad n= 5\]
 por lo que \(\theta|X \sim \Gamma(9,36178)\)
 
-\begin{center}\includegraphics[width=0.7\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-4-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 Es sensible al tamaño de la muestra (una muestra grande implica un efecto de la previa menor).
 
@@ -554,7 +594,9 @@ Por el teorema de Bayes,
   \textbf{Predicción}.
 \end{itemize}
 
-\emph{Supuesto}: los datos son secuenciales. Calculamos la distribución posterior secuencialmente:
+\emph{Supuesto}: los datos son secuenciales. Calculamos la distribución posterior
+secuencialmente:
+
 \begin{align*}
 \pi(\theta|X_1) & \propto \pi(\theta) f(X_1|\theta)\\
 \pi(\theta|X_1,X_2) &\propto \pi(\theta) f(X_1,X_2|\theta) \\
@@ -564,7 +606,8 @@ Por el teorema de Bayes,
 \pi(\theta|X_1,\dots,X_n) & \propto f(X_n|\theta)\pi(\theta|X_1,\dots, X_{n-1})
 \end{align*}
 
-Bajo independencia condicional no hay diferencia en la posterior si los datos son secuenciales.
+Bajo independencia condicional no hay diferencia en la posterior si los datos
+son secuenciales.
 
 Luego,
 
@@ -573,21 +616,31 @@ g_n(X) & = \int_{\Omega} f(X_n|\theta) \pi(\theta|X_1,\dots, X_{n-1})\;d\theta\\
 & = P(X_n|X_1,\dots,X_{n-1}) \text{ (Predicción para }X_n)
 \end{align*}
 
-Continuando con el ejemplo de los artefactos, \(P(X_6>3000|X_1,X_2,X_3,X_4,X_5)\). Se necesita calcular \(f(X_6|X)\). Dado que
-\[ \pi(\theta|X) = 2.6\times 10^{36}\theta^8 e^{-36178\theta}\]
+Continuando con el ejemplo de los artefactos, \(P(X_6>3000|X_1,X_2,X_3,X_4,X_5)\).
+Se necesita calcular \(f(X_6|X)\). Dado que \[ \pi(\theta|X) = 2.6\times
+10^{36}\theta^8 e^{-36178\theta}\]
 
 se tiene
 
-\[ f(X_6|X) = 2.6\times 10^{36} \int_{0}^1 \underbrace{\theta e^{-\theta X_6}}_{\text{Densidad de } X_6}\theta^8 e^{-36178\theta}\;d\theta = \dfrac{9.55 \times 10^{41}}{(X_6+36178)^{10}}\]
+\[ f(X_6|X) = 2.6\times 10^{36} \int_{0}^1 \underbrace{\theta e^{-\theta
+X_6}}_{\text{Densidad de } X_6}\theta^8 e^{-36178\theta}\;d\theta = \dfrac{9.55
+\times 10^{41}}{(X_6+36178)^{10}}\]
+
 Entonces,
-\[ P(X_6>3000) = \int_{3000}^{\infty} \dfrac{9.55\times10^{41}}{(X_6+36178)^{10}}\; dX_6 = 0.4882\]
+
+\[ P(X_6>3000) =
+\int_{3000}^{\infty} \dfrac{9.55\times10^{41}}{(X_6+36178)^{10}}\; dX_6 =
+0.4882\]
 
 La vida media se calcula como \(\dfrac{1}{2} = P(X_6>u|X)\).
 
 \hypertarget{familias-conjugadas}{%
 \section{Familias conjugadas}\label{familias-conjugadas}}
 
-\textbf{Definición}. Sea \(X_1,\dots, X_n\) i.i.d. condicional dado \(\theta\) con densidad \(f(X|\theta)\). Sea \(\psi\) la familia de posibles densidades previas sobre \(\Omega\). Si, sin importar los datos, la posterior pertenece a \(\psi\), entonces decimos que \(\psi\) es una familia conjugada de previas.
+\textbf{Definición}. Sea \(X_1,\dots, X_n\) i.i.d. condicional dado \(\theta\) con
+densidad \(f(X|\theta)\). Sea \(\psi\) la familia de posibles densidades previas
+sobre \(\Omega\). Si, sin importar los datos, la posterior pertenece a \(\psi\),
+entonces decimos que \(\psi\) es una familia conjugada de previas.
 
 \textbf{Ejemplos}:
 
@@ -861,6 +914,509 @@ Es estimador se calcula de la siguiente manera:
 
 Por otro lado, vea que \(\mathbb{E}(\theta|X) = \dfrac{4}{8.6}\). El estimador \emph{plug-in} correspondería a
 \[\dfrac{1}{\mathbb{E}(\theta|X)} = \dfrac{8.6}{4} = 2.15.\]
+
+\hypertarget{laboratorio}{%
+\section{Laboratorio}\label{laboratorio}}
+
+Lo primero es cargar los paquetes necesarios que usaremos en todo el curso
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{distribuciuxf3n-previa}{%
+\subsection{Distribución previa}\label{distribuciuxf3n-previa}}
+
+En nuestro ejemplo se tenía que \(\mathbb E [\theta] = 0.0002\) y \(\mathrm{Var}(\theta) = 0.001\). Suponiendo que \(\theta\) es gamma se puede resolver el sistema de ecuaciones obtenemos que \(\beta=20000\) y \(\alpha=4\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alpha\_previa \textless{}{-}}\StringTok{ }\DecValTok{4}
+\NormalTok{beta\_previa \textless{}{-}}\StringTok{ }\DecValTok{20000}
+
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1e+06}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_previa, }
+        \DataTypeTok{scale =}\NormalTok{ beta\_previa)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale\_y\_continuous}\NormalTok{(}\DataTypeTok{breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-6-1} \end{center}
+
+\hypertarget{distribuciuxf3n-conjunta}{%
+\subsection{Distribución conjunta}\label{distribuciuxf3n-conjunta}}
+
+Asumiendo que tenemos algunos datos \(X_1, ..., X_n\), asumimos que estos son exponencial recordando que \(\mathbb E [X] = 1/\theta\), entonces una aproximación de esta densidad es
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2911}\NormalTok{, }\DecValTok{3403}\NormalTok{, }\DecValTok{3237}\NormalTok{, }\DecValTok{3509}\NormalTok{, }\DecValTok{3118}\NormalTok{)}
+
+\NormalTok{theta \textless{}{-}}\StringTok{ }\DecValTok{1}\OperatorTok{/}\KeywordTok{mean}\NormalTok{(x)}
+
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1e+05}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dexp, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{rate =}\NormalTok{ theta)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale\_y\_continuous}\NormalTok{(}\DataTypeTok{breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-7-1} \end{center}
+
+\hypertarget{distribuciuxf3n-posterior}{%
+\subsection{Distribución posterior}\label{distribuciuxf3n-posterior}}
+
+Según los contenidos del curso, se puede estimar los parámetros de la densidad posterior de la forma
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(y \textless{}{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 16178
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(n \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(alpha\_posterior \textless{}{-}}\StringTok{ }\NormalTok{n }\OperatorTok{+}\StringTok{ }\NormalTok{alpha\_previa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(beta\_posterior \textless{}{-}}\StringTok{ }\NormalTok{beta\_previa }\OperatorTok{+}\StringTok{ }\NormalTok{y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 36178
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{750000}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_previa, }
+        \DataTypeTok{scale =}\NormalTok{ beta\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_posterior, }
+        \DataTypeTok{scale =}\NormalTok{ beta\_posterior), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dexp, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{rate =}\NormalTok{ theta), }
+        \KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Verosimilitud"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1.5e{-}05}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-9-1} \end{center}
+
+\hypertarget{agregando-nuevos-datos}{%
+\subsection{Agregando nuevos datos}\label{agregando-nuevos-datos}}
+
+Si tenemos un 6to dato, y queremos ver cual es su distribución posterior. Lo primero es estimar la densidad posterior de este 6to dato, pero asumiendo que la previa es la densidad que obtuvimos en el caso anterior.
+
+Suponga que \(X_6 = 3000\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(alpha\_previa \textless{}{-}}\StringTok{ }\NormalTok{alpha\_posterior)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(beta\_previa \textless{}{-}}\StringTok{ }\NormalTok{beta\_posterior)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 36178
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(alpha\_posterior \textless{}{-}}\StringTok{ }\NormalTok{alpha\_previa }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(beta\_posterior \textless{}{-}}\StringTok{ }\NormalTok{beta\_previa }\OperatorTok{+}\StringTok{ }\DecValTok{3000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 39178
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1e+06}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =} \DecValTok{4}\NormalTok{, }
+        \DataTypeTok{scale =} \DecValTok{20000}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa \#1"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_previa, }
+        \DataTypeTok{scale =}\NormalTok{ beta\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa \#2"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_posterior, }
+        \DataTypeTok{scale =}\NormalTok{ beta\_posterior), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1.5e{-}05}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-10-1} \end{center}
+
+\hypertarget{familias-conjugadas-normales}{%
+\subsection{Familias conjugadas normales}\label{familias-conjugadas-normales}}
+
+Si tenemos pocos datos, la información previa es la que ``prevalece''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =} \DecValTok{3}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{10}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{(mu \textless{}{-}}\StringTok{ }\KeywordTok{mean}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10.22127
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sigma \textless{}{-}}\StringTok{ }\KeywordTok{sd}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.185713
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(n \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(mu\_previa \textless{}{-}}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sigma\_previa \textless{}{-}}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(mu\_posterior \textless{}{-}}\StringTok{ }\NormalTok{((sigma}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }
+\StringTok{    }\NormalTok{mu\_previa }\OperatorTok{+}\StringTok{ }\NormalTok{((n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }
+\StringTok{    }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{mu)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.959693
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sigma2\_posterior \textless{}{-}}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }
+\StringTok{    }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3190971
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_previa, }
+        \DataTypeTok{sd =}\NormalTok{ sigma\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_posterior, }
+        \DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(sigma2\_posterior)), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu, }
+        \DataTypeTok{sd =}\NormalTok{ sigma), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Verosimilitud"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-11-1} \end{center}
+
+Con más datos, la distribución se ajusta a esto y le quita importancia a la información previa.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{10}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{(mu \textless{}{-}}\StringTok{ }\KeywordTok{mean}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9.890422
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sigma \textless{}{-}}\StringTok{ }\KeywordTok{sd}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.134588
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(n \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(mu\_previa \textless{}{-}}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sigma\_previa \textless{}{-}}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(mu\_posterior \textless{}{-}}\StringTok{ }\NormalTok{((sigma}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }
+\StringTok{    }\NormalTok{mu\_previa }\OperatorTok{+}\StringTok{ }\NormalTok{((n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }
+\StringTok{    }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{mu)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9.764722
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sigma2\_posterior \textless{}{-}}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }
+\StringTok{    }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.01270929
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_previa, }
+        \DataTypeTok{sd =}\NormalTok{ sigma\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_posterior, }
+        \DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(sigma2\_posterior)), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu, }
+        \DataTypeTok{sd =}\NormalTok{ sigma), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Verosimilitud"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-12-1} \end{center}
+
+Si los datos por si solo son muy variable, la posterior tiende a parecerse a la
+distribución previa en lugar que a la verosimilitud.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{10}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{5}\NormalTok{)}
+
+\NormalTok{(mu \textless{}{-}}\StringTok{ }\KeywordTok{mean}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10.90214
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sigma \textless{}{-}}\StringTok{ }\KeywordTok{sd}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.107251
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(n \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(mu\_previa \textless{}{-}}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sigma\_previa \textless{}{-}}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(mu\_posterior \textless{}{-}}\StringTok{ }\NormalTok{((sigma}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }
+\StringTok{    }\NormalTok{mu\_previa }\OperatorTok{+}\StringTok{ }\NormalTok{((n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }
+\StringTok{    }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{mu)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.021321
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sigma2\_posterior \textless{}{-}}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }
+\StringTok{    }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.722869
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_previa, }
+        \DataTypeTok{sd =}\NormalTok{ sigma\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_posterior, }
+        \DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(sigma2\_posterior)), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu, }
+        \DataTypeTok{sd =}\NormalTok{ sigma), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Verosimilitud"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-13-1} \end{center}
+
+\hypertarget{funciones-de-puxe9rdida-1}{%
+\subsection{Funciones de pérdida}\label{funciones-de-puxe9rdida-1}}
+
+Lo más importante acá es que dependiendo de la función de pérdida podemos construir una estimador para \(\theta\). En el caso de los componentes electrónicos recordemos que la posterior nos daba
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alpha \textless{}{-}}\StringTok{ }\DecValTok{9}
+\NormalTok{beta \textless{}{-}}\StringTok{ }\DecValTok{36178}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Pérdida cuadrática:} Recoremos que la media de una gamma es \(\alpha/\beta\) entonces
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(theta \textless{}{-}}\StringTok{ }\NormalTok{alpha}\OperatorTok{/}\NormalTok{beta)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.00024877
+\end{verbatim}
+
+Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=4019.7777778.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Pérdidad absoluta:} La distribución Gamma no tiene una forma cerrada para la mediana, por que se puede aproximar así,
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m \textless{}{-}}\StringTok{ }\KeywordTok{rgamma}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{scale =}\NormalTok{ beta, }\DataTypeTok{shape =}\NormalTok{ alpha)}
+\NormalTok{(theta \textless{}{-}}\StringTok{ }\KeywordTok{median}\NormalTok{(m))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 317434.4
+\end{verbatim}
+
+Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.1502569\times 10^{-6}}.
+
+\textbf{OJO: En este caso la pérdida cuadrática ajusta mejor ya que la distribución que la pérdida absoluta ya que la distribución NO es simétrica. En el caso simétrico los resultados serían muy similares.}
 
 \hypertarget{estimaciuxf3n-por-muxe1xima-verosimilitud}{%
 \chapter{Estimación por máxima verosimilitud}\label{estimaciuxf3n-por-muxe1xima-verosimilitud}}

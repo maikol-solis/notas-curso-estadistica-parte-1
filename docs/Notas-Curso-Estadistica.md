@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 18 agosto, 2020"
+date: "Actualizado el 19 August, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -299,7 +299,7 @@ $$y = \sum_{i=1}^{5}X_i = 16478, \quad n= 5$$
 por lo que $\theta|X \sim \Gamma(9,36178)$
 
 
-\begin{center}\includegraphics[width=0.7\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-4-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 Es sensible al tamaño de la muestra (una muestra grande implica un efecto de la previa menor).
 
@@ -356,7 +356,9 @@ Por el teorema de Bayes,
 
 * **Predicción**. 
 
-*Supuesto*: los datos son secuenciales. Calculamos la distribución posterior secuencialmente:
+*Supuesto*: los datos son secuenciales. Calculamos la distribución posterior
+secuencialmente:
+
 \begin{align*}
 \pi(\theta|X_1) & \propto \pi(\theta) f(X_1|\theta)\\
 \pi(\theta|X_1,X_2) &\propto \pi(\theta) f(X_1,X_2|\theta) \\
@@ -366,7 +368,8 @@ Por el teorema de Bayes,
 \pi(\theta|X_1,\dots,X_n) & \propto f(X_n|\theta)\pi(\theta|X_1,\dots, X_{n-1})
 \end{align*}
 
-Bajo independencia condicional no hay diferencia en la posterior si los datos son secuenciales.
+Bajo independencia condicional no hay diferencia en la posterior si los datos
+son secuenciales.
 
 Luego,
 
@@ -375,20 +378,30 @@ g_n(X) & = \int_{\Omega} f(X_n|\theta) \pi(\theta|X_1,\dots, X_{n-1})\;d\theta\\
 & = P(X_n|X_1,\dots,X_{n-1}) \text{ (Predicción para }X_n)
 \end{align*}
 
-Continuando con el ejemplo de los artefactos, $P(X_6>3000|X_1,X_2,X_3,X_4,X_5)$. Se necesita calcular $f(X_6|X)$. Dado que 
-$$ \pi(\theta|X) = 2.6\times 10^{36}\theta^8 e^{-36178\theta}$$
+Continuando con el ejemplo de los artefactos, $P(X_6>3000|X_1,X_2,X_3,X_4,X_5)$.
+Se necesita calcular $f(X_6|X)$. Dado que $$ \pi(\theta|X) = 2.6\times
+10^{36}\theta^8 e^{-36178\theta}$$
 
 se tiene 
 
-$$ f(X_6|X) = 2.6\times 10^{36} \int_{0}^1 \underbrace{\theta e^{-\theta X_6}}_{\text{Densidad de } X_6}\theta^8 e^{-36178\theta}\;d\theta = \dfrac{9.55 \times 10^{41}}{(X_6+36178)^{10}}$$
-Entonces,
-$$ P(X_6>3000) = \int_{3000}^{\infty} \dfrac{9.55\times10^{41}}{(X_6+36178)^{10}}\; dX_6 = 0.4882$$
+$$ f(X_6|X) = 2.6\times 10^{36} \int_{0}^1 \underbrace{\theta e^{-\theta
+X_6}}_{\text{Densidad de } X_6}\theta^8 e^{-36178\theta}\;d\theta = \dfrac{9.55
+\times 10^{41}}{(X_6+36178)^{10}}$$ 
+
+Entonces, 
+
+$$ P(X_6>3000) =
+\int_{3000}^{\infty} \dfrac{9.55\times10^{41}}{(X_6+36178)^{10}}\; dX_6 =
+0.4882$$
 
 La vida media se calcula como $\dfrac{1}{2} = P(X_6>u|X)$.
 
 ## Familias conjugadas
 
-**Definición**. Sea $X_1,\dots, X_n$ i.i.d. condicional dado $\theta$ con densidad $f(X|\theta)$. Sea $\psi$ la familia de posibles densidades previas sobre $\Omega$. Si, sin importar los datos, la posterior pertenece a $\psi$, entonces decimos que $\psi$ es una familia conjugada de previas.
+**Definición**. Sea $X_1,\dots, X_n$ i.i.d. condicional dado $\theta$ con
+densidad $f(X|\theta)$. Sea $\psi$ la familia de posibles densidades previas
+sobre $\Omega$. Si, sin importar los datos, la posterior pertenece a $\psi$,
+entonces decimos que $\psi$ es una familia conjugada de previas.
 
 **Ejemplos**:
 
@@ -609,6 +622,451 @@ Es estimador se calcula de la siguiente manera:
 Por otro lado, vea que $\mathbb{E}(\theta|X) = \dfrac{4}{8.6}$. El estimador *plug-in* correspondería a
 $$\dfrac{1}{\mathbb{E}(\theta|X)} = \dfrac{8.6}{4} = 2.15.$$
 
+## Laboratorio
+
+Lo primero es cargar los paquetes necesarios que usaremos en todo el curso
+
+
+```r
+library(tidyverse)
+```
+
+### Distribución previa 
+
+
+
+
+En nuestro ejemplo se tenía que \(\mathbb E [\theta] = 0.0002\) y \(\mathrm{Var}(\theta) = 0.001\). Suponiendo que \(\theta\) es gamma se puede resolver el sistema de ecuaciones obtenemos que \(\beta=20000\) y \(\alpha=4\). 
+
+
+
+
+```r
+alpha_previa <- 4
+beta_previa <- 20000
+
+ggplot(data = data.frame(x = c(0, 1e+06)), aes(x)) + 
+    stat_function(fun = dgamma, args = list(shape = alpha_previa, 
+        scale = beta_previa)) + ylab("") + scale_y_continuous(breaks = NULL) + 
+    theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-6-1} \end{center}
+
+### Distribución conjunta 
+
+Asumiendo que tenemos algunos datos \(X_1, ..., X_n\), asumimos que estos son exponencial recordando que \(\mathbb E [X] = 1/\theta\), entonces una aproximación de esta densidad es 
+
+
+```r
+x <- c(2911, 3403, 3237, 3509, 3118)
+
+theta <- 1/mean(x)
+
+ggplot(data = data.frame(x = c(0, 1e+05)), aes(x)) + 
+    stat_function(fun = dexp, args = list(rate = theta)) + 
+    ylab("") + scale_y_continuous(breaks = NULL) + 
+    theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-7-1} \end{center}
+
+
+
+### Distribución posterior 
+
+Según los contenidos del curso, se puede estimar los parámetros de la densidad posterior de la forma 
+
+
+```r
+(y <- sum(x))
+```
+
+```
+## [1] 16178
+```
+
+```r
+(n <- length(x))
+```
+
+```
+## [1] 5
+```
+
+```r
+(alpha_posterior <- n + alpha_previa)
+```
+
+```
+## [1] 9
+```
+
+```r
+(beta_posterior <- beta_previa + y)
+```
+
+```
+## [1] 36178
+```
+
+
+```r
+ggplot(data = data.frame(x = c(0, 750000)), aes(x)) + 
+    stat_function(fun = dgamma, args = list(shape = alpha_previa, 
+        scale = beta_previa), aes(color = "Previa")) + 
+    stat_function(fun = dgamma, args = list(shape = alpha_posterior, 
+        scale = beta_posterior), aes(color = "Posterior")) + 
+    stat_function(fun = dexp, args = list(rate = theta), 
+        aes(color = "Verosimilitud")) + ylim(0, 1.5e-05) + 
+    theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-9-1} \end{center}
+
+### Agregando nuevos datos 
+
+Si tenemos un 6to dato, y queremos ver cual es su distribución posterior. Lo primero es estimar la densidad posterior de este 6to dato, pero asumiendo que la previa es la densidad que obtuvimos en el caso anterior. 
+
+Suponga que \(X_6 = 3000\)
+
+
+```r
+(alpha_previa <- alpha_posterior)
+```
+
+```
+## [1] 9
+```
+
+```r
+(beta_previa <- beta_posterior)
+```
+
+```
+## [1] 36178
+```
+
+```r
+(alpha_posterior <- alpha_previa + 1)
+```
+
+```
+## [1] 10
+```
+
+```r
+(beta_posterior <- beta_previa + 3000)
+```
+
+```
+## [1] 39178
+```
+
+```r
+ggplot(data = data.frame(x = c(0, 1e+06)), aes(x)) + 
+    stat_function(fun = dgamma, args = list(shape = 4, 
+        scale = 20000), aes(color = "Previa #1")) + 
+    stat_function(fun = dgamma, args = list(shape = alpha_previa, 
+        scale = beta_previa), aes(color = "Previa #2")) + 
+    stat_function(fun = dgamma, args = list(shape = alpha_posterior, 
+        scale = beta_posterior), aes(color = "Posterior")) + 
+    ylim(0, 1.5e-05) + theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-10-1} \end{center}
+
+
+
+### Familias conjugadas normales
+
+
+Si tenemos pocos datos, la información previa es la que "prevalece". 
+
+
+```r
+x <- rnorm(n = 3, mean = 10, sd = 1)
+
+(mu <- mean(x))
+```
+
+```
+## [1] 10.22127
+```
+
+```r
+(sigma <- sd(x))
+```
+
+```
+## [1] 1.185713
+```
+
+```r
+(n <- length(x))
+```
+
+```
+## [1] 3
+```
+
+```r
+(mu_previa <- 0)
+```
+
+```
+## [1] 0
+```
+
+```r
+(sigma_previa <- 1)
+```
+
+```
+## [1] 1
+```
+
+```r
+(mu_posterior <- ((sigma^2)/(sigma^2 + n * sigma_previa^2)) * 
+    mu_previa + ((n * sigma_previa^2)/(sigma^2 + n * 
+    sigma_previa^2)) * mu)
+```
+
+```
+## [1] 6.959693
+```
+
+```r
+(sigma2_posterior <- (sigma^2 * sigma_previa^2)/(sigma^2 + 
+    n * sigma_previa^2))
+```
+
+```
+## [1] 0.3190971
+```
+
+```r
+ggplot(data = data.frame(x = c(-5, 15)), aes(x)) + 
+    stat_function(fun = dnorm, args = list(mean = mu_previa, 
+        sd = sigma_previa), aes(color = "Previa")) + 
+    stat_function(fun = dnorm, args = list(mean = mu_posterior, 
+        sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) + 
+    stat_function(fun = dnorm, args = list(mean = mu, 
+        sd = sigma), aes(color = "Verosimilitud")) + 
+    theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-11-1} \end{center}
+
+Con más datos, la distribución se ajusta a esto y le quita importancia a la información previa. 
+
+
+```r
+x <- rnorm(n = 100, mean = 10, sd = 1)
+
+(mu <- mean(x))
+```
+
+```
+## [1] 9.890422
+```
+
+```r
+(sigma <- sd(x))
+```
+
+```
+## [1] 1.134588
+```
+
+```r
+(n <- length(x))
+```
+
+```
+## [1] 100
+```
+
+```r
+(mu_previa <- 0)
+```
+
+```
+## [1] 0
+```
+
+```r
+(sigma_previa <- 1)
+```
+
+```
+## [1] 1
+```
+
+```r
+(mu_posterior <- ((sigma^2)/(sigma^2 + n * sigma_previa^2)) * 
+    mu_previa + ((n * sigma_previa^2)/(sigma^2 + n * 
+    sigma_previa^2)) * mu)
+```
+
+```
+## [1] 9.764722
+```
+
+```r
+(sigma2_posterior <- (sigma^2 * sigma_previa^2)/(sigma^2 + 
+    n * sigma_previa^2))
+```
+
+```
+## [1] 0.01270929
+```
+
+```r
+ggplot(data = data.frame(x = c(-5, 15)), aes(x)) + 
+    stat_function(fun = dnorm, args = list(mean = mu_previa, 
+        sd = sigma_previa), aes(color = "Previa")) + 
+    stat_function(fun = dnorm, args = list(mean = mu_posterior, 
+        sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) + 
+    stat_function(fun = dnorm, args = list(mean = mu, 
+        sd = sigma), aes(color = "Verosimilitud")) + 
+    theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-12-1} \end{center}
+
+
+Si los datos por si solo son muy variable, la posterior tiende a parecerse a la
+distribución previa en lugar que a la verosimilitud.
+
+
+```r
+x <- rnorm(n = 10, mean = 10, sd = 5)
+
+(mu <- mean(x))
+```
+
+```
+## [1] 10.90214
+```
+
+```r
+(sigma <- sd(x))
+```
+
+```
+## [1] 5.107251
+```
+
+```r
+(n <- length(x))
+```
+
+```
+## [1] 10
+```
+
+```r
+(mu_previa <- 0)
+```
+
+```
+## [1] 0
+```
+
+```r
+(sigma_previa <- 1)
+```
+
+```
+## [1] 1
+```
+
+```r
+(mu_posterior <- ((sigma^2)/(sigma^2 + n * sigma_previa^2)) * 
+    mu_previa + ((n * sigma_previa^2)/(sigma^2 + n * 
+    sigma_previa^2)) * mu)
+```
+
+```
+## [1] 3.021321
+```
+
+```r
+(sigma2_posterior <- (sigma^2 * sigma_previa^2)/(sigma^2 + 
+    n * sigma_previa^2))
+```
+
+```
+## [1] 0.722869
+```
+
+```r
+ggplot(data = data.frame(x = c(-5, 15)), aes(x)) + 
+    stat_function(fun = dnorm, args = list(mean = mu_previa, 
+        sd = sigma_previa), aes(color = "Previa")) + 
+    stat_function(fun = dnorm, args = list(mean = mu_posterior, 
+        sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) + 
+    stat_function(fun = dnorm, args = list(mean = mu, 
+        sd = sigma), aes(color = "Verosimilitud")) + 
+    theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-13-1} \end{center}
+
+### Funciones de pérdida
+
+Lo más importante acá es que dependiendo de la función de pérdida podemos construir una estimador para \(\theta\). En el caso de los componentes electrónicos recordemos que la posterior nos daba
+
+
+```r
+alpha <- 9
+beta <- 36178
+```
+
+- **Pérdida cuadrática:** Recoremos que la media de una gamma es \(\alpha/\beta\) entonces 
+
+
+```r
+(theta <- alpha/beta)
+```
+
+```
+## [1] 0.00024877
+```
+
+Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=4019.7777778.
+
+- **Pérdidad absoluta:** La distribución Gamma no tiene una forma cerrada para la mediana, por que se puede aproximar así, 
+
+
+```r
+m <- rgamma(n = 1000, scale = beta, shape = alpha)
+(theta <- median(m))
+```
+
+```
+## [1] 317434.4
+```
+
+
+Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.1502569\times 10^{-6}}.
+
+**OJO: En este caso la pérdida cuadrática ajusta mejor ya que la distribución que la pérdida absoluta ya que la distribución NO es simétrica. En el caso simétrico los resultados serían muy similares.** 
 
 <!--chapter:end:02-distribuciones-previas-posteriores.Rmd-->
 
