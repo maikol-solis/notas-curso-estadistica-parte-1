@@ -1,0 +1,225 @@
+
+# Estimación Bayesiana bajo normalidad
+
+## Precisión de una distribución normal
+
+**Definición**. La precisión $\tau$ de una normal se define como $\tau = \dfrac 1{\sigma^2}$.
+
+Sean $X_1,\dots,X_n\sim N(\mu,\sigma^2) = N(\mu,\tau)$. Su densidad corresponde a 
+
+
+\[f(x|\mu,\sigma^2) = \left(\dfrac 1{2\pi\sigma^2}\right)\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] = \left(\dfrac \tau{2\pi}\right)\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).\]
+
+La verosimilitud es
+
+\[f_n(x|\mu,\tau) = \left(\dfrac\tau{2\pi}\right)^{\frac n2}\exp\bigg[-\dfrac\tau2\sum_{i=1}^2(x_i-\mu)^2
+\bigg].\]
+
+La previa de la densidad conjunta es $[\mu,\tau|x]\propto [\mu|\tau]\cdot[\tau]$ y la posterior $[\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]$.
+
+Las previas por seleccionar son $[\mu|\tau]\sim \text{Normal}$ y $[\tau]\sim\text{Gamma}$.
+
+**Teorema**. Si $X_1,\dots,X_n \overset{i.i.d}{\sim} N(\mu,\tau)$, $\mu \in \mathbb R$, $\tau>0$ (precisión) y $\mu\sim N(\mu_0,\lambda_0\tau)$, $\mu\in\mathbb R$, $\lambda_0>0$, $\tau\sim\Gamma(\alpha_0,\beta_0)$, $\alpha_0,\beta_0>0$.
+
+Entonces 
+\[[\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]\]
+donde $[\mu|\tau,x] \sim N(\mu_1,\lambda_1\tau)$ con
+
+\[\lambda_1 = \lambda_0+n, \quad \mu_1 = \dfrac{\lambda_0\mu_0 + n\bar x_n}{\lambda_0+n},\]
+y $[\tau] \sim \Gamma(\alpha_1,\beta_1)$,
+\[\alpha_1 = \alpha_0+\dfrac n2, \quad \beta_1 = \beta_0  \dfrac 12s_n^2 + \dfrac{n\lambda_0(\bar X_n-\mu_0)^2}{2(\lambda_0+n)}.\]
+
+*Prueba*. 
+
+* Previa:
+
+\begin{align*}
+[\mu,\tau] & \propto [\mu|\tau]\cdot[\tau]\\
+& = \tau^{\frac 12}\exp\bigg[-\dfrac{\lambda_0\tau}2(\mu-\mu_0)\cdot \tau^{\alpha_0-1}e^{-\beta_0\tau}\bigg]\\
+& = \tau^{\alpha_0-\frac 12}\exp\bigg[-\dfrac{\lambda_0\tau}{2}(\mu-\mu_0)^2 - \beta_0\tau\bigg]
+\end{align*}
+
+* Por Bayes:
+
+\begin{align*}
+[\mu,\tau|x] & \propto [\mu,\tau]\cdot[x|\mu,\tau]\\
+& \propto  [\mu,\tau]\cdot\tau^{\frac 12} \exp\bigg[-\dfrac\tau 2\sum(x_i-\mu)^2\bigg]\\
+& \propto \tau^{\alpha_0+\frac{n+1}2-1}\exp\bigg[-\dfrac\tau 2(\lambda_0[\mu-\mu_0]^2 + \sum(x_i-\mu)^2-\beta_0\tau\bigg]
+\end{align*}
+
+Además
+\[\sum_{i=1}^n (x_i-\mu)^2 = \sum_{i=1}^n (x_i-\bar x_n + \bar x_n -\mu)^2 = s_n^2 + n(\bar x_n-\mu)^2.\]
+
+Completando cuadrados (queda como ejercicio) se obtiene
+
+\[n(\bar x_n -\mu)^2 + \lambda_0(\mu-\mu_0)^2 = (\lambda_0+n)(\mu-\mu_1)^2 + \dfrac{n\lambda_0(\bar x_n-\mu_0)}{\lambda_0+n}.\]
+
+Entonces
+
+\[\sum(x_i-\mu)^2 +\lambda_0(\mu-\mu_0)^2 = (\underbrace{\lambda_0+n}_{\lambda_1})(\mu-\mu_1) + \underbrace{s_n^2+\dfrac{n\lambda_0(\bar x_n-\mu_0)}{\lambda_0+n}}_{\beta_1}\]
+
+Entonces
+
+\[[\mu,\tau|x] \propto \underbrace{\tau^{\overbrace{\alpha_0+\frac n2 -1}^{\alpha_1}}\exp[-\beta_1\tau]}_{[\tau|x]} \cdot \underbrace{\tau^{\frac 12} \exp\bigg[-\dfrac{\lambda_1\tau}{2}(\mu-\mu_1)^2\bigg]}_{[\mu|\tau,x]}\]
+
+Por lo que $[\tau|x]\sim \Gamma(\alpha_1,\beta_1)$ y $[\mu|\tau,x] \sim N(\mu_1,\lambda_1\tau)$.
+
+**Definición** Sean $\mu,\tau$ dos variables aleatorias. Si $\mu|\tau \sim N(\mu_0,\lambda_0\tau)$, $\tau\sim\Gamma(\alpha_0,\beta_0)$; decimos que
+\[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_0,\lambda_0,\alpha_0,\beta_0).\]
+
+* *Conclusión*: la Normal-Gamma conjuga con una verosimilitud normal.
+
+* *Limitación*: $\mu$ y $\tau$ son independientes. Al combinar con la verosimilitud, cualquier tipo de independencia a nivel de previas se pierde.
+
+**Ejemplo**. Concentraciones de ácido en queso $X_1,\dots, X_n\sim N(\mu,\tau)$,
+\[\mu,\tau \sim \text{Normal-Gamma}(\mu_0 = 1, \lambda_0 = 1,\alpha_0 = 1/2, \beta_0 = 1/2)\]
+
+Los datos de este experimento son $n = 10$, $\bar x_n = 1.379$, $s_n^2 = 0.9663$. Aplicando las fórmulas del teorema anterior:
+
+* $\mu_1 = \dfrac{1\cdot 1 + 10\cdot 1.379}{1+10} = 1.345$.
+
+* $\lambda_1 = \lambda_0+n = 1 +10 = 11$.
+
+* $\alpha_1 = \alpha_0 + \dfrac n2 = \dfrac 12 +\dfrac{10}2 = 5.5$.
+
+* $\beta_1 = \dfrac 12 + \dfrac 12\cdot 0.9663 + \dfrac{10\cdot1\cdot (1.379-1)^2}{2(1+10)} = 1.0484.$
+
+La posterior es \[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_1,\lambda_1,\alpha_1,\beta_1).\]
+
+Calculamos 
+
+\begin{align*}
+\mathbb P[\sigma>0.3|x] & = \mathbb P\bigg[\sqrt{\dfrac 1\tau} >0.3\bigg|x\bigg]\\
+& = \mathbb P\bigg[\dfrac 1\tau >0.3^2\bigg|x\bigg]\\ 
+& = \mathbb P\bigg[\tau >\dfrac 1{0.3^2}\bigg|x\bigg] = 0.984
+\end{align*}
+
+dado que $[\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(5.5,1.0484)$.
+
+## Distribución marginal de $\mu$
+
+**Teorema**. Suponga que $[\mu,\tau]\sim \text{Normal-Gamma}(\mu_0,\lambda_0,\alpha_0,\beta_0)$. Entonces
+
+\[\left(\dfrac{\lambda_0\alpha_0}{\beta}\right)^{\frac 12}(\mu-\mu_0)\sim t_{2\alpha_0}.\]
+
+*Prueba*. Vea que $\mu|\tau \sim N(\mu_0,\lambda_0\tau)$. Se despeja la desviación estándar,
+\[\lambda_0\tau = \dfrac 1{\sigma^2} \implies \sigma = (\lambda_0\tau)^{-\frac 12}.\]
+
+Entonces
+\[Z = \dfrac{\mu-\mu_0}{\sqrt{\lambda_0\tau}}\Bigg|\tau \sim N(0,1).\]
+
+La densidad conjunta de $(Z,\tau)$ es
+\[f(z,\tau) = \pi_2(\tau)\cdot\pi_1(z|\tau)\]
+
+Si $g_1(\mu|\tau)$ es la densidad de $\mu|\tau$, por teorema de cambio de variable
+
+\begin{align*}
+f(z,\tau) & = \pi_2(\tau)\cdot \underbrace{g_1((\lambda_0\tau)^{-\frac 12}z+\mu_0|\tau)(\lambda_0\tau)^{-\frac 12}}_{\phi(z)}
+= \pi_2\phi(z)
+ \end{align*}
+ 
+ Entonces $Z$ y $\tau$ son independientes y $Z\sim N(0,1)$.
+ 
+ Sea $Y = 2\beta_0\tau$ y $\tau\sim \Gamma(\alpha_0,\beta_0)$, entonces
+ 
+ \[Y\sim \Gamma\left(\dfrac{2\alpha_0}{2},\dfrac12 \implies Y\sim \chi^2_{2\alpha_0}\right)\]
+ y $Y$ es independiente de $Z$.
+ 
+ Por lo tanto,
+ \[U = \dfrac Z{\left( \dfrac Y{2\alpha_0}\right)^{\frac 12}}\sim t_{2\alpha_0}.\]
+ Observe que
+ \[U = \dfrac{(\lambda_0\tau)^{\frac 12}(\mu-\mu_0)}{\left( \dfrac {2\beta_0\tau}{2\alpha_0}\right)^{\frac 12}} =\left(\dfrac{\lambda_0\alpha_0}{\beta_0}\right)^{\frac 12}(\mu-\mu_0). \]
+ 
+ **Consecuencia**:
+ 
+ \[\mu =\left(\dfrac{\beta_0}{\lambda_0\alpha_0}\right)^{\frac 12} U+\mu_0,\quad U\sim t_{2\alpha_0}.\]
+ 
+ **Propiedades**:
+ 
+ * $\mathbb E(\mu) = \mu_0 + 0 = \mu_0$.
+ 
+ * $\text{Var}(\mu) = \dfrac{\beta_0}{\alpha_0\lambda_0}\cdot \dfrac{\alpha_0}{\alpha_0-1} = \dfrac{\beta_0}{\lambda_0(\alpha_0-1)}$.
+ 
+ **Ejemplo**. $X_1,\dots,X_{18}$ días de hospitalización en 18 centros de salud.
+ 
+ \[[\mu,\tau]\sim \text{Normal-Gamma}(\mu_0=200,\lambda_0=2,\alpha_0=2,\beta_0=6300).\]
+ 
+ Encuentre un intervalo que contenga $\mu_1$ centrado en $\mu_0$ tal que la probabilidad que eso pase sea $0.95$.
+ 
+ \[\left(\dfrac{\alpha_0\lambda_0}{\beta_0}\right)^{\frac 12}(\mu-\mu_0) = 0.025(\mu - 200)\sim t_{2\cdot2} = t_4.\]
+ Entonces
+ \[0.95 = \mathbb P[l<0.025(\mu-200)<u] = 2F_{t_4}(u)-1 \implies u = t_{4,0.975} = 2.776.\]
+ 
+ Así,
+ \[\mathbb P[-2.776<0.025(\mu-200)<2.776]=0.95\]
+ y el intervalo es $[89,311]$.
+ 
+ Con datos: $\bar X_n = 182.17$ y $s_n^2 = 88678.5$. Los hiperparámetros posteriores son $\mu_1 = 183.95$, $\lambda_1 = 20$, $\alpha_1 = 11$, $\beta_1 = 50925.37$.
+ 
+ Resolvemos el mismo problema:
+  
+ \[\left(\dfrac{\alpha_1\lambda_1}{\beta_1}\right)^{\frac 12}(\mu-\mu_0) = 0.0657(\mu - 183.95)\sim t_{2\alpha_1=22}.\]
+ 
+ Se busca $u$:
+ \[F_{t_{22}}(u|x) = \dfrac{0.95+1}{2} \implies u = t_{22,0.975}=2.074\]
+ y
+ \[0.95 = \mathbb P[-2.074<0.0657(\mu-183.95)<2.074|x].\]
+ El **intervalo de credibilidad o predicción** es $[152.38,215.52]$. 
+ 
+ Si  $X_1,\dots,X_{18}\sim N(\mu,\sigma^2)$, $\mu,\sigma^2$ fijos y desconocidos.
+ \[\bar X_n+t_{17,0.975}\dfrac{\sigma'}{\sqrt {18}} \text{ al }95\%.\]
+ El intervalo de confianza es $[146.25,218.09]$.
+ 
+
+## Efecto de previas no informativas
+
+ Considere una **previa no informativa**: $[\mu,\tau] \propto [\mu]\cdot[\tau]$ (supuesto de independencia), con $[\mu] \propto 1$, $\tau = \dfrac1{\sigma^2}$ y $[\sigma] \propto \dfrac{1}{\sigma}$.
+ 
+Dado que $\sigma = (\tau)^{-\frac{1}2}$, usando el teorema de cambio de variables,
+\[\dfrac{d\theta}{d\tau} = -\dfrac12\tau^{-\frac32} \implies \bigg|\dfrac12\tau^{-\frac32}\bigg|f_\sigma\left(\dfrac 1{\tau^{\frac12}}\right) = \dfrac 12 \tau^{-1}.\]
+ 
+ Entonces $[\mu,\tau]\propto\tau^{-1}$.
+ 
+ **Ejercicio**. Verifique que $[\mu,\tau]\sim \text{Normal-Gamma}(\mu_0=0,\lambda_0=0,\alpha_0=-1/2,\beta_0=0)$.
+ 
+ Usando Bayes, $X_1,\dots,X_n \sim N(\mu, \tau)$.
+ 
+ \begin{align*}
+ \pi(\mu,\tau|x) \propto [\mu,\tau]\cdot[x|\mu, \tau] \\ & = \tau^{-1} (2\pi\sigma^2)^{-n/2}\exp\bigg[-\dfrac 1{2\sigma^2}\sum (X_i-\mu)^2\bigg]\\
+ & \propto \tau^{-1} \tau^{n/2} \exp\bigg[-\dfrac \tau 2 s_n^2 - \dfrac{n\tau}{2}(\mu-\bar X_n)^2\bigg]\\
+ & = \tau^{1/2} \exp\bigg[-\dfrac{n\tau}2 (\mu-\bar X_n)^2\bigg]\cdot \tau^{\frac{n-1}{2}-1}\exp\bigg[-\dfrac{s_n^2}{2}\tau \bigg]
+ \end{align*}
+ 
+ Entonces 
+ 
+ \[\mu|\tau \sim N(\bar X_n,n\tau)\]
+ \[\tau|x\sim \Gamma\left(\dfrac{n-1}2, \dfrac{s_n^2}{2}\right)\].
+ 
+ Por lo tanto, 
+ 
+ \[\mu,\tau|x \sim \text{Normal-Gamma}(\mu_1 = \bar X_n,\lambda_1=n,\alpha_1=(n-1)/2,\beta_0=s_n^2/2).\]
+ 
+ **Ejemplo**. Tomando $\bar X_n = 5.134$, $s_n^2 = 63.96$ con una previa no informativa para $\mu,\tau$. Entonces la posterior es Normal-Gamma con hiperparámetros: $\mu_1 = 5.134$, $\lambda_1 = 26$, $\alpha = \dfrac{25}2$, $\beta_1 = 31.98$. Queremos hacer inferencia sobre $\mu$:
+ 
+ \begin{align*}
+ 0.95 & = \mathbb P[-t_{25,0.975}<U<t_{25,0.975}]\\
+ & = \mathbb P\bigg[-t_{25,0.975}<\left(\dfrac{26\cdot 12.5}{31.98}\right)^{\frac 12}(\mu-5.134) <t_{25,0.975}\bigg]
+ \end{align*}
+ 
+ El intervalo es $[4.488,5.78]$.
+ 
+Calculemos $\mathbb P[\mu>4|x]$. Sea $w =\left(\dfrac{\alpha_1\lambda_1}{\beta_1}\right)^{\frac 12} = 3.188$.
+
+\[\mathbb P[\mu>4|x] = P[w(\mu-\bar X_n)>w(4-\bar X_n)]=1-T_{t_{25}}(-3.615) = 0.9993.\] 
+ 
+Generalizando:
+
+\[w = \left(\dfrac{n(n-1)/2}{s_n^2/2}\right)^{\frac 12} = \left(\dfrac{n(n-1)}{s_n^2}\right)^{\frac 12} = \left(\dfrac{n}{(\sigma')^2}\right)^{\frac 12}.\]
+
+Entonces
+
+\begin{align*}
+\gamma & = \mathbb P\bigg[-t_{n-1,\frac{1+\gamma}{2}} < \left(\dfrac{n}{(\sigma')^2}\right)^{\frac 12}(\mu-\bar X_n)<t_{n-1,\frac{1+\gamma}{2}}\bigg] \\
+& =  \mathbb P\bigg[\bar X_n-t_{n-1,\frac{1+\gamma}{2}}  \dfrac{\sigma'}{\sqrt n} < \mu < \bar X_n+t_{n-1,\frac{1+\gamma}{2}}  \dfrac{\sigma'}{\sqrt n}  \bigg].
+\end{align*}
+ 

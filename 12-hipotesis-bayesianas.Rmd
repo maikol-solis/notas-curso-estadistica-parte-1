@@ -1,0 +1,219 @@
+
+# Pruebas de hipótesis bayesianas
+
+## Pruebas de hipótesis bayesianas
+
+Suponga que $\Omega = \{\theta_0,\theta_1\}$. Si $\theta = \theta_i$ $(i = 0,1)$, $X_1,\dots, X_n\sim f_i(x)$. Considere las hipótesis
+\[H_0: \theta = \theta_0 \text{ vs } H_1: \theta =\theta_1.\]
+Hay dos decisiones, $d_0:$ no rechazo $H_0$ y $d_1:$ rechazo $H_0$.
+
+Asuma que si selecciono $d_1$ cuando $H_0$ es cierto, la pérdida es $w_0$. Por el contrario, si selecciono $d_1$ cuando $H_0$ es cierto, la pérdida es $w_1$.
+
+|          | $d_0$ | $d_1$ |
+|----------|-------|-------|
+|$\theta_0$| 0     | $w_0$ |
+|$\theta_1$| $w_1$ | 0     |
+
+Sean $\pi_0 = \mathbb P[H_0 \text{ es cierta}] = \mathbb P[H_0]$ y $\pi_1 = \mathbb P[H_1 \text{ es cierta}] = 1 -\mathbb P[H_0]$.
+
+Considere $\delta$ el procedimiento de prueba. El valor esperado de la pérdida corresponde a
+
+\[ r(\delta)  = \mathbb E[\text{Pérdida}|H_0] \mathbb P[H_0] + \mathbb E[\text{Pérdida}|H_1]\mathbb P[H_1].\]
+
+Dado $H_0$,
+
+\begin{align*}
+\mathbb E[\text{Pérdida}|H_0] & = w_0\cdot \mathbb P[\text{Seleccione } d_1|\theta_0] + 0\cdot \mathbb P[\text{Seleccione } d_0|\theta_0]\\
+& = w_0 \cdot \text{Error I} = w_0\alpha(\delta).
+\end{align*}
+Por el otro lado, 
+
+\begin{align*}
+\mathbb E[\text{Pérdida}|H_1] & = 0\cdot \mathbb P[\text{Seleccione} d_1|\theta_0] + w_1\cdot \mathbb P[\text{Seleccione} d_0|\theta_0]\\
+& = w_1 \cdot \text{Error II} = w_1\beta(\delta).
+\end{align*}
+
+Entonces $r(\delta) = w_0\alpha(\delta) + w_1\beta(\delta)$.
+
+El procedimiento $\delta$ que minimiza $r(\delta)$ se llama procedimiento de prueba bayesiana. Por el teorema de Neyman-Pearson y tomando $a=\pi_0w_0$ y $b=\pi_1w_1$, el $\delta$ que soluciona el problema es:
+
+\[\delta: \text{Rechazo }H_0 \text{ si } \pi_0w_0f_0(x) < \pi_1w_1f_1(x). \]
+
+o si $\pi_0w_0f_0(x) = \pi_1w_1f_1(x)$, $\dfrac{f_1(x)}{f_0(x)} > \dfrac ab = k$.
+
+**Nota**. La decisión $\delta$ es invariante a multiplicacione por escalar en el costo.
+
+**Ejemplo**. 
+
+a. Calculemos 
+
+\[\pi(\theta_0|x) = \dfrac{\pi_0f_0(x)}{\pi_0f_0(x)+\pi_1f_1(x)}\]
+\[\pi(\theta_1|x) = \dfrac{\pi_1f_1(x)}{\pi_0f_0(x)+\pi_1f_1(x)}\]
+
+b. Esperanza de la pérdida
+
+\[\mathbb E[\text{Pérdida}|x] = \mathbb E[\text{Pérdida}|\theta_0,x] + \mathbb E[\text{Pérdida}|\theta_1,x].\]
+
+Si $\delta = d_0$, 
+
+\[\mathbb E_\delta[\text{Pérdida}|X] = w_1\pi(\theta_1|x) =  \dfrac{w_1\pi_1f_1(x)}{\pi_0f_0(x)+\pi_1f_1(x)}. \]
+
+Si $\delta = d_1$, 
+
+\[\mathbb E_\delta[\text{Pérdida}|X] = \dfrac{w_0\pi_0f_0(x)}{\pi_0f_0(x)+\pi_1f_1(x)}. \]
+
+Minimizar $\mathbb E[\text{Pérdida}|x]$ con respecto a $\delta$ es equivalente a rechazar $H_0$ bajo el criterio anterior.
+
+**Conclusión**: es equivalente construir la decisión en cualquiera de los dos criterios (previa o probabilidad posterior).
+
+c. Rechazo $H_0$ si $\mathbb P[H_0 \text{ es cierto}|X] \leq \dfrac{w_1}{w_0+w_1}.$
+
+Rechazamos $H_0$ si 
+\[\dfrac{w_0\pi_0f_0(x)}{\pi_0f_0(x)+\pi_1f_1(x)}\leq \dfrac{w_1\pi_1f_1(x)}{\pi_0f_0(x)+\pi_1f_1(x)}.\]
+
+Entonces
+
+\[w_0\mathbb P[H_0|x] \leq w_1\mathbb P[H_1|x] = w_1[1-\mathbb P[H_0|x]] \implies\mathbb P[H_0|x]\leq \dfrac{w_1}{w_0+w_1}. \]
+
+*Caso general*: $H_0: \theta \in \Omega_0$ vs $H_1: \theta \in \Omega_1$. 
+
+## Hipótesis de una cola
+
+Asuma la misma función de pérdida $L(\theta,d_i)$:
+
+|     | $d_0$ | $d_1$ |
+|-----|-------|-------|
+|$H_0$| 0     | $w_0$ |
+|$H_1$| $w_1$ | 0     |
+
+y considere la hipótesis $H_0: \theta \leq \theta_0$ vs $H_1: \theta > \theta_0$. 
+
+**Teorema**. Suponga que $f_n(x|\theta)$ tiene un cociente de verosimilitud monótono con respecto al estadístico $T=r(x)$. Es decir,
+$R(x) = \dfrac{f_n(x|\theta_1)}{f_n(x|\theta_0)} = g(r(x))$ 
+con $g(r(x))$ monótono con respecto a $r(x)$.
+
+Asuma la función de pérdida anterior. Entonces el procedimiento bayesiano de prueba rechaza $H_0$ cuando $T\geq c$.
+
+**Definición**. Si $f_n(x|\theta)$ es una verosimilitud y $T=r(x)$ un estadístico, decimos que $f_n(x|\theta)$ tiene un MLR con respecto a $T$ si para $\theta_1,\theta_2 \in \Omega$ tales que $\theta_1 <\theta_2$, $\dfrac{f_n(x|\theta_2)}{f_n(x|\theta_1)}$ depende de $x$ a través de $r(x)$ y es una función monótona de $r(x)$.
+
+**Ejemplo**. $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, $\sigma^2$ conocido.
+Si $\mu_1<\mu_2$:
+
+\begin{align*}
+\dfrac{f_n(x|\mu_2)}{f_n(x|\mu_1)} & = \dfrac{(2\pi\sigma^2)^{-n/2}\exp\bigg[-\dfrac 1{2\sigma^2}\sum (X_i-\mu_2)^2\bigg]}{(2\pi\sigma^2)^{-n/2}\exp\bigg[-\dfrac 1{2\sigma^2}\sum (X_i-\mu_1)^2\bigg]}\\
+& = \exp\bigg[\dfrac{n(\mu_2-\mu_1)}{\sigma^2}\bar X_n -\dfrac 12 (\mu_2+\mu_1))\bigg] = g(T)
+\end{align*}
+
+Entonces $g(T)$ es monótono creciente con respecto a $T=\bar X_n$ y por lo tanto tiene un MLE con respecto a $\bar X_n$.
+
+*Prueba*. Recuerde que 
+
+\[\pi(\theta|x) = \dfrac{f_n(x|\theta)\pi(\theta)}{\int f_n(x|\psi)\pi(\psi)d\psi}\]
+
+\begin{align*}
+\mathcal L(x) = \dfrac{\mathbb E[\text{Pérdida}|x,d_0]}{\mathbb E[\text{Pérdida}|x,d_1]} & = \dfrac{\dfrac 1{\text{cte}} \displaystyle\int_{\theta_0}^\infty w_1f_n(x|\theta)\pi(\theta)d\theta}{\dfrac 1{\text{cte}} \displaystyle\int_{-\infty}^{\theta_0} w_0f_n(x|\theta)\pi(\theta)d\theta} \\ & = \dfrac{w_1}{w_0}\dfrac{ \displaystyle\int_{\theta_0}^\infty f_n(x|\theta)\pi(\theta)d\theta}{ \displaystyle\int_{-\infty}^{\theta_0} f_n(x|\theta)\pi(\theta)d\theta}  \geq 1
+\end{align*}
+
+Buscamos rechazar si $l(x)\geq 1$ (prueba bayesiana) y si existe una función monótona tal que $l(x)\geq 1 \Leftrightarrow T\geq c$, entonces ambas pruebas son iguales. Basta con probar que $l(x)$ es una función monótona creciente de $T$.
+
+Sea $X_1,X_2\in \mathcal X$ tal que $r(X_1)\leq r(X_2)$. Entonces
+
+\[l(X_1)-l(X_2) =\dfrac{w_1 \displaystyle\int_{\theta_0}^\infty f_n(x_1|\theta)\pi(\theta)d\theta}{w_0 \displaystyle\int_{-\infty}^{\theta_0} f_n(x_1|\theta)\pi(\theta)d\theta} -\dfrac{w_1 \displaystyle\int_{\theta_0}^\infty f_n(x_2|\theta)\pi(\theta)d\theta}{w_0 \displaystyle\int_{-\infty}^{\theta_0} f_n(x_2|\theta)\pi(\theta)d\theta}\leq 0. \]       
+
+Si simplificamos la expresión en una sola fracción, el numerador es de la forma
+
+\[\int_{\theta_0}^\infty\int_{-\infty}^{\theta_0}\pi(\theta)\pi(\psi)[f_n(x_1|\theta)f_n(x_2|\psi)-f_n(x_2|\theta)f_n(x_1|\psi)]\;d\psi d\theta\]
+
+y el denominador es siempre positivo, por lo que basta con que el numerador sea negativo.
+
+Como $f_n(x|\theta)$ tiene un MLR, si $r(x_1)\leq r(x_2)$ y $-\infty <\psi\leq \theta_0\leq \theta<+\infty$,
+\[\dfrac{f_n(x_1|\theta)}{f_n(x_1|\psi)}\leq\dfrac{f_n(x_2|\theta)}{f_n(x_2|\psi)} \Leftrightarrow f_n(x_1|\theta)f_n(x_2|\psi)\leq f_n(x_2|\theta)f_n(x_1|\psi)  \]
+
+Entonces $l(x_1)\leq l(x_2)$ y por tanto ambas pruebas son equivalentes.
+
+**Ejemplo**. Diferencias porcentuales entre calorías observadas y calorías en publicidad para 20 productos preparados.
+
+$X_1,\dots,X_{20}\sim N(\theta,100)$, $\theta\sim N(0,60)$
+
+La media posterior es 
+\[\dfrac{100\cdot 0 + 20\cdot 60\bar X_{20}}{100+20\cdot 60} = 0.923\bar X_{20}.\]
+
+y $\sigma_1^2 = 4.62$.
+
+La hipótesis de interés es $H_0:\theta\leq 0$ vs $H_1:\theta>0$.
+
+$\delta$: Rechazo $H_0$ si $\mathbb P[H_0|\bar X_{20}]\leq \dfrac{w_1}{w_0+w_1}$, donde
+
+\[\mathbb P[\theta\leq 0|\bar X_{20}] = \mathbb P\bigg[Z\bigg|\dfrac{-0.923\bar X_{20}}{4.62}\bigg] = \Phi(-0.429\bar X_{20}).\]
+
+Bajo $\delta$: 
+
+\begin{align*}
+\Phi(-0.429\bar X_{20})\leq \dfrac{w_1}{w_0+w_1}=\beta & \implies -0.429\bar X_{20}\leq \Phi^{-1}(\beta)\\
+&\implies \bar X_{20} \geq \dfrac{-\Phi^{-1}(\beta)}{0.429}
+\end{align*}
+
+Si $w_0 = w_1 \implies \beta = 1/2$ y $\Phi(1/2) =0$. Por lo tanto $\bar X_{20}\geq 0$.
+
+**Interpretación**. Si $\bar X_{20}\geq c$ entonces aceptamos la hipótesis de que $\theta>0$ (en términos de la aplicación).
+
+## Hipótesis de 2 colas
+
+\[H_0: \theta = \theta_0 \text{ vs } H_1:\theta \ne \theta_0\]
+
+La significancia práctica indica que "ser igual a $\theta_0$ significa estar cerca".
+
+Replanteamos $H_0$, tomando $d>0$:
+\[H_0: |\theta-\theta_0|\leq d \text{ vs } H_1: |\theta-\theta_0|>d.\]
+
+En el ejemplo anterior, $(\theta_0 = 0)$
+
+\[\mathbb P[H_0|\bar X_{20}]=\mathbb P[|\theta|\leq d|\bar X_{20}] = \Phi\left(\dfrac{d-0.1154}{4.62^{1/2}}\right) - \Phi\left(\dfrac{-d-0.1154}{4.62^{1/2}}\right) = g(d)\]
+
+En el caso normal, si $X_1,\dots,X_n\sim N(\mu,\sigma^2)$ ambos parámetros desconocidos y $\tau = \dfrac 1{\sigma^2}$, recuerde que
+
+\[[\mu,\tau]\sim \text{Normal-Gamma}(\mu_0,\lambda_0,\alpha_0,\beta_0)\implies \left(\dfrac{\lambda_0\alpha_0}{\beta_0}\right)^{\frac 12}(\mu-\mu_0)\sim t_{2\alpha_0}\]
+y la marginal de $\mu$ se usa en el cálculo $\mathbb P[H_0|x]$.
+
+**Ejemplo**. Residuos de un pesticida en apio. $X_1,\dots, X_{77}\sim N(\mu,\sigma^2)$. Usamos una previa impropia de $(\mu,\sigma^2)$, 
+\[\pi(\mu,\tau)\propto \tau^{-1}\].
+
+Recuerde, además, que
+
+\[U = \left(\dfrac{n(n-1)}{s_n^2}\right)^{\frac 12}(\mu-\bar X_n)\sim t_{n-1}\]
+en el nivel posterior.
+
+Nos interesa probar $H_0: \mu\geq 55$ vs $H_1:\mu<55$.
+
+Los datos son $\bar X_{77} = 50.23$, $s_{77}^2=34106$.
+
+\begin{align*}
+\mathbb P[H_0|X] & = \mathbb P[\mu\geq 55|X] \\ & = \mathbb P\left[\dfrac{\mu-\bar X_{77}}{\left(\frac{\sigma_2'}{77}\right)^{1/2}}\right] \leq \mathbb P\left[\dfrac{55-50.23}{\left(\frac{\sigma_2'}{77}\right)^{1/2}}\right] \\ & = 1-T_{76}[1.974] = 0.026
+\end{align*}
+
+Note que $\dfrac{-\bar X_{77}-\overbrace{55}^{\mu_0} }{\left(\frac{\sigma_2'}{77}\right)^{1/2}} = -U$
+
+donde $U$ es el estadístico de prueba en el caso frecuentista y
+
+\[\mathbb P[H_0|X] = \mathbb P[\underbrace{t_{n-1}\geq -\overbrace{u}^{\text{Observado}}}_{\text{Región de rechazo}\\\text{en la prueba frecuentista}}|X]\leq \alpha_0\]
+
+*Interpretación*: aceptamos la hipótesis de que el valor medio del pesticida es menor o igual a 55 ante una función de pérdida en donde $w_0 = w_1$.
+
+**Teorema**. Sean $X_1,\dots,X_m\sim N(\mu_1,\tau)$ y $Y_1,\dots, Y_n\sim N(\mu_2,\tau)$ dos muestras y $\pi(\mu_1,\mu_2,\tau)\propto \tau^{-1}$, $\tau > 0$. Entonces
+\[(m+n-2)^{1/2}\dfrac{\mu_1-\mu_2-(\bar X_{m}-\bar Y_n)}{\left(\dfrac 1m + \dfrac 1n\right)^{1/2}(s_X^2+s_Y^2)^{1/2}}\sim t_{m+n-2}\]
+condicionado en $(X,Y)$.
+
+*Prueba*: Ejercicio.
+
+**Consecuencia**. Si queremos probar $H_0: \mu_1-\mu_2\leq 0$ vs $H_1:\mu_1-\mu_2>0$,
+\[\mathbb P[\mu_1-\mu_2\leq 0|x,y] = \mathbb P\left[t_{m+n-2}\leq \dfrac{-(\bar X_m-\bar Y_n)}{\left(\dfrac 1m + \dfrac 1n\right)^{1/2}(s_X^2+s_Y^2)^{1/2}}(m+n-2)^{1/2}\right] = T_{m+n-2})(-u).\]
+
+donde $u$ es el valor observado de la prueba de 2 muestras en el caso frecuentista. 
+
+Rechazamos $H_0$ si
+
+\[ T_{m+n-2}(-u)\leq \dfrac{w_1}{w_0+w_1}=\alpha_0 \Leftrightarrow -u\leq T_{m+n-2}^{-1}(\alpha_0) \implies u\geq -T_{m+n-2}^{-1}(\alpha_0) = T_{m+n2-2}^{-1}(1-\alpha_0)\]
+
+Es la misma prueba con $\alpha_0 = \dfrac{w_1}{w_0+w_1}$ con distinta interpretación.
+
+Otro caso particular es la prueba de varianzas en el caso normal con previas impropias.

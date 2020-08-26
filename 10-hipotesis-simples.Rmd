@@ -1,0 +1,303 @@
+
+# Pruebas con hipótesis simples
+
+## Hipótesis simples
+
+**Ejemplo**. Sea $X_i$ el tiempo de servicio del cliente #i en el sistema. El supuesto de independencia es poco válida.
+
+Si no hay independencia y si $X_1,\dots, X_n$ son observados
+
+\[f_1(x) = \begin{cases}\dfrac{2(n!)}{(2+\sum X_i)^{n+1}} & X_i>0\\0 & \text{si no}\end{cases}\]
+
+Se asume que $X_i\sim\text{Exp}(1/2)$.
+
+\[f_0(x)=\begin{cases}\dfrac 1{2^n}e^{-\frac12\sum X_i} & \text{si }X_i>0\\0 & \text{si no} \end{cases}\]
+
+Si $H_0: f=f_0$ vs $H_1:f=f_1$, ¿Cuál hipótesis es cierta?
+
+Podemos redefinir las hipótesis si $\Omega=\{\theta_0,\theta_1\}$ donde si $\theta = \theta_i$, seleccionamos $f = f_i$ y se prueba $H_0: \theta=\theta_0$ vs $H_1:\theta=\theta_1$.
+
+Asuma que $X_1,\dots,X_n\sim f_i(X)$ donde se pueden tener dos posibilidades $(i=0,1)$. Sea $\Omega =\{\theta_0,\theta_1\}$ donde $\theta_1$ es el parámetro que indica a cuál densidad se selecciona como hipótesis.
+
+\[H_0: \theta=\theta_0 \text{ vs } H_1:\theta=\theta_1\]
+
+Si $\delta$ es un procedimiento de prueba, se denota los errores tipo I y II:
+
+* $\alpha(\delta) = \mathbb P[\text{Rechazo }H_0|\theta=\theta_0 ]$.
+
+* $\beta(\delta) = \mathbb P[\text{No rechazo }H_0|\theta=\theta_1 ]$.
+
+Del ejemplo anterior, si se asume (o se comprueba) que $f_1$ da probabilidades más altas que $f_0$ entonces un criterio de rechazo puede ser $X_1>4$ si se observa solo $n=1$.
+
+En este caso, 
+
+\[\alpha(\delta) = \mathbb P[X_1>4|\theta=\theta_0] = 1-(1-e^{-0.5\cdot 4}) = 0.135\]
+
+\[\beta(\delta) =  \mathbb P[X_1<4|\theta=\theta_1] = \int_{0}^{4}\dfrac2{(2+x_1)^2}dx_1=0.667.\]
+
+**Objetivo**. Encontrar un procedimiento de prueba $\delta$ tal que $\alpha(\delta)$ y $\beta(\delta)$ se reduzcan simultáneamente o al menos si $a,b>0$, que $a\alpha(\delta) + b\beta(\delta)$ sea mínimo.
+
+**Teorema**. Sea $\delta^*$ un procedimiento de prueba tal que no se rechaza $H_0:\theta=\theta_0$ si $af_0(x) > bf_1(x)$ y se rechaza $H_0$ si $af_0(x) < bf_1(x)$. Si $af_0(x) = bf_1(x)$ se puede rechazar o no $H_0$. Entonces para cualquier otro procedimiento de prueba $\delta$
+\[a\alpha(\delta^*) + b\beta(\delta^*) \leq a\alpha(\delta) + b\beta(\delta). \]
+
+
+*Prueba*. Caso discreto solamente.
+
+Sea $S_1$ región crítica de $\delta$ (procedimiento arbitrario).
+
+\begin{align*}
+a\alpha(\delta) + b\beta(\delta) & = a\sum_{x\in S_1}f_0(x) + b\sum_{x\in S_1^c}f_1(x) \\
+& = a\sum_{x\in S_1}f_0(x) + b\bigg[1-\sum_{x\in S_1}f_1(x)\bigg]\\
+& = b + \sum_{x\in S_1}(af_0-bf_1(x)) 
+\end{align*}
+
+y lo anterior es mínimo si $af_0(x)-bf_1(x)<0$ en toda la muestra y no hay punto en donde $af_0(x)-bf_1(x)>0$.
+
+**Definición**. **Cociente de verosimilitud**:
+\[\dfrac{f_1(x)}{f_0(x)}.\]
+
+Note que el estadístico LR está relacionado con el anterior de la siguiente forma:
+
+\[\Lambda(x) = \dfrac{f_0(x)}{\max\{f_0(x),f_1(x)\}} = \dfrac{\sup_{\Omega_0}f(x|\theta)}{\sup_{\Omega}f(x|\theta)}.\]
+
+**Corolario**. Bajo las condiciones del teorema anterior, si $a,b>0$ entonces la prueba $\delta$ para la cual $a\alpha(\delta) + b\beta(\delta)$ es un mínimo rechaza $H_0$ si el cociente de verosimilitud es mayor a $\dfrac ab$.
+
+Del ejemplo de tiempo de servicio, en lugar de rechazar $H_0: \theta = \theta_0$ si $X_1>4$ tome $a>b$ en el corolario anterior y rechace $H_0$ si
+\[\dfrac{f_1(x)}{f_0(x)}>1\Leftrightarrow \dfrac 4{(2+X_1)^2}\exp\left(\dfrac{X_1}2\right)>1\quad(*)\]
+
+
+```{r,echo=FALSE}
+library(ggplot2)
+library(latex2exp)
+x <- seq(0,6,1/100)
+y <- 4*exp(x/2)/(2+x)^2
+qplot(x,y,geom = "path",colour = I("blue")) + theme_minimal()+
+  geom_vline(xintercept = 0) + geom_hline(yintercept = 0) + 
+  geom_segment(aes(x=0, xend=5.03, y=1, yend=1), linetype=2) +
+  geom_segment(aes(x=5.03, xend=5.03, y=0, yend=1), linetype=2) + 
+  geom_segment(aes(x=2, xend=2, y=0, yend=0.6795705), linetype=2) +
+  ylab(TeX("$g(X_1)$")) + xlab(TeX("x")) +
+  geom_point(aes(x=5.03,y=1),size = 2) + 
+  scale_x_continuous(breaks=1:6)+ scale_y_continuous(breaks=0:1)+ 
+  theme(panel.grid.minor = element_blank())
+```
+
+Entonces $(*)$ es cierto si $X_1>c$. Se puede comprobar numéricamente que $c\approx5.03$.
+
+Por lo tanto, rechazamos $H_0$ si $X_1>5.03$.
+
+**Criterio de Neyman-Pearson**. Encontrar un procedimiento $\delta$ tal que 
+
+1) $\alpha(\delta) \leq \alpha_0$ (\alpha_0: nivel de significancia).
+
+2) $\beta(\delta)$ es mínimo.
+
+**Lema de Neyman-Pearson**. Suponga que $\delta'$ es un procedimiento de prueba que no rechaza $H_0$ si $f_1(x)<kf_0(x)$ rechaza $H_0$. Si $f_1(x)>kf_0(x)$ y decide cualquiera de los dos si $f_1(x)=kf_0(x)$ para $k>0$. Si $\delta$ es otro procedimiento de prueba tal que $\alpha(\delta)\leq \alpha(\delta')$, entonces $\beta(\delta)\geq \beta(\delta')$. Si $\alpha(\delta) <\alpha(\delta')$, $\beta(\delta)> \beta(\delta')$.
+
+*Prueba*. Tome $a=k$ y $b=1$ en el corolario y teoremas anteriores. Como
+\[k\alpha(\delta')+\beta(\delta')\leq k\alpha(\delta')+\beta(\delta'),\]
+entonces
+\[\alpha(\delta)\leq \alpha(\delta')\implies \beta(\delta')\geq \beta(\delta').\]
+
+**Consecuencia**. Si queremos encontrar una prueba $\delta'$ que satisfaga el criterio de Neyman-Pearson, debemos encontrar $k$ tal que $\alpha(\delta') = \alpha_0$, y se rechace $H_0$ si $f_1(x)>kf_0(x) \Leftrightarrow\dfrac{f_0(x)}{f_1(x)}<k^{-1}$.
+
+**Ejemplo**. Suponga que $X_1,\dots,X_n\sim N(\theta,1)$ y se quiere probar $H_0: \theta = 0$ vs $H_1: \theta = 1$ usando una prueba según el criterio de Neyman-Pearson con $\alpha = 0.05$.
+
+Note que
+
+* $f_0(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum X_i^2\bigg]$.
+* $f_1(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum (X_i-1)^2\bigg]$.
+
+Entonces
+
+\begin{align*}
+\dfrac{f_1(x)}{f_0(x)}& = \exp\bigg[-\dfrac 12 \sum (X_i^2-2X_i+1-X_1^2)\bigg]\\
+& = \exp\bigg[n\bar X_n - \dfrac n2\bigg] = \exp\bigg[n\left(\bar X_n - \dfrac 12\right)\bigg] 
+\end{align*}
+
+Rechazamos $H_0$ si
+
+\[\dfrac{f_1(x)}{f_0(x)} = \exp\bigg[n\left(\bar X_n - \dfrac 12\right)\bigg]>k \Leftrightarrow \bar X_n > \underbrace{\dfrac 12 + \dfrac{\ln k}{n}}_{k'} .\]
+
+Entonces buscamos $k'$ tal que
+\[\mathbb P[\bar X_n>k'|\theta = 0]=0.05 \Leftrightarrow\mathbb P\bigg[\dfrac{\bar X_n}{1/\sqrt n}>\dfrac{k'}{1/\sqrt n}\bigg|\theta = 0\bigg]=0.05\]
+Despejando,
+\[k'\sqrt n= z_{0.95} \implies k'=\dfrac{z_{0.95}}{\sqrt n}.\]
+
+Entonces, entre todas las pruebas en donde $\alpha(\delta)\leq 0.05$, la que tiene el error tipo II más pequeño es la que rechaza $H_0$ si
+
+\[\bar X_n > \dfrac{z_{0.95}}{\sqrt n} = \dfrac{1.645}{\sqrt n}.\]
+
+El error tipo II de esta prueba sería 
+\begin{align*}
+\beta(\delta') = \mathbb P[\bar X_n<1.645n^{-1/2}|\theta = 1]\\
+& = \mathbb P\bigg[Z < \dfrac{1.645n^{-1/2}-1}{n^{-1/2}}\bigg] = \Phi(1.645-n^{1/2})
+\end{align*}
+
+Si $n=9$, por ejemplo, $\beta(\delta') = \Phi(1.645-3) =0.0877.$
+
+**Ejemplo**. $X_1,\dots,X_n\sim\text{Ber}(p)$ y considere las hipótesis
+\[H_0: p = 0.2 \text{ vs } H_1: p = 0.4.\]
+
+Queremos encontrar un procedimiento de prueba en donde $\alpha(\delta) = 0.05$ y $\beta(\delta)$ es mínimo. Sea $y = \sum X_i$.
+
+\[f_0(x) = 0.2^y0.8^{n-y}\]
+\[f_1(x) = 0.4^y0.6^{n-y}\]
+
+Entonces el cociente de verosimilitud es
+
+\[\dfrac{f_1(x)}{f_0(x)}=\left(\dfrac 34\right)^n\left(\dfrac 83\right)^y\]
+
+y se rechaza $H_0$ si
+
+\begin{align*}
+\dfrac{f_1(x)}{f_0(x)}>k & \Leftrightarrow -n\ln \left(\dfrac 43 \right) + y \ln \left(\dfrac 83 \right)>\ln k\\ & \Leftrightarrow y>\dfrac{\ln k + n\ln(4/3)}{\ln (8/3)} = k'.
+\end{align*}
+
+Entonces basta con encontrar $k'$ tal que
+
+\[\mathbb P(Y>k'|p = 0.2) = 0.05,\]
+pero como $Y$ es una variable discreta (Binomial), no es posible encontrar ese $k'$. Note que
+\[\mathbb P(Y>4|p=0.2) = 0.0328\]
+\[\mathbb P(Y>3|p=0.2) = 0.1209\]
+
+Por lo tanto, se puede especificar una prueba con nivel 0.05, $\alpha(\delta) = 0.0328$ y potencia mínima si $Y>4$ como región de rechazo.
+
+## Prueba $t$
+
+Suponga que $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, con $(\mu,\sigma^2)$ desconocidos, y considere las siguientes hipótesis:
+
+\[H_0: \mu\leq\mu_0 \text{ vs } H_1:\mu>\mu_0.\]
+
+Recuerde que si $U = \dfrac{\bar X_n -\mu_0}{\sigma' /\sqrt n}$, entonces la prueba rechaza $H_0$ si $U\geq c$. Si $\mu=\mu_0$ entonces $U \sim t_{n-1}$.
+
+Si $H_0: \mu\geq\mu_0$ vs $H_1: \mu<\mu_0$, entonces se rechaza $H_0$ si $U\leq c$.
+
+**Definición**. Considere las hipótesis $H_0:\theta \in \Omega_0$ vs $H_1: \theta\in \Omega_1$. Decimos que una prueba de hipótesis $\delta$ es **insesgada** si $\forall \theta\in\Omega_0$ y $\forall \theta\in \Omega_1$:
+\[\pi(\theta|\delta) \leq \pi(\theta'|\delta).\]
+
+### Propiedades de las pruebas $t$
+
+**Teorema**. Sea $X_1,\dots,X_n\sim N(\mu,\sigma^2)$. Sea $U$ definido anteriormente, $c=t_{n-1,1-\alpha_0}$. Sea $\delta$ la prueba que rechaza $H_0$ si $U\geq c$. Entonces
+
+i) $\pi(\mu,\sigma^2|\delta) = \alpha_0$ si $\mu=\mu_0$.
+
+ii) $\pi(\mu,\sigma^2|\delta) < \alpha_0$ si $\mu>\mu_0$.
+
+iii) $\pi(\mu,\sigma^2|\delta) >\alpha_0$ si $\mu>\mu_0$.
+
+iv) $\pi(\mu,\sigma^2|\delta) \to 0$ si $\mu\to-\infty$.
+
+v) $\pi(\mu,\sigma^2|\delta) \to 1$ si $\mu\to+\infty$.
+
+Entonces, la prueba tiene tamaño $\alpha_0$ y es insesgada.
+
+*Prueba*. Ver en el libro.
+
+En el caso en donde $H_0:\mu\geq \mu_0$ las desigualdades se intercambian y la prueba también tiene tamaño $\alpha_0$ y es insesgada.
+
+**Teorema**. Bajo cualquiera de los dos casos anteriores, sea $U$ el valor observado de $U$. Entonces, el valor-*p* de la prueba $\delta$ que rechaza $H_0: \mu\leq\mu_0$ es $1-T_{n-1}(u)$ donde $T_{n-1}$ es c.d.f de $t_{n-1}$ y si se rechaza $H_0 \mu\geq \mu_0$, el valor-*p* es $T_{n-1}(u)$.
+
+*Prueba*. El caso $H_0:\mu\leq\mu_0$ es análogo al cálculo del valor-*p* que se hizo en el capítulo anterior. El caso $H_0: \mu\geq \mu_0$ se rechaza si \[U\leq T_{n-1}^{-1}(\alpha_0) \Leftrightarrow T_{n-1}(u)\leq \alpha_0.\]
+Es decir, el nivel más pequeño de significancia observada es $T_{n-1}(u)$
+
+Considere el caso $H_0: \mu\geq \mu_0$ vs $H_1: \mu>\mu_0$.
+
+* Región de rechazo: $U\geq c$ con $U= \dfrac{\bar X_n -\mu_0}{\sigma' /\sqrt n}$.
+
+* *Ejercicio*: es una prueba insesgada con nivel $\alpha_0$ si $c = t_{n-1,1-\alpha_0}$. 
+
+* Valor-*p*: si observamos $U=u$, se rechaza $H_0$ si $u\geq t_{n-1,1-\alpha_0}$,
+
+\[T_{n-1}(u) \geq T_{n-1}(t_{n-1,1-\alpha_0}) = 1-\alpha_0 \implies 1-T_{n-1(u)} = T_{n-1}(u).\]
+
+* Función de potencia: 
+
+\begin{align*}
+\mathbb P[\text{Rechazo}|\mu] & = \mathbb P\bigg[ \dfrac{\bar X_n -\mu_0}{\sigma' /\sqrt n}\geq t_{n-1,1-\alpha_0}\bigg| \mu \bigg]\\
+&= = \mathbb P\bigg[ \dfrac{\bar X_n +\mu-\mu-\mu_0}{\sigma' /\sqrt n}\geq t_{n-1,1-\alpha_0}\bigg| \mu \bigg]\\
+& = \mathbb P\bigg[ \underbrace{\dfrac{\bar X_n -\mu}{\sigma' /\sqrt n}}_{\Delta}+ \dfrac{\mu-\mu_0}{\sigma' /\sqrt n}\geq t_{n-1,1-\alpha_0}\bigg| \mu \bigg]\\
+\end{align*}
+
+Observe que
+
+\[\Delta = \dfrac{\bar X_n -\mu}{\sigma' /\sqrt n}\cdot\dfrac\sigma\sigma = \dfrac{\dfrac{\sqrt n(\bar X_n-\mu)}{\sigma} \sim N(0,1)}{\dfrac{\sigma'}\sigma = \sqrt{\dfrac{\chi^2}{n-1}}} \sim t_{n-1}.\]
+
+De igual forma, vea que
+
+\[ U = \dfrac{\dfrac{\sqrt n(\bar X_n-\mu_0)}{\sigma}}{\dfrac{\sigma'}{\sigma}} =  \dfrac{\dfrac{\sqrt n}{\sigma}(\bar X_n-\mu) +\overbrace{\dfrac{\sqrt n}{\sigma}(\mu-\mu_0)}^{\psi}  \sim N(\psi,1)}{\dfrac{\sigma'}{\sigma}}.\]
+
+**Definición**. Si $Y$, $W$ son independientes con $W\sim N(\psi,1)$ y $Y\sim \chi^2_m$, entonces $X$ se distribuye como una **$t$-Student no centrada** con parámetro $\psi$ si
+\[X = \dfrac W{\sqrt{\dfrac{Y}{m}}}.\]
+
+Si $T_m(t|\psi)$ es c.d.f de $X$, entonces
+\[\pi(\mu|\delta)= T_{n-1}(t_{n-1,1-\alpha_0}).\]
+
+En el caso que la prueba sea $H_0: \mu\leq \mu_0$ vs $H_1: \mu<\mu_0$.
+ 
+\[\pi(\mu|\delta)= \mathbb P[U\leq t_{n-1,1-\alpha_0}] = T_{n-1}(t_{n-1,\alpha_0}).\]
+
+**Conclusión**: a partir del error tipo II se puede determinar un tamaño de muestra dado, siempre y cuando existan restricciones sobre $\mu$ y $\sigma^2$.
+
+### Prueba $t$ pareada
+
+**Ejemplo**. Considere una muestra de $n$ pacientes que fuman $X$ cantidad al día. Sean $t_1$ el momento de la observación y $t_2$ el tratamiento. El consumo de cigarrillos en el individuo #*i* es
+
+\[D_i = X_i^{t_2}-X_i^{t_1},\quad i = 1,\dots,n.\]
+
+Otro ejemplo es tomar $Y_i^{t_1,t_2}$ el log-daño en los muñecos de prueba, donde $t_1$ corresponde al conductor y $t_2$ al acompañante, entonces
+
+$X_i = Y_i^{t_1}-Y_i^{t_2} = \ln\left(\dfrac{\text{da}\tilde{\text n}\text{o}^{t_1}}{\text{da}\tilde{\text n}\text{o}^{t_2}}\right) \implies \text{da}\tilde{\text n}\text{o}^{t_2}\cdot e^{X_i} = \text{da}\tilde{\text n}\text{o}^{t_1}$
+
+Evaluemos la prueba $H_0:\mu\leq 0$ vs $H_1:\mu>0$ al 1%. Si $X_1,\dots, X_n \sim N(\mu,\sigma^2)$ ambos parámetros desconocidos, y $n=164$, $\bar X_n = 0.2199$, $\sigma'=0.5342$, rechazamos $H_0$ si
+
+\[U = \dfrac{0.2199-0}{\dfrac{0.5342}{\sqrt {164}}} = 5.271 >t_{163,1-0.01} = 2.35.\]
+
+El valor-*p* de la prueba es 
+\[1-\mathbb P[t_{163}<5.271] = 1\times10^{-6}<1\%.\]
+Entonces rechazo $H_0$ con nivel de significancia de $1%$. 
+
+Suponga que la diferencia media entre conductor y pasajero es $\dfrac\sigma 4$. ¿Cuál es el error tipo II?
+
+\[\mu =\dfrac\sigma 4\implies \psi = \dfrac{\mu-\mu_0}{\sigma/\sqrt n} = \dfrac{\sigma/4-0}{\sigma/\sqrt{164}} = \dfrac{\sqrt{164}}{3} = 3.2.\]
+
+El error tipo II es $T_{163}(2.35|\psi =3.2) = 1-0.802 = 0.198$.
+
+### Pruebas $t$ de dos colas 
+
+* Región de rechazo: $|U|\geq t_{n-1,1-\frac{\alpha_0}2}$.
+
+* Función de potencia:
+
+\[\pi(\mu|\delta) = \mathbb P[U\geq t_{n-1,1-\frac{\alpha_0}2}|\mu]+\mathbb P[U\leq t_{n-1,1-\frac{\alpha_0}2}|\mu] = T_{n-1}(-c|\psi) + 1-T_{n-1}(c|\psi). \]
+
+* Valor-*p*: si observamos $U=u$, rechazamos $H_0$ si
+
+\[|u|\geq t_{n-1,1-\frac{\alpha_0}2} \Leftrightarrow T_{n-1}(|U|)\geq 1-\dfrac{\alpha_0}2 \Leftrightarrow \alpha_0\geq \underbrace{2[1-T_{n-1}(|u|)]}_{\text{valor-}p}.\]
+
+**Propiedad**. La prueba-$t$ unilateral es un LRT.
+
+Sea $f_n(x|\mu)$ la función de verosimilitud de una muestra de distribuciones normales y considere
+\[\Lambda(x) = \dfrac{\sup_{\mu\leq\mu_0}f_n(x|\mu)}{\sup_{\mu}f_n(x|\mu)}. \]
+
+El MLE en $\Omega$ es $(\bar X_n,\hat\sigma^2)$, entonces
+
+\[\sup_{\mu}f_n(x|\mu) = \dfrac1{(2\pi\hat\sigma^2)^{n/2}}e^{-n/2}.\]
+
+El MLE en $\Omega_0$, si $\bar X_n<\mu_0$ es $\bar X_n$, por lo que $\Lambda(x) =1$.
+
+Si $\bar X_n>\mu_0$, se puede probar que $f_n(x|\mu)$ se maximiza si $\mu$ está lo más cerca posible de $\bar X_n$, que, en el subconjunto $\Omega_0$ sería $\mu_0$. Entonces $\mu = \mu_0$, $\hat\sigma_0 = \dfrac 1n \sum_{i=1}^n(X_i-\mu_0)^2$ y
+\[\sup_{\mu}f_n(x|\mu) = \dfrac1{(2\pi\hat\sigma_0^2)^{n/2}}e^{-n/2}.\]
+
+Por lo tanto
+$\Lambda(x) = \begin{cases}\left(\dfrac{\hat \sigma^2}{\hat\sigma_0^2}\right)^{n/2}& \text{si }\bar X_n>\mu_0\\ 1 & \text{si no}\end{cases}$
+
+*Ejercicio*: si $u$ es el valor observado del estadístico $U$, verifique que $\Lambda(x)$ es monótono decreciente con respecto a $u$. 
+
+Por lo tanto, para $k<1$ existe $c$ tal que 
+\[\Lambda(x) \leq k \Leftrightarrow u\geq c.\]
+
+*Ejercicio*: encuentre $c$.
+
+Se concluye que LRT es una prueba $t$.
+
