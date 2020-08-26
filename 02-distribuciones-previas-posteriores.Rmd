@@ -482,12 +482,12 @@ ggplot(data = data.frame(x = c(0, 1e6)), aes(x)) +
 Asumiendo que tenemos algunos datos \(X_1, ..., X_n\), asumimos que estos son exponencial recordando que \(\mathbb E [X] = 1/\theta\), entonces una aproximación de esta densidad es 
 
 ```{r }
-x  <- c( 2911, 3403, 3237, 3509, 3118)
+x  <- c(2911, 3403, 3237, 3509, 3118)
 
 theta <- 1 / mean(x)
 
 ggplot(data = data.frame(x = c(0, 1e5)), aes(x)) +
-  stat_function(fun = dexp, args = list(rate = theta )) +
+  stat_function(fun = dexp, args = list(rate = theta)) +
   ylab("") +
   scale_y_continuous(breaks = NULL) +
   theme_minimal()
