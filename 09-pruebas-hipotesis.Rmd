@@ -164,7 +164,7 @@ Dado que $\mathbb P[|Z|\geq c^*] = 2[1-\Phi(c^*)] = \alpha_0$, despejando se obt
 *Procedimiento*: rechazamos $H_0$ si
 \[|Z| = \bigg| \dfrac{\bar X_n-\mu_0}{\sigma/\sqrt n}\bigg| \geq z_{1-\frac{\alpha_0}2}.\]
 
-**Ejemplo**. $X_1,\dots,X_n \sim \text{Ber}(p) $.
+**Ejemplo**. \(X_1,\dots,X_n \sim \text{Ber}(p)\).
 \[H_0: p\leq p_0 \text{ vs } H_1: p>p_0\]
 
 Sea $Y = \sum_{i=1}^nX_i \sim \text{Binomial}(n,p)$. Rechazo $H_0$ si $Y\leq c$.

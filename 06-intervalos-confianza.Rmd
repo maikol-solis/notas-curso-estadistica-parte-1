@@ -32,7 +32,6 @@ Para que se cumpla lo anterior, seleccione $c$ tal que
 \gamma = \mathbb P( \mu \in T) &  = F_{t_{n-1}}(c)-F_{t_{n-1}}(-c) \\
 & = F_{t_{n-1}}(c) - [1-F_{t_{n-1}}(c)]\\ 
 & = 2F_{t_{n-1}} - 1 
-
 \end{align*}
 
 Entonces 

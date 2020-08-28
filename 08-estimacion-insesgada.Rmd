@@ -274,7 +274,7 @@ Dado que $|p|\leq 1 \implies \rho^2 \leq 1$, se tiene que
 \[\text{Cov}[T,\lambda_n'(X|\theta)]^2 \leq \sqrt{\text{Var}(T)}\sqrt{\text{Var}(\lambda_n'(X|\theta))} \implies [m'(\theta)]^2 \leq \text{Var}(T) I_n(\theta). \]
 Entonces $\text{Var}(T)\geq \dfrac{[m'(\theta)]^2 }{I_n(\theta)}$.
 
-**Caso particular**. Si $T$ es un estimador insesgado de $\theta$, entonces $\text{Var}_\thta(T)\geq \dfrac{1 }{I_n(\theta)}$.
+**Caso particular**. Si $T$ es un estimador insesgado de $\theta$, entonces $\text{Var}_\theta(T)\geq \dfrac{1 }{I_n(\theta)}$.
 
 **Ejemplo**. $X_1,\dots, X_n \sim \text{Exp}(\beta)$, $n>2$. 
 

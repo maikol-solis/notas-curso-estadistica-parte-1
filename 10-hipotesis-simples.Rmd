@@ -88,7 +88,7 @@ Por lo tanto, rechazamos $H_0$ si $X_1>5.03$.
 
 **Criterio de Neyman-Pearson**. Encontrar un procedimiento $\delta$ tal que 
 
-1) $\alpha(\delta) \leq \alpha_0$ (\alpha_0: nivel de significancia).
+1) $\alpha(\delta) \leq \alpha_0$ ($\alpha_0$: nivel de significancia).
 
 2) $\beta(\delta)$ es mínimo.
 
