@@ -1,35 +1,83 @@
 
 # Estimación por máxima verosimilitud
 
-¿Será posible estimar sin una densidad previa? Se debería ajustar la noción de muestra a independencia dado el valor de un parámetro.
+¿Será posible estimar sin una densidad previa? Se debería ajustar la noción de
+muestra a independencia dado el valor de un parámetro.
 
-Recuerde que, para $X_1,\dots, X_n \stackrel{i.i.d}{\sim} f(X|\theta)$ con $\theta$ fijo, la **función de verosimilitud** se define como
-$$ f_n(X|\theta) = \pi(X_i|\theta) = G(\theta|X).$$
+Recuerde que, para $X_1,\dots, X_n \stackrel{i.i.d}{\sim} f(X|\theta)$ con $\theta$
+fijo, la **función de verosimilitud** se define como $$ f_n(X|\theta) =
+\pi(X_i|\theta) = G(\theta|X).$$
 
-Si $\theta_1,\theta_2\in \Omega$, $\theta$ es el valor real del parámetro. Si la muestra es fija, evaluamos, para $\theta_1$, $f_n(X|\theta_1) = G(\theta_1|X)$ y, de igual forma para $\theta_2$, $f_n(X|\theta_2) = G(\theta_2|X)$. Supongamos que
-$$f_n(X|\theta_1) >f_n(X|\theta_2) \implies G(\theta_1|X)>G(\theta_2|X) \text{ (principio de verosimilitud)}$$
+Si $\theta_1,\theta_2\in \Omega$, $\theta$ es el valor real del parámetro. Si la muestra es
+fija, evaluamos, para $\theta_1$, $f_n(X|\theta_1) = L(\theta_1|X)$ y, de igual forma para
+$\theta_2$, $f_n(X|\theta_2) = L(\theta_2|X)$. Supongamos que
 
-**Interpretación**. Es más verosímil (realista) que el verdadero parámetro sea $\theta_1$ que $\theta_2$ dada la muestra.
+\begin{equation*}
+f_n(X|\theta_1) >f_n(X|\theta_2) \implies L(\theta_1|X)>L(\theta_2|X) \text{
+(principio de verosimilitud)} 
+\end{equation*}
 
-**Definición**. Para cada $x\in \mathcal{X}$ (espacio muestral), sea $\delta(x) \in \delta$ estimador de $\theta$ tal que $f_n(x|\theta)$  es máximo. A $\delta(x)$ se le llama **MLE (estimador de máxima verosimilitud)**.
+**Interpretación**. Es más verosímil (realista) que el verdadero parámetro sea
+$\theta_1$ que $\theta_2$ dada la muestra.
+
+**Definición**. Para cada $x\in \mathcal{X}$ (espacio muestral), sea
+$\delta(x) \in \delta$ estimador de $\theta$ tal que $f_n(x|\theta)$ es máximo. A
+$\delta(x)$ se le llama **MLE (estimador de máxima verosimilitud)**.
 
 **Ejemplo**. Si $X_1,\dots, X_n \sim \text{Exp}(\theta)$, estime $\theta$. 
 
 Determinamos la función de verosimilitud,
-$$f_n(X|\theta) = \prod_{i=1}^n \dfrac{1}\theta e^{-X_i/\theta} = \dfrac1{\theta^n} \exp\left(\dfrac{1}\theta \sum_{i=1}^nX_i\right) = \theta^{-n}e^{-y/\theta}.$$
+
+\begin{equation*} 
+f_n(X|\theta) =
+\prod_{i=1}^n \dfrac{1}\theta e^{-X_i/\theta} = \dfrac1{\theta^n}
+\exp\left(\dfrac{1}\theta \sum_{i=1}^nX_i\right) = \theta^{-n}e^{-y/\theta}.
+\end{equation*}
 
 Considere la **log-verosimilitud**
+\begin{equation*}
+\ell(\theta|X) = \ln f_n(X|\theta) = -n\ln \theta - \dfrac{y}{\theta}
+\end{equation*}
 
-$$L(\theta|X) = \ln f_n(X|\theta) = -n\ln \theta - \dfrac{y}{\theta}$$
+Como es una transformación monótona creciente, la función de verosimilitud se
+maximiza si la log-verosimilitud es máxima. Entonces,
 
-Como es una transformación monótona creciente, la función de verosimilitud se maximiza si la log-verosimilitud es máxima. Entonces,
 
-$$\dfrac{\partial}{\partial\theta} L(\theta|X) = \dfrac{-n}{\theta}+\dfrac{y}{\theta^2} = 0\implies \dfrac{1}{\theta}\left(-n+\dfrac{y}\theta\right)=0 \implies \hat\theta = \dfrac{y}{n} = \bar X_n.$$
+\begin{align*}
+\dfrac{\partial}{\partial\theta} \ell(\theta|X) & = \dfrac{-n}{\theta}+\dfrac{y}{\theta^2} = 0 \\
+\implies \dfrac{1}{\theta}\left(-n+\dfrac{y}\theta\right) & =0  \\
+\implies \hat\theta = \dfrac{y}{n} & = \bar X_n.
+\end{align*}
+
 Para verificar que es un máximo:
 
-$$\dfrac{\partial^2 L}{\partial\theta^2} = \left. \dfrac{n}{\theta^2} -\dfrac{2y}{\theta^3}\right\vert_{\theta = \frac{y}{n}} = \dfrac{1}{\hat\theta^2} \bigg[n-\dfrac{2y}{\frac yn}\bigg] = \dfrac{-n}{\hat\theta^2} < 0.$$
+$$\dfrac{\partial^2    \ell}{\partial\theta^2} = \left. \dfrac{n}{\theta^2} -\dfrac{2y}{\theta^3}\right\vert_{\theta = \frac{y}{n}} = \dfrac{1}{\hat\theta^2} \bigg[n-\dfrac{2y}{\frac yn}\bigg] = \dfrac{-n}{\hat\theta^2} < 0.$$
 
 Entonces $\hat\theta = \bar X_n$ es el MLE de $\theta$.
+
+
+**Laboratorio:** 
+
+Suponga que se tiene 100 valores con distribución exponencial con parámetro
+\(\theta=1\). 
+
+```{r }
+x  <- rexp(n = 100, rate = 1)
+n <- length(x)
+y <- sum(x)
+theta <- seq(0.5, 1.5, length.out = 1000)
+```
+
+
+```{r }
+L <- theta^(-n) * exp(-y/theta)
+plot(theta, L)
+```
+
+```{r }
+l <- -n*log(theta) - y/theta
+plot(theta, l)
+```
 
 **Ejemplo**. En una prueba sobre alguna enfermedad, en un $90\%$ da la verdadera condición (enfermo) y en un $10\%$ la prueba se equivoca (que diga que la persona esté enferma cuando está sana). Considere una variable aleatoria $\text{Bernoulli}(\theta)$,$\theta \in \{0.9,0.1\}$
 Una muestra sería
@@ -40,23 +88,33 @@ Si $x=1$, entonces $f(1|\theta) = \begin{cases}0.1 & \text{si }\theta = 0.1\\0.9
 
 El MLE corresponde a
 $$\hat\theta = \begin{cases}0.1 & \text{si }x= 0\\0.9& \text{si }x= 1\end{cases}$$
+
+
+
 **Ejemplo**. Para el caso normal, $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, $\sigma^2$ conocida, estime $\mu$.
 
 $$f_n(x|\mu) = \prod_{i=1}^n \dfrac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\dfrac{(x_i-\mu)^2}{2\sigma^2}\right) = (2\pi\sigma^2)^{-n/2}\exp\left(-\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\mu)^2\right).$$
 
 La log-verosimilitud es de la forma
-$$ L(\mu|x) = \dfrac{-n}{2}\ln(2\pi\sigma^2)-\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\mu)^2.$$
+$$ \ell(\mu|x) = \dfrac{-n}{2}\ln(2\pi\sigma^2)-\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\mu)^2.$$
 
 Basta con minimizar $Q(\mu) = \sum_{i=1}^n(x_i-\mu)^2$.
 
 $$ \dfrac{\partial Q}{\partial\mu} = -2\sum_{i=1}^n(x_i-\mu) \implies n\mu = \sum_{i=1}^nx_i \implies \hat\mu = \bar x_n.$$
 
-No hace falta verificar la condición de segundo orden, pues $Q$ es una función cuadrática de $\mu$ y tiene un único máximo.
+No hace falta verificar la condición de segundo orden, pues $Q$ es una función
+cuadrática de $\mu$ y tiene un único máximo.
 
 $$ \hat\mu_{MLE} = \bar x_n \quad (*)$$
 
 Ahora, si $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, $\theta = (\mu,\sigma^2)$ desconocido, por $(*)$,
-$$ L(\sigma^2|X_1,\dots, X_n) = \dfrac n2 \ln(2\pi\sigma^2)--\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\bar x_n)^2$$
+
+
+$$
+\ell(\sigma^2|X_1,\dots, X_n) = \dfrac n2 \ln(2\pi\sigma^2)--\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\bar
+x_n)^2
+$$
+
 
 $$ \dfrac{\partial L}{\partial\sigma^2} = -\dfrac n2 \dfrac1{2\pi\sigma^2} + \dfrac1{2(\sigma^2)^2} \sum_{i=1}^n(x_i-\bar x_n)^2= 0 $$
 Entonces
@@ -70,48 +128,102 @@ Sea $h(x,y) = \sqrt{y}$ (es inyectiva). $h(\bar x_n, \hat\sigma^2) = \sqrt{\hat\
 
 El MLE de $\dfrac{\sigma}{\mu} = \dfrac{\hat \sigma}{\bar x_n}$.
 
-**Ejemplo**. $X_1,\dots, X_n \stackrel{i.i.d}{\sim} \text{Unif}(0)$. Estime $\theta$ $(\theta > 0)$. Suponga que $x_i>0 \forall i$.
+**Laboratorio:**
+
+```{r }
+library(scatterplot3d)
+
+x<- rnorm(100)
+n <- length(x)
+
+mu <- seq(-0.5, 0.5, length.out = 50)
+sigma <- seq(0.5, 1.5, length.out = 50)
+ 
+ms <- expand.grid(sigma, mu)
+
+l <- -(n/2)*log(2*pi/ms[,1]^2) - (1/(2*ms[,1]^2)*sum((x-ms[,2])^2)) 
+
+scatterplot3d(ms[,1], ms[,2], l, angle = 45)
+```
+
+**Ejemplo**. $X_1,\dots, X_n \stackrel{i.i.d}{\sim} \text{Unif}(0, \theta)$. Estime $\theta$ $(\theta > 0)$. Suponga que $x_i>0 \forall i$.
 
 $$f(X|\theta) = \dfrac 1\theta \cdot 1_{[0,\theta]}(x)$$ 
 
 La verosimilitud es
-$$f_n(x|\theta) = \prod_{i=1}^{n} f(x_i|\theta) = \dfrac 1{\theta^n} \prod_{i=1}^n 1_{\{0\leq x_i\leq \theta\}} \quad 0\leq x_i \leq \theta \;\forall i$$
-Vea que $f_n(x|\theta)$ es positivo si y solo si $O\leq X_{(n)}\leq \theta$.
+$$f_n(x|\theta) = \prod_{i=1}^{n} f(x_i|\theta) = \dfrac 1{\theta^n} \prod_{i=1}^n 1_{\{0\leq X_i\leq \theta\}} \quad 0\leq X_i \leq \theta \;\forall i$$
 
-El valor de la muestra $\{X_1,\dots, X_n\}$ en la $i$-ésima posición cuando los datos se ordenan de menor a mayor se denota $X_{(i)}$ (estadístico de orden). En este caso, $X_{(n)} = \max\{X_1,\dots, X_n\}$.
-Entonces $\hat\theta_{MLE} = x_{(n)}$.
+Vea que $f_n(x|\theta)$ es válido si y solo si $0\leq X_{(n)}\leq \theta$.
 
-# Propiedades del MLE
+El valor de la muestra $\{X_1,\dots, X_n\}$ en la $i$-ésima posición cuando los
+datos se ordenan de menor a mayor se denota $X_{(i)}$ (estadístico de orden). En
+este caso, $X_{(n)} = \max\{X_1,\dots, X_n\}$. Entonces $\hat\theta_{MLE} = x_{(n)}$.
 
-## Propiedad de invarianza
+**Laboratorio:** 
 
-**Teorema**. Si $\hat\theta$ es el MLE de $\hat\theta$ y si $g$ es biyectiva, entonces $g(\theta)$ es el MLE de $g(\theta)$.
+```{r }
+x <- runif(100, 0, 2)
+n <- length(x)
+
+theta <- seq(1.5, 2.5, length.out = 1000)
+
+L <- numeric(1000)
+for(k in 1:1000){
+  L[k] <- 1/theta[k]^n*prod(x<theta[k])
+}
+
+plot(theta, L)
+
+
+```
+
+## Propiedades del MLE
+
+### Propiedad de invarianza
+
+**Teorema**. Si $\hat\theta$ es el MLE de $\hat\theta$ y si $g$ es biyectiva,
+entonces $g(\theta)$ es el MLE de $g(\theta)$.
 
 *Prueba*:
 
-Sea $\Gamma$ el espacio paramétrico $g(\Omega)$. Como $g$ es biyectiva entonces $h:$ inversa de $g$: $\theta = h(\psi), \psi \in  \Gamma$.
+Sea $\Gamma$ el espacio paramétrico $g(\Omega)$. Como $g$ es biyectiva entonces
+defina $h$ la inversa de $g\colon \theta = h(\psi), \psi \in \Gamma$.
 
 Reparametrizando la verosimilitud,
 $$f_n(x|\theta) = f_n(x|h(\psi)). $$
 
 El MLE de $\psi:\hat\psi$ satisface que $f_n(x|h(\hat\psi))$ es máximo.
 
-Como $f_n(x|\theta)$ se maximiza cuando $\theta = \hat \theta$, entonces $f_n(x|h(\psi))$ se maximiza cuando $\hat \theta = h(\psi)$ para algún $\psi$.
+Como $f_n(x|\theta)$ se maximiza cuando $\theta = \hat \theta$, entonces $f_n(x|h(\psi))$ se
+maximiza cuando $\hat \theta = h(\psi)$ para algún $\psi$.
 
 Se concluye que $\hat\theta = h(\hat\psi) \implies \hat\psi = g(\hat \theta)$.
 
 **Ejemplo**: $g(\theta) = \dfrac 1\theta$ es biyectiva si $\theta > 0$. Así,
 
-$$ \hat{\dfrac 1 \theta} = \dfrac 1{\hat \theta} = \dfrac{1}{\frac 1{\hat X_n}} = \hat X_n \quad(\theta \text{ es parámetro de tasa}).$$
+
+\begin{equation*} 
+\frac{1}{\hat{\theta}} = \frac{1}{\frac{1}{\bar{X}_n}} =
+\bar{X}_n \text{ es parámetro de la tasa.} 
+\end{equation*}
+
+
 ¿Qué pasa si $h$ no es biyectiva?
 
-**Definicion (Generalización del MLE)**. Si $g$ es una función de $\theta$ y $G$ la imagen de $\Omega$ bajo $g$. Para cada $t\in G$ defina
-$$ G_t = \{\theta: g(\theta) = t\}$$
-Defina $L^*(t) = \displaystyle\max_{\theta\in G_t} \ln f_n(x|\theta)$. El MLE de $g(\theta) (=\hat t)$ satisface $L^*(\hat t) = \displaystyle\max_{t \in G} L^*(t)$.
+**Definicion (Generalización del MLE)**. Si $g$ es una función de $\theta$ y $G$
+la imagen de $\Omega$ bajo $g$. Para cada $t\in G$
+defina $$ G_t = \{\theta: g(\theta) = t\}$$ Defina
+$L^*(t) = \displaystyle\max_{\theta\in G_t} \ln f_n(x|\theta)$. El MLE de $g(\theta) (=\hat t)$
+satisface $L^*(\hat t) = \displaystyle\max_{t \in G} L^*(t)$.
 
-**Teorema**. Si $\hat \theta$ es el MLE de $\theta$ entonces $g(\hat\theta)$ es el MLE de $g(\theta)$ ($g$ es arbitraria).
+**Teorema**. Si $\hat \theta$ es el MLE de $\theta$ entonces $g(\hat\theta)$ es el
+MLE de $g(\theta)$ ($g$ es arbitraria).
 
-*Prueba*. Basta probar $L^*(\hat t) = \ln f_n(x|\hat \theta)$. Se cumple que $\hat\theta\in G_{\hat t}$. Como $\hat \theta$ maximiza $f_n(x|\theta)$ $\forall \theta$, también lo hace si $\theta \in G_{\hat t}$. Entonces $\hat t = g(\hat \theta)$ (no pueden existir 2 máximos en un conjunto con la misma imagen).
+
+ *Prueba*. Basta probar $L^*(\hat t) = \ln f_n(x|\hat \theta)$. Se cumple que
+$\hat\theta\in G_{\hat t}$. Como $\hat \theta$ maximiza $f_n(x|\theta)$ $\forall \theta$, también
+lo hace si $\theta \in G_{\hat t}$. Entonces $\hat t = g(\hat \theta)$ (no pueden existir 2
+máximos en un conjunto con la misma imagen).
 
 
 **Ejemplos**.$X_1,\dots, X_n \sim N(\mu, \sigma^2)$. 
@@ -122,7 +234,7 @@ Defina $L^*(t) = \displaystyle\max_{\theta\in G_t} \ln f_n(x|\theta)$. El MLE de
 
 * $h(\mu, \sigma^2) = \mu^2 + \sigma^2$. $\mathbb{E}[X^2] - \mu^2 = \sigma^2 \implies \mathbb{E}[X^2] = \mu^2 + \sigma^2$. El MLE de $\mathbb{E}[X^2]$ es $\bar X_n^2 + \hat \sigma ^2$.
 
-## Consistencia
+### Consistencia
 
 Los estimadores bayesianos son de la forma
 $$EB = W_1\mathbb{E}[\text{Previa}] + W_2\hat X_n.$$
@@ -132,11 +244,11 @@ $$EB = W_1\mathbb{E}[\text{Previa}] + W_2 \hat\theta_{MLE}.$$
 **Afirmación**. Bajo "condiciones usuales",
 $$\hat\theta_{MLE} \xrightarrow[n\to \infty]{\mathbb P}\theta.$$
 
-# Cálculo numérico
+## Cálculo numérico
  
 
 
-## Método de los momentos
+### Método de los momentos
 
 **Ejemplo**. $X_1,\dots, X_n \sim \Gamma(\alpha,1)$. Estime $\alpha$.
 $$f_n(x|\alpha) = \dfrac{1}{\Gamma(\alpha)}x^{\alpha-1}e^{-x}.$$
@@ -192,7 +304,7 @@ $$V_n(\theta)\xrightarrow[n\to \infty]{}V_{\infty}(\theta)<\infty$$
 
 3) Por $(*)$ el MLE se distribute asintóticamente como $$N\left(\theta, \dfrac{V_\infty(\theta)}{n}\right),$$ $Var(X_n)\xrightarrow[n\to \infty]{} 0$ y $\mathbb{E}[X_n] = X \implies X_n \xrightarrow[n\to \infty]{\mathbb P} X$ (confirma que el MLE es consistente).
 
-## Método Delta
+### Método Delta
 
 Si $Y_1,Y_2,\dots$ es una sucesión de variables aleatorias y sea $F^*$ su c.d.f. continua. Sea $\theta\in \mathbb R$ y $\{a_n\}$ sucesión de números positivos tal que $a_n \nearrow\infty$. Suponga que $a_n(Y_n-\theta) \xrightarrow{d} F^*$. Si $\alpha$ es una función tal que $\alpha'(\theta)\ne 0$, entonces
 $$\dfrac{a_n}{\alpha'(\theta)}[\alpha(Y_n)-\alpha(\theta)] \xrightarrow{d} F^*$$
@@ -208,7 +320,7 @@ Si $\alpha(\mu) = \dfrac 1\mu$ $(\mu\neq 0) \implies -\dfrac{1}{\mu^2} = \alpha'
 
 $$ \dfrac{\sqrt{n}}{\sigma}\mu^2\bigg[\dfrac 1{\bar X_n}-\dfrac 1\mu\bigg]\xrightarrow{d}N(0,1) $$
 
-**Ejemplo (7.6.11)**
+**Ejemplo**
 
 Si $X_1,X_2\dots \stackrel{i.i.d}{\sim} \text{Exp}(\theta)$. Sea $T_n = \sum X_i \implies \hat\theta = \dfrac 1{\bar X_n} = \dfrac n{T_n}$.
 
@@ -232,3 +344,50 @@ $$\Gamma(\alpha+n,\beta+y) \sim \sum_{i=1}^{\alpha+n}e^{\beta+y}$$
 Por el T.L.C., la distribución posterior $\theta|X$ se distribuye como una normal con media $\dfrac{\alpha+n}{\beta+y}$ y varianza $\dfrac{\alpha+n}{(\beta+y)^2}$. Tomando una previa poco informativa, ($\alpha, \beta$ son pequeños), la media es 
 $$\dfrac ny = \dfrac 1{\bar X_1} = \hat\theta_{MLE}$$ y la varianza 
 $$\dfrac 1{y^2/n} = \dfrac{\theta^2}n = \dfrac{V_n(\hat\theta)}{n}.$$ 
+
+
+## Laboratorio
+
+Suponga que tenemos una tabla con los siguientes datos, los cuales representan la cantidad de giros hacia la derecha en cierta intersección.
+
+```{r} 
+(X <- c(rep(0,14), rep(1,30), rep(2,36), rep(3,68), rep(4, 43), rep(5,43), 
+       rep(6, 30), rep(7,14), rep(8,10), rep(9, 6), rep(10,4), rep(11,1), rep(12,1)) )
+```
+Queremos ajustar esta tabla a una distribución Poisson con función de densidad 
+
+\[
+\mathbb{P}(X=x) = \frac{\lambda^x e^{-\lambda}}{x!} 
+\]
+
+ Se puede probar que teórico de máxima verosimilitud para $\lambda$ es $\overline{X}$ (Tarea). Queremos estimar este parámetro alternativamente maximizando la función de verosimilitud. 
+
+Primero veamos la forma de los datos, 
+```{r,eval=FALSE}
+hist(X, main="histograma del número de giros a la derecha", right=FALSE, prob=TRUE) 
+```
+
+Definamos la función correspondiente a $-\log(\mathbb{P}(X=x))$
+
+```{r}
+n <- length(X)
+negloglike <- function(lambda) { 
+  n * lambda - sum(X) * log(lambda) + sum( log( factorial(X) ) ) 
+  } 
+```
+
+Para encontrar el parámetro deseado, basta minimizar la función `negloglike` usando el la instrucción de optimización no lineal `nlm`. 
+```{r,eval=FALSE}
+lambda.hat <- nlm(negloglike, p = c(0.5), hessian = TRUE) 
+```
+Aquí el valor `p = c(0.5)` representa un valor inicial de búsqueda y `hessian = TRUE` determina el cálculo explícito de la segunda derivada. 
+
+Compare el resultado de `lambda.hat$estimate` con `mean(X)`. 
+
+
+```{r}
+lambda.hat$estimate
+mean(X)
+```
+
+
