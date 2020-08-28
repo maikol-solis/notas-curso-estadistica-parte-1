@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 16 Pruebas de hipótesis | Notas Curso de Estadística (Parte I)</title>
+  <meta name="description" content="Capítulo 16 Pruebas de hipótesis | Notas Curso de Estadística (Parte I)" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 16 Pruebas de hipótesis | Notas Curso de Estadística (Parte I)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 16 Pruebas de hipótesis | Notas Curso de Estadística (Parte I)" />
+  
+  
+  
+
+<meta name="author" content="Maikol Solís" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estimación-insesgada.html"/>
+<link rel="next" href="pruebas-con-hipótesis-simples.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso de Estadística</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html"><i class="fa fa-check"></i><b>2</b> Inferencia estadística</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#ejemplo"><i class="fa fa-check"></i><b>2.1</b> Ejemplo</a></li>
+<li class="chapter" data-level="2.2" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#modelo-estadístico"><i class="fa fa-check"></i><b>2.2</b> Modelo estadístico</a></li>
+<li class="chapter" data-level="2.3" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#estadístico"><i class="fa fa-check"></i><b>2.3</b> Estadístico</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><i class="fa fa-check"></i><b>3</b> Densidades previas conjugadas y estimadores de Bayes</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-previa-distribución-a-priori"><i class="fa fa-check"></i><b>3.1</b> Distribución previa (distribución a priori)</a></li>
+<li class="chapter" data-level="3.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#densidad-posterior"><i class="fa fa-check"></i><b>3.2</b> Densidad posterior</a></li>
+<li class="chapter" data-level="3.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#proceso-de-modelación-de-parámetros."><i class="fa fa-check"></i><b>3.3</b> Proceso de modelación de parámetros.</a></li>
+<li class="chapter" data-level="3.4" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-verosimilitud"><i class="fa fa-check"></i><b>3.4</b> Función de verosimilitud</a></li>
+<li class="chapter" data-level="3.5" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#familias-conjugadas"><i class="fa fa-check"></i><b>3.5</b> Familias conjugadas</a></li>
+<li class="chapter" data-level="3.6" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#densidades-previas-impropias"><i class="fa fa-check"></i><b>3.6</b> Densidades previas impropias</a></li>
+<li class="chapter" data-level="3.7" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#funciones-de-pérdida"><i class="fa fa-check"></i><b>3.7</b> Funciones de pérdida</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-pérdida-cuadrática"><i class="fa fa-check"></i><b>3.7.1</b> Función de pérdida cuadrática</a></li>
+<li class="chapter" data-level="3.7.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-pérdida-absoluta"><i class="fa fa-check"></i><b>3.7.2</b> Función de pérdida absoluta</a></li>
+<li class="chapter" data-level="3.7.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#otras-funciones-de-pérdida"><i class="fa fa-check"></i><b>3.7.3</b> Otras funciones de pérdida</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#efecto-de-muestras-grandes"><i class="fa fa-check"></i><b>3.8</b> Efecto de muestras grandes</a></li>
+<li class="chapter" data-level="3.9" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>3.9</b> Consistencia</a></li>
+<li class="chapter" data-level="3.10" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>3.10</b> Laboratorio</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-previa"><i class="fa fa-check"></i><b>3.10.1</b> Distribución previa</a></li>
+<li class="chapter" data-level="3.10.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-conjunta"><i class="fa fa-check"></i><b>3.10.2</b> Distribución conjunta</a></li>
+<li class="chapter" data-level="3.10.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-posterior"><i class="fa fa-check"></i><b>3.10.3</b> Distribución posterior</a></li>
+<li class="chapter" data-level="3.10.4" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#agregando-nuevos-datos"><i class="fa fa-check"></i><b>3.10.4</b> Agregando nuevos datos</a></li>
+<li class="chapter" data-level="3.10.5" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#familias-conjugadas-normales"><i class="fa fa-check"></i><b>3.10.5</b> Familias conjugadas normales</a></li>
+<li class="chapter" data-level="3.10.6" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#funciones-de-pérdida-1"><i class="fa fa-check"></i><b>3.10.6</b> Funciones de pérdida</a></li>
+<li class="chapter" data-level="3.10.7" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#caso-concreto"><i class="fa fa-check"></i><b>3.10.7</b> Caso concreto</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html"><i class="fa fa-check"></i><b>4</b> Estimación por máxima verosimilitud</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedades-del-mle"><i class="fa fa-check"></i><b>4.1</b> Propiedades del MLE</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedad-de-invarianza"><i class="fa fa-check"></i><b>4.1.1</b> Propiedad de invarianza</a></li>
+<li class="chapter" data-level="4.1.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#cálculo-numérico"><i class="fa fa-check"></i><b>4.2</b> Cálculo numérico</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-de-los-momentos"><i class="fa fa-check"></i><b>4.2.1</b> Método de los momentos</a></li>
+<li class="chapter" data-level="4.2.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-delta"><i class="fa fa-check"></i><b>4.2.2</b> Método Delta</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html"><i class="fa fa-check"></i><b>5</b> Estadísticos Suficientes y Criterio de Factorización</a></li>
+<li class="chapter" data-level="6" data-path="estadísticos-suficientes.html"><a href="estadísticos-suficientes.html"><i class="fa fa-check"></i><b>6</b> Estadísticos suficientes</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="estadísticos-suficientes.html"><a href="estadísticos-suficientes.html#teorema-de-factorización-de-fisher"><i class="fa fa-check"></i><b>6.1</b> Teorema de Factorización de Fisher</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estadístico-suficiente-multivariado-.html"><a href="estadístico-suficiente-multivariado-.html"><i class="fa fa-check"></i><b>7</b> Estadístico suficiente multivariado.</a></li>
+<li class="chapter" data-level="8" data-path="estadísticos-minimales.html"><a href="estadísticos-minimales.html"><i class="fa fa-check"></i><b>8</b> Estadísticos minimales</a></li>
+<li class="chapter" data-level="9" data-path="mejorando-estimadores.html"><a href="mejorando-estimadores.html"><i class="fa fa-check"></i><b>9</b> Mejorando estimadores</a></li>
+<li class="chapter" data-level="10" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html"><i class="fa fa-check"></i><b>10</b> Distribución muestral de un estadístico</a></li>
+<li class="chapter" data-level="11" data-path="distribución-muestral.html"><a href="distribución-muestral.html"><i class="fa fa-check"></i><b>11</b> Distribución muestral</a></li>
+<li class="chapter" data-level="12" data-path="distribución-chi2.html"><a href="distribución-chi2.html"><i class="fa fa-check"></i><b>12</b> Distribución <span class="math inline">\(\chi^2\)</span></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="distribución-chi2.html"><a href="distribución-chi2.html#distribución-t"><i class="fa fa-check"></i><b>12.1</b> Distribución <span class="math inline">\(t\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>13</b> Intervalos de confianza</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-para-la-media-de-una-distribución-normal"><i class="fa fa-check"></i><b>13.1</b> Intervalos de confianza para la media de una distribución normal</a></li>
+<li class="chapter" data-level="13.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-abiertos"><i class="fa fa-check"></i><b>13.2</b> Intervalos de confianza abiertos</a></li>
+<li class="chapter" data-level="13.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-en-otros-casos"><i class="fa fa-check"></i><b>13.3</b> Intervalos de confianza en otros casos</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-aproximados."><i class="fa fa-check"></i><b>13.3.1</b> Intervalos de confianza aproximados.</a></li>
+<li class="chapter" data-level="13.3.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#transformaciones-estabilizadoras-de-la-varianza"><i class="fa fa-check"></i><b>13.3.2</b> Transformaciones estabilizadoras de la varianza</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html"><i class="fa fa-check"></i><b>14</b> Estimación Bayesiana bajo normalidad</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#precisión-de-una-distribución-normal"><i class="fa fa-check"></i><b>14.1</b> Precisión de una distribución normal</a></li>
+<li class="chapter" data-level="14.2" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#distribución-marginal-de-mu"><i class="fa fa-check"></i><b>14.2</b> Distribución marginal de <span class="math inline">\(\mu\)</span></a></li>
+<li class="chapter" data-level="14.3" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#efecto-de-previas-no-informativas"><i class="fa fa-check"></i><b>14.3</b> Efecto de previas no informativas</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html"><i class="fa fa-check"></i><b>15</b> Estimación insesgada</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#estimadores-insesgados"><i class="fa fa-check"></i><b>15.1</b> Estimadores insesgados</a></li>
+<li class="chapter" data-level="15.2" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#estimador-insesgado-de-la-varianza"><i class="fa fa-check"></i><b>15.2</b> Estimador insesgado de la varianza</a></li>
+<li class="chapter" data-level="15.3" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#información-de-fisher"><i class="fa fa-check"></i><b>15.3</b> Información de Fisher</a></li>
+<li class="chapter" data-level="15.4" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#desigualdad-de-cramer-rao"><i class="fa fa-check"></i><b>15.4</b> Desigualdad de Cramer-Rao</a></li>
+<li class="chapter" data-level="15.5" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#estimadores-eficientes"><i class="fa fa-check"></i><b>15.5</b> Estimadores eficientes</a></li>
+<li class="chapter" data-level="15.6" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#comportamiento-asintótico-del-mle"><i class="fa fa-check"></i><b>15.6</b> Comportamiento asintótico del MLE</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html"><i class="fa fa-check"></i><b>16</b> Pruebas de hipótesis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#pruebas-de-hipótesis-1"><i class="fa fa-check"></i><b>16.1</b> Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="16.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#regiones-críticas-y-estadísticas-de-prueba"><i class="fa fa-check"></i><b>16.2</b> Regiones críticas y estadísticas de prueba</a></li>
+<li class="chapter" data-level="16.3" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#función-de-potencia-y-tipos-de-error"><i class="fa fa-check"></i><b>16.3</b> Función de potencia y tipos de error</a></li>
+<li class="chapter" data-level="16.4" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#valor-p"><i class="fa fa-check"></i><b>16.4</b> Valor <span class="math inline">\(p\)</span></a></li>
+<li class="chapter" data-level="16.5" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#dualidad-entre-pruebas-de-hipótesis-y-regiones-de-confianza"><i class="fa fa-check"></i><b>16.5</b> Dualidad entre pruebas de hipótesis y regiones de confianza</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#dualidad-en-pruebas-unilaterales"><i class="fa fa-check"></i><b>16.5.1</b> Dualidad en pruebas unilaterales</a></li>
+<li class="chapter" data-level="16.5.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#pruebas-de-cociente-de-verosimilitud-lrt"><i class="fa fa-check"></i><b>16.5.2</b> Pruebas de cociente de verosimilitud (LRT)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html"><i class="fa fa-check"></i><b>17</b> Pruebas con hipótesis simples</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#hipótesis-simples"><i class="fa fa-check"></i><b>17.1</b> Hipótesis simples</a></li>
+<li class="chapter" data-level="17.2" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#prueba-t"><i class="fa fa-check"></i><b>17.2</b> Prueba <span class="math inline">\(t\)</span></a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#propiedades-de-las-pruebas-t"><i class="fa fa-check"></i><b>17.2.1</b> Propiedades de las pruebas <span class="math inline">\(t\)</span></a></li>
+<li class="chapter" data-level="17.2.2" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#prueba-t-pareada"><i class="fa fa-check"></i><b>17.2.2</b> Prueba <span class="math inline">\(t\)</span> pareada</a></li>
+<li class="chapter" data-level="17.2.3" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#pruebas-t-de-dos-colas"><i class="fa fa-check"></i><b>17.2.3</b> Pruebas <span class="math inline">\(t\)</span> de dos colas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html"><i class="fa fa-check"></i><b>18</b> Prueba de comparación de medias en 2 poblaciones</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#comparación-de-medias-normales"><i class="fa fa-check"></i><b>18.1</b> Comparación de medias normales</a></li>
+<li class="chapter" data-level="18.2" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-t-de-dos-muestras"><i class="fa fa-check"></i><b>18.2</b> Prueba <span class="math inline">\(t\)</span> de dos muestras</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-de-2-colas"><i class="fa fa-check"></i><b>18.2.1</b> Prueba de 2 colas</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-f"><i class="fa fa-check"></i><b>18.3</b> Prueba <span class="math inline">\(F\)</span></a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-de-2-colas-prueba-de-homocedasticidad"><i class="fa fa-check"></i><b>18.3.1</b> Prueba de 2 colas (prueba de homocedasticidad)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html"><i class="fa fa-check"></i><b>19</b> Pruebas de hipótesis bayesianas</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#pruebas-de-hipótesis-bayesianas-1"><i class="fa fa-check"></i><b>19.1</b> Pruebas de hipótesis bayesianas</a></li>
+<li class="chapter" data-level="19.2" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-una-cola"><i class="fa fa-check"></i><b>19.2</b> Hipótesis de una cola</a></li>
+<li class="chapter" data-level="19.3" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-2-colas"><i class="fa fa-check"></i><b>19.3</b> Hipótesis de 2 colas</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notas Curso de Estadística (Parte I)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pruebas-de-hipótesis" class="section level1" number="16">
+<h1><span class="header-section-number">Capítulo 16</span> Pruebas de hipótesis</h1>
+<div id="pruebas-de-hipótesis-1" class="section level2" number="16.1">
+<h2><span class="header-section-number">16.1</span> Pruebas de hipótesis</h2>
+<p>Recordando el ejemplo de las nubes rociadas con químicos en donde log-lluvia <span class="math inline">\(\sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\mu,\sigma\)</span> desconocidos.</p>
+<p><strong>Hipótesis</strong>: <span class="math inline">\(\mu&gt;4\)</span> (nace a partir de una pregunta), es decir, si <span class="math inline">\(\theta = (\mu,\sigma^2)\)</span>, ¿<span class="math inline">\(\theta\in\{(\mu,\sigma^2): \mu&gt;4\}\)</span>?</p>
+<p>Para el caso bayesiano, ya calculamos <span class="math inline">\(\mathbb P[\mu&gt;4|X]\)</span>. ¿Cómo resolverlo en el caso frecuentista?</p>
+<p>Suponga que <span class="math inline">\(\Omega = \Omega_0 \cup\Omega_1\)</span> conjuntos disjuntos tales que
+<span class="math display">\[\begin{align*}
+H_0 :  \text{hipótesis en donde }\theta \in \Omega_0.\\
+H_1 : \text{hipótesis en donde }\theta \in \Omega_1.\\
+\end{align*}\]</span></p>
+<p><strong>Objetivo</strong>. Decidir si <span class="math inline">\(H_0\)</span> o <span class="math inline">\(H_1\)</span> es cierto, con los datos disponibles (problema de pruebas de hipótesis).</p>
+<p><strong>Definición</strong>. <span class="math inline">\(H_0:\)</span> hipótesis nula. <span class="math inline">\(H_1:\)</span> hipótesis alternativa. Una vez que se ha realizado una prueba de hipótesis si afirmamos <span class="math inline">\(\theta \in \Omega_1\)</span> decimos que <em>rechazamos</em> <span class="math inline">\(H_0\)</span>. Si <span class="math inline">\(\theta \in \Omega_0\)</span>, decimos que <em>no rechazamos</em> <span class="math inline">\(H_0\)</span>.</p>
+<p>Suponga que <span class="math inline">\(X_1,\dots, X_n\sim f(x|\theta)\)</span>, <span class="math inline">\(\theta \in \Omega\)</span>, <span class="math inline">\(\Omega = \Omega_0 \cup\Omega_1\)</span> y queremos probar la hipótesis <span class="math inline">\(H_0: \theta \in \Omega_0\)</span>, <span class="math inline">\(H_1: \theta \in \Omega_1\)</span>.</p>
+<p><strong>Definición</strong> (<span class="math inline">\(i = 0,1\)</span>)</p>
+<ol style="list-style-type: decimal">
+<li><p>Si <span class="math inline">\(\Omega_i\)</span> tiene solamente un valor de <span class="math inline">\(\theta\)</span>, <span class="math inline">\(H_i\)</span> es una <strong>hipótesis simple</strong>.</p></li>
+<li><p>Si <span class="math inline">\(\Omega_i\)</span> tiene más de un valor de <span class="math inline">\(\theta\)</span>, <span class="math inline">\(H_i\)</span> es una <strong>hipótesis compuesta</strong>.</p></li>
+<li><p><strong>Hipótesis compuestas de una cola</strong>. Si <span class="math inline">\(\Omega_0 = (-\infty,\theta_0]\)</span>, <span class="math inline">\(H_0: \theta\geq \theta_0\)</span>, <span class="math inline">\(H_1: \theta &gt;\theta_0\)</span>. Si <span class="math inline">\(\Omega_0 = [\theta_0,+\infty)\)</span>, <span class="math inline">\(H_0: \theta\leq \theta_0\)</span>, <span class="math inline">\(H_1: \theta&lt;\theta_0\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(H_1: \theta \ne \theta_0\)</span> y <span class="math inline">\(H_0: \theta = \theta_0\)</span> es una <strong>hipótesis de 2 colas</strong>.</p></li>
+</ol>
+</div>
+<div id="regiones-críticas-y-estadísticas-de-prueba" class="section level2" number="16.2">
+<h2><span class="header-section-number">16.2</span> Regiones críticas y estadísticas de prueba</h2>
+<p><strong>Ejemplo</strong>. Si <span class="math inline">\(X_1,\dots, X_n \sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\mu\)</span> desconocido, <span class="math inline">\(\sigma^2\)</span> conocido.</p>
+<p>Queremos probar <span class="math inline">\(H_0: \mu = \mu_0\)</span> vs <span class="math inline">\(H_1: \mu\neq \mu_0\)</span>. La lógica es: rechazamos <span class="math inline">\(H_0\)</span> si <span class="math inline">\(\mu\)</span> está “muy alejado” de <span class="math inline">\(\mu_0\)</span>.</p>
+<p>Seleccione un número <span class="math inline">\(c\)</span> tal que se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(|\bar X_n -\mu_0|&gt;c\)</span>. En general, suponga que queremos probar las hipótesis <span class="math inline">\(H_0: \theta \in \Omega_0\)</span> vs <span class="math inline">\(H_1: \theta\in \Omega_1\)</span>.</p>
+<p>En general, supónga que queremos probar las hipótesis <span class="math inline">\(H_0: \theta \in \Omega_0\)</span> vs <span class="math inline">\(H_1: \theta \in \Omega_1\)</span>.</p>
+<p>Cuando tenemos una muestra <span class="math inline">\(X_1,\dots,X_n \sim f(x|\theta)\)</span>. Sea <span class="math inline">\(S_0\subset \mathcal X\)</span>: conjunto en donde no se rechaza <span class="math inline">\(H_0\)</span> y <span class="math inline">\(S_1\subset \mathcal X\)</span>: conjunto en donde se rechaza <span class="math inline">\(H_0\)</span>.</p>
+<p>A <span class="math inline">\(S_1\)</span> se le llama <strong>región crítica</strong> de la prueba de hipótesis.</p>
+<p><strong>Nota</strong>. En la mayoría de los casos, la región crítica se define en términos de un estadístico <span class="math inline">\(T = r(x)\)</span>.</p>
+<p><strong>Definición</strong>. Sea $ X$ una muestra aleatoria con distribución <span class="math inline">\(f(x|\theta)\)</span> y <span class="math inline">\(T=r(X)\)</span> un estadístico y <span class="math inline">\(R\subset \mathbb R\)</span>. Suponga que se puede verificar las hipótesis al afirmar “rechazamos <span class="math inline">\(H_0\)</span> si <span class="math inline">\(T\in R\)</span>”, entonces <span class="math inline">\(T\)</span> es un <strong>estadístico</strong> de prueba y <span class="math inline">\(R\)</span> es la <strong>región de rechazo</strong> de la prueba.</p>
+<p><strong>Ejemplo</strong>. En el caso en que se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(|\bar X_n|&gt;c\)</span>, <span class="math inline">\(T = |\bar X_n-\mu_0|\)</span> estadístico de prueba y <span class="math inline">\((c,\infty)\)</span> es la región de rechazo.</p>
+</div>
+<div id="función-de-potencia-y-tipos-de-error" class="section level2" number="16.3">
+<h2><span class="header-section-number">16.3</span> Función de potencia y tipos de error</h2>
+<p>Sea <span class="math inline">\(\delta\)</span> un procedimiento de prueba (basado en una región crítica o en un estadístico de prueba). Sea <span class="math inline">\(\pi(\theta|\delta)\)</span> (<strong>función de potencia</strong>) la probabilidad de que se rechace <span class="math inline">\(H_0\)</span> a través de <span class="math inline">\(\delta\)</span> para <span class="math inline">\(\theta\in \Omega\)</span>.</p>
+<p>Si <span class="math inline">\(S_1\)</span> es la región crítica de <span class="math inline">\(\delta\)</span> entonces <span class="math inline">\(\pi(\theta|\delta) = \mathbb P(X\in S_1|\theta)\)</span> para <span class="math inline">\(\theta\in\Omega\)</span>.</p>
+<p>Si <span class="math inline">\(\delta\)</span> se describe a través de un estadístico de prueba <span class="math inline">\(T\)</span> con región de rechazo <span class="math inline">\(R\)</span>, entonces <span class="math inline">\(\pi(\theta|\delta) = \mathbb P(T \in R|\theta)\)</span> para <span class="math inline">\(\theta\in\Omega\)</span>.</p>
+<p><strong>Nota</strong>. Función de potencia ideal: <span class="math inline">\(\pi(\theta|\delta) = 0\)</span> si <span class="math inline">\(\theta\in\Omega_0\)</span>, y <span class="math inline">\(\pi(\theta|\delta) = 1\)</span> si <span class="math inline">\(\theta\in\Omega_1\)</span>.</p>
+<p><strong>Ejemplo</strong>.</p>
+<ul>
+<li><p>Estadístico de prueba: <span class="math inline">\(T = |\bar X_n-\mu_0|\)</span>.</p></li>
+<li><p>Región de rechazo: <span class="math inline">\(R = (c,\infty)\)</span>.</p></li>
+</ul>
+<p>Como <span class="math inline">\(X_1,\dots, X_n \sim N(\mu, \sigma^2)\)</span>, <span class="math inline">\(\mu\)</span> desconocido, <span class="math inline">\(\sigma^2\)</span> conocido entonces <span class="math inline">\(\bar X_n \sim N\left(\mu,\dfrac{\sigma^2}{n}\right)\)</span></p>
+<ul>
+<li>Función de potencia:</li>
+</ul>
+<p><span class="math display">\[\begin{align*}
+\pi(\theta|\delta) = \mathbb P[T\in R|\mu] &amp; = \mathbb P [|\bar X_n -\mu_0|&gt;c|\mu] \\ &amp;= \mathbb P [\bar X_n &gt; \mu_0+c|\mu] + \mathbb P [\bar X_n &lt; \mu_0-c|\mu]\\
+&amp; =  \mathbb P \bigg[\sqrt n \dfrac{(\bar X_n-\mu)}{\sigma}&gt; \dfrac{(\mu_0+c-\mu)}{\sigma}\sqrt n \bigg|\mu\bigg] +  \mathbb P \bigg[\sqrt n \dfrac{(\bar X_n-\mu)}{\sigma}&lt; \dfrac{(\mu_0-c-\mu)}{\sigma}\sqrt n \bigg|\mu\bigg] \\
+&amp; = 1-\Phi\left(\sqrt n \dfrac{(\mu_0+c-\mu)}{\sigma} \right) + \Phi\left(\sqrt n \dfrac{(\mu_0-c-\mu)}{\sigma} \right) 
+\end{align*}\]</span></p>
+<p><strong>Ejercicio</strong>: graficar la función de potencia <span class="math inline">\(\pi(\mu|\delta)\)</span> para distintos valores de <span class="math inline">\(\mu\)</span>.</p>
+<p><strong>Tipos de error</strong>:</p>
+<ul>
+<li><p><em>Error Tipo I</em>: error de rechazar <span class="math inline">\(H_0\)</span> si <span class="math inline">\(\theta \in \Omega_0\)</span>.</p></li>
+<li><p><em>Error Tipo II</em>: error de no rechazar <span class="math inline">\(H_0\)</span> si <span class="math inline">\(\theta\in\Omega_1\)</span> en términos de la función de potencia.</p></li>
+</ul>
+<p>Si <span class="math inline">\(\theta \in \Omega_0\)</span>: <span class="math inline">\(\pi(\theta|\delta)\)</span> es el error tipo I. Si <span class="math inline">\(\theta \in \Omega_1\)</span>: <span class="math inline">\(1-\pi(\theta|\delta)\)</span> es el error tipo II.</p>
+<p>Recuerde que el objetivo es hacer <span class="math inline">\(\pi(\theta|\delta)\)</span> pequeño cuando <span class="math inline">\(\theta\in\Omega_0\)</span>. También se requiere que <span class="math inline">\(\pi(\theta|\delta)\)</span> sea grande cuando <span class="math inline">\(\theta \in\Omega_1\)</span>. Una forma de alcanzar ese balance es seleccionar <span class="math inline">\(\alpha_0 \in (0,1)\)</span> tal que</p>
+<p><span class="math display">\[\pi(\theta|\delta) \leq \alpha_0\;\forall \theta\in\Omega_0\quad(*)\]</span>
+y entre todas las pruebas que cumplan <span class="math inline">\((*)\)</span> se selecciona aquella que maximice la potencia para <span class="math inline">\(\theta \in \Omega_1\)</span>.</p>
+<p>Otra forma es minimizar;</p>
+<p><span class="math display">\[w_1\cdot\text{Error I } + w_2\cdot\text{Error II};\]</span>
+<span class="math inline">\(w_1,w_2\)</span> constantes.</p>
+<p><strong>Nota</strong>. Bajo la primera solución se produce una asimetría entre las hipótesis, ya que resulta difícil (o muy costoso) que ambas condiciones se cumplan. Por lo general, se le da más énfasis a <span class="math inline">\((*)\)</span>, por lo que se trata de controlar el error más serio (Error tipo I).</p>
+<p><strong>Definición</strong>. Una prueba que satisface <span class="math inline">\((*)\)</span> se llama una <strong>prueba de nivel</strong> <span class="math inline">\(\alpha_0\)</span> y decimos que la prueba está a un <strong>nivel de significancia</strong> <span class="math inline">\(\alpha_0\)</span>. Además el tamaño <span class="math inline">\(\alpha(\delta)\)</span> de una prueba <span class="math inline">\(\delta\)</span> se define como:</p>
+<p><span class="math display">\[\alpha(\delta) = \sup_{\theta\in\Omega}\pi(\theta|\delta).\]</span></p>
+<p><strong>Corolario</strong>. Una prueba <span class="math inline">\(\delta\)</span> es una prueba de nivel <span class="math inline">\(\alpha_0\)</span> si y solo si su tamaño es a lo sumo <span class="math inline">\(\alpha_0\)</span> (<span class="math inline">\(\alpha(\delta)\leq\alpha_0\)</span>).</p>
+<p><strong>Ejemplo</strong>. Suponga <span class="math inline">\(X_1,\dots,X_n\sim \text{Unif}(0,\theta)\)</span>, <span class="math inline">\(\theta&gt;0\)</span> desconocido. Se quiere probar las siguientes hipótesis:</p>
+<p><span class="math display">\[H_0: 3\leq\theta\leq 4 \quad H_1:\theta&lt;3 \text{ o }\theta&gt;4. \]</span></p>
+<p>El MLE de <span class="math inline">\(\theta\)</span> es <span class="math inline">\(Y_n = X_{(n)}\)</span>. Si <span class="math inline">\(n\)</span> es grande, <span class="math inline">\(Y_n\)</span> es muy cercano a <span class="math inline">\(\theta\)</span>.</p>
+<p>La prueba <span class="math inline">\(\delta\)</span> no rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(2.9&lt;Y_n&lt;4\)</span> y rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(Y_n\geq4\)</span> o <span class="math inline">\(Y_n\leq2.9\)</span>. Entonces <span class="math inline">\(R = (-\infty, 2.9] \cup [4,+\infty)\)</span> y la función de potencia
+<span class="math display">\[\pi(\theta|\delta) = \mathbb P[Y_n\leq 2.9|\theta]+\mathbb P[Y_n\geq4|\theta] \]</span></p>
+<p><span class="math inline">\(\pi(\theta|\delta)\)</span> se calcula en varios casos:</p>
+<ul>
+<li><p>Si <span class="math inline">\(\theta\leq 2.9 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1\)</span> y <span class="math inline">\(\mathbb P[Y_n\geq4|\theta] = 0\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(2.9&lt;\theta\leq4 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1 = \prod_{i=1}^n \mathbb P[X_i\leq2.9|\theta] = \left(\dfrac{2.9}{\theta}\right)^n\)</span> y <span class="math inline">\(\mathbb P[Y_n\geq4|\theta] = 0\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(\theta&gt;4 \implies \mathbb P[Y_n\leq 2.9|\theta] = \left(\dfrac{2.9}{\theta}\right)^n\)</span> y <span class="math inline">\(\mathbb P[Y_n\geq 4|\theta] = 1 - \displaystyle\prod_{i=1}^n \mathbb P[X_i&lt;4|\theta] = 1-\left(\dfrac 4\theta\right)^n\)</span>.</p></li>
+</ul>
+<p>Entonces</p>
+<p><span class="math display">\[\pi(\theta|\delta) = \begin{cases}1 &amp; \text{si } \theta\leq 2.9 \\
+\left(\dfrac{2.9}{\theta}\right)^n&amp; \text{si } 2.9 &lt;\theta\leq 4\\
+1+\left(\dfrac{2.9}\theta\right)^n-\left(\dfrac{4}\theta\right)^n &amp; \text{si } \theta &gt;4\end{cases}\]</span></p>
+<p>Note, además, que el tamaño de prueba es</p>
+<p><span class="math display">\[\alpha(\delta) = \sup_{3\leq\theta\leq 4} \pi(\theta|\delta) = \sup_{3\leq\theta\leq 4}\left(\dfrac{2.9}{\theta}\right)^n = \left(\dfrac{2.9}{3}\right)^n.\]</span></p>
+<p>Si <span class="math inline">\(n = 68 \implies \alpha(\delta)= \left(\dfrac{2.9}{3}\right)^{68} = 0.0997.\)</span></p>
+<p>Entonces <span class="math inline">\(\delta\)</span> es una prueba con nivel de significancia <span class="math inline">\(\alpha_0\geq 0.0997\)</span>.</p>
+<p>¿Cómo diseñar una prueba para que tenga un cierto nivel de significancia?</p>
+<p>Suponga que queremos probar <span class="math inline">\(H_0: \theta \in \Omega_0\)</span> vs <span class="math inline">\(H_1: \theta\in\Omega_1\)</span>. Sea <span class="math inline">\(T\)</span> un estadístico de prueba y suponga que si <span class="math inline">\(T\geq c\)</span>, <span class="math inline">\(c\)</span> constante, rechazamos <span class="math inline">\(H_0\)</span>.</p>
+<p>Si queremos que nuestra prueba tenga nivel de significancia <span class="math inline">\(\alpha_0\)</span> entonces:</p>
+<p><span class="math display">\[\pi(\theta|\delta) = \mathbb P(T\geq c|\theta)\text{ y } \sup_{\theta \in \Omega_0}\mathbb P[T\geq c|\theta] \leq \alpha_0 \quad (*)\]</span></p>
+<p>Note que <span class="math inline">\(\pi(\theta|\delta)\)</span> es función no-creciente de <span class="math inline">\(c\)</span>, entonces <span class="math inline">\((*)\)</span> se cumple para valores grandes de <span class="math inline">\(c\)</span>, si <span class="math inline">\(\theta\in\Omega_0\)</span>. Si <span class="math inline">\(\theta \in \Omega_1\)</span>, debemos escoger <span class="math inline">\(c\)</span> pequeño para maximizar <span class="math inline">\(\pi(\theta|\delta)\)</span>.</p>
+<p><strong>Ejemplo</strong>. En el caso normal, donde <span class="math inline">\(H_0: \mu = \mu_0\)</span> y rechazamos <span class="math inline">\(H_0\)</span> si <span class="math inline">\(|\bar X_n-\mu_0|\geq c\)</span>. Entonces:</p>
+<p><span class="math display">\[\sup_{\theta\in\Omega_0} \mathbb P [T\geq c|\theta] = \mathbb P_{\mu_0}[|\bar X_n-\mu_0|\geq c]\geq \alpha_0.\]</span></p>
+<p>Como bajo <span class="math inline">\(H_0\)</span>: <span class="math inline">\(Y = X_n-\mu_0 \sim N\left(0,\dfrac{\sigma^2}{n}\right)\)</span>, entonces podemos encontrar <span class="math inline">\(c\)</span> tal que
+<span class="math display">\[\mathbb P[|\bar X_n-\mu_0|\geq c] = \alpha_0,\]</span>
+y cualquier <span class="math inline">\(c\)</span> mayor va a cumplir <span class="math inline">\((*)\)</span>.</p>
+<p>De esta manera el problema se convierte en encontrar <span class="math inline">\(c^*\)</span> tal que <span class="math inline">\(\mathbb P[|Z|&gt;c^*] = \alpha_0\)</span>, donde <span class="math inline">\(Z = \dfrac{\bar X_n - \mu_0}{\sigma/\sqrt n}\)</span>.</p>
+<p>Dado que <span class="math inline">\(\mathbb P[|Z|\geq c^*] = 2[1-\Phi(c^*)] = \alpha_0\)</span>, despejando se obtiene</p>
+<p><span class="math display">\[\Phi(c^*) = 1 - \dfrac{\alpha_0}2 \implies c^* = z_{1-\frac{\alpha_0}2}.\]</span></p>
+<p><em>Procedimiento</em>: rechazamos <span class="math inline">\(H_0\)</span> si
+<span class="math display">\[|Z| = \bigg| \dfrac{\bar X_n-\mu_0}{\sigma/\sqrt n}\bigg| \geq z_{1-\frac{\alpha_0}2}.\]</span></p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots,X_n \sim \text{Ber}(p)\)</span>.
+<span class="math display">\[H_0: p\leq p_0 \text{ vs } H_1: p&gt;p_0\]</span></p>
+<p>Sea <span class="math inline">\(Y = \sum_{i=1}^nX_i \sim \text{Binomial}(n,p)\)</span>. Rechazo <span class="math inline">\(H_0\)</span> si <span class="math inline">\(Y\leq c\)</span>.</p>
+<p>El error tipo I es</p>
+<p><span class="math display">\[\mathbb P[Y\geq x|p] = \sum_{y=0}^n{n\choose y}p^y(1-p)^{n-y} = \sum_{y=0}^n{n\choose y} \underbrace{\left(\dfrac p{1-p}\right)^y(1-p)^n}_{g(p)}\]</span></p>
+<p><span class="math inline">\(g(p)\)</span> es monótona con respecto a p.Entonces
+<span class="math display">\[\sup_{p\leq p_0} \mathbb P[Y\geq c|p] = \mathbb P [Y\geq c|p_0] \leq \alpha_0.\]</span></p>
+<p>Si <span class="math inline">\(n=10\)</span>, <span class="math inline">\(p_0 = 0.3\)</span>, <span class="math inline">\(\alpha_0 = 10\%\)</span>, entonces</p>
+<table>
+<thead>
+<tr class="header">
+<th>c</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathbb P[Y\geq c|p_0]\)</span></td>
+<td>1</td>
+<td>0.97</td>
+<td>0.85</td>
+<td>0.62</td>
+<td>0.15</td>
+<td>0.05</td>
+</tr>
+</tbody>
+</table>
+<p>Para que el tamaño sea menor que <span class="math inline">\(10\%\)</span> seleccione <span class="math inline">\(c&gt;5\)</span>. Si <span class="math inline">\(c\in [5,6]\)</span> entonces el nivel de significancia es a lo sumo <span class="math inline">\(0.15\)</span> y la prueba no cambia (ya que <span class="math inline">\(Y\)</span> es una variable discreta).</p>
+<p><em>Procedimiento</em>: rechazamos <span class="math inline">\(H_0: p = 0.3\)</span> si <span class="math inline">\(Y\geq c\)</span>, <span class="math inline">\(c\in[5,6]\)</span> con un nivel de significancia de <span class="math inline">\(10\%\)</span> a lo sumo.</p>
+</div>
+<div id="valor-p" class="section level2" number="16.4">
+<h2><span class="header-section-number">16.4</span> Valor <span class="math inline">\(p\)</span></h2>
+<p><strong>Restricción</strong>. El procedimiento de prueba depende de <span class="math inline">\(\alpha_0\)</span>.</p>
+<p><strong>Pregunta</strong>. ¿Será posible construir un estadístico que resuma el grado de evidencia en los datos en contra de <span class="math inline">\(H_0\)</span>?</p>
+<p><strong>Respuesta</strong>. Cualquier procedimiento usa las siguientes dos fuentes:</p>
+<ol style="list-style-type: decimal">
+<li><p>El valor observado del estadístico de prueba.</p></li>
+<li><p>Todos los valores de <span class="math inline">\(\alpha_0\)</span> en donde rechazamos la nula.</p></li>
+</ol>
+<p><strong>Ejemplo</strong> (Normal). Si <span class="math inline">\(Z=2.78\)</span>, entonces se rechaza <span class="math inline">\(H_0: \mu = \mu_0\)</span> si <span class="math inline">\(|Z| = 2.78&gt;z_{1-\frac{\alpha_0}2}\)</span>, para cualquier <span class="math inline">\(\alpha_0\)</span>. Entonces,
+<span class="math display">\[\Phi(2.78) &gt;1-d\frac{\alpha_0}2 \implies \alpha_0\geq 0.0054\]</span>
+que es el valor observado de significancia.</p>
+<p><strong>Definición</strong>. El <strong>valor-<span class="math inline">\(p\)</span></strong> es el nivel más pequeño de significancia en donde rechazaríamos <span class="math inline">\(H_0\)</span> bajo los datos observados.</p>
+<p><strong>Nota</strong>. El valor-<span class="math inline">\(p\)</span> es un estadístico.</p>
+<ul>
+<li><p>Si <span class="math inline">\(\text{valor-}p&lt;\alpha_0\)</span>, rechazo <span class="math inline">\(H_0\)</span>. (El valor-<span class="math inline">\(p\)</span> es muy pequeño).</p></li>
+<li><p>Si <span class="math inline">\(\text{valor-}p&gt;\alpha_0\)</span>, no rechazo <span class="math inline">\(H_0\)</span>. (El valor-<span class="math inline">\(p\)</span> es muy grande).</p></li>
+</ul>
+<p><strong>Cálculo del valor-<span class="math inline">\(p\)</span></strong></p>
+<ul>
+<li><p>Región de rechazo: <span class="math inline">\(T\geq c\)</span>.</p></li>
+<li><p>Decisión de rechazo (<em>ejercicio</em>): para cada <span class="math inline">\(t\)</span>, rechazamos <span class="math inline">\(H_0\)</span> si <span class="math inline">\(T\geq t\)</span> con <span class="math inline">\(t\geq F^{-1}(1-\alpha_0)\)</span>, <span class="math inline">\(F\)</span> distribución de <span class="math inline">\(T\)</span>.</p></li>
+</ul>
+<p>Entonces</p>
+<p><span class="math display">\[F(t) \geq 1-\alpha_0 \implies \alpha_0 \geq \mathbb P_\theta[T\geq t] \implies \alpha_0 \geq \sup_{\theta\in\Omega}P_{\theta}[T\geq t]\]</span></p>
+<p>El tamaño de la prueba es <span class="math inline">\(c=t\)</span>.</p>
+<p><strong>Ejemplo</strong>. Retomando el ejemplo con las variables aleatorias Bernouilli, rechazamos <span class="math inline">\(H_0: p\leq p_0\)</span> si <span class="math inline">\(Y\geq c\)</span>. Así,</p>
+<p><span class="math display">\[\text{valor-$p$} = \sup_{p\in\Omega}P_{p}[Y\geq y] =P_{p}[Y\geq y] \]</span>
+Si <span class="math inline">\(p_0 = 0.3, n=10, y =6\)</span>, el valor-<span class="math inline">\(p\)</span> es <span class="math inline">\(\text{pbinom}(y = 6, p_0 =3,n=10) = 0.0473\)</span>.</p>
+</div>
+<div id="dualidad-entre-pruebas-de-hipótesis-y-regiones-de-confianza" class="section level2" number="16.5">
+<h2><span class="header-section-number">16.5</span> Dualidad entre pruebas de hipótesis y regiones de confianza</h2>
+<p><strong>Teorema</strong>. Sea <span class="math inline">\(X = (X_1,\dots,X_n)\)</span> una muestra con distribución <span class="math inline">\(F_\theta\)</span>. Sea <span class="math inline">\(g(\theta)\)</span> una función tal que para cada valor <span class="math inline">\(g_0\)</span> de <span class="math inline">\(g(\theta)\)</span>, existe una prueba con nivel <span class="math inline">\(\alpha_0\)</span> de las hipótesis:</p>
+<p><span class="math display">\[H_{0,g_0}: g(\theta) = g_0 \text{ vs } H_{1,g_0}: g(\theta) \neq g_0. \]</span>
+Defina para cada <span class="math inline">\(x\in X\)</span>
+<span class="math display">\[\omega(x) = \{g_0: \delta_{g_0} \text{ no rechaza }H_{0,g_0}\text{ si }X=x\} \quad (*)\]</span></p>
+<p>Sea <span class="math inline">\(\gamma = 1-\alpha_0\)</span>. Entonces
+<span class="math display">\[\mathbb P[g(\theta_0)\in \omega(x)|\theta = \theta_0 ] \geq \gamma, \;\forall \theta_0 \in \Omega.\]</span></p>
+<p><strong>Definición</strong>. Si <span class="math inline">\(\omega(x)\)</span> satisface <span class="math inline">\((*)\)</span> <span class="math inline">\(\forall \theta_0 \in \Omega\)</span>, entonces <span class="math inline">\(\omega(x)\)</span> es un <strong>conjunto de confianza</strong> con coeficiente <span class="math inline">\(\gamma\)</span> donde <span class="math inline">\(\gamma = 1-\alpha_0\)</span>.</p>
+<p><strong>Teorema</strong>. Bajo las condiciones anteriores, si <span class="math inline">\(\omega(x)\)</span> es un conjunto de confianza para <span class="math inline">\(g_0\)</span>, entonces construimos <span class="math inline">\(\delta_{g_0}\)</span>: no rechazo <span class="math inline">\(H_{0,g_0}\)</span> si y solo si <span class="math inline">\(g_0 \in \omega(X)\)</span>, entonces <span class="math inline">\(\delta_{g_0}\)</span> es una prueba con nivel <span class="math inline">\(\alpha_0 = 1-\gamma\)</span> para <span class="math inline">\(H_{0,g_0}\)</span>.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots,X_n\sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\theta = (\mu,\sigma^2)\)</span> (desconocidos). En este caso <span class="math inline">\(g(\theta) = \mu\)</span>. El intervalo de confianza con nivel <span class="math inline">\(gamma\)</span> es</p>
+<p><span class="math display">\[\bar X_n\pm t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma&#39;}{\sqrt n}.\]</span></p>
+<p>La hipótesis de interés corresponde a</p>
+<p><span class="math display">\[ H_0: \mu = \mu_0 \text{ vs } H_1: \mu \ne \mu_0.\]</span></p>
+<p>Por los teoremas anteriores, <span class="math inline">\(H_0\)</span> se rechaza si <span class="math inline">\(\mu_0\)</span> no está en el IC, es decir, si y solo si</p>
+<p><span class="math display">\[\mu_0 &gt; \bar X_n+ t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma&#39;}{\sqrt n} \text{ o } \mu_0 &lt; \bar X_n- t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma&#39;}{\sqrt n},\]</span>
+que se puede resumir como</p>
+<p><span class="math display">\[\bigg|\dfrac{\bar X_n-\mu_0}{\sigma&#39;/\sqrt n}\bigg|&gt;t_{n-1,1-\frac{\alpha}2}.\]</span></p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots,X_n\sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\mu\)</span> desconocido, <span class="math inline">\(\sigma^2\)</span> conocido. Construta un intervalo de confianza con nivel <span class="math inline">\(\gamma\)</span> a partir de <span class="math display">\[ H_0: \mu = \mu_0 \text{ vs } H_1: \mu \ne \mu_0.\]</span></p>
+<p>Rechazamos <span class="math inline">\(H_0\)</span> si
+<span class="math display">\[\bigg|\dfrac{\bar X_n-\mu_0}{\sigma/\sqrt n}\bigg|\geq z_{1-\frac{\alpha_0}2}.\]</span></p>
+<p>al nivel <span class="math inline">\(\alpha_0\)</span>. Usando los teoremas anteriores, una región de confianza con nivel <span class="math inline">\(\gamma = 1-\alpha_0\)</span> satisface:</p>
+<p><span class="math display">\[\mu\in\bigg\{ \bigg|\dfrac{\bar X_n-\mu}{\sigma/\sqrt n}\bigg|&lt; z_{1-\frac{\alpha_0}2}\bigg\} = \omega(x)\]</span></p>
+<p>Por tanto,</p>
+<p><span class="math display">\[\begin{align*}
+ \bigg|\dfrac{\bar X_n-\mu}{\sigma/\sqrt n}\bigg| &amp; \Leftrightarrow -\dfrac{\sigma}{\sqrt n}z_{1-\frac{\alpha_0}2}&lt;\bar X_n  - \mu&lt;\dfrac{\sigma}{\sqrt n}z_{1-\frac{\alpha_0}2}\\
+ &amp; = \Leftrightarrow \bar X_n-\dfrac{\sigma}{\sqrt n}z_{1-\frac{\alpha_0}2}&lt; \mu&lt;\bar X_n + \dfrac{\sigma}{\sqrt n}z_{1-\frac{\alpha_0}2}
+\end{align*}\]</span>
+que es el IC con nivel <span class="math inline">\(\gamma\)</span> para <span class="math inline">\(\mu\)</span>.</p>
+<div id="dualidad-en-pruebas-unilaterales" class="section level3" number="16.5.1">
+<h3><span class="header-section-number">16.5.1</span> Dualidad en pruebas unilaterales</h3>
+<p>Si <span class="math inline">\(X = (X_1,\dots, X_n)\)</span> es una muestra según <span class="math inline">\(F_\theta\)</span> y <span class="math inline">\(g(\theta)\)</span> es una función de variable real, suponga que para cada <span class="math inline">\(g_0\in I_m(g)\)</span> existe una prueba <span class="math inline">\(\delta_{g_0}\)</span> con nivel <span class="math inline">\(\alpha_0\)</span> de las hipótesis anteriores. Si
+<span class="math display">\[\omega(x) = \{g_0: \delta_{g_0} \text{ no rechaza }H_{0,g_0}\text{ si }X=x\}\]</span></p>
+<p>y si <span class="math inline">\(\gamma = 1-\alpha_0\)</span>, entonces <span class="math inline">\(\omega(x)\)</span> es una región de confianza para <span class="math inline">\(g(\theta)\)</span> con nivel <span class="math inline">\(\gamma\)</span>.</p>
+<p><strong>Ejemplo</strong> (Bernoulli).</p>
+<p><span class="math display">\[ H_0: p \leq p_0 \text{ vs } H_1: p&gt;p_0.\]</span></p>
+<p>El criterio de rechazo al nivel <span class="math inline">\(\alpha_0\)</span> es</p>
+<p><span class="math display">\[Y = \sum_{i=1}^nX_i\geq c(p_0)\]</span></p>
+<p>donde</p>
+<p><span class="math display">\[\sup_{p\leq p_0} \mathbb P_p[Y\geq c] = \mathbb P_{p_0}[Y\geq c] \leq \alpha_0.\]</span></p>
+<p>Entonces</p>
+<p><span class="math display">\[\omega(x) = \{p_0: Y&lt;c(p_0)\} = \{p_0: \text{valor-}p&gt;\alpha_0\}.\]</span></p>
+<p>Si <span class="math inline">\(n=10\)</span>, <span class="math inline">\(Y=6\)</span>, <span class="math inline">\(\alpha_0 = 10\%\)</span>,
+<span class="math display">\[\omega(x) =\{p_0: P_{p_0}[Y&gt; 6] &gt;0.1\}.\]</span></p>
+<p>Numéricamente, si <span class="math inline">\(p_0 &gt; 35.42\% \implies p_0 \in \omega(x)\)</span>, entonces <span class="math inline">\(\omega(x) = (0.3542,1]\)</span> si <span class="math inline">\(\alpha_0=10\%\)</span> y es un IC para <span class="math inline">\(p_0\)</span> con nivel de 90%.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X = (X_1,\dots, X_n)\sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\theta = (\mu,\sigma^2)\)</span> desconocido. Queremos probar
+<span class="math display">\[ H_0: \mu \leq \mu_0 \text{ vs } H_1: \mu &gt; \mu_0.\]</span>
+Por dualidad, basta con conocer un IC unilateral para <span class="math inline">\(\mu\)</span>:</p>
+<p><span class="math display">\[ \left(\bar X_n-t_{n-1,\gamma}\dfrac{\sigma&#39;}{\sqrt n},\infty\right).\]</span></p>
+<p>Rechazamos <span class="math inline">\(H_0\)</span> si</p>
+<p><span class="math display">\[\mu_0\leq \bar X_n-t_{n-1,\gamma}\dfrac{\sigma&#39;}{\sqrt n} \Leftrightarrow T = \dfrac{\bar X_n -\mu_0}{\sigma&#39;/\sqrt n}\geq t_{n-1,\gamma}\]</span></p>
+<p>(rechazando en la cola derecha de T).</p>
+</div>
+<div id="pruebas-de-cociente-de-verosimilitud-lrt" class="section level3" number="16.5.2">
+<h3><span class="header-section-number">16.5.2</span> Pruebas de cociente de verosimilitud (LRT)</h3>
+<p>Si <span class="math inline">\(H_0:\theta \in \Omega_0\)</span> vs <span class="math inline">\(H_1: \theta \in \Omega_0^c = \Omega_1\)</span>. El <strong>estadístico LRT</strong> se define como</p>
+<p><span class="math display">\[\Lambda (x) = \dfrac{\sup_{\theta\in \Omega_0} f_n(x|\theta)}{\sup_{\theta\in \Omega} f_n(x|\theta)}.\]</span></p>
+<p>Una prueba de cociente de verosimilitud rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(\Lambda(x)\leq k\)</span>, para una constante <span class="math inline">\(k\)</span>.</p>
+<p><strong>Ejemplo</strong>. Supongamos que se observa <span class="math inline">\(Y\)</span> el número de éxitos en el experimento <span class="math inline">\(\text{Bernoulli}(\theta)\)</span> con tamaño de muestra <span class="math inline">\(n\)</span>.</p>
+<p><span class="math display">\[H_0: \theta = \theta_0 \text{ vs } H_1: \theta\ne\theta_0.\]</span></p>
+<ul>
+<li><p>Verosimilitud: <span class="math inline">\(f(y|\theta) = {n\choose y}\theta ^y(1-\theta)^{n-y}\)</span>.</p></li>
+<li><p><span class="math inline">\(\Omega_0 = \{\theta_0\}\)</span>, <span class="math inline">\(\Omega_1 = [0,1]\setminus \{\theta_0\}\)</span>.</p></li>
+<li><p>Numerador: <span class="math inline">\(f(y|\theta_0)\)</span>.</p></li>
+<li><p>Denominador: <span class="math inline">\(f(y|\bar y) = \displaystyle{n\choose y}{\bar y}^{y}(1-\bar y)^{n-y}\)</span>.</p></li>
+</ul>
+<p><span class="math display">\[\Lambda(y) = \dfrac{f(y|\theta_0)}{f(y|\bar y)} = \left(\dfrac{n\theta_0}{y}\right)^y\left(\dfrac{n(1-\theta_0)}{n-y}\right)^{n-y}, \quad y=0,\dots,n.\]</span></p>
+<p>Si <span class="math inline">\(n=10\)</span>, <span class="math inline">\(\theta_0 = 0.3\)</span>, <span class="math inline">\(y = 6\)</span>, <span class="math inline">\(\alpha_0=0.05\)</span>.</p>
+<table>
+<colgroup>
+<col width="3%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(y\)</span></th>
+<th><span class="math inline">\(0\)</span></th>
+<th><span class="math inline">\(1\)</span></th>
+<th><span class="math inline">\(2\)</span></th>
+<th><span class="math inline">\(3\)</span></th>
+<th><span class="math inline">\(4\)</span></th>
+<th><span class="math inline">\(5\)</span></th>
+<th><span class="math inline">\(6\)</span></th>
+<th><span class="math inline">\(7\)</span></th>
+<th><span class="math inline">\(8\)</span></th>
+<th><span class="math inline">\(9\)</span></th>
+<th><span class="math inline">\(10\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\Lambda(y)\)</span></td>
+<td><span class="math inline">\(0.028\)</span></td>
+<td><span class="math inline">\(0.312\)</span></td>
+<td><span class="math inline">\(0.773\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(0.797\)</span></td>
+<td><span class="math inline">\(0.418\)</span></td>
+<td><span class="math inline">\(0.147\)</span></td>
+<td><span class="math inline">\(0.034\)</span></td>
+<td><span class="math inline">\(0.005\)</span></td>
+<td><span class="math inline">\(3\times 10^{-4}\)</span></td>
+<td><span class="math inline">\(6\times10^{-6}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathbb P[Y=y|\theta=0.3]\)</span></td>
+<td><span class="math inline">\(0.028\)</span></td>
+<td><span class="math inline">\(0.121\)</span></td>
+<td><span class="math inline">\(0.233\)</span></td>
+<td><span class="math inline">\(0.267\)</span></td>
+<td><span class="math inline">\(0.200\)</span></td>
+<td><span class="math inline">\(0.103\)</span></td>
+<td><span class="math inline">\(0.037\)</span></td>
+<td><span class="math inline">\(0.009\)</span></td>
+<td><span class="math inline">\(0.001\)</span></td>
+<td><span class="math inline">\(1\times 10^{-4}\)</span></td>
+<td><span class="math inline">\(6\times10^{-6}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Rechazamos <span class="math inline">\(H_0\)</span> con nivel <span class="math inline">\(\alpha_0 = 0.05\)</span> en <span class="math inline">\(y \in\{10,9,8,7,0\}\)</span> y <span class="math inline">\(k\in [0.028,0.147)\)</span> si rechazo cuando <span class="math inline">\(\Lambda(y)\leq k\)</span>. El tamaño de prueba es
+<span class="math display">\[\mathbb P_{0.3}[\text{Rechazo}] = \mathbb{P}_{0.3}[Y\in \{10,9,8,7,0\}] = 0.039.\]</span></p>
+<p><strong>Teorema</strong>. Sea <span class="math inline">\(\Omega\)</span> un abierto en <span class="math inline">\(\mathbb R^p\)</span> y suponga que <span class="math inline">\(H_0\)</span> especifica <span class="math inline">\(k\)</span> coordenadas de <span class="math inline">\(\theta\)</span>, igualándolas a valores fijos. Asuma que <span class="math inline">\(H_0\)</span> es cierto y que todas las condiciones de regularidad de <span class="math inline">\(\theta\)</span> son ciertas.
+<span class="math display">\[-2\ln\Lambda(x)\xrightarrow[H_0]{d}\chi^2_k.\]</span></p>
+<p><strong>Ejemplo</strong>. Del caso anterior, <span class="math inline">\(k=1\)</span>, <span class="math inline">\(\alpha_0 = 5\%\)</span>. Rechazamos <span class="math inline">\(H_0\)</span>:
+<span class="math display">\[-2\ln \Lambda(y)&gt;\chi^2_{1,1-0.05} = F^{-1}_{\chi^2_1}(0.95) = 3.841.\]</span></p>
+<p>Rechazamos <span class="math inline">\(H_0\)</span> bajo la misma región del ejemplo anterior.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estimación-insesgada.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pruebas-con-hipótesis-simples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/09-pruebas-hipotesis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/09-pruebas-hipotesis.Rmd",
+"text": null
+},
+"download": ["Notas-Curso-Estadistica.pdf"],
+"toc": {
+"collapse": "subsection"
+},
+"toc_depth": 5
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

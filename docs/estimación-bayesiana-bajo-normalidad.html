@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 14 Estimación Bayesiana bajo normalidad | Notas Curso de Estadística (Parte I)</title>
+  <meta name="description" content="Capítulo 14 Estimación Bayesiana bajo normalidad | Notas Curso de Estadística (Parte I)" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 14 Estimación Bayesiana bajo normalidad | Notas Curso de Estadística (Parte I)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 14 Estimación Bayesiana bajo normalidad | Notas Curso de Estadística (Parte I)" />
+  
+  
+  
+
+<meta name="author" content="Maikol Solís" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intervalos-de-confianza.html"/>
+<link rel="next" href="estimación-insesgada.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso de Estadística</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html"><i class="fa fa-check"></i><b>2</b> Inferencia estadística</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#ejemplo"><i class="fa fa-check"></i><b>2.1</b> Ejemplo</a></li>
+<li class="chapter" data-level="2.2" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#modelo-estadístico"><i class="fa fa-check"></i><b>2.2</b> Modelo estadístico</a></li>
+<li class="chapter" data-level="2.3" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#estadístico"><i class="fa fa-check"></i><b>2.3</b> Estadístico</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><i class="fa fa-check"></i><b>3</b> Densidades previas conjugadas y estimadores de Bayes</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-previa-distribución-a-priori"><i class="fa fa-check"></i><b>3.1</b> Distribución previa (distribución a priori)</a></li>
+<li class="chapter" data-level="3.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#densidad-posterior"><i class="fa fa-check"></i><b>3.2</b> Densidad posterior</a></li>
+<li class="chapter" data-level="3.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#proceso-de-modelación-de-parámetros."><i class="fa fa-check"></i><b>3.3</b> Proceso de modelación de parámetros.</a></li>
+<li class="chapter" data-level="3.4" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-verosimilitud"><i class="fa fa-check"></i><b>3.4</b> Función de verosimilitud</a></li>
+<li class="chapter" data-level="3.5" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#familias-conjugadas"><i class="fa fa-check"></i><b>3.5</b> Familias conjugadas</a></li>
+<li class="chapter" data-level="3.6" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#densidades-previas-impropias"><i class="fa fa-check"></i><b>3.6</b> Densidades previas impropias</a></li>
+<li class="chapter" data-level="3.7" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#funciones-de-pérdida"><i class="fa fa-check"></i><b>3.7</b> Funciones de pérdida</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-pérdida-cuadrática"><i class="fa fa-check"></i><b>3.7.1</b> Función de pérdida cuadrática</a></li>
+<li class="chapter" data-level="3.7.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-pérdida-absoluta"><i class="fa fa-check"></i><b>3.7.2</b> Función de pérdida absoluta</a></li>
+<li class="chapter" data-level="3.7.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#otras-funciones-de-pérdida"><i class="fa fa-check"></i><b>3.7.3</b> Otras funciones de pérdida</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#efecto-de-muestras-grandes"><i class="fa fa-check"></i><b>3.8</b> Efecto de muestras grandes</a></li>
+<li class="chapter" data-level="3.9" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>3.9</b> Consistencia</a></li>
+<li class="chapter" data-level="3.10" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>3.10</b> Laboratorio</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-previa"><i class="fa fa-check"></i><b>3.10.1</b> Distribución previa</a></li>
+<li class="chapter" data-level="3.10.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-conjunta"><i class="fa fa-check"></i><b>3.10.2</b> Distribución conjunta</a></li>
+<li class="chapter" data-level="3.10.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-posterior"><i class="fa fa-check"></i><b>3.10.3</b> Distribución posterior</a></li>
+<li class="chapter" data-level="3.10.4" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#agregando-nuevos-datos"><i class="fa fa-check"></i><b>3.10.4</b> Agregando nuevos datos</a></li>
+<li class="chapter" data-level="3.10.5" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#familias-conjugadas-normales"><i class="fa fa-check"></i><b>3.10.5</b> Familias conjugadas normales</a></li>
+<li class="chapter" data-level="3.10.6" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#funciones-de-pérdida-1"><i class="fa fa-check"></i><b>3.10.6</b> Funciones de pérdida</a></li>
+<li class="chapter" data-level="3.10.7" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#caso-concreto"><i class="fa fa-check"></i><b>3.10.7</b> Caso concreto</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html"><i class="fa fa-check"></i><b>4</b> Estimación por máxima verosimilitud</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedades-del-mle"><i class="fa fa-check"></i><b>4.1</b> Propiedades del MLE</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedad-de-invarianza"><i class="fa fa-check"></i><b>4.1.1</b> Propiedad de invarianza</a></li>
+<li class="chapter" data-level="4.1.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#cálculo-numérico"><i class="fa fa-check"></i><b>4.2</b> Cálculo numérico</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-de-los-momentos"><i class="fa fa-check"></i><b>4.2.1</b> Método de los momentos</a></li>
+<li class="chapter" data-level="4.2.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-delta"><i class="fa fa-check"></i><b>4.2.2</b> Método Delta</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html"><i class="fa fa-check"></i><b>5</b> Estadísticos Suficientes y Criterio de Factorización</a></li>
+<li class="chapter" data-level="6" data-path="estadísticos-suficientes.html"><a href="estadísticos-suficientes.html"><i class="fa fa-check"></i><b>6</b> Estadísticos suficientes</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="estadísticos-suficientes.html"><a href="estadísticos-suficientes.html#teorema-de-factorización-de-fisher"><i class="fa fa-check"></i><b>6.1</b> Teorema de Factorización de Fisher</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estadístico-suficiente-multivariado-.html"><a href="estadístico-suficiente-multivariado-.html"><i class="fa fa-check"></i><b>7</b> Estadístico suficiente multivariado.</a></li>
+<li class="chapter" data-level="8" data-path="estadísticos-minimales.html"><a href="estadísticos-minimales.html"><i class="fa fa-check"></i><b>8</b> Estadísticos minimales</a></li>
+<li class="chapter" data-level="9" data-path="mejorando-estimadores.html"><a href="mejorando-estimadores.html"><i class="fa fa-check"></i><b>9</b> Mejorando estimadores</a></li>
+<li class="chapter" data-level="10" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html"><i class="fa fa-check"></i><b>10</b> Distribución muestral de un estadístico</a></li>
+<li class="chapter" data-level="11" data-path="distribución-muestral.html"><a href="distribución-muestral.html"><i class="fa fa-check"></i><b>11</b> Distribución muestral</a></li>
+<li class="chapter" data-level="12" data-path="distribución-chi2.html"><a href="distribución-chi2.html"><i class="fa fa-check"></i><b>12</b> Distribución <span class="math inline">\(\chi^2\)</span></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="distribución-chi2.html"><a href="distribución-chi2.html#distribución-t"><i class="fa fa-check"></i><b>12.1</b> Distribución <span class="math inline">\(t\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>13</b> Intervalos de confianza</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-para-la-media-de-una-distribución-normal"><i class="fa fa-check"></i><b>13.1</b> Intervalos de confianza para la media de una distribución normal</a></li>
+<li class="chapter" data-level="13.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-abiertos"><i class="fa fa-check"></i><b>13.2</b> Intervalos de confianza abiertos</a></li>
+<li class="chapter" data-level="13.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-en-otros-casos"><i class="fa fa-check"></i><b>13.3</b> Intervalos de confianza en otros casos</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-aproximados."><i class="fa fa-check"></i><b>13.3.1</b> Intervalos de confianza aproximados.</a></li>
+<li class="chapter" data-level="13.3.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#transformaciones-estabilizadoras-de-la-varianza"><i class="fa fa-check"></i><b>13.3.2</b> Transformaciones estabilizadoras de la varianza</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html"><i class="fa fa-check"></i><b>14</b> Estimación Bayesiana bajo normalidad</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#precisión-de-una-distribución-normal"><i class="fa fa-check"></i><b>14.1</b> Precisión de una distribución normal</a></li>
+<li class="chapter" data-level="14.2" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#distribución-marginal-de-mu"><i class="fa fa-check"></i><b>14.2</b> Distribución marginal de <span class="math inline">\(\mu\)</span></a></li>
+<li class="chapter" data-level="14.3" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#efecto-de-previas-no-informativas"><i class="fa fa-check"></i><b>14.3</b> Efecto de previas no informativas</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html"><i class="fa fa-check"></i><b>15</b> Estimación insesgada</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#estimadores-insesgados"><i class="fa fa-check"></i><b>15.1</b> Estimadores insesgados</a></li>
+<li class="chapter" data-level="15.2" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#estimador-insesgado-de-la-varianza"><i class="fa fa-check"></i><b>15.2</b> Estimador insesgado de la varianza</a></li>
+<li class="chapter" data-level="15.3" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#información-de-fisher"><i class="fa fa-check"></i><b>15.3</b> Información de Fisher</a></li>
+<li class="chapter" data-level="15.4" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#desigualdad-de-cramer-rao"><i class="fa fa-check"></i><b>15.4</b> Desigualdad de Cramer-Rao</a></li>
+<li class="chapter" data-level="15.5" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#estimadores-eficientes"><i class="fa fa-check"></i><b>15.5</b> Estimadores eficientes</a></li>
+<li class="chapter" data-level="15.6" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#comportamiento-asintótico-del-mle"><i class="fa fa-check"></i><b>15.6</b> Comportamiento asintótico del MLE</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html"><i class="fa fa-check"></i><b>16</b> Pruebas de hipótesis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#pruebas-de-hipótesis-1"><i class="fa fa-check"></i><b>16.1</b> Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="16.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#regiones-críticas-y-estadísticas-de-prueba"><i class="fa fa-check"></i><b>16.2</b> Regiones críticas y estadísticas de prueba</a></li>
+<li class="chapter" data-level="16.3" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#función-de-potencia-y-tipos-de-error"><i class="fa fa-check"></i><b>16.3</b> Función de potencia y tipos de error</a></li>
+<li class="chapter" data-level="16.4" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#valor-p"><i class="fa fa-check"></i><b>16.4</b> Valor <span class="math inline">\(p\)</span></a></li>
+<li class="chapter" data-level="16.5" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#dualidad-entre-pruebas-de-hipótesis-y-regiones-de-confianza"><i class="fa fa-check"></i><b>16.5</b> Dualidad entre pruebas de hipótesis y regiones de confianza</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#dualidad-en-pruebas-unilaterales"><i class="fa fa-check"></i><b>16.5.1</b> Dualidad en pruebas unilaterales</a></li>
+<li class="chapter" data-level="16.5.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#pruebas-de-cociente-de-verosimilitud-lrt"><i class="fa fa-check"></i><b>16.5.2</b> Pruebas de cociente de verosimilitud (LRT)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html"><i class="fa fa-check"></i><b>17</b> Pruebas con hipótesis simples</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#hipótesis-simples"><i class="fa fa-check"></i><b>17.1</b> Hipótesis simples</a></li>
+<li class="chapter" data-level="17.2" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#prueba-t"><i class="fa fa-check"></i><b>17.2</b> Prueba <span class="math inline">\(t\)</span></a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#propiedades-de-las-pruebas-t"><i class="fa fa-check"></i><b>17.2.1</b> Propiedades de las pruebas <span class="math inline">\(t\)</span></a></li>
+<li class="chapter" data-level="17.2.2" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#prueba-t-pareada"><i class="fa fa-check"></i><b>17.2.2</b> Prueba <span class="math inline">\(t\)</span> pareada</a></li>
+<li class="chapter" data-level="17.2.3" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#pruebas-t-de-dos-colas"><i class="fa fa-check"></i><b>17.2.3</b> Pruebas <span class="math inline">\(t\)</span> de dos colas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html"><i class="fa fa-check"></i><b>18</b> Prueba de comparación de medias en 2 poblaciones</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#comparación-de-medias-normales"><i class="fa fa-check"></i><b>18.1</b> Comparación de medias normales</a></li>
+<li class="chapter" data-level="18.2" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-t-de-dos-muestras"><i class="fa fa-check"></i><b>18.2</b> Prueba <span class="math inline">\(t\)</span> de dos muestras</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-de-2-colas"><i class="fa fa-check"></i><b>18.2.1</b> Prueba de 2 colas</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-f"><i class="fa fa-check"></i><b>18.3</b> Prueba <span class="math inline">\(F\)</span></a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-de-2-colas-prueba-de-homocedasticidad"><i class="fa fa-check"></i><b>18.3.1</b> Prueba de 2 colas (prueba de homocedasticidad)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html"><i class="fa fa-check"></i><b>19</b> Pruebas de hipótesis bayesianas</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#pruebas-de-hipótesis-bayesianas-1"><i class="fa fa-check"></i><b>19.1</b> Pruebas de hipótesis bayesianas</a></li>
+<li class="chapter" data-level="19.2" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-una-cola"><i class="fa fa-check"></i><b>19.2</b> Hipótesis de una cola</a></li>
+<li class="chapter" data-level="19.3" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-2-colas"><i class="fa fa-check"></i><b>19.3</b> Hipótesis de 2 colas</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notas Curso de Estadística (Parte I)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="estimación-bayesiana-bajo-normalidad" class="section level1" number="14">
+<h1><span class="header-section-number">Capítulo 14</span> Estimación Bayesiana bajo normalidad</h1>
+<div id="precisión-de-una-distribución-normal" class="section level2" number="14.1">
+<h2><span class="header-section-number">14.1</span> Precisión de una distribución normal</h2>
+<p><strong>Definición</strong>. La precisión <span class="math inline">\(\tau\)</span> de una normal se define como <span class="math inline">\(\tau = \dfrac 1{\sigma^2}\)</span>.</p>
+<p>Sean <span class="math inline">\(X_1,\dots,X_n\sim N(\mu,\sigma^2) = N(\mu,\tau)\)</span>. Su densidad corresponde a</p>
+<p><span class="math display">\[f(x|\mu,\sigma^2) = \left(\dfrac 1{2\pi\sigma^2}\right)\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] = \left(\dfrac \tau{2\pi}\right)\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).\]</span></p>
+<p>La verosimilitud es</p>
+<p><span class="math display">\[f_n(x|\mu,\tau) = \left(\dfrac\tau{2\pi}\right)^{\frac n2}\exp\bigg[-\dfrac\tau2\sum_{i=1}^2(x_i-\mu)^2
+\bigg].\]</span></p>
+<p>La previa de la densidad conjunta es <span class="math inline">\([\mu,\tau|x]\propto [\mu|\tau]\cdot[\tau]\)</span> y la posterior <span class="math inline">\([\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]\)</span>.</p>
+<p>Las previas por seleccionar son <span class="math inline">\([\mu|\tau]\sim \text{Normal}\)</span> y <span class="math inline">\([\tau]\sim\text{Gamma}\)</span>.</p>
+<p><strong>Teorema</strong>. Si <span class="math inline">\(X_1,\dots,X_n \overset{i.i.d}{\sim} N(\mu,\tau)\)</span>, <span class="math inline">\(\mu \in \mathbb R\)</span>, <span class="math inline">\(\tau&gt;0\)</span> (precisión) y <span class="math inline">\(\mu\sim N(\mu_0,\lambda_0\tau)\)</span>, <span class="math inline">\(\mu\in\mathbb R\)</span>, <span class="math inline">\(\lambda_0&gt;0\)</span>, <span class="math inline">\(\tau\sim\Gamma(\alpha_0,\beta_0)\)</span>, <span class="math inline">\(\alpha_0,\beta_0&gt;0\)</span>.</p>
+<p>Entonces
+<span class="math display">\[[\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]\]</span>
+donde <span class="math inline">\([\mu|\tau,x] \sim N(\mu_1,\lambda_1\tau)\)</span> con</p>
+<p><span class="math display">\[\lambda_1 = \lambda_0+n, \quad \mu_1 = \dfrac{\lambda_0\mu_0 + n\bar x_n}{\lambda_0+n},\]</span>
+y <span class="math inline">\([\tau] \sim \Gamma(\alpha_1,\beta_1)\)</span>,
+<span class="math display">\[\alpha_1 = \alpha_0+\dfrac n2, \quad \beta_1 = \beta_0  \dfrac 12s_n^2 + \dfrac{n\lambda_0(\bar X_n-\mu_0)^2}{2(\lambda_0+n)}.\]</span></p>
+<p><em>Prueba</em>.</p>
+<ul>
+<li>Previa:</li>
+</ul>
+<p><span class="math display">\[\begin{align*}
+[\mu,\tau] &amp; \propto [\mu|\tau]\cdot[\tau]\\
+&amp; = \tau^{\frac 12}\exp\bigg[-\dfrac{\lambda_0\tau}2(\mu-\mu_0)\cdot \tau^{\alpha_0-1}e^{-\beta_0\tau}\bigg]\\
+&amp; = \tau^{\alpha_0-\frac 12}\exp\bigg[-\dfrac{\lambda_0\tau}{2}(\mu-\mu_0)^2 - \beta_0\tau\bigg]
+\end{align*}\]</span></p>
+<ul>
+<li>Por Bayes:</li>
+</ul>
+<p><span class="math display">\[\begin{align*}
+[\mu,\tau|x] &amp; \propto [\mu,\tau]\cdot[x|\mu,\tau]\\
+&amp; \propto  [\mu,\tau]\cdot\tau^{\frac 12} \exp\bigg[-\dfrac\tau 2\sum(x_i-\mu)^2\bigg]\\
+&amp; \propto \tau^{\alpha_0+\frac{n+1}2-1}\exp\bigg[-\dfrac\tau 2(\lambda_0[\mu-\mu_0]^2 + \sum(x_i-\mu)^2-\beta_0\tau\bigg]
+\end{align*}\]</span></p>
+<p>Además
+<span class="math display">\[\sum_{i=1}^n (x_i-\mu)^2 = \sum_{i=1}^n (x_i-\bar x_n + \bar x_n -\mu)^2 = s_n^2 + n(\bar x_n-\mu)^2.\]</span></p>
+<p>Completando cuadrados (queda como ejercicio) se obtiene</p>
+<p><span class="math display">\[n(\bar x_n -\mu)^2 + \lambda_0(\mu-\mu_0)^2 = (\lambda_0+n)(\mu-\mu_1)^2 + \dfrac{n\lambda_0(\bar x_n-\mu_0)}{\lambda_0+n}.\]</span></p>
+<p>Entonces</p>
+<p><span class="math display">\[\sum(x_i-\mu)^2 +\lambda_0(\mu-\mu_0)^2 = (\underbrace{\lambda_0+n}_{\lambda_1})(\mu-\mu_1) + \underbrace{s_n^2+\dfrac{n\lambda_0(\bar x_n-\mu_0)}{\lambda_0+n}}_{\beta_1}\]</span></p>
+<p>Entonces</p>
+<p><span class="math display">\[[\mu,\tau|x] \propto \underbrace{\tau^{\overbrace{\alpha_0+\frac n2 -1}^{\alpha_1}}\exp[-\beta_1\tau]}_{[\tau|x]} \cdot \underbrace{\tau^{\frac 12} \exp\bigg[-\dfrac{\lambda_1\tau}{2}(\mu-\mu_1)^2\bigg]}_{[\mu|\tau,x]}\]</span></p>
+<p>Por lo que <span class="math inline">\([\tau|x]\sim \Gamma(\alpha_1,\beta_1)\)</span> y <span class="math inline">\([\mu|\tau,x] \sim N(\mu_1,\lambda_1\tau)\)</span>.</p>
+<p><strong>Definición</strong> Sean <span class="math inline">\(\mu,\tau\)</span> dos variables aleatorias. Si <span class="math inline">\(\mu|\tau \sim N(\mu_0,\lambda_0\tau)\)</span>, <span class="math inline">\(\tau\sim\Gamma(\alpha_0,\beta_0)\)</span>; decimos que
+<span class="math display">\[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_0,\lambda_0,\alpha_0,\beta_0).\]</span></p>
+<ul>
+<li><p><em>Conclusión</em>: la Normal-Gamma conjuga con una verosimilitud normal.</p></li>
+<li><p><em>Limitación</em>: <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\tau\)</span> son independientes. Al combinar con la verosimilitud, cualquier tipo de independencia a nivel de previas se pierde.</p></li>
+</ul>
+<p><strong>Ejemplo</strong>. Concentraciones de ácido en queso <span class="math inline">\(X_1,\dots, X_n\sim N(\mu,\tau)\)</span>,
+<span class="math display">\[\mu,\tau \sim \text{Normal-Gamma}(\mu_0 = 1, \lambda_0 = 1,\alpha_0 = 1/2, \beta_0 = 1/2)\]</span></p>
+<p>Los datos de este experimento son <span class="math inline">\(n = 10\)</span>, <span class="math inline">\(\bar x_n = 1.379\)</span>, <span class="math inline">\(s_n^2 = 0.9663\)</span>. Aplicando las fórmulas del teorema anterior:</p>
+<ul>
+<li><p><span class="math inline">\(\mu_1 = \dfrac{1\cdot 1 + 10\cdot 1.379}{1+10} = 1.345\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda_1 = \lambda_0+n = 1 +10 = 11\)</span>.</p></li>
+<li><p><span class="math inline">\(\alpha_1 = \alpha_0 + \dfrac n2 = \dfrac 12 +\dfrac{10}2 = 5.5\)</span>.</p></li>
+<li><p><span class="math inline">\(\beta_1 = \dfrac 12 + \dfrac 12\cdot 0.9663 + \dfrac{10\cdot1\cdot (1.379-1)^2}{2(1+10)} = 1.0484.\)</span></p></li>
+</ul>
+<p>La posterior es <span class="math display">\[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_1,\lambda_1,\alpha_1,\beta_1).\]</span></p>
+<p>Calculamos</p>
+<p><span class="math display">\[\begin{align*}
+\mathbb P[\sigma&gt;0.3|x] &amp; = \mathbb P\bigg[\sqrt{\dfrac 1\tau} &gt;0.3\bigg|x\bigg]\\
+&amp; = \mathbb P\bigg[\dfrac 1\tau &gt;0.3^2\bigg|x\bigg]\\ 
+&amp; = \mathbb P\bigg[\tau &gt;\dfrac 1{0.3^2}\bigg|x\bigg] = 0.984
+\end{align*}\]</span></p>
+<p>dado que <span class="math inline">\([\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(5.5,1.0484)\)</span>.</p>
+</div>
+<div id="distribución-marginal-de-mu" class="section level2" number="14.2">
+<h2><span class="header-section-number">14.2</span> Distribución marginal de <span class="math inline">\(\mu\)</span></h2>
+<p><strong>Teorema</strong>. Suponga que <span class="math inline">\([\mu,\tau]\sim \text{Normal-Gamma}(\mu_0,\lambda_0,\alpha_0,\beta_0)\)</span>. Entonces</p>
+<p><span class="math display">\[\left(\dfrac{\lambda_0\alpha_0}{\beta}\right)^{\frac 12}(\mu-\mu_0)\sim t_{2\alpha_0}.\]</span></p>
+<p><em>Prueba</em>. Vea que <span class="math inline">\(\mu|\tau \sim N(\mu_0,\lambda_0\tau)\)</span>. Se despeja la desviación estándar,
+<span class="math display">\[\lambda_0\tau = \dfrac 1{\sigma^2} \implies \sigma = (\lambda_0\tau)^{-\frac 12}.\]</span></p>
+<p>Entonces
+<span class="math display">\[Z = \dfrac{\mu-\mu_0}{\sqrt{\lambda_0\tau}}\Bigg|\tau \sim N(0,1).\]</span></p>
+<p>La densidad conjunta de <span class="math inline">\((Z,\tau)\)</span> es
+<span class="math display">\[f(z,\tau) = \pi_2(\tau)\cdot\pi_1(z|\tau)\]</span></p>
+<p>Si <span class="math inline">\(g_1(\mu|\tau)\)</span> es la densidad de <span class="math inline">\(\mu|\tau\)</span>, por teorema de cambio de variable</p>
+<p><span class="math display">\[\begin{align*}
+f(z,\tau) &amp; = \pi_2(\tau)\cdot \underbrace{g_1((\lambda_0\tau)^{-\frac 12}z+\mu_0|\tau)(\lambda_0\tau)^{-\frac 12}}_{\phi(z)}
+= \pi_2\phi(z)
+ \end{align*}\]</span></p>
+<p>Entonces <span class="math inline">\(Z\)</span> y <span class="math inline">\(\tau\)</span> son independientes y <span class="math inline">\(Z\sim N(0,1)\)</span>.</p>
+<p>Sea <span class="math inline">\(Y = 2\beta_0\tau\)</span> y <span class="math inline">\(\tau\sim \Gamma(\alpha_0,\beta_0)\)</span>, entonces</p>
+<p><span class="math display">\[Y\sim \Gamma\left(\dfrac{2\alpha_0}{2},\dfrac12 \implies Y\sim \chi^2_{2\alpha_0}\right)\]</span>
+y <span class="math inline">\(Y\)</span> es independiente de <span class="math inline">\(Z\)</span>.</p>
+<p>Por lo tanto,
+<span class="math display">\[U = \dfrac Z{\left( \dfrac Y{2\alpha_0}\right)^{\frac 12}}\sim t_{2\alpha_0}.\]</span>
+Observe que
+<span class="math display">\[U = \dfrac{(\lambda_0\tau)^{\frac 12}(\mu-\mu_0)}{\left( \dfrac {2\beta_0\tau}{2\alpha_0}\right)^{\frac 12}} =\left(\dfrac{\lambda_0\alpha_0}{\beta_0}\right)^{\frac 12}(\mu-\mu_0). \]</span></p>
+<p><strong>Consecuencia</strong>:</p>
+<p><span class="math display">\[\mu =\left(\dfrac{\beta_0}{\lambda_0\alpha_0}\right)^{\frac 12} U+\mu_0,\quad U\sim t_{2\alpha_0}.\]</span></p>
+<p><strong>Propiedades</strong>:</p>
+<ul>
+<li><p><span class="math inline">\(\mathbb E(\mu) = \mu_0 + 0 = \mu_0\)</span>.</p></li>
+<li><p><span class="math inline">\(\text{Var}(\mu) = \dfrac{\beta_0}{\alpha_0\lambda_0}\cdot \dfrac{\alpha_0}{\alpha_0-1} = \dfrac{\beta_0}{\lambda_0(\alpha_0-1)}\)</span>.</p></li>
+</ul>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots,X_{18}\)</span> días de hospitalización en 18 centros de salud.</p>
+<p><span class="math display">\[[\mu,\tau]\sim \text{Normal-Gamma}(\mu_0=200,\lambda_0=2,\alpha_0=2,\beta_0=6300).\]</span></p>
+<p>Encuentre un intervalo que contenga <span class="math inline">\(\mu_1\)</span> centrado en <span class="math inline">\(\mu_0\)</span> tal que la probabilidad que eso pase sea <span class="math inline">\(0.95\)</span>.</p>
+<p><span class="math display">\[\left(\dfrac{\alpha_0\lambda_0}{\beta_0}\right)^{\frac 12}(\mu-\mu_0) = 0.025(\mu - 200)\sim t_{2\cdot2} = t_4.\]</span>
+Entonces
+<span class="math display">\[0.95 = \mathbb P[l&lt;0.025(\mu-200)&lt;u] = 2F_{t_4}(u)-1 \implies u = t_{4,0.975} = 2.776.\]</span></p>
+<p>Así,
+<span class="math display">\[\mathbb P[-2.776&lt;0.025(\mu-200)&lt;2.776]=0.95\]</span>
+y el intervalo es <span class="math inline">\([89,311]\)</span>.</p>
+<p>Con datos: <span class="math inline">\(\bar X_n = 182.17\)</span> y <span class="math inline">\(s_n^2 = 88678.5\)</span>. Los hiperparámetros posteriores son <span class="math inline">\(\mu_1 = 183.95\)</span>, <span class="math inline">\(\lambda_1 = 20\)</span>, <span class="math inline">\(\alpha_1 = 11\)</span>, <span class="math inline">\(\beta_1 = 50925.37\)</span>.</p>
+<p>Resolvemos el mismo problema:</p>
+<p><span class="math display">\[\left(\dfrac{\alpha_1\lambda_1}{\beta_1}\right)^{\frac 12}(\mu-\mu_0) = 0.0657(\mu - 183.95)\sim t_{2\alpha_1=22}.\]</span></p>
+<p>Se busca <span class="math inline">\(u\)</span>:
+<span class="math display">\[F_{t_{22}}(u|x) = \dfrac{0.95+1}{2} \implies u = t_{22,0.975}=2.074\]</span>
+y
+<span class="math display">\[0.95 = \mathbb P[-2.074&lt;0.0657(\mu-183.95)&lt;2.074|x].\]</span>
+El <strong>intervalo de credibilidad o predicción</strong> es <span class="math inline">\([152.38,215.52]\)</span>.</p>
+<p>Si <span class="math inline">\(X_1,\dots,X_{18}\sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\mu,\sigma^2\)</span> fijos y desconocidos.
+<span class="math display">\[\bar X_n+t_{17,0.975}\dfrac{\sigma&#39;}{\sqrt {18}} \text{ al }95\%.\]</span>
+El intervalo de confianza es <span class="math inline">\([146.25,218.09]\)</span>.</p>
+</div>
+<div id="efecto-de-previas-no-informativas" class="section level2" number="14.3">
+<h2><span class="header-section-number">14.3</span> Efecto de previas no informativas</h2>
+<p>Considere una <strong>previa no informativa</strong>: <span class="math inline">\([\mu,\tau] \propto [\mu]\cdot[\tau]\)</span> (supuesto de independencia), con <span class="math inline">\([\mu] \propto 1\)</span>, <span class="math inline">\(\tau = \dfrac1{\sigma^2}\)</span> y <span class="math inline">\([\sigma] \propto \dfrac{1}{\sigma}\)</span>.</p>
+<p>Dado que <span class="math inline">\(\sigma = (\tau)^{-\frac{1}2}\)</span>, usando el teorema de cambio de variables,
+<span class="math display">\[\dfrac{d\theta}{d\tau} = -\dfrac12\tau^{-\frac32} \implies \bigg|\dfrac12\tau^{-\frac32}\bigg|f_\sigma\left(\dfrac 1{\tau^{\frac12}}\right) = \dfrac 12 \tau^{-1}.\]</span></p>
+<p>Entonces <span class="math inline">\([\mu,\tau]\propto\tau^{-1}\)</span>.</p>
+<p><strong>Ejercicio</strong>. Verifique que <span class="math inline">\([\mu,\tau]\sim \text{Normal-Gamma}(\mu_0=0,\lambda_0=0,\alpha_0=-1/2,\beta_0=0)\)</span>.</p>
+<p>Usando Bayes, <span class="math inline">\(X_1,\dots,X_n \sim N(\mu, \tau)\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+ \pi(\mu,\tau|x) \propto [\mu,\tau]\cdot[x|\mu, \tau] \\ &amp; = \tau^{-1} (2\pi\sigma^2)^{-n/2}\exp\bigg[-\dfrac 1{2\sigma^2}\sum (X_i-\mu)^2\bigg]\\
+ &amp; \propto \tau^{-1} \tau^{n/2} \exp\bigg[-\dfrac \tau 2 s_n^2 - \dfrac{n\tau}{2}(\mu-\bar X_n)^2\bigg]\\
+ &amp; = \tau^{1/2} \exp\bigg[-\dfrac{n\tau}2 (\mu-\bar X_n)^2\bigg]\cdot \tau^{\frac{n-1}{2}-1}\exp\bigg[-\dfrac{s_n^2}{2}\tau \bigg]
+ \end{align*}\]</span></p>
+<p>Entonces</p>
+<p><span class="math display">\[\mu|\tau \sim N(\bar X_n,n\tau)\]</span>
+<span class="math display">\[\tau|x\sim \Gamma\left(\dfrac{n-1}2, \dfrac{s_n^2}{2}\right)\]</span>.</p>
+<p>Por lo tanto,</p>
+<p><span class="math display">\[\mu,\tau|x \sim \text{Normal-Gamma}(\mu_1 = \bar X_n,\lambda_1=n,\alpha_1=(n-1)/2,\beta_0=s_n^2/2).\]</span></p>
+<p><strong>Ejemplo</strong>. Tomando <span class="math inline">\(\bar X_n = 5.134\)</span>, <span class="math inline">\(s_n^2 = 63.96\)</span> con una previa no informativa para <span class="math inline">\(\mu,\tau\)</span>. Entonces la posterior es Normal-Gamma con hiperparámetros: <span class="math inline">\(\mu_1 = 5.134\)</span>, <span class="math inline">\(\lambda_1 = 26\)</span>, <span class="math inline">\(\alpha = \dfrac{25}2\)</span>, <span class="math inline">\(\beta_1 = 31.98\)</span>. Queremos hacer inferencia sobre <span class="math inline">\(\mu\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+ 0.95 &amp; = \mathbb P[-t_{25,0.975}&lt;U&lt;t_{25,0.975}]\\
+ &amp; = \mathbb P\bigg[-t_{25,0.975}&lt;\left(\dfrac{26\cdot 12.5}{31.98}\right)^{\frac 12}(\mu-5.134) &lt;t_{25,0.975}\bigg]
+ \end{align*}\]</span></p>
+<p>El intervalo es <span class="math inline">\([4.488,5.78]\)</span>.</p>
+<p>Calculemos <span class="math inline">\(\mathbb P[\mu&gt;4|x]\)</span>. Sea <span class="math inline">\(w =\left(\dfrac{\alpha_1\lambda_1}{\beta_1}\right)^{\frac 12} = 3.188\)</span>.</p>
+<p><span class="math display">\[\mathbb P[\mu&gt;4|x] = P[w(\mu-\bar X_n)&gt;w(4-\bar X_n)]=1-T_{t_{25}}(-3.615) = 0.9993.\]</span></p>
+<p>Generalizando:</p>
+<p><span class="math display">\[w = \left(\dfrac{n(n-1)/2}{s_n^2/2}\right)^{\frac 12} = \left(\dfrac{n(n-1)}{s_n^2}\right)^{\frac 12} = \left(\dfrac{n}{(\sigma&#39;)^2}\right)^{\frac 12}.\]</span></p>
+<p>Entonces</p>
+<p><span class="math display">\[\begin{align*}
+\gamma &amp; = \mathbb P\bigg[-t_{n-1,\frac{1+\gamma}{2}} &lt; \left(\dfrac{n}{(\sigma&#39;)^2}\right)^{\frac 12}(\mu-\bar X_n)&lt;t_{n-1,\frac{1+\gamma}{2}}\bigg] \\
+&amp; =  \mathbb P\bigg[\bar X_n-t_{n-1,\frac{1+\gamma}{2}}  \dfrac{\sigma&#39;}{\sqrt n} &lt; \mu &lt; \bar X_n+t_{n-1,\frac{1+\gamma}{2}}  \dfrac{\sigma&#39;}{\sqrt n}  \bigg].
+\end{align*}\]</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intervalos-de-confianza.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estimación-insesgada.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/07-normalidad-bayes.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/07-normalidad-bayes.Rmd",
+"text": null
+},
+"download": ["Notas-Curso-Estadistica.pdf"],
+"toc": {
+"collapse": "subsection"
+},
+"toc_depth": 5
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

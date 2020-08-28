@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 15 Estimación insesgada | Notas Curso de Estadística (Parte I)</title>
+  <meta name="description" content="Capítulo 15 Estimación insesgada | Notas Curso de Estadística (Parte I)" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 15 Estimación insesgada | Notas Curso de Estadística (Parte I)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 15 Estimación insesgada | Notas Curso de Estadística (Parte I)" />
+  
+  
+  
+
+<meta name="author" content="Maikol Solís" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estimación-bayesiana-bajo-normalidad.html"/>
+<link rel="next" href="pruebas-de-hipótesis.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso de Estadística</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html"><i class="fa fa-check"></i><b>2</b> Inferencia estadística</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#ejemplo"><i class="fa fa-check"></i><b>2.1</b> Ejemplo</a></li>
+<li class="chapter" data-level="2.2" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#modelo-estadístico"><i class="fa fa-check"></i><b>2.2</b> Modelo estadístico</a></li>
+<li class="chapter" data-level="2.3" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#estadístico"><i class="fa fa-check"></i><b>2.3</b> Estadístico</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><i class="fa fa-check"></i><b>3</b> Densidades previas conjugadas y estimadores de Bayes</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-previa-distribución-a-priori"><i class="fa fa-check"></i><b>3.1</b> Distribución previa (distribución a priori)</a></li>
+<li class="chapter" data-level="3.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#densidad-posterior"><i class="fa fa-check"></i><b>3.2</b> Densidad posterior</a></li>
+<li class="chapter" data-level="3.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#proceso-de-modelación-de-parámetros."><i class="fa fa-check"></i><b>3.3</b> Proceso de modelación de parámetros.</a></li>
+<li class="chapter" data-level="3.4" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-verosimilitud"><i class="fa fa-check"></i><b>3.4</b> Función de verosimilitud</a></li>
+<li class="chapter" data-level="3.5" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#familias-conjugadas"><i class="fa fa-check"></i><b>3.5</b> Familias conjugadas</a></li>
+<li class="chapter" data-level="3.6" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#densidades-previas-impropias"><i class="fa fa-check"></i><b>3.6</b> Densidades previas impropias</a></li>
+<li class="chapter" data-level="3.7" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#funciones-de-pérdida"><i class="fa fa-check"></i><b>3.7</b> Funciones de pérdida</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-pérdida-cuadrática"><i class="fa fa-check"></i><b>3.7.1</b> Función de pérdida cuadrática</a></li>
+<li class="chapter" data-level="3.7.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-pérdida-absoluta"><i class="fa fa-check"></i><b>3.7.2</b> Función de pérdida absoluta</a></li>
+<li class="chapter" data-level="3.7.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#otras-funciones-de-pérdida"><i class="fa fa-check"></i><b>3.7.3</b> Otras funciones de pérdida</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#efecto-de-muestras-grandes"><i class="fa fa-check"></i><b>3.8</b> Efecto de muestras grandes</a></li>
+<li class="chapter" data-level="3.9" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>3.9</b> Consistencia</a></li>
+<li class="chapter" data-level="3.10" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>3.10</b> Laboratorio</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-previa"><i class="fa fa-check"></i><b>3.10.1</b> Distribución previa</a></li>
+<li class="chapter" data-level="3.10.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-conjunta"><i class="fa fa-check"></i><b>3.10.2</b> Distribución conjunta</a></li>
+<li class="chapter" data-level="3.10.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-posterior"><i class="fa fa-check"></i><b>3.10.3</b> Distribución posterior</a></li>
+<li class="chapter" data-level="3.10.4" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#agregando-nuevos-datos"><i class="fa fa-check"></i><b>3.10.4</b> Agregando nuevos datos</a></li>
+<li class="chapter" data-level="3.10.5" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#familias-conjugadas-normales"><i class="fa fa-check"></i><b>3.10.5</b> Familias conjugadas normales</a></li>
+<li class="chapter" data-level="3.10.6" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#funciones-de-pérdida-1"><i class="fa fa-check"></i><b>3.10.6</b> Funciones de pérdida</a></li>
+<li class="chapter" data-level="3.10.7" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#caso-concreto"><i class="fa fa-check"></i><b>3.10.7</b> Caso concreto</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html"><i class="fa fa-check"></i><b>4</b> Estimación por máxima verosimilitud</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedades-del-mle"><i class="fa fa-check"></i><b>4.1</b> Propiedades del MLE</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedad-de-invarianza"><i class="fa fa-check"></i><b>4.1.1</b> Propiedad de invarianza</a></li>
+<li class="chapter" data-level="4.1.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#cálculo-numérico"><i class="fa fa-check"></i><b>4.2</b> Cálculo numérico</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-de-los-momentos"><i class="fa fa-check"></i><b>4.2.1</b> Método de los momentos</a></li>
+<li class="chapter" data-level="4.2.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-delta"><i class="fa fa-check"></i><b>4.2.2</b> Método Delta</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html"><i class="fa fa-check"></i><b>5</b> Estadísticos Suficientes y Criterio de Factorización</a></li>
+<li class="chapter" data-level="6" data-path="estadísticos-suficientes.html"><a href="estadísticos-suficientes.html"><i class="fa fa-check"></i><b>6</b> Estadísticos suficientes</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="estadísticos-suficientes.html"><a href="estadísticos-suficientes.html#teorema-de-factorización-de-fisher"><i class="fa fa-check"></i><b>6.1</b> Teorema de Factorización de Fisher</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estadístico-suficiente-multivariado-.html"><a href="estadístico-suficiente-multivariado-.html"><i class="fa fa-check"></i><b>7</b> Estadístico suficiente multivariado.</a></li>
+<li class="chapter" data-level="8" data-path="estadísticos-minimales.html"><a href="estadísticos-minimales.html"><i class="fa fa-check"></i><b>8</b> Estadísticos minimales</a></li>
+<li class="chapter" data-level="9" data-path="mejorando-estimadores.html"><a href="mejorando-estimadores.html"><i class="fa fa-check"></i><b>9</b> Mejorando estimadores</a></li>
+<li class="chapter" data-level="10" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html"><i class="fa fa-check"></i><b>10</b> Distribución muestral de un estadístico</a></li>
+<li class="chapter" data-level="11" data-path="distribución-muestral.html"><a href="distribución-muestral.html"><i class="fa fa-check"></i><b>11</b> Distribución muestral</a></li>
+<li class="chapter" data-level="12" data-path="distribución-chi2.html"><a href="distribución-chi2.html"><i class="fa fa-check"></i><b>12</b> Distribución <span class="math inline">\(\chi^2\)</span></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="distribución-chi2.html"><a href="distribución-chi2.html#distribución-t"><i class="fa fa-check"></i><b>12.1</b> Distribución <span class="math inline">\(t\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>13</b> Intervalos de confianza</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-para-la-media-de-una-distribución-normal"><i class="fa fa-check"></i><b>13.1</b> Intervalos de confianza para la media de una distribución normal</a></li>
+<li class="chapter" data-level="13.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-abiertos"><i class="fa fa-check"></i><b>13.2</b> Intervalos de confianza abiertos</a></li>
+<li class="chapter" data-level="13.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-en-otros-casos"><i class="fa fa-check"></i><b>13.3</b> Intervalos de confianza en otros casos</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-aproximados."><i class="fa fa-check"></i><b>13.3.1</b> Intervalos de confianza aproximados.</a></li>
+<li class="chapter" data-level="13.3.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#transformaciones-estabilizadoras-de-la-varianza"><i class="fa fa-check"></i><b>13.3.2</b> Transformaciones estabilizadoras de la varianza</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html"><i class="fa fa-check"></i><b>14</b> Estimación Bayesiana bajo normalidad</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#precisión-de-una-distribución-normal"><i class="fa fa-check"></i><b>14.1</b> Precisión de una distribución normal</a></li>
+<li class="chapter" data-level="14.2" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#distribución-marginal-de-mu"><i class="fa fa-check"></i><b>14.2</b> Distribución marginal de <span class="math inline">\(\mu\)</span></a></li>
+<li class="chapter" data-level="14.3" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#efecto-de-previas-no-informativas"><i class="fa fa-check"></i><b>14.3</b> Efecto de previas no informativas</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html"><i class="fa fa-check"></i><b>15</b> Estimación insesgada</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#estimadores-insesgados"><i class="fa fa-check"></i><b>15.1</b> Estimadores insesgados</a></li>
+<li class="chapter" data-level="15.2" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#estimador-insesgado-de-la-varianza"><i class="fa fa-check"></i><b>15.2</b> Estimador insesgado de la varianza</a></li>
+<li class="chapter" data-level="15.3" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#información-de-fisher"><i class="fa fa-check"></i><b>15.3</b> Información de Fisher</a></li>
+<li class="chapter" data-level="15.4" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#desigualdad-de-cramer-rao"><i class="fa fa-check"></i><b>15.4</b> Desigualdad de Cramer-Rao</a></li>
+<li class="chapter" data-level="15.5" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#estimadores-eficientes"><i class="fa fa-check"></i><b>15.5</b> Estimadores eficientes</a></li>
+<li class="chapter" data-level="15.6" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#comportamiento-asintótico-del-mle"><i class="fa fa-check"></i><b>15.6</b> Comportamiento asintótico del MLE</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html"><i class="fa fa-check"></i><b>16</b> Pruebas de hipótesis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#pruebas-de-hipótesis-1"><i class="fa fa-check"></i><b>16.1</b> Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="16.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#regiones-críticas-y-estadísticas-de-prueba"><i class="fa fa-check"></i><b>16.2</b> Regiones críticas y estadísticas de prueba</a></li>
+<li class="chapter" data-level="16.3" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#función-de-potencia-y-tipos-de-error"><i class="fa fa-check"></i><b>16.3</b> Función de potencia y tipos de error</a></li>
+<li class="chapter" data-level="16.4" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#valor-p"><i class="fa fa-check"></i><b>16.4</b> Valor <span class="math inline">\(p\)</span></a></li>
+<li class="chapter" data-level="16.5" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#dualidad-entre-pruebas-de-hipótesis-y-regiones-de-confianza"><i class="fa fa-check"></i><b>16.5</b> Dualidad entre pruebas de hipótesis y regiones de confianza</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#dualidad-en-pruebas-unilaterales"><i class="fa fa-check"></i><b>16.5.1</b> Dualidad en pruebas unilaterales</a></li>
+<li class="chapter" data-level="16.5.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#pruebas-de-cociente-de-verosimilitud-lrt"><i class="fa fa-check"></i><b>16.5.2</b> Pruebas de cociente de verosimilitud (LRT)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html"><i class="fa fa-check"></i><b>17</b> Pruebas con hipótesis simples</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#hipótesis-simples"><i class="fa fa-check"></i><b>17.1</b> Hipótesis simples</a></li>
+<li class="chapter" data-level="17.2" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#prueba-t"><i class="fa fa-check"></i><b>17.2</b> Prueba <span class="math inline">\(t\)</span></a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#propiedades-de-las-pruebas-t"><i class="fa fa-check"></i><b>17.2.1</b> Propiedades de las pruebas <span class="math inline">\(t\)</span></a></li>
+<li class="chapter" data-level="17.2.2" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#prueba-t-pareada"><i class="fa fa-check"></i><b>17.2.2</b> Prueba <span class="math inline">\(t\)</span> pareada</a></li>
+<li class="chapter" data-level="17.2.3" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#pruebas-t-de-dos-colas"><i class="fa fa-check"></i><b>17.2.3</b> Pruebas <span class="math inline">\(t\)</span> de dos colas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html"><i class="fa fa-check"></i><b>18</b> Prueba de comparación de medias en 2 poblaciones</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#comparación-de-medias-normales"><i class="fa fa-check"></i><b>18.1</b> Comparación de medias normales</a></li>
+<li class="chapter" data-level="18.2" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-t-de-dos-muestras"><i class="fa fa-check"></i><b>18.2</b> Prueba <span class="math inline">\(t\)</span> de dos muestras</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-de-2-colas"><i class="fa fa-check"></i><b>18.2.1</b> Prueba de 2 colas</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-f"><i class="fa fa-check"></i><b>18.3</b> Prueba <span class="math inline">\(F\)</span></a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-de-2-colas-prueba-de-homocedasticidad"><i class="fa fa-check"></i><b>18.3.1</b> Prueba de 2 colas (prueba de homocedasticidad)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html"><i class="fa fa-check"></i><b>19</b> Pruebas de hipótesis bayesianas</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#pruebas-de-hipótesis-bayesianas-1"><i class="fa fa-check"></i><b>19.1</b> Pruebas de hipótesis bayesianas</a></li>
+<li class="chapter" data-level="19.2" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-una-cola"><i class="fa fa-check"></i><b>19.2</b> Hipótesis de una cola</a></li>
+<li class="chapter" data-level="19.3" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-2-colas"><i class="fa fa-check"></i><b>19.3</b> Hipótesis de 2 colas</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notas Curso de Estadística (Parte I)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="estimación-insesgada" class="section level1" number="15">
+<h1><span class="header-section-number">Capítulo 15</span> Estimación insesgada</h1>
+<div id="estimadores-insesgados" class="section level2" number="15.1">
+<h2><span class="header-section-number">15.1</span> Estimadores insesgados</h2>
+<p><strong>Definición</strong>. Un estimador <span class="math inline">\(\delta(x)\)</span> es un <strong>estimador insesgado</strong> de <span class="math inline">\(g(\theta)\)</span> si <span class="math inline">\(\mathbb E_{\theta}[\delta(x)] = g(\theta)\)</span>, <span class="math inline">\(\forall \theta\)</span>. A <span class="math inline">\(\mathbb E_{\theta}[\delta(x)] - g(\theta)\)</span> se le denomina <strong>sesgo</strong>.</p>
+<p><strong>Ejemplo</strong>. Si <span class="math inline">\(X_1,\dots, X_n \overset{i.i.d}{\sim} F_\theta\)</span>, <span class="math inline">\(\mu = \mathbb E[X_1]\)</span>, entonces
+<span class="math display">\[\mathbb E[\bar X_n] = \dfrac 1n \sum_{i=1}^n\mathbb E(X_i) = \mu\]</span>
+<span class="math inline">\(\bar X_n\)</span> es estimador insesgado de <span class="math inline">\(\mu\)</span>.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,X_2,X_3 \overset{i.i.d}{\sim} \text{Exp}(\theta)\)</span>. El MLE de <span class="math inline">\(\theta\)</span> es
+<span class="math display">\[\hat\theta = \dfrac 3T = \dfrac 3{\sum_{i=1}^{3}X_i}\]</span>
+¿Será <span class="math inline">\(\hat\theta\)</span> un estimador insesgado?
+<span class="math display">\[\mathbb E[\hat\theta] = \mathbb E\bigg[\dfrac 3T\bigg]= 3\mathbb E\bigg[\dfrac 1T\bigg], \quad T\sim \Gamma(3,\theta)\]</span>
+Como
+<span class="math inline">\(\dfrac 1T \sim \text{Gamma Inversa}\)</span>, se tiene que
+<span class="math display">\[\mathbb E\bigg[\dfrac 1T\bigg] = \dfrac{\theta}2 \implies \mathbb E[\hat \theta] =\dfrac{3\theta}2 \neq \theta\]</span>
+Por lo que <span class="math inline">\(\hat \theta\)</span> es un estimador sesgado, con sesgo
+<span class="math display">\[\text{sesgo}(\hat\theta) = \dfrac{3\theta}{2} -\theta = \dfrac \theta 2.\]</span></p>
+<p>Si <span class="math inline">\(U = \dfrac {2\hat\theta}{3} = \dfrac 23 \cdot \dfrac{3}{T} = \dfrac 2T\)</span>,
+<span class="math display">\[\mathbb E[U] = \dfrac 23 \mathbb E(\hat\theta) =\dfrac 23 \cdot \dfrac 32 \theta.\]</span>
+Entonces <span class="math inline">\(U\)</span> es un estimador insesgado.</p>
+<p>Necesitamos encontrar estimadores en donde <span class="math inline">\(\text{Var}(\delta(x))\to 0\)</span> insesgados. ¿Cómo controlar sesgo y varianza?</p>
+<p><span class="math display">\[\begin{align*}
+\text{sesgo}^2(\delta(x))+\text{Var}(\delta(x)) &amp; = (\mathbb E_\theta[\delta(x)]-\theta)^2 + \mathbb E[[\delta(x)-\mathbb E[\delta(x)]]^2]\\
+	&amp; =\mathbb E[ \underbrace{(\mathbb E_\theta[\delta(x)]-\theta)^2}_{A^2} + \underbrace{[\delta(x)-\mathbb E[\delta(x)]]^2}_{B^2}]\\
+	&amp; = \mathbb E[A^2+B^2 - 2(\underset{=0}{\mathbb E[\delta(x)]-\theta)(\delta(x)-\mathbb E[\delta(x)]})\\
+	&amp; =  \mathbb E[(\mathbb E[\delta(x)]-\theta - \mathbb E[\delta(x)] + \delta(x))^2]\\
+	&amp; = \mathbb E[(\delta(x)-\theta)^2] = MSE(\delta(x))
+\end{align*}\]</span></p>
+<p><strong>Corolario</strong>. Si <span class="math inline">\(\delta\)</span> tiene varianza finita, entonces</p>
+<p><span class="math display">\[MSE_{\theta}(\delta(x)) =\text{sesgo}^2(\delta(x)) + \text{Var}(\delta(x)).\]</span></p>
+<p><strong>Ejemplo</strong>. Comparar <span class="math inline">\(\hat\theta\)</span> y <span class="math inline">\(\delta(x) =\dfrac 2T\)</span> en términos del MSE.</p>
+<p>Dado que <span class="math inline">\(\text{Var}\left(\dfrac 1T\right) = \dfrac{\theta^2}4\)</span>, se tiene</p>
+<ul>
+<li><p><span class="math inline">\(MSE(\delta(x)) = \text{Var}\left(\dfrac 2T\right) = 4\dfrac{\theta^2}4 = \theta^2\)</span>.</p></li>
+<li><p><span class="math inline">\(MSE(\hat\theta) = (\text{sesgo}(\hat\theta))^2+\text{Var}\left(\dfrac 3T\right) = \dfrac{\theta^2}{4}+\dfrac{9\theta^2}{4} = \dfrac{5\theta}{2}\)</span>.</p></li>
+</ul>
+<p><span class="math inline">\(\delta(x)\)</span> es mejor estimador en términos de MSE que el <span class="math inline">\(\hat\theta\)</span>.</p>
+</div>
+<div id="estimador-insesgado-de-la-varianza" class="section level2" number="15.2">
+<h2><span class="header-section-number">15.2</span> Estimador insesgado de la varianza</h2>
+<p><strong>Teorema</strong>. Si <span class="math inline">\(X_1,\dots, X_n \sim F_{\theta}\)</span> con varianza finita y <span class="math inline">\(g(\theta) = \text{Var}(X_1)\)</span> entonces
+<span class="math display">\[\hat\sigma_1^2 = \dfrac{1}{n-1}\sum(X_i-\bar X_n)^2\]</span>
+es un estimador insesgado de <span class="math inline">\(\sigma^2\)</span>.</p>
+<p><em>Prueba</em>. Considere que</p>
+<p><span class="math display">\[ \sum (X_i-\mu)^2 = s_n^2 + n(\bar X_n-\mu)^2 \]</span>
+Entonces</p>
+<p><span class="math display">\[\mathbb E[\hat\sigma_0^2] = \mathbb E \bigg[ \dfrac {s_n^2}n \bigg] =  \mathbb E \bigg[ \dfrac 1n \sum(X_i-\mu)^2\bigg] - \mathbb E[(\bar X_n-\mu)^2] = \sigma^2-\dfrac{\sigma^2}n = \left(\dfrac{n-1}n\right)\sigma^2.\]</span></p>
+<p>Para que <span class="math inline">\(\hat\sigma_0^2\)</span> sea insesgado,
+<span class="math display">\[\mathbb E \bigg[\dfrac n{n-1}\hat\sigma_0^2\bigg] = \mathbb E[\hat\sigma_1] = \sigma^2.\]</span></p>
+<p>Entonces <span class="math inline">\(\hat\sigma_1\)</span> es estimador insesgado de <span class="math inline">\(\sigma^2\)</span>.</p>
+<p><strong>Ejemplo</strong>. Sean <span class="math inline">\(X_1,\dots,X_n \overset{i.i.d}{\sim}\text{Poi}(\theta)\)</span>. <span class="math inline">\(\mathbb E(X_i) = \text{Var}(X_i) = \theta\)</span>. Estimadores insesgados de <span class="math inline">\(\theta\)</span> son:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\bar X_n\)</span>.</p></li>
+<li><p><span class="math inline">\(\hat \sigma_1^2\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(\alpha \in (0,1)\)</span>, <span class="math inline">\(T = \alpha\bar X_n + (1-\alpha)\hat\sigma_1^2\)</span> también es un estimador insesgado (corrige otros problemas).</p></li>
+</ol>
+<p><strong>Ejemplo</strong>. (Normal) ¿Cuál estimador tiene menor MSE, <span class="math inline">\(\hat\sigma^2_0\)</span> o <span class="math inline">\(\hat\sigma^2_1\)</span>?</p>
+<p>Defina <span class="math inline">\(T_c = cs_n^2\)</span>. Si <span class="math inline">\(c = 1/n\)</span>, <span class="math inline">\(T_c = \hat\sigma_0\)</span> y si <span class="math inline">\(c = 1/(n-1)\)</span>, <span class="math inline">\(T_c = \hat\sigma_1\)</span>. De esta manera,</p>
+<p><span class="math display">\[MSE_{\sigma^2}(T_c) = \mathbb E[(T_c-\sigma^2)^2] =(\mathbb E(T_c)-\sigma^2)^2+\text{Var}(T_c).\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\mathbb E[T_c] = c\mathbb E[s_n^2] = c(n-1)\mathbb E\bigg[\dfrac{s_n^2}{n-1}\bigg] = c(n-1)\sigma^2\)</span>.</p></li>
+<li><p><span class="math inline">\(\text{Var}(T_c) = c^2\text{Var}(s_n) = c^2\text{Var}\Bigg(\sigma^2\underbrace{\sum\dfrac{(X_i-\bar X_n)}{\sigma^2}}_{\sim\chi^2_{n-1}}\Bigg) = 2c^2\sigma^4(n-1)\)</span>.</p></li>
+</ul>
+<p>Entonces</p>
+<p><span class="math display">\[MSE_{\sigma^2}(T_c) = [c(n-1)\sigma^2-\sigma^2]^2+2c^2\sigma^4(n-1) = [[c(n-1)-1]^2+2c^2(n-1)]\sigma^4.\]</span></p>
+<p>Optimizando,</p>
+<p><span class="math display">\[\min_c MSE (T_c) = \min_c[(n^2-1)c^2-2(n-1)c+1],\]</span></p>
+<p>se encuentra que <span class="math inline">\(\hat c = \dfrac 1{n+1}\)</span>. Así, <span class="math inline">\(T_{\hat c} = \dfrac{s_n^2}{n+1}\)</span> es el mejor estimador de <span class="math inline">\(\sigma^2\)</span> en el sentido de MSE.</p>
+<p><strong>Ejercicio</strong>. Compare <span class="math inline">\(\hat\sigma_0^2\)</span> y <span class="math inline">\(\hat\sigma_1^2\)</span>.</p>
+</div>
+<div id="información-de-fisher" class="section level2" number="15.3">
+<h2><span class="header-section-number">15.3</span> Información de Fisher</h2>
+<p>¿Cómo cuantificar la información de un estadístico?</p>
+<p>Sea <span class="math inline">\(X\sim f(x|\theta)\)</span>, <span class="math inline">\(\theta \in \Omega \subset \mathbb R\)</span> parámetro fijo.</p>
+<ul>
+<li><p><em>Supuesto 1</em>: para cada <span class="math inline">\(x \in \mathcal X\)</span> (espacio muestral de <span class="math inline">\(X\)</span>) <span class="math inline">\(f(x|\theta)&gt; 0\)</span> <span class="math inline">\(\forall \theta \in \Omega\)</span>.</p></li>
+<li><p><em>Restricción</em>: la imagen de la variable aleatoria no puede depender de <span class="math inline">\(\theta\)</span>.</p></li>
+</ul>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(\text{Unif}[0,\theta]\)</span>, <span class="math inline">\(f(x|\theta) = 1_{(0,\theta)}(x)\)</span>. No aplica el supuesto, ya que si <span class="math inline">\(x&gt;\theta\)</span>, <span class="math inline">\(f(x|\theta) = 0\)</span>.</p>
+<p><strong>Definición</strong>. Se define la <strong>función Score</strong>:</p>
+<p><span class="math display">\[\lambda(x|\theta):=\ln f(x|\theta)\]</span></p>
+<p>cuyas derivadas son</p>
+<p><span class="math display">\[\lambda&#39;(x|\theta) = \dfrac \partial{\partial \theta}\ln f(x|\theta)\]</span>
+<span class="math display">\[\lambda&#39;&#39;(x|\theta) = \dfrac {\partial^2}{\partial \theta^2}\ln f(x|\theta)\]</span></p>
+<ul>
+<li><em>Supuesto 2</em>: <span class="math inline">\(f(x|\theta)\)</span> es dos veces diferenciable.</li>
+</ul>
+<p><strong>Definición</strong>. Si <span class="math inline">\(X\)</span> y <span class="math inline">\(f(x|\theta)\)</span> satisfacen los supuestos anteriores, la <strong>información de Fisher</strong> (<span class="math inline">\(I(\theta)\)</span>) de <span class="math inline">\(X\)</span> es
+<span class="math display">\[I(\theta): =\mathbb E[(\lambda&#39;(x|\theta))^2]\]</span>
+donde la esperanza es integral o suma, dependiendo de <span class="math inline">\(X\)</span>.</p>
+<p><strong>Teorema</strong>. Bajo las condiciones anteriores, y suponiendo que las dos derivadas de <span class="math inline">\(\int_{\mathcal X}f(x|\theta)dx\)</span> con respecto a <span class="math inline">\(\theta\)</span> (<em>Supuesto 3</em>) se pueden calcular al intercambiar el orden de integración y derivación. Entonces</p>
+<p><span class="math display">\[I(\theta) = -\mathbb E_{\theta}[\lambda&#39;&#39;(x|\theta)] = \text{Var}[\lambda&#39;(x|\theta)].\]</span></p>
+<p><em>Prueba</em>:</p>
+<p><span class="math display">\[\begin{align*}
+\mathbb E[\lambda&#39;(x|\theta)] &amp; \int_{\mathcal X}\lambda&#39;(x|\theta)f(x|\theta)dx\\
+&amp; = \int_{\mathcal X} \dfrac{f&#39;(x|\theta)}{f(x|\theta)}f(x|\theta)dx\\
+&amp; =  \int_{\mathcal X}f&#39;(x|\theta)dx\\
+&amp; = \dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx \quad \text{por el supuesto}\\
+&amp; = \dfrac d{d\theta}1 = 0
+\end{align*}\]</span></p>
+<p>En consecuencia,
+<span class="math display">\[\text{Var}(\lambda&#39;(x|\theta)) = \mathbb E[(\lambda&#39;(x|\theta))^2]-0 = I(\theta).\]</span></p>
+<p>Además,
+<span class="math display">\[\lambda&#39;&#39;(x|\theta)= \left(\dfrac{f&#39;(x|\theta)}{f(x|\theta)}\right)&#39; = \dfrac{f(x|\theta)f&#39;&#39;(x|\theta)-f&#39;(x|\theta)^2}{f^2(x|\theta)} =\dfrac{f&#39;&#39;(x|\theta)}{f(x|\theta)} - (\lambda&#39;(x|\theta))^2 \]</span></p>
+<p>Note que</p>
+<p><span class="math display">\[\begin{align*}
+\mathbb E\bigg[\dfrac{f&#39;&#39;(x|\theta)}{f(x|\theta)} \bigg] &amp; = \int_{\mathcal X}\dfrac{f&#39;&#39;(x|\theta)}{f(x|\theta)} f(x|\theta)dx \\
+&amp;=\dfrac{d}{d\theta}\bigg[\dfrac{d}{d\theta}\int_{\mathcal X}f(x|\theta)dx\bigg]\\
+&amp; = \dfrac{d}{d\theta}\bigg[\dfrac{d}{d\theta}1\bigg] = 0
+\end{align*}\]</span></p>
+<p>Entonces,
+<span class="math display">\[\mathbb E[\lambda&#39;&#39;(x|\theta)] =\mathbb E\bigg[\dfrac{f&#39;&#39;(x|\theta)}{f(x|\theta)} \bigg] - \mathbb E[(\lambda&#39;(x|\theta))^2] = -I(\theta). \]</span></p>
+<p>Se concluye, además, que <span class="math inline">\(\lambda&#39;(x|\theta)\)</span> es centrada y su varianza es <span class="math inline">\(I(\theta)\)</span>.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X\sim \text{Ber}(p)\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(f(x|p) = p^x(1-p)^{1-x}\)</span>, <span class="math inline">\(x=0,1\)</span> satisface supuesto 1.</p></li>
+<li><p><span class="math inline">\(\displaystyle\int_{\mathcal X}f(x|p)dx \;``=&quot; f(0|p)+f(1|p)\)</span> satisface el supuesto 3.</p></li>
+</ul>
+<p>Entonces,</p>
+<ul>
+<li><p><span class="math inline">\(\lambda(x|p) = \ln[p^x(1-p)^x] = x\ln p + (1-x)\ln(1-p)\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda&#39;(x|p) = \dfrac xp-\dfrac{1-x}{1-p}\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda&#39;&#39;(x|p) = -\dfrac x{p^2}-\dfrac{1-x}{(1-p)^2}\)</span>.</p></li>
+</ul>
+<p>De esta manera,
+<span class="math display">\[I(p) = \mathbb E\bigg[\dfrac xp + \dfrac{1-x}{(1-p)^2}\bigg] = \dfrac p{p^2}+\dfrac{1-p}{(1-p)^2} = \dfrac 1{p(1-p)} = \dfrac 1{\text{Var}(X)}.\]</span></p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\mu\)</span> desconocida, <span class="math inline">\(\sigma^2\)</span> conocida.
+<span class="math display">\[f(x|\mu) = \dfrac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\dfrac 1{2\sigma^2}(x-\mu)^2\right)\]</span></p>
+<p>Vea que
+<span class="math display">\[\begin{align*}
+\dfrac d{du}\int_{\mathbb R} f(x|\mu)dx &amp; = \int_{\mathbb R}f&#39;(x|\mu)dx\\
+&amp; = \int_{\mathbb R} -\dfrac 1{\sqrt{2\pi\sigma^2}}\dfrac {2(x-\mu)^2}{2\sigma^2} dx\\
+&amp; = -\dfrac 1\sigma \underbrace{\int_{\mathbb R}\dfrac{u}{\sqrt{2\pi}}e^{-\frac{u}2}du}_{\mathbb E[N(0,1)]} = 0 \quad \text{usando el cambio de variable } \dfrac{x-\mu}\sigma
+\end{align*}\]</span></p>
+<p>por lo que cumple el tercer supuesto.</p>
+<p>Entonces</p>
+<ul>
+<li><p><span class="math inline">\(\lambda(x|\mu) = \dfrac 12 \ln (2\pi\sigma^2)-\dfrac 1{2\sigma^2}(x-\mu)^2\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda&#39;(x|\mu) = \dfrac 1{2\sigma^2}2(x-\mu) = \dfrac{x-\mu}{\sigma^2}\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda&#39;&#39;(x-\mu) = -\dfrac 1{\sigma^2}\)</span>.</p></li>
+</ul>
+<p>Por lo que</p>
+<p><span class="math display">\[I(\mu) = -\mathbb E[\lambda&#39;&#39;(x|\mu)] = \dfrac{1}{\text{Var}(X)}\]</span></p>
+<p><strong>Definición</strong>. Suponga que <span class="math inline">\(X = (X_1,\dots,X_n)\)</span> muestra de <span class="math inline">\(f(x|\theta)\)</span> donde <span class="math inline">\(f\)</span> satisface las condiciones anteriores. Defina <span class="math inline">\(\lambda_n = \ln f_n(x|\theta)\)</span>. La información de Fisher de <span class="math inline">\(X\)</span> es</p>
+<p><span class="math display">\[I_n(\theta) = \mathbb E[(\lambda&#39;(x|\theta))^2] = - \mathbb E[\lambda&#39;&#39;_n(x|\theta)].\]</span></p>
+<p><strong>Nota</strong>. Observe que
+<span class="math display">\[\lambda_n(x|\theta) = \ln f_n(x|\theta) = \sum_{i=1}^{n} \lambda(X_i|\theta)\]</span>
+lo que implica que
+<span class="math display">\[\lambda&#39;&#39;_n(x|\theta) = \sum_{i=1}^n(X_i|\theta).\]</span>
+De esta forma,
+<span class="math display">\[I_n(\theta) = -\mathbb E[\lambda&#39;&#39;(x|\theta)] = - \sum_{i=1}^n\mathbb E[\lambda&#39;&#39;(X_i|\theta)] = nI(\theta).\]</span></p>
+<p><strong>Ejemplo</strong>. Clientes que entran a una tienda. Este se modela a partir de un proceso de Poisson. El tiempo de llegada entre cada cliente es independiente y se distribuye como <span class="math inline">\(\text{Exp}(\theta)\)</span>. Sea <span class="math inline">\(X\)</span> el tiempo de arribo total de <span class="math inline">\(n\)</span> clientes (<span class="math inline">\(n\)</span>) fijo:
+<span class="math display">\[X\sim \sum_{i=1}^{n}\text{Exp}(\theta) = \Gamma(n,\theta) .\]</span></p>
+<p>Así mismo, sea <span class="math inline">\(Y\)</span> el número de clientes hasta el tiempo <span class="math inline">\(t\)</span>:
+<span class="math display">\[Y\sim \text{Poi}(\theta t)\]</span></p>
+<p>¿Cuál variable contiene más información de <span class="math inline">\(\theta\)</span>?</p>
+<p>Para <span class="math inline">\(Y\)</span>,</p>
+<ul>
+<li><p><span class="math inline">\(f(y|\theta) = e^{-t\theta}\dfrac{(t\theta)^y}{y!}\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda(y|\theta) = t\theta + y\ln (t\theta) - \ln y!\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda&#39;(y|\theta) = -t+\dfrac{ty}{t\theta}.\)</span></p></li>
+<li><p><span class="math inline">\(\lambda&#39;&#39;(y|\theta) = -\dfrac y{\theta^2}\)</span>.</p></li>
+</ul>
+<p>Entonces,
+<span class="math display">\[I_Y(\theta) =-\mathbb E[ \lambda&#39;&#39;(y|\theta)] = \dfrac{\mathbb E[Y]}{\theta^2} = \dfrac{t}\theta.\]</span></p>
+<p>Como ejercicio, verifique que <span class="math inline">\(I_X(\theta) = \dfrac n{\theta^2}\)</span>.</p>
+<p>Ambas variables tienen la misma información si</p>
+<p><span class="math display">\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = t\theta.\]</span></p>
+</div>
+<div id="desigualdad-de-cramer-rao" class="section level2" number="15.4">
+<h2><span class="header-section-number">15.4</span> Desigualdad de Cramer-Rao</h2>
+<p><strong>Teorema</strong>. Si <span class="math inline">\(X = (X_1,\dots, X_n)\)</span> muestra de <span class="math inline">\(f(x|\theta)\)</span>. Todos los supuestos anteriores son válidos para <span class="math inline">\(f\)</span>. Sea <span class="math inline">\(T = r(X)\)</span> un estadístico con varianza finita. Sea <span class="math inline">\(m(\theta) = \mathbb E_{\theta}[T]\)</span> y asuma que <span class="math inline">\(m\)</span> es diferenciable. Entonces:
+<span class="math display">\[\text{Var}_\theta(T)\geq \dfrac{[m&#39;(\theta)]^2}{I_n(\theta)} =\dfrac{[m&#39;(\theta)]^2}{nI(\theta)} .\]</span></p>
+<p>La igualdad se da si y solo si existen funciones <span class="math inline">\(u(\theta)\)</span> y <span class="math inline">\(v(\theta)\)</span> que solo dependen de <span class="math inline">\(\theta\)</span> tales que
+<span class="math display">\[T = u(\theta)\lambda_n&#39;(x|\theta) + v(\theta).\]</span></p>
+<p><em>Prueba</em>. Para el caso univariado:
+<span class="math display">\[\int_{\mathcal X}f&#39;(x|\theta)dx = 0.\]</span></p>
+<p>Para el caso multivariado:</p>
+<p><span class="math display">\[\begin{align*}
+\int_{\mathcal X^n}f&#39;_n(x|\theta)dx_1\cdots dx_n &amp; =\int_{\mathcal X^n}[f(x1|\theta)\cdots f(x_n|\theta)]&#39;dx_1\cdots dx_n \\
+&amp; \dfrac d{d\theta} \int_{\mathcal X^n}f(x1|\theta)\cdots f(x_n|\theta)dx_1\cdots dx_n = 0.
+\end{align*}\]</span></p>
+<p>Entonces</p>
+<p><span class="math display">\[\mathbb E[\lambda_n&#39;(X|\theta)] = \int_{\mathcal X^n}\dfrac{f&#39;_n(x|\theta)}{f(x|\theta)}dx_1\cdots dx_n = 0\]</span></p>
+<p>Por lo tanto,</p>
+<p><span class="math display">\[\begin{align*}
+\text{Cov}[T,\lambda_n&#39;(X|\theta)] &amp; = \mathbb E [T\lambda_n&#39;(X|\theta)] - \mathbb E[T]\cdot 0\\
+&amp; =\int_{\mathcal X^n}r(x)\dfrac{f&#39;_n(x|\theta)}{f_n(x|\theta)}f_n(x|\theta)dx_1\cdots dx_n\\
+&amp; =  \dfrac d{d\theta}\int_{\mathcal X^n}r(x)f_n(x|\theta)dx_1\cdots dx_n\\
+&amp; = \dfrac{d}{d\theta}\mathbb E_\theta[r(X)] = \dfrac{d}{d\theta}E_\theta[T] = m&#39;(\theta)
+\end{align*}\]</span></p>
+<p>Considere el coeficiente de correlación
+<span class="math display">\[\rho = \dfrac{\text{Cov}[T,\lambda_n&#39;(X|\theta)] }{\sqrt{\text{Var}(T)}\sqrt{\text{Var}(\lambda_n&#39;(X|\theta))}}.\]</span></p>
+<p>Dado que <span class="math inline">\(|p|\leq 1 \implies \rho^2 \leq 1\)</span>, se tiene que</p>
+<p><span class="math display">\[\text{Cov}[T,\lambda_n&#39;(X|\theta)]^2 \leq \sqrt{\text{Var}(T)}\sqrt{\text{Var}(\lambda_n&#39;(X|\theta))} \implies [m&#39;(\theta)]^2 \leq \text{Var}(T) I_n(\theta). \]</span>
+Entonces <span class="math inline">\(\text{Var}(T)\geq \dfrac{[m&#39;(\theta)]^2 }{I_n(\theta)}\)</span>.</p>
+<p><strong>Caso particular</strong>. Si <span class="math inline">\(T\)</span> es un estimador insesgado de <span class="math inline">\(\theta\)</span>, entonces <span class="math inline">\(\text{Var}_\theta(T)\geq \dfrac{1 }{I_n(\theta)}\)</span>.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \sim \text{Exp}(\beta)\)</span>, <span class="math inline">\(n&gt;2\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(f(x|\beta) = \beta e^{-\beta x}\)</span>, <span class="math inline">\(x&gt;0\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda(x|\beta) = \ln f(x|\beta) = \ln \beta -\beta x\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda&#39;(x|\beta) = \dfrac 1\beta -x.\)</span></p></li>
+<li><p><span class="math inline">\(\lambda&#39;&#39; = -\dfrac 1{\beta^2}\)</span>.</p></li>
+</ul>
+<p>Vea que
+<span class="math display">\[1 = \int_{0}^\infty \beta e^{-\beta x}dx = \lim_{u\to \infty}F(u) = \lim_{u\to \infty}[1-e^{-\beta u}]\]</span></p>
+<p>y el supuesto 3 se puede verificar por la diferenciabilidad de <span class="math inline">\(1-e^{-\beta u}\)</span>.</p>
+<p>Así,
+<span class="math display">\[I(\beta) = -\mathbb E[\lambda&#39;&#39;(x|\beta)] = \dfrac 1{\beta^2}, \quad I_n(\beta) = \dfrac{n}{\beta^2}.\]</span></p>
+<p>Considere el estadístico <span class="math inline">\(T = \dfrac{n-1}{\sum_{i=1}^n X_i}\)</span> es un estimador insesgado de <span class="math inline">\(\beta\)</span>. La varianza de <span class="math inline">\(T\)</span> es <span class="math inline">\(\dfrac{\beta^2}{n-2}\)</span>.</p>
+<p>La cota de Cramer Rao, si <span class="math inline">\(T\)</span> es insesgado, es</p>
+<p><span class="math display">\[\dfrac 1{I_n(\beta)} = \dfrac{\beta^2}{n},\]</span></p>
+<p>por lo que <span class="math inline">\(T\)</span> no satisface la cota de Cramer Rao.</p>
+<p>Ahora, estime <span class="math inline">\(\theta = \dfrac 1\beta = m(\beta)\)</span>. Un estimador insesgado de <span class="math inline">\(\theta\)</span> es <span class="math inline">\(T =\bar X_n\)</span>:</p>
+<p><span class="math display">\[\mathbb E[\bar X_n] = \mathbb E
+[X_1] = \dfrac 1\beta  = \theta, \quad \text{Var}(\bar X_n) = \dfrac{\text{Var}(\bar X_1) }{n} = \dfrac 1{n\beta^2}.\]</span></p>
+<p>La cota de Cramer es</p>
+<p><span class="math display">\[\dfrac{(m&#39;(\beta))^2}{I_n(\beta)} = \dfrac{(-1/\beta^2)^2}{n/\beta^2} = \dfrac{\beta^2}{n\beta^4} = \dfrac{1}{n\beta^2}.\]</span></p>
+<p><span class="math inline">\(\bar X_n\)</span> satisface la cota de Cramer-Rao y además
+<span class="math display">\[\lambda&#39;(X|\beta) = \dfrac n\beta - n\bar X_n =\dfrac n\beta - nT \implies T = \underbrace{-\dfrac 1n}_{u(\beta)}\lambda_n&#39;(X|\beta)+ \underbrace{\dfrac 1\beta}_{v(\beta)}. \]</span></p>
+</div>
+<div id="estimadores-eficientes" class="section level2" number="15.5">
+<h2><span class="header-section-number">15.5</span> Estimadores eficientes</h2>
+<p><strong>Definición</strong>. <span class="math inline">\(T\)</span> es un estimador eficiente de su esperanza <span class="math inline">\(m(\theta)\)</span> si su varianza es la cota de CR.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n\sim \text{Poi}(\theta)\)</span>. <span class="math inline">\(\bar X_n\)</span> es un estimador eficiente.</p>
+<ul>
+<li><p>Verosimilitud: <span class="math inline">\(f_n(X|\theta) = e ^{n\theta}\dfrac{\theta^{n\bar X_n}}{\prod X_i!}\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda_n(X|\theta) = -n\theta + n\bar X_n \ln \theta - \ln \prod X_i!\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda&#39;_n(X|\theta) = -n+\dfrac{c\bar X_n}{\theta}\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda_n&#39;&#39;(X) = -\dfrac{n\bar X_n}{\theta^2}\)</span>.</p></li>
+</ul>
+<p>Entonces
+<span class="math display">\[\dfrac{n}{\theta^2}\mathbb E[\bar X_n] = \dfrac n{\theta}.\]</span></p>
+<p>La cota de CR es <span class="math inline">\(\dfrac \theta n\)</span>, pero
+<span class="math display">\[\text{Var}(\bar X_n) = \dfrac{\text{Var}(X_1)}{m} = \dfrac \theta n.\]</span>
+Por lo que <span class="math inline">\(\bar X_n\)</span> es eficiente.</p>
+<p>Los otros candidatos para estimar <span class="math inline">\(\theta\)</span>
+<span class="math display">\[\sigma_1^2=\dfrac 1{n-1}s_n^2 = \dfrac 1{n-1}\sum (X_i-\bar X_n)^2,\]</span>
+y
+<span class="math display">\[\alpha \bar X_n + (1-\alpha)\hat\sigma^2_1\]</span>
+no son lineales con respecto a <span class="math inline">\(\lambda&#39;(X|\theta)\)</span> por lo que tienen mayor varianza que <span class="math inline">\(\bar X_n\)</span>.</p>
+</div>
+<div id="comportamiento-asintótico-del-mle" class="section level2" number="15.6">
+<h2><span class="header-section-number">15.6</span> Comportamiento asintótico del MLE</h2>
+<p><strong>Teorema</strong>. Bajo las condiciones anteriores y si <span class="math inline">\(T\)</span> es un estimador eficiente de <span class="math inline">\(m&#39;(\theta)\)</span> y <span class="math inline">\(m&#39;(\theta) \neq 0\)</span>, entonces
+<span class="math display">\[\dfrac 1{\sqrt{CR}}[T-m(\theta)]\xrightarrow{d}N(0,1)\]</span></p>
+<p><em>Prueba</em>. Recuerde que <span class="math inline">\(\lambda&#39;_n(X|\theta) = \sum_{i=1}^n\lambda&#39;(X_i|\theta)\)</span>. Como <span class="math inline">\(X\)</span> es una muestra, <span class="math inline">\(\lambda&#39;(X_i|\theta)\)</span> son i.i.d, y</p>
+<p><span class="math display">\[\mathbb E[\lambda&#39;(X_i|\theta)] = 0, \quad \text{Var}(\lambda&#39;(X_i|\theta)) = I(\theta).\]</span></p>
+<p>Como <span class="math inline">\(T\)</span> es estimador eficiente de <span class="math inline">\(m(\theta)\)</span>,
+<span class="math display">\[\mathbb E[T] = m(\theta), \quad \text{Var}(T) = \dfrac{(m&#39;(\theta))^2}{nI(\theta)}\]</span></p>
+<p>y existen <span class="math inline">\(u(\theta)\)</span> y <span class="math inline">\(v(\theta)\)</span> tal que</p>
+<p><span class="math display">\[T = v(\theta \lambda&#39;(X|\theta)) + v(\theta).\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\mathbb E [T]= u(\theta)\mathbb E[\lambda&#39;(X|\theta)] + v(\theta) \implies v(\theta) = m(\theta)\)</span>.</p></li>
+<li><p><span class="math inline">\(\text{Var}(T) = u^2(\theta)I_n(\theta) \implies v(\theta) = \dfrac{m&#39;(\theta)}{nI(\theta)}\)</span>.</p></li>
+</ul>
+<p>Entonces <span class="math inline">\(T = \dfrac{m&#39;(\theta)}{nI(\theta)}\lambda&#39;(X|\theta) + m(\theta)\)</span>. Por lo tanto,</p>
+<p><span class="math display">\[\bigg[\dfrac{nI(\theta)}{m&#39;(\theta)^2}\bigg]^{\frac 12}[T-m(\theta)] = \bigg[\dfrac 1 {nI(\theta)}\bigg]^{\frac 12}\lambda&#39;_n(x|\theta) \xrightarrow[n\to\infty]{} N(0,1).\]</span></p>
+<p><strong>Teorema</strong>. Suponga que el MLE <span class="math inline">\(\hat \theta_n\)</span> se obtiene al resolver <span class="math inline">\(\lambda&#39;(x|\theta) = 0\)</span>. Además, <span class="math inline">\(\lambda&#39;&#39;(x|\theta)\)</span> y <span class="math inline">\(\lambda&#39;&#39;&#39;(x|\theta)\)</span> existen y las condiciones anteriores son ciertas.</p>
+<p><span class="math display">\[[nI(\theta)]^{1/2}(\hat\theta-\theta) \to N(0,1).\]</span></p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \sim N(0,\sigma^2)\)</span>, <span class="math inline">\(\sigma\)</span> desconocida. <span class="math inline">\(\hat\sigma = \bigg[\dfrac 1n s_n^2\bigg]^{1/2}\)</span> es MLE de <span class="math inline">\(\sigma\)</span> y <span class="math inline">\(I(\sigma) = \dfrac 2{\sigma^2}\)</span>.
+Usando el teorema,
+<span class="math display">\[\sqrt{\dfrac{2n}{\sigma^2}}\underset{n\to\infty}{\sim} N\left(\sigma,\dfrac{\sigma^2}{2n}\right).\]</span></p>
+<p>Verifique que
+<span class="math display">\[\hat\sigma_n\pm z_{\frac{1+\gamma}{2}}\sqrt{\dfrac{\sigma^2}{2n}}\]</span>
+es un intervalo de confianza para <span class="math inline">\(\sigma\)</span>.</p>
+<p><strong>Consecuencia en estimación bayesiana</strong>. La previa de <span class="math inline">\(\theta\)</span> es positiva y diferenciable con respecto a <span class="math inline">\(\theta\)</span>. Bajo todas las condiciones anteriores:
+<span class="math display">\[\theta|X\underset{n\to\infty}{\sim} N\left(\hat\theta_n,\dfrac 1{nI(\hat\theta_n)}\right).\]</span></p>
+<p><strong>Nota</strong>: un IC para <span class="math inline">\(\theta\)</span> en este caso tiene un error estándar que depende del MLE.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estimación-bayesiana-bajo-normalidad.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pruebas-de-hipótesis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/08-estimacion-insesgada.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/08-estimacion-insesgada.Rmd",
+"text": null
+},
+"download": ["Notas-Curso-Estadistica.pdf"],
+"toc": {
+"collapse": "subsection"
+},
+"toc_depth": 5
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
