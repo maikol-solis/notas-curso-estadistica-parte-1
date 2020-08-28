@@ -186,7 +186,7 @@
 
 \title{Notas Curso de Estadística (Parte I)}
 \author{Maikol Solís}
-\date{Actualizado el 19 August, 2020}
+\date{Actualizado el 26 August, 2020}
 
 \begin{document}
 \maketitle
@@ -1421,35 +1421,90 @@ Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\e
 \hypertarget{estimaciuxf3n-por-muxe1xima-verosimilitud}{%
 \chapter{Estimación por máxima verosimilitud}\label{estimaciuxf3n-por-muxe1xima-verosimilitud}}
 
-¿Será posible estimar sin una densidad previa? Se debería ajustar la noción de muestra a independencia dado el valor de un parámetro.
+¿Será posible estimar sin una densidad previa? Se debería ajustar la noción de
+muestra a independencia dado el valor de un parámetro.
 
-Recuerde que, para \(X_1,\dots, X_n \stackrel{i.i.d}{\sim} f(X|\theta)\) con \(\theta\) fijo, la \textbf{función de verosimilitud} se define como
-\[ f_n(X|\theta) = \pi(X_i|\theta) = G(\theta|X).\]
+Recuerde que, para \(X_1,\dots, X_n \stackrel{i.i.d}{\sim} f(X|\theta)\) con \(\theta\)
+fijo, la \textbf{función de verosimilitud} se define como \[ f_n(X|\theta) =
+\pi(X_i|\theta) = G(\theta|X).\]
 
-Si \(\theta_1,\theta_2\in \Omega\), \(\theta\) es el valor real del parámetro. Si la muestra es fija, evaluamos, para \(\theta_1\), \(f_n(X|\theta_1) = G(\theta_1|X)\) y, de igual forma para \(\theta_2\), \(f_n(X|\theta_2) = G(\theta_2|X)\). Supongamos que
-\[f_n(X|\theta_1) >f_n(X|\theta_2) \implies G(\theta_1|X)>G(\theta_2|X) \text{ (principio de verosimilitud)}\]
+Si \(\theta_1,\theta_2\in \Omega\), \(\theta\) es el valor real del parámetro. Si la muestra es
+fija, evaluamos, para \(\theta_1\), \(f_n(X|\theta_1) = L(\theta_1|X)\) y, de igual forma para
+\(\theta_2\), \(f_n(X|\theta_2) = L(\theta_2|X)\). Supongamos que
 
-\textbf{Interpretación}. Es más verosímil (realista) que el verdadero parámetro sea \(\theta_1\) que \(\theta_2\) dada la muestra.
+\begin{equation*}
+f_n(X|\theta_1) >f_n(X|\theta_2) \implies L(\theta_1|X)>L(\theta_2|X) \text{
+(principio de verosimilitud)} 
+\end{equation*}
 
-\textbf{Definición}. Para cada \(x\in \mathcal{X}\) (espacio muestral), sea \(\delta(x) \in \delta\) estimador de \(\theta\) tal que \(f_n(x|\theta)\) es máximo. A \(\delta(x)\) se le llama \textbf{MLE (estimador de máxima verosimilitud)}.
+\textbf{Interpretación}. Es más verosímil (realista) que el verdadero parámetro sea
+\(\theta_1\) que \(\theta_2\) dada la muestra.
+
+\textbf{Definición}. Para cada \(x\in \mathcal{X}\) (espacio muestral), sea
+\(\delta(x) \in \delta\) estimador de \(\theta\) tal que \(f_n(x|\theta)\) es máximo. A
+\(\delta(x)\) se le llama \textbf{MLE (estimador de máxima verosimilitud)}.
 
 \textbf{Ejemplo}. Si \(X_1,\dots, X_n \sim \text{Exp}(\theta)\), estime \(\theta\).
 
 Determinamos la función de verosimilitud,
-\[f_n(X|\theta) = \prod_{i=1}^n \dfrac{1}\theta e^{-X_i/\theta} = \dfrac1{\theta^n} \exp\left(\dfrac{1}\theta \sum_{i=1}^nX_i\right) = \theta^{-n}e^{-y/\theta}.\]
+
+\begin{equation*} 
+f_n(X|\theta) =
+\prod_{i=1}^n \dfrac{1}\theta e^{-X_i/\theta} = \dfrac1{\theta^n}
+\exp\left(\dfrac{1}\theta \sum_{i=1}^nX_i\right) = \theta^{-n}e^{-y/\theta}.
+\end{equation*}
 
 Considere la \textbf{log-verosimilitud}
+\begin{equation*}
+\ell(\theta|X) = \ln f_n(X|\theta) = -n\ln \theta - \dfrac{y}{\theta}
+\end{equation*}
 
-\[L(\theta|X) = \ln f_n(X|\theta) = -n\ln \theta - \dfrac{y}{\theta}\]
+Como es una transformación monótona creciente, la función de verosimilitud se
+maximiza si la log-verosimilitud es máxima. Entonces,
 
-Como es una transformación monótona creciente, la función de verosimilitud se maximiza si la log-verosimilitud es máxima. Entonces,
+\begin{align*}
+\dfrac{\partial}{\partial\theta} \ell(\theta|X) & = \dfrac{-n}{\theta}+\dfrac{y}{\theta^2} = 0 \\
+\implies \dfrac{1}{\theta}\left(-n+\dfrac{y}\theta\right) & =0  \\
+\implies \hat\theta = \dfrac{y}{n} & = \bar X_n.
+\end{align*}
 
-\[\dfrac{\partial}{\partial\theta} L(\theta|X) = \dfrac{-n}{\theta}+\dfrac{y}{\theta^2} = 0\implies \dfrac{1}{\theta}\left(-n+\dfrac{y}\theta\right)=0 \implies \hat\theta = \dfrac{y}{n} = \bar X_n.\]
 Para verificar que es un máximo:
 
-\[\dfrac{\partial^2 L}{\partial\theta^2} = \left. \dfrac{n}{\theta^2} -\dfrac{2y}{\theta^3}\right\vert_{\theta = \frac{y}{n}} = \dfrac{1}{\hat\theta^2} \bigg[n-\dfrac{2y}{\frac yn}\bigg] = \dfrac{-n}{\hat\theta^2} < 0.\]
+\[\dfrac{\partial^2    \ell}{\partial\theta^2} = \left. \dfrac{n}{\theta^2} -\dfrac{2y}{\theta^3}\right\vert_{\theta = \frac{y}{n}} = \dfrac{1}{\hat\theta^2} \bigg[n-\dfrac{2y}{\frac yn}\bigg] = \dfrac{-n}{\hat\theta^2} < 0.\]
 
 Entonces \(\hat\theta = \bar X_n\) es el MLE de \(\theta\).
+
+\textbf{Laboratorio:}
+
+Suponga que se tiene 100 valores con distribución exponencial con parámetro
+\(\theta=1\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{rexp}\NormalTok{(}\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{rate =} \DecValTok{1}\NormalTok{)}
+\NormalTok{n \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
+\NormalTok{y \textless{}{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(x)}
+\NormalTok{theta \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{L \textless{}{-}}\StringTok{ }\NormalTok{theta}\OperatorTok{\^{}}\NormalTok{(}\OperatorTok{{-}}\NormalTok{n) }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{{-}}\NormalTok{y}\OperatorTok{/}\NormalTok{theta)}
+\KeywordTok{plot}\NormalTok{(theta, L)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-19-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{l \textless{}{-}}\StringTok{ }\OperatorTok{{-}}\NormalTok{n }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(theta) }\OperatorTok{{-}}\StringTok{ }\NormalTok{y}\OperatorTok{/}\NormalTok{theta}
+\KeywordTok{plot}\NormalTok{(theta, l)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-20-1} \end{center}
 
 \textbf{Ejemplo}. En una prueba sobre alguna enfermedad, en un \(90\%\) da la verdadera condición (enfermo) y en un \(10\%\) la prueba se equivoca (que diga que la persona esté enferma cuando está sana). Considere una variable aleatoria \(\text{Bernoulli}(\theta)\),\(\theta \in \{0.9,0.1\}\)
 Una muestra sería
@@ -1460,23 +1515,29 @@ Si \(x=1\), entonces \(f(1|\theta) = \begin{cases}0.1 & \text{si }\theta = 0.1\\
 
 El MLE corresponde a
 \[\hat\theta = \begin{cases}0.1 & \text{si }x= 0\\0.9& \text{si }x= 1\end{cases}\]
+
 \textbf{Ejemplo}. Para el caso normal, \(X_1,\dots, X_n \sim N(\mu,\sigma^2)\), \(\sigma^2\) conocida, estime \(\mu\).
 
 \[f_n(x|\mu) = \prod_{i=1}^n \dfrac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\dfrac{(x_i-\mu)^2}{2\sigma^2}\right) = (2\pi\sigma^2)^{-n/2}\exp\left(-\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\mu)^2\right).\]
 
 La log-verosimilitud es de la forma
-\[ L(\mu|x) = \dfrac{-n}{2}\ln(2\pi\sigma^2)-\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\mu)^2.\]
+\[ \ell(\mu|x) = \dfrac{-n}{2}\ln(2\pi\sigma^2)-\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\mu)^2.\]
 
 Basta con minimizar \(Q(\mu) = \sum_{i=1}^n(x_i-\mu)^2\).
 
 \[ \dfrac{\partial Q}{\partial\mu} = -2\sum_{i=1}^n(x_i-\mu) \implies n\mu = \sum_{i=1}^nx_i \implies \hat\mu = \bar x_n.\]
 
-No hace falta verificar la condición de segundo orden, pues \(Q\) es una función cuadrática de \(\mu\) y tiene un único máximo.
+No hace falta verificar la condición de segundo orden, pues \(Q\) es una función
+cuadrática de \(\mu\) y tiene un único máximo.
 
 \[ \hat\mu_{MLE} = \bar x_n \quad (*)\]
 
 Ahora, si \(X_1,\dots, X_n \sim N(\mu,\sigma^2)\), \(\theta = (\mu,\sigma^2)\) desconocido, por \((*)\),
-\[ L(\sigma^2|X_1,\dots, X_n) = \dfrac n2 \ln(2\pi\sigma^2)--\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\bar x_n)^2\]
+
+\[
+\ell(\sigma^2|X_1,\dots, X_n) = \dfrac n2 \ln(2\pi\sigma^2)--\dfrac1{2\sigma^2}\sum_{i=1}^n(x_i-\bar
+x_n)^2
+\]
 
 \[ \dfrac{\partial L}{\partial\sigma^2} = -\dfrac n2 \dfrac1{2\pi\sigma^2} + \dfrac1{2(\sigma^2)^2} \sum_{i=1}^n(x_i-\bar x_n)^2= 0 \]
 Entonces
@@ -1490,50 +1551,108 @@ Sea \(h(x,y) = \sqrt{y}\) (es inyectiva). \(h(\bar x_n, \hat\sigma^2) = \sqrt{\h
 
 El MLE de \(\dfrac{\sigma}{\mu} = \dfrac{\hat \sigma}{\bar x_n}\).
 
-\textbf{Ejemplo}. \(X_1,\dots, X_n \stackrel{i.i.d}{\sim} \text{Unif}(0)\). Estime \(\theta\) \((\theta > 0)\). Suponga que \(x_i>0 \forall i\).
+\textbf{Laboratorio:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(scatterplot3d)}
+
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\NormalTok{n \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
+
+\NormalTok{mu \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{{-}}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{50}\NormalTok{)}
+\NormalTok{sigma \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{50}\NormalTok{)}
+
+\NormalTok{ms \textless{}{-}}\StringTok{ }\KeywordTok{expand.grid}\NormalTok{(sigma, mu)}
+
+\NormalTok{l \textless{}{-}}\StringTok{ }\OperatorTok{{-}}\NormalTok{(n}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{pi}\OperatorTok{/}\NormalTok{ms[, }\DecValTok{1}\NormalTok{]}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{{-}}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{ms[, }
+    \DecValTok{1}\NormalTok{]}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\KeywordTok{sum}\NormalTok{((x }\OperatorTok{{-}}\StringTok{ }\NormalTok{ms[, }\DecValTok{2}\NormalTok{])}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
+
+\KeywordTok{scatterplot3d}\NormalTok{(ms[, }\DecValTok{1}\NormalTok{], ms[, }\DecValTok{2}\NormalTok{], l, }\DataTypeTok{angle =} \DecValTok{45}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-21-1} \end{center}
+
+\textbf{Ejemplo}. \(X_1,\dots, X_n \stackrel{i.i.d}{\sim} \text{Unif}(0, \theta)\). Estime \(\theta\) \((\theta > 0)\). Suponga que \(x_i>0 \forall i\).
 
 \[f(X|\theta) = \dfrac 1\theta \cdot 1_{[0,\theta]}(x)\]
 
 La verosimilitud es
-\[f_n(x|\theta) = \prod_{i=1}^{n} f(x_i|\theta) = \dfrac 1{\theta^n} \prod_{i=1}^n 1_{\{0\leq x_i\leq \theta\}} \quad 0\leq x_i \leq \theta \;\forall i\]
-Vea que \(f_n(x|\theta)\) es positivo si y solo si \(O\leq X_{(n)}\leq \theta\).
+\[f_n(x|\theta) = \prod_{i=1}^{n} f(x_i|\theta) = \dfrac 1{\theta^n} \prod_{i=1}^n 1_{\{0\leq X_i\leq \theta\}} \quad 0\leq X_i \leq \theta \;\forall i\]
 
-El valor de la muestra \(\{X_1,\dots, X_n\}\) en la \(i\)-ésima posición cuando los datos se ordenan de menor a mayor se denota \(X_{(i)}\) (estadístico de orden). En este caso, \(X_{(n)} = \max\{X_1,\dots, X_n\}\).
-Entonces \(\hat\theta_{MLE} = x_{(n)}\).
+Vea que \(f_n(x|\theta)\) es válido si y solo si \(0\leq X_{(n)}\leq \theta\).
+
+El valor de la muestra \(\{X_1,\dots, X_n\}\) en la \(i\)-ésima posición cuando los
+datos se ordenan de menor a mayor se denota \(X_{(i)}\) (estadístico de orden). En
+este caso, \(X_{(n)} = \max\{X_1,\dots, X_n\}\). Entonces \(\hat\theta_{MLE} = x_{(n)}\).
+
+\textbf{Laboratorio:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{runif}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{n \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
+
+\NormalTok{theta \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\FloatTok{1.5}\NormalTok{, }\FloatTok{2.5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)}
+
+\NormalTok{L \textless{}{-}}\StringTok{ }\KeywordTok{numeric}\NormalTok{(}\DecValTok{1000}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{) \{}
+\NormalTok{    L[k] \textless{}{-}}\StringTok{ }\DecValTok{1}\OperatorTok{/}\NormalTok{theta[k]}\OperatorTok{\^{}}\NormalTok{n }\OperatorTok{*}\StringTok{ }\KeywordTok{prod}\NormalTok{(x }\OperatorTok{\textless{}}\StringTok{ }\NormalTok{theta[k])}
+\NormalTok{\}}
+
+\KeywordTok{plot}\NormalTok{(theta, L)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-22-1} \end{center}
 
 \hypertarget{propiedades-del-mle}{%
-\chapter{Propiedades del MLE}\label{propiedades-del-mle}}
+\section{Propiedades del MLE}\label{propiedades-del-mle}}
 
 \hypertarget{propiedad-de-invarianza}{%
-\section{Propiedad de invarianza}\label{propiedad-de-invarianza}}
+\subsection{Propiedad de invarianza}\label{propiedad-de-invarianza}}
 
-\textbf{Teorema}. Si \(\hat\theta\) es el MLE de \(\hat\theta\) y si \(g\) es biyectiva, entonces \(g(\theta)\) es el MLE de \(g(\theta)\).
+\textbf{Teorema}. Si \(\hat\theta\) es el MLE de \(\hat\theta\) y si \(g\) es biyectiva,
+entonces \(g(\theta)\) es el MLE de \(g(\theta)\).
 
 \emph{Prueba}:
 
-Sea \(\Gamma\) el espacio paramétrico \(g(\Omega)\). Como \(g\) es biyectiva entonces \(h:\) inversa de \(g\): \(\theta = h(\psi), \psi \in \Gamma\).
+Sea \(\Gamma\) el espacio paramétrico \(g(\Omega)\). Como \(g\) es biyectiva entonces
+defina \(h\) la inversa de \(g\colon \theta = h(\psi), \psi \in \Gamma\).
 
 Reparametrizando la verosimilitud,
 \[f_n(x|\theta) = f_n(x|h(\psi)). \]
 
 El MLE de \(\psi:\hat\psi\) satisface que \(f_n(x|h(\hat\psi))\) es máximo.
 
-Como \(f_n(x|\theta)\) se maximiza cuando \(\theta = \hat \theta\), entonces \(f_n(x|h(\psi))\) se maximiza cuando \(\hat \theta = h(\psi)\) para algún \(\psi\).
+Como \(f_n(x|\theta)\) se maximiza cuando \(\theta = \hat \theta\), entonces \(f_n(x|h(\psi))\) se
+maximiza cuando \(\hat \theta = h(\psi)\) para algún \(\psi\).
 
 Se concluye que \(\hat\theta = h(\hat\psi) \implies \hat\psi = g(\hat \theta)\).
 
 \textbf{Ejemplo}: \(g(\theta) = \dfrac 1\theta\) es biyectiva si \(\theta > 0\). Así,
 
-\[ \hat{\dfrac 1 \theta} = \dfrac 1{\hat \theta} = \dfrac{1}{\frac 1{\hat X_n}} = \hat X_n \quad(\theta \text{ es parámetro de tasa}).\]
+\begin{equation*} 
+\frac{1}{\hat{\theta}} = \frac{1}{\frac{1}{\bar{X}_n}} =
+\bar{X}_n \text{ es parámetro de la tasa.} 
+\end{equation*}
+
 ¿Qué pasa si \(h\) no es biyectiva?
 
-\textbf{Definicion (Generalización del MLE)}. Si \(g\) es una función de \(\theta\) y \(G\) la imagen de \(\Omega\) bajo \(g\). Para cada \(t\in G\) defina
-\[ G_t = \{\theta: g(\theta) = t\}\]
-Defina \(L^*(t) = \displaystyle\max_{\theta\in G_t} \ln f_n(x|\theta)\). El MLE de \(g(\theta) (=\hat t)\) satisface \(L^*(\hat t) = \displaystyle\max_{t \in G} L^*(t)\).
+\textbf{Definicion (Generalización del MLE)}. Si \(g\) es una función de \(\theta\) y \(G\)
+la imagen de \(\Omega\) bajo \(g\). Para cada \(t\in G\)
+defina \[ G_t = \{\theta: g(\theta) = t\}\] Defina
+\(L^*(t) = \displaystyle\max_{\theta\in G_t} \ln f_n(x|\theta)\). El MLE de \(g(\theta) (=\hat t)\)
+satisface \(L^*(\hat t) = \displaystyle\max_{t \in G} L^*(t)\).
 
-\textbf{Teorema}. Si \(\hat \theta\) es el MLE de \(\theta\) entonces \(g(\hat\theta)\) es el MLE de \(g(\theta)\) (\(g\) es arbitraria).
+\textbf{Teorema}. Si \(\hat \theta\) es el MLE de \(\theta\) entonces \(g(\hat\theta)\) es el
+MLE de \(g(\theta)\) (\(g\) es arbitraria).
 
-\emph{Prueba}. Basta probar \(L^*(\hat t) = \ln f_n(x|\hat \theta)\). Se cumple que \(\hat\theta\in G_{\hat t}\). Como \(\hat \theta\) maximiza \(f_n(x|\theta)\) \(\forall \theta\), también lo hace si \(\theta \in G_{\hat t}\). Entonces \(\hat t = g(\hat \theta)\) (no pueden existir 2 máximos en un conjunto con la misma imagen).
+\emph{Prueba}. Basta probar \(L^*(\hat t) = \ln f_n(x|\hat \theta)\). Se cumple que
+\(\hat\theta\in G_{\hat t}\). Como \(\hat \theta\) maximiza \(f_n(x|\theta)\) \(\forall \theta\), también
+lo hace si \(\theta \in G_{\hat t}\). Entonces \(\hat t = g(\hat \theta)\) (no pueden existir 2
+máximos en un conjunto con la misma imagen).
 
 \textbf{Ejemplos}.\(X_1,\dots, X_n \sim N(\mu, \sigma^2)\).
 
@@ -1547,7 +1666,7 @@ Defina \(L^*(t) = \displaystyle\max_{\theta\in G_t} \ln f_n(x|\theta)\). El MLE 
 \end{itemize}
 
 \hypertarget{consistencia}{%
-\section{Consistencia}\label{consistencia}}
+\subsection{Consistencia}\label{consistencia}}
 
 Los estimadores bayesianos son de la forma
 \[EB = W_1\mathbb{E}[\text{Previa}] + W_2\hat X_n.\]
@@ -1558,10 +1677,10 @@ El estimador bayesiano ``combina'' la esperanza de la previa y el \(\hat\theta_{
 \[\hat\theta_{MLE} \xrightarrow[n\to \infty]{\mathbb P}\theta.\]
 
 \hypertarget{cuxe1lculo-numuxe9rico}{%
-\chapter{Cálculo numérico}\label{cuxe1lculo-numuxe9rico}}
+\section{Cálculo numérico}\label{cuxe1lculo-numuxe9rico}}
 
 \hypertarget{muxe9todo-de-los-momentos}{%
-\section{Método de los momentos}\label{muxe9todo-de-los-momentos}}
+\subsection{Método de los momentos}\label{muxe9todo-de-los-momentos}}
 
 \textbf{Ejemplo}. \(X_1,\dots, X_n \sim \Gamma(\alpha,1)\). Estime \(\alpha\).
 \[f_n(x|\alpha) = \dfrac{1}{\Gamma(\alpha)}x^{\alpha-1}e^{-x}.\]
@@ -1622,7 +1741,7 @@ donde \(\hat\theta\) es el MLE de \(\theta\).
 \end{enumerate}
 
 \hypertarget{muxe9todo-delta}{%
-\section{Método Delta}\label{muxe9todo-delta}}
+\subsection{Método Delta}\label{muxe9todo-delta}}
 
 Si \(Y_1,Y_2,\dots\) es una sucesión de variables aleatorias y sea \(F^*\) su c.d.f. continua. Sea \(\theta\in \mathbb R\) y \(\{a_n\}\) sucesión de números positivos tal que \(a_n \nearrow\infty\). Suponga que \(a_n(Y_n-\theta) \xrightarrow{d} F^*\). Si \(\alpha\) es una función tal que \(\alpha'(\theta)\ne 0\), entonces
 \[\dfrac{a_n}{\alpha'(\theta)}[\alpha(Y_n)-\alpha(\theta)] \xrightarrow{d} F^*\]
@@ -1638,7 +1757,7 @@ Si \(\alpha(\mu) = \dfrac 1\mu\) \((\mu\neq 0) \implies -\dfrac{1}{\mu^2} = \alp
 
 \[ \dfrac{\sqrt{n}}{\sigma}\mu^2\bigg[\dfrac 1{\bar X_n}-\dfrac 1\mu\bigg]\xrightarrow{d}N(0,1) \]
 
-\textbf{Ejemplo (7.6.11)}
+\textbf{Ejemplo}
 
 Si \(X_1,X_2\dots \stackrel{i.i.d}{\sim} \text{Exp}(\theta)\). Sea \(T_n = \sum X_i \implies \hat\theta = \dfrac 1{\bar X_n} = \dfrac n{T_n}\).
 
@@ -1662,6 +1781,204 @@ El MLE \(\hat\theta = \dfrac 1{\bar X_n}\) es asintóticamente normal con media 
 Por el T.L.C., la distribución posterior \(\theta|X\) se distribuye como una normal con media \(\dfrac{\alpha+n}{\beta+y}\) y varianza \(\dfrac{\alpha+n}{(\beta+y)^2}\). Tomando una previa poco informativa, (\(\alpha, \beta\) son pequeños), la media es
 \[\dfrac ny = \dfrac 1{\bar X_1} = \hat\theta_{MLE}\] y la varianza
 \[\dfrac 1{y^2/n} = \dfrac{\theta^2}n = \dfrac{V_n(\hat\theta)}{n}.\]
+
+\hypertarget{laboratorio}{%
+\section{Laboratorio}\label{laboratorio}}
+
+\hypertarget{caso-cluxe1sico}{%
+\subsection{Caso clásico}\label{caso-cluxe1sico}}
+
+Suponga que tenemos una tabla con los siguientes datos, los cuales representan la cantidad de giros hacia la derecha en cierta intersección.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{14}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{30}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{36}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{68}\NormalTok{), }
+    \KeywordTok{rep}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{43}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{43}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DecValTok{30}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{7}\NormalTok{, }\DecValTok{14}\NormalTok{), }
+    \KeywordTok{rep}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{10}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{9}\NormalTok{, }\DecValTok{6}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{4}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{11}\NormalTok{, }\DecValTok{1}\NormalTok{), }
+    \KeywordTok{rep}\NormalTok{(}\DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Queremos ajustar esta tabla a una distribución Poisson con función de densidad
+\[
+\mathbb{P}(X=x) = \frac{\lambda^x e^{-\lambda}}{x!} 
+\]
+
+Se puede probar que teórico de máxima verosimilitud para \(\lambda\) es \(\overline{X}\) (Tarea). Queremos estimar este parámetro alternativamente maximizando la función de verosimilitud.
+
+Primero veamos la forma de los datos,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(X, }\DataTypeTok{main =} \StringTok{"histograma del número de giros a la derecha"}\NormalTok{, }
+    \DataTypeTok{right =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{prob =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Definamos la función correspondiente a \(-\log(\mathbb{P}(X=x))\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(X)}
+\NormalTok{negloglike \textless{}{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(lambda) \{}
+\NormalTok{    n }\OperatorTok{*}\StringTok{ }\NormalTok{lambda }\OperatorTok{{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(X) }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(lambda) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(}\KeywordTok{factorial}\NormalTok{(X)))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Para encontrar el parámetro deseado, basta minimizar la función \texttt{negloglike} usando el la instrucción de optimización no lineal \texttt{nlm}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lambda.hat \textless{}{-}}\StringTok{ }\KeywordTok{nlm}\NormalTok{(negloglike, }\DataTypeTok{p =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{), }\DataTypeTok{hessian =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Aquí el valor \texttt{p\ =\ c(0.5)} representa un valor inicial de búsqueda y \texttt{hessian\ =\ TRUE} determina el cálculo explícito de la segunda derivada.
+
+Compare el resultado de \texttt{lambda.hat\$estimate} con \texttt{mean(X)}.
+
+\hypertarget{caso-bayesiano}{%
+\subsection{Caso bayesiano}\label{caso-bayesiano}}
+
+Suponga que se que quiere averiguar si los estudiantes de cierto colegio duermen más de 8 horas o menos de 8 horas.
+
+Para esto primero cargaremos el siguiente paquete,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(LearnBayes)}
+\end{Highlighting}
+\end{Shaded}
+
+Suponga que se hace una encuesta a 27 estudiantes y se encuentra que 11 dicen que duermen más de 8 horas diarias y el resto no. Nuestro objetivo es encontrar inferencias sobre la proporción \(p\) de estudiantes que duermen al menos 8 horas diarias. El modelo más adecuado es
+
+\[
+f(x \vert p) \propto p^s (1-p)^f
+\]
+
+donde \(s\) es la cantidad de estudiantes que duermen más de 8 horas y \(f\) los que duermen menos de 8 horas.
+
+Una primera aproximación para la previa es usar una distribución discreta. En este caso, el investigador asigna una probabilidad a cierta cantidad de horas de sueño, según su experiencia. Así, por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\FloatTok{0.95}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{prior \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{5.2}\NormalTok{, }\DecValTok{8}\NormalTok{, }\FloatTok{7.2}\NormalTok{, }\FloatTok{4.6}\NormalTok{, }\FloatTok{2.1}\NormalTok{, }\FloatTok{0.7}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{prior \textless{}{-}}\StringTok{ }\NormalTok{prior}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(prior)}
+\KeywordTok{plot}\NormalTok{(p, prior, }\DataTypeTok{type =} \StringTok{"h"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Probabilidad Previa"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-28-1} \end{center}
+
+El paquete \texttt{LearnBayes} tiene la función \texttt{pdisc} que estima la distribución posterior para una previa discreta binomial. Recuerde que el valor 11 representa la cantidad de estudiantes con más de 8 horas de sueño y 16 lo que no duermen esa cantidad.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{11}\NormalTok{, }\DecValTok{16}\NormalTok{)}
+\NormalTok{post \textless{}{-}}\StringTok{ }\KeywordTok{pdisc}\NormalTok{(p, prior, data)}
+\KeywordTok{round}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(p, prior, post), }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          p prior post
+##  [1,] 0.05  0.03 0.00
+##  [2,] 0.15  0.18 0.00
+##  [3,] 0.25  0.28 0.13
+##  [4,] 0.35  0.25 0.48
+##  [5,] 0.45  0.16 0.33
+##  [6,] 0.55  0.07 0.06
+##  [7,] 0.65  0.02 0.00
+##  [8,] 0.75  0.00 0.00
+##  [9,] 0.85  0.00 0.00
+## [10,] 0.95  0.00 0.00
+\end{verbatim}
+
+Y podemos ver la diferencia entre la previa (negro) y la posterior (roja),
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(p, post, }\DataTypeTok{type =} \StringTok{"h"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(p }\OperatorTok{+}\StringTok{ }\FloatTok{0.01}\NormalTok{, prior, }\DataTypeTok{type =} \StringTok{"h"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-30-1} \end{center}
+
+¿Qué se puede deducir de estos resultados?
+
+\textbf{Ejercicio:} Suponga que se tiene la base de datos \texttt{studentdata}. Realice los cálculos anteriores con esos datos,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(}\StringTok{"studentdata"}\NormalTok{)}
+\NormalTok{horas\_sueno \textless{}{-}}\StringTok{ }\NormalTok{studentdata}\OperatorTok{$}\NormalTok{WakeUp }\OperatorTok{{-}}\StringTok{ }\NormalTok{studentdata}\OperatorTok{$}\NormalTok{ToSleep}
+\NormalTok{horas\_sueno \textless{}{-}}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(horas\_sueno)}
+\KeywordTok{summary}\NormalTok{(horas\_sueno)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   2.500   6.500   7.500   7.385   8.500  12.500
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(horas\_sueno, }\DataTypeTok{main =} \StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-31-1} \end{center}
+
+Ahora supongamos que se tiene quiere ajustar una previa continua a este modelo. Para esto usaremos una distribución Beta con parámetros \(\alpha\) y \(\beta\), de la forma
+
+\[
+pi(p\vert \alpha, \beta) \propto p^{1-\alpha} (1-p)^{1-\beta}.
+\]
+
+El ajuste de los paramétros de la Beta depende mucho de la información previa que se tenga del modelo. Una forma fácil de estimarlo es a través de cuantiles con los cuales se puede reescribir estos parámetros. En particular, suponga que se cree que el \(50\%\) de las observaciones la proporción será menor que 0.3 y que el \(90\%\) será menor que 0.5.
+
+Para esto ajustaremos los siguientes parámetros
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{quantile2 \textless{}{-}}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{p =} \FloatTok{0.9}\NormalTok{, }\DataTypeTok{x =} \FloatTok{0.5}\NormalTok{)}
+\NormalTok{quantile1 \textless{}{-}}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{p =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{x =} \FloatTok{0.3}\NormalTok{)}
+\NormalTok{(ab \textless{}{-}}\StringTok{ }\KeywordTok{beta.select}\NormalTok{(quantile1, quantile2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.26 7.19
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a \textless{}{-}}\StringTok{ }\NormalTok{ab[}\DecValTok{1}\NormalTok{]}
+\NormalTok{b \textless{}{-}}\StringTok{ }\NormalTok{ab[}\DecValTok{2}\NormalTok{]}
+\NormalTok{s \textless{}{-}}\StringTok{ }\DecValTok{11}
+\NormalTok{f \textless{}{-}}\StringTok{ }\DecValTok{16}
+\end{Highlighting}
+\end{Shaded}
+
+En este caso se obtendra la distribución posterior Beta con paramétros \(\alpha + s\) y \(\beta + f\),
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dbeta}\NormalTok{(x, a }\OperatorTok{+}\StringTok{ }\NormalTok{s, b }\OperatorTok{+}\StringTok{ }\NormalTok{f), }\DataTypeTok{from =} \DecValTok{0}\NormalTok{, }\DataTypeTok{to =} \DecValTok{1}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"p"}\NormalTok{, }
+    \DataTypeTok{ylab =} \StringTok{"Densidad"}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{4}\NormalTok{)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dbeta}\NormalTok{(x, s }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{, f }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{), }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }
+    \DataTypeTok{lwd =} \DecValTok{4}\NormalTok{)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dbeta}\NormalTok{(x, a, b), }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{3}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{4}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\FloatTok{0.7}\NormalTok{, }\DecValTok{4}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\StringTok{"Previa"}\NormalTok{, }\StringTok{"Verosimilitud"}\NormalTok{, }\StringTok{"Posterior"}\NormalTok{), }
+    \DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{lwd =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-33-1} \end{center}
 
 \hypertarget{estaduxedsticos-suficientes-y-criterio-de-factorizaciuxf3n}{%
 \chapter{Estadísticos Suficientes y Criterio de Factorización}\label{estaduxedsticos-suficientes-y-criterio-de-factorizaciuxf3n}}
