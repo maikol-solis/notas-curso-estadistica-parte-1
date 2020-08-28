@@ -645,3 +645,102 @@ m <- rgamma(n = 1000, scale = beta, shape = alpha)
 Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=`r 1/theta`.
 
 **OJO: En este caso la pérdida cuadrática ajusta mejor ya que la distribución que la pérdida absoluta ya que la distribución NO es simétrica. En el caso simétrico los resultados serían muy similares.** 
+
+
+### Caso concreto
+
+Suponga que se que quiere averiguar si los estudiantes de cierto colegio duermen más de 8 horas o menos de 8 horas. 
+
+Para esto primero cargaremos el siguiente paquete, 
+
+```{r}
+library(LearnBayes)
+```
+Suponga que se hace una encuesta a 27 estudiantes y se encuentra que 11 dicen que duermen más de 8 horas diarias y el resto no. Nuestro objetivo es encontrar inferencias sobre la proporción $p$ de estudiantes que duermen al menos 8 horas diarias. El modelo más adecuado es  
+
+\[
+f(x \vert p) \propto p^s (1-p)^f
+\]
+
+donde $s$ es la cantidad de estudiantes que duermen más de 8 horas y $f$ los que duermen menos de 8 horas. 
+
+Una primera aproximación para la previa es usar una distribución discreta. En este caso, el investigador asigna una probabilidad a cierta cantidad de horas de sueño, según su experiencia. Así, por ejemplo:
+
+```{r}
+
+p <- seq(0.05, 0.95, by = 0.1)
+prior <- c(1, 5.2, 8, 7.2, 4.6, 2.1, 0.7, 0.1, 0, 0)
+prior <- prior/sum(prior)
+plot(p, prior, type = "h", ylab="Probabilidad Previa")
+
+```
+
+El paquete `LearnBayes` tiene la función `pdisc` que estima la distribución posterior para una previa discreta binomial. Recuerde que el valor 11 representa la cantidad de estudiantes con más de 8 horas de sueño y 16 lo que no duermen esa cantidad. 
+
+
+```{r}
+data <- c(11, 16)
+post <- pdisc(p, prior, data)
+round(cbind(p, prior, post),2)
+```
+
+Y podemos ver la diferencia entre la previa (negro) y la posterior (roja), 
+
+```{r}
+ 
+plot(p, post, type = "h", col = "red")
+lines(p + 0.01, prior , type = "h")
+
+```
+
+¿Qué se puede deducir de estos resultados?
+
+**Ejercicio:** Suponga que se tiene la base de datos `studentdata`. Realice los cálculos anteriores con esos datos, 
+
+```{r}
+data("studentdata")
+horas_sueno <- studentdata$WakeUp - studentdata$ToSleep
+horas_sueno <- na.omit(horas_sueno)
+summary(horas_sueno)
+hist(horas_sueno,main = "")
+ 
+```
+
+
+Ahora supongamos que se tiene quiere ajustar una previa continua a este modelo. Para esto usaremos una distribución Beta con parámetros $\alpha$ y $\beta$, de la forma 
+
+\[
+pi(p\vert \alpha, \beta) \propto p^{1-\alpha} (1-p)^{1-\beta}.
+\]
+
+El ajuste de los paramétros de la Beta depende mucho de la información previa que se tenga del modelo. Una forma fácil de estimarlo es a través de cuantiles con los cuales se puede reescribir estos parámetros. Para una explicación detallada revisar https://stats.stackexchange.com/a/237849
+
+
+En particular, suponga que se cree que el $50\%$ de las observaciones la proporción será menor que 0.3 y que el $90\%$ será menor que 0.5. 
+
+Para esto ajustaremos los siguientes parámetros 
+
+
+
+```{r}
+quantile2 <- list(p = .9, x = .5)
+quantile1 <- list(p = .5, x = .3)
+(ab <- beta.select(quantile1, quantile2))
+
+ a <- ab[1]
+ b <- ab[2]
+ s <- 11
+ f <- 16
+
+```
+
+En este caso se obtendra la distribución posterior Beta con paramétros $\alpha + s$ y $\beta + f$, 
+
+```{r}
+curve(dbeta(x,a + s,b + f), from = 0, to = 1, 
+       xlab = "p", ylab = "Densidad",lty = 1, lwd = 4)
+curve(dbeta(x,s + 1, f + 1), add=TRUE, lty = 2, lwd = 4)
+curve(dbeta(x, a, b), add = TRUE, lty = 3, lwd = 4)
+legend(.7, 4, c("Previa","Verosimilitud","Posterior"),
+     lty = c(3,2,1), lwd = c(3,3,3))
+```
