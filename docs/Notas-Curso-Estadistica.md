@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 31 August, 2020"
+date: "Actualizado el 01 septiembre, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -1820,16 +1820,21 @@ Como $g$ es biyectiva entonces $(\bar X_n, \sigma_n^2)$ es un estadístico sufic
  
  La verosimilitud es de la forma
  
-\[f_n(x|(a,b)) = \prod_{i=1}^n1_{[a,b]}(x_i) = \underbrace{\dfrac 1{(b-a)^n} 1_{\{(z,w): z>a, w<b\}}(X_{(1)},X_{(n)})}_{v(r_1,r_2,(a,b))}\cdot \underbrace{1}_{u(x)}\]
+\[f_n(x|(a,b)) = \prod_{i=1}^n1_{[a,b]}(x_i) = \underbrace{\dfrac 1{(b-a)^n} 1_{\{(z,w): z>a, w<b\}}(X_{(1)},X_{(n)})}_{v(r_1(x),r_2(x),(a,b))}\cdot \underbrace{1}_{u(x)}\]
 
-Por teorema de factorización $(X_{(1)},X_{(n)})$ es un estadístico suficiente para $(a,b)$.
+Por teorema de factorización $(r_{1}(x), r_{2}(x)) = (X_{(1)},X_{(n)})$ es un
+estadístico suficiente para $(a,b)$.
     
 ## Estadísticos minimales
 
-**Idea:** un estadístico suficiente que garantice una partición de $\mathcal X$ (espacio muestral) de la manera más simple posible.
+**Idea:** un estadístico suficiente que garantice una partición de $\mathcal X$
+(espacio muestral) de la manera más simple posible.
 
-**Definición (Estadístico de orden)**. Sean $X_1,\dots, X_n \stackrel{i.i.d}{\sim} f$. Al ordenar los datos 
-\[(Y_1,\dots,Y_n) = (X_{(1)},\dots,X_{(n)}) \text { tal que } Y_1<\dots<Y_n\]
+**Definición (Estadístico de orden)**. Sean $X_1,\dots, X_n \stackrel{i.i.d}{\sim}
+f$. Al ordenar los datos 
+
+\[(Y_1,\dots,Y_n) = (X_{(1)},\dots,X_{(n)}) \text { tal
+que } Y_1<\dots<Y_n\]
 
 **Nota**: $(X_{(1)},\dots,X_{(n)})$ es un estadístico suficiente de $\theta$.
 
@@ -1843,24 +1848,35 @@ donde $y = (X_{(1)},\dots,X_{(n)})$ es suficiente para $\alpha$.
 
 **Ejercicio**: estime $\alpha$ usando R o usando método de momentos.
 
-**Definición**. Un estadístico $T$ es **suficiente minimal** si $T$ es suficiente y es función de cualquier otro estadístico suficiente.
+**Definición**. Un estadístico $T$ es **suficiente minimal** si $T$ es
+suficiente y es función de cualquier otro estadístico suficiente.
 
-**Teorema**. Si $T = r(X_1,\dots, X_n)$ es un estadístico suficiente para $\theta$, entonces el MLE $\hat\theta$ de $\theta$ depende de $X_1,\dots, X_n$ solamente a través de $T$. Además, si $\hat \theta$ es suficiente entonces $\hat \theta$ es minimal.
+**Teorema**. Si $T = r(X_1,\dots, X_n)$ es un estadístico suficiente para
+$\theta$, entonces el MLE $\hat\theta$ de $\theta$ depende de $X_1,\dots, X_n$
+solamente a través de $T$. Además, si $\hat \theta$ es suficiente entonces $\hat
+\theta$ es minimal.
 
-*Prueba*. Por teorema de factorización, $f_n(x|\theta) = u(x)v(r(x),\theta)$ de $T = r(x)$ es suficiente y 
-\[\hat\theta = \operatorname*{argmax}_\theta f_n(x|\theta) = \operatorname*{argmax}_\theta v(r(x),\theta) \quad(\Delta)\]
+*Prueba*. Por teorema de factorización, $f_n(x|\theta) = u(x)v(r(x),\theta)$ de $T =r(x)$
+es suficiente y
+\[\hat\theta = \operatorname*{argmax}_\theta f_n(x|\theta) = \operatorname*{argmax}_\theta v(r(x),\theta), \quad (\Delta)\]
 
 Como $\hat\theta = g(T)$ para cualquier $T$ estadístico suficiente, entonces $\hat\theta$ es minimal.
 
-**Teorema**. Si $T = r(X_1,\dots, X_n)$ es un estadístico suficiente para $\theta$ entonces el estimador bayesiano (bajo una escogencia de $L$) depende de $X_1,\dots, X_n$ solamente a través de $T$ (el estimador bayesiano es minimal).
+**Teorema**. Si $T = r(X_1,\dots, X_n)$ es un estadístico suficiente para
+$\theta$ entonces el estimador bayesiano (bajo una escogencia de $L$) depende de
+$X_1,\dots, X_n$ solamente a través de $T$ (el estimador bayesiano es minimal).
 
-*Prueba*. Sustituya $(\Delta)$ por $\pi(\theta|x) \propto v(r(x),\theta)\cdot\pi(\theta)$. Como cualquier estimador bayesiano depende de $\pi(\theta|x)$, cualquier estimador bayesiano depende de los datos a través de $r(x)$.
+*Prueba*. Sustituya $(\Delta)$ por $\pi(\theta|x) \propto v(r(x),\theta)\cdot\pi(\theta)$. Como cualquier
+estimador bayesiano depende de $\pi(\theta|x)$, cualquier estimador bayesiano depende
+e los datos a través de $r(x)$.
 
 ## Mejorando estimadores
 
+**Idea:** ¿Será posible mejorar un estimar que no es suficiente?
+
 ¿Existirá otra medida de comparación entre estimadores?
 
-Considere una **función de riesgo**
+Considere una **función de riesgo o pérdida**
 $$ R(\theta,\delta) = \mathbb E[(\delta(x)-\theta) ^2]$$
 Si $\delta(x)$ estima una característica de $F$:
 \[ R(\theta,\delta) = \mathbb E[(\delta(x)-h(\theta))^2]\quad (\Delta\Delta)\]
@@ -1870,14 +1886,19 @@ donde $h$ es la característica.
 
 **Definición**.
 
-* Decimos que $\delta$ es **inadmisible** si $\exists \delta_0$ (otro estimador) tal que $R(\theta,\delta)$ $\forall \theta \in \Omega$.
-
+* Decimos que $\delta$ es **inadmisible** si $\exists \delta_0$ (otro estimador) tal que
+  $R(\theta, \delta_{0}) \leq R(\theta,\delta)$ $\forall \theta \in \Omega$.
+deltadelta
 * Decimos que $\delta_0$ **"domina"** a $\delta$ en el caso anterior.
+
+* Decimos que \(\delta_0\) es admisible si no existe otro estimador que domine a
+  \(\delta_0\).
 
 * A $(\Delta \Delta)$ se le llama **MSE** o **error cuadrático medio**.
 
-**Teorema (Rao-Blackwell)**. Sea $\delta(X)$ un estimador y $T$ un estadístico suficiente para $\theta$ y sea $\delta_0 = \mathbb E[\delta(X)|T]$. Entonces
-\[ R(\theta,\delta_0) \leq R(\theta,\delta) \; \forall \theta \in \Omega\]
+**Teorema (Rao-Blackwell)**. Sea $\delta(X)$ un estimador y $T$ un estadístico
+suficiente para $\theta$ y sea $\delta_0 = \mathbb E[\delta(X)|T]$. Entonces \[ R(\theta,\delta_0) \leq
+R(\theta,\delta) \; \forall \theta \in \Omega\]
 
 *Prueba*. Por la desigualdad de Jensen,
 \[ \mathbb E_\theta[(\delta(x)-\theta)^2] \geq (E_\theta[(\delta(x)-\theta)])^2. \]
@@ -1917,11 +1938,15 @@ Vea que
  * $\mathbb P(T=t) = e^{-n\theta}\dfrac{(n\theta)^t}{t!}$
  
  Entonces,
-\[\Delta = \dfrac{\theta e^{-n\theta}\dfrac{((n-1)\theta)^{t-1}}{(t-1)!}}{e^{-n\theta}\dfrac{(n\theta)^t}{t!}} = \dfrac tn \left(1-\dfrac tn\right)^{t-1} = G\left(\dfrac tn\right)\]
+ \begin{align*}
+\Delta  \dfrac{\theta e^{-n\theta}\dfrac{((n-1)\theta)^{t-1}}{(t-1)!}}{e^{-n\theta}\dfrac{(n\theta)^t}{t!}} = \dfrac tn \left(1-\dfrac tn\right)^{t-1} = G\left(\dfrac tn\right)
+\end{align*}
+ 
  es el estadístico con MSE mínimo.
 
 
 
+ 
 
 <!--chapter:end:04-estadisticos-suficientes.Rmd-->
 

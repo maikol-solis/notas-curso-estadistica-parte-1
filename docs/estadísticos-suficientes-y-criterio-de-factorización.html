@@ -383,14 +383,17 @@ Como <span class="math inline">\(g\)</span> es biyectiva entonces <span class="m
 </ol></li>
 </ol>
 <p>La verosimilitud es de la forma</p>
-<p><span class="math display">\[f_n(x|(a,b)) = \prod_{i=1}^n1_{[a,b]}(x_i) = \underbrace{\dfrac 1{(b-a)^n} 1_{\{(z,w): z&gt;a, w&lt;b\}}(X_{(1)},X_{(n)})}_{v(r_1,r_2,(a,b))}\cdot \underbrace{1}_{u(x)}\]</span></p>
-<p>Por teorema de factorización <span class="math inline">\((X_{(1)},X_{(n)})\)</span> es un estadístico suficiente para <span class="math inline">\((a,b)\)</span>.</p>
+<p><span class="math display">\[f_n(x|(a,b)) = \prod_{i=1}^n1_{[a,b]}(x_i) = \underbrace{\dfrac 1{(b-a)^n} 1_{\{(z,w): z&gt;a, w&lt;b\}}(X_{(1)},X_{(n)})}_{v(r_1(x),r_2(x),(a,b))}\cdot \underbrace{1}_{u(x)}\]</span></p>
+<p>Por teorema de factorización <span class="math inline">\((r_{1}(x), r_{2}(x)) = (X_{(1)},X_{(n)})\)</span> es un
+estadístico suficiente para <span class="math inline">\((a,b)\)</span>.</p>
 </div>
 <div id="estadísticos-minimales" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Estadísticos minimales</h2>
-<p><strong>Idea:</strong> un estadístico suficiente que garantice una partición de <span class="math inline">\(\mathcal X\)</span> (espacio muestral) de la manera más simple posible.</p>
-<p><strong>Definición (Estadístico de orden)</strong>. Sean <span class="math inline">\(X_1,\dots, X_n \stackrel{i.i.d}{\sim} f\)</span>. Al ordenar los datos
-<span class="math display">\[(Y_1,\dots,Y_n) = (X_{(1)},\dots,X_{(n)}) \text { tal que } Y_1&lt;\dots&lt;Y_n\]</span></p>
+<p><strong>Idea:</strong> un estadístico suficiente que garantice una partición de <span class="math inline">\(\mathcal X\)</span>
+(espacio muestral) de la manera más simple posible.</p>
+<p><strong>Definición (Estadístico de orden)</strong>. Sean <span class="math inline">\(X_1,\dots, X_n \stackrel{i.i.d}{\sim} f\)</span>. Al ordenar los datos</p>
+<p><span class="math display">\[(Y_1,\dots,Y_n) = (X_{(1)},\dots,X_{(n)}) \text { tal
+que } Y_1&lt;\dots&lt;Y_n\]</span></p>
 <p><strong>Nota</strong>: <span class="math inline">\((X_{(1)},\dots,X_{(n)})\)</span> es un estadístico suficiente de <span class="math inline">\(\theta\)</span>.</p>
 <p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \sim \text{Cauchy}(\alpha)\)</span>.
 <span class="math display">\[ f(x) = \dfrac1\pi[1+(x-\alpha)^2]^{-1}, x\in\mathbb R\]</span></p>
@@ -398,18 +401,27 @@ Como <span class="math inline">\(g\)</span> es biyectiva entonces <span class="m
 <p><span class="math display">\[ f_n(x|\alpha) = \prod(x|\alpha) = \dfrac 1\pi [1+(x_i-\alpha)^2]^{-1} = \underbrace{\dfrac 1{\pi^n}}_{u(x)}\underbrace{\prod_{i=1}^n[1+(x_i-\alpha)^2]^{-1} }_{v(y,\alpha)} \]</span>
 donde <span class="math inline">\(y = (X_{(1)},\dots,X_{(n)})\)</span> es suficiente para <span class="math inline">\(\alpha\)</span>.</p>
 <p><strong>Ejercicio</strong>: estime <span class="math inline">\(\alpha\)</span> usando R o usando método de momentos.</p>
-<p><strong>Definición</strong>. Un estadístico <span class="math inline">\(T\)</span> es <strong>suficiente minimal</strong> si <span class="math inline">\(T\)</span> es suficiente y es función de cualquier otro estadístico suficiente.</p>
-<p><strong>Teorema</strong>. Si <span class="math inline">\(T = r(X_1,\dots, X_n)\)</span> es un estadístico suficiente para <span class="math inline">\(\theta\)</span>, entonces el MLE <span class="math inline">\(\hat\theta\)</span> de <span class="math inline">\(\theta\)</span> depende de <span class="math inline">\(X_1,\dots, X_n\)</span> solamente a través de <span class="math inline">\(T\)</span>. Además, si <span class="math inline">\(\hat \theta\)</span> es suficiente entonces <span class="math inline">\(\hat \theta\)</span> es minimal.</p>
-<p><em>Prueba</em>. Por teorema de factorización, <span class="math inline">\(f_n(x|\theta) = u(x)v(r(x),\theta)\)</span> de <span class="math inline">\(T = r(x)\)</span> es suficiente y
-<span class="math display">\[\hat\theta = \operatorname*{argmax}_\theta f_n(x|\theta) = \operatorname*{argmax}_\theta v(r(x),\theta) \quad(\Delta)\]</span></p>
+<p><strong>Definición</strong>. Un estadístico <span class="math inline">\(T\)</span> es <strong>suficiente minimal</strong> si <span class="math inline">\(T\)</span> es
+suficiente y es función de cualquier otro estadístico suficiente.</p>
+<p><strong>Teorema</strong>. Si <span class="math inline">\(T = r(X_1,\dots, X_n)\)</span> es un estadístico suficiente para
+<span class="math inline">\(\theta\)</span>, entonces el MLE <span class="math inline">\(\hat\theta\)</span> de <span class="math inline">\(\theta\)</span> depende de <span class="math inline">\(X_1,\dots, X_n\)</span>
+solamente a través de <span class="math inline">\(T\)</span>. Además, si <span class="math inline">\(\hat \theta\)</span> es suficiente entonces <span class="math inline">\(\hat \theta\)</span> es minimal.</p>
+<p><em>Prueba</em>. Por teorema de factorización, <span class="math inline">\(f_n(x|\theta) = u(x)v(r(x),\theta)\)</span> de <span class="math inline">\(T =r(x)\)</span>
+es suficiente y
+<span class="math display">\[\hat\theta = \operatorname*{argmax}_\theta f_n(x|\theta) = \operatorname*{argmax}_\theta v(r(x),\theta), \quad (\Delta)\]</span></p>
 <p>Como <span class="math inline">\(\hat\theta = g(T)\)</span> para cualquier <span class="math inline">\(T\)</span> estadístico suficiente, entonces <span class="math inline">\(\hat\theta\)</span> es minimal.</p>
-<p><strong>Teorema</strong>. Si <span class="math inline">\(T = r(X_1,\dots, X_n)\)</span> es un estadístico suficiente para <span class="math inline">\(\theta\)</span> entonces el estimador bayesiano (bajo una escogencia de <span class="math inline">\(L\)</span>) depende de <span class="math inline">\(X_1,\dots, X_n\)</span> solamente a través de <span class="math inline">\(T\)</span> (el estimador bayesiano es minimal).</p>
-<p><em>Prueba</em>. Sustituya <span class="math inline">\((\Delta)\)</span> por <span class="math inline">\(\pi(\theta|x) \propto v(r(x),\theta)\cdot\pi(\theta)\)</span>. Como cualquier estimador bayesiano depende de <span class="math inline">\(\pi(\theta|x)\)</span>, cualquier estimador bayesiano depende de los datos a través de <span class="math inline">\(r(x)\)</span>.</p>
+<p><strong>Teorema</strong>. Si <span class="math inline">\(T = r(X_1,\dots, X_n)\)</span> es un estadístico suficiente para
+<span class="math inline">\(\theta\)</span> entonces el estimador bayesiano (bajo una escogencia de <span class="math inline">\(L\)</span>) depende de
+<span class="math inline">\(X_1,\dots, X_n\)</span> solamente a través de <span class="math inline">\(T\)</span> (el estimador bayesiano es minimal).</p>
+<p><em>Prueba</em>. Sustituya <span class="math inline">\((\Delta)\)</span> por <span class="math inline">\(\pi(\theta|x) \propto v(r(x),\theta)\cdot\pi(\theta)\)</span>. Como cualquier
+estimador bayesiano depende de <span class="math inline">\(\pi(\theta|x)\)</span>, cualquier estimador bayesiano depende
+e los datos a través de <span class="math inline">\(r(x)\)</span>.</p>
 </div>
 <div id="mejorando-estimadores" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Mejorando estimadores</h2>
+<p><strong>Idea:</strong> ¿Será posible mejorar un estimar que no es suficiente?</p>
 <p>¿Existirá otra medida de comparación entre estimadores?</p>
-<p>Considere una <strong>función de riesgo</strong>
+<p>Considere una <strong>función de riesgo o pérdida</strong>
 <span class="math display">\[ R(\theta,\delta) = \mathbb E[(\delta(x)-\theta) ^2]\]</span>
 Si <span class="math inline">\(\delta(x)\)</span> estima una característica de <span class="math inline">\(F\)</span>:
 <span class="math display">\[ R(\theta,\delta) = \mathbb E[(\delta(x)-h(\theta))^2]\quad (\Delta\Delta)\]</span>
@@ -417,12 +429,17 @@ donde <span class="math inline">\(h\)</span> es la característica.</p>
 <p><strong>Nota:</strong> la función de riesgo puede ser calculada con una posterior <span class="math inline">\(\pi(\theta|X)\)</span>.</p>
 <p><strong>Definición</strong>.</p>
 <ul>
-<li><p>Decimos que <span class="math inline">\(\delta\)</span> es <strong>inadmisible</strong> si <span class="math inline">\(\exists \delta_0\)</span> (otro estimador) tal que <span class="math inline">\(R(\theta,\delta)\)</span> <span class="math inline">\(\forall \theta \in \Omega\)</span>.</p></li>
+<li><p>Decimos que <span class="math inline">\(\delta\)</span> es <strong>inadmisible</strong> si <span class="math inline">\(\exists \delta_0\)</span> (otro estimador) tal que
+<span class="math inline">\(R(\theta, \delta_{0}) \leq R(\theta,\delta)\)</span> <span class="math inline">\(\forall \theta \in \Omega\)</span>.
+deltadelta</p></li>
 <li><p>Decimos que <span class="math inline">\(\delta_0\)</span> <strong>“domina”</strong> a <span class="math inline">\(\delta\)</span> en el caso anterior.</p></li>
+<li><p>Decimos que <span class="math inline">\(\delta_0\)</span> es admisible si no existe otro estimador que domine a
+<span class="math inline">\(\delta_0\)</span>.</p></li>
 <li><p>A <span class="math inline">\((\Delta \Delta)\)</span> se le llama <strong>MSE</strong> o <strong>error cuadrático medio</strong>.</p></li>
 </ul>
-<p><strong>Teorema (Rao-Blackwell)</strong>. Sea <span class="math inline">\(\delta(X)\)</span> un estimador y <span class="math inline">\(T\)</span> un estadístico suficiente para <span class="math inline">\(\theta\)</span> y sea <span class="math inline">\(\delta_0 = \mathbb E[\delta(X)|T]\)</span>. Entonces
-<span class="math display">\[ R(\theta,\delta_0) \leq R(\theta,\delta) \; \forall \theta \in \Omega\]</span></p>
+<p><strong>Teorema (Rao-Blackwell)</strong>. Sea <span class="math inline">\(\delta(X)\)</span> un estimador y <span class="math inline">\(T\)</span> un estadístico
+suficiente para <span class="math inline">\(\theta\)</span> y sea <span class="math inline">\(\delta_0 = \mathbb E[\delta(X)|T]\)</span>. Entonces <span class="math display">\[ R(\theta,\delta_0) \leq
+R(\theta,\delta) \; \forall \theta \in \Omega\]</span></p>
 <p><em>Prueba</em>. Por la desigualdad de Jensen,
 <span class="math display">\[ \mathbb E_\theta[(\delta(x)-\theta)^2] \geq (E_\theta[(\delta(x)-\theta)])^2. \]</span>
 También,
@@ -452,8 +469,10 @@ Vea que
 <li><p><span class="math inline">\(\mathbb P(T=t) = e^{-n\theta}\dfrac{(n\theta)^t}{t!}\)</span></p></li>
 </ul>
 <p>Entonces,
-<span class="math display">\[\Delta = \dfrac{\theta e^{-n\theta}\dfrac{((n-1)\theta)^{t-1}}{(t-1)!}}{e^{-n\theta}\dfrac{(n\theta)^t}{t!}} = \dfrac tn \left(1-\dfrac tn\right)^{t-1} = G\left(\dfrac tn\right)\]</span>
-es el estadístico con MSE mínimo.</p>
+<span class="math display">\[\begin{align*}
+\Delta  \dfrac{\theta e^{-n\theta}\dfrac{((n-1)\theta)^{t-1}}{(t-1)!}}{e^{-n\theta}\dfrac{(n\theta)^t}{t!}} = \dfrac tn \left(1-\dfrac tn\right)^{t-1} = G\left(\dfrac tn\right)
+\end{align*}\]</span></p>
+<p>es el estadístico con MSE mínimo.</p>
 
 </div>
 </div>
