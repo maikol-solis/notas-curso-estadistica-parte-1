@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 27 August, 2020"
+date: "Actualizado el 31 August, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -1670,23 +1670,39 @@ mean(X)
 # Estadísticos Suficientes y Criterio de Factorización
 
 
-# Estadísticos suficientes
+## Estadísticos suficientes
 
-Una función de verosimilitud se va a describir a través de un número. El objetivo es buscar un estadístico $T=r(X_1,\dots,X_n)$ que resuma de manera óptima la información de $X_1,\dots,X_n$
+Una función de verosimilitud se va a describir a través de un número. El
+objetivo es buscar un estadístico $T=r(X_1,\dots,X_n)$ que resuma de manera
+óptima la información de $X_1,\dots,X_n$
 
-**Definición**. Sea $X_1,\dots,X_n$ una muestra indexada por $\theta$. Sea $T$ un estadístico, suponga que para cada $\theta \in \Omega$ y para cada $t$ en la imagen de $T$, $X_1\cdots X_n|T=t$ depende solamente de $t$ y no de $\theta$. Entonces $T$ es suficiente.
+**Definición**. Sea $X_1,\dots,X_n$ una muestra indexada por $\theta$. Sea $T$
+un estadístico, suponga que para cada $\theta \in \Omega$ y para cada $t$ en la imagen
+de $T$, $X_1\cdots X_n|T=t$ depende solamente de $t$ y no de $\theta$. Entonces $T$
+es suficiente.
+
+
+
+
 
 ## Teorema de Factorización de Fisher
 
-**Teorema**. Si $X_1,\dots,X_n$ es una muestra aleatoria de $f(X|\theta)$, el parámetro $\theta$ es desconocido. Un estadístico $T=r(X_1,\dots,X_n)$ es suficiente si y solo si $$f_n(x|\theta) = u(x)v(r(x),\theta)\;\forall x\in \mathbb R, \; \forall \theta \in \mathbb R.$$
+**Teorema**. Si $X_1,\dots,X_n$ es una muestra aleatoria de $f(X|\theta)$, el
+parámetro $\theta$ es desconocido. Un estadístico $T=r(X_1,\dots,X_n)$ es
+suficiente si y solo si $$f_n(x|\theta) = u(x)v(r(x),\theta)\;\forall x\in
+\mathbb R, \; \forall \theta \in \mathbb R.$$
 
 *Prueba* (Discreta). $f_n(x|\theta) = \mathbb P(X=x|\theta)$
 
 "$\Leftarrow$" Sea \(A(t) = \{x\in \mathbb R| r(x) =t\}\). Para \(\theta \in \mathbb R \), \(x\in A(t)\),
 
 \begin{align*}
-\mathbb P(X=x|T=t) & = \dfrac{\mathbb P(X=x\cap T=t)}{\mathbb P (T=t)} = \dfrac{\mathbb P (X=x)}{P(T=t)} = \dfrac{f_n(x|\theta)}{\displaystyle\sum_{y \in A(t)}f_n(y|\theta)} \\
-& = \dfrac{u(x)v(r(x),\theta)}{\displaystyle\sum_{y \in A(t)} u(y)v(r(y),\theta)} = \dfrac{u(x)}{\displaystyle\sum_{y \in A(t)}u(y)}
+\mathbb P(X=x|T=t) 
+& = \dfrac{\mathbb P(X=x \cap T=t)}{\mathbb P (T=t)} \\ 
+&= \dfrac{f_n(x|\theta, T=t)}{\displaystyle\sum_{y \in A(t)}f_n(y|\theta)} \\
+& = \dfrac{u(x)v(r(x),\theta)}{\displaystyle\sum_{y \in A(t)} u(y)v(r(y),\theta)} \\ 
+& = \dfrac{u(x)v(t,\theta)}{\displaystyle v(t,\theta)\sum_{y \in A(t)} u(y)} \text{(Como \(y\in A(t)\) entonces \(r(y) = t\) que es constante.)}\\ 
+&= \dfrac{u(x)}{\displaystyle\sum_{y \in A(t)}u(y)}
 \end{align*}
 
 no depende de $\theta$. 
@@ -1695,7 +1711,7 @@ Si $x\notin A(t) \implies \mathbb P(X=x|T=t) = 0$ no depende de $\theta$.
 
 "$\Rightarrow$" Si $T$ es un estadístico suficiente, $u(x) = \mathbb P(X=x|T=t)$ no depende de $\theta$. Sea $v(t,\theta) = \mathbb P_{\theta}(T=t)$. Entonces
 
-\[ f_n(x|\theta) = \mathbb(X=x|\theta) = \dfrac{\mathbb P(X=x|\theta)}{\mathbb P(T=t)}\mathbb P(T=t) = u(x)v(t,\theta).\]
+\[ f_n(x|\theta) = \mathbb P (X=x|\theta) = \dfrac{\mathbb P(X=x|\theta)}{\mathbb P(T=t)}\mathbb P(T=t) = u(x)v(t,\theta).\]
 
 **Consecuencia**: $f_n(x|\theta) \propto v(r(x),\theta)$ ($u(x)$ es una constante con respecto a $\theta$). Aplicando el teorema de Bayes,
 \[ \pi(\theta|x) \propto \pi(\theta)v(r(x),\theta).\]
@@ -1704,7 +1720,7 @@ Si $x\notin A(t) \implies \mathbb P(X=x|T=t) = 0$ no depende de $\theta$.
 
 **Ejemplo**. $X_1,\dots, X_n \sim \text{Poi}(\lambda)$, 
 
-\[f_n(x|\theta) = \prod_{i=1}^n \dfrac{e^{-\lambda}}{x_i!} = \dfrac{e^{-\lambda n} \lambda ^{\sum x_i \;= r(x)}}{\prod x_i!} = \underbrace{\dfrac{1}{\prod_{i=1}^n x_i!}}_{u(x)} \underbrace{e^{-\lambda n}\lambda^{r(x)}}_{v(r(x),\lambda)}\]
+\[f_n(x|\theta) = \prod_{i=1}^n \dfrac{e^{-\lambda}}{x_i!} = \dfrac{e^{-\lambda n} \lambda ^{\sum x_i (\;= r(x))}}{\prod x_i!} = \underbrace{\dfrac{1}{\prod_{i=1}^n x_i!}}_{u(x)} \underbrace{e^{-\lambda n}\lambda^{r(x)}}_{v(r(x),\lambda)}\]
 
 Si $x_i < 0$ para al menos un $i$, entonces $f_n(x|\theta) = 0$. Tome $u(x) = 0$. Por el teorema de factorización, $r(x) = \sum x_i$ es un estadístico suficiente para $\lambda$.
 
@@ -1722,13 +1738,13 @@ Por el teorema de factorización $r(x) = \prod x_i$ es un estadístico suficient
 
 \begin{align*} 
 f_n(x|\theta) & = (2\pi\sigma^2)^{-n/2} \exp\bigg[-\dfrac{1}{2\sigma^2}\sum_{i=1}^n(X_i-\mu)^2\bigg] \\
-& = (2\pi\sigma^2)^{-n/2} \exp\bigg[-\dfrac{1}{2\sigma^2}\sum_{i=1}^n X_i^2+ \dfrac{\mu}{\sigma^2}\sum X_i - \dfrac{\mu^2 n}{2\sigma^2} \bigg]
+& = (2\pi\sigma^2)^{-n/2} \exp\bigg[-\dfrac{1}{2\sigma^2}\underbrace{\sum_{i=1}^n X_i^2}_{r_2(x)}+ \dfrac{\mu}{\sigma^2}\underbrace{\sum_{i=1}^n X_i}_{r_1(x)} - \dfrac{\mu^2 n}{2\sigma^2} \bigg]
 \end{align*}
 
 Tome \[u(x) = (2\pi\sigma^2)^{-n/2}\exp\bigg[-\dfrac{1}{2\sigma^2} \displaystyle\sum_{i=1}^n X_i^2\bigg],\]
-\[ v(r(x),\mu) = \exp\bigg[\dfrac{\mu}{\sigma^2}r(x) - \dfrac{n\mu^2}{2\sigma^2}\bigg]. \]
+\[ v(r_{1}(x),\mu) = \exp\bigg[\dfrac{\mu}{\sigma^2}r_{1}(x) - \dfrac{n\mu^2}{2\sigma^2}\bigg]. \]
 
-Por teorema de factorización, $r(x)=\sum X_i$ es un estadístico suficiente para $\mu$.
+Por teorema de factorización, $r_{1}(x)=\sum X_i$ es un estadístico suficiente para $\mu$.
 
 Con $\sigma^2$ desconocido, $\theta = (\mu,\sigma^2)$, tome $u(x) = 1$,
 \[ v(r_1(x),r_2(x),\theta) = (2\pi\sigma^2)^{-n/2}\exp\bigg[\dfrac{-r_2(x)}{2\sigma^2} + \dfrac{\mu r_1(x)}{\sigma^2}- \dfrac{n\mu^2}{2\sigma^2}\bigg] \]
@@ -1745,21 +1761,42 @@ Si $0<x_i<\theta$ $\forall i \implies f_n(x|\theta) = 1_{[0,\theta]}(\max\{x_i\}
 
 Si $T = r(x) = X_{(n)} \implies f_n(x|\theta) = u(x)v(r(x),\theta)$, $u(x) = 1$. Por teorema de factorización, $r(x) = x_{(n)}$ es un estadístico suficiente para $\theta$.
 
-# Estadístico suficiente multivariado.
+## Estadístico suficiente multivariado.
 
-Si $\theta \in \mathbb R^k$, $k\geq 1$ se necesita al menos $k$ estadísticos $(T_1,\dots,T_k)$ para cada $i=1,\dots,k$, $T_i = r_i(X_1,\dots, X_n)$.
+Si $\theta \in \mathbb R^k$, $k\geq 1$ se necesita al menos $k$ estadísticos
+$(T_1,\dots,T_k)$ para cada $i=1,\dots,k$, $T_i = r_i(X_1,\dots, X_n)$.
 
-**Definición**. Suponga que para cada $\theta\in \Omega$ y $(t_1,\dots, t_k) \in \mathbb R^k$ valor del estadístico $(T_1,\dots,T_k)$, la distribución condicional de $X_1,\dots, X_n$ dado
-$(T_1,\dots,T_k) = (t_1,\dots, t_k)$ no depende de $\theta$, entonces $(T_1,\dots,T_k)$ es un **estadístico suficiente** para $\theta$.
+**Definición**. Suponga que para cada $\theta\in \Omega$ y $(t_1,\dots, t_k) \in \mathbb
+R^k$ valor del estadístico $(T_1,\dots,T_k)$, la distribución condicional de
+$X_1,\dots, X_n$ dado $(T_1,\dots,T_k) = (t_1,\dots, t_k)$ no depende de
+$\theta$, entonces $(T_1,\dots,T_k)$ es un **estadístico suficiente** para
+$\theta$.
 
 **Criterio de factorización**:
 
-\[ f_n(x|\theta) = u(x)v(r_1(x),\dots,r_k(x),\theta) \Leftrightarrow T = (r_1(x),\dots,r_k(x)) \text{ es suficiente}\]
+\[ f_n(x|\theta) = u(x)v(r_1(x),\dots,r_k(x),\theta) \Leftrightarrow T = (r_1(x),\dots,r_k(x)) \text{ es
+suficiente}\]
 
-Si $(T_1,\dots,T_k)$ es suficiente para $\theta$ y si $(T_1',\dots,T_k') = g(T_1,\dots,T_k)$ donde $g$ es biyectiva, entonces $(T_1',\dots,T_k')$ es suficiente para $\theta$.
-\[ u(x)v(r(x)|\theta) = u(x)v(g^{-1}(g(r(x))),\theta).\]
+Si $(T_1,\dots,T_k)$ es suficiente para $\theta$ y si $(T_1',\dots,T_k') =
+g(T_1,\dots,T_k)$ donde $g$ es biyectiva, entonces $(T_1',\dots,T_k')$ es
+suficiente para $\theta$. \[ u(x)v(r(x)|\theta) = u(x)v(g^{-1}(g(r(x))),\theta).\]
 
-**Ejemplo**. Considere $(T_1',T_2') = g(T_1,T_2) = \left(\dfrac{1}{n}T_1,\dfrac{1}{n}T_2 - \dfrac{1}{n^2}T_1^2\right)$.
+**Ejemplo**. Considere los siguiente 
+
+\begin{align*}
+T_1 &= \sum_{i=1}^{n} X_i \\
+T_2 &= \sum_{i=1}^{n} X_i^2 \\
+T_1' & = \frac{1}{n} \sum_{i=1}^{n} X_i \\
+T_2' &= \frac{1}{n} \sum_{i=1}^{n} (X_i - \overline{X}_n) ^{2}
+\end{align*}
+
+
+Entonces defina la siguiente función 
+\[
+(T_1',T_2') = g(T_1,T_2) =
+\left(\dfrac{1}{n}T_1,\dfrac{1}{n}T_2 - \dfrac{1}{n^2}T_1^2\right).
+\]
+
 
 De la primera entrada, 
 \[ T_1' = \dfrac 1n T_1 \implies T_1 = nT_1'.\]
@@ -1771,23 +1808,23 @@ T_2' = \dfrac 1n T_2 - \dfrac 1{n^2} & = \dfrac 1n \sum X_i^2 - \left(\dfrac 1n 
 \end{align*}
 Como $g$ es biyectiva entonces $(\bar X_n, \sigma_n^2)$ es un estadístico suficiente para $(\mu,\sigma^2)$.
 
-**Ejemplo**. $X_1,\dots, X_n \sim \text{Unif}(a,b)$, $a<b$. Encuentre un estadístico sufienciente. 
+**Ejemplo**. $X_1,\dots, X_n \sim \text{Unif}(a,b)$, $a<b$. Encuentre un estadístico suficiente. 
 
-* Si $x_i \leq a$ o $x_i>b$, tome $u(x) = 0$.
+1. Si $x_i \leq a$ o $x_i>b$, tome $u(x) = 0$.
 
-* Si $a< x_i <b$ $\forall i$,
+2. Si $a< x_i <b$ $\forall i$,
 
- - $x_i > a$ $\forall i \Leftrightarrow x_{(1)}>a$.
+    a.  $x_i > a$ $\forall i \Leftrightarrow x_{(1)}>a$.
  
- - $x_i < b$ $\forall i \Leftrightarrow x_{(n)}<b$.
+    b.  $x_i < b$ $\forall i \Leftrightarrow x_{(n)}<b$.
  
  La verosimilitud es de la forma
  
-\[f_n(x|(a,b)) = \prod_{i=1}^n1_{[a,b]}(x_i) = \underbrace{\dfrac 1{(b-a)^n} 1_{\{(Z,W): Z>a, W<b\}}(x_{(1)},x_{(n)})}_{v(r_1,r_2,(a,b))}\cdot \underbrace{1}_{u(x)}\]
+\[f_n(x|(a,b)) = \prod_{i=1}^n1_{[a,b]}(x_i) = \underbrace{\dfrac 1{(b-a)^n} 1_{\{(z,w): z>a, w<b\}}(X_{(1)},X_{(n)})}_{v(r_1,r_2,(a,b))}\cdot \underbrace{1}_{u(x)}\]
 
 Por teorema de factorización $(X_{(1)},X_{(n)})$ es un estadístico suficiente para $(a,b)$.
     
-# Estadísticos minimales
+## Estadísticos minimales
 
 **Idea:** un estadístico suficiente que garantice una partición de $\mathcal X$ (espacio muestral) de la manera más simple posible.
 
@@ -1819,7 +1856,7 @@ Como $\hat\theta = g(T)$ para cualquier $T$ estadístico suficiente, entonces $\
 
 *Prueba*. Sustituya $(\Delta)$ por $\pi(\theta|x) \propto v(r(x),\theta)\cdot\pi(\theta)$. Como cualquier estimador bayesiano depende de $\pi(\theta|x)$, cualquier estimador bayesiano depende de los datos a través de $r(x)$.
 
-# Mejorando estimadores
+## Mejorando estimadores
 
 ¿Existirá otra medida de comparación entre estimadores?
 
