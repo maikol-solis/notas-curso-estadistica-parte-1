@@ -186,7 +186,7 @@
 
 \title{Notas Curso de Estadística (Parte I)}
 \author{Maikol Solís}
-\date{Actualizado el 01 septiembre, 2020}
+\date{Actualizado el 08 September, 2020}
 
 \begin{document}
 \maketitle
@@ -2305,13 +2305,23 @@ es el estadístico con MSE mínimo.
 \chapter{Distribución muestral de un estadístico}\label{distribuciuxf3n-muestral-de-un-estaduxedstico}}
 
 \hypertarget{distribuciuxf3n-muestral}{%
-\chapter{Distribución muestral}\label{distribuciuxf3n-muestral}}
+\section{Distribución muestral}\label{distribuciuxf3n-muestral}}
 
-\textbf{Definición}. Suponga que \(X_1,\dots,X_n\) es una muestra con parámetro \(\theta\) con parámetro \(\theta\) (desconocido). Sea \(T=r(X_1,\dots,X_n,\theta)\). La distribución de \(T\) dado \(\theta\) se llama \textbf{distribución muestral}.
+\textbf{Definición}. Suponga que \(X_1,\dots,X_n\) es una muestra con parámetro
+\(\theta\) con parámetro \(\theta\) (desconocido). Sea \(T=r(X_1,\dots,X_n,\theta)\). La
+distribución de \(T\) dado \(\theta\) se llama \textbf{distribución muestral}.
 
-\textbf{Ejemplo}. Si \(X_1,\dots,X_n \sim N(\mu,\sigma^2)\). El MLE de \(\mu\) es \[\bar X_n = \dfrac 1n \sum_{i=1}^n X_i.\]
+\textbf{Ejemplo}. Si \(X_1,\dots,X_n \sim N(\mu,\sigma^2)\). El MLE de \(\mu\) es
+
+\begin{equation*}
+\bar X_n =\dfrac 1n \sum_{i=1}^n X_i.
+\end{equation*}
+
 La distribución muestral del estadístico \(\bar X_n\) es
-\[ \bar X_n \sim N\left(\mu, \dfrac{\sigma^2}n \right)\]
+
+\[
+\bar X_n \sim N\left(\mu, \dfrac{\sigma^2}n \right)
+\]
 
 \begin{itemize}
 \item
@@ -2320,47 +2330,75 @@ La distribución muestral del estadístico \(\bar X_n\) es
   \(\text{Var}(\bar X_n) = \text{Var}\left(\dfrac 1n \displaystyle\sum_{i=1}^n X_i\right) = \dfrac{1}{n^2}\cdot n\cdot \text{Var}(X_1) = \dfrac{\sigma^2}n\).
 \end{itemize}
 
-\textbf{Ejemplo}. \(X_i:\) tiempo de vida de un aparato. \(X_1,\dots,X_n \stackrel{i.i.d}{\sim} \text{Exp}(\theta)\). La previa de \(\theta\) es \(\Gamma(1,2)\). Solamente observamos \(n=3\). La posterior sería
-\[\theta|X \sim \Gamma(1+3,2+\sum_{i=1}^3 X_i). \]
+\textbf{Ejemplo}. \(X_i:\) tiempo de vida de un aparato. \(X_1,\dots,X_n \stackrel{i.i.d}{\sim} \text{Exp}(\theta)\). La previa de \(\theta\) es \(\Gamma(1,2)\). Solamente
+observamos \(n=3\). La posterior sería \[\theta|X \sim \Gamma(1+3,2+\sum_{i=1}^3 X_i). \]
 
 El estimador bayesiano, bajo pérdida cuadrática, es
-\[\mathbb E[\theta|X] =  \dfrac 4{2+\sum X_i} = \hat\theta\]
+\[
+\mathbb E[\theta|X] =  \dfrac 4{2+\sum X_i} = \hat\theta
+\]
 
-Problema: estimar \(\mathbb P(|\hat\theta-\theta|<0.1)\).
+\textbf{Problema:} estimar \(\mathbb P(|\hat\theta-\theta|<0.1)\).
 
-Vea que \(P(|\hat\theta-\theta|<0.1) = \mathbb E[P(|\hat\theta-\theta|<0.1|\theta)]\)
-
-Sea
+Note que
 
 \begin{align*}
-F(t|\theta) = \mathbb P(\hat\theta\leq t|\theta)&= \mathbb P\left( \dfrac 4{2+T}\leq t\bigg|\theta\right) \\
-& = \mathbb P\left( 2+T \geq \dfrac 4t\bigg|\theta\right)\\
-& = \mathbb P\left( T \geq \dfrac 4t-2\bigg|\theta\right)\\
+\mathbb P(|\hat\theta-\theta|<0.1) 
+&= \mathbb E [1_{|\hat\theta-\theta|<0.1|\theta)}] \\
+&= \mathbb E[\mathbb E [1_{|\hat\theta-\theta|<0.1|\theta)}\vert \theta]] \\
+&= \mathbb E[\mathbb P(|\hat\theta-\theta|<0.1|\theta)]
 \end{align*}
 
-\textbf{Nota}. Suma de exponenciales es una gamma.
+Debemos definir primero cuál es la función de distribución de \(\hat{\theta}\).
 
-Entonces \(T\sim \Gamma(3,\theta)\), por lo que \(F(t|\theta) = 1-G_{\Gamma(3,0)}\left( \dfrac 4t-2\right)\).
+\begin{align*} 
+F_{\hat{\theta}}(t|\theta) = \mathbb P(\hat\theta\leq t|\theta)&= \mathbb
+P\left( \dfrac 4{2+T}\leq t\bigg|\theta\right) \\ & = \mathbb P\left( 2+T \geq
+\dfrac 4t\bigg|\theta\right)\\ & = \mathbb P\left( T \geq \dfrac
+4t-2\bigg|\theta\right)
+\end{align*}
+nn
+
+\textbf{Nota: Recuerde que sumas de exponenciales es una gamma. (Ver teorema 5.7.7)}
+
+Entonces \(T=\sum_{i=1}^{3}X_{i}\sim \Gamma(3,\theta)\), por lo que \(F(t|\theta) = 1-G_{\Gamma(3,0)}\left( \dfrac 4t-2\right)\). Aqui denotamos como \(G\) a la
+distribución de \(T\).
 
 De esta manera,
+
 \begin{align*} 
-\mathbb P[|\hat\theta-\theta|<0.1|\theta]  & = \mathbb[-0.1+\theta < \hat\theta < 0.1 +\theta|\theta]\\
-& = G_{\Gamma(3,0)}\left(\dfrac 4{0.1+\theta} - 2\right)+G_{\Gamma(3,0)}\left(\dfrac 4{-0.1+\theta} - 2\right)
+\mathbb P[|\hat\theta-\theta|<0.1|\theta]  
+& = \mathbb P [-0.1+\theta < \hat\theta < 0.1 +\theta|\theta]\\
+& = G_{\Gamma(3,\theta)}\left(\dfrac 4{-0.1+\theta} - 2\right)-G_{\Gamma(3,\theta)}\left(\dfrac 4{0.1+\theta} - 2\right)
 \end{align*}
 
-y se toma la esperanza. Otra solución es cambiar la probabilidad de forma que no dependa de \(\theta\).
-\[\mathbb P \left(\bigg| \underbrace{\dfrac{\hat\theta_{MLE}}\theta-1}_{\text{Cambio relativo}} \bigg| < 0.1\bigg|\theta \right) = \mathbb P \left( \bigg| \dfrac{3}{\theta T}-1 \bigg| < 0.1 \bigg| \theta \right) = \Delta\]
+y se toma la esperanza para estimar la esperanza. Este valor no se puede estimar
+de forma cerrada, sino que se podría aproximar mediante una simulación
 
-Si \(T\sim\Gamma(3,0) \implies \theta T \sim \Gamma(3,1)\).
+\includegraphics{./images/gamma_mle_vs_posterior.png}
+
+Otra solución es estimar \(\theta\) usando el MLE \(\hat{\theta} = \frac{3}{T}\). Se
+podría construir esa probabilidad de forma que no dependa de \(\theta\).
+
+\[
+\mathbb P \left(\bigg| \underbrace{\dfrac{\hat\theta_{MLE}}\theta-1}_{\text{Cambio
+relativo}} \bigg| < 0.1\bigg|\theta \right) = \mathbb P \left( \bigg| \dfrac{3}{\theta
+T}-1 \bigg| < 0.1 \bigg| \theta \right) = \Delta \]
+
+Si \(T\sim\Gamma(3,\theta) \implies \theta T \sim \Gamma(3,1)\).
 
 Por lo tanto,
-\[\Delta = \mathbb P \left(0.9<\dfrac 3{\theta T}<1.1\bigg|\theta\right) = \mathbb P \left(\dfrac 3{1.1}<\theta T<\dfrac 3{0.9}\right) = 13,4\%\]
+\[
+\Delta = \mathbb P \left(0.9<\dfrac 3{\theta T}<1.1\bigg|\theta\right) = \mathbb P \left(\dfrac 3{1.1}<\theta T<\dfrac 3{0.9}\right) = 13,4\%
+\]
 
 \hypertarget{distribuciuxf3n-chi2}{%
-\chapter{\texorpdfstring{Distribución \(\chi^2\)}{Distribución \textbackslash chi\^{}2}}\label{distribuciuxf3n-chi2}}
+\section{\texorpdfstring{Distribución \(\chi^2\)}{Distribución \textbackslash chi\^{}2}}\label{distribuciuxf3n-chi2}}
 
 \textbf{Definición}. Para \(m>0\) definimos
-\[ \chi^2_m \sim \Gamma\left(\dfrac m2, \dfrac 12 \right)\]
+\[
+\chi^2_m \sim \Gamma\left(\dfrac m2, \dfrac 12 \right)
+\]
 
 la distribución \textbf{chi-cuadrado} con \(m\) grados de libertad.
 
@@ -2389,37 +2427,47 @@ la distribución \textbf{chi-cuadrado} con \(m\) grados de libertad.
 Entonces
 \[\sum Z_i^2 \sim \chi^2_n \implies \sum \dfrac{(X_i-\mu)^2}{\sigma^2}\sim \chi^2_n \quad (*) \]
 
-Además, si \(\mu\) es conocido y \(\sigma^2\) desconocido, entonces
+Además, si \(\mu\) es conocido y \(\sigma^2\) desconocido, entonces el MLE de \(\sigma ^{2}\) es
 \[\hat\sigma_0^2=\dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2\]
-Su prueba queda como ejercicio.
 
 De esta manera, observe que, de \((*)\),
 
-\[\dfrac{n}{\sigma^2} \dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2 = n\dfrac{\hat\sigma^2}{\sigma^2} \sim \chi^2_n \]
+i
+\[\dfrac{n}{\sigma^2} \dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2 = n\dfrac{\hat \sigma_{0}^2}{\sigma^2} \sim \chi^2_n \]
 
-La principal limitación es que \(\mu\) es conocida. Asuma que también es desconocida. ¿Cuál es la distribución muestral de \((\bar X_n,\hat\sigma^2)\)?
+La principal limitación es que \(\mu\) es conocida. Asuma que también es
+desconocida. ¿Cuál es la distribución muestral de \((\bar X_n,\hat\sigma^2)\)?
 
 \textbf{Teorema}. Bajo las condiciones anteriores,
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \item
-  \(\bar X_n\) y \(\hat \sigma_n\) son independientes aunque \(\hat \sigma_n\) es función de \(\bar X_n\).
+  \(\bar X_n\) y \(\hat \sigma_n\) son independientes aunque \(\hat \sigma_n\) es función de
+  \(\bar X_n\).
 \item
   La distribución muestral de \(\bar X_n\) es \(N\left(\mu,\dfrac{\sigma^2}{n}\right)\).
 \item
-  \(n\dfrac{\hat \sigma^2}{\sigma^2} =\sum_{i=1}^n \dfrac{(X_i-\mu)^2}{\sigma^2} \sim \chi^2_{n-1}\).
+  \(n\dfrac{\hat \sigma_{0}^2}{\sigma^2} =\sum_{i=1}^n \dfrac{(X_i-\mu)^2}{\sigma^2} \sim \chi^2_{n-1}\).
 \end{enumerate}
 
-De álgebra lineal, recuerde que una matriz \(A_{n\times n}\)es ortogonal si cumple que \(A^{-1} = A\), \(\det(A) = 1\). Si \(X, Y\in \mathbb R ^{n}\), \(AX =Y\), \(A\) ortogonal, entonces \[ \|Y\|_2^2 =  \|X\|_2^2 \quad (\Delta\Delta)\]
+\textbf{Nota:} De álgebra lineal, recuerde que una matriz \(A_{n\times n}\) es ortogonal si
+cumple que \(A^{-1} = A\), \(\det(A) = 1\). Si \(X, Y\in \mathbb R ^{n}\), \(AX =Y\), \(A\)
+ortogonal, entonces \[ \|Y\|_2^2 = \|X\|_2^2 \quad (\Delta\Delta)\]
 
-\textbf{Teorema}. Si \(X_1,\dots,X_n \sim N(0,1)\), \(A\) es ortogonal \(n\times n\) y \(Y=AX\) donde \(X = (X_1,\dots,X_n)^T\) entonces \(Y_1,\dots,Y_n \sim N(0,1)\).
+\textbf{Teorema}. Si \(X_1,\dots,X_n \sim N(0,1)\), \(A\) es ortogonal \(n\times n\) y \(Y=AX\) donde
+\(X = (X_1,\dots,X_n)^T\) entonces \(Y_1,\dots,Y_n \sim N(0,1)\).
 
 \emph{Prueba}. Ver 8.3.1.
 
-Si \(X_1,\dots,X_n \sim N(0,1)\), use Gram-Schmidt con vector inicial \(u = \dfrac 1{\sqrt n} 1_{n\times1}\).
-Generamos \(A = \begin{bmatrix}u\\\vdots\end{bmatrix}\). Defina \(Y =AX\). Entonces
-\[ Y_1 = uX = \dfrac 1{\sqrt{n}}\sum_{i=1}^n X_i = \sqrt{n} \bar X_n.\]
+Si \(X_1,\dots,X_n \sim N(0,1)\), use Gram-Schmidt con vector inicial
+
+\begin{equation*}
+u = \left[ \frac{1}{\sqrt{n}}, \cdots, \frac{1}{\sqrt{n}}\right]
+\end{equation*}
+
+Generamos \(A = \begin{bmatrix}u\\\vdots\end{bmatrix}\). Defina \(Y =AX\). Entonces \[ Y_1 = uX = \dfrac 1{\sqrt{n}}\sum_{i=1}^n X_i = \sqrt{n} \bar
+X_n.\]
 
 Por la propiedad \((\Delta \Delta)\), \(\displaystyle\sum_{i=1}^n Y_i^2 = \displaystyle\sum_{i=1}^n X_i^2\). Entonces,
 \[ \sum_{i=2}^nY_i^2 = \sum_{i=1}^nY_i^2 - Y_1^2 = \sum_{i=1}^nX_i^2-n\bar X_n^2\sum_{i=1}^n(X_i-\bar X_n)^2. \]
@@ -2456,8 +2504,22 @@ Estime \(n\) de manera que
 
 Se resuelve numéricamente, y si \(n=21\) se cumple.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)), }
+    \KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dchisq, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{5}\NormalTok{), }
+    \KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"05 grados de libertad"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dchisq, }
+    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{10}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"10 grados de libertad"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dchisq, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{20}\NormalTok{), }
+        \KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"20 grados de libertad"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{scale\_y\_continuous}\NormalTok{(}\DataTypeTok{breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-37-1} \end{center}
+
 \hypertarget{distribuciuxf3n-t}{%
-\section{\texorpdfstring{Distribución \(t\)}{Distribución t}}\label{distribuciuxf3n-t}}
+\subsection{\texorpdfstring{Distribución \(t\)}{Distribución t}}\label{distribuciuxf3n-t}}
 
 \textbf{Definición}. Sea \(Y\) y \(Z\) dos variables independientes tal que \(Y\sim \chi^2_m\) y \(Z\sim N(0,1)\). Si
 \[X := \dfrac Z{\sqrt{\dfrac Ym}},\]
@@ -2506,6 +2568,21 @@ Dado que \(Y = \dfrac{S_n^2}{\sigma^2}\sim \chi^2_{n-1}\), entonces
 \begin{align*} 
 U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} & = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{\sigma^2(n-1)}}} \\ & = \dfrac{\sqrt n (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{n-1}}}\\& =  \dfrac{\sqrt n (\bar X_n-\mu)}{\sigma'} \sim t_{n-1}.
 \end{align*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{seq}\NormalTok{(}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)), }
+    \KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }
+    \DataTypeTok{sd =} \DecValTok{1}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Normal(0,1)"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dt, }
+    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{1}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{" t con 01 grados de libertad"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dt, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{5}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{" t con 05 grados de libertad"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dt, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{10}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{" t con 10 grados de libertad"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale\_y\_continuous}\NormalTok{(}\DataTypeTok{breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-38-1} \end{center}
 
 \hypertarget{intervalos-de-confianza}{%
 \chapter{Intervalos de confianza}\label{intervalos-de-confianza}}
