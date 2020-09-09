@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 08 September, 2020"
+date: "Actualizado el 09 September, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -1912,14 +1912,58 @@ Entonces,
 
 **Ejemplo**. Sean $X_1,\dots, X_n \stackrel{i.i.d}{\sim} \text{Poisson}(\theta)$ donde $\theta$ es la tasa de "visitas" de clientes por hora.
 
+Numericamente podemos hacer el ejemplo con \(\theta = 2\) y una muestra de \(n = 10000\), 
+ 
+
+```r
+X <- rpois(n = 10000, lambda = 2)
+head(X, 20)
+```
+
+```
+##  [1] 1 1 1 1 2 1 4 4 3 1 1 0 2 3 5 1 2 2 3 2
+```
+
+```r
+hist(X)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-36-1} \end{center}
+
+
 A partir de la verosimilitud,
 \[f_n(X|\theta) = \dfrac{e^{-\theta n} \theta^{\sum X_i}}{\prod X_i!} \]
 se tiene que $T=\sum X_i$ es un estadístico suficiente para $\theta$.
 
 Sea  $Y_i = \begin{cases} 1 & \text{si } X_i = 1\\ 0 & \text{si } X_i \ne 1\end{cases}$.
 
+Esta \(Y\) se calcula de la forma 
+
+
+```r
+Y <- X == 1
+head(Y, 10)
+```
+
+```
+##  [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE
+```
+
+
 El objetivo es estimar $p$ donde $p$ es la probabilidad de que $X_i =1$ (solo llegue un cliente por hora). Un estimador de $p$ (MLE) es
 \[\delta(x) = \dfrac{\sum Y_i}{n}\]
+
+
+```r
+(delta <- mean(Y))
+```
+
+```
+## [1] 0.2726
+```
+
 ¿Es el óptimo?
 
 Calculamos
@@ -1939,14 +1983,23 @@ Vea que
  
  Entonces,
  \begin{align*}
-\Delta  \dfrac{\theta e^{-n\theta}\dfrac{((n-1)\theta)^{t-1}}{(t-1)!}}{e^{-n\theta}\dfrac{(n\theta)^t}{t!}} = \dfrac tn \left(1-\dfrac tn\right)^{t-1} = G\left(\dfrac tn\right)
+\Delta = \dfrac{\theta e^{-n\theta}\dfrac{((n-1)\theta)^{t-1}}{(t-1)!}}{e^{-n\theta}\dfrac{(n\theta)^t}{t!}} = \dfrac tn \left(1-\dfrac 1n\right)^{t-1} = G\left(\dfrac tn\right)
 \end{align*}
  
  es el estadístico con MSE mínimo.
 
 
+```r
+T <- sum(X)
+n <- length(X)
+(delta_0 <- (T/n) * (1 - 1/n)^(T - 1))
+```
 
- 
+```
+## [1] 0.268045
+```
+
+En este caso \(\delta_0\) es mejor que \(\delta\) bajo una pérdida cuadrática. 
 
 <!--chapter:end:04-estadisticos-suficientes.Rmd-->
 
@@ -2164,7 +2217,7 @@ ggplot(data = data.frame(x = seq(0, 40, length.out = 1000)),
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-37-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-41-1} \end{center}
 
 
 ### Distribución $t$
@@ -2231,7 +2284,7 @@ ggplot(data = data.frame(x = seq(-5, 5, length.out = 1000)),
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-38-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-42-1} \end{center}
 
 <!--chapter:end:05-distribucion-muestral.Rmd-->
 
