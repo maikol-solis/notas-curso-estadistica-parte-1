@@ -210,7 +210,7 @@ ggplot(data = data.frame(x = seq(0,40,length.out = 1000)), aes(x)) +
 ```
 
 
-### Distribución $t$
+## Distribución $t$
 
 **Definición**. Sea $Y$ y $Z$ dos variables independientes tal que $Y\sim \chi^2_m$ y $Z\sim N(0,1)$. Si 
 \[X := \dfrac Z{\sqrt{\dfrac Ym}},\]
