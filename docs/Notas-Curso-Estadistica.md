@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 09 September, 2020"
+date: "Actualizado el 10 September, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -2220,7 +2220,7 @@ ggplot(data = data.frame(x = seq(0, 40, length.out = 1000)),
 \begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-41-1} \end{center}
 
 
-### Distribución $t$
+## Distribución $t$
 
 **Definición**. Sea $Y$ y $Z$ dos variables independientes tal que $Y\sim \chi^2_m$ y $Z\sim N(0,1)$. Si 
 \[X := \dfrac Z{\sqrt{\dfrac Ym}},\]

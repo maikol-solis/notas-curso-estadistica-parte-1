@@ -192,10 +192,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html"><i class="fa fa-check"></i><b>6</b> Distribución muestral de un estadístico</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html#distribución-muestral"><i class="fa fa-check"></i><b>6.1</b> Distribución muestral</a></li>
-<li class="chapter" data-level="6.2" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html#distribución-chi2"><i class="fa fa-check"></i><b>6.2</b> Distribución <span class="math inline">\(\chi^2\)</span></a>
-<ul>
-<li class="chapter" data-level="6.2.1" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html#distribución-t"><i class="fa fa-check"></i><b>6.2.1</b> Distribución <span class="math inline">\(t\)</span></a></li>
-</ul></li>
+<li class="chapter" data-level="6.2" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html#distribución-chi2"><i class="fa fa-check"></i><b>6.2</b> Distribución <span class="math inline">\(\chi^2\)</span></a></li>
+<li class="chapter" data-level="6.3" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html#distribución-t"><i class="fa fa-check"></i><b>6.3</b> Distribución <span class="math inline">\(t\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>7</b> Intervalos de confianza</a>
 <ul>
@@ -421,8 +419,9 @@ X_n.\]</span></p>
 <span id="cb107-6"><a href="distribución-muestral-de-un-estadístico.html#cb107-6"></a>        <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;20 grados de libertad&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb107-7"><a href="distribución-muestral-de-un-estadístico.html#cb107-7"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-41-1.svg" width="100%" style="display: block; margin: auto;" /></p>
-<div id="distribución-t" class="section level3" number="6.2.1">
-<h3><span class="header-section-number">6.2.1</span> Distribución <span class="math inline">\(t\)</span></h3>
+</div>
+<div id="distribución-t" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Distribución <span class="math inline">\(t\)</span></h2>
 <p><strong>Definición</strong>. Sea <span class="math inline">\(Y\)</span> y <span class="math inline">\(Z\)</span> dos variables independientes tal que <span class="math inline">\(Y\sim \chi^2_m\)</span> y <span class="math inline">\(Z\sim N(0,1)\)</span>. Si
 <span class="math display">\[X := \dfrac Z{\sqrt{\dfrac Ym}},\]</span>
 tiene una distribución <strong><span class="math inline">\(t\)</span> de Student</strong> con <span class="math inline">\(m\)</span> grados de libertad. Tiene como densidad
@@ -463,7 +462,6 @@ U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} &amp; = \dfrac{\dfrac{\sqrt n}\sigma (\bar X
 <span id="cb108-8"><a href="distribución-muestral-de-un-estadístico.html#cb108-8"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-42-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 
-</div>
 </div>
 </div>
             </section>
