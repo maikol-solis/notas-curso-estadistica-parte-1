@@ -198,11 +198,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>7</b> Intervalos de confianza</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-para-la-media-de-una-distribución-normal"><i class="fa fa-check"></i><b>7.1</b> Intervalos de confianza para la media de una distribución normal</a></li>
-<li class="chapter" data-level="7.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-abiertos"><i class="fa fa-check"></i><b>7.2</b> Intervalos de confianza abiertos</a></li>
-<li class="chapter" data-level="7.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-en-otros-casos"><i class="fa fa-check"></i><b>7.3</b> Intervalos de confianza en otros casos</a>
+<li class="chapter" data-level="7.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#caso-normal."><i class="fa fa-check"></i><b>7.2</b> Caso normal.</a></li>
+<li class="chapter" data-level="7.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-abiertos"><i class="fa fa-check"></i><b>7.3</b> Intervalos de confianza abiertos</a></li>
+<li class="chapter" data-level="7.4" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-en-otros-casos"><i class="fa fa-check"></i><b>7.4</b> Intervalos de confianza en otros casos</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-aproximados."><i class="fa fa-check"></i><b>7.3.1</b> Intervalos de confianza aproximados.</a></li>
-<li class="chapter" data-level="7.3.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#transformaciones-estabilizadoras-de-la-varianza"><i class="fa fa-check"></i><b>7.3.2</b> Transformaciones estabilizadoras de la varianza</a></li>
+<li class="chapter" data-level="7.4.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-aproximados."><i class="fa fa-check"></i><b>7.4.1</b> Intervalos de confianza aproximados.</a></li>
+<li class="chapter" data-level="7.4.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#transformaciones-estabilizadoras-de-la-varianza"><i class="fa fa-check"></i><b>7.4.2</b> Transformaciones estabilizadoras de la varianza</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html"><i class="fa fa-check"></i><b>8</b> Estimación Bayesiana bajo normalidad</a>
@@ -281,65 +282,120 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Capítulo 7</span> Intervalos de confianza</h1>
 <div id="intervalos-de-confianza-para-la-media-de-una-distribución-normal" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Intervalos de confianza para la media de una distribución normal</h2>
-<p>Dado <span class="math inline">\(\alpha\)</span> un parámetro en <span class="math inline">\(\mathbb{R}^k\)</span> se ha visto cómo encontrar un estadístico <span class="math inline">\(T\in \mathbb R^{k&#39;}\)</span>, <span class="math inline">\(k&#39;\geq k\)</span>. si se quiere tomar en cuenta la aleatoriedad de <span class="math inline">\(\alpha\)</span> o la aleatoriedad de un fenómeno más complejo, se puede realizar una estimación por intervalo <span class="math inline">\(T = [T_1,T_2]\)</span>.</p>
-<p>En el caso normal, <span class="math inline">\(\bar X_n\)</span> es un estimador puntual de <span class="math inline">\(\mu\)</span>. ¿Será posible encontrar un estimador por intervalos?</p>
+<p>Dado <span class="math inline">\(\theta\)</span> un parámetro en <span class="math inline">\(\mathbb{R}\)</span> hemos estudiado procedimientos para
+encontrar estadísticos <span class="math inline">\(T\in \mathbb R\)</span> para estimarlo. La limitación que
+tenemos acá es que no sabemos que tan aleatorio es <span class="math inline">\(T\)</span>. Entonces podemos
+sustituir este estadístico <span class="math inline">\(T\)</span> con otros dos estadísticos <span class="math inline">\(T_1\)</span> y <span class="math inline">\(T_2\)</span>
+de modo que sepamos que
+<span class="math display">\[\begin{equation*}
+T_1 \leq \theta \leq T_2
+\end{equation*}\]</span></p>
+<p>En caso que <span class="math inline">\(\theta \in \mathbb{R} ^{k}\)</span> se puede construir un conjunto de
+estadísticos <span class="math inline">\(T_1, \ldots, T_{k^\prime}\)</span> con <span class="math inline">\(k^\prime = 2k\)</span> tal que</p>
+<p><span class="math display">\[\begin{equation*}
+\theta \in [T_1, T_2] \times \cdots \times [T_{k^\prime-1}, T_{k^\prime}]
+\end{equation*}\]</span></p>
+</div>
+<div id="caso-normal." class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Caso normal.</h2>
+<p>En el caso normal, <span class="math inline">\(\bar X_n\)</span> es un estimador puntual de <span class="math inline">\(\mu\)</span>. ¿Será posible
+encontrar un estimador por intervalos?</p>
+<p>Para efectos didácticos, vamos a empezar al revés de lo que usualmente se
+acostumbra.</p>
 <p>Defina <span class="math inline">\(U = \dfrac{\sqrt{n}(\bar X_n-\mu)}{\sigma&#39;} \sim t_{n-1}\)</span>. Si <span class="math inline">\(c&gt;0\)</span>,</p>
-<p><span class="math display">\[\begin{align*} 
-\mathbb P[-c&lt;U&lt;c] &amp; = \mathbb P \bigg[ -c&lt;\dfrac{\sqrt{n}(\bar
-X_n-\mu)}{\sigma&#39;} &lt;c\bigg]\\ 
-&amp; = \mathbb P \bigg[-\dfrac{c\sigma&#39;}{\sqrt n} &lt;
-\bar X_n - \mu &lt;\dfrac{c\sigma&#39;}{\sqrt n}\bigg] \\ 
-&amp; = \mathbb P \bigg[ \bar X_n
+<p><span class="math display">\[\begin{align*} \mathbb P[-c&lt;U&lt;c] &amp; = \mathbb P \bigg[ -c&lt;\dfrac{\sqrt{n}(\bar
+X_n-\mu)}{\sigma&#39;} &lt;c\bigg]\\ &amp; = \mathbb P \bigg[-\dfrac{c\sigma&#39;}{\sqrt n} &lt;
+\bar X_n - \mu &lt;\dfrac{c\sigma&#39;}{\sqrt n}\bigg] \\ &amp; = \mathbb P \bigg[ \bar X_n
 -\dfrac{c\sigma&#39;}{\sqrt n} &lt; \mu &lt; \bar X_n + \dfrac{c\sigma&#39;}{\sqrt n}\bigg]
 \end{align*}\]</span></p>
 <p>El intervalo</p>
-<p><span class="math display">\[T = \bigg[\bar X_n - \dfrac{c\sigma&#39;}{\sqrt n},\bar X_n +
-\dfrac{c\sigma&#39;}{\sqrt n}\bigg]\]</span></p>
-<p>es un intervalo aleatorio que “contiene” a <span class="math inline">\(\mu\)</span>. Si queremos restringir la probabilidad anterior, tome <span class="math inline">\(\gamma \in (0,1)\)</span>:
-<span class="math display">\[\mathbb P(\mu\in T) = \gamma.\]</span></p>
+<p><span class="math display">\[\begin{equation*}
+T = \bigg[\bar X_n - \dfrac{c\sigma&#39;}{\sqrt n},\bar X_n + \dfrac{c\sigma&#39;}{\sqrt
+n}\bigg]
+\end{equation*}\]</span></p>
+<p>es un intervalo aleatorio que “contiene” a <span class="math inline">\(\mu\)</span>. Si queremos restringir la
+probabilidad anterior, tome <span class="math inline">\(\gamma \in (0,1)\)</span>: <span class="math display">\[ \mathbb P(\mu\in T) = \gamma. \]</span></p>
 <p>Para que se cumpla lo anterior, seleccione <span class="math inline">\(c\)</span> tal que</p>
-<p><span class="math display">\[\begin{align*} 
-\gamma = \mathbb P( \mu \in T) &amp;  = F_{t_{n-1}}(c)-F_{t_{n-1}}(-c) \\
-&amp; = F_{t_{n-1}}(c) - [1-F_{t_{n-1}}(c)]\\ 
-&amp; = 2F_{t_{n-1}} - 1 
-\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{align*} \gamma = \mathbb P( \mu \in T) &amp; = F_{t_{n-1}}(c)-F_{t_{n-1}}(-c)
+\\ &amp; = F_{t_{n-1}}(c) - [1-F_{t_{n-1}}(c)]\\ &amp; = 2F_{t_{n-1}} - 1 \end{align*}\]</span></p>
 <p>Entonces</p>
-<p><span class="math display">\[\dfrac{\gamma+1}2 = F_{t_{n-1}}(c) \implies c = F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right).\]</span></p>
-<p><strong>Definición</strong>. Si <span class="math inline">\(X\)</span> es una variable aleatoria continua con distribución <span class="math inline">\(F\)</span> (monótona creciente), entonces <span class="math inline">\(x=F^{-1}(p)\)</span> es el <strong>cuantil</strong> de orden <span class="math inline">\(p\)</span> de <span class="math inline">\(F\)</span> (<span class="math inline">\(p\)</span>-cuantil).</p>
-<p>El intervalo aleatorio <span class="math display">\[ \bigg[\bar X_n -
-F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma&#39;}{\sqrt n},\bar X_n
-+ F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma&#39;}{\sqrt
-n}\bigg]\]</span> contiene a <span class="math inline">\(\mu\)</span> con probabilidad <span class="math inline">\(\gamma\)</span>.</p>
-<p><strong>Definición</strong>. Sea <span class="math inline">\(X = (X_1,\dots,X_n)\)</span> una muestra con parámetro <span class="math inline">\(\theta\)</span>. Sea <span class="math inline">\(g(\theta)\)</span> una característica de la distribución que genera la muestra. Sea <span class="math inline">\(A &lt; B\)</span> dos estadísticos que cumplen (<span class="math inline">\(\forall \theta\)</span>):
-<span class="math display">\[\mathbb P [A&lt;g(\theta)&lt;B]\geq \gamma.\quad (*)\]</span></p>
-<p>Al intervalo <span class="math inline">\((A,B)\)</span> le llamamos <strong>intervalo de confianza con coeficiente <span class="math inline">\(\gamma\)</span> para <span class="math inline">\(g(\theta)\)</span></strong> (intervalo
-de confianza al <span class="math inline">\(100\gamma\)</span> para <span class="math inline">\(g(\theta)\)</span>). En el caso que <span class="math inline">\((*)\)</span> tenga una igualdad, el intervalo es exacto.</p>
-<p><strong>Nota</strong>. Si observamos <span class="math inline">\(X\)</span>, calculamos <span class="math inline">\(A=a\)</span>, <span class="math inline">\(B=b\)</span>. Entonces <span class="math inline">\((a,b)\)</span> es el valor observado de un intervalo de confianza.</p>
-<p><strong>Ejemplo</strong>. Se mide la lluvia con nubes inyectadas con “sulfato de plata” con <span class="math inline">\(n=26\)</span> observaciones. Se desea hacer inferencia sobre <span class="math inline">\(\mu\)</span>, la cantidad de lluvia media (escala logarítmica). Para <span class="math inline">\(\gamma = 0.95\)</span>, se calcula</p>
-<p><span class="math display">\[c=F^{-1}_{t_{25}}\left(\dfrac{1+\gamma}2\right) =F^{-1}_{t_{25}}(0.975) = 2.060 \]</span></p>
-<pre><code>## Error in library(latex2exp): there is no package called &#39;latex2exp&#39;</code></pre>
-<pre><code>## Error in TeX(&quot;$t_{25}$&quot;): could not find function &quot;TeX&quot;</code></pre>
-<p>El intervalo de confianza para <span class="math inline">\(\mu\)</span> al <span class="math inline">\(95\%\)</span> es <span class="math display">\[\bar X_n \pm \underbrace{0.404}_{\frac{2.060}{\sqrt{26}}}\sigma&#39;\]</span></p>
-<p>Si <span class="math inline">\(\bar X_n = 5.134\)</span> y <span class="math inline">\(\sigma&#39; = 1.6\)</span> el valor observado del intervalo de confianza al <span class="math inline">\(95%\)</span> para <span class="math inline">\(\mu\)</span> corresponde a</p>
+<p><span class="math display">\[ \dfrac{\gamma+1}2 = F_{t_{n-1}}(c) \implies c = F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2
+\right). \]</span></p>
+<p><strong>Definición</strong>. Si <span class="math inline">\(X\)</span> es una variable aleatoria continua con distribución <span class="math inline">\(F\)</span>
+(monótona creciente), entonces <span class="math inline">\(x=F^{-1}(p)\)</span> es el <strong>cuantil</strong> de orden <span class="math inline">\(p\)</span> de
+<span class="math inline">\(F\)</span> (<span class="math inline">\(p\)</span>-cuantil).</p>
+<p>El intervalo aleatorio</p>
+<p><span class="math display">\[\begin{equation*}
+\bigg[\bar X_n -
+F{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma&#39;}{\sqrt n},\bar X_n
+- F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma&#39;}{\sqrt
+  n}\bigg]
+  \end{equation*}\]</span></p>
+<p>contiene a <span class="math inline">\(\mu\)</span> con probabilidad <span class="math inline">\(\gamma\)</span>.</p>
+<p>*<strong>Definición</strong>. Sea <span class="math inline">\(X = (X_1,\dots,X_n)\)</span> una muestra con parámetro <span class="math inline">\(\theta\)</span>.
+Sea <span class="math inline">\(g(\theta)\)</span> una característica de la distribución que genera la muestra. Sea <span class="math inline">\(A &lt; B\)</span> dos estadísticos que cumplen (<span class="math inline">\(\forall \theta\)</span>):
+<span class="math display">\[
+\mathbb P [A&lt;g(\theta)&lt;B]\geq \gamma.\quad
+(*)
+\]</span></p>
+<p>Al intervalo <span class="math inline">\((A,B)\)</span> le llamamos <strong>intervalo de confianza con coeficiente
+<span class="math inline">\(\gamma\)</span> para <span class="math inline">\(g(\theta)\)</span></strong> (intervalo de confianza al <span class="math inline">\(100\gamma\)</span> para <span class="math inline">\(g(\theta)\)</span>). En
+el caso que <span class="math inline">\((*)\)</span> tenga una igualdad, el intervalo es exacto.</p>
+<p><strong>Nota</strong>. Si observamos <span class="math inline">\(X\)</span>, calculamos <span class="math inline">\(A=a\)</span>, <span class="math inline">\(B=b\)</span>. Entonces <span class="math inline">\((a,b)\)</span> es el
+valor observado de un intervalo de confianza.</p>
+<p><strong>Ejemplo</strong>. Se mide la lluvia con nubes inyectadas con “sulfato de plata” con
+<span class="math inline">\(n=26\)</span> observaciones. Se desea hacer inferencia sobre <span class="math inline">\(\mu\)</span>, la cantidad de
+lluvia media (escala logarítmica). Para <span class="math inline">\(\gamma = 0.95\)</span>, se calcula</p>
+<p><span class="math display">\[
+c=F^{-1}_{t_{25}}\left(\dfrac{1+\gamma}2\right) =F^{-1}_{t_{25}}(0.975) = 2.060
+\]</span></p>
+<p>Note que <span class="math inline">\(\frac{1+\gamma}{2}=\)</span> 0.975 y el segundo valor se obtiene de
+una tabla de valor de la <span class="math inline">\(t\)</span>-student o de la expresión <code>qt(p = 0.975, df = 26-1)</code> = 2.06</p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-44-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p>El intervalo de confianza para <span class="math inline">\(\mu\)</span> al <span class="math inline">\(95\%\)</span> es <span class="math display">\[\bar X_n \pm
+\underbrace{0.404}_{\frac{2.060}{\sqrt{26}}}\sigma&#39;\]</span></p>
+<p>Si <span class="math inline">\(\bar X_n = 5.134\)</span> y <span class="math inline">\(\sigma&#39; = 1.6\)</span> el valor observado del intervalo de confianza
+al <span class="math inline">\(95\%\)</span> para <span class="math inline">\(\mu\)</span> corresponde a</p>
 <p><span class="math display">\[[5.134-0.404\cdot1.6, 5.134+0.404\cdot1.6]= [4.47,5.78]\]</span></p>
-<p><strong>Interpretación</strong>. El intervalo observado <span class="math inline">\([4.48,5.78]\)</span> contiene a <span class="math inline">\(\mu\)</span> con un nivel de confianza del <span class="math inline">\(95%\)</span>.
-Usualmente a <span class="math inline">\(\dfrac{c\sigma&#39;}{\sqrt{n}}\)</span> se le llama <strong>margen de error</strong> (MOE).</p>
+<p><strong>Interpretación</strong>. El intervalo observado <span class="math inline">\([4.48,5.78]\)</span> contiene a <span class="math inline">\(\mu\)</span> con un
+nivel de confianza del <span class="math inline">\(95%\)</span>. Usualmente a <span class="math inline">\(\dfrac{c\sigma&#39;}{\sqrt{n}}\)</span> se le llama
+<strong>margen de error</strong> (MOE).</p>
+<p><strong>Interpretación gráfica</strong>. El proceso de construir un intervalo de confianza,
+quiere decir que si usted repitiera ese experimento muchas veces, el
+<span class="math inline">\(100\gamma\%\)</span> (e.g, 95% o 99%) de la veces, el intervalo escogido tendría el
+parámetro real de la población <span class="math inline">\(\theta\)</span>.</p>
+<div class="figure">
+<img src="images/interpreting_confidence_intervals.png" alt="" />
+<p class="caption">Ejemplo interactivo sobre intervalos de confianza. Tomado de (R Psycologist)[<a href="https://rpsychologist.com/d3/ci/" class="uri">https://rpsychologist.com/d3/ci/</a>]</p>
 </div>
-<div id="intervalos-de-confianza-abiertos" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> Intervalos de confianza abiertos</h2>
+</div>
+<div id="intervalos-de-confianza-abiertos" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Intervalos de confianza abiertos</h2>
 <p>Si <span class="math inline">\(\gamma\)</span> es el nivel de confianza dado, sea <span class="math inline">\(\gamma_1&lt;\gamma_2\)</span> tal que <span class="math inline">\(\gamma_2 -\gamma_1 = \gamma\)</span>. Sea <span class="math inline">\(U = \dfrac{\sqrt n}{\sigma&#39;}(\bar X_n-\mu)\)</span>.</p>
 <p>Si
-<span class="math display">\[A= \bar X_n + T_{n-1}^{-1}(\gamma_1)\dfrac{\sigma&#39;}{\sqrt n} \text{ y } B= \bar X_n + T_{n-1}^{-1}(\gamma_2)\dfrac{\sigma&#39;}{\sqrt n}, \]</span></p>
+<span class="math display">\[
+A= \bar X_n + T_{n-1}^{-1}(\gamma_1)\dfrac{\sigma&#39;}{\sqrt n} \text{ y } B= \bar X_n +
+T_{n-1}^{-1}(\gamma_2)\dfrac{\sigma&#39;}{\sqrt n},
+\]</span></p>
 <p>se cumple que <span class="math inline">\((A,B)\)</span> es un intervalo de confianza al <span class="math inline">\(100\gamma\)</span> ya que</p>
-<p><span class="math display">\[\mathbb P[\mu \in (A,B)] = \mathbb P[T_{n-1}^{-1}(\gamma_1)&lt;U&lt;T_{n-1}^{-1}(\gamma_2)] = \gamma_2-\gamma_1 = \gamma.\]</span></p>
-<p><strong>Definición (Intervalos de confianza abiertos)</strong>. Bajo las condiciones anteriores, si <span class="math inline">\(A\)</span> es un estadístico que satisface <span class="math inline">\(\forall \theta\)</span>:</p>
+<p><span class="math display">\[
+\mathbb P[\mu \in (A,B)] = \mathbb P[T_{n-1}^{-1}(\gamma_1)&lt;U&lt;T_{n-1}^{-1}(\gamma_2)] =
+\gamma_2-\gamma_1 = \gamma.
+\]</span></p>
+<p><strong>Definición (Intervalos de confianza abiertos)</strong>. Bajo las condiciones
+anteriores, si <span class="math inline">\(A\)</span> es un estadístico que satisface <span class="math inline">\(\forall \theta\)</span>:</p>
 <p><span class="math display">\[\mathbb P [A&lt;g(\theta)]\geq \gamma,\]</span></p>
-<p>A <span class="math inline">\(A\)</span> se le llama <strong>límite inferior de confianza al <span class="math inline">\(100\gamma\)</span></strong> y al intervalo <span class="math inline">\((A,\infty)\)</span> es el <strong>intervalo de confianza inferior al <span class="math inline">\(100\gamma\)</span></strong>.</p>
+<p>A <span class="math inline">\(A\)</span> se le llama <strong>límite inferior de confianza al <span class="math inline">\(100\gamma\)</span></strong> y al intervalo
+<span class="math inline">\((A,\infty)\)</span> es el <strong>intervalo de confianza inferior al <span class="math inline">\(100\gamma\)</span></strong>.</p>
 <p>De forma análoga, si <span class="math inline">\(B\)</span> satisface:
 <span class="math display">\[\mathbb P [g(\theta)&lt;B]\geq \gamma,\]</span>
-a <span class="math inline">\((-\infty,B)\)</span> se le llama <strong>intervalo de confianza superior</strong> para <span class="math inline">\(g(\theta)\)</span>, con nivel <span class="math inline">\(\gamma\)</span>. Si hay igualdad, el intervalo es exacto.</p>
-<p><strong>Ejemplo</strong>. En el caso normal, encuentra <span class="math inline">\(B\)</span> tal que <span class="math inline">\(\mathbb P(\mu&lt;B) = \gamma\)</span>. Se sabe que</p>
-<p><span class="math display">\[F_{t_{n-1}}(c) = \mathbb P(U&gt;-c) = \mathbb P \left(\dfrac{\sqrt n(\mu - \bar X_n)}{\sigma&#39;}&lt;c\right).\]</span></p>
+a <span class="math inline">\((-\infty,B)\)</span> se le
+llama <strong>intervalo de confianza superior</strong> para <span class="math inline">\(g(\theta)\)</span>, con nivel <span class="math inline">\(\gamma\)</span>. Si
+hay igualdad, el intervalo es exacto.</p>
+<p><strong>Ejemplo</strong>. En el caso normal, encuentra <span class="math inline">\(B\)</span> tal que <span class="math inline">\(\mathbb P(\mu&lt;B) = \gamma\)</span>.
+Se sabe que</p>
+<p><span class="math display">\[F_{t_{n-1}}(c) = \mathbb P(U&gt;-c) = \mathbb P \left(\dfrac{\sqrt n(\mu - \bar
+X_n)}{\sigma&#39;}&lt;c\right).\]</span></p>
 <p>Entonces
 <span class="math display">\[\gamma = \mathbb P\left(\mu &lt; \bar X_n\dfrac{\sigma&#39;}{\sqrt n}c\right).\]</span></p>
 <p>Tome <span class="math inline">\(c\)</span> tal que
@@ -347,82 +403,184 @@ a <span class="math inline">\((-\infty,B)\)</span> se le llama <strong>intervalo
 <p>Por lo tanto
 <span class="math display">\[B = \bar X_n - \dfrac{\sigma&#39;}{\sqrt{n}}F^{-1}_{t_{n-1}}(\gamma).\]</span></p>
 </div>
-<div id="intervalos-de-confianza-en-otros-casos" class="section level2" number="7.3">
-<h2><span class="header-section-number">7.3</span> Intervalos de confianza en otros casos</h2>
+<div id="intervalos-de-confianza-en-otros-casos" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Intervalos de confianza en otros casos</h2>
 <p><strong>Ejemplo</strong>. Tiempos de vida, <span class="math inline">\(n=3\)</span>, <span class="math inline">\(X_i\sim \text{Exp}(\theta)\)</span>.</p>
 <p>Si <span class="math inline">\(T = \sum_{i=1}^3X_i\)</span>, <span class="math inline">\(\theta T\sim \Gamma(3,1)\)</span>.</p>
-<p>Queremos calcular un intervalo de confianza superior para <span class="math inline">\(\theta\)</span> al <span class="math inline">\(100\delta\)</span> (exacto): <span class="math inline">\(\mathbb P[\theta&lt;B] = \gamma\)</span>.</p>
-<p>Sabemos
-<span class="math display">\[\mathbb  \gamma = P[\theta T&lt;G^{-1}(\gamma)] = \mathbb{P}\bigg[\theta&lt;\dfrac{G^{-1}(\gamma)}{T}\bigg].\]</span></p>
+<p>Queremos calcular un intervalo de confianza superior para <span class="math inline">\(\theta\)</span> al
+<span class="math inline">\(100\delta\)</span> (exacto): <span class="math inline">\(\mathbb P[\theta&lt;B] = \gamma\)</span>.</p>
+<p>Si <span class="math inline">\(G\)</span> es la función de distribución de la gamma, sabemos que</p>
+<p><span class="math display">\[\begin{equation*}
+\gamma = \mathbb{P}[\theta T&lt;G^{-1}(\gamma)] = \mathbb{P}\bigg[\theta&lt;\dfrac{G^{-1}(\gamma)}{T}\bigg].
+\end{equation*}\]</span></p>
 <p>El límite superior es <span class="math inline">\(\dfrac{G^{-1}(\gamma)}{T}\)</span>.</p>
-<p><strong>Definición</strong>. Sea <span class="math inline">\(X = (X_1,\dots,X_n)\)</span> una muestra de una distribución <span class="math inline">\(F_\theta\)</span>. Sea <span class="math inline">\(V(X,\theta)\)</span> una variable aleatoria cuya distribución no depende de <span class="math inline">\(\theta\)</span>. Decimos que <span class="math inline">\(V\)</span> es una <strong>cantidad pivotal</strong>.</p>
-<p>Los intervalos de confianza se determinan a partir de un roceso de inversión de la cantidad pivotal.</p>
-<p>Encuentre <span class="math inline">\(r(v,x)\)</span> tal que <span class="math display">\[r(V(X,\theta)) = g(\theta) \quad (*)\]</span>
-donde <span class="math inline">\(g\)</span> es la característica.</p>
-<p>Del ejemplo anterior, <span class="math inline">\(V(X,\theta) = \theta T\)</span>,
-<span class="math display">\[r(V(X,\theta),X) = \dfrac{V(X,\theta)}T = g(\theta) = \theta.\]</span></p>
-<p><strong>Teorema</strong>. Bajo las condiciones anteriores, si <span class="math inline">\(V\)</span> existe sea <span class="math inline">\(G\)</span> su c.d.f. y asume que <span class="math inline">\(G\)</span> es continua. Asuma que <span class="math inline">\(r\)</span> en es cierta y asuma que <span class="math inline">\(r(v,x) \nearrow\)</span> en <span class="math inline">\(v\)</span> para cada <span class="math inline">\(x\)</span>. Sea <span class="math inline">\(0&lt;\gamma&lt;1\)</span> y <span class="math inline">\(\gamma_2&gt;\gamma_1\)</span> tal que <span class="math inline">\(\gamma_2-\gamma_1 = \gamma\)</span>. Entonces los extremos del intervalo de confianza para <span class="math inline">\(g(\theta)\)</span> al <span class="math inline">\(100\gamma\)</span> son
-<span class="math display">\[A=r(G^{-1}(\gamma_1),X), \quad B=r(G^{-1}(\gamma_2),X).\]</span></p>
-<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \stackrel{i.i.d}{\sim} N(\mu,\sigma^2)\)</span>. Encuentra A, B tales que <span class="math inline">\(\mathbb P[A&lt;\sigma^2&lt;B] = \gamma\)</span>.</p>
-<p>Se sabe que <span class="math display">\[\dfrac{n\hat\sigma^2}{\sigma^2}\sim \chi^2_{n-1}.\]</span>
-Tome <span class="math inline">\(V(X,\sigma^2) = \dfrac{n\hat\sigma^2}{\sigma^2}\)</span>. Entonces
-<span class="math display">\[\gamma = \mathbb P[\chi^2_{n-1,\gamma_1}&lt;V(X,\sigma^2)&lt;\chi^2_{n-1,\gamma_2}]\]</span></p>
-<p>donde <span class="math inline">\(\gamma = \gamma_2-\gamma_1\)</span>. Tome
-<span class="math display">\[r(v,X) =\dfrac{\sum(X_i -\bar X_n) ^2}{v} = \dfrac{n\hat\sigma}{v}.\]</span></p>
-<p>Invirtiendo el intervalo,
-<span class="math display">\[\gamma = \mathbb P \bigg[ \underbrace{\dfrac{\sum(X_i -\bar X_n) ^2}{\chi^2_{n-1,\gamma_2}}}
-_{A} &lt;\sigma^2&lt;\underbrace{\dfrac{\sum(X_i -\bar X_n) ^2}{\chi^2_{n-1,\gamma_1}}}_B\bigg]\]</span></p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="intervalos-de-confianza.html#cb109-1"></a>theta &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb109-2"><a href="intervalos-de-confianza.html#cb109-2"></a>X &lt;-<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">3</span>, <span class="dt">rate =</span> theta)</span>
+<span id="cb109-3"><a href="intervalos-de-confianza.html#cb109-3"></a>T &lt;-<span class="st"> </span><span class="kw">sum</span>(X)</span>
+<span id="cb109-4"><a href="intervalos-de-confianza.html#cb109-4"></a>G_inv &lt;-<span class="st"> </span><span class="kw">qgamma</span>(<span class="dt">p =</span> <span class="fl">0.98</span>, <span class="dt">shape =</span> <span class="dv">3</span>, <span class="dt">rate =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>Entonces el intervalo de confianza para este caso es</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="intervalos-de-confianza.html#cb110-1"></a><span class="kw">c</span>(<span class="dv">0</span>, G_inv<span class="op">/</span>T)</span></code></pre></div>
+<pre><code>## [1] 0.000000 6.450709</code></pre>
+<p><strong>Definición</strong>. Sea <span class="math inline">\(X = (X_1,\dots,X_n)\)</span> una muestra de una distribución
+<span class="math inline">\(F_\theta\)</span>. Sea <span class="math inline">\(V(X,\theta)\)</span> una variable aleatoria cuya distribución no
+depende de <span class="math inline">\(\theta\)</span>. Decimos que <span class="math inline">\(V\)</span> es una <strong>cantidad pivotal</strong>.</p>
+<p>Los intervalos de confianza se determinan a partir de un proceso de inversión de
+la cantidad pivotal.</p>
+<p>Encuentre <span class="math inline">\(r(v,x)\)</span> tal que</p>
+<p><span class="math display">\[r(V(X,\theta)) = g(\theta) \quad (*)\]</span></p>
+<p>y <span class="math inline">\(g\)</span> es una función cualquiera.</p>
+<p>Del ejemplo anterior, <span class="math inline">\(V(X,\theta) = \theta T\)</span>, <span class="math display">\[r(V(X,\theta),X) = \dfrac{V(X,\theta)}T
+= g(\theta) = \theta.\]</span></p>
+<p><strong>Teorema</strong>. Bajo las condiciones anteriores, si <span class="math inline">\(V\)</span> existe sea <span class="math inline">\(G\)</span> su c.d.f. y
+asume que <span class="math inline">\(G\)</span> es continua. Asuma que <span class="math inline">\(r\)</span> en es cierta y asuma que <span class="math inline">\(r(v,x) \nearrow\)</span> en <span class="math inline">\(v\)</span> para cada <span class="math inline">\(x\)</span>. Sea <span class="math inline">\(0&lt;\gamma&lt;1\)</span> y <span class="math inline">\(\gamma_2&gt;\gamma_1\)</span> tal que <span class="math inline">\(\gamma_2-\gamma_1 = \gamma\)</span>. Entonces los extremos del intervalo de confianza para <span class="math inline">\(g(\theta)\)</span> al
+<span class="math inline">\(100\gamma\)</span> son <span class="math display">\[A=r(G^{-1}(\gamma_1),X), \quad B=r(G^{-1}(\gamma_2),X).\]</span></p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \stackrel{i.i.d}{\sim} N(\mu,\sigma^2)\)</span>. Encuentra A, B tales
+que <span class="math inline">\(\mathbb P[A&lt;\sigma^2&lt;B] = \gamma\)</span>.</p>
+<p>Se sabe que <span class="math display">\[\dfrac{n\hat\sigma^2}{\sigma^2}\sim \chi^2_{n-1}.\]</span> Tome <span class="math inline">\(V(X,\sigma^2) = \dfrac{n\hat\sigma^2}{\sigma^2}\)</span>. Entonces <span class="math display">\[\gamma = \mathbb
+P[\chi^2_{n-1,\gamma_1}&lt;V(X,\sigma^2)&lt;\chi^2_{n-1,\gamma_2}]\]</span></p>
+<p>donde <span class="math inline">\(\gamma = \gamma_2-\gamma_1\)</span>. Tome <span class="math display">\[r(v,X) =\dfrac{\sum(X_i -\bar X_n) ^2}{v} =
+\dfrac{n\hat\sigma}{v}.\]</span></p>
+<p>Invirtiendo el intervalo, <span class="math display">\[\gamma = \mathbb P \bigg[ \underbrace{\dfrac{\sum(X_i -\bar
+X_n) ^2}{\chi^2_{n-1,\gamma_2}}} _{A} &lt;\sigma^2&lt;\underbrace{\dfrac{\sum(X_i -\bar X_n)
+^2}{\chi^2_{n-1,\gamma_1}}}_B\bigg]\]</span></p>
 <p>El IC para <span class="math inline">\(\sigma^2\)</span> al <span class="math inline">\(100\delta\)</span> es</p>
-<p><span class="math display">\[ \Bigg[ \dfrac{\sum(X_i -\bar X_n) ^2}{\chi^2_{n-1,\gamma_2}},
-\dfrac{\sum(X_i -\bar X_n) ^2}{\chi^2_{n-1,\gamma_1}}\Bigg].\]</span></p>
-<div id="intervalos-de-confianza-aproximados." class="section level3" number="7.3.1">
-<h3><span class="header-section-number">7.3.1</span> Intervalos de confianza aproximados.</h3>
-<p>Sean <span class="math inline">\(X_1,\dots, X_n \stackrel{i.i.d}{\sim}F_{\mu}\)</span> donde <span class="math inline">\(\mathbb E[X_i] = \mu\)</span> y <span class="math inline">\(\text{Var}(X_i) = \sigma^2\)</span> (conocida). Note que
-<span class="math display">\[D = \mathbb P[A&lt;\mu&lt;B] = \mathbb P \bigg[-z_{\frac{1+\gamma}2}&lt;\dfrac{\sqrt n(\bar X_n-\mu)}{\sigma} &lt;z_{\frac{1+\gamma}2}\bigg] \stackrel{TLC}{\approx} \gamma.\]</span>
-Así,
-<span class="math display">\[D \underset{n\to\infty}{\approx} \Phi\left(z_{\frac{1+\gamma}2}\right)-\Phi\left(-z_{\frac{1+\gamma}2}\right) = \gamma.\]</span></p>
-<p><strong>Ejercicio</strong>. El intervalo de confianza correspondiente para <span class="math inline">\(\mu\)</span> es
-<span class="math display">\[\bar X_n \pm z_{\frac{1+\gamma}2}\dfrac{\sigma}{\sqrt n}.\]</span></p>
-<p>Considere <span class="math inline">\(U = \dfrac{\bar X_n - \mu}{\sigma/\sqrt n}\)</span>. <span class="math inline">\(U\)</span> es pivotal, pero no necesariamente una <span class="math inline">\(t_{n-1}\)</span>.</p>
-<p>Considere que <span class="math inline">\((\sigma&#39;)^2 = \dfrac{n}{n-1}\hat \sigma^2\)</span> y además <span class="math inline">\(\hat\sigma^2\)</span> es el MLE de <span class="math inline">\(\sigma^2\)</span> y por lo tanto consistente.
-<span class="math display">\[\hat\sigma^2 \xrightarrow[]{\mathbb P}\sigma^2 \quad ((\sigma&#39;)^2 \xrightarrow[]{\mathbb P}\hat\sigma^2).\]</span></p>
-<p>Recuerde que si <span class="math inline">\(X_n\xrightarrow[]{d}Z\)</span> y <span class="math inline">\(Y_n\xrightarrow[]{d}a\)</span>, entonces <span class="math inline">\(X_nY_n \xrightarrow[]{d}aZ\)</span>.</p>
+<p><span class="math display">\[ \Bigg[ \dfrac{\sum(X_i -\bar X_n) ^2}{\chi^2_{n-1,\gamma_2}}, \dfrac{\sum(X_i -\bar X_n)
+^2}{\chi^2_{n-1,\gamma_1}}\Bigg].\]</span></p>
+<p>Por ejemplo</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="intervalos-de-confianza.html#cb112-1"></a>X &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dv">0</span>, <span class="dv">2</span>)</span>
+<span id="cb112-2"><a href="intervalos-de-confianza.html#cb112-2"></a></span>
+<span id="cb112-3"><a href="intervalos-de-confianza.html#cb112-3"></a>gamma1 &lt;-<span class="st"> </span><span class="fl">0.025</span></span>
+<span id="cb112-4"><a href="intervalos-de-confianza.html#cb112-4"></a>gamma2 &lt;-<span class="st"> </span><span class="fl">0.975</span></span>
+<span id="cb112-5"><a href="intervalos-de-confianza.html#cb112-5"></a></span>
+<span id="cb112-6"><a href="intervalos-de-confianza.html#cb112-6"></a>gamma2 <span class="op">-</span><span class="st"> </span>gamma1</span></code></pre></div>
+<pre><code>## [1] 0.95</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="intervalos-de-confianza.html#cb114-1"></a>(chi2_gamma1 &lt;-<span class="st"> </span><span class="kw">qchisq</span>(<span class="dt">p =</span> gamma1, <span class="dt">df =</span> <span class="dv">1000</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## [1] 913.301</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="intervalos-de-confianza.html#cb116-1"></a>(chi2_gamma2 &lt;-<span class="st"> </span><span class="kw">qchisq</span>(<span class="dt">p =</span> gamma2, <span class="dt">df =</span> <span class="dv">1000</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## [1] 1088.487</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="intervalos-de-confianza.html#cb118-1"></a>(diferencias &lt;-<span class="st"> </span><span class="kw">sum</span>((X <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(X))<span class="op">^</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] 4084.26</code></pre>
+<p>Finalmente el intervalo es</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="intervalos-de-confianza.html#cb120-1"></a><span class="kw">c</span>(diferencias<span class="op">/</span>chi2_gamma2, diferencias<span class="op">/</span>chi2_gamma1)</span></code></pre></div>
+<pre><code>## [1] 3.752236 4.471976</code></pre>
+<p><strong>NOTA: Las cantidades pivotales no siempre existen. Esto ocurre principalemente
+con las distribuciones discretas</strong></p>
+<div id="intervalos-de-confianza-aproximados." class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Intervalos de confianza aproximados.</h3>
+<p>Sean <span class="math inline">\(X_1,\dots, X_n \stackrel{i.i.d}{\sim}F_{\mu}\)</span> donde <span class="math inline">\(\mathbb{E}[X_i] = \mu\)</span> y
+<span class="math inline">\(\text{Var}(X_i) = \sigma^2\)</span> (conocida). Note que <span class="math display">\[D = \mathbb P[A&lt;\mu&lt;B] = \mathbb P
+\bigg[-z_{\frac{1+\gamma}2}&lt;\dfrac{\sqrt n(\bar X_n-\mu)}{\sigma} &lt;z_{\frac{1+\gamma}2}\bigg]
+\stackrel{TLC}{\approx} \gamma.\]</span></p>
+<p>Así, <span class="math display">\[D \underset{n\to\infty}{\approx}
+\Phi\left(z_{\frac{1+\gamma}2}\right)-\Phi\left(-z_{\frac{1+\gamma}2}\right) = \gamma.\]</span></p>
+<p><strong>Ejercicio</strong>. El intervalo de confianza correspondiente para <span class="math inline">\(\mu\)</span> es</p>
+<p><span class="math display">\[
+\bar
+X_n \pm z_{\frac{1+\gamma}2}\dfrac{\sigma}{\sqrt n}.
+\]</span></p>
+<p>Considere <span class="math inline">\(U = \dfrac{\bar X_n - \mu}{\sigma&#39;/\sqrt n}\)</span>. <span class="math inline">\(U\)</span> es pivotal, pero no
+necesariamente una <span class="math inline">\(t_{n-1}\)</span>.</p>
+<p>Considere que <span class="math inline">\((\sigma&#39;)^2 = \dfrac{n}{n-1}\hat \sigma^2\)</span> y además <span class="math inline">\(\hat\sigma^2\)</span> es el MLE de
+<span class="math inline">\(\sigma^2\)</span> y por lo tanto consistente.</p>
+<p><span class="math display">\[\begin{align*}
+\hat{\sigma}^2 &amp;\xrightarrow[]{\mathbb{P}}\sigma^2 \\
+((\sigma&#39;)^2 &amp;\xrightarrow[]{\mathbb{P}}\hat{\sigma}^2).
+\end{align*}\]</span></p>
+<p>Recuerde que si <span class="math inline">\(X_n\xrightarrow[]{d}Z\)</span> y <span class="math inline">\(Y_n\xrightarrow[]{\mathbb{P}}a\)</span>, entonces
+<span class="math inline">\(X_nY_n \xrightarrow[]{d}aZ\)</span>.</p>
 <p>Por lo tanto,
-<span class="math display">\[\underbrace{\dfrac{\bar X_n-\mu}{\sigma/\sqrt n}}_{\xrightarrow[]{d} N(0,1)} \cdot \underbrace{\dfrac{\sigma/\sqrt n}{\sigma&#39;/\sqrt n}}_{\xrightarrow[]{\mathbb P}1} \xrightarrow[]{d}N(0,1)\]</span>
-Entonces <span class="math inline">\(U\xrightarrow[]{d}N(0,1)\)</span>.</p>
+<span class="math display">\[
+\underbrace{\dfrac{\bar X_n-\mu}{\sigma/\sqrt n}}_{\xrightarrow[]{d}
+N(0,1)} \cdot \underbrace{\dfrac{\sigma/\sqrt n}{\sigma&#39;/\sqrt n}}_{\xrightarrow[]{\mathbb
+P}1} \xrightarrow[]{d}N(0,1)\]</span></p>
+<p>Entonces <span class="math inline">\(U\xrightarrow[]{d}N(0,1)\)</span>.</p>
 <p>Como consecuencia</p>
-<p><span class="math display">\[\mathbb P \bigg[-z_{\frac{1+\gamma}2}&lt;\dfrac{\bar X_n-\mu}{\sigma&#39;/\sqrt n} &lt;z_{\frac{1+\gamma}2}\bigg] \stackrel{TLC}{\approx} \gamma.\]</span>
-y el IC aproximado para <span class="math inline">\(\mu\)</span> al <span class="math inline">\(100\gamma\)</span></p>
+<p><span class="math display">\[
+\mathbb P \bigg[-z_{\frac{1+\gamma}2}&lt;\dfrac{\bar X_n-\mu}{\sigma&#39;/\sqrt n}
+&lt;z_{\frac{1+\gamma}2}\bigg] \stackrel{TLC}{\approx} \gamma.
+\]</span></p>
+<p>y el IC aproximado para <span class="math inline">\(\mu\)</span> al <span class="math inline">\(100\gamma\)</span></p>
 <p><span class="math display">\[\bar X_n \pm z_{\frac{1+\gamma}2}\dfrac{\sigma&#39;}{\sqrt n}.\]</span></p>
 <p><strong>Ejemplo</strong>. Si <span class="math inline">\(X_1,\dots, X_n\sim \text{Poi}(\theta)\)</span>, <span class="math inline">\(\mu =\sigma^2 = \theta\)</span>. Por TLC,
-<span class="math display">\[\sqrt n\dfrac{\bar X_n-\theta}{\sqrt{\theta}}\xrightarrow[]{d}N(0,1).\]</span>
-Entonces</p>
-<p><span class="math display">\[\mathbb P[|\bar X_n-\theta|&lt;c] = \mathbb P\bigg[\dfrac{\sqrt n|\bar X_n-\theta|}{\sqrt \theta}&lt;\dfrac{c\sqrt n}{\sqrt \theta}\bigg] \approx 2\Phi\left(\dfrac{c\sqrt n}{\sqrt \theta}\right)-1.\]</span></p>
+<span class="math display">\[\sqrt n\dfrac{\bar X_n-\theta}{\sqrt{\theta}}\xrightarrow[]{d}N(0,1).\]</span> Entonces</p>
+<p><span class="math display">\[
+\mathbb P[|\bar X_n-\theta|&lt;c] = \mathbb P\bigg[\dfrac{\sqrt n|\bar X_n-\theta|}{\sqrt \theta}&lt;\dfrac{c\sqrt n}{\sqrt \theta}\bigg] \approx 2\Phi\left(\dfrac{c\sqrt n}{\sqrt \theta}\right)-1.
+\]</span></p>
+<p><strong>Explicación del fenómeno:</strong> En este caso recuerden que <span class="math inline">\(\bar{X}_n\)</span> es una
+variable aleatoria. Lo que dice el teorema del límite central es que conforme
+<span class="math inline">\(n\)</span> es grande, la distribución de <span class="math inline">\(\bar{X}_n\)</span> (centrada y escalada
+apropiadamente) converge a una normal estándar.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="intervalos-de-confianza.html#cb122-1"></a>Xbar &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">n =</span> <span class="kw">numeric</span>(), <span class="dt">Z =</span> <span class="kw">numeric</span>())</span>
+<span id="cb122-2"><a href="intervalos-de-confianza.html#cb122-2"></a></span>
+<span id="cb122-3"><a href="intervalos-de-confianza.html#cb122-3"></a>idx &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">2000</span>), <span class="dt">times =</span> <span class="dv">1000</span>)</span>
+<span id="cb122-4"><a href="intervalos-de-confianza.html#cb122-4"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(idx)) {</span>
+<span id="cb122-5"><a href="intervalos-de-confianza.html#cb122-5"></a>    muestra &lt;-<span class="st"> </span><span class="kw">rpois</span>(<span class="dt">n =</span> idx[k], <span class="dt">lambda =</span> <span class="dv">5</span>)</span>
+<span id="cb122-6"><a href="intervalos-de-confianza.html#cb122-6"></a>    Xbar[k, <span class="st">&quot;Z&quot;</span>] &lt;-<span class="st"> </span><span class="kw">sqrt</span>(idx[k]) <span class="op">*</span><span class="st"> </span>(<span class="kw">mean</span>(muestra) <span class="op">-</span><span class="st"> </span></span>
+<span id="cb122-7"><a href="intervalos-de-confianza.html#cb122-7"></a><span class="st">        </span><span class="dv">5</span>)<span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">5</span>)</span>
+<span id="cb122-8"><a href="intervalos-de-confianza.html#cb122-8"></a>    Xbar[k, <span class="st">&quot;n&quot;</span>] &lt;-<span class="st"> </span>idx[k]</span>
+<span id="cb122-9"><a href="intervalos-de-confianza.html#cb122-9"></a>}</span>
+<span id="cb122-10"><a href="intervalos-de-confianza.html#cb122-10"></a></span>
+<span id="cb122-11"><a href="intervalos-de-confianza.html#cb122-11"></a></span>
+<span id="cb122-12"><a href="intervalos-de-confianza.html#cb122-12"></a></span>
+<span id="cb122-13"><a href="intervalos-de-confianza.html#cb122-13"></a><span class="kw">ggplot</span>(Xbar) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Z, </span>
+<span id="cb122-14"><a href="intervalos-de-confianza.html#cb122-14"></a>    <span class="dt">y =</span> ..density..), <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, </span>
+<span id="cb122-15"><a href="intervalos-de-confianza.html#cb122-15"></a>    <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb122-16"><a href="intervalos-de-confianza.html#cb122-16"></a><span class="st">    </span><span class="kw">facet_wrap</span>(. <span class="op">~</span><span class="st"> </span>n, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-49-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="transformaciones-estabilizadoras-de-la-varianza" class="section level3" number="7.3.2">
-<h3><span class="header-section-number">7.3.2</span> Transformaciones estabilizadoras de la varianza</h3>
-<p>¿Cómo transformar <span class="math inline">\(X_n\)</span> para que tenga varianza constante?</p>
-<p>Por el método Delta, la varianza “aproximada” de <span class="math inline">\(\alpha(\bar X_n)\)</span> es
-<span class="math display">\[\left( \dfrac{\alpha&#39;(\mu)}{a_n}\right)^2 =\left( \dfrac{\alpha&#39;(\mu)\sigma}{\sqrt n}\right)^2 = \dfrac{\alpha&#39;(\mu)^2\sigma^2(\mu)}{n}.\]</span>
-Si se desea que la varianza sea constante con respecto a <span class="math inline">\(\mu\)</span>,
-<span class="math display">\[\begin{align*}
-\alpha&#39;(u)^2\sigma^2(\mu) = 1 &amp;\implies \alpha&#39;(\mu) = \dfrac{1}{\sigma(\mu)} \quad (\sigma(\mu)&gt;0)\\
-&amp; = \alpha(\mu) = \int_{a}^mu \dfrac{dx}{\sigma(x)}dx
+<div id="transformaciones-estabilizadoras-de-la-varianza" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Transformaciones estabilizadoras de la varianza</h3>
+<p>[Ver página 365 del libro de texto. }</p>
+<p>¿Cómo transformar <span class="math inline">\(X_n\)</span> para que tenga varianza constante? Note que en el caso
+anterior se necesitó saber explícitamente el valor exacto de <span class="math inline">\(\theta\)</span> para
+hacer el ejercicio.</p>
+<p>Por el método Delta, la varianza “aproximada” de <span class="math inline">\(\alpha(\bar X_n)\)</span> es <span class="math display">\[\left(
+\dfrac{\alpha&#39;(\mu)}{a_n}\right)^2 =\left( \dfrac{\alpha&#39;(\mu)\sigma}{\sqrt n}\right)^2 =
+\dfrac{\alpha&#39;(\mu)^2\sigma^2(\mu)}{n}.\]</span> Si se desea que la varianza sea constante con
+respecto a <span class="math inline">\(\mu\)</span>,</p>
+<p><span class="math display">\[\begin{align*}
+\alpha&#39;(u)^2\sigma^2(\mu) &amp;= 1 \\
+\implies \alpha&#39;(\mu) &amp; = \dfrac{1}{\sigma(\mu)} \quad (\sigma(\mu)&gt;0)\\
+\implies \alpha(\mu) &amp;=
+\int_{a}^{\mu} \dfrac{dx}{\sigma(x)}dx
 \end{align*}\]</span></p>
-<p>Del ejemplo anterior,
-<span class="math display">\[\alpha(\mu) = \int_{0}^\mu\dfrac{dx}{\sqrt x} = 2\sqrt \mu\]</span></p>
-<p>Por el método Delta,
-<span class="math display">\[2\bar X_n^{\frac12} \underset{n \text{ grande}}{\sim} N\left(2\theta^{\frac 12},\dfrac1n\right)\]</span></p>
+<p>donde <span class="math inline">\(a\)</span> es una constante arbitraria que hace la integral finita (y fácil de
+calcular).</p>
+<p>Del ejemplo anterior (Poisson), recuerde que <span class="math inline">\(\sigma ^{2} = \theta = \mu\)</span>, entonces se
+podría tomar que <span class="math inline">\(\sigma(\mu) = \sqrt{\mu}\)</span> y por lo tanto definimos</p>
+<p><span class="math display">\[
+\alpha(\mu) = \int_{0}^\mu\dfrac{dx}{\sqrt x} = 2\sqrt \mu
+\]</span></p>
+<p>Por el método Delta,<br />
+<span class="math display">\[
+2\bar X_n^{\frac12} \underset{n \text{ grande}}{\sim}
+N\left(2\theta^{\frac 12},\dfrac1n\right)
+\]</span></p>
 <p>De esta manera</p>
-<p><span class="math display">\[\mathbb P[|2\bar X_n^{\frac12}-2\theta^{\frac12}|&lt;c] =\mathbb P\Bigg[\dfrac{|2\bar X_n^{\frac12}-2\theta^{\frac12}|}{\sqrt{1/n}}&lt;\sqrt nc\Bigg] \approx 2\Phi(\sqrt nc)-1  \]</span></p>
-<p>Desarrollando,
-<span class="math display">\[\mathbb P[-c+2\bar X_n^{\frac12}&lt;2\theta^{\frac 12}&lt;c+2\bar X_n^{\frac12}]\approx 2\Phi(\sqrt nc)-1  \]</span></p>
-<p>Se despeja <span class="math inline">\(c\)</span> tal que
-<span class="math display">\[\Phi(\sqrt n  c) = \dfrac{1+\gamma}2\implies c = \dfrac 1{\sqrt n} z_{\frac{1+\gamma}2}.\]</span></p>
-<p>El intervalo para <span class="math inline">\(2\theta^{\frac 12}\)</span> es
-<span class="math display">\[\bigg[2\bar X_n^{\frac 12} -\dfrac 1{\sqrt n} z_{\frac{1+\gamma}2},2\bar X_n^{\frac 12} +\dfrac 1{\sqrt n} z_{\frac{1+\gamma}2}\bigg]\]</span></p>
+<p><span class="math display">\[\mathbb P[|2\bar X_n^{\frac12}-2\theta^{\frac12}|&lt;c] =\mathbb P\Bigg[\dfrac{|2\bar
+X_n^{\frac12}-2\theta^{\frac12}|}{\sqrt{1/n}}&lt;\sqrt nc\Bigg] \approx 2\Phi(\sqrt nc)-1 \]</span></p>
+<p>Desarrollando, <span class="math display">\[\mathbb P[-c+2\bar X_n^{\frac12}&lt;2\theta^{\frac 12}&lt;c+2\bar
+X_n^{\frac12}]\approx 2\Phi(\sqrt nc)-1 \]</span></p>
+<p>Se despeja <span class="math inline">\(c\)</span> tal que <span class="math display">\[\Phi(\sqrt n c) = \dfrac{1+\gamma}2\implies c = \dfrac 1{\sqrt
+n} z_{\frac{1+\gamma}2}.\]</span></p>
+<p>El intervalo para <span class="math inline">\(2\theta^{\frac 12}\)</span> es <span class="math display">\[\bigg[2\bar X_n^{\frac 12} -\dfrac
+1{\sqrt n} z_{\frac{1+\gamma}2},2\bar X_n^{\frac 12} +\dfrac 1{\sqrt n}
+z_{\frac{1+\gamma}2}\bigg]\]</span></p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="intervalos-de-confianza.html#cb123-1"></a><span class="kw">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb123-2"><a href="intervalos-de-confianza.html#cb123-2"></a>X &lt;-<span class="st"> </span><span class="kw">rpois</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">lambda =</span> <span class="dv">5</span>)</span>
+<span id="cb123-3"><a href="intervalos-de-confianza.html#cb123-3"></a>Xbar &lt;-<span class="st"> </span><span class="kw">mean</span>(X)</span>
+<span id="cb123-4"><a href="intervalos-de-confianza.html#cb123-4"></a>z &lt;-<span class="st"> </span><span class="kw">qnorm</span>(<span class="dt">p =</span> <span class="fl">0.975</span>)</span>
+<span id="cb123-5"><a href="intervalos-de-confianza.html#cb123-5"></a></span>
+<span id="cb123-6"><a href="intervalos-de-confianza.html#cb123-6"></a><span class="kw">c</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(Xbar) <span class="op">-</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">1000</span>) <span class="op">*</span><span class="st"> </span>z, <span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(Xbar) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb123-7"><a href="intervalos-de-confianza.html#cb123-7"></a><span class="st">    </span><span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">1000</span>) <span class="op">*</span><span class="st"> </span>z)</span></code></pre></div>
+<pre><code>## [1] 4.371529 4.495488</code></pre>
 <p>Para estimar el IC para <span class="math inline">\(\theta\)</span>, vea que si <span class="math inline">\(y=2x^{\frac12} \implies x = \dfrac{y^2}{4}\)</span>. Aplicando esta transformación al intervalo anterior, se obtiene</p>
-<p><span class="math display">\[\bigg[\dfrac 14 \left(2\bar X_n^{\frac 12} -\dfrac 1{\sqrt n} z_{\frac{1+\gamma}2}\right)^2,\dfrac 14 \left(2\bar X_n^{\frac 12} +\dfrac 1{\sqrt n} z_{\frac{1+\gamma}2}\right)^2\bigg].\]</span></p>
+<p><span class="math display">\[\bigg[\dfrac 14 \left(2\bar X_n^{\frac 12} -\dfrac 1{\sqrt n}
+z_{\frac{1+\gamma}2}\right)^2,\dfrac 14 \left(2\bar X_n^{\frac 12} +\dfrac 1{\sqrt n}
+z_{\frac{1+\gamma}2}\right)^2\bigg].\]</span></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="intervalos-de-confianza.html#cb125-1"></a><span class="kw">c</span>((<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>) <span class="op">*</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(Xbar) <span class="op">-</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">1000</span>) <span class="op">*</span><span class="st"> </span>z)<span class="op">^</span><span class="dv">2</span>, (<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>) <span class="op">*</span><span class="st"> </span></span>
+<span id="cb125-2"><a href="intervalos-de-confianza.html#cb125-2"></a><span class="st">    </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(Xbar) <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">1000</span>) <span class="op">*</span><span class="st"> </span>z)<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 4.777567 5.052354</code></pre>
 
 </div>
 </div>

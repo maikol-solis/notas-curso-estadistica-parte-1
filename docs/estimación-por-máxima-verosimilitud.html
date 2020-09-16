@@ -198,11 +198,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>7</b> Intervalos de confianza</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-para-la-media-de-una-distribución-normal"><i class="fa fa-check"></i><b>7.1</b> Intervalos de confianza para la media de una distribución normal</a></li>
-<li class="chapter" data-level="7.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-abiertos"><i class="fa fa-check"></i><b>7.2</b> Intervalos de confianza abiertos</a></li>
-<li class="chapter" data-level="7.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-en-otros-casos"><i class="fa fa-check"></i><b>7.3</b> Intervalos de confianza en otros casos</a>
+<li class="chapter" data-level="7.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#caso-normal."><i class="fa fa-check"></i><b>7.2</b> Caso normal.</a></li>
+<li class="chapter" data-level="7.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-abiertos"><i class="fa fa-check"></i><b>7.3</b> Intervalos de confianza abiertos</a></li>
+<li class="chapter" data-level="7.4" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-en-otros-casos"><i class="fa fa-check"></i><b>7.4</b> Intervalos de confianza en otros casos</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-aproximados."><i class="fa fa-check"></i><b>7.3.1</b> Intervalos de confianza aproximados.</a></li>
-<li class="chapter" data-level="7.3.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#transformaciones-estabilizadoras-de-la-varianza"><i class="fa fa-check"></i><b>7.3.2</b> Transformaciones estabilizadoras de la varianza</a></li>
+<li class="chapter" data-level="7.4.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-aproximados."><i class="fa fa-check"></i><b>7.4.1</b> Intervalos de confianza aproximados.</a></li>
+<li class="chapter" data-level="7.4.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#transformaciones-estabilizadoras-de-la-varianza"><i class="fa fa-check"></i><b>7.4.2</b> Transformaciones estabilizadoras de la varianza</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html"><i class="fa fa-check"></i><b>8</b> Estimación Bayesiana bajo normalidad</a>
@@ -546,6 +547,7 @@ Por el T.L.C., la distribución posterior <span class="math inline">\(\theta|X\)
 <p>Primero veamos la forma de los datos,</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="estimación-por-máxima-verosimilitud.html#cb91-1"></a><span class="kw">hist</span>(X, <span class="dt">main =</span> <span class="st">&quot;histograma del número de giros a la derecha&quot;</span>, </span>
 <span id="cb91-2"><a href="estimación-por-máxima-verosimilitud.html#cb91-2"></a>    <span class="dt">right =</span> <span class="ot">FALSE</span>, <span class="dt">prob =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-31-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Definamos la función correspondiente a <span class="math inline">\(-\log(\mathbb{P}(X=x))\)</span></p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="estimación-por-máxima-verosimilitud.html#cb92-1"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(X)</span>
 <span id="cb92-2"><a href="estimación-por-máxima-verosimilitud.html#cb92-2"></a>negloglike &lt;-<span class="st"> </span><span class="cf">function</span>(lambda) {</span>
@@ -556,7 +558,7 @@ Por el T.L.C., la distribución posterior <span class="math inline">\(\theta|X\)
 <p>Aquí el valor <code>p = c(0.5)</code> representa un valor inicial de búsqueda y <code>hessian = TRUE</code> determina el cálculo explícito de la segunda derivada.</p>
 <p>Compare el resultado de <code>lambda.hat$estimate</code> con <code>mean(X)</code>.</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="estimación-por-máxima-verosimilitud.html#cb94-1"></a>lambda.hat<span class="op">$</span>estimate</span></code></pre></div>
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;lambda.hat&#39; not found</code></pre>
+<pre><code>## [1] 3.893331</code></pre>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="estimación-por-máxima-verosimilitud.html#cb96-1"></a><span class="kw">mean</span>(X)</span></code></pre></div>
 <pre><code>## [1] 3.893333</code></pre>
 

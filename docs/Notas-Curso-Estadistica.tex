@@ -186,7 +186,7 @@
 
 \title{Notas Curso de Estadística (Parte I)}
 \author{Maikol Solís}
-\date{Actualizado el 10 September, 2020}
+\date{Actualizado el 16 septiembre, 2020}
 
 \begin{document}
 \maketitle
@@ -1101,7 +1101,7 @@ Si tenemos pocos datos, la información previa es la que ``prevalece''.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 10.22127
+## [1] 10.64715
 \end{verbatim}
 
 \begin{Shaded}
@@ -1111,7 +1111,7 @@ Si tenemos pocos datos, la información previa es la que ``prevalece''.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.185713
+## [1] 0.5654769
 \end{verbatim}
 
 \begin{Shaded}
@@ -1153,7 +1153,7 @@ Si tenemos pocos datos, la información previa es la que ``prevalece''.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 6.959693
+## [1] 9.621605
 \end{verbatim}
 
 \begin{Shaded}
@@ -1164,7 +1164,7 @@ Si tenemos pocos datos, la información previa es la que ``prevalece''.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.3190971
+## [1] 0.09632134
 \end{verbatim}
 
 \begin{Shaded}
@@ -1193,7 +1193,7 @@ Con más datos, la distribución se ajusta a esto y le quita importancia a la in
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 9.890422
+## [1] 9.994564
 \end{verbatim}
 
 \begin{Shaded}
@@ -1203,7 +1203,7 @@ Con más datos, la distribución se ajusta a esto y le quita importancia a la in
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.134588
+## [1] 1.060066
 \end{verbatim}
 
 \begin{Shaded}
@@ -1245,7 +1245,7 @@ Con más datos, la distribución se ajusta a esto y le quita importancia a la in
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 9.764722
+## [1] 9.883499
 \end{verbatim}
 
 \begin{Shaded}
@@ -1256,7 +1256,7 @@ Con más datos, la distribución se ajusta a esto y le quita importancia a la in
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.01270929
+## [1] 0.01111253
 \end{verbatim}
 
 \begin{Shaded}
@@ -1286,7 +1286,7 @@ distribución previa en lugar que a la verosimilitud.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 10.90214
+## [1] 9.576984
 \end{verbatim}
 
 \begin{Shaded}
@@ -1296,7 +1296,7 @@ distribución previa en lugar que a la verosimilitud.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5.107251
+## [1] 7.32444
 \end{verbatim}
 
 \begin{Shaded}
@@ -1338,7 +1338,7 @@ distribución previa en lugar que a la verosimilitud.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.021321
+## [1] 1.504693
 \end{verbatim}
 
 \begin{Shaded}
@@ -1349,7 +1349,7 @@ distribución previa en lugar que a la verosimilitud.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.722869
+## [1] 0.8428844
 \end{verbatim}
 
 \begin{Shaded}
@@ -1411,10 +1411,10 @@ Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=40
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 317434.4
+## [1] 312498.7
 \end{verbatim}
 
-Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.1502569\times 10^{-6}}.
+Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.2000131\times 10^{-6}}.
 
 \textbf{OJO: En este caso la pérdida cuadrática ajusta mejor ya que la distribución que la pérdida absoluta ya que la distribución NO es simétrica. En el caso simétrico los resultados serían muy similares.}
 
@@ -1972,6 +1972,8 @@ Primero veamos la forma de los datos,
 \end{Highlighting}
 \end{Shaded}
 
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-31-1} \end{center}
+
 Definamos la función correspondiente a \(-\log(\mathbb{P}(X=x))\)
 
 \begin{Shaded}
@@ -2002,7 +2004,7 @@ Compare el resultado de \texttt{lambda.hat\$estimate} con \texttt{mean(X)}.
 \end{Shaded}
 
 \begin{verbatim}
-## Error in eval(expr, envir, enclos): object 'lambda.hat' not found
+## [1] 3.893331
 \end{verbatim}
 
 \begin{Shaded}
@@ -2276,7 +2278,7 @@ Numericamente podemos hacer el ejemplo con \(\theta = 2\) y una muestra de \(n =
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 1 1 1 2 1 4 4 3 1 1 0 2 3 5 1 2 2 3 2
+##  [1] 3 2 3 4 1 5 3 0 3 0 0 0 5 0 2 5 0 3 2 2
 \end{verbatim}
 
 \begin{Shaded}
@@ -2303,7 +2305,7 @@ Esta \(Y\) se calcula de la forma
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE
+##  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
 \end{verbatim}
 
 El objetivo es estimar \(p\) donde \(p\) es la probabilidad de que \(X_i =1\) (solo llegue un cliente por hora). Un estimador de \(p\) (MLE) es
@@ -2316,7 +2318,7 @@ El objetivo es estimar \(p\) donde \(p\) es la probabilidad de que \(X_i =1\) (s
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.2726
+## [1] 0.264
 \end{verbatim}
 
 ¿Es el óptimo?
@@ -2355,7 +2357,7 @@ es el estadístico con MSE mínimo.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.268045
+## [1] 0.2707382
 \end{verbatim}
 
 En este caso \(\delta_0\) es mejor que \(\delta\) bajo una pérdida cuadrática.
@@ -2649,78 +2651,124 @@ U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} & = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\
 \hypertarget{intervalos-de-confianza-para-la-media-de-una-distribuciuxf3n-normal}{%
 \section{Intervalos de confianza para la media de una distribución normal}\label{intervalos-de-confianza-para-la-media-de-una-distribuciuxf3n-normal}}
 
-Dado \(\alpha\) un parámetro en \(\mathbb{R}^k\) se ha visto cómo encontrar un estadístico \(T\in \mathbb R^{k'}\), \(k'\geq k\). si se quiere tomar en cuenta la aleatoriedad de \(\alpha\) o la aleatoriedad de un fenómeno más complejo, se puede realizar una estimación por intervalo \(T = [T_1,T_2]\).
+Dado \(\theta\) un parámetro en \(\mathbb{R}\) hemos estudiado procedimientos para
+encontrar estadísticos \(T\in \mathbb R\) para estimarlo. La limitación que
+tenemos acá es que no sabemos que tan aleatorio es \(T\). Entonces podemos
+sustituir este estadístico \(T\) con otros dos estadísticos \(T_1\) y \(T_2\)
+de modo que sepamos que
+\begin{equation*}
+T_1 \leq \theta \leq T_2
+\end{equation*}
 
-En el caso normal, \(\bar X_n\) es un estimador puntual de \(\mu\). ¿Será posible encontrar un estimador por intervalos?
+En caso que \(\theta \in \mathbb{R} ^{k}\) se puede construir un conjunto de
+estadísticos \(T_1, \ldots, T_{k^\prime}\) con \(k^\prime = 2k\) tal que
+
+\begin{equation*}
+\theta \in [T_1, T_2] \times \cdots \times [T_{k^\prime-1}, T_{k^\prime}]
+\end{equation*}
+
+\hypertarget{caso-normal.}{%
+\section{Caso normal.}\label{caso-normal.}}
+
+En el caso normal, \(\bar X_n\) es un estimador puntual de \(\mu\). ¿Será posible
+encontrar un estimador por intervalos?
+
+Para efectos didácticos, vamos a empezar al revés de lo que usualmente se
+acostumbra.
 
 Defina \(U = \dfrac{\sqrt{n}(\bar X_n-\mu)}{\sigma'} \sim t_{n-1}\). Si \(c>0\),
 
-\begin{align*} 
-\mathbb P[-c<U<c] & = \mathbb P \bigg[ -c<\dfrac{\sqrt{n}(\bar
-X_n-\mu)}{\sigma'} <c\bigg]\\ 
-& = \mathbb P \bigg[-\dfrac{c\sigma'}{\sqrt n} <
-\bar X_n - \mu <\dfrac{c\sigma'}{\sqrt n}\bigg] \\ 
-& = \mathbb P \bigg[ \bar X_n
+\begin{align*} \mathbb P[-c<U<c] & = \mathbb P \bigg[ -c<\dfrac{\sqrt{n}(\bar
+X_n-\mu)}{\sigma'} <c\bigg]\\ & = \mathbb P \bigg[-\dfrac{c\sigma'}{\sqrt n} <
+\bar X_n - \mu <\dfrac{c\sigma'}{\sqrt n}\bigg] \\ & = \mathbb P \bigg[ \bar X_n
 -\dfrac{c\sigma'}{\sqrt n} < \mu < \bar X_n + \dfrac{c\sigma'}{\sqrt n}\bigg]
 \end{align*}
 
 El intervalo
 
-\[T = \bigg[\bar X_n - \dfrac{c\sigma'}{\sqrt n},\bar X_n +
-\dfrac{c\sigma'}{\sqrt n}\bigg]\]
+\begin{equation*}
+T = \bigg[\bar X_n - \dfrac{c\sigma'}{\sqrt n},\bar X_n + \dfrac{c\sigma'}{\sqrt
+n}\bigg]
+\end{equation*}
 
-es un intervalo aleatorio que ``contiene'' a \(\mu\). Si queremos restringir la probabilidad anterior, tome \(\gamma \in (0,1)\):
-\[\mathbb P(\mu\in T) = \gamma.\]
+es un intervalo aleatorio que ``contiene'' a \(\mu\). Si queremos restringir la
+probabilidad anterior, tome \(\gamma \in (0,1)\): \[ \mathbb P(\mu\in T) = \gamma. \]
 
 Para que se cumpla lo anterior, seleccione \(c\) tal que
 
-\begin{align*} 
-\gamma = \mathbb P( \mu \in T) &  = F_{t_{n-1}}(c)-F_{t_{n-1}}(-c) \\
-& = F_{t_{n-1}}(c) - [1-F_{t_{n-1}}(c)]\\ 
-& = 2F_{t_{n-1}} - 1 
-\end{align*}
+\begin{align*} \gamma = \mathbb P( \mu \in T) & = F_{t_{n-1}}(c)-F_{t_{n-1}}(-c)
+\\ & = F_{t_{n-1}}(c) - [1-F_{t_{n-1}}(c)]\\ & = 2F_{t_{n-1}} - 1 \end{align*}
 
 Entonces
 
-\[\dfrac{\gamma+1}2 = F_{t_{n-1}}(c) \implies c = F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right).\]
+\[ \dfrac{\gamma+1}2 = F_{t_{n-1}}(c) \implies c = F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2
+\right). \]
 
-\textbf{Definición}. Si \(X\) es una variable aleatoria continua con distribución \(F\) (monótona creciente), entonces \(x=F^{-1}(p)\) es el \textbf{cuantil} de orden \(p\) de \(F\) (\(p\)-cuantil).
+\textbf{Definición}. Si \(X\) es una variable aleatoria continua con distribución \(F\)
+(monótona creciente), entonces \(x=F^{-1}(p)\) es el \textbf{cuantil} de orden \(p\) de
+\(F\) (\(p\)-cuantil).
 
-El intervalo aleatorio \[ \bigg[\bar X_n -
-F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma'}{\sqrt n},\bar X_n
-+ F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma'}{\sqrt
-n}\bigg]\] contiene a \(\mu\) con probabilidad \(\gamma\).
+El intervalo aleatorio
 
-\textbf{Definición}. Sea \(X = (X_1,\dots,X_n)\) una muestra con parámetro \(\theta\). Sea \(g(\theta)\) una característica de la distribución que genera la muestra. Sea \(A < B\) dos estadísticos que cumplen (\(\forall \theta\)):
-\[\mathbb P [A<g(\theta)<B]\geq \gamma.\quad (*)\]
+\begin{equation*}
+\bigg[\bar X_n -
+F{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma'}{\sqrt n},\bar X_n
+- F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma'}{\sqrt
+  n}\bigg]
+  \end{equation*}
 
-Al intervalo \((A,B)\) le llamamos \textbf{intervalo de confianza con coeficiente \(\gamma\) para \(g(\theta)\)} (intervalo
-de confianza al \(100\gamma\) para \(g(\theta)\)). En el caso que \((*)\) tenga una igualdad, el intervalo es exacto.
+contiene a \(\mu\) con probabilidad \(\gamma\).
 
-\textbf{Nota}. Si observamos \(X\), calculamos \(A=a\), \(B=b\). Entonces \((a,b)\) es el valor observado de un intervalo de confianza.
+*\textbf{Definición}. Sea \(X = (X_1,\dots,X_n)\) una muestra con parámetro \(\theta\).
+Sea \(g(\theta)\) una característica de la distribución que genera la muestra. Sea \(A < B\) dos estadísticos que cumplen (\(\forall \theta\)):
+\[
+\mathbb P [A<g(\theta)<B]\geq \gamma.\quad
+(*)
+\]
 
-\textbf{Ejemplo}. Se mide la lluvia con nubes inyectadas con ``sulfato de plata'' con \(n=26\) observaciones. Se desea hacer inferencia sobre \(\mu\), la cantidad de lluvia media (escala logarítmica). Para \(\gamma = 0.95\), se calcula
+Al intervalo \((A,B)\) le llamamos \textbf{intervalo de confianza con coeficiente
+\(\gamma\) para \(g(\theta)\)} (intervalo de confianza al \(100\gamma\) para \(g(\theta)\)). En
+el caso que \((*)\) tenga una igualdad, el intervalo es exacto.
 
-\[c=F^{-1}_{t_{25}}\left(\dfrac{1+\gamma}2\right) =F^{-1}_{t_{25}}(0.975) = 2.060 \]
+\textbf{Nota}. Si observamos \(X\), calculamos \(A=a\), \(B=b\). Entonces \((a,b)\) es el
+valor observado de un intervalo de confianza.
 
-\begin{verbatim}
-## Error in library(latex2exp): there is no package called 'latex2exp'
-\end{verbatim}
+\textbf{Ejemplo}. Se mide la lluvia con nubes inyectadas con ``sulfato de plata'' con
+\(n=26\) observaciones. Se desea hacer inferencia sobre \(\mu\), la cantidad de
+lluvia media (escala logarítmica). Para \(\gamma = 0.95\), se calcula
 
-\begin{verbatim}
-## Error in TeX("$t_{25}$"): could not find function "TeX"
-\end{verbatim}
+\[
+c=F^{-1}_{t_{25}}\left(\dfrac{1+\gamma}2\right) =F^{-1}_{t_{25}}(0.975) = 2.060
+\]
 
-El intervalo de confianza para \(\mu\) al \(95\%\) es \[\bar X_n \pm \underbrace{0.404}_{\frac{2.060}{\sqrt{26}}}\sigma'\]
+Note que \(\frac{1+\gamma}{2}=\) 0.975 y el segundo valor se obtiene de
+una tabla de valor de la \(t\)-student o de la expresión \texttt{qt(p\ =\ 0.975,\ df\ =\ 26-1)} = 2.06
 
-Si \(\bar X_n = 5.134\) y \(\sigma' = 1.6\) el valor observado del intervalo de confianza al \(95%
-\) para \(\mu\) corresponde a
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-44-1} \end{center}
+
+El intervalo de confianza para \(\mu\) al \(95\%\) es \[\bar X_n \pm
+\underbrace{0.404}_{\frac{2.060}{\sqrt{26}}}\sigma'\]
+
+Si \(\bar X_n = 5.134\) y \(\sigma' = 1.6\) el valor observado del intervalo de confianza
+al \(95\%\) para \(\mu\) corresponde a
 
 \[[5.134-0.404\cdot1.6, 5.134+0.404\cdot1.6]= [4.47,5.78]\]
 
-\textbf{Interpretación}. El intervalo observado \([4.48,5.78]\) contiene a \(\mu\) con un nivel de confianza del \(95%
-\).
-Usualmente a \(\dfrac{c\sigma'}{\sqrt{n}}\) se le llama \textbf{margen de error} (MOE).
+\textbf{Interpretación}. El intervalo observado \([4.48,5.78]\) contiene a \(\mu\) con un
+nivel de confianza del \(95%
+\). Usualmente a \(\dfrac{c\sigma'}{\sqrt{n}}\) se le llama
+\textbf{margen de error} (MOE).
+
+\textbf{Interpretación gráfica}. El proceso de construir un intervalo de confianza,
+quiere decir que si usted repitiera ese experimento muchas veces, el
+\(100\gamma\%\) (e.g, 95\% o 99\%) de la veces, el intervalo escogido tendría el
+parámetro real de la población \(\theta\).
+
+\begin{figure}
+\centering
+\includegraphics{./images/interpreting_confidence_intervals.png}
+\caption{Ejemplo interactivo sobre intervalos de confianza. Tomado de (R Psycologist){[}\url{https://rpsychologist.com/d3/ci/}{]}}
+\end{figure}
 
 \hypertarget{intervalos-de-confianza-abiertos}{%
 \section{Intervalos de confianza abiertos}\label{intervalos-de-confianza-abiertos}}
@@ -2728,25 +2776,37 @@ Usualmente a \(\dfrac{c\sigma'}{\sqrt{n}}\) se le llama \textbf{margen de error}
 Si \(\gamma\) es el nivel de confianza dado, sea \(\gamma_1<\gamma_2\) tal que \(\gamma_2 -\gamma_1 = \gamma\). Sea \(U = \dfrac{\sqrt n}{\sigma'}(\bar X_n-\mu)\).
 
 Si
-\[A= \bar X_n + T_{n-1}^{-1}(\gamma_1)\dfrac{\sigma'}{\sqrt n} \text{ y } B= \bar X_n + T_{n-1}^{-1}(\gamma_2)\dfrac{\sigma'}{\sqrt n}, \]
+\[
+A= \bar X_n + T_{n-1}^{-1}(\gamma_1)\dfrac{\sigma'}{\sqrt n} \text{ y } B= \bar X_n +
+T_{n-1}^{-1}(\gamma_2)\dfrac{\sigma'}{\sqrt n},
+\]
 
 se cumple que \((A,B)\) es un intervalo de confianza al \(100\gamma\) ya que
 
-\[\mathbb P[\mu \in (A,B)] = \mathbb P[T_{n-1}^{-1}(\gamma_1)<U<T_{n-1}^{-1}(\gamma_2)] = \gamma_2-\gamma_1 = \gamma.\]
+\[
+\mathbb P[\mu \in (A,B)] = \mathbb P[T_{n-1}^{-1}(\gamma_1)<U<T_{n-1}^{-1}(\gamma_2)] =
+\gamma_2-\gamma_1 = \gamma.
+\]
 
-\textbf{Definición (Intervalos de confianza abiertos)}. Bajo las condiciones anteriores, si \(A\) es un estadístico que satisface \(\forall \theta\):
+\textbf{Definición (Intervalos de confianza abiertos)}. Bajo las condiciones
+anteriores, si \(A\) es un estadístico que satisface \(\forall \theta\):
 
 \[\mathbb P [A<g(\theta)]\geq \gamma,\]
 
-A \(A\) se le llama \textbf{límite inferior de confianza al \(100\gamma\)} y al intervalo \((A,\infty)\) es el \textbf{intervalo de confianza inferior al \(100\gamma\)}.
+A \(A\) se le llama \textbf{límite inferior de confianza al \(100\gamma\)} y al intervalo
+\((A,\infty)\) es el \textbf{intervalo de confianza inferior al \(100\gamma\)}.
 
 De forma análoga, si \(B\) satisface:
 \[\mathbb P [g(\theta)<B]\geq \gamma,\]
-a \((-\infty,B)\) se le llama \textbf{intervalo de confianza superior} para \(g(\theta)\), con nivel \(\gamma\). Si hay igualdad, el intervalo es exacto.
+a \((-\infty,B)\) se le
+llama \textbf{intervalo de confianza superior} para \(g(\theta)\), con nivel \(\gamma\). Si
+hay igualdad, el intervalo es exacto.
 
-\textbf{Ejemplo}. En el caso normal, encuentra \(B\) tal que \(\mathbb P(\mu<B) = \gamma\). Se sabe que
+\textbf{Ejemplo}. En el caso normal, encuentra \(B\) tal que \(\mathbb P(\mu<B) = \gamma\).
+Se sabe que
 
-\[F_{t_{n-1}}(c) = \mathbb P(U>-c) = \mathbb P \left(\dfrac{\sqrt n(\mu - \bar X_n)}{\sigma'}<c\right).\]
+\[F_{t_{n-1}}(c) = \mathbb P(U>-c) = \mathbb P \left(\dfrac{\sqrt n(\mu - \bar
+X_n)}{\sigma'}<c\right).\]
 
 Entonces
 \[\gamma = \mathbb P\left(\mu < \bar X_n\dfrac{\sigma'}{\sqrt n}c\right).\]
@@ -2764,114 +2824,308 @@ Por lo tanto
 
 Si \(T = \sum_{i=1}^3X_i\), \(\theta T\sim \Gamma(3,1)\).
 
-Queremos calcular un intervalo de confianza superior para \(\theta\) al \(100\delta\) (exacto): \(\mathbb P[\theta<B] = \gamma\).
+Queremos calcular un intervalo de confianza superior para \(\theta\) al
+\(100\delta\) (exacto): \(\mathbb P[\theta<B] = \gamma\).
 
-Sabemos
-\[\mathbb  \gamma = P[\theta T<G^{-1}(\gamma)] = \mathbb{P}\bigg[\theta<\dfrac{G^{-1}(\gamma)}{T}\bigg].\]
+Si \(G\) es la función de distribución de la gamma, sabemos que
+
+\begin{equation*}
+\gamma = \mathbb{P}[\theta T<G^{-1}(\gamma)] = \mathbb{P}\bigg[\theta<\dfrac{G^{-1}(\gamma)}{T}\bigg].
+\end{equation*}
 
 El límite superior es \(\dfrac{G^{-1}(\gamma)}{T}\).
 
-\textbf{Definición}. Sea \(X = (X_1,\dots,X_n)\) una muestra de una distribución \(F_\theta\). Sea \(V(X,\theta)\) una variable aleatoria cuya distribución no depende de \(\theta\). Decimos que \(V\) es una \textbf{cantidad pivotal}.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{theta \textless{}{-}}\StringTok{ }\DecValTok{2}
+\NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{rexp}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DataTypeTok{rate =}\NormalTok{ theta)}
+\NormalTok{T \textless{}{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(X)}
+\NormalTok{G\_inv \textless{}{-}}\StringTok{ }\KeywordTok{qgamma}\NormalTok{(}\DataTypeTok{p =} \FloatTok{0.98}\NormalTok{, }\DataTypeTok{shape =} \DecValTok{3}\NormalTok{, }\DataTypeTok{rate =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-Los intervalos de confianza se determinan a partir de un roceso de inversión de la cantidad pivotal.
+Entonces el intervalo de confianza para este caso es
 
-Encuentre \(r(v,x)\) tal que \[r(V(X,\theta)) = g(\theta) \quad (*)\]
-donde \(g\) es la característica.
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, G\_inv}\OperatorTok{/}\NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
 
-Del ejemplo anterior, \(V(X,\theta) = \theta T\),
-\[r(V(X,\theta),X) = \dfrac{V(X,\theta)}T = g(\theta) = \theta.\]
+\begin{verbatim}
+## [1] 0.000000 5.702774
+\end{verbatim}
 
-\textbf{Teorema}. Bajo las condiciones anteriores, si \(V\) existe sea \(G\) su c.d.f. y asume que \(G\) es continua. Asuma que \(r\) en es cierta y asuma que \(r(v,x) \nearrow\) en \(v\) para cada \(x\). Sea \(0<\gamma<1\) y \(\gamma_2>\gamma_1\) tal que \(\gamma_2-\gamma_1 = \gamma\). Entonces los extremos del intervalo de confianza para \(g(\theta)\) al \(100\gamma\) son
-\[A=r(G^{-1}(\gamma_1),X), \quad B=r(G^{-1}(\gamma_2),X).\]
+\textbf{Definición}. Sea \(X = (X_1,\dots,X_n)\) una muestra de una distribución
+\(F_\theta\). Sea \(V(X,\theta)\) una variable aleatoria cuya distribución no
+depende de \(\theta\). Decimos que \(V\) es una \textbf{cantidad pivotal}.
 
-\textbf{Ejemplo}. \(X_1,\dots, X_n \stackrel{i.i.d}{\sim} N(\mu,\sigma^2)\). Encuentra A, B tales que \(\mathbb P[A<\sigma^2<B] = \gamma\).
+Los intervalos de confianza se determinan a partir de un proceso de inversión de
+la cantidad pivotal.
 
-Se sabe que \[\dfrac{n\hat\sigma^2}{\sigma^2}\sim \chi^2_{n-1}.\]
-Tome \(V(X,\sigma^2) = \dfrac{n\hat\sigma^2}{\sigma^2}\). Entonces
-\[\gamma = \mathbb P[\chi^2_{n-1,\gamma_1}<V(X,\sigma^2)<\chi^2_{n-1,\gamma_2}]\]
+Encuentre \(r(v,x)\) tal que
 
-donde \(\gamma = \gamma_2-\gamma_1\). Tome
-\[r(v,X) =\dfrac{\sum(X_i -\bar X_n) ^2}{v} = \dfrac{n\hat\sigma}{v}.\]
+\[r(V(X,\theta)) = g(\theta) \quad (*)\]
 
-Invirtiendo el intervalo,
-\[\gamma = \mathbb P \bigg[ \underbrace{\dfrac{\sum(X_i -\bar X_n) ^2}{\chi^2_{n-1,\gamma_2}}}
-_{A} <\sigma^2<\underbrace{\dfrac{\sum(X_i -\bar X_n) ^2}{\chi^2_{n-1,\gamma_1}}}_B\bigg]\]
+y \(g\) es una función cualquiera.
+
+Del ejemplo anterior, \(V(X,\theta) = \theta T\), \[r(V(X,\theta),X) = \dfrac{V(X,\theta)}T
+= g(\theta) = \theta.\]
+
+\textbf{Teorema}. Bajo las condiciones anteriores, si \(V\) existe sea \(G\) su c.d.f. y
+asume que \(G\) es continua. Asuma que \(r\) en es cierta y asuma que \(r(v,x) \nearrow\) en \(v\) para cada \(x\). Sea \(0<\gamma<1\) y \(\gamma_2>\gamma_1\) tal que \(\gamma_2-\gamma_1 = \gamma\). Entonces los extremos del intervalo de confianza para \(g(\theta)\) al
+\(100\gamma\) son \[A=r(G^{-1}(\gamma_1),X), \quad B=r(G^{-1}(\gamma_2),X).\]
+
+\textbf{Ejemplo}. \(X_1,\dots, X_n \stackrel{i.i.d}{\sim} N(\mu,\sigma^2)\). Encuentra A, B tales
+que \(\mathbb P[A<\sigma^2<B] = \gamma\).
+
+Se sabe que \[\dfrac{n\hat\sigma^2}{\sigma^2}\sim \chi^2_{n-1}.\] Tome \(V(X,\sigma^2) = \dfrac{n\hat\sigma^2}{\sigma^2}\). Entonces \[\gamma = \mathbb
+P[\chi^2_{n-1,\gamma_1}<V(X,\sigma^2)<\chi^2_{n-1,\gamma_2}]\]
+
+donde \(\gamma = \gamma_2-\gamma_1\). Tome \[r(v,X) =\dfrac{\sum(X_i -\bar X_n) ^2}{v} =
+\dfrac{n\hat\sigma}{v}.\]
+
+Invirtiendo el intervalo, \[\gamma = \mathbb P \bigg[ \underbrace{\dfrac{\sum(X_i -\bar
+X_n) ^2}{\chi^2_{n-1,\gamma_2}}} _{A} <\sigma^2<\underbrace{\dfrac{\sum(X_i -\bar X_n)
+^2}{\chi^2_{n-1,\gamma_1}}}_B\bigg]\]
 
 El IC para \(\sigma^2\) al \(100\delta\) es
 
-\[ \Bigg[ \dfrac{\sum(X_i -\bar X_n) ^2}{\chi^2_{n-1,\gamma_2}},
-\dfrac{\sum(X_i -\bar X_n) ^2}{\chi^2_{n-1,\gamma_1}}\Bigg].\]
+\[ \Bigg[ \dfrac{\sum(X_i -\bar X_n) ^2}{\chi^2_{n-1,\gamma_2}}, \dfrac{\sum(X_i -\bar X_n)
+^2}{\chi^2_{n-1,\gamma_1}}\Bigg].\]
+
+Por ejemplo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1000}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+
+\NormalTok{gamma1 \textless{}{-}}\StringTok{ }\FloatTok{0.025}
+\NormalTok{gamma2 \textless{}{-}}\StringTok{ }\FloatTok{0.975}
+
+\NormalTok{gamma2 }\OperatorTok{{-}}\StringTok{ }\NormalTok{gamma1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.95
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(chi2\_gamma1 \textless{}{-}}\StringTok{ }\KeywordTok{qchisq}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ gamma1, }\DataTypeTok{df =} \DecValTok{1000} \OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 913.301
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(chi2\_gamma2 \textless{}{-}}\StringTok{ }\KeywordTok{qchisq}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ gamma2, }\DataTypeTok{df =} \DecValTok{1000} \OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1088.487
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(diferencias \textless{}{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{((X }\OperatorTok{{-}}\StringTok{ }\KeywordTok{mean}\NormalTok{(X))}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4158.789
+\end{verbatim}
+
+Finalmente el intervalo es
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{c}\NormalTok{(diferencias}\OperatorTok{/}\NormalTok{chi2\_gamma2, diferencias}\OperatorTok{/}\NormalTok{chi2\_gamma1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.820706 4.553580
+\end{verbatim}
+
+\textbf{NOTA: Las cantidades pivotales no siempre existen. Esto ocurre principalemente
+con las distribuciones discretas}
 
 \hypertarget{intervalos-de-confianza-aproximados.}{%
 \subsection{Intervalos de confianza aproximados.}\label{intervalos-de-confianza-aproximados.}}
 
-Sean \(X_1,\dots, X_n \stackrel{i.i.d}{\sim}F_{\mu}\) donde \(\mathbb E[X_i] = \mu\) y \(\text{Var}(X_i) = \sigma^2\) (conocida). Note que
-\[D = \mathbb P[A<\mu<B] = \mathbb P \bigg[-z_{\frac{1+\gamma}2}<\dfrac{\sqrt n(\bar X_n-\mu)}{\sigma} <z_{\frac{1+\gamma}2}\bigg] \stackrel{TLC}{\approx} \gamma.\]
-Así,
-\[D \underset{n\to\infty}{\approx} \Phi\left(z_{\frac{1+\gamma}2}\right)-\Phi\left(-z_{\frac{1+\gamma}2}\right) = \gamma.\]
+Sean \(X_1,\dots, X_n \stackrel{i.i.d}{\sim}F_{\mu}\) donde \(\mathbb{E}[X_i] = \mu\) y
+\(\text{Var}(X_i) = \sigma^2\) (conocida). Note que \[D = \mathbb P[A<\mu<B] = \mathbb P
+\bigg[-z_{\frac{1+\gamma}2}<\dfrac{\sqrt n(\bar X_n-\mu)}{\sigma} <z_{\frac{1+\gamma}2}\bigg]
+\stackrel{TLC}{\approx} \gamma.\]
+
+Así, \[D \underset{n\to\infty}{\approx}
+\Phi\left(z_{\frac{1+\gamma}2}\right)-\Phi\left(-z_{\frac{1+\gamma}2}\right) = \gamma.\]
 
 \textbf{Ejercicio}. El intervalo de confianza correspondiente para \(\mu\) es
-\[\bar X_n \pm z_{\frac{1+\gamma}2}\dfrac{\sigma}{\sqrt n}.\]
 
-Considere \(U = \dfrac{\bar X_n - \mu}{\sigma/\sqrt n}\). \(U\) es pivotal, pero no necesariamente una \(t_{n-1}\).
+\[
+\bar
+X_n \pm z_{\frac{1+\gamma}2}\dfrac{\sigma}{\sqrt n}.
+\]
 
-Considere que \((\sigma')^2 = \dfrac{n}{n-1}\hat \sigma^2\) y además \(\hat\sigma^2\) es el MLE de \(\sigma^2\) y por lo tanto consistente.
-\[\hat\sigma^2 \xrightarrow[]{\mathbb P}\sigma^2 \quad ((\sigma')^2 \xrightarrow[]{\mathbb P}\hat\sigma^2).\]
+Considere \(U = \dfrac{\bar X_n - \mu}{\sigma'/\sqrt n}\). \(U\) es pivotal, pero no
+necesariamente una \(t_{n-1}\).
 
-Recuerde que si \(X_n\xrightarrow[]{d}Z\) y \(Y_n\xrightarrow[]{d}a\), entonces \(X_nY_n \xrightarrow[]{d}aZ\).
+Considere que \((\sigma')^2 = \dfrac{n}{n-1}\hat \sigma^2\) y además \(\hat\sigma^2\) es el MLE de
+\(\sigma^2\) y por lo tanto consistente.
+
+\begin{align*}
+\hat{\sigma}^2 &\xrightarrow[]{\mathbb{P}}\sigma^2 \\
+((\sigma')^2 &\xrightarrow[]{\mathbb{P}}\hat{\sigma}^2).
+\end{align*}
+
+Recuerde que si \(X_n\xrightarrow[]{d}Z\) y \(Y_n\xrightarrow[]{\mathbb{P}}a\), entonces
+\(X_nY_n \xrightarrow[]{d}aZ\).
 
 Por lo tanto,
-\[\underbrace{\dfrac{\bar X_n-\mu}{\sigma/\sqrt n}}_{\xrightarrow[]{d} N(0,1)} \cdot \underbrace{\dfrac{\sigma/\sqrt n}{\sigma'/\sqrt n}}_{\xrightarrow[]{\mathbb P}1} \xrightarrow[]{d}N(0,1)\]
+\[
+\underbrace{\dfrac{\bar X_n-\mu}{\sigma/\sqrt n}}_{\xrightarrow[]{d}
+N(0,1)} \cdot \underbrace{\dfrac{\sigma/\sqrt n}{\sigma'/\sqrt n}}_{\xrightarrow[]{\mathbb
+P}1} \xrightarrow[]{d}N(0,1)\]
+
 Entonces \(U\xrightarrow[]{d}N(0,1)\).
 
 Como consecuencia
 
-\[\mathbb P \bigg[-z_{\frac{1+\gamma}2}<\dfrac{\bar X_n-\mu}{\sigma'/\sqrt n} <z_{\frac{1+\gamma}2}\bigg] \stackrel{TLC}{\approx} \gamma.\]
+\[
+\mathbb P \bigg[-z_{\frac{1+\gamma}2}<\dfrac{\bar X_n-\mu}{\sigma'/\sqrt n}
+<z_{\frac{1+\gamma}2}\bigg] \stackrel{TLC}{\approx} \gamma.
+\]
+
 y el IC aproximado para \(\mu\) al \(100\gamma\)
 
 \[\bar X_n \pm z_{\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n}.\]
 
 \textbf{Ejemplo}. Si \(X_1,\dots, X_n\sim \text{Poi}(\theta)\), \(\mu =\sigma^2 = \theta\). Por TLC,
-\[\sqrt n\dfrac{\bar X_n-\theta}{\sqrt{\theta}}\xrightarrow[]{d}N(0,1).\]
-Entonces
+\[\sqrt n\dfrac{\bar X_n-\theta}{\sqrt{\theta}}\xrightarrow[]{d}N(0,1).\] Entonces
 
-\[\mathbb P[|\bar X_n-\theta|<c] = \mathbb P\bigg[\dfrac{\sqrt n|\bar X_n-\theta|}{\sqrt \theta}<\dfrac{c\sqrt n}{\sqrt \theta}\bigg] \approx 2\Phi\left(\dfrac{c\sqrt n}{\sqrt \theta}\right)-1.\]
+\[
+\mathbb P[|\bar X_n-\theta|<c] = \mathbb P\bigg[\dfrac{\sqrt n|\bar X_n-\theta|}{\sqrt \theta}<\dfrac{c\sqrt n}{\sqrt \theta}\bigg] \approx 2\Phi\left(\dfrac{c\sqrt n}{\sqrt \theta}\right)-1.
+\]
+
+\textbf{Explicación del fenómeno:} En este caso recuerden que \(\bar{X}_n\) es una
+variable aleatoria. Lo que dice el teorema del límite central es que conforme
+\(n\) es grande, la distribución de \(\bar{X}_n\) (centrada y escalada
+apropiadamente) converge a una normal estándar.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Xbar \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{numeric}\NormalTok{(), }\DataTypeTok{Z =} \KeywordTok{numeric}\NormalTok{())}
+
+\NormalTok{idx \textless{}{-}}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{2000}\NormalTok{), }\DataTypeTok{times =} \DecValTok{1000}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(idx)) \{}
+\NormalTok{    muestra \textless{}{-}}\StringTok{ }\KeywordTok{rpois}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ idx[k], }\DataTypeTok{lambda =} \DecValTok{5}\NormalTok{)}
+\NormalTok{    Xbar[k, }\StringTok{"Z"}\NormalTok{] \textless{}{-}}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(idx[k]) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\KeywordTok{mean}\NormalTok{(muestra) }\OperatorTok{{-}}\StringTok{ }
+\StringTok{        }\DecValTok{5}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\NormalTok{    Xbar[k, }\StringTok{"n"}\NormalTok{] \textless{}{-}}\StringTok{ }\NormalTok{idx[k]}
+\NormalTok{\}}
+
+
+
+\KeywordTok{ggplot}\NormalTok{(Xbar) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom\_histogram}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Z, }
+    \DataTypeTok{y =}\NormalTok{ ..density..), }\DataTypeTok{color =} \StringTok{"white"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }
+    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{), }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{facet\_wrap}\NormalTok{(. }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{n, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-49-1} \end{center}
 
 \hypertarget{transformaciones-estabilizadoras-de-la-varianza}{%
 \subsection{Transformaciones estabilizadoras de la varianza}\label{transformaciones-estabilizadoras-de-la-varianza}}
 
-¿Cómo transformar \(X_n\) para que tenga varianza constante?
+{[}Ver página 365 del libro de texto. \}
 
-Por el método Delta, la varianza ``aproximada'' de \(\alpha(\bar X_n)\) es
-\[\left( \dfrac{\alpha'(\mu)}{a_n}\right)^2 =\left( \dfrac{\alpha'(\mu)\sigma}{\sqrt n}\right)^2 = \dfrac{\alpha'(\mu)^2\sigma^2(\mu)}{n}.\]
-Si se desea que la varianza sea constante con respecto a \(\mu\),
+¿Cómo transformar \(X_n\) para que tenga varianza constante? Note que en el caso
+anterior se necesitó saber explícitamente el valor exacto de \(\theta\) para
+hacer el ejercicio.
+
+Por el método Delta, la varianza ``aproximada'' de \(\alpha(\bar X_n)\) es \[\left(
+\dfrac{\alpha'(\mu)}{a_n}\right)^2 =\left( \dfrac{\alpha'(\mu)\sigma}{\sqrt n}\right)^2 =
+\dfrac{\alpha'(\mu)^2\sigma^2(\mu)}{n}.\] Si se desea que la varianza sea constante con
+respecto a \(\mu\),
+
 \begin{align*}
-\alpha'(u)^2\sigma^2(\mu) = 1 &\implies \alpha'(\mu) = \dfrac{1}{\sigma(\mu)} \quad (\sigma(\mu)>0)\\
-& = \alpha(\mu) = \int_{a}^mu \dfrac{dx}{\sigma(x)}dx
+\alpha'(u)^2\sigma^2(\mu) &= 1 \\
+\implies \alpha'(\mu) & = \dfrac{1}{\sigma(\mu)} \quad (\sigma(\mu)>0)\\
+\implies \alpha(\mu) &=
+\int_{a}^{\mu} \dfrac{dx}{\sigma(x)}dx
 \end{align*}
 
-Del ejemplo anterior,
-\[\alpha(\mu) = \int_{0}^\mu\dfrac{dx}{\sqrt x} = 2\sqrt \mu\]
+donde \(a\) es una constante arbitraria que hace la integral finita (y fácil de
+calcular).
 
-Por el método Delta,
-\[2\bar X_n^{\frac12} \underset{n \text{ grande}}{\sim} N\left(2\theta^{\frac 12},\dfrac1n\right)\]
+Del ejemplo anterior (Poisson), recuerde que \(\sigma ^{2} = \theta = \mu\), entonces se
+podría tomar que \(\sigma(\mu) = \sqrt{\mu}\) y por lo tanto definimos
+
+\[
+\alpha(\mu) = \int_{0}^\mu\dfrac{dx}{\sqrt x} = 2\sqrt \mu
+\]
+
+Por el método Delta,\\
+\[
+2\bar X_n^{\frac12} \underset{n \text{ grande}}{\sim}
+N\left(2\theta^{\frac 12},\dfrac1n\right)
+\]
 
 De esta manera
 
-\[\mathbb P[|2\bar X_n^{\frac12}-2\theta^{\frac12}|<c] =\mathbb P\Bigg[\dfrac{|2\bar X_n^{\frac12}-2\theta^{\frac12}|}{\sqrt{1/n}}<\sqrt nc\Bigg] \approx 2\Phi(\sqrt nc)-1  \]
+\[\mathbb P[|2\bar X_n^{\frac12}-2\theta^{\frac12}|<c] =\mathbb P\Bigg[\dfrac{|2\bar
+X_n^{\frac12}-2\theta^{\frac12}|}{\sqrt{1/n}}<\sqrt nc\Bigg] \approx 2\Phi(\sqrt nc)-1 \]
 
-Desarrollando,
-\[\mathbb P[-c+2\bar X_n^{\frac12}<2\theta^{\frac 12}<c+2\bar X_n^{\frac12}]\approx 2\Phi(\sqrt nc)-1  \]
+Desarrollando, \[\mathbb P[-c+2\bar X_n^{\frac12}<2\theta^{\frac 12}<c+2\bar
+X_n^{\frac12}]\approx 2\Phi(\sqrt nc)-1 \]
 
-Se despeja \(c\) tal que
-\[\Phi(\sqrt n  c) = \dfrac{1+\gamma}2\implies c = \dfrac 1{\sqrt n} z_{\frac{1+\gamma}2}.\]
+Se despeja \(c\) tal que \[\Phi(\sqrt n c) = \dfrac{1+\gamma}2\implies c = \dfrac 1{\sqrt
+n} z_{\frac{1+\gamma}2}.\]
 
-El intervalo para \(2\theta^{\frac 12}\) es
-\[\bigg[2\bar X_n^{\frac 12} -\dfrac 1{\sqrt n} z_{\frac{1+\gamma}2},2\bar X_n^{\frac 12} +\dfrac 1{\sqrt n} z_{\frac{1+\gamma}2}\bigg]\]
+El intervalo para \(2\theta^{\frac 12}\) es \[\bigg[2\bar X_n^{\frac 12} -\dfrac
+1{\sqrt n} z_{\frac{1+\gamma}2},2\bar X_n^{\frac 12} +\dfrac 1{\sqrt n}
+z_{\frac{1+\gamma}2}\bigg]\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)}
+\NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{rpois}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{lambda =} \DecValTok{5}\NormalTok{)}
+\NormalTok{Xbar \textless{}{-}}\StringTok{ }\KeywordTok{mean}\NormalTok{(X)}
+\NormalTok{z \textless{}{-}}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\DataTypeTok{p =} \FloatTok{0.975}\NormalTok{)}
+
+\KeywordTok{c}\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Xbar) }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{z, }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Xbar) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{z)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.371529 4.495488
+\end{verbatim}
 
 Para estimar el IC para \(\theta\), vea que si \(y=2x^{\frac12} \implies x = \dfrac{y^2}{4}\). Aplicando esta transformación al intervalo anterior, se obtiene
 
-\[\bigg[\dfrac 14 \left(2\bar X_n^{\frac 12} -\dfrac 1{\sqrt n} z_{\frac{1+\gamma}2}\right)^2,\dfrac 14 \left(2\bar X_n^{\frac 12} +\dfrac 1{\sqrt n} z_{\frac{1+\gamma}2}\right)^2\bigg].\]
+\[\bigg[\dfrac 14 \left(2\bar X_n^{\frac 12} -\dfrac 1{\sqrt n}
+z_{\frac{1+\gamma}2}\right)^2,\dfrac 14 \left(2\bar X_n^{\frac 12} +\dfrac 1{\sqrt n}
+z_{\frac{1+\gamma}2}\right)^2\bigg].\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{c}\NormalTok{((}\DecValTok{1}\OperatorTok{/}\DecValTok{4}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Xbar) }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{z)}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{, (}\DecValTok{1}\OperatorTok{/}\DecValTok{4}\NormalTok{) }\OperatorTok{*}\StringTok{ }
+\StringTok{    }\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Xbar) }\OperatorTok{+}\StringTok{ }\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{z)}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.777567 5.052354
+\end{verbatim}
 
 \hypertarget{estimaciuxf3n-bayesiana-bajo-normalidad}{%
 \chapter{Estimación Bayesiana bajo normalidad}\label{estimaciuxf3n-bayesiana-bajo-normalidad}}
@@ -4087,13 +4341,7 @@ Note que el estadístico LR está relacionado con el anterior de la siguiente fo
 Del ejemplo de tiempo de servicio, en lugar de rechazar \(H_0: \theta = \theta_0\) si \(X_1>4\) tome \(a>b\) en el corolario anterior y rechace \(H_0\) si
 \[\dfrac{f_1(x)}{f_0(x)}>1\Leftrightarrow \dfrac 4{(2+X_1)^2}\exp\left(\dfrac{X_1}2\right)>1\quad(*)\]
 
-\begin{verbatim}
-## Error in library(latex2exp): there is no package called 'latex2exp'
-\end{verbatim}
-
-\begin{verbatim}
-## Error in TeX("$g(X_1)$"): could not find function "TeX"
-\end{verbatim}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-56-1} \end{center}
 
 Entonces \((*)\) es cierto si \(X_1>c\). Se puede comprobar numéricamente que \(c\approx5.03\).
 
