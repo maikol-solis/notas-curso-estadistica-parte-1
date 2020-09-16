@@ -363,7 +363,7 @@ Queremos ajustar esta tabla a una distribución Poisson con función de densidad
  Se puede probar que teórico de máxima verosimilitud para $\lambda$ es $\overline{X}$ (Tarea). Queremos estimar este parámetro alternativamente maximizando la función de verosimilitud. 
 
 Primero veamos la forma de los datos, 
-```{r,eval=FALSE}
+```{r}
 hist(X, main="histograma del número de giros a la derecha", right=FALSE, prob=TRUE) 
 ```
 
@@ -371,13 +371,13 @@ Definamos la función correspondiente a $-\log(\mathbb{P}(X=x))$
 
 ```{r}
 n <- length(X)
-negloglike <- function(lambda) { 
-  n * lambda - sum(X) * log(lambda) + sum( log( factorial(X) ) ) 
-  } 
+negloglike <- function(lambda) {
+  n * lambda - sum(X) * log(lambda) + sum(log(factorial(X)))
+}
 ```
 
 Para encontrar el parámetro deseado, basta minimizar la función `negloglike` usando el la instrucción de optimización no lineal `nlm`. 
-```{r,eval=FALSE}
+```{r}
 lambda.hat <- nlm(negloglike, p = c(0.5), hessian = TRUE) 
 ```
 Aquí el valor `p = c(0.5)` representa un valor inicial de búsqueda y `hessian = TRUE` determina el cálculo explícito de la segunda derivada. 
