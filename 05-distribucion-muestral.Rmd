@@ -202,14 +202,12 @@ p = \mathbb P \bigg[|\hat\mu-\mu|<\dfrac {\sigma}{5}, |\hat\sigma-\sigma|<\dfrac
 =&\mathbb P \bigg[\left(-\dfrac 45\right)^2 < \dfrac{\hat{\sigma}^2}{\sigma^2}<\left(\dfrac 65\right)^2\bigg] \\
 =&\mathbb P \bigg[0.64n < \dfrac{\hat{n\sigma}^2}{\sigma^2} <1.44n\bigg] \\
 =& F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n).
- \end{align*}
- 
- Estime $n$ de manera que
+\end{align*}
+
+Estime $n$ de manera que
 \[\bigg[1-2\Phi\left(-\dfrac{\sqrt n}{5}\right)\bigg][F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n)] \geq \dfrac 12.\]
 
- 
- Se resuelve numéricamente, y si $n=21$ se cumple.
-
+Se resuelve numéricamente, y si $n=21$ se cumple.
 
 ```{r }
 ggplot(data = data.frame(x = seq(0,40,length.out = 1000)), aes(x)) +
