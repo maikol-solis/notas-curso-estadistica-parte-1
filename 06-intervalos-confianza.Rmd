@@ -92,8 +92,9 @@ lluvia media (escala logarítmica). Para $\gamma = 0.95$, se calcula
 c=F^{-1}_{t_{25}}\left(\dfrac{1+\gamma}2\right) =F^{-1}_{t_{25}}(0.975) = 2.060
 \]
 
-Note que \(\frac{1+\gamma}{2}=\) `r (1+0.95)/2` y el segundo valor se obtiene de
-una tabla de valor de la \(t\)-student o de la expresión `qt(p = 0.975, df = 26-1)` = `r round(qt(p = 0.975, df = 26-1),3)`
+Note que \(\frac{1+\gamma}{2}=\) $`r (1+0.95)/2`$ y el segundo valor se obtiene de
+una tabla de valor de la \(t\)-student o de la expresión `qt(p = 0.975, df =
+26-1)` = $`r round(qt(p = 0.975, df = 26-1),3)`$
 
 ```{r,echo=FALSE}
 library(ggplot2)
