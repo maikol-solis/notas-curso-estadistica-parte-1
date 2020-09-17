@@ -166,29 +166,44 @@ Si $X_1,\dots,X_n \sim N(\mu, \sigma^2)$, tome $Z_i = \dfrac{X_i-\mu}\sigma$ y r
 
 **Ejemplo**. $X_1,\dots,X_n\sim N(\mu,\sigma^2)$ ($\mu,\sigma$ desconocidos). Los MLE son
 
+ **Ejemplo**. $X_1,\dots,X_n\sim N(\mu,\sigma^2)$ ($\mu,\sigma$ desconocidos). Los MLE son
+ 
 \[\hat \mu = \bar X*n,\quad \hat\sigma = \bigg[\dfrac{1}{n}\sum*{i=1}^n(X_i-\bar X_n)^2 \bigg]^{\frac 12}.\]
 
-Encuentre $n$ tal que
-\[p = \mathbb P \bigg[|\hat\mu-\mu|<\dfrac 65, |\hat\sigma-\sigma|<\dfrac 65\bigg] \geq \dfrac 12. \]
+ Encuentre $n$ tal que
 
-Por independencia de $\bar X_n$ y $\hat\sigma^2_n$,
-\[p= \mathbb P \bigg[|\hat\mu-\mu|<\dfrac \sigma5\bigg] \mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg]\]
+\begin{equation*}
+p = \mathbb P \bigg[|\hat\mu-\mu|<\dfrac {\sigma}{5}, |\hat\sigma-\sigma|<\dfrac \sigma 5\bigg] \geq \dfrac 12.
+\end{equation*}
+ 
+ Por independencia de $\bar X_n$ y $\hat\sigma^2_n$,
+\[p=  \mathbb P \bigg[|\hat\mu-\mu|<\dfrac \sigma5\bigg] \mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg]\]
 
-Por un lado,
+ 
+ Por un lado,
 \[\mathbb P \bigg[|\hat\mu-\mu|<\dfrac 65\bigg] = \mathbb P \bigg[-\dfrac{\sqrt n}5\leq \underbrace{\dfrac{\sqrt{n}(\hat\mu-\mu)}\sigma}_{N(0,1)} <\dfrac {\sqrt n}{5}\bigg] = \Phi\left(\dfrac{\sqrt n}{5}\right)-\Phi\left(-\dfrac{\sqrt n}{5}\right).\]
 
-Además,
+ 
+ Además,
+ 
 
 \begin{align*}
-\mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg] & = \mathbb P \bigg[\dfrac 45 \dfrac{\hat\sigma}{\sigma}<\dfrac 65\bigg]\\
-& = \mathbb P \bigg[0.64 n \dfrac{n\hat\sigma}{\sigma}<1.44n\bigg]\\
-& = F*{\chi^2*{n-1}}(1.44n)-F*{\chi^2*{n-1}}(0.64n)
-\end{align*}
+\mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg]
+=&\mathbb P \bigg[-\dfrac \sigma 5 < \hat\sigma-\sigma<\dfrac \sigma5\bigg] \\
+=&\mathbb P \bigg[-\dfrac{\sigma}{5} +\sigma < \hat\sigma<\dfrac \sigma5 +\sigma\bigg] \\
+=&\mathbb P \bigg[-\dfrac 45 \sigma < \hat\sigma<\dfrac 65\sigma\bigg] \\
+=&\mathbb P \bigg[-\dfrac 45 < \dfrac{\hat\sigma}{\sigma}<\dfrac 65\bigg] \\
+=&\mathbb P \bigg[\left(-\dfrac 45\right)^2 < \dfrac{\hat{\sigma}^2}{\sigma^2}<\left(\dfrac 65\right)^2\bigg] \\
+=&\mathbb P \bigg[0.64n < \dfrac{\hat{n\sigma}^2}{\sigma^2} <1.2n\bigg] \\
+=& F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n).
+ \end{align*}
+ 
+ Estime $n$ de manera que
+\[\bigg[1-2\Phi\left(-\dfrac{\sqrt n}{5}\right)\bigg][F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n)] \geq \dfrac 12.\]
 
-Estime $n$ de manera que
-\[\bigg[1-2\Phi\left(-\dfrac{\sqrt n}{5}\right)\bigg][f_{\chi^2_{n-1}}(1.44n)-f_{\chi^2_{n-1}}(0.64n)] \geq \dfrac 12.\]
+ 
+ Se resuelve numéricamente, y si $n=21$ se cumple.
 
-Se resuelve numéricamente, y si $n=21$ se cumple.
 
 ```{r }
 ggplot(data = data.frame(x = seq(0,40,length.out = 1000)), aes(x)) +
