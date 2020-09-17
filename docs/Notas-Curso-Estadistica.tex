@@ -186,7 +186,7 @@
 
 \title{Notas Curso de Estadística (Parte I)}
 \author{Maikol Solís}
-\date{Actualizado el 16 septiembre, 2020}
+\date{Actualizado el 17 septiembre, 2020}
 
 \begin{document}
 \maketitle
@@ -2392,11 +2392,15 @@ La distribución muestral del estadístico \(\bar X_n\) es
 \end{itemize}
 
 \textbf{Ejemplo}. \(X_i:\) tiempo de vida de un aparato. \(X_1,\dots,X_n \stackrel{i.i.d}{\sim} \text{Exp}(\theta)\). La previa de \(\theta\) es \(\Gamma(1,2)\). Solamente
-observamos \(n=3\). La posterior sería \[\theta|X \sim \Gamma(1+3,2+\sum_{i=1}^3 X_i). \]
+observamos \(n=3\). La posterior sería
+
+\[
+\theta|X \sim \Gamma(1+3,2+\sum_{i=1}^3 X_i). 
+\]
 
 El estimador bayesiano, bajo pérdida cuadrática, es
 \[
-\mathbb E[\theta|X] =  \dfrac 4{2+\sum X_i} = \hat\theta
+\mathbb E[\theta|X] = \dfrac 4{2+\sum X_i} = \hat\theta
 \]
 
 \textbf{Problema:} estimar \(\mathbb P(|\hat\theta-\theta|<0.1)\).
@@ -2404,7 +2408,7 @@ El estimador bayesiano, bajo pérdida cuadrática, es
 Note que
 
 \begin{align*}
-\mathbb P(|\hat\theta-\theta|<0.1) 
+\mathbb P(|\hat\theta-\theta|<0.1)
 &= \mathbb E [1_{|\hat\theta-\theta|<0.1|\theta)}] \\
 &= \mathbb E[\mathbb E [1_{|\hat\theta-\theta|<0.1|\theta)}\vert \theta]] \\
 &= \mathbb E[\mathbb P(|\hat\theta-\theta|<0.1|\theta)]
@@ -2412,13 +2416,12 @@ Note que
 
 Debemos definir primero cuál es la función de distribución de \(\hat{\theta}\).
 
-\begin{align*} 
+\begin{align*}
 F_{\hat{\theta}}(t|\theta) = \mathbb P(\hat\theta\leq t|\theta)&= \mathbb
 P\left( \dfrac 4{2+T}\leq t\bigg|\theta\right) \\ & = \mathbb P\left( 2+T \geq
 \dfrac 4t\bigg|\theta\right)\\ & = \mathbb P\left( T \geq \dfrac
 4t-2\bigg|\theta\right)
 \end{align*}
-nn
 
 \textbf{Nota: Recuerde que sumas de exponenciales es una gamma. (Ver teorema 5.7.7)}
 
@@ -2427,7 +2430,7 @@ distribución de \(T\).
 
 De esta manera,
 
-\begin{align*} 
+\begin{align*}
 \mathbb P[|\hat\theta-\theta|<0.1|\theta]  
 & = \mathbb P [-0.1+\theta < \hat\theta < 0.1 +\theta|\theta]\\
 & = G_{\Gamma(3,\theta)}\left(\dfrac 4{-0.1+\theta} - 2\right)-G_{\Gamma(3,\theta)}\left(\dfrac 4{0.1+\theta} - 2\right)
@@ -2486,14 +2489,13 @@ la distribución \textbf{chi-cuadrado} con \(m\) grados de libertad.
 \textbf{Ejemplo}. Si \(X_1,\dots,X_n \sim N(\mu,\sigma^2) \implies Z = \dfrac{X_i-\mu}{\sigma} \sim N(0,1)\) \(\forall i\).
 
 Entonces
-\[\sum Z_i^2 \sim \chi^2_n \implies \sum \dfrac{(X_i-\mu)^2}{\sigma^2}\sim \chi^2_n \quad (*) \]
+\[\sum Z_i^2 \sim \chi^2_n \implies \sum \dfrac{(X_i-\mu)^2}{\sigma^2}\sim \chi^2_n \quad (\*) \]
 
 Además, si \(\mu\) es conocido y \(\sigma^2\) desconocido, entonces el MLE de \(\sigma ^{2}\) es
 \[\hat\sigma_0^2=\dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2\]
 
 De esta manera, observe que, de \((*)\),
 
-i
 \[\dfrac{n}{\sigma^2} \dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2 = n\dfrac{\hat \sigma_{0}^2}{\sigma^2} \sim \chi^2_n \]
 
 La principal limitación es que \(\mu\) es conocida. Asuma que también es
@@ -2502,7 +2504,7 @@ desconocida. ¿Cuál es la distribución muestral de \((\bar X_n,\hat\sigma^2)\)
 \textbf{Teorema}. Bajo las condiciones anteriores,
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
+\def\labelenumi{\arabic{enumi}.}
 \item
   \(\bar X_n\) y \(\hat \sigma_n\) son independientes aunque \(\hat \sigma_n\) es función de
   \(\bar X_n\).
@@ -2544,20 +2546,28 @@ Si \(X_1,\dots,X_n \sim N(\mu, \sigma^2)\), tome \(Z_i = \dfrac{X_i-\mu}\sigma\)
 \[\hat \mu = \bar X_n,\quad \hat\sigma = \bigg[\dfrac{1}{n}\sum_{i=1}^n(X_i-\bar X_n)^2 \bigg]^{\frac 12}.\]
 
 Encuentre \(n\) tal que
-\[p = \mathbb P \bigg[|\hat\mu-\mu|<\dfrac 65, |\hat\sigma-\sigma|<\dfrac 65\bigg] \geq \dfrac 12. \]
+
+\begin{equation*}
+p = \mathbb P \bigg[|\hat\mu-\mu|<\dfrac {\sigma}{5}, |\hat\sigma-\sigma|<\dfrac \sigma 5\bigg] \geq \dfrac 12.
+\end{equation*}
 
 Por independencia de \(\bar X_n\) y \(\hat\sigma^2_n\),
-\[p=  \mathbb P \bigg[|\hat\mu-\mu|<\dfrac \sigma5\bigg] \mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg]\]
+\[p= \mathbb P \bigg[|\hat\mu-\mu|<\dfrac \sigma5\bigg] \mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg]\]
 
 Por un lado,
-\[\mathbb P \bigg[|\hat\mu-\mu|<\dfrac 65\bigg] = \mathbb P \bigg[-\dfrac{\sqrt n}5\leq \underbrace{\dfrac{\sqrt{n}(\hat\mu-\mu)}\sigma}_{N(0,1)} <\dfrac {\sqrt n}{5}\bigg] = \Phi\left(\dfrac{\sqrt n}{5}\right)-\Phi\left(-\dfrac{\sqrt n}{5}\right).\]
+\[\mathbb P \bigg[|\hat\mu-\mu|<\dfrac \sigma5\bigg] = \mathbb P \bigg[-\dfrac{\sqrt n}5\leq \underbrace{\dfrac{\sqrt{n}(\hat\mu-\mu)}\sigma}_{N(0,1)} <\dfrac {\sqrt n}{5}\bigg] = \Phi\left(\dfrac{\sqrt n}{5}\right)-\Phi\left(-\dfrac{\sqrt n}{5}\right).\]
 
 Además,
 
-\begin{align*} 
-\mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg] & = \mathbb P \bigg[\dfrac 45 \dfrac{\hat\sigma}{\sigma}<\dfrac 65\bigg]\\
-& = \mathbb P \bigg[0.64 n \dfrac{n\hat\sigma}{\sigma}<1.44n\bigg]\\
-& = F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n)
+\begin{align*}
+\mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg]
+=&\mathbb P \bigg[-\dfrac \sigma 5 < \hat\sigma-\sigma<\dfrac \sigma5\bigg] \\
+=&\mathbb P \bigg[-\dfrac{\sigma}{5} +\sigma < \hat\sigma<\dfrac \sigma5 +\sigma\bigg] \\
+=&\mathbb P \bigg[-\dfrac 45 \sigma < \hat\sigma<\dfrac 65\sigma\bigg] \\
+=&\mathbb P \bigg[-\dfrac 45 < \dfrac{\hat\sigma}{\sigma}<\dfrac 65\bigg] \\
+=&\mathbb P \bigg[\left(-\dfrac 45\right)^2 < \dfrac{\hat{\sigma}^2}{\sigma^2}<\left(\dfrac 65\right)^2\bigg] \\
+=&\mathbb P \bigg[0.64n < \dfrac{\hat{n\sigma}^2}{\sigma^2} <1.44n\bigg] \\
+=& F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n).
 \end{align*}
 
 Estime \(n\) de manera que
@@ -2590,7 +2600,7 @@ tiene una distribución \textbf{\(t\) de Student} con \(m\) grados de libertad. 
 \textbf{Propiedades}:
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
+\def\labelenumi{\arabic{enumi}.}
 \item
   \(f_X\) es simétrica.
 \item
@@ -2623,11 +2633,11 @@ Entonces
 \textbf{Nota}. \(\sigma' = \left(\dfrac n{n-1}\right)^\frac 12 \hat\sigma\) (si \(n\) es grande, \(\sigma' = \hat\sigma\)).
 
 \emph{Prueba}. Sean
-\[S_n^2=\sum_{i=1}^n(X_i-\bar X_n)^2, \quad Z =  \sqrt n \dfrac{\bar X_n-\mu}{\sigma}. \]
+\[S_n^2=\sum_{i=1}^n(X_i-\bar X_n)^2, \quad Z = \sqrt n \dfrac{\bar X_n-\mu}{\sigma}. \]
 Dado que \(Y = \dfrac{S_n^2}{\sigma^2}\sim \chi^2_{n-1}\), entonces
 
-\begin{align*} 
-U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} & = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{\sigma^2(n-1)}}} \\ & = \dfrac{\sqrt n (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{n-1}}}\\& =  \dfrac{\sqrt n (\bar X_n-\mu)}{\sigma'} \sim t_{n-1}.
+\begin{align*}
+U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} & = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{\sigma^2(n-1)}}} \\ & = \dfrac{\sqrt n (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{n-1}}}\\& = \dfrac{\sqrt n (\bar X_n-\mu)}{\sigma'} \sim t_{n-1}.
 \end{align*}
 
 \begin{Shaded}
@@ -2741,8 +2751,8 @@ lluvia media (escala logarítmica). Para \(\gamma = 0.95\), se calcula
 c=F^{-1}_{t_{25}}\left(\dfrac{1+\gamma}2\right) =F^{-1}_{t_{25}}(0.975) = 2.060
 \]
 
-Note que \(\frac{1+\gamma}{2}=\) 0.975 y el segundo valor se obtiene de
-una tabla de valor de la \(t\)-student o de la expresión \texttt{qt(p\ =\ 0.975,\ df\ =\ 26-1)} = 2.06
+Note que \(\frac{1+\gamma}{2}=\) \(0.975\) y el segundo valor se obtiene de
+una tabla de valor de la \(t\)-student o de la expresión \texttt{qt(p\ =\ 0.975,\ df\ =\ 26-1)} = \(2.06\)
 
 \begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-44-1} \end{center}
 

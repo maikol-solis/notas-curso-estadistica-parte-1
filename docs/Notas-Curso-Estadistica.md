@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 16 septiembre, 2020"
+date: "Actualizado el 17 septiembre, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -2010,7 +2010,6 @@ En este caso \(\delta_0\) es mejor que \(\delta\) bajo una pérdida cuadrática.
 
 # Distribución muestral de un estadístico
 
-
 ## Distribución muestral
 
 **Definición**. Suponga que \(X_1,\dots,X_n\) es una muestra con parámetro
@@ -2029,28 +2028,31 @@ La distribución muestral del estadístico $\bar X_n$ es
 \bar X_n \sim N\left(\mu, \dfrac{\sigma^2}n \right)
 \]
 
-* $\mathbb E[\bar X_n] = \dfrac 1n\displaystyle\sum_{i=1}^n\mathbb E[X_i] = \dfrac
+- $\mathbb E[\bar X_n] = \dfrac 1n\displaystyle\sum_{i=1}^n\mathbb E[X_i] = \dfrac
   1n\cdot n \mathbb E[X_1] = \mu$.
 
-* $\text{Var}(\bar X_n) = \text{Var}\left(\dfrac 1n \displaystyle\sum_{i=1}^n
+- $\text{Var}(\bar X_n) = \text{Var}\left(\dfrac 1n \displaystyle\sum_{i=1}^n
   X_i\right) = \dfrac{1}{n^2}\cdot n\cdot \text{Var}(X_1) = \dfrac{\sigma^2}n$.
 
 **Ejemplo**. $X_i:$ tiempo de vida de un aparato. $X_1,\dots,X_n
 \stackrel{i.i.d}{\sim} \text{Exp}(\theta)$. La previa de $\theta$ es $\Gamma(1,2)$. Solamente
-observamos $n=3$. La posterior sería \[\theta|X \sim \Gamma(1+3,2+\sum_{i=1}^3 X_i). \]
+observamos $n=3$. La posterior sería 
+
+\[
+\theta|X \sim \Gamma(1+3,2+\sum_{i=1}^3 X_i). 
+\]
 
 El estimador bayesiano, bajo pérdida cuadrática, es
 \[
-\mathbb E[\theta|X] =  \dfrac 4{2+\sum X_i} = \hat\theta
+\mathbb E[\theta|X] = \dfrac 4{2+\sum X_i} = \hat\theta
 \]
 
 **Problema:** estimar \(\mathbb P(|\hat\theta-\theta|<0.1)\).
 
-
-Note que 
+Note que
 
 \begin{align*}
-\mathbb P(|\hat\theta-\theta|<0.1) 
+\mathbb P(|\hat\theta-\theta|<0.1)
 &= \mathbb E [1_{|\hat\theta-\theta|<0.1|\theta)}] \\
 &= \mathbb E[\mathbb E [1_{|\hat\theta-\theta|<0.1|\theta)}\vert \theta]] \\
 &= \mathbb E[\mathbb P(|\hat\theta-\theta|<0.1|\theta)]
@@ -2058,14 +2060,12 @@ Note que
 
 Debemos definir primero cuál es la función de distribución de \(\hat{\theta}\).
 
-\begin{align*} 
+\begin{align*}
 F_{\hat{\theta}}(t|\theta) = \mathbb P(\hat\theta\leq t|\theta)&= \mathbb
 P\left( \dfrac 4{2+T}\leq t\bigg|\theta\right) \\ & = \mathbb P\left( 2+T \geq
 \dfrac 4t\bigg|\theta\right)\\ & = \mathbb P\left( T \geq \dfrac
 4t-2\bigg|\theta\right)
 \end{align*}
-nn
-
 
 **Nota: Recuerde que sumas de exponenciales es una gamma. (Ver teorema 5.7.7)**
 
@@ -2073,18 +2073,16 @@ Entonces $T=\sum_{i=1}^{3}X_{i}\sim \Gamma(3,\theta)$, por lo que $F(t|\theta) =
 1-G_{\Gamma(3,0)}\left( \dfrac 4t-2\right)$. Aqui denotamos como \(G\) a la
 distribución de \(T\).
 
-De esta manera, 
+De esta manera,
 
-\begin{align*} 
+\begin{align*}
 \mathbb P[|\hat\theta-\theta|<0.1|\theta]  
 & = \mathbb P [-0.1+\theta < \hat\theta < 0.1 +\theta|\theta]\\
 & = G_{\Gamma(3,\theta)}\left(\dfrac 4{-0.1+\theta} - 2\right)-G_{\Gamma(3,\theta)}\left(\dfrac 4{0.1+\theta} - 2\right)
 \end{align*}
 
 y se toma la esperanza para estimar la esperanza. Este valor no se puede estimar
-de forma cerrada, sino que se podría aproximar mediante una simulación 
-
-
+de forma cerrada, sino que se podría aproximar mediante una simulación
 
 ![](./images/gamma_mle_vs_posterior.png)
 
@@ -2096,7 +2094,7 @@ podría construir esa probabilidad de forma que no dependa de $\theta$.
 relativo}} \bigg| < 0.1\bigg|\theta \right) = \mathbb P \left( \bigg| \dfrac{3}{\theta
 T}-1 \bigg| < 0.1 \bigg| \theta \right) = \Delta \]
 
-Si \(T\sim\Gamma(3,\theta) \implies \theta T \sim \Gamma(3,1)\). 
+Si \(T\sim\Gamma(3,\theta) \implies \theta T \sim \Gamma(3,1)\).
 
 Por lo tanto,
 \[
@@ -2114,30 +2112,29 @@ la distribución **chi-cuadrado** con $m$ grados de libertad.
 
 **Propiedades**:
 
-* $\mathbb E[X] = m$.
+- $\mathbb E[X] = m$.
 
-* $\text{Var} (X) = 2m$.
+- $\text{Var} (X) = 2m$.
 
-* Para $X_i \sim \chi^2_{m_i}$, $i = 1,\dots, k$, independientes, entonces 
+- Para $X_i \sim \chi^2_{m_i}$, $i = 1,\dots, k$, independientes, entonces
 
 \[\sum_{i=1}^k X_i \sim \chi^2_{\sum m_i}\]
 
-* Si $X\sim N(0,1) \implies Y = X^2\sim \chi^2_1$.
+- Si $X\sim N(0,1) \implies Y = X^2\sim \chi^2_1$.
 
-* Si $X_i \stackrel{i.i.d}{\sim} N(0,1) \implies \sum_{i=1}^m X_i^2 = \chi^2_m$.
+- Si $X_i \stackrel{i.i.d}{\sim} N(0,1) \implies \sum_{i=1}^m X_i^2 = \chi^2_m$.
 
 **Ejemplo**. Si $X_1,\dots,X_n \sim N(\mu,\sigma^2) \implies Z = \dfrac{X_i-\mu}{\sigma} \sim N(0,1)$ $\forall i$.
 
 Entonces
-\[\sum Z_i^2 \sim \chi^2_n \implies \sum \dfrac{(X_i-\mu)^2}{\sigma^2}\sim \chi^2_n \quad (*) \]
+\[\sum Z_i^2 \sim \chi^2_n \implies \sum \dfrac{(X_i-\mu)^2}{\sigma^2}\sim \chi^2_n \quad (\*) \]
 
-Además, si $\mu$ es conocido y $\sigma^2$ desconocido, entonces el MLE de \(\sigma ^{2}\) es 
+Además, si $\mu$ es conocido y $\sigma^2$ desconocido, entonces el MLE de \(\sigma ^{2}\) es
 \[\hat\sigma_0^2=\dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2\]
-
 
 De esta manera, observe que, de $(*)$,
 
-i
+
 \[\dfrac{n}{\sigma^2} \dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2 = n\dfrac{\hat \sigma_{0}^2}{\sigma^2} \sim \chi^2_n \]
 
 La principal limitación es que $\mu$ es conocida. Asuma que también es
@@ -2145,12 +2142,12 @@ desconocida. ¿Cuál es la distribución muestral de $(\bar X_n,\hat\sigma^2)$?
 
 **Teorema**. Bajo las condiciones anteriores,
 
-1) $\bar X_n$ y $\hat \sigma_n$ son independientes aunque $\hat \sigma_n$ es función de
-$\bar X_n$.
+1. $\bar X_n$ y $\hat \sigma_n$ son independientes aunque $\hat \sigma_n$ es función de
+   $\bar X_n$.
 
-2) La distribución muestral de $\bar X_n$ es $N\left(\mu,\dfrac{\sigma^2}{n}\right)$.
+2. La distribución muestral de $\bar X_n$ es $N\left(\mu,\dfrac{\sigma^2}{n}\right)$.
 
-3) $n\dfrac{\hat \sigma_{0}^2}{\sigma^2} =\sum_{i=1}^n \dfrac{(X_i-\mu)^2}{\sigma^2} \sim \chi^2_{n-1}$.
+3. $n\dfrac{\hat \sigma_{0}^2}{\sigma^2} =\sum_{i=1}^n \dfrac{(X_i-\mu)^2}{\sigma^2} \sim \chi^2_{n-1}$.
 
 **Nota:** De álgebra lineal, recuerde que una matriz $A_{n\times n}$ es ortogonal si
 cumple que $A^{-1} = A$, $\det(A) = 1$. Si $X, Y\in \mathbb R ^{n}$, $AX =Y$, $A$
@@ -2159,7 +2156,7 @@ ortogonal, entonces \[ \|Y\|_2^2 = \|X\|_2^2 \quad (\Delta\Delta)\]
 **Teorema**. Si $X_1,\dots,X_n \sim N(0,1)$, $A$ es ortogonal $n\times n$ y $Y=AX$ donde
 $X = (X_1,\dots,X_n)^T$ entonces $Y_1,\dots,Y_n \sim N(0,1)$.
 
-*Prueba*. Ver 8.3.1.
+_Prueba_. Ver 8.3.1.
 
 Si $X_1,\dots,X_n \sim N(0,1)$, use Gram-Schmidt con vector inicial
 
@@ -2167,8 +2164,7 @@ Si $X_1,\dots,X_n \sim N(0,1)$, use Gram-Schmidt con vector inicial
 u = \left[ \frac{1}{\sqrt{n}}, \cdots, \frac{1}{\sqrt{n}}\right]
 \end{equation*}
 
-
- Generamos $A = \begin{bmatrix}u\\\vdots\end{bmatrix}$. Defina $Y
+Generamos $A = \begin{bmatrix}u\\\vdots\end{bmatrix}$. Defina $Y
 =AX$. Entonces \[ Y_1 = uX = \dfrac 1{\sqrt{n}}\sum_{i=1}^n X_i = \sqrt{n} \bar
 X_n.\]
 
@@ -2186,27 +2182,34 @@ Si $X_1,\dots,X_n \sim N(\mu, \sigma^2)$, tome $Z_i = \dfrac{X_i-\mu}\sigma$ y r
 \[\hat \mu = \bar X_n,\quad \hat\sigma = \bigg[\dfrac{1}{n}\sum_{i=1}^n(X_i-\bar X_n)^2 \bigg]^{\frac 12}.\]
 
 Encuentre $n$ tal que
-\[p = \mathbb P \bigg[|\hat\mu-\mu|<\dfrac 65, |\hat\sigma-\sigma|<\dfrac 65\bigg] \geq \dfrac 12. \]
+
+\begin{equation*}
+p = \mathbb P \bigg[|\hat\mu-\mu|<\dfrac {\sigma}{5}, |\hat\sigma-\sigma|<\dfrac \sigma 5\bigg] \geq \dfrac 12.
+\end{equation*}
 
 Por independencia de $\bar X_n$ y $\hat\sigma^2_n$,
-\[p=  \mathbb P \bigg[|\hat\mu-\mu|<\dfrac \sigma5\bigg] \mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg]\]
+\[p= \mathbb P \bigg[|\hat\mu-\mu|<\dfrac \sigma5\bigg] \mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg]\]
 
 Por un lado,
-\[\mathbb P \bigg[|\hat\mu-\mu|<\dfrac 65\bigg] = \mathbb P \bigg[-\dfrac{\sqrt n}5\leq \underbrace{\dfrac{\sqrt{n}(\hat\mu-\mu)}\sigma}_{N(0,1)} <\dfrac {\sqrt n}{5}\bigg] = \Phi\left(\dfrac{\sqrt n}{5}\right)-\Phi\left(-\dfrac{\sqrt n}{5}\right).\]
+\[\mathbb P \bigg[|\hat\mu-\mu|<\dfrac \sigma5\bigg] = \mathbb P \bigg[-\dfrac{\sqrt n}5\leq \underbrace{\dfrac{\sqrt{n}(\hat\mu-\mu)}\sigma}_{N(0,1)} <\dfrac {\sqrt n}{5}\bigg] = \Phi\left(\dfrac{\sqrt n}{5}\right)-\Phi\left(-\dfrac{\sqrt n}{5}\right).\]
 
 Además,
 
-\begin{align*} 
-\mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg] & = \mathbb P \bigg[\dfrac 45 \dfrac{\hat\sigma}{\sigma}<\dfrac 65\bigg]\\
-& = \mathbb P \bigg[0.64 n \dfrac{n\hat\sigma}{\sigma}<1.44n\bigg]\\
-& = F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n)
+\begin{align*}
+\mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg]
+=&\mathbb P \bigg[-\dfrac \sigma 5 < \hat\sigma-\sigma<\dfrac \sigma5\bigg] \\
+=&\mathbb P \bigg[-\dfrac{\sigma}{5} +\sigma < \hat\sigma<\dfrac \sigma5 +\sigma\bigg] \\
+=&\mathbb P \bigg[-\dfrac 45 \sigma < \hat\sigma<\dfrac 65\sigma\bigg] \\
+=&\mathbb P \bigg[-\dfrac 45 < \dfrac{\hat\sigma}{\sigma}<\dfrac 65\bigg] \\
+=&\mathbb P \bigg[\left(-\dfrac 45\right)^2 < \dfrac{\hat{\sigma}^2}{\sigma^2}<\left(\dfrac 65\right)^2\bigg] \\
+=&\mathbb P \bigg[0.64n < \dfrac{\hat{n\sigma}^2}{\sigma^2} <1.44n\bigg] \\
+=& F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n).
 \end{align*}
 
 Estime $n$ de manera que
 \[\bigg[1-2\Phi\left(-\dfrac{\sqrt n}{5}\right)\bigg][F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n)] \geq \dfrac 12.\]
 
 Se resuelve numéricamente, y si $n=21$ se cumple.
-
 
 
 ```r
@@ -2223,34 +2226,33 @@ ggplot(data = data.frame(x = seq(0, 40, length.out = 1000)),
 
 \begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-41-1} \end{center}
 
-
 ## Distribución $t$
 
-**Definición**. Sea $Y$ y $Z$ dos variables independientes tal que $Y\sim \chi^2_m$ y $Z\sim N(0,1)$. Si 
+**Definición**. Sea $Y$ y $Z$ dos variables independientes tal que $Y\sim \chi^2_m$ y $Z\sim N(0,1)$. Si
 \[X := \dfrac Z{\sqrt{\dfrac Ym}},\]
 tiene una distribución **$t$ de Student** con $m$ grados de libertad. Tiene como densidad
 \[f_X(x) = \dfrac{\Gamma\left(\dfrac{m+1}2\right)}{\sqrt{m\pi}\Gamma\left(\dfrac m2 \right)}\left(1+\dfrac{x^2}m\right)^{-\frac{m+1}2}, \quad x\in \mathbb R.\]
 
 **Propiedades**:
 
-1) $f_X$ es simétrica.
+1. $f_X$ es simétrica.
 
-2) La media de $X$ no existe si $m\leq 1$. Si la media existe, es 0.
+2. La media de $X$ no existe si $m\leq 1$. Si la media existe, es 0.
 
-3) Las colas de una $t$ de Student son más pesadas que una $N(0,1)$.
+3. Las colas de una $t$ de Student son más pesadas que una $N(0,1)$.
 
-4) Si $m$ es entero, los primeros $m-1$ momentos de $X$ existen y no hay momentos de orden superior.
+4. Si $m$ es entero, los primeros $m-1$ momentos de $X$ existen y no hay momentos de orden superior.
 
-5) Si $m>2$, $\text{Var}\left(X \right)=\dfrac m{m-2}$.
+5. Si $m>2$, $\text{Var}\left(X \right)=\dfrac m{m-2}$.
 
-6) Si $m=1$, $X\sim \text{Cauchy}$.
+6. Si $m=1$, $X\sim \text{Cauchy}$.
 
-7) **Ejercicio**: $f_x(x)\xrightarrow[m\to \infty]{}\Phi(x)$ (sirve como aproximación). La discrepancia de ambas está en la cola y se disipa cuando $m$ es grande.
+7. **Ejercicio**: $f_x(x)\xrightarrow[m\to \infty]{}\Phi(x)$ (sirve como aproximación). La discrepancia de ambas está en la cola y se disipa cuando $m$ es grande.
 
-Recuerde que, por el teorema 8.3.1, $\bar X_n$ y $Y=\dfrac{n\hat\sigma^2}{\sigma}$ son independientes, con $\bar X_n \sim N\left(\mu, \dfrac{\sigma^2}{n}\right)$ y $Y\sim \chi^2_{n-1}$. Además, 
+Recuerde que, por el teorema 8.3.1, $\bar X_n$ y $Y=\dfrac{n\hat\sigma^2}{\sigma}$ son independientes, con $\bar X_n \sim N\left(\mu, \dfrac{\sigma^2}{n}\right)$ y $Y\sim \chi^2_{n-1}$. Además,
 \[Z = \sqrt n\dfrac{\bar X_n-\mu}{\sigma} \sim N(0,1).\]
 
-Sea 
+Sea
 
 \[T = \dfrac Z{\sqrt{\dfrac Y{n-1}}} = \dfrac{\sqrt n \dfrac{\bar X_n-\mu}{\sigma}} {\sqrt{\dfrac{\dfrac{n\hat\sigma^2}{\sigma^2}}{n-1}}} = \dfrac{\bar X_n-\mu}{\sqrt{\dfrac{\hat\sigma}{n-1}}}\]
 el cual no depende de $\sigma$.
@@ -2262,17 +2264,13 @@ Entonces
 
 **Nota**. $\sigma' = \left(\dfrac n{n-1}\right)^\frac 12 \hat\sigma$ (si $n$ es grande, $\sigma' = \hat\sigma$).
 
-*Prueba*. Sean
-\[S_n^2=\sum_{i=1}^n(X_i-\bar X_n)^2, \quad Z =  \sqrt n \dfrac{\bar X_n-\mu}{\sigma}. \]
+_Prueba_. Sean
+\[S_n^2=\sum_{i=1}^n(X_i-\bar X_n)^2, \quad Z = \sqrt n \dfrac{\bar X_n-\mu}{\sigma}. \]
 Dado que $Y = \dfrac{S_n^2}{\sigma^2}\sim \chi^2_{n-1}$, entonces
 
-
-
-
-\begin{align*} 
-U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} & = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{\sigma^2(n-1)}}} \\ & = \dfrac{\sqrt n (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{n-1}}}\\& =  \dfrac{\sqrt n (\bar X_n-\mu)}{\sigma'} \sim t_{n-1}.
+\begin{align*}
+U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} & = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{\sigma^2(n-1)}}} \\ & = \dfrac{\sqrt n (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{n-1}}}\\& = \dfrac{\sqrt n (\bar X_n-\mu)}{\sigma'} \sim t_{n-1}.
 \end{align*}
-
 
 
 ```r
@@ -2387,8 +2385,9 @@ lluvia media (escala logarítmica). Para $\gamma = 0.95$, se calcula
 c=F^{-1}_{t_{25}}\left(\dfrac{1+\gamma}2\right) =F^{-1}_{t_{25}}(0.975) = 2.060
 \]
 
-Note que \(\frac{1+\gamma}{2}=\) 0.975 y el segundo valor se obtiene de
-una tabla de valor de la \(t\)-student o de la expresión `qt(p = 0.975, df = 26-1)` = 2.06
+Note que \(\frac{1+\gamma}{2}=\) $0.975$ y el segundo valor se obtiene de
+una tabla de valor de la \(t\)-student o de la expresión `qt(p = 0.975, df =
+26-1)` = $2.06$
 
 
 \begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-44-1} \end{center}

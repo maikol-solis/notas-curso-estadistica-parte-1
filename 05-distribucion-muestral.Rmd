@@ -124,7 +124,7 @@ Además, si $\mu$ es conocido y $\sigma^2$ desconocido, entonces el MLE de \(\si
 
 De esta manera, observe que, de $(*)$,
 
-i
+
 \[\dfrac{n}{\sigma^2} \dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2 = n\dfrac{\hat \sigma_{0}^2}{\sigma^2} \sim \chi^2_n \]
 
 La principal limitación es que $\mu$ es conocida. Asuma que también es

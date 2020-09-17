@@ -298,32 +298,34 @@ distribución de <span class="math inline">\(T\)</span> dado <span class="math i
 <li><p><span class="math inline">\(\text{Var}(\bar X_n) = \text{Var}\left(\dfrac 1n \displaystyle\sum_{i=1}^n X_i\right) = \dfrac{1}{n^2}\cdot n\cdot \text{Var}(X_1) = \dfrac{\sigma^2}n\)</span>.</p></li>
 </ul>
 <p><strong>Ejemplo</strong>. <span class="math inline">\(X_i:\)</span> tiempo de vida de un aparato. <span class="math inline">\(X_1,\dots,X_n \stackrel{i.i.d}{\sim} \text{Exp}(\theta)\)</span>. La previa de <span class="math inline">\(\theta\)</span> es <span class="math inline">\(\Gamma(1,2)\)</span>. Solamente
-observamos <span class="math inline">\(n=3\)</span>. La posterior sería <span class="math display">\[\theta|X \sim \Gamma(1+3,2+\sum_{i=1}^3 X_i). \]</span></p>
+observamos <span class="math inline">\(n=3\)</span>. La posterior sería</p>
+<p><span class="math display">\[
+\theta|X \sim \Gamma(1+3,2+\sum_{i=1}^3 X_i). 
+\]</span></p>
 <p>El estimador bayesiano, bajo pérdida cuadrática, es
 <span class="math display">\[
-\mathbb E[\theta|X] =  \dfrac 4{2+\sum X_i} = \hat\theta
+\mathbb E[\theta|X] = \dfrac 4{2+\sum X_i} = \hat\theta
 \]</span></p>
 <p><strong>Problema:</strong> estimar <span class="math inline">\(\mathbb P(|\hat\theta-\theta|&lt;0.1)\)</span>.</p>
 <p>Note que</p>
 <p><span class="math display">\[\begin{align*}
-\mathbb P(|\hat\theta-\theta|&lt;0.1) 
+\mathbb P(|\hat\theta-\theta|&lt;0.1)
 &amp;= \mathbb E [1_{|\hat\theta-\theta|&lt;0.1|\theta)}] \\
 &amp;= \mathbb E[\mathbb E [1_{|\hat\theta-\theta|&lt;0.1|\theta)}\vert \theta]] \\
 &amp;= \mathbb E[\mathbb P(|\hat\theta-\theta|&lt;0.1|\theta)]
 \end{align*}\]</span></p>
 <p>Debemos definir primero cuál es la función de distribución de <span class="math inline">\(\hat{\theta}\)</span>.</p>
-<p><span class="math display">\[\begin{align*} 
+<p><span class="math display">\[\begin{align*}
 F_{\hat{\theta}}(t|\theta) = \mathbb P(\hat\theta\leq t|\theta)&amp;= \mathbb
 P\left( \dfrac 4{2+T}\leq t\bigg|\theta\right) \\ &amp; = \mathbb P\left( 2+T \geq
 \dfrac 4t\bigg|\theta\right)\\ &amp; = \mathbb P\left( T \geq \dfrac
 4t-2\bigg|\theta\right)
-\end{align*}\]</span>
-nn</p>
+\end{align*}\]</span></p>
 <p><strong>Nota: Recuerde que sumas de exponenciales es una gamma. (Ver teorema 5.7.7)</strong></p>
 <p>Entonces <span class="math inline">\(T=\sum_{i=1}^{3}X_{i}\sim \Gamma(3,\theta)\)</span>, por lo que <span class="math inline">\(F(t|\theta) = 1-G_{\Gamma(3,0)}\left( \dfrac 4t-2\right)\)</span>. Aqui denotamos como <span class="math inline">\(G\)</span> a la
 distribución de <span class="math inline">\(T\)</span>.</p>
 <p>De esta manera,</p>
-<p><span class="math display">\[\begin{align*} 
+<p><span class="math display">\[\begin{align*}
 \mathbb P[|\hat\theta-\theta|&lt;0.1|\theta]  
 &amp; = \mathbb P [-0.1+\theta &lt; \hat\theta &lt; 0.1 +\theta|\theta]\\
 &amp; = G_{\Gamma(3,\theta)}\left(\dfrac 4{-0.1+\theta} - 2\right)-G_{\Gamma(3,\theta)}\left(\dfrac 4{0.1+\theta} - 2\right)
@@ -363,12 +365,11 @@ T}-1 \bigg| &lt; 0.1 \bigg| \theta \right) = \Delta \]</span></p>
 </ul>
 <p><strong>Ejemplo</strong>. Si <span class="math inline">\(X_1,\dots,X_n \sim N(\mu,\sigma^2) \implies Z = \dfrac{X_i-\mu}{\sigma} \sim N(0,1)\)</span> <span class="math inline">\(\forall i\)</span>.</p>
 <p>Entonces
-<span class="math display">\[\sum Z_i^2 \sim \chi^2_n \implies \sum \dfrac{(X_i-\mu)^2}{\sigma^2}\sim \chi^2_n \quad (*) \]</span></p>
+<span class="math display">\[\sum Z_i^2 \sim \chi^2_n \implies \sum \dfrac{(X_i-\mu)^2}{\sigma^2}\sim \chi^2_n \quad (\*) \]</span></p>
 <p>Además, si <span class="math inline">\(\mu\)</span> es conocido y <span class="math inline">\(\sigma^2\)</span> desconocido, entonces el MLE de <span class="math inline">\(\sigma ^{2}\)</span> es
 <span class="math display">\[\hat\sigma_0^2=\dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2\]</span></p>
 <p>De esta manera, observe que, de <span class="math inline">\((*)\)</span>,</p>
-<p>i
-<span class="math display">\[\dfrac{n}{\sigma^2} \dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2 = n\dfrac{\hat \sigma_{0}^2}{\sigma^2} \sim \chi^2_n \]</span></p>
+<p><span class="math display">\[\dfrac{n}{\sigma^2} \dfrac{1}n \sum_{i=1}^n(X_i-\mu)^2 = n\dfrac{\hat \sigma_{0}^2}{\sigma^2} \sim \chi^2_n \]</span></p>
 <p>La principal limitación es que <span class="math inline">\(\mu\)</span> es conocida. Asuma que también es
 desconocida. ¿Cuál es la distribución muestral de <span class="math inline">\((\bar X_n,\hat\sigma^2)\)</span>?</p>
 <p><strong>Teorema</strong>. Bajo las condiciones anteriores,</p>
@@ -397,17 +398,24 @@ X_n.\]</span></p>
 <p>Si <span class="math inline">\(X_1,\dots,X_n \sim N(\mu, \sigma^2)\)</span>, tome <span class="math inline">\(Z_i = \dfrac{X_i-\mu}\sigma\)</span> y repita todo lo anterior.</p>
 <p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots,X_n\sim N(\mu,\sigma^2)\)</span> (<span class="math inline">\(\mu,\sigma\)</span> desconocidos). Los MLE son</p>
 <p><span class="math display">\[\hat \mu = \bar X_n,\quad \hat\sigma = \bigg[\dfrac{1}{n}\sum_{i=1}^n(X_i-\bar X_n)^2 \bigg]^{\frac 12}.\]</span></p>
-<p>Encuentre <span class="math inline">\(n\)</span> tal que
-<span class="math display">\[p = \mathbb P \bigg[|\hat\mu-\mu|&lt;\dfrac 65, |\hat\sigma-\sigma|&lt;\dfrac 65\bigg] \geq \dfrac 12. \]</span></p>
+<p>Encuentre <span class="math inline">\(n\)</span> tal que</p>
+<p><span class="math display">\[\begin{equation*}
+p = \mathbb P \bigg[|\hat\mu-\mu|&lt;\dfrac {\sigma}{5}, |\hat\sigma-\sigma|&lt;\dfrac \sigma 5\bigg] \geq \dfrac 12.
+\end{equation*}\]</span></p>
 <p>Por independencia de <span class="math inline">\(\bar X_n\)</span> y <span class="math inline">\(\hat\sigma^2_n\)</span>,
-<span class="math display">\[p=  \mathbb P \bigg[|\hat\mu-\mu|&lt;\dfrac \sigma5\bigg] \mathbb P \bigg[|\hat\sigma-\sigma|&lt;\dfrac \sigma5\bigg]\]</span></p>
+<span class="math display">\[p= \mathbb P \bigg[|\hat\mu-\mu|&lt;\dfrac \sigma5\bigg] \mathbb P \bigg[|\hat\sigma-\sigma|&lt;\dfrac \sigma5\bigg]\]</span></p>
 <p>Por un lado,
-<span class="math display">\[\mathbb P \bigg[|\hat\mu-\mu|&lt;\dfrac 65\bigg] = \mathbb P \bigg[-\dfrac{\sqrt n}5\leq \underbrace{\dfrac{\sqrt{n}(\hat\mu-\mu)}\sigma}_{N(0,1)} &lt;\dfrac {\sqrt n}{5}\bigg] = \Phi\left(\dfrac{\sqrt n}{5}\right)-\Phi\left(-\dfrac{\sqrt n}{5}\right).\]</span></p>
+<span class="math display">\[\mathbb P \bigg[|\hat\mu-\mu|&lt;\dfrac \sigma5\bigg] = \mathbb P \bigg[-\dfrac{\sqrt n}5\leq \underbrace{\dfrac{\sqrt{n}(\hat\mu-\mu)}\sigma}_{N(0,1)} &lt;\dfrac {\sqrt n}{5}\bigg] = \Phi\left(\dfrac{\sqrt n}{5}\right)-\Phi\left(-\dfrac{\sqrt n}{5}\right).\]</span></p>
 <p>Además,</p>
-<p><span class="math display">\[\begin{align*} 
-\mathbb P \bigg[|\hat\sigma-\sigma|&lt;\dfrac \sigma5\bigg] &amp; = \mathbb P \bigg[\dfrac 45 \dfrac{\hat\sigma}{\sigma}&lt;\dfrac 65\bigg]\\
-&amp; = \mathbb P \bigg[0.64 n \dfrac{n\hat\sigma}{\sigma}&lt;1.44n\bigg]\\
-&amp; = F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n)
+<p><span class="math display">\[\begin{align*}
+\mathbb P \bigg[|\hat\sigma-\sigma|&lt;\dfrac \sigma5\bigg]
+=&amp;\mathbb P \bigg[-\dfrac \sigma 5 &lt; \hat\sigma-\sigma&lt;\dfrac \sigma5\bigg] \\
+=&amp;\mathbb P \bigg[-\dfrac{\sigma}{5} +\sigma &lt; \hat\sigma&lt;\dfrac \sigma5 +\sigma\bigg] \\
+=&amp;\mathbb P \bigg[-\dfrac 45 \sigma &lt; \hat\sigma&lt;\dfrac 65\sigma\bigg] \\
+=&amp;\mathbb P \bigg[-\dfrac 45 &lt; \dfrac{\hat\sigma}{\sigma}&lt;\dfrac 65\bigg] \\
+=&amp;\mathbb P \bigg[\left(-\dfrac 45\right)^2 &lt; \dfrac{\hat{\sigma}^2}{\sigma^2}&lt;\left(\dfrac 65\right)^2\bigg] \\
+=&amp;\mathbb P \bigg[0.64n &lt; \dfrac{\hat{n\sigma}^2}{\sigma^2} &lt;1.44n\bigg] \\
+=&amp; F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n).
 \end{align*}\]</span></p>
 <p>Estime <span class="math inline">\(n\)</span> de manera que
 <span class="math display">\[\bigg[1-2\Phi\left(-\dfrac{\sqrt n}{5}\right)\bigg][F_{\chi^2_{n-1}}(1.44n)-F_{\chi^2_{n-1}}(0.64n)] \geq \dfrac 12.\]</span></p>
@@ -448,10 +456,10 @@ Entonces
 <span class="math display">\[\dfrac{\sqrt{n}(\bar X_n-\mu)}{\sigma&#39;} \sim t_{n-1}\]</span></p>
 <p><strong>Nota</strong>. <span class="math inline">\(\sigma&#39; = \left(\dfrac n{n-1}\right)^\frac 12 \hat\sigma\)</span> (si <span class="math inline">\(n\)</span> es grande, <span class="math inline">\(\sigma&#39; = \hat\sigma\)</span>).</p>
 <p><em>Prueba</em>. Sean
-<span class="math display">\[S_n^2=\sum_{i=1}^n(X_i-\bar X_n)^2, \quad Z =  \sqrt n \dfrac{\bar X_n-\mu}{\sigma}. \]</span>
+<span class="math display">\[S_n^2=\sum_{i=1}^n(X_i-\bar X_n)^2, \quad Z = \sqrt n \dfrac{\bar X_n-\mu}{\sigma}. \]</span>
 Dado que <span class="math inline">\(Y = \dfrac{S_n^2}{\sigma^2}\sim \chi^2_{n-1}\)</span>, entonces</p>
-<p><span class="math display">\[\begin{align*} 
-U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} &amp; = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{\sigma^2(n-1)}}} \\ &amp; = \dfrac{\sqrt n (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{n-1}}}\\&amp; =  \dfrac{\sqrt n (\bar X_n-\mu)}{\sigma&#39;} \sim t_{n-1}.
+<p><span class="math display">\[\begin{align*}
+U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} &amp; = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{\sigma^2(n-1)}}} \\ &amp; = \dfrac{\sqrt n (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{n-1}}}\\&amp; = \dfrac{\sqrt n (\bar X_n-\mu)}{\sigma&#39;} \sim t_{n-1}.
 \end{align*}\]</span></p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="distribución-muestral-de-un-estadístico.html#cb108-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dt">length.out =</span> <span class="dv">1000</span>)), </span>
 <span id="cb108-2"><a href="distribución-muestral-de-un-estadístico.html#cb108-2"></a>    <span class="kw">aes</span>(x)) <span class="op">+</span><span class="st"> </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">0</span>, </span>
