@@ -166,33 +166,23 @@ Si $X_1,\dots,X_n \sim N(\mu, \sigma^2)$, tome $Z_i = \dfrac{X_i-\mu}\sigma$ y r
 
 **Ejemplo**. $X_1,\dots,X_n\sim N(\mu,\sigma^2)$ ($\mu,\sigma$ desconocidos). Los MLE son
 
-\[
-\hat \mu = \bar X*n,\quad \hat\sigma = \bigg[\dfrac{1}{n}\sum*{i=1}^n(X_i-\bar X_n)^2 \bigg]^{\frac 12}.
-\]
+\[\hat \mu = \bar X*n,\quad \hat\sigma = \bigg[\dfrac{1}{n}\sum*{i=1}^n(X_i-\bar X_n)^2 \bigg]^{\frac 12}.\]
 
 Encuentre $n$ tal que
-
-\begin{equation*}
-p = \mathbb P \bigg[|\hat\mu-\mu|<\dfrac {\sigma}{5}, |\hat\sigma-\sigma|<\dfrac \sigma 5\bigg] \geq \dfrac 12.
-\end{equation*}
+\[p = \mathbb P \bigg[|\hat\mu-\mu|<\dfrac 65, |\hat\sigma-\sigma|<\dfrac 65\bigg] \geq \dfrac 12. \]
 
 Por independencia de $\bar X_n$ y $\hat\sigma^2_n$,
 \[p= \mathbb P \bigg[|\hat\mu-\mu|<\dfrac \sigma5\bigg] \mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg]\]
 
 Por un lado,
-\[\mathbb P \bigg[|\hat\mu-\mu|<\dfrac \sigma5\bigg] = \mathbb P \bigg[-\dfrac{\sqrt n}5\leq \underbrace{\dfrac{\sqrt{n}(\hat\mu-\mu)}\sigma}_{N(0,1)} <\dfrac {\sqrt n}{5}\bigg] = \Phi\left(\dfrac{\sqrt n}{5}\right)-\Phi\left(-\dfrac{\sqrt n}{5}\right).\]
+\[\mathbb P \bigg[|\hat\mu-\mu|<\dfrac 65\bigg] = \mathbb P \bigg[-\dfrac{\sqrt n}5\leq \underbrace{\dfrac{\sqrt{n}(\hat\mu-\mu)}\sigma}_{N(0,1)} <\dfrac {\sqrt n}{5}\bigg] = \Phi\left(\dfrac{\sqrt n}{5}\right)-\Phi\left(-\dfrac{\sqrt n}{5}\right).\]
 
 Además,
 
 \begin{align*}
-\mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg]
-=&\mathbb P \bigg[-\dfrac \sigma 5 < \hat\sigma-\sigma<\dfrac \sigma5\bigg] \\
-=&\mathbb P \bigg[-\dfrac{\sigma}{5} +\sigma < \hat\sigma<\dfrac \sigma5 +\sigma\bigg] \\
-=&\mathbb P \bigg[-\dfrac 45 \sigma < \hat\sigma<\dfrac 65\sigma\bigg] \\
-=&\mathbb P \bigg[-\dfrac 45 < \dfrac{\hat\sigma}{\sigma}<\dfrac 65\bigg] \\
-=&\mathbb P \bigg[\left(-\dfrac 45\right)^2 < \dfrac{\hat{\sigma}^2}{\sigma^2}<\left(\dfrac 65\right)^2\bigg] \\
-=&\mathbb P \bigg[0.64n < \dfrac{\hat{n\sigma}^2}{\sigma^2} <1.2n\bigg] \\
-=& F*{\chi^2*{n-1}}(1.44n)-F*{\chi^2*{n-1}}(0.64n).
+\mathbb P \bigg[|\hat\sigma-\sigma|<\dfrac \sigma5\bigg] & = \mathbb P \bigg[\dfrac 45 \dfrac{\hat\sigma}{\sigma}<\dfrac 65\bigg]\\
+& = \mathbb P \bigg[0.64 n \dfrac{n\hat\sigma}{\sigma}<1.44n\bigg]\\
+& = F*{\chi^2*{n-1}}(1.44n)-F*{\chi^2*{n-1}}(0.64n)
 \end{align*}
 
 Estime $n$ de manera que
@@ -211,33 +201,34 @@ ggplot(data = data.frame(x = seq(0,40,length.out = 1000)), aes(x)) +
 
 ```
 
+
 ## Distribución $t$
 
-**Definición**. Sea $Y$ y $Z$ dos variables independientes tal que $Y\sim \chi^2_m$ y $Z\sim N(0,1)$. Si
+**Definición**. Sea $Y$ y $Z$ dos variables independientes tal que $Y\sim \chi^2_m$ y $Z\sim N(0,1)$. Si 
 \[X := \dfrac Z{\sqrt{\dfrac Ym}},\]
 tiene una distribución **$t$ de Student** con $m$ grados de libertad. Tiene como densidad
 \[f_X(x) = \dfrac{\Gamma\left(\dfrac{m+1}2\right)}{\sqrt{m\pi}\Gamma\left(\dfrac m2 \right)}\left(1+\dfrac{x^2}m\right)^{-\frac{m+1}2}, \quad x\in \mathbb R.\]
 
 **Propiedades**:
 
-1. $f_X$ es simétrica.
+1) $f_X$ es simétrica.
 
-2. La media de $X$ no existe si $m\leq 1$. Si la media existe, es 0.
+2) La media de $X$ no existe si $m\leq 1$. Si la media existe, es 0.
 
-3. Las colas de una $t$ de Student son más pesadas que una $N(0,1)$.
+3) Las colas de una $t$ de Student son más pesadas que una $N(0,1)$.
 
-4. Si $m$ es entero, los primeros $m-1$ momentos de $X$ existen y no hay momentos de orden superior.
+4) Si $m$ es entero, los primeros $m-1$ momentos de $X$ existen y no hay momentos de orden superior.
 
-5. Si $m>2$, $\text{Var}\left(X \right)=\dfrac m{m-2}$.
+5) Si $m>2$, $\text{Var}\left(X \right)=\dfrac m{m-2}$.
 
-6. Si $m=1$, $X\sim \text{Cauchy}$.
+6) Si $m=1$, $X\sim \text{Cauchy}$.
 
-7. **Ejercicio**: $f_x(x)\xrightarrow[m\to \infty]{}\Phi(x)$ (sirve como aproximación). La discrepancia de ambas está en la cola y se disipa cuando $m$ es grande.
+7) **Ejercicio**: $f_x(x)\xrightarrow[m\to \infty]{}\Phi(x)$ (sirve como aproximación). La discrepancia de ambas está en la cola y se disipa cuando $m$ es grande.
 
-Recuerde que, por el teorema 8.3.1, $\bar X_n$ y $Y=\dfrac{n\hat\sigma^2}{\sigma ^{2}}$ son independientes, con $\bar X_n \sim N\left(\mu, \dfrac{\sigma^2}{n}\right)$ y $Y\sim \chi^2_{n-1}$. Además,
+Recuerde que, por el teorema 8.3.1, $\bar X_n$ y $Y=\dfrac{n\hat\sigma^2}{\sigma}$ son independientes, con $\bar X_n \sim N\left(\mu, \dfrac{\sigma^2}{n}\right)$ y $Y\sim \chi^2_{n-1}$. Además, 
 \[Z = \sqrt n\dfrac{\bar X_n-\mu}{\sigma} \sim N(0,1).\]
 
-Sea
+Sea 
 
 \[T = \dfrac Z{\sqrt{\dfrac Y{n-1}}} = \dfrac{\sqrt n \dfrac{\bar X_n-\mu}{\sigma}} {\sqrt{\dfrac{\dfrac{n\hat\sigma^2}{\sigma^2}}{n-1}}} = \dfrac{\bar X_n-\mu}{\sqrt{\dfrac{\hat\sigma}{n-1}}}\]
 el cual no depende de $\sigma$.
