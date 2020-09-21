@@ -62,10 +62,10 @@ El intervalo aleatorio
 
 \begin{equation*}
 \bigg[\bar X_n -
-F{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma'}{\sqrt n},\bar X_n
-- F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma'}{\sqrt
+F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma'}{\sqrt n},\bar X_n
++ F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma'}{\sqrt
   n}\bigg]
-  \end{equation*}
+\end{equation*}
 
   contiene a $\mu$ con probabilidad $\gamma$.
 
@@ -136,7 +136,7 @@ Si $\gamma$ es el nivel de confianza dado, sea $\gamma_1<\gamma_2$ tal que $\gam
 
 Si
 \[
-A= \bar X_n + T_{n-1}^{-1}(\gamma_1)\dfrac{\sigma'}{\sqrt n} \text{ y } B= \bar X_n +
+A= \bar X_n - T_{n-1}^{-1}(\gamma_1)\dfrac{\sigma'}{\sqrt n} \text{ y } B= \bar X_n +
 T_{n-1}^{-1}(\gamma_2)\dfrac{\sigma'}{\sqrt n},
 \]
 
@@ -197,7 +197,7 @@ El límite superior es $\dfrac{G^{-1}(\gamma)}{T}$.
 theta <- 2
 X <- rexp(3, rate = theta)
 T <- sum(X)
-G_inv <- qgamma(p = 0.98, shape = 3, rate = 1)
+G_inv <- qgamma(p = 0.95, shape = 3, rate = 1)
 ```
 
 Entonces el intervalo de confianza para este caso es
@@ -297,7 +297,7 @@ $\sigma^2$ y por lo tanto consistente.
 
 \begin{align*}
 \hat{\sigma}^2 &\xrightarrow[]{\mathbb{P}}\sigma^2 \\
-((\sigma')^2 &\xrightarrow[]{\mathbb{P}}\hat{\sigma}^2).
+((\sigma')^2 &\xrightarrow[]{\mathbb{P}}\sigma^2).
 \end{align*}
 
 Recuerde que si $X_n\xrightarrow[]{d}Z$ y $Y_n\xrightarrow[]{\mathbb{P}}a$, entonces
