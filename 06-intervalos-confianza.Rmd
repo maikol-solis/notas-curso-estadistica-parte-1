@@ -13,7 +13,7 @@ T_1 \leq \theta \leq T_2
   
 En caso que \(\theta \in \mathbb{R} ^{k}\) se puede construir un conjunto de
 estadísticos \(T_1, \ldots, T_{k^\prime}\) con \(k^\prime = 2k\) tal que
-
+ 
 \begin{equation*}
 \theta \in [T_1, T_2] \times \cdots \times [T_{k^\prime-1}, T_{k^\prime}]
 \end{equation*}
@@ -28,7 +28,8 @@ acostumbra.
 
 Defina $U = \dfrac{\sqrt{n}(\bar X_n-\mu)}{\sigma'} \sim t_{n-1}$. Si $c>0$,
 
-\begin{align*} \mathbb P[-c<U<c] & = \mathbb P \bigg[ -c<\dfrac{\sqrt{n}(\bar
+\begin{align*} 
+\mathbb P[-c<U<c] & = \mathbb P \bigg[ -c<\dfrac{\sqrt{n}(\bar
 X_n-\mu)}{\sigma'} <c\bigg]\\ & = \mathbb P \bigg[-\dfrac{c\sigma'}{\sqrt n} <
 \bar X_n - \mu <\dfrac{c\sigma'}{\sqrt n}\bigg] \\ & = \mathbb P \bigg[ \bar X_n
 -\dfrac{c\sigma'}{\sqrt n} < \mu < \bar X_n + \dfrac{c\sigma'}{\sqrt n}\bigg]
@@ -423,5 +424,4 @@ z_{\frac{1+\gamma}2}\right)^2\bigg].\]
 ```{r }
 
 c((1/4)* (2*sqrt(Xbar) - 1/sqrt(1000)*z)^2, (1/4)* (2*sqrt(Xbar) + 1/sqrt(1000)*z)^2)
-
 ```
