@@ -3,23 +3,45 @@
 
 ## Precisión de una distribución normal
 
-**Definición**. La precisión $\tau$ de una normal se define como $\tau = \dfrac 1{\sigma^2}$.
+**Definición**. La precisión $\tau$ de una normal se define como $\tau = \dfrac
+1{\sigma^2}$.
 
-Sean $X_1,\dots,X_n\sim N(\mu,\sigma^2) = N(\mu,\tau)$. Su densidad corresponde a 
+Sean $X_1,\dots,X_n\sim N(\mu,\sigma^2) = N(\mu,\tau ^{-1})$. Su densidad corresponde a 
 
-
-\[f(x|\mu,\sigma^2) = \left(\dfrac 1{2\pi\sigma^2}\right)\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] = \left(\dfrac \tau{2\pi}\right)\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).\]
+\begin{align*}
+f(x|\mu,\sigma^2) 
+&= \left(\dfrac 1{2\pi\sigma^2}\right)\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] \\
+&= \left(\dfrac \tau{2\pi}\right)\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).
+\end{align*}
 
 La verosimilitud es
 
 \[f_n(x|\mu,\tau) = \left(\dfrac\tau{2\pi}\right)^{\frac n2}\exp\bigg[-\dfrac\tau2\sum_{i=1}^2(x_i-\mu)^2
 \bigg].\]
 
-La previa de la densidad conjunta es $[\mu,\tau|x]\propto [\mu|\tau]\cdot[\tau]$ y la posterior $[\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]$.
+La previa de la densidad conjunta es $[\mu,\tau]\propto [\mu|\tau]\cdot [\tau]$ y la posterior $[\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]$.
 
 Las previas por seleccionar son $[\mu|\tau]\sim \text{Normal}$ y $[\tau]\sim\text{Gamma}$.
 
-**Teorema**. Si $X_1,\dots,X_n \overset{i.i.d}{\sim} N(\mu,\tau)$, $\mu \in \mathbb R$, $\tau>0$ (precisión) y $\mu\sim N(\mu_0,\lambda_0\tau)$, $\mu\in\mathbb R$, $\lambda_0>0$, $\tau\sim\Gamma(\alpha_0,\beta_0)$, $\alpha_0,\beta_0>0$.
+**Recuerde:** La distribución Gamma tiene forma 
+
+\begin{equation*}f(x \mid \alpha, \beta)=\left\{\begin{array}{ll}
+\frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} & \text { for } x>0 \\
+0 & \text { for } x \leq 0
+\end{array}\right.\end{equation*}
+
+
+Y la verosimilitud es 
+
+\begin{equation*}
+f_n(x \mid \alpha, \beta)=\left\{\begin{array}{ll}
+\displaystyle \frac{\beta^{n\alpha}}{\Gamma(\alpha)^n} \left(\prod_{i=1}^n x_i\right) ^{\alpha-1} e^{-\beta \sum_{i=1}^n  x_i} & \text { for } x>0 \\
+0 & \text { for } x \leq 0
+\end{array}\right.\end{equation*}
+
+**Teorema**. Si $X_1,\dots,X_n \overset{i.i.d}{\sim} N(\mu,\tau ^{-1})$, $\mu \in \mathbb R$,
+$\tau>0$ (precisión) y $\mu\sim N(\mu_0,\lambda_0\tau)$, $\mu\in\mathbb R$, $\lambda_0>0$, $\tau\sim\Gamma(\alpha_0,\beta_0)$,
+$\alpha_0,\beta_0>0$.
 
 Entonces 
 \[[\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]\]
@@ -34,7 +56,7 @@ y $[\tau] \sim \Gamma(\alpha_1,\beta_1)$,
 * Previa:
 
 \begin{align*}
-[\mu,\tau] & \propto [\mu|\tau]\cdot[\tau]\\
+[\mu,\tau] & \propto [\mu|\tau] \cdot[\tau] \\
 & = \tau^{\frac 12}\exp\bigg[-\dfrac{\lambda_0\tau}2(\mu-\mu_0)\cdot \tau^{\alpha_0-1}e^{-\beta_0\tau}\bigg]\\
 & = \tau^{\alpha_0-\frac 12}\exp\bigg[-\dfrac{\lambda_0\tau}{2}(\mu-\mu_0)^2 - \beta_0\tau\bigg]
 \end{align*}
@@ -43,11 +65,12 @@ y $[\tau] \sim \Gamma(\alpha_1,\beta_1)$,
 
 \begin{align*}
 [\mu,\tau|x] & \propto [\mu,\tau]\cdot[x|\mu,\tau]\\
-& \propto  [\mu,\tau]\cdot\tau^{\frac 12} \exp\bigg[-\dfrac\tau 2\sum(x_i-\mu)^2\bigg]\\
+& \propto  [\mu,\tau]\cdot\tau^{\frac 12} \exp\bigg[-\dfrac\tau 2\sum_{i=1}^n(x_i-\mu)^2\bigg]\\
 & \propto \tau^{\alpha_0+\frac{n+1}2-1}\exp\bigg[-\dfrac\tau 2(\lambda_0[\mu-\mu_0]^2 + \sum(x_i-\mu)^2-\beta_0\tau\bigg]
 \end{align*}
 
 Además
+
 \[\sum_{i=1}^n (x_i-\mu)^2 = \sum_{i=1}^n (x_i-\bar x_n + \bar x_n -\mu)^2 = s_n^2 + n(\bar x_n-\mu)^2.\]
 
 Completando cuadrados (queda como ejercicio) se obtiene
@@ -56,7 +79,7 @@ Completando cuadrados (queda como ejercicio) se obtiene
 
 Entonces
 
-\[\sum(x_i-\mu)^2 +\lambda_0(\mu-\mu_0)^2 = (\underbrace{\lambda_0+n}_{\lambda_1})(\mu-\mu_1) + \underbrace{s_n^2+\dfrac{n\lambda_0(\bar x_n-\mu_0)}{\lambda_0+n}}_{\beta_1}\]
+\[\sum_{i=1}^{n}(x_i-\mu)^2 +\lambda_0(\mu-\mu_0)^2 = (\underbrace{\lambda_0+n}_{\lambda_1})(\mu-\mu_1) + \underbrace{s_n^2+\dfrac{n\lambda_0(\bar x_n-\mu_0)}{\lambda_0+n}}_{\beta_1}\]
 
 Entonces
 
@@ -71,30 +94,7 @@ Por lo que $[\tau|x]\sim \Gamma(\alpha_1,\beta_1)$ y $[\mu|\tau,x] \sim N(\mu_1,
 
 * *Limitación*: $\mu$ y $\tau$ son independientes. Al combinar con la verosimilitud, cualquier tipo de independencia a nivel de previas se pierde.
 
-**Ejemplo**. Concentraciones de ácido en queso $X_1,\dots, X_n\sim N(\mu,\tau)$,
-\[\mu,\tau \sim \text{Normal-Gamma}(\mu_0 = 1, \lambda_0 = 1,\alpha_0 = 1/2, \beta_0 = 1/2)\]
 
-Los datos de este experimento son $n = 10$, $\bar x_n = 1.379$, $s_n^2 = 0.9663$. Aplicando las fórmulas del teorema anterior:
-
-* $\mu_1 = \dfrac{1\cdot 1 + 10\cdot 1.379}{1+10} = 1.345$.
-
-* $\lambda_1 = \lambda_0+n = 1 +10 = 11$.
-
-* $\alpha_1 = \alpha_0 + \dfrac n2 = \dfrac 12 +\dfrac{10}2 = 5.5$.
-
-* $\beta_1 = \dfrac 12 + \dfrac 12\cdot 0.9663 + \dfrac{10\cdot1\cdot (1.379-1)^2}{2(1+10)} = 1.0484.$
-
-La posterior es \[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_1,\lambda_1,\alpha_1,\beta_1).\]
-
-Calculamos 
-
-\begin{align*}
-\mathbb P[\sigma>0.3|x] & = \mathbb P\bigg[\sqrt{\dfrac 1\tau} >0.3\bigg|x\bigg]\\
-& = \mathbb P\bigg[\dfrac 1\tau >0.3^2\bigg|x\bigg]\\ 
-& = \mathbb P\bigg[\tau >\dfrac 1{0.3^2}\bigg|x\bigg] = 0.984
-\end{align*}
-
-dado que $[\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(5.5,1.0484)$.
 
 ## Distribución marginal de $\mu$
 
@@ -102,11 +102,11 @@ dado que $[\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(5.5,1.0484)$.
 
 \[\left(\dfrac{\lambda_0\alpha_0}{\beta}\right)^{\frac 12}(\mu-\mu_0)\sim t_{2\alpha_0}.\]
 
-*Prueba*. Vea que $\mu|\tau \sim N(\mu_0,\lambda_0\tau)$. Se despeja la desviación estándar,
+*Prueba*. Vea que $\mu|\tau \sim N(\mu_0,\lambda_0\tau)$. Se despeja la desviación estándar, 
+
 \[\lambda_0\tau = \dfrac 1{\sigma^2} \implies \sigma = (\lambda_0\tau)^{-\frac 12}.\]
 
-Entonces
-\[Z = \dfrac{\mu-\mu_0}{\sqrt{\lambda_0\tau}}\Bigg|\tau \sim N(0,1).\]
+Entonces \[Z = \dfrac{\mu-\mu_0}{\sqrt{\lambda_0\tau}}\Bigg|\tau \sim N(0,1).\]
 
 La densidad conjunta de $(Z,\tau)$ es
 \[f(z,\tau) = \pi_2(\tau)\cdot\pi_1(z|\tau)\]
@@ -122,7 +122,7 @@ f(z,\tau) & = \pi_2(\tau)\cdot \underbrace{g_1((\lambda_0\tau)^{-\frac 12}z+\mu_
  
  Sea $Y = 2\beta_0\tau$ y $\tau\sim \Gamma(\alpha_0,\beta_0)$, entonces
  
- \[Y\sim \Gamma\left(\dfrac{2\alpha_0}{2},\dfrac12 \implies Y\sim \chi^2_{2\alpha_0}\right)\]
+ \[Y\sim \Gamma\left(\dfrac{2\alpha_0}{2},\dfrac12\right) \implies Y\sim \chi^2_{2\alpha_0}\]
  y $Y$ es independiente de $Z$.
  
  Por lo tanto,
@@ -140,7 +140,145 @@ f(z,\tau) & = \pi_2(\tau)\cdot \underbrace{g_1((\lambda_0\tau)^{-\frac 12}z+\mu_
  
  * $\text{Var}(\mu) = \dfrac{\beta_0}{\alpha_0\lambda_0}\cdot \dfrac{\alpha_0}{\alpha_0-1} = \dfrac{\beta_0}{\lambda_0(\alpha_0-1)}$.
  
- **Ejemplo**. $X_1,\dots,X_{18}$ días de hospitalización en 18 centros de salud.
+
+ 
+ **Ejemplo**. Se hizo un experimento para determinar la relación del sabor del
+queso con respecto a su composición química. 
+
+Vamos a cargar la base de datos que corresponde a este estudio. 
+
+```{r }
+cheese <- read.table("./data/cheese_data.txt", header = TRUE)
+head(cheese)
+```
+
+El químico más importante en este estudio es el ácido láctico (`Lactic`). 
+
+```{r }
+hist(cheese$Lactic)
+```
+_Intervalo \(t\)-student_
+
+Queremos construir un intervalo de confianza al 90% para la media
+de esta variable.  
+
+De acuerdo al histograma podemos asumir que las oncentraciones de ácido en queso
+$X_1,\dots, X_n\sim N(\mu,\sigma^2)$
+
+Primero empecemos usando la técnica que aprendimos en el capítulo pasado y
+haremos un intervalo de confianza con cuantiles \(t\)-student.
+
+```{r }
+(Xbar <- mean(cheese$Lactic))
+(s <- sd(cheese$Lactic))
+(s2 <- var(cheese$Lactic))
+(n <- length(cheese$Lactic))
+(gamma <- 0.9)
+(level <- (gamma + 1)/2)
+(tquantile <- qt(p = level, df = n - 1 ))
+c(Xbar - tquantile * s/sqrt(n), Xbar + tquantile * s/sqrt(n))
+```
+
+
+_Intervalo Gamma-Normal_
+
+Ahora supongamos que $X_1,\dots, X_n$  es normal con media 
+\(\mu\) y precisión
+\(\tau\). Entonces 
+\[\mu,\tau \sim
+\text{Normal-Gamma}(\mu_0 = 1, \lambda_0 = 1,\alpha_0 = 1/2, \beta_0 = 1/2)\]
+
+Los hiperparámetros \(\mu_0,\lambda_0, \alpha_0, \beta_0\) son escogidos de
+basados en la experiencia previa (que puede ser ninguna). 
+
+```{r }
+mu_0 <- lambda_0 <- 1
+alpha_0 <- beta_0 <- 1/2
+```
+
+Los datos de este experimento son $n = `r n`$, $\bar x_n = `r Xbar`$, $s_n^2 =
+`r s2`$. Aplicando las fórmulas del teorema anterior:
+
+```{r }
+(mu_1 <- (lambda_0 * mu_0 + n * Xbar) / (lambda_0 + n))
+(lambda_1 <- lambda_0 + n)
+(alpha_1 <- alpha_0 + n / 2)
+(beta_1 <- 0.5 * beta_0 * (n-1)*s^2 + n * lambda_0 * (Xbar - mu_0) / (2 * (lambda_0 + n)))
+```
+
+
+* $\mu_1 = `r mu_1`$.
+
+* $\lambda_1 = `r lambda_1`$.
+
+* $\alpha_1 = `r alpha_1`$.
+
+* $\beta_1 = `r beta_1`$
+
+La posterior es \[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_1,\lambda_1,\alpha_1,\beta_1).\]
+
+```{r }
+library(NormalGamma)
+
+previa <- dnormgam(par = c(mu_0, sqrt(s2/lambda_0), alpha_0, 1/beta_0), plot = FALSE)
+posterior <- dnormgam(par = c(mu_1, sqrt(s2/lambda_1), alpha_1, 1/beta_1), plot = FALSE)
+
+df <- rbind(data.frame(distribucion = "Previa", x = previa$xout, y = previa$dout),
+            data.frame(distribucion = "Posterior", x= posterior$xout, y=posterior$dout))
+
+ggplot(df, aes(x,y, color=distribucion)) +
+  geom_point() +
+  theme_minimal()
+```
+
+
+Podemos calcular inferencias sobre el \(\sigma\)  usando el hecho que \(\tau\)
+es Gamma. 
+
+\begin{align*}
+\mathbb P[\sigma>0.3|x] & = \mathbb P\bigg[\sqrt{\dfrac 1\tau} >0.3\bigg|x\bigg]\\
+& = \mathbb P\bigg[\dfrac 1\tau >0.3^2\bigg|x\bigg]\\ 
+& = \mathbb P\bigg[\tau >\dfrac 1{0.3^2}\bigg|x\bigg] = 0.984
+\end{align*}
+
+dado que $[\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(`r alpha_1`,`r beta_1`)$.
+
+
+ Lo más importante es que basados en el teorema de las marginales podemos
+ construir un intervalo de confianza para \(\mu\). Note que si que tenemos la
+ posterior, entonces sabemos que  
+ 
+ \[U = \left(\dfrac{\lambda_1\alpha_1}{\beta_1}\right)^{\frac 12}(\mu-\mu_1) \sim t_{2\alpha_1} \]
+ 
+ entonces 
+  
+\begin{equation*}
+\mathbb P \left(t_{2\alpha_1, \gamma_1} \leq U \leq t_{2\alpha_1,
+\gamma_2}\right) = \gamma
+\end{equation*}
+
+Solo basta despejar \(U\) con respecto a \(\mu\). Como los cuantiles de la t son
+simétricos, la solución es 
+
+\begin{equation*}
+\mathbb P \left(\mu_1 - \left(\dfrac{\beta_1}{\lambda_1\alpha_1}\right)^{1/2}
+t_{2\alpha_1, \tfrac{\gamma+1}{2}} 
+\leq U 
+\leq \mu_1 + \left(\dfrac{\beta_1}{\lambda_1\alpha_1}\right)^{1/2} t_{2\alpha_1, \tfrac{\gamma+1}{2}}\right)
+\end{equation*}
+ 
+ 
+ ```{r }
+
+ tquantile2alpha <- qt(p = level, df = 2*alpha_1)
+c(
+  mu_1 - tquantile2alpha * (beta_1 / (lambda_1 * alpha_1))^(1 / 2),
+  mu_1 + tquantile2alpha * (beta_1 / (lambda_1 * alpha_1))^(1 / 2)
+)
+```
+**Noten que para este caso, encontramos un intervalo más pequeño que antes. **
+ 
+ **Ejemplo**. Suponga que $X_1,\dots,X_{n}$ son los días de hospitalización en 18 centros de salud. (ver ejemplo 8.6.3, pág 500). 
  
  \[[\mu,\tau]\sim \text{Normal-Gamma}(\mu_0=200,\lambda_0=2,\alpha_0=2,\beta_0=6300).\]
  
@@ -164,19 +302,88 @@ f(z,\tau) & = \pi_2(\tau)\cdot \underbrace{g_1((\lambda_0\tau)^{-\frac 12}z+\mu_
  \[F_{t_{22}}(u|x) = \dfrac{0.95+1}{2} \implies u = t_{22,0.975}=2.074\]
  y
  \[0.95 = \mathbb P[-2.074<0.0657(\mu-183.95)<2.074|x].\]
- El **intervalo de credibilidad o predicción** es $[152.38,215.52]$. 
+
+El **intervalo de credibilidad o predicción** es $[152.38,215.52]$. 
  
  Si  $X_1,\dots,X_{18}\sim N(\mu,\sigma^2)$, $\mu,\sigma^2$ fijos y desconocidos.
  \[\bar X_n+t_{17,0.975}\dfrac{\sigma'}{\sqrt {18}} \text{ al }95\%.\]
  El intervalo de confianza es $[146.25,218.09]$.
  
+_Ejercicio_
+Usando los datos de la  variable `InPatientDays` de
+la siguiente base de datos.  
 
-## Efecto de previas no informativas
 
- Considere una **previa no informativa**: $[\mu,\tau] \propto [\mu]\cdot[\tau]$ (supuesto de independencia), con $[\mu] \propto 1$, $\tau = \dfrac1{\sigma^2}$ y $[\sigma] \propto \dfrac{1}{\sigma}$.
+```{r }
+load("./data/Nursing.rda")
+head(Nursing$InPatientDays)
+```
+Repita los cálculos númericos del ejercicio igual que el ejemplo pasado. 
+
+## Intervalos de credibilidad. 
+
+El intervalo de credibilidad de una distribución posterior se define como los
+valores \(A\) y \(B\) tal que
+
+\begin{equation*}
+\mathbb P (A\leq \pi(\theta\vert x) \leq B) = \gamma
+\end{equation*}
+
+para algún \(\gamma>0\). 
+
+
+**Ejemplo:** Supongamos que tenemos los tiempos de vida  unos aparatos  \(X_1, X_2, X_3 \sim \mathrm{Exp}(\theta)\). La previa de \(\theta\) es \(\Gamma(1,2)\). Sabemos desde antes que 
+
+\begin{equation*}
+\theta \vert X \sim \Gamma(4, 2+ \sum_{i=1}^3 X_i). 
+\end{equation*}
+
+Y la medía del estimador es 
+\begin{equation*}
+\mathbb E [\theta\vert X] = \hat \theta = \dfrac{4}{2+ \sum_{i=1}^3 X_i }
+\end{equation*}
+
+
+```{r }
+# Valores dados con paramétro desconocido
+X<- rexp(n = 3, rate = 2)
+gamma <- 0.95
+level <- (gamma+1)/2
+
+alpha <- 4
+beta <- 2 + sum(X)
+
+(theta_hat <- alpha/beta)
+
+A <- qgamma(p = 0.025, shape = alpha, rate = beta)
+B <- qgamma(p = 0.975, shape = alpha, rate = beta)
+
+c(A,B)
+
+ggplot(data = data.frame(x = c(0, 4)), aes(x)) +
+  stat_function(fun = dgamma, args = list(shape = alpha, rate = beta)) +
+  geom_vline(xintercept = A, color ="red") +
+  geom_vline(xintercept = B, color ="red") +
+  geom_vline(xintercept = theta_hat, color ="blue") +
+  theme_minimal()
+  
+
+```
+
+_Ejercicio_ Para hacer este ejercicio sin usar bayes, se debe resolver usando
+una función estabilizadora de la varianza. Encuentre esa función y aplique el
+procedimiento que vimos el capítulo anterior.
+
+
+## Efecto de previas no informativas (Opcional)
+
+ Considere una **previa no informativa**: $[\mu,\tau] \propto [\mu]\cdot[\tau]$ (supuesto de
+ independencia), con $[\mu] \propto 1$, $\tau = \dfrac1{\sigma^2}$ y $[\sigma] \propto \dfrac{1}{\sigma}$.
  
 Dado que $\sigma = (\tau)^{-\frac{1}2}$, usando el teorema de cambio de variables,
-\[\dfrac{d\theta}{d\tau} = -\dfrac12\tau^{-\frac32} \implies \bigg|\dfrac12\tau^{-\frac32}\bigg|f_\sigma\left(\dfrac 1{\tau^{\frac12}}\right) = \dfrac 12 \tau^{-1}.\]
+\[\dfrac{d\sigma}{d\tau} = -\dfrac12\tau^{-\frac32} \implies
+\bigg|\dfrac12\tau^{-\frac32}\bigg|f_\sigma\left(\dfrac 1{\tau^{\frac12}}\right) = \dfrac
+12 \tau^{-1}.\]
  
  Entonces $[\mu,\tau]\propto\tau^{-1}$.
  
@@ -199,7 +406,10 @@ Dado que $\sigma = (\tau)^{-\frac{1}2}$, usando el teorema de cambio de variable
  
  \[\mu,\tau|x \sim \text{Normal-Gamma}(\mu_1 = \bar X_n,\lambda_1=n,\alpha_1=(n-1)/2,\beta_0=s_n^2/2).\]
  
- **Ejemplo**. Tomando $\bar X_n = 5.134$, $s_n^2 = 63.96$ con una previa no informativa para $\mu,\tau$. Entonces la posterior es Normal-Gamma con hiperparámetros: $\mu_1 = 5.134$, $\lambda_1 = 26$, $\alpha = \dfrac{25}2$, $\beta_1 = 31.98$. Queremos hacer inferencia sobre $\mu$:
+ **Ejemplo**. Tomando $\bar X_n = 5.134$, $s_n^2 = 63.96$ con una previa no
+ informativa para $\mu,\tau$. Entonces la posterior es Normal-Gamma con
+ hiperparámetros: $\mu_1 = 5.134$, $\lambda_1 = 26$, $\alpha = \dfrac{25}2$,
+ $\beta_1 = 31.98$. Queremos hacer inferencia sobre $\mu$:
  
  \begin{align*}
  0.95 & = \mathbb P[-t_{25,0.975}<U<t_{25,0.975}]\\
@@ -210,11 +420,18 @@ Dado que $\sigma = (\tau)^{-\frac{1}2}$, usando el teorema de cambio de variable
  
 Calculemos $\mathbb P[\mu>4|x]$. Sea $w =\left(\dfrac{\alpha_1\lambda_1}{\beta_1}\right)^{\frac 12} = 3.188$.
 
-\[\mathbb P[\mu>4|x] = P[w(\mu-\bar X_n)>w(4-\bar X_n)]=1-T_{t_{25}}(-3.615) = 0.9993.\] 
+\[  
+\mathbb P[\mu>4|x] = P[w(\mu-\bar X_n)>w(4-\bar X_n)]=1-T_{t_{25}}(-3.615) =
+0.9993.
+\]
  
 Generalizando:
 
-\[w = \left(\dfrac{n(n-1)/2}{s_n^2/2}\right)^{\frac 12} = \left(\dfrac{n(n-1)}{s_n^2}\right)^{\frac 12} = \left(\dfrac{n}{(\sigma')^2}\right)^{\frac 12}.\]
+\[ 
+w = \left(\dfrac{n(n-1)/2}{s_n^2/2}\right)^{\frac 12} =
+\left(\dfrac{n(n-1)}{s_n^2}\right)^{\frac 12} =
+\left(\dfrac{n}{(\sigma')^2}\right)^{\frac 12}.
+\]
 
 Entonces
 
