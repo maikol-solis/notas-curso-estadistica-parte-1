@@ -210,7 +210,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#precisión-de-una-distribución-normal"><i class="fa fa-check"></i><b>8.1</b> Precisión de una distribución normal</a></li>
 <li class="chapter" data-level="8.2" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#distribución-marginal-de-mu"><i class="fa fa-check"></i><b>8.2</b> Distribución marginal de <span class="math inline">\(\mu\)</span></a></li>
-<li class="chapter" data-level="8.3" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#efecto-de-previas-no-informativas"><i class="fa fa-check"></i><b>8.3</b> Efecto de previas no informativas</a></li>
+<li class="chapter" data-level="8.3" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#intervalos-de-credibilidad."><i class="fa fa-check"></i><b>8.3</b> Intervalos de credibilidad.</a></li>
+<li class="chapter" data-level="8.4" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#efecto-de-previas-no-informativas-opcional"><i class="fa fa-check"></i><b>8.4</b> Efecto de previas no informativas (Opcional)</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html"><i class="fa fa-check"></i><b>9</b> Estimación insesgada</a>
 <ul>
@@ -261,6 +262,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-una-cola"><i class="fa fa-check"></i><b>13.2</b> Hipótesis de una cola</a></li>
 <li class="chapter" data-level="13.3" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-2-colas"><i class="fa fa-check"></i><b>13.3</b> Hipótesis de 2 colas</a></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html"><i class="fa fa-check"></i><b>14</b> Ejercicios varios</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#capítulo-8"><i class="fa fa-check"></i><b>14.1</b> Capítulo 8</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#section"><i class="fa fa-check"></i><b>14.1.1</b> 8.4.6</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -283,14 +291,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="precisión-de-una-distribución-normal" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Precisión de una distribución normal</h2>
 <p><strong>Definición</strong>. La precisión <span class="math inline">\(\tau\)</span> de una normal se define como <span class="math inline">\(\tau = \dfrac 1{\sigma^2}\)</span>.</p>
-<p>Sean <span class="math inline">\(X_1,\dots,X_n\sim N(\mu,\sigma^2) = N(\mu,\tau)\)</span>. Su densidad corresponde a</p>
-<p><span class="math display">\[f(x|\mu,\sigma^2) = \left(\dfrac 1{2\pi\sigma^2}\right)\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] = \left(\dfrac \tau{2\pi}\right)\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).\]</span></p>
+<p>Sean <span class="math inline">\(X_1,\dots,X_n\sim N(\mu,\sigma^2) = N(\mu,\tau ^{-1})\)</span>. Su densidad corresponde a</p>
+<p><span class="math display">\[\begin{align*}
+f(x|\mu,\sigma^2) 
+&amp;= \left(\dfrac 1{2\pi\sigma^2}\right)\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] \\
+&amp;= \left(\dfrac \tau{2\pi}\right)\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).
+\end{align*}\]</span></p>
 <p>La verosimilitud es</p>
 <p><span class="math display">\[f_n(x|\mu,\tau) = \left(\dfrac\tau{2\pi}\right)^{\frac n2}\exp\bigg[-\dfrac\tau2\sum_{i=1}^2(x_i-\mu)^2
 \bigg].\]</span></p>
-<p>La previa de la densidad conjunta es <span class="math inline">\([\mu,\tau|x]\propto [\mu|\tau]\cdot[\tau]\)</span> y la posterior <span class="math inline">\([\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]\)</span>.</p>
+<p>La previa de la densidad conjunta es <span class="math inline">\([\mu,\tau]\propto [\mu|\tau]\cdot [\tau]\)</span> y la posterior <span class="math inline">\([\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]\)</span>.</p>
 <p>Las previas por seleccionar son <span class="math inline">\([\mu|\tau]\sim \text{Normal}\)</span> y <span class="math inline">\([\tau]\sim\text{Gamma}\)</span>.</p>
-<p><strong>Teorema</strong>. Si <span class="math inline">\(X_1,\dots,X_n \overset{i.i.d}{\sim} N(\mu,\tau)\)</span>, <span class="math inline">\(\mu \in \mathbb R\)</span>, <span class="math inline">\(\tau&gt;0\)</span> (precisión) y <span class="math inline">\(\mu\sim N(\mu_0,\lambda_0\tau)\)</span>, <span class="math inline">\(\mu\in\mathbb R\)</span>, <span class="math inline">\(\lambda_0&gt;0\)</span>, <span class="math inline">\(\tau\sim\Gamma(\alpha_0,\beta_0)\)</span>, <span class="math inline">\(\alpha_0,\beta_0&gt;0\)</span>.</p>
+<p><strong>Recuerde:</strong> La distribución Gamma tiene forma</p>
+<p><span class="math display">\[\begin{equation*}f(x \mid \alpha, \beta)=\left\{\begin{array}{ll}
+\frac{\beta^{\alpha}}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x} &amp; \text { for } x&gt;0 \\
+0 &amp; \text { for } x \leq 0
+\end{array}\right.\end{equation*}\]</span></p>
+<p>Y la verosimilitud es</p>
+<p><span class="math display">\[\begin{equation*}
+f_n(x \mid \alpha, \beta)=\left\{\begin{array}{ll}
+\displaystyle \frac{\beta^{n\alpha}}{\Gamma(\alpha)^n} \left(\prod_{i=1}^n x_i\right) ^{\alpha-1} e^{-\beta \sum_{i=1}^n  x_i} &amp; \text { for } x&gt;0 \\
+0 &amp; \text { for } x \leq 0
+\end{array}\right.\end{equation*}\]</span></p>
+<p><strong>Teorema</strong>. Si <span class="math inline">\(X_1,\dots,X_n \overset{i.i.d}{\sim} N(\mu,\tau ^{-1})\)</span>, <span class="math inline">\(\mu \in \mathbb R\)</span>,
+<span class="math inline">\(\tau&gt;0\)</span> (precisión) y <span class="math inline">\(\mu\sim N(\mu_0,\lambda_0\tau)\)</span>, <span class="math inline">\(\mu\in\mathbb R\)</span>, <span class="math inline">\(\lambda_0&gt;0\)</span>, <span class="math inline">\(\tau\sim\Gamma(\alpha_0,\beta_0)\)</span>,
+<span class="math inline">\(\alpha_0,\beta_0&gt;0\)</span>.</p>
 <p>Entonces
 <span class="math display">\[[\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]\]</span>
 donde <span class="math inline">\([\mu|\tau,x] \sim N(\mu_1,\lambda_1\tau)\)</span> con</p>
@@ -302,7 +327,7 @@ y <span class="math inline">\([\tau] \sim \Gamma(\alpha_1,\beta_1)\)</span>,
 <li>Previa:</li>
 </ul>
 <p><span class="math display">\[\begin{align*}
-[\mu,\tau] &amp; \propto [\mu|\tau]\cdot[\tau]\\
+[\mu,\tau] &amp; \propto [\mu|\tau] \cdot[\tau] \\
 &amp; = \tau^{\frac 12}\exp\bigg[-\dfrac{\lambda_0\tau}2(\mu-\mu_0)\cdot \tau^{\alpha_0-1}e^{-\beta_0\tau}\bigg]\\
 &amp; = \tau^{\alpha_0-\frac 12}\exp\bigg[-\dfrac{\lambda_0\tau}{2}(\mu-\mu_0)^2 - \beta_0\tau\bigg]
 \end{align*}\]</span></p>
@@ -311,15 +336,15 @@ y <span class="math inline">\([\tau] \sim \Gamma(\alpha_1,\beta_1)\)</span>,
 </ul>
 <p><span class="math display">\[\begin{align*}
 [\mu,\tau|x] &amp; \propto [\mu,\tau]\cdot[x|\mu,\tau]\\
-&amp; \propto  [\mu,\tau]\cdot\tau^{\frac 12} \exp\bigg[-\dfrac\tau 2\sum(x_i-\mu)^2\bigg]\\
+&amp; \propto  [\mu,\tau]\cdot\tau^{\frac 12} \exp\bigg[-\dfrac\tau 2\sum_{i=1}^n(x_i-\mu)^2\bigg]\\
 &amp; \propto \tau^{\alpha_0+\frac{n+1}2-1}\exp\bigg[-\dfrac\tau 2(\lambda_0[\mu-\mu_0]^2 + \sum(x_i-\mu)^2-\beta_0\tau\bigg]
 \end{align*}\]</span></p>
-<p>Además
-<span class="math display">\[\sum_{i=1}^n (x_i-\mu)^2 = \sum_{i=1}^n (x_i-\bar x_n + \bar x_n -\mu)^2 = s_n^2 + n(\bar x_n-\mu)^2.\]</span></p>
+<p>Además</p>
+<p><span class="math display">\[\sum_{i=1}^n (x_i-\mu)^2 = \sum_{i=1}^n (x_i-\bar x_n + \bar x_n -\mu)^2 = s_n^2 + n(\bar x_n-\mu)^2.\]</span></p>
 <p>Completando cuadrados (queda como ejercicio) se obtiene</p>
 <p><span class="math display">\[n(\bar x_n -\mu)^2 + \lambda_0(\mu-\mu_0)^2 = (\lambda_0+n)(\mu-\mu_1)^2 + \dfrac{n\lambda_0(\bar x_n-\mu_0)}{\lambda_0+n}.\]</span></p>
 <p>Entonces</p>
-<p><span class="math display">\[\sum(x_i-\mu)^2 +\lambda_0(\mu-\mu_0)^2 = (\underbrace{\lambda_0+n}_{\lambda_1})(\mu-\mu_1) + \underbrace{s_n^2+\dfrac{n\lambda_0(\bar x_n-\mu_0)}{\lambda_0+n}}_{\beta_1}\]</span></p>
+<p><span class="math display">\[\sum_{i=1}^{n}(x_i-\mu)^2 +\lambda_0(\mu-\mu_0)^2 = (\underbrace{\lambda_0+n}_{\lambda_1})(\mu-\mu_1) + \underbrace{s_n^2+\dfrac{n\lambda_0(\bar x_n-\mu_0)}{\lambda_0+n}}_{\beta_1}\]</span></p>
 <p>Entonces</p>
 <p><span class="math display">\[[\mu,\tau|x] \propto \underbrace{\tau^{\overbrace{\alpha_0+\frac n2 -1}^{\alpha_1}}\exp[-\beta_1\tau]}_{[\tau|x]} \cdot \underbrace{\tau^{\frac 12} \exp\bigg[-\dfrac{\lambda_1\tau}{2}(\mu-\mu_1)^2\bigg]}_{[\mu|\tau,x]}\]</span></p>
 <p>Por lo que <span class="math inline">\([\tau|x]\sim \Gamma(\alpha_1,\beta_1)\)</span> y <span class="math inline">\([\mu|\tau,x] \sim N(\mu_1,\lambda_1\tau)\)</span>.</p>
@@ -329,32 +354,14 @@ y <span class="math inline">\([\tau] \sim \Gamma(\alpha_1,\beta_1)\)</span>,
 <li><p><em>Conclusión</em>: la Normal-Gamma conjuga con una verosimilitud normal.</p></li>
 <li><p><em>Limitación</em>: <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\tau\)</span> son independientes. Al combinar con la verosimilitud, cualquier tipo de independencia a nivel de previas se pierde.</p></li>
 </ul>
-<p><strong>Ejemplo</strong>. Concentraciones de ácido en queso <span class="math inline">\(X_1,\dots, X_n\sim N(\mu,\tau)\)</span>,
-<span class="math display">\[\mu,\tau \sim \text{Normal-Gamma}(\mu_0 = 1, \lambda_0 = 1,\alpha_0 = 1/2, \beta_0 = 1/2)\]</span></p>
-<p>Los datos de este experimento son <span class="math inline">\(n = 10\)</span>, <span class="math inline">\(\bar x_n = 1.379\)</span>, <span class="math inline">\(s_n^2 = 0.9663\)</span>. Aplicando las fórmulas del teorema anterior:</p>
-<ul>
-<li><p><span class="math inline">\(\mu_1 = \dfrac{1\cdot 1 + 10\cdot 1.379}{1+10} = 1.345\)</span>.</p></li>
-<li><p><span class="math inline">\(\lambda_1 = \lambda_0+n = 1 +10 = 11\)</span>.</p></li>
-<li><p><span class="math inline">\(\alpha_1 = \alpha_0 + \dfrac n2 = \dfrac 12 +\dfrac{10}2 = 5.5\)</span>.</p></li>
-<li><p><span class="math inline">\(\beta_1 = \dfrac 12 + \dfrac 12\cdot 0.9663 + \dfrac{10\cdot1\cdot (1.379-1)^2}{2(1+10)} = 1.0484.\)</span></p></li>
-</ul>
-<p>La posterior es <span class="math display">\[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_1,\lambda_1,\alpha_1,\beta_1).\]</span></p>
-<p>Calculamos</p>
-<p><span class="math display">\[\begin{align*}
-\mathbb P[\sigma&gt;0.3|x] &amp; = \mathbb P\bigg[\sqrt{\dfrac 1\tau} &gt;0.3\bigg|x\bigg]\\
-&amp; = \mathbb P\bigg[\dfrac 1\tau &gt;0.3^2\bigg|x\bigg]\\ 
-&amp; = \mathbb P\bigg[\tau &gt;\dfrac 1{0.3^2}\bigg|x\bigg] = 0.984
-\end{align*}\]</span></p>
-<p>dado que <span class="math inline">\([\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(5.5,1.0484)\)</span>.</p>
 </div>
 <div id="distribución-marginal-de-mu" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Distribución marginal de <span class="math inline">\(\mu\)</span></h2>
 <p><strong>Teorema</strong>. Suponga que <span class="math inline">\([\mu,\tau]\sim \text{Normal-Gamma}(\mu_0,\lambda_0,\alpha_0,\beta_0)\)</span>. Entonces</p>
 <p><span class="math display">\[\left(\dfrac{\lambda_0\alpha_0}{\beta}\right)^{\frac 12}(\mu-\mu_0)\sim t_{2\alpha_0}.\]</span></p>
-<p><em>Prueba</em>. Vea que <span class="math inline">\(\mu|\tau \sim N(\mu_0,\lambda_0\tau)\)</span>. Se despeja la desviación estándar,
-<span class="math display">\[\lambda_0\tau = \dfrac 1{\sigma^2} \implies \sigma = (\lambda_0\tau)^{-\frac 12}.\]</span></p>
-<p>Entonces
-<span class="math display">\[Z = \dfrac{\mu-\mu_0}{\sqrt{\lambda_0\tau}}\Bigg|\tau \sim N(0,1).\]</span></p>
+<p><em>Prueba</em>. Vea que <span class="math inline">\(\mu|\tau \sim N(\mu_0,\lambda_0\tau)\)</span>. Se despeja la desviación estándar,</p>
+<p><span class="math display">\[\lambda_0\tau = \dfrac 1{\sigma^2} \implies \sigma = (\lambda_0\tau)^{-\frac 12}.\]</span></p>
+<p>Entonces <span class="math display">\[Z = \dfrac{\mu-\mu_0}{\sqrt{\lambda_0\tau}}\Bigg|\tau \sim N(0,1).\]</span></p>
 <p>La densidad conjunta de <span class="math inline">\((Z,\tau)\)</span> es
 <span class="math display">\[f(z,\tau) = \pi_2(\tau)\cdot\pi_1(z|\tau)\]</span></p>
 <p>Si <span class="math inline">\(g_1(\mu|\tau)\)</span> es la densidad de <span class="math inline">\(\mu|\tau\)</span>, por teorema de cambio de variable</p>
@@ -364,7 +371,7 @@ f(z,\tau) &amp; = \pi_2(\tau)\cdot \underbrace{g_1((\lambda_0\tau)^{-\frac 12}z+
  \end{align*}\]</span></p>
 <p>Entonces <span class="math inline">\(Z\)</span> y <span class="math inline">\(\tau\)</span> son independientes y <span class="math inline">\(Z\sim N(0,1)\)</span>.</p>
 <p>Sea <span class="math inline">\(Y = 2\beta_0\tau\)</span> y <span class="math inline">\(\tau\sim \Gamma(\alpha_0,\beta_0)\)</span>, entonces</p>
-<p><span class="math display">\[Y\sim \Gamma\left(\dfrac{2\alpha_0}{2},\dfrac12 \implies Y\sim \chi^2_{2\alpha_0}\right)\]</span>
+<p><span class="math display">\[Y\sim \Gamma\left(\dfrac{2\alpha_0}{2},\dfrac12\right) \implies Y\sim \chi^2_{2\alpha_0}\]</span>
 y <span class="math inline">\(Y\)</span> es independiente de <span class="math inline">\(Z\)</span>.</p>
 <p>Por lo tanto,
 <span class="math display">\[U = \dfrac Z{\left( \dfrac Y{2\alpha_0}\right)^{\frac 12}}\sim t_{2\alpha_0}.\]</span>
@@ -377,7 +384,117 @@ Observe que
 <li><p><span class="math inline">\(\mathbb E(\mu) = \mu_0 + 0 = \mu_0\)</span>.</p></li>
 <li><p><span class="math inline">\(\text{Var}(\mu) = \dfrac{\beta_0}{\alpha_0\lambda_0}\cdot \dfrac{\alpha_0}{\alpha_0-1} = \dfrac{\beta_0}{\lambda_0(\alpha_0-1)}\)</span>.</p></li>
 </ul>
-<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots,X_{18}\)</span> días de hospitalización en 18 centros de salud.</p>
+<p><strong>Ejemplo</strong>. Se hizo un experimento para determinar la relación del sabor del
+queso con respecto a su composición química.</p>
+<p>Vamos a cargar la base de datos que corresponde a este estudio.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb127-1"></a>cheese &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./data/cheese_data.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb127-2"><a href="estimación-bayesiana-bajo-normalidad.html#cb127-2"></a><span class="kw">head</span>(cheese)</span></code></pre></div>
+<pre><code>##   Case taste Acetic   H2S Lactic
+## 1    1  12.3  4.543 3.135   0.86
+## 2    2  20.9  5.159 5.043   1.53
+## 3    3  39.0  5.366 5.438   1.57
+## 4    4  47.9  5.759 7.496   1.81
+## 5    5   5.6  4.663 3.807   0.99
+## 6    6  25.9  5.697 7.601   1.09</code></pre>
+<p>El químico más importante en este estudio es el ácido láctico (<code>Lactic</code>).</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb129-1"></a><span class="kw">hist</span>(cheese<span class="op">$</span>Lactic)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-54-1.svg" width="100%" style="display: block; margin: auto;" />
+<em>Intervalo <span class="math inline">\(t\)</span>-student</em></p>
+<p>Queremos construir un intervalo de confianza al 90% para la media
+de esta variable.</p>
+<p>De acuerdo al histograma podemos asumir que las oncentraciones de ácido en queso
+<span class="math inline">\(X_1,\dots, X_n\sim N(\mu,\sigma^2)\)</span></p>
+<p>Primero empecemos usando la técnica que aprendimos en el capítulo pasado y
+haremos un intervalo de confianza con cuantiles <span class="math inline">\(t\)</span>-student.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb130-1"></a>(Xbar &lt;-<span class="st"> </span><span class="kw">mean</span>(cheese<span class="op">$</span>Lactic))</span></code></pre></div>
+<pre><code>## [1] 1.442</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb132-1"></a>(s &lt;-<span class="st"> </span><span class="kw">sd</span>(cheese<span class="op">$</span>Lactic))</span></code></pre></div>
+<pre><code>## [1] 0.30349</code></pre>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb134-1"></a>(s2 &lt;-<span class="st"> </span><span class="kw">var</span>(cheese<span class="op">$</span>Lactic))</span></code></pre></div>
+<pre><code>## [1] 0.09210621</code></pre>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb136-1"></a>(n &lt;-<span class="st"> </span><span class="kw">length</span>(cheese<span class="op">$</span>Lactic))</span></code></pre></div>
+<pre><code>## [1] 30</code></pre>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb138-1"></a>(gamma &lt;-<span class="st"> </span><span class="fl">0.9</span>)</span></code></pre></div>
+<pre><code>## [1] 0.9</code></pre>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb140-1"></a>(level &lt;-<span class="st"> </span>(gamma <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.95</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb142-1"></a>(tquantile &lt;-<span class="st"> </span><span class="kw">qt</span>(<span class="dt">p =</span> level, <span class="dt">df =</span> n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## [1] 1.699127</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb144-1"></a><span class="kw">c</span>(Xbar <span class="op">-</span><span class="st"> </span>tquantile <span class="op">*</span><span class="st"> </span>s<span class="op">/</span><span class="kw">sqrt</span>(n), Xbar <span class="op">+</span><span class="st"> </span>tquantile <span class="op">*</span><span class="st"> </span></span>
+<span id="cb144-2"><a href="estimación-bayesiana-bajo-normalidad.html#cb144-2"></a><span class="st">    </span>s<span class="op">/</span><span class="kw">sqrt</span>(n))</span></code></pre></div>
+<pre><code>## [1] 1.347852 1.536148</code></pre>
+<p><em>Intervalo Gamma-Normal</em></p>
+<p>Ahora supongamos que <span class="math inline">\(X_1,\dots, X_n\)</span> es normal con media
+<span class="math inline">\(\mu\)</span> y precisión
+<span class="math inline">\(\tau\)</span>. Entonces
+<span class="math display">\[\mu,\tau \sim
+\text{Normal-Gamma}(\mu_0 = 1, \lambda_0 = 1,\alpha_0 = 1/2, \beta_0 = 1/2)\]</span></p>
+<p>Los hiperparámetros <span class="math inline">\(\mu_0,\lambda_0, \alpha_0, \beta_0\)</span> son escogidos de
+basados en la experiencia previa (que puede ser ninguna).</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb146-1"></a>mu_<span class="dv">0</span> &lt;-<span class="st"> </span>lambda_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb146-2"><a href="estimación-bayesiana-bajo-normalidad.html#cb146-2"></a>alpha_<span class="dv">0</span> &lt;-<span class="st"> </span>beta_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span></code></pre></div>
+<p>Los datos de este experimento son <span class="math inline">\(n = 30\)</span>, <span class="math inline">\(\bar x_n = 1.442\)</span>, <span class="math inline">\(s_n^2 = 0.0921062\)</span>. Aplicando las fórmulas del teorema anterior:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb147-1"></a>(mu_<span class="dv">1</span> &lt;-<span class="st"> </span>(lambda_<span class="dv">0</span> <span class="op">*</span><span class="st"> </span>mu_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>Xbar)<span class="op">/</span>(lambda_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>n))</span></code></pre></div>
+<pre><code>## [1] 1.427742</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb149-1"></a>(lambda_<span class="dv">1</span> &lt;-<span class="st"> </span>lambda_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>n)</span></code></pre></div>
+<pre><code>## [1] 31</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb151-1"></a>(alpha_<span class="dv">1</span> &lt;-<span class="st"> </span>alpha_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>n<span class="op">/</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 15.5</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb153-1"></a>(beta_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>beta_<span class="dv">0</span> <span class="op">*</span><span class="st"> </span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>s<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>lambda_<span class="dv">0</span> <span class="op">*</span><span class="st"> </span></span>
+<span id="cb153-2"><a href="estimación-bayesiana-bajo-normalidad.html#cb153-2"></a><span class="st">    </span>(Xbar <span class="op">-</span><span class="st"> </span>mu_<span class="dv">0</span>)<span class="op">/</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(lambda_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>n)))</span></code></pre></div>
+<pre><code>## [1] 0.881641</code></pre>
+<ul>
+<li><p><span class="math inline">\(\mu_1 = 1.4277419\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda_1 = 31\)</span>.</p></li>
+<li><p><span class="math inline">\(\alpha_1 = 15.5\)</span>.</p></li>
+<li><p><span class="math inline">\(\beta_1 = 0.881641\)</span></p></li>
+</ul>
+<p>La posterior es <span class="math display">\[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_1,\lambda_1,\alpha_1,\beta_1).\]</span></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-1"></a><span class="kw">library</span>(NormalGamma)</span>
+<span id="cb155-2"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-2"></a></span>
+<span id="cb155-3"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-3"></a>previa &lt;-<span class="st"> </span><span class="kw">dnormgam</span>(<span class="dt">par =</span> <span class="kw">c</span>(mu_<span class="dv">0</span>, <span class="kw">sqrt</span>(s2<span class="op">/</span>lambda_<span class="dv">0</span>), </span>
+<span id="cb155-4"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-4"></a>    alpha_<span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span>beta_<span class="dv">0</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb155-5"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-5"></a>posterior &lt;-<span class="st"> </span><span class="kw">dnormgam</span>(<span class="dt">par =</span> <span class="kw">c</span>(mu_<span class="dv">1</span>, <span class="kw">sqrt</span>(s2<span class="op">/</span>lambda_<span class="dv">1</span>), </span>
+<span id="cb155-6"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-6"></a>    alpha_<span class="dv">1</span>, <span class="dv">1</span><span class="op">/</span>beta_<span class="dv">1</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb155-7"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-7"></a></span>
+<span id="cb155-8"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-8"></a>df &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">data.frame</span>(<span class="dt">distribucion =</span> <span class="st">&quot;Previa&quot;</span>, <span class="dt">x =</span> previa<span class="op">$</span>xout, </span>
+<span id="cb155-9"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-9"></a>    <span class="dt">y =</span> previa<span class="op">$</span>dout), <span class="kw">data.frame</span>(<span class="dt">distribucion =</span> <span class="st">&quot;Posterior&quot;</span>, </span>
+<span id="cb155-10"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-10"></a>    <span class="dt">x =</span> posterior<span class="op">$</span>xout, <span class="dt">y =</span> posterior<span class="op">$</span>dout))</span>
+<span id="cb155-11"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-11"></a></span>
+<span id="cb155-12"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-12"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y, <span class="dt">color =</span> distribucion)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb155-13"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-13"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-58-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p>Podemos calcular inferencias sobre el <span class="math inline">\(\sigma\)</span> usando el hecho que <span class="math inline">\(\tau\)</span>
+es Gamma.</p>
+<p><span class="math display">\[\begin{align*}
+\mathbb P[\sigma&gt;0.3|x] &amp; = \mathbb P\bigg[\sqrt{\dfrac 1\tau} &gt;0.3\bigg|x\bigg]\\
+&amp; = \mathbb P\bigg[\dfrac 1\tau &gt;0.3^2\bigg|x\bigg]\\ 
+&amp; = \mathbb P\bigg[\tau &gt;\dfrac 1{0.3^2}\bigg|x\bigg] = 0.984
+\end{align*}\]</span></p>
+<p>dado que <span class="math inline">\([\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(15.5,0.881641)\)</span>.</p>
+<p>Lo más importante es que basados en el teorema de las marginales podemos
+construir un intervalo de confianza para <span class="math inline">\(\mu\)</span>. Note que si que tenemos la
+posterior, entonces sabemos que</p>
+<p><span class="math display">\[U = \left(\dfrac{\lambda_1\alpha_1}{\beta_1}\right)^{\frac 12}(\mu-\mu_1) \sim t_{2\alpha_1} \]</span></p>
+<p>entonces</p>
+<p><span class="math display">\[\begin{equation*}
+\mathbb P \left(t_{2\alpha_1, \gamma_1} \leq U \leq t_{2\alpha_1,
+\gamma_2}\right) = \gamma
+\end{equation*}\]</span></p>
+<p>Solo basta despejar <span class="math inline">\(U\)</span> con respecto a <span class="math inline">\(\mu\)</span>. Como los cuantiles de la t son
+simétricos, la solución es</p>
+<p><span class="math display">\[\begin{equation*}
+\mathbb P \left(\mu_1 - \left(\dfrac{\beta_1}{\lambda_1\alpha_1}\right)^{1/2}
+t_{2\alpha_1, \tfrac{\gamma+1}{2}} 
+\leq U 
+\leq \mu_1 + \left(\dfrac{\beta_1}{\lambda_1\alpha_1}\right)^{1/2} t_{2\alpha_1, \tfrac{\gamma+1}{2}}\right)
+\end{equation*}\]</span></p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb156-1"></a>tquantile2alpha &lt;-<span class="st"> </span><span class="kw">qt</span>(<span class="dt">p =</span> level, <span class="dt">df =</span> <span class="dv">2</span> <span class="op">*</span><span class="st"> </span>alpha_<span class="dv">1</span>)</span>
+<span id="cb156-2"><a href="estimación-bayesiana-bajo-normalidad.html#cb156-2"></a><span class="kw">c</span>(mu_<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>tquantile2alpha <span class="op">*</span><span class="st"> </span>(beta_<span class="dv">1</span><span class="op">/</span>(lambda_<span class="dv">1</span> <span class="op">*</span><span class="st"> </span>alpha_<span class="dv">1</span>))<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>), </span>
+<span id="cb156-3"><a href="estimación-bayesiana-bajo-normalidad.html#cb156-3"></a>    mu_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>tquantile2alpha <span class="op">*</span><span class="st"> </span>(beta_<span class="dv">1</span><span class="op">/</span>(lambda_<span class="dv">1</span> <span class="op">*</span><span class="st"> </span>alpha_<span class="dv">1</span>))<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## [1] 1.355114 1.500370</code></pre>
+<p><strong>Noten que para este caso, encontramos un intervalo más pequeño que antes. </strong></p>
+<p><strong>Ejemplo</strong>. Suponga que <span class="math inline">\(X_1,\dots,X_{n}\)</span> son los días de hospitalización en 18 centros de salud. (ver ejemplo 8.6.3, pág 500).</p>
 <p><span class="math display">\[[\mu,\tau]\sim \text{Normal-Gamma}(\mu_0=200,\lambda_0=2,\alpha_0=2,\beta_0=6300).\]</span></p>
 <p>Encuentre un intervalo que contenga <span class="math inline">\(\mu_1\)</span> centrado en <span class="math inline">\(\mu_0\)</span> tal que la probabilidad que eso pase sea <span class="math inline">\(0.95\)</span>.</p>
 <p><span class="math display">\[\left(\dfrac{\alpha_0\lambda_0}{\beta_0}\right)^{\frac 12}(\mu-\mu_0) = 0.025(\mu - 200)\sim t_{2\cdot2} = t_4.\]</span>
@@ -392,17 +509,68 @@ y el intervalo es <span class="math inline">\([89,311]\)</span>.</p>
 <p>Se busca <span class="math inline">\(u\)</span>:
 <span class="math display">\[F_{t_{22}}(u|x) = \dfrac{0.95+1}{2} \implies u = t_{22,0.975}=2.074\]</span>
 y
-<span class="math display">\[0.95 = \mathbb P[-2.074&lt;0.0657(\mu-183.95)&lt;2.074|x].\]</span>
-El <strong>intervalo de credibilidad o predicción</strong> es <span class="math inline">\([152.38,215.52]\)</span>.</p>
+<span class="math display">\[0.95 = \mathbb P[-2.074&lt;0.0657(\mu-183.95)&lt;2.074|x].\]</span></p>
+<p>El <strong>intervalo de credibilidad o predicción</strong> es <span class="math inline">\([152.38,215.52]\)</span>.</p>
 <p>Si <span class="math inline">\(X_1,\dots,X_{18}\sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\mu,\sigma^2\)</span> fijos y desconocidos.
 <span class="math display">\[\bar X_n+t_{17,0.975}\dfrac{\sigma&#39;}{\sqrt {18}} \text{ al }95\%.\]</span>
 El intervalo de confianza es <span class="math inline">\([146.25,218.09]\)</span>.</p>
+<p><em>Ejercicio</em>
+Usando los datos de la variable <code>InPatientDays</code> de
+la siguiente base de datos.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb158-1"></a><span class="kw">load</span>(<span class="st">&quot;./data/Nursing.rda&quot;</span>)</span>
+<span id="cb158-2"><a href="estimación-bayesiana-bajo-normalidad.html#cb158-2"></a><span class="kw">head</span>(Nursing<span class="op">$</span>InPatientDays)</span></code></pre></div>
+<pre><code>## [1] 128 155 281 291 238 180</code></pre>
+<p>Repita los cálculos númericos del ejercicio igual que el ejemplo pasado.</p>
 </div>
-<div id="efecto-de-previas-no-informativas" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Efecto de previas no informativas</h2>
-<p>Considere una <strong>previa no informativa</strong>: <span class="math inline">\([\mu,\tau] \propto [\mu]\cdot[\tau]\)</span> (supuesto de independencia), con <span class="math inline">\([\mu] \propto 1\)</span>, <span class="math inline">\(\tau = \dfrac1{\sigma^2}\)</span> y <span class="math inline">\([\sigma] \propto \dfrac{1}{\sigma}\)</span>.</p>
+<div id="intervalos-de-credibilidad." class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Intervalos de credibilidad.</h2>
+<p>El intervalo de credibilidad de una distribución posterior se define como los
+valores <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> tal que</p>
+<p><span class="math display">\[\begin{equation*}
+\mathbb P (A\leq \pi(\theta\vert x) \leq B) = \gamma
+\end{equation*}\]</span></p>
+<p>para algún <span class="math inline">\(\gamma&gt;0\)</span>.</p>
+<p><strong>Ejemplo:</strong> Supongamos que tenemos los tiempos de vida unos aparatos <span class="math inline">\(X_1, X_2, X_3 \sim \mathrm{Exp}(\theta)\)</span>. La previa de <span class="math inline">\(\theta\)</span> es <span class="math inline">\(\Gamma(1,2)\)</span>. Sabemos desde antes que</p>
+<p><span class="math display">\[\begin{equation*}
+\theta \vert X \sim \Gamma(4, 2+ \sum_{i=1}^3 X_i). 
+\end{equation*}\]</span></p>
+<p>Y la medía del estimador es
+<span class="math display">\[\begin{equation*}
+\mathbb E [\theta\vert X] = \hat \theta = \dfrac{4}{2+ \sum_{i=1}^3 X_i }
+\end{equation*}\]</span></p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb160-1"></a><span class="co"># Valores dados con paramétro desconocido</span></span>
+<span id="cb160-2"><a href="estimación-bayesiana-bajo-normalidad.html#cb160-2"></a>X &lt;-<span class="st"> </span><span class="kw">rexp</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">rate =</span> <span class="dv">2</span>)</span>
+<span id="cb160-3"><a href="estimación-bayesiana-bajo-normalidad.html#cb160-3"></a>gamma &lt;-<span class="st"> </span><span class="fl">0.95</span></span>
+<span id="cb160-4"><a href="estimación-bayesiana-bajo-normalidad.html#cb160-4"></a>level &lt;-<span class="st"> </span>(gamma <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb160-5"><a href="estimación-bayesiana-bajo-normalidad.html#cb160-5"></a></span>
+<span id="cb160-6"><a href="estimación-bayesiana-bajo-normalidad.html#cb160-6"></a>alpha &lt;-<span class="st"> </span><span class="dv">4</span></span>
+<span id="cb160-7"><a href="estimación-bayesiana-bajo-normalidad.html#cb160-7"></a>beta &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">sum</span>(X)</span>
+<span id="cb160-8"><a href="estimación-bayesiana-bajo-normalidad.html#cb160-8"></a></span>
+<span id="cb160-9"><a href="estimación-bayesiana-bajo-normalidad.html#cb160-9"></a>(theta_hat &lt;-<span class="st"> </span>alpha<span class="op">/</span>beta)</span></code></pre></div>
+<pre><code>## [1] 1.656052</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb162-1"></a>A &lt;-<span class="st"> </span><span class="kw">qgamma</span>(<span class="dt">p =</span> <span class="fl">0.025</span>, <span class="dt">shape =</span> alpha, <span class="dt">rate =</span> beta)</span>
+<span id="cb162-2"><a href="estimación-bayesiana-bajo-normalidad.html#cb162-2"></a>B &lt;-<span class="st"> </span><span class="kw">qgamma</span>(<span class="dt">p =</span> <span class="fl">0.975</span>, <span class="dt">shape =</span> alpha, <span class="dt">rate =</span> beta)</span>
+<span id="cb162-3"><a href="estimación-bayesiana-bajo-normalidad.html#cb162-3"></a></span>
+<span id="cb162-4"><a href="estimación-bayesiana-bajo-normalidad.html#cb162-4"></a><span class="kw">c</span>(A, B)</span></code></pre></div>
+<pre><code>## [1] 0.4512184 3.6297644</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb164-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">4</span>)), <span class="kw">aes</span>(x)) <span class="op">+</span><span class="st"> </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dgamma, </span>
+<span id="cb164-2"><a href="estimación-bayesiana-bajo-normalidad.html#cb164-2"></a>    <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">shape =</span> alpha, <span class="dt">rate =</span> beta)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> A, </span>
+<span id="cb164-3"><a href="estimación-bayesiana-bajo-normalidad.html#cb164-3"></a>    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> B, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb164-4"><a href="estimación-bayesiana-bajo-normalidad.html#cb164-4"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> theta_hat, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb164-5"><a href="estimación-bayesiana-bajo-normalidad.html#cb164-5"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-61-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><em>Ejercicio</em> Para hacer este ejercicio sin usar bayes, se debe resolver usando
+una función estabilizadora de la varianza. Encuentre esa función y aplique el
+procedimiento que vimos el capítulo anterior.</p>
+</div>
+<div id="efecto-de-previas-no-informativas-opcional" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Efecto de previas no informativas (Opcional)</h2>
+<p>Considere una <strong>previa no informativa</strong>: <span class="math inline">\([\mu,\tau] \propto [\mu]\cdot[\tau]\)</span> (supuesto de
+independencia), con <span class="math inline">\([\mu] \propto 1\)</span>, <span class="math inline">\(\tau = \dfrac1{\sigma^2}\)</span> y <span class="math inline">\([\sigma] \propto \dfrac{1}{\sigma}\)</span>.</p>
 <p>Dado que <span class="math inline">\(\sigma = (\tau)^{-\frac{1}2}\)</span>, usando el teorema de cambio de variables,
-<span class="math display">\[\dfrac{d\theta}{d\tau} = -\dfrac12\tau^{-\frac32} \implies \bigg|\dfrac12\tau^{-\frac32}\bigg|f_\sigma\left(\dfrac 1{\tau^{\frac12}}\right) = \dfrac 12 \tau^{-1}.\]</span></p>
+<span class="math display">\[\dfrac{d\sigma}{d\tau} = -\dfrac12\tau^{-\frac32} \implies
+\bigg|\dfrac12\tau^{-\frac32}\bigg|f_\sigma\left(\dfrac 1{\tau^{\frac12}}\right) = \dfrac
+12 \tau^{-1}.\]</span></p>
 <p>Entonces <span class="math inline">\([\mu,\tau]\propto\tau^{-1}\)</span>.</p>
 <p><strong>Ejercicio</strong>. Verifique que <span class="math inline">\([\mu,\tau]\sim \text{Normal-Gamma}(\mu_0=0,\lambda_0=0,\alpha_0=-1/2,\beta_0=0)\)</span>.</p>
 <p>Usando Bayes, <span class="math inline">\(X_1,\dots,X_n \sim N(\mu, \tau)\)</span>.</p>
@@ -416,16 +584,26 @@ El intervalo de confianza es <span class="math inline">\([146.25,218.09]\)</span
 <span class="math display">\[\tau|x\sim \Gamma\left(\dfrac{n-1}2, \dfrac{s_n^2}{2}\right)\]</span>.</p>
 <p>Por lo tanto,</p>
 <p><span class="math display">\[\mu,\tau|x \sim \text{Normal-Gamma}(\mu_1 = \bar X_n,\lambda_1=n,\alpha_1=(n-1)/2,\beta_0=s_n^2/2).\]</span></p>
-<p><strong>Ejemplo</strong>. Tomando <span class="math inline">\(\bar X_n = 5.134\)</span>, <span class="math inline">\(s_n^2 = 63.96\)</span> con una previa no informativa para <span class="math inline">\(\mu,\tau\)</span>. Entonces la posterior es Normal-Gamma con hiperparámetros: <span class="math inline">\(\mu_1 = 5.134\)</span>, <span class="math inline">\(\lambda_1 = 26\)</span>, <span class="math inline">\(\alpha = \dfrac{25}2\)</span>, <span class="math inline">\(\beta_1 = 31.98\)</span>. Queremos hacer inferencia sobre <span class="math inline">\(\mu\)</span>:</p>
+<p><strong>Ejemplo</strong>. Tomando <span class="math inline">\(\bar X_n = 5.134\)</span>, <span class="math inline">\(s_n^2 = 63.96\)</span> con una previa no
+informativa para <span class="math inline">\(\mu,\tau\)</span>. Entonces la posterior es Normal-Gamma con
+hiperparámetros: <span class="math inline">\(\mu_1 = 5.134\)</span>, <span class="math inline">\(\lambda_1 = 26\)</span>, <span class="math inline">\(\alpha = \dfrac{25}2\)</span>,
+<span class="math inline">\(\beta_1 = 31.98\)</span>. Queremos hacer inferencia sobre <span class="math inline">\(\mu\)</span>:</p>
 <p><span class="math display">\[\begin{align*}
  0.95 &amp; = \mathbb P[-t_{25,0.975}&lt;U&lt;t_{25,0.975}]\\
  &amp; = \mathbb P\bigg[-t_{25,0.975}&lt;\left(\dfrac{26\cdot 12.5}{31.98}\right)^{\frac 12}(\mu-5.134) &lt;t_{25,0.975}\bigg]
  \end{align*}\]</span></p>
 <p>El intervalo es <span class="math inline">\([4.488,5.78]\)</span>.</p>
 <p>Calculemos <span class="math inline">\(\mathbb P[\mu&gt;4|x]\)</span>. Sea <span class="math inline">\(w =\left(\dfrac{\alpha_1\lambda_1}{\beta_1}\right)^{\frac 12} = 3.188\)</span>.</p>
-<p><span class="math display">\[\mathbb P[\mu&gt;4|x] = P[w(\mu-\bar X_n)&gt;w(4-\bar X_n)]=1-T_{t_{25}}(-3.615) = 0.9993.\]</span></p>
+<p><span class="math display">\[  
+\mathbb P[\mu&gt;4|x] = P[w(\mu-\bar X_n)&gt;w(4-\bar X_n)]=1-T_{t_{25}}(-3.615) =
+0.9993.
+\]</span></p>
 <p>Generalizando:</p>
-<p><span class="math display">\[w = \left(\dfrac{n(n-1)/2}{s_n^2/2}\right)^{\frac 12} = \left(\dfrac{n(n-1)}{s_n^2}\right)^{\frac 12} = \left(\dfrac{n}{(\sigma&#39;)^2}\right)^{\frac 12}.\]</span></p>
+<p><span class="math display">\[ 
+w = \left(\dfrac{n(n-1)/2}{s_n^2/2}\right)^{\frac 12} =
+\left(\dfrac{n(n-1)}{s_n^2}\right)^{\frac 12} =
+\left(\dfrac{n}{(\sigma&#39;)^2}\right)^{\frac 12}.
+\]</span></p>
 <p>Entonces</p>
 <p><span class="math display">\[\begin{align*}
 \gamma &amp; = \mathbb P\bigg[-t_{n-1,\frac{1+\gamma}{2}} &lt; \left(\dfrac{n}{(\sigma&#39;)^2}\right)^{\frac 12}(\mu-\bar X_n)&lt;t_{n-1,\frac{1+\gamma}{2}}\bigg] \\

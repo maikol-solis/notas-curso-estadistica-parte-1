@@ -210,7 +210,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#precisión-de-una-distribución-normal"><i class="fa fa-check"></i><b>8.1</b> Precisión de una distribución normal</a></li>
 <li class="chapter" data-level="8.2" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#distribución-marginal-de-mu"><i class="fa fa-check"></i><b>8.2</b> Distribución marginal de <span class="math inline">\(\mu\)</span></a></li>
-<li class="chapter" data-level="8.3" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#efecto-de-previas-no-informativas"><i class="fa fa-check"></i><b>8.3</b> Efecto de previas no informativas</a></li>
+<li class="chapter" data-level="8.3" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#intervalos-de-credibilidad."><i class="fa fa-check"></i><b>8.3</b> Intervalos de credibilidad.</a></li>
+<li class="chapter" data-level="8.4" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#efecto-de-previas-no-informativas-opcional"><i class="fa fa-check"></i><b>8.4</b> Efecto de previas no informativas (Opcional)</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html"><i class="fa fa-check"></i><b>9</b> Estimación insesgada</a>
 <ul>
@@ -261,6 +262,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-una-cola"><i class="fa fa-check"></i><b>13.2</b> Hipótesis de una cola</a></li>
 <li class="chapter" data-level="13.3" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-2-colas"><i class="fa fa-check"></i><b>13.3</b> Hipótesis de 2 colas</a></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html"><i class="fa fa-check"></i><b>14</b> Ejercicios varios</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#capítulo-8"><i class="fa fa-check"></i><b>14.1</b> Capítulo 8</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#section"><i class="fa fa-check"></i><b>14.1.1</b> 8.4.6</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -303,7 +311,8 @@ encontrar un estimador por intervalos?</p>
 <p>Para efectos didácticos, vamos a empezar al revés de lo que usualmente se
 acostumbra.</p>
 <p>Defina <span class="math inline">\(U = \dfrac{\sqrt{n}(\bar X_n-\mu)}{\sigma&#39;} \sim t_{n-1}\)</span>. Si <span class="math inline">\(c&gt;0\)</span>,</p>
-<p><span class="math display">\[\begin{align*} \mathbb P[-c&lt;U&lt;c] &amp; = \mathbb P \bigg[ -c&lt;\dfrac{\sqrt{n}(\bar
+<p><span class="math display">\[\begin{align*} 
+\mathbb P[-c&lt;U&lt;c] &amp; = \mathbb P \bigg[ -c&lt;\dfrac{\sqrt{n}(\bar
 X_n-\mu)}{\sigma&#39;} &lt;c\bigg]\\ &amp; = \mathbb P \bigg[-\dfrac{c\sigma&#39;}{\sqrt n} &lt;
 \bar X_n - \mu &lt;\dfrac{c\sigma&#39;}{\sqrt n}\bigg] \\ &amp; = \mathbb P \bigg[ \bar X_n
 -\dfrac{c\sigma&#39;}{\sqrt n} &lt; \mu &lt; \bar X_n + \dfrac{c\sigma&#39;}{\sqrt n}\bigg]
@@ -327,10 +336,10 @@ probabilidad anterior, tome <span class="math inline">\(\gamma \in (0,1)\)</span
 <p>El intervalo aleatorio</p>
 <p><span class="math display">\[\begin{equation*}
 \bigg[\bar X_n -
-F{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma&#39;}{\sqrt n},\bar X_n
-- F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma&#39;}{\sqrt
+F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma&#39;}{\sqrt n},\bar X_n
++ F_{t_{n-1}}^{-1}\left(\dfrac{\gamma+1}2 \right)\dfrac{\sigma&#39;}{\sqrt
   n}\bigg]
-  \end{equation*}\]</span></p>
+\end{equation*}\]</span></p>
 <p>contiene a <span class="math inline">\(\mu\)</span> con probabilidad <span class="math inline">\(\gamma\)</span>.</p>
 <p>*<strong>Definición</strong>. Sea <span class="math inline">\(X = (X_1,\dots,X_n)\)</span> una muestra con parámetro <span class="math inline">\(\theta\)</span>.
 Sea <span class="math inline">\(g(\theta)\)</span> una característica de la distribución que genera la muestra. Sea <span class="math inline">\(A &lt; B\)</span> dos estadísticos que cumplen (<span class="math inline">\(\forall \theta\)</span>):
@@ -374,7 +383,7 @@ parámetro real de la población <span class="math inline">\(\theta\)</span>.</p
 <p>Si <span class="math inline">\(\gamma\)</span> es el nivel de confianza dado, sea <span class="math inline">\(\gamma_1&lt;\gamma_2\)</span> tal que <span class="math inline">\(\gamma_2 -\gamma_1 = \gamma\)</span>. Sea <span class="math inline">\(U = \dfrac{\sqrt n}{\sigma&#39;}(\bar X_n-\mu)\)</span>.</p>
 <p>Si
 <span class="math display">\[
-A= \bar X_n + T_{n-1}^{-1}(\gamma_1)\dfrac{\sigma&#39;}{\sqrt n} \text{ y } B= \bar X_n +
+A= \bar X_n - T_{n-1}^{-1}(\gamma_1)\dfrac{\sigma&#39;}{\sqrt n} \text{ y } B= \bar X_n +
 T_{n-1}^{-1}(\gamma_2)\dfrac{\sigma&#39;}{\sqrt n},
 \]</span></p>
 <p>se cumple que <span class="math inline">\((A,B)\)</span> es un intervalo de confianza al <span class="math inline">\(100\gamma\)</span> ya que</p>
@@ -417,7 +426,7 @@ X_n)}{\sigma&#39;}&lt;c\right).\]</span></p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="intervalos-de-confianza.html#cb109-1"></a>theta &lt;-<span class="st"> </span><span class="dv">2</span></span>
 <span id="cb109-2"><a href="intervalos-de-confianza.html#cb109-2"></a>X &lt;-<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">3</span>, <span class="dt">rate =</span> theta)</span>
 <span id="cb109-3"><a href="intervalos-de-confianza.html#cb109-3"></a>T &lt;-<span class="st"> </span><span class="kw">sum</span>(X)</span>
-<span id="cb109-4"><a href="intervalos-de-confianza.html#cb109-4"></a>G_inv &lt;-<span class="st"> </span><span class="kw">qgamma</span>(<span class="dt">p =</span> <span class="fl">0.98</span>, <span class="dt">shape =</span> <span class="dv">3</span>, <span class="dt">rate =</span> <span class="dv">1</span>)</span></code></pre></div>
+<span id="cb109-4"><a href="intervalos-de-confianza.html#cb109-4"></a>G_inv &lt;-<span class="st"> </span><span class="kw">qgamma</span>(<span class="dt">p =</span> <span class="fl">0.95</span>, <span class="dt">shape =</span> <span class="dv">3</span>, <span class="dt">rate =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Entonces el intervalo de confianza para este caso es</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="intervalos-de-confianza.html#cb110-1"></a><span class="kw">c</span>(<span class="dv">0</span>, G_inv<span class="op">/</span>T)</span></code></pre></div>
 <pre><code>## [1] 0.000000 5.702774</code></pre>
@@ -484,7 +493,7 @@ necesariamente una <span class="math inline">\(t_{n-1}\)</span>.</p>
 <span class="math inline">\(\sigma^2\)</span> y por lo tanto consistente.</p>
 <p><span class="math display">\[\begin{align*}
 \hat{\sigma}^2 &amp;\xrightarrow[]{\mathbb{P}}\sigma^2 \\
-((\sigma&#39;)^2 &amp;\xrightarrow[]{\mathbb{P}}\hat{\sigma}^2).
+((\sigma&#39;)^2 &amp;\xrightarrow[]{\mathbb{P}}\sigma^2).
 \end{align*}\]</span></p>
 <p>Recuerde que si <span class="math inline">\(X_n\xrightarrow[]{d}Z\)</span> y <span class="math inline">\(Y_n\xrightarrow[]{\mathbb{P}}a\)</span>, entonces
 <span class="math inline">\(X_nY_n \xrightarrow[]{d}aZ\)</span>.</p>

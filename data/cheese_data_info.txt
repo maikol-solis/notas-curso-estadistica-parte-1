@@ -1,0 +1,13 @@
+Datafile Name: Cheese
+Story Names: Cheddar Cheese Taste
+Reference: Moore, David S., and George P. McCabe (1989). Introduction to the Practice of Statistics.
+Authorization:
+Description: As cheese ages, various chemical processes take place that determine the taste of the final product. This dataset contains concentrations of various chemicals in 30 samples of mature cheddar cheese, and a subjective measure of taste for each sample. The variables "Acetic" and "H2S" are the natural logarithm of the concentration of acetic asid and hydrogen sulfide respectively. The variable "Lactic" has not been transformed.
+Number of cases: 30
+Variable Names:
+
+    Case: Sample number
+    Taste: Subjective taste test score, obtained by combining the scores of several tasters
+    Acetic: Natural log of concentration of acetic acid
+    H2S: Natural log of concentration of hydrogen sulfide
+    Lactic: Concentration of lactic acid 
