@@ -90,7 +90,7 @@ y el valor-*p*: $1-T_{50}(2.544) = 0.007$.
 
 * Prueba. $\delta:$ Rechazo $H_0$ si $|U|\geq T^{-1}_{m+n-2}\left(1-\dfrac{\alpha_0}2\right)$.
 
-* Valor-*p*: $2-T_{m+n-2}(|u|)$ donde $U=u$.
+* Valor-*p*: $2[1-T_{m+n-2}(|u|)]$ donde $U=u$.
 
 **Ejemplo**. Menas de cobre. Sean $X_1,\dots,X_8$ la cantidad de cobre (g) en 8 menas en la localización 1, y $X_1,\dots,X_{10}$ en 10 menas en la localización 2. Los datos son $\bar X_8 = 2.6,\bar Y_{10} = 2.3, S_X^2 = 0.32$ y $S_Y^2=0.22$ ¿Las dos localizaciones generan el mismo nivel de cobre?
 
