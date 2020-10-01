@@ -605,15 +605,36 @@ Entonces $T = \dfrac{m'(\theta)}{nI(\theta)}\lambda'(X|\theta) + m(\theta)$. Por
 
 \[[nI(\theta)]^{1/2}(\hat\theta-\theta) \to N(0,1).\]
 
-**Ejemplo**. $X_1,\dots, X_n \sim  N(0,\sigma^2)$, $\sigma$ desconocida. $\hat\sigma = \bigg[\dfrac 1n s_n^2\bigg]^{1/2}$ es MLE de $\sigma$ y $I(\sigma) = \dfrac 2{\sigma^2}$.
+**Ejemplo**. $X_1,\dots, X_n \sim  N(0,\sigma^2)$, $\sigma$ desconocida. $\hat\sigma = \bigg[\dfrac 1n \sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}\bigg]^{1/2}$ es MLE de $\sigma$ y $I(\sigma) = \dfrac 2{\sigma^2}$.
 Usando el teorema,
-\[\sqrt{\dfrac{2n}{\sigma^2}}\underset{n\to\infty}{\sim} N\left(\sigma,\dfrac{\sigma^2}{2n}\right).\]
 
-Verifique que 
-\[\hat\sigma_n\pm z_{\frac{1+\gamma}{2}}\sqrt{\dfrac{\sigma^2}{2n}}\]
-es un intervalo de confianza para $\sigma$.
+\[\sqrt{\dfrac{2n}{\sigma^2}} (\hat{\sigma} - \sigma) \underset{n\to\infty}{\sim} N\left(0,1\right).\]
+
+O lo que es equivalente a \[\hat{\sigma} \underset{n\to\infty}{\sim}
+N\left(\sigma,\dfrac{\sigma^2}{2n}\right).\] 
+
+_Ejercicio:_ Verifique que
+\[ \hat\sigma_n\pm z_{\frac{1+\gamma}{2}}\sqrt{\dfrac{\sigma^2}{2n}}\] es un
+intervalo de confianza para $\sigma$.
+
+_Ejercicio:_ Suponga que se le da los siguientes datos
+
+ 
+```{r}
+X <- rnorm(n = 1000, mean = 5, sd = 1)
+```
+
+
+Trate de ajustar un intervalo de confianza usando la cota de Cramer-Rao para $\sigma^2$.
+
+**Sugerencia: Fijese que la varianza de $\hat\sigma$ depende del parámetro
+desconocido $\sigma$. Entonces, lo mejor ahí es usar el método Delta para
+encontra una función que estabilice la varianza. **
+
 
 **Consecuencia en estimación bayesiana**. La previa de $\theta$ es positiva y diferenciable con respecto a $\theta$. Bajo todas las condiciones anteriores:
 \[\theta|X\underset{n\to\infty}{\sim} N\left(\hat\theta_n,\dfrac 1{nI(\hat\theta_n)}\right).\]
 
 **Nota**: un IC para $\theta$ en este caso tiene un error estándar que depende del MLE.
+
+
