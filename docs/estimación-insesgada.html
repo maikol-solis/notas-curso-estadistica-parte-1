@@ -541,9 +541,10 @@ De esta forma,
 <p>Ambas variables tienen la misma información si</p>
 <p><span class="math display">\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = \dfrac{\theta t}{\theta ^{2}} = \dfrac t\theta.\]</span></p>
 <p>A partir de este ejercicio vamos a hacer un pequeño ejemplo de simulación.</p>
+<p>Suponga que <span class="math inline">\(t\)</span> es el tiempo que se quiere medir la cantidad de clientes (minutos), <span class="math inline">\(\theta\)</span> es la cantidad de clientes por minuto y <span class="math inline">\(n\)</span> es el número de clientes que entran.</p>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="estimación-insesgada.html#cb181-1"></a>t &lt;-<span class="st"> </span><span class="dv">20</span></span>
 <span id="cb181-2"><a href="estimación-insesgada.html#cb181-2"></a>theta &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb181-3"><a href="estimación-insesgada.html#cb181-3"></a>n &lt;-<span class="st"> </span>t <span class="op">*</span><span class="st"> </span>theta</span>
+<span id="cb181-3"><a href="estimación-insesgada.html#cb181-3"></a>n &lt;-<span class="st"> </span>t<span class="op">/</span>theta</span>
 <span id="cb181-4"><a href="estimación-insesgada.html#cb181-4"></a></span>
 <span id="cb181-5"><a href="estimación-insesgada.html#cb181-5"></a>Y &lt;-<span class="st"> </span><span class="kw">rpois</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">lambda =</span> t <span class="op">*</span><span class="st"> </span>theta)</span>
 <span id="cb181-6"><a href="estimación-insesgada.html#cb181-6"></a>X &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">shape =</span> n, <span class="dt">rate =</span> theta)</span></code></pre></div>
@@ -557,10 +558,12 @@ aproximadamente igualdad.</p>
 <pre><code>## [1] 4</code></pre>
 <p>Entonces bajo este criterio, ambas variables contienen la misma información,
 aunque modelen el problema desde ópticas diferentes.</p>
+<p>El proceso <span class="math inline">\(Y\)</span> (Poisson) modela cuántas personas en total entran a la tienda en 20 minutos, asumiendo una tasa de entrada de 5 personas por minuto.</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="estimación-insesgada.html#cb186-1"></a><span class="kw">hist</span>(Y)</span></code></pre></div>
 <p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-74-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p>El proceso <span class="math inline">\(X\)</span> (Gamma) modela cuánto tiempo se debe esperar para que 4 personas entren a la tienda, asumiendo una tasa de entrada de 5 por minuto.</p>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="estimación-insesgada.html#cb187-1"></a><span class="kw">hist</span>(X)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-74-2.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-75-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p><em>Ejercicio:</em> Basado en los valores de la simulación, proponga dos valores de <span class="math inline">\(t\)</span> para que</p>
 <ul>
 <li><span class="math inline">\(X\)</span> tenga más información que <span class="math inline">\(Y\)</span>.</li>
@@ -636,7 +639,7 @@ observar el comportamiento de su información de Fisher.</p>
 <span id="cb188-6"><a href="estimación-insesgada.html#cb188-6"></a>})</span>
 <span id="cb188-7"><a href="estimación-insesgada.html#cb188-7"></a></span>
 <span id="cb188-8"><a href="estimación-insesgada.html#cb188-8"></a><span class="kw">plot</span>(beta, n<span class="op">/</span>beta<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-75-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-76-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Considere el estadístico <span class="math inline">\(T = \dfrac{n-1}{\sum_{i=1}^n X_i}\)</span> es un estimador insesgado de <span class="math inline">\(\beta\)</span>. La varianza de <span class="math inline">\(T\)</span> es <span class="math inline">\(\dfrac{\beta^2}{n-2}\)</span>.</p>
 <p>La cota de Cramer Rao, si <span class="math inline">\(T\)</span> es insesgado, es</p>
 <p><span class="math display">\[\dfrac 1{I_n(\beta)} = \dfrac{\beta^2}{n},\]</span></p>
@@ -647,11 +650,11 @@ observar el comportamiento de su información de Fisher.</p>
 <span id="cb189-3"><a href="estimación-insesgada.html#cb189-3"></a>})</span>
 <span id="cb189-4"><a href="estimación-insesgada.html#cb189-4"></a></span>
 <span id="cb189-5"><a href="estimación-insesgada.html#cb189-5"></a><span class="kw">plot</span>(beta, <span class="kw">apply</span>(<span class="dt">X =</span> estimador1, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> mean))</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-76-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-77-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="estimación-insesgada.html#cb190-1"></a><span class="kw">plot</span>(beta, <span class="kw">apply</span>(<span class="dt">X =</span> estimador1, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> var))</span>
 <span id="cb190-2"><a href="estimación-insesgada.html#cb190-2"></a><span class="kw">lines</span>(beta, beta<span class="op">^</span><span class="dv">2</span><span class="op">/</span>n, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb190-3"><a href="estimación-insesgada.html#cb190-3"></a><span class="kw">lines</span>(beta, beta<span class="op">^</span><span class="dv">2</span><span class="op">/</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">2</span>), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-76-2.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-77-2.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Ahora, estime <span class="math inline">\(\theta = \dfrac 1\beta = m(\beta)\)</span>. Un estimador insesgado de <span class="math inline">\(\theta\)</span> es <span class="math inline">\(T =\bar X_n\)</span>:</p>
 <p><span class="math display">\[\mathbb E[\bar X_n] = \mathbb E
 [X_1] = \dfrac 1\beta  = \theta, \quad \text{Var}(\bar X_n) = \dfrac{\text{Var}(\bar X_1) }{n} = \dfrac 1{n\beta^2}.\]</span></p>
@@ -664,10 +667,10 @@ observar el comportamiento de su información de Fisher.</p>
 <span id="cb191-3"><a href="estimación-insesgada.html#cb191-3"></a>})</span>
 <span id="cb191-4"><a href="estimación-insesgada.html#cb191-4"></a></span>
 <span id="cb191-5"><a href="estimación-insesgada.html#cb191-5"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">/</span>beta, <span class="kw">apply</span>(<span class="dt">X =</span> estimador2, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> mean))</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-77-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-78-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="estimación-insesgada.html#cb192-1"></a><span class="kw">plot</span>(beta, <span class="kw">apply</span>(<span class="dt">X =</span> estimador2, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> var))</span>
 <span id="cb192-2"><a href="estimación-insesgada.html#cb192-2"></a><span class="kw">lines</span>(beta, <span class="dv">1</span><span class="op">/</span>(n <span class="op">*</span><span class="st"> </span>beta<span class="op">^</span><span class="dv">2</span>), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-77-2.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-78-2.svg" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="estimadores-eficientes" class="section level2" number="9.5">
 <h2><span class="header-section-number">9.5</span> Estimadores eficientes</h2>

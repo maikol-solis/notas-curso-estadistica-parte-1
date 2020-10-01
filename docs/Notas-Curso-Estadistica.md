@@ -3759,15 +3759,19 @@ Ambas variables tienen la misma información si
 
 A partir de este ejercicio vamos a hacer un pequeño ejemplo de simulación.
 
+Suponga que \(t\) es el tiempo que se quiere medir la cantidad de clientes (minutos), \(\theta\) es la cantidad de clientes por minuto y \(n\) es el número de clientes que entran. 
+
+
 
 ```r
 t <- 20
 theta <- 5
-n <- t * theta
+n <- t/theta
 
 Y <- rpois(n = 1000, lambda = t * theta)
 X <- rgamma(n = 1000, shape = n, rate = theta)
 ```
+
 Ojo que según lo estimado ambas informaciones de Fisher debería dar
 aproximadamente igualdad. 
 
@@ -3795,6 +3799,8 @@ n/theta^2
 Entonces bajo este criterio, ambas variables contienen la misma información,
 aunque modelen el problema desde ópticas diferentes. 
 
+El proceso \(Y\) (Poisson) modela cuántas personas en total entran a la tienda en 20 minutos, asumiendo una tasa de entrada de 5 personas por minuto. 
+
 
 ```r
 hist(Y)
@@ -3804,13 +3810,16 @@ hist(Y)
 
 \begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-74-1} \end{center}
 
+El proceso \(X\) (Gamma) modela cuánto tiempo se debe esperar para que 4 personas entren a la tienda, asumiendo una tasa de entrada de 5 por minuto. 
+
+
 ```r
 hist(X)
 ```
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-74-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-75-1} \end{center}
 
 _Ejercicio:_ Basado en los valores de la simulación, proponga dos valores de \(t\) para que 
   
@@ -3920,7 +3929,7 @@ plot(beta, n/beta^2)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-75-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-76-1} \end{center}
 
 Considere el estadístico $T = \dfrac{n-1}{\sum_{i=1}^n X_i}$ es un estimador insesgado de $\beta$. La varianza de $T$ es $\dfrac{\beta^2}{n-2}$.
 
@@ -3944,7 +3953,7 @@ plot(beta, apply(X = estimador1, MARGIN = 2, FUN = mean))
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-76-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-1} \end{center}
 
 ```r
 plot(beta, apply(X = estimador1, MARGIN = 2, FUN = var))
@@ -3954,7 +3963,7 @@ lines(beta, beta^2/(n - 2), col = "red")
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-76-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-2} \end{center}
 
 Ahora, estime $\theta = \dfrac 1\beta = m(\beta)$. Un estimador insesgado de $\theta$ es $T =\bar X_n$:
 
@@ -3979,7 +3988,7 @@ plot(1/beta, apply(X = estimador2, MARGIN = 2, FUN = mean))
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-78-1} \end{center}
 
 ```r
 plot(beta, apply(X = estimador2, MARGIN = 2, FUN = var))
@@ -3988,7 +3997,7 @@ lines(beta, 1/(n * beta^2), col = "blue")
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-78-2} \end{center}
 
 ## Estimadores eficientes
 
@@ -4516,7 +4525,7 @@ Del ejemplo de tiempo de servicio, en lugar de rechazar $H_0: \theta = \theta_0$
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-81-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-82-1} \end{center}
 
 Entonces $(*)$ es cierto si $X_1>c$. Se puede comprobar numéricamente que $c\approx5.03$.
 

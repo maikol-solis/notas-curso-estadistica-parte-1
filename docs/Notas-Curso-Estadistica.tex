@@ -181,6 +181,7 @@
 %\newtheorem{teorema}{Teorema}
 %\newtheorem{lema}{Lema}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{float}
 \usepackage[style=authoryear,url=false,doi=false,eprint=false,isbn=false]{biblatex}
 \addbibresource{bibliografia.bib}
 
@@ -4203,11 +4204,13 @@ Ambas variables tienen la misma información si
 
 A partir de este ejercicio vamos a hacer un pequeño ejemplo de simulación.
 
+Suponga que \(t\) es el tiempo que se quiere medir la cantidad de clientes (minutos), \(\theta\) es la cantidad de clientes por minuto y \(n\) es el número de clientes que entran.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{t \textless{}{-}}\StringTok{ }\DecValTok{20}
 \NormalTok{theta \textless{}{-}}\StringTok{ }\DecValTok{5}
-\NormalTok{n \textless{}{-}}\StringTok{ }\NormalTok{t }\OperatorTok{*}\StringTok{ }\NormalTok{theta}
+\NormalTok{n \textless{}{-}}\StringTok{ }\NormalTok{t}\OperatorTok{/}\NormalTok{theta}
 
 \NormalTok{Y \textless{}{-}}\StringTok{ }\KeywordTok{rpois}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{lambda =}\NormalTok{ t }\OperatorTok{*}\StringTok{ }\NormalTok{theta)}
 \NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{rgamma}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{shape =}\NormalTok{ n, }\DataTypeTok{rate =}\NormalTok{ theta)}
@@ -4244,6 +4247,8 @@ Para \(X\) por otro lado la información de Fisher es constante (¿Por qué?)
 Entonces bajo este criterio, ambas variables contienen la misma información,
 aunque modelen el problema desde ópticas diferentes.
 
+El proceso \(Y\) (Poisson) modela cuántas personas en total entran a la tienda en 20 minutos, asumiendo una tasa de entrada de 5 personas por minuto.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{hist}\NormalTok{(Y)}
@@ -4252,13 +4257,15 @@ aunque modelen el problema desde ópticas diferentes.
 
 \begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-74-1} \end{center}
 
+El proceso \(X\) (Gamma) modela cuánto tiempo se debe esperar para que 4 personas entren a la tienda, asumiendo una tasa de entrada de 5 por minuto.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{hist}\NormalTok{(X)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-74-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-75-1} \end{center}
 
 \emph{Ejercicio:} Basado en los valores de la simulación, proponga dos valores de \(t\) para que
 
@@ -4373,7 +4380,7 @@ observar el comportamiento de su información de Fisher.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-75-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-76-1} \end{center}
 
 Considere el estadístico \(T = \dfrac{n-1}{\sum_{i=1}^n X_i}\) es un estimador insesgado de \(\beta\). La varianza de \(T\) es \(\dfrac{\beta^2}{n-2}\).
 
@@ -4395,7 +4402,7 @@ Este comportamiento podemos observarlo con nuestro ejemplo numérico.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-76-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4405,7 +4412,7 @@ Este comportamiento podemos observarlo con nuestro ejemplo numérico.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-76-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-2} \end{center}
 
 Ahora, estime \(\theta = \dfrac 1\beta = m(\beta)\). Un estimador insesgado de \(\theta\) es \(T =\bar X_n\):
 
@@ -4429,7 +4436,7 @@ La cota de Cramer es
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-78-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4438,7 +4445,7 @@ La cota de Cramer es
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-78-2} \end{center}
 
 \hypertarget{estimadores-eficientes}{%
 \section{Estimadores eficientes}\label{estimadores-eficientes}}
@@ -5078,7 +5085,7 @@ Note que el estadístico LR está relacionado con el anterior de la siguiente fo
 Del ejemplo de tiempo de servicio, en lugar de rechazar \(H_0: \theta = \theta_0\) si \(X_1>4\) tome \(a>b\) en el corolario anterior y rechace \(H_0\) si
 \[\dfrac{f_1(x)}{f_0(x)}>1\Leftrightarrow \dfrac 4{(2+X_1)^2}\exp\left(\dfrac{X_1}2\right)>1\quad(*)\]
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-81-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-82-1} \end{center}
 
 Entonces \((*)\) es cierto si \(X_1>c\). Se puede comprobar numéricamente que \(c\approx5.03\).
 
