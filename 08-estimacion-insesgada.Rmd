@@ -410,19 +410,46 @@ La igualdad se da si y solo si existen funciones $u(\theta)$ y $v(\theta)$ que s
 Para el caso multivariado:
 
 \begin{align*}
-\int_{\mathcal X^n}f'_n(x|\theta)dx_1\cdots dx_n & =\int_{\mathcal X^n}[f(x1|\theta)\cdots f(x_n|\theta)]'dx_1\cdots dx_n \\
-& \dfrac d{d\theta} \int_{\mathcal X^n}f(x1|\theta)\cdots f(x_n|\theta)dx_1\cdots dx_n = 0.
+\int_{\mathcal X^n}f'_n(x|\theta)dx_1\cdots dx_n & =\int_{\mathcal X^n}[f(x_1|\theta)\cdots f(x_n|\theta)]'dx_1\cdots dx_n \\
+& = \dfrac d{d\theta} \int_{\mathcal X^n}f(x_1|\theta)\cdots f(x_n|\theta)dx_1\cdots dx_n \\
+&= \dfrac d{d\theta} 1 \\
+&= 0.
 \end{align*}
 
 Entonces
 
-\[\mathbb E[\lambda_n'(X|\theta)] = \int_{\mathcal X^n}\dfrac{f'_n(x|\theta)}{f(x|\theta)}dx_1\cdots dx_n = 0\]
+\[\mathbb E[\lambda_n'(X|\theta)] = \int_{\mathcal X^n}\dfrac{f'_n(x|\theta)}{f(x|\theta)} f_{n}(x\vert \theta)dx_1\cdots dx_n = 0\]
 
 Por lo tanto,
 
+
+
+
+Ahora 
 \begin{align*}
-\text{Cov}[T,\lambda_n'(X|\theta)] & = \mathbb E [T\lambda_n'(X|\theta)] - \mathbb E[T]\cdot 0\\
+\operatorname{Cov}_{\theta}\left[T, \lambda_{n}^{\prime}(\boldsymbol{X} \mid
+\theta)\right] \\
+&=E_{\theta}\left[T \lambda_{n}^{\prime}(\boldsymbol{X} \mid \theta)\right] \\
+&=\int_{\mathcal{X}^n} \ldots \int_{\mathcal{X}^n} r(\boldsymbol{x}) \lambda_{n}^{\prime}(\boldsymbol{x} \mid \theta) f_{n}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n} \\
 & =\int_{\mathcal X^n}r(x)\dfrac{f'_n(x|\theta)}{f_n(x|\theta)}f_n(x|\theta)dx_1\cdots dx_n\\
+&=\int_{\mathcal{X}^n} \ldots \int_{\mathcal{X}^n} r(\boldsymbol{x}) f_{n}^{\prime}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n}
+\end{align*}
+
+Escriba la expresión 
+
+\begin{equation*}
+m(\theta)=\int_{\mathcal{X}^n} \ldots \int_{S} r(\boldsymbol{x}) f_{n}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n}
+\end{equation*}
+
+Usando el supuesto de intercabio de integrales, tenemos que 
+\begin{equation*}
+m^{\prime}(\theta)=\int_{\mathcal{X}^n} \ldots \int_{S} r(\boldsymbol{x}) f_{n}^{\prime}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n}
+\end{equation*}
+
+Entonces tenemos que 
+
+\begin{align*}
+\text{Cov}[T,\lambda_n'(X|\theta)] 
 & =  \dfrac d{d\theta}\int_{\mathcal X^n}r(x)f_n(x|\theta)dx_1\cdots dx_n\\
 & = \dfrac{d}{d\theta}\mathbb E_\theta[r(X)] = \dfrac{d}{d\theta}E_\theta[T] = m'(\theta)
 \end{align*}
@@ -455,13 +482,47 @@ Vea que
  Así,
  \[I(\beta) = -\mathbb E[\lambda''(x|\beta)] = \dfrac 1{\beta^2}, \quad I_n(\beta) = \dfrac{n}{\beta^2}.\]
  
+Por ejemplo generemos una secuencia de valores de \(\beta\) de 1 hasta 5 para
+observar el comportamiento de su información de Fisher. 
+
+```{r }
+beta <- seq(1, 5, length.out = 100)
+n <- 100
+
+lista_muestras <- lapply(
+  X = beta,
+  FUN = function(b) {
+    matrix(rexp(n = n * 500, rate = b), nrow = 500)
+  }
+)
+
+plot(beta, n / beta^2)
+```
+
 Considere el estadístico $T = \dfrac{n-1}{\sum_{i=1}^n X_i}$ es un estimador insesgado de $\beta$. La varianza de $T$ es $\dfrac{\beta^2}{n-2}$.
 
 La cota de Cramer Rao, si $T$ es insesgado, es
 
 \[\dfrac 1{I_n(\beta)} = \dfrac{\beta^2}{n},\]
 
+
 por lo que $T$ no satisface la cota de Cramer Rao.
+
+
+Este comportamiento podemos observarlo con nuestro ejemplo numérico. 
+```{r }
+estimador1 <- sapply(
+  X = lista_muestras,
+  FUN = function(x) {
+    apply(x, 1, function(xx) (n - 1) / sum(xx))
+  }
+)
+
+plot(beta, apply(X = estimador1, MARGIN = 2, FUN = mean))
+plot(beta, apply(X = estimador1, MARGIN = 2, FUN = var))
+lines(beta, beta^2 / n, col = "blue")
+lines(beta, beta^2 / (n - 2), col = "red")
+```
 
 Ahora, estime $\theta = \dfrac 1\beta = m(\beta)$. Un estimador insesgado de $\theta$ es $T =\bar X_n$:
 
@@ -474,6 +535,20 @@ La cota de Cramer es
 
 $\bar X_n$ satisface la cota de Cramer-Rao y además
 \[\lambda'(X|\beta) = \dfrac n\beta - n\bar X_n =\dfrac n\beta - nT \implies T = \underbrace{-\dfrac 1n}_{u(\beta)}\lambda_n'(X|\beta)+ \underbrace{\dfrac 1\beta}_{v(\beta)}. \]
+
+```{r }
+estimador2 <- sapply(
+  X = lista_muestras,
+  FUN = function(x) {
+    apply(x, 1, function(xx) mean(xx))
+  }
+)
+
+plot(1/beta, apply(X = estimador2, MARGIN = 2, FUN = mean))
+plot(beta, apply(X = estimador2, MARGIN = 2, FUN = var))
+lines(beta, 1 / (n * beta^2), col = "blue")
+
+```
 
 ## Estimadores eficientes
 
@@ -497,7 +572,7 @@ La cota de CR es $\dfrac \theta n$, pero
 Por lo que $\bar X_n$ es eficiente.
 
 Los otros candidatos para estimar $\theta$
-\[\sigma_1^2=\dfrac 1{n-1}s_n^2 = \dfrac 1{n-1}\sum (X_i-\bar X_n)^2,\]
+\[\sigma_1^2=\dfrac 1{n-1}\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2} = \dfrac 1{n-1}\sum (X_i-\bar X_n)^2,\]
 y
 \[\alpha \bar X_n + (1-\alpha)\hat\sigma^2_1\]
 no son lineales con respecto a $\lambda'(X|\theta)$ por lo que tienen mayor varianza que $\bar X_n$. 
