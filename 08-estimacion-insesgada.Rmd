@@ -360,14 +360,18 @@ Ambas variables tienen la misma información si
 
 A partir de este ejercicio vamos a hacer un pequeño ejemplo de simulación.
 
+Suponga que \(t\) es el tiempo que se quiere medir la cantidad de clientes (minutos), \(\theta\) es la cantidad de clientes por minuto y \(n\) es el número de clientes que entran. 
+
+
 ```{r }
 t <- 20
 theta <- 5
-n <- t * theta
+n <- t / theta
 
 Y <- rpois(n = 1000, lambda = t*theta)
 X <- rgamma(n = 1000, shape = n, rate = theta)
 ```
+
 Ojo que según lo estimado ambas informaciones de Fisher debería dar
 aproximadamente igualdad. 
 
@@ -385,10 +389,16 @@ n /theta^2
 Entonces bajo este criterio, ambas variables contienen la misma información,
 aunque modelen el problema desde ópticas diferentes. 
 
+El proceso \(Y\) (Poisson) modela cuántas personas en total entran a la tienda en `r t` minutos, asumiendo una tasa de entrada de `r theta` personas por minuto. 
+
 ```{r}
 hist(Y)
-hist(X)
+```
 
+El proceso \(X\) (Gamma) modela cuánto tiempo se debe esperar para que `r n` personas entren a la tienda, asumiendo una tasa de entrada de `r theta` por minuto. 
+
+```{r}
+hist(X)
 ```
 
 _Ejercicio:_ Basado en los valores de la simulación, proponga dos valores de \(t\) para que 
