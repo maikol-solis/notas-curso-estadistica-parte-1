@@ -10,8 +10,8 @@ Sean $X_1,\dots,X_n\sim N(\mu,\sigma^2) = N(\mu,\tau ^{-1})$. Su densidad corres
 
 \begin{align*}
 f(x|\mu,\sigma^2) 
-&= \left(\dfrac 1{2\pi\sigma^2}\right)\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] \\
-&= \left(\dfrac \tau{2\pi}\right)\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).
+&= \left(\dfrac 1{2\pi\sigma^2}\right)^{\frac12}\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] \\
+&= \left(\dfrac \tau{2\pi}\right)^{\frac12}\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).
 \end{align*}
 
 La verosimilitud es
