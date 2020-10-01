@@ -238,10 +238,17 @@ es Gamma.
 \begin{align*}
 \mathbb P[\sigma>0.3|x] & = \mathbb P\bigg[\sqrt{\dfrac 1\tau} >0.3\bigg|x\bigg]\\
 & = \mathbb P\bigg[\dfrac 1\tau >0.3^2\bigg|x\bigg]\\ 
-& = \mathbb P\bigg[\tau >\dfrac 1{0.3^2}\bigg|x\bigg] = 0.984
+& = \mathbb P\bigg[\tau <\dfrac 1{0.3^2}\bigg|x\bigg] \\ 
+& = \mathbb P\bigg[\tau <11.11\bigg|x\bigg] \\ 
+&=`r pgamma(q = 0.3^(-2), shape = alpha_1, rate = beta_1)`
 \end{align*}
 
 dado que $[\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(`r alpha_1`,`r beta_1`)$.
+
+En este caso observe que el cálculo es directo usando la función `pgamma`
+```{r}
+pgamma(q = 0.3^(-2), shape = alpha_1, rate = beta_1)
+```
 
 
  Lo más importante es que basados en el teorema de las marginales podemos
