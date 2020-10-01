@@ -119,45 +119,81 @@ es un estimador insesgado de $\sigma^2$.
 
 *Prueba*. Considere que
 
-\[ \sum (X_i-\mu)^2 = s_n^2 + n(\bar X_n-\mu)^2 \]
-Entonces
+ 
+\begin{equation}
+\sum_{i=1}^{n}\left(X_{i}-\mu\right)^{2}=\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}+n\left(\bar{X}_{n}-\mu\right)^{2}
+\end{equation}
 
-\[\mathbb E[\hat\sigma_0^2] = \mathbb E \bigg[ \dfrac {s_n^2}n \bigg] =  \mathbb E \bigg[ \dfrac 1n \sum(X_i-\mu)^2\bigg] - \mathbb E[(\bar X_n-\mu)^2] = \sigma^2-\dfrac{\sigma^2}n = \left(\dfrac{n-1}n\right)\sigma^2.\]
+Entonces si \(\sigma_0 ^{2} = \dfrac 1n \sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}\)
+
+\[\mathbb E[\hat\sigma_0^2] = \mathbb E \bigg[ \dfrac {\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}}n \bigg] =  \mathbb E \bigg[ \dfrac 1n \sum(X_i-\mu)^2\bigg] - \mathbb E[(\bar X_n-\mu)^2] = \sigma^2-\dfrac{\sigma^2}n = \left(\dfrac{n-1}n\right)\sigma^2.\]
 
 Para que $\hat\sigma_0^2$ sea insesgado,
 \[\mathbb E \bigg[\dfrac n{n-1}\hat\sigma_0^2\bigg] = \mathbb E[\hat\sigma_1] = \sigma^2.\]
 
 Entonces $\hat\sigma_1$ es estimador insesgado de $\sigma^2$.
 
-**Ejemplo**. Sean $X_1,\dots,X_n \overset{i.i.d}{\sim}\text{Poi}(\theta)$. $\mathbb E(X_i) = \text{Var}(X_i) = \theta$. Estimadores insesgados de $\theta$ son:
+**Ejemplo**. Sean $X_1,\dots,X_n \overset{i.i.d}{\sim}\text{Poi}(\theta)$.
+$\mathbb E(X_i) = \text{Var}(X_i) = \theta$. Estimadores insesgados de $\theta$
+son:
 
-1) $\bar X_n$.
+1. $\bar X_n$.
 
-2) $\hat \sigma_1^2$.
+2. $\hat \sigma_1^2$.
 
-3) Si $\alpha \in (0,1)$, $T = \alpha\bar X_n + (1-\alpha)\hat\sigma_1^2$ también es un estimador insesgado (corrige otros problemas).
+3. Si $\alpha \in (0,1)$, $T = \alpha\bar X_n + (1-\alpha)\hat\sigma_1^2$
+también es un estimador insesgado. 
+
+
+```{r }
+X <- matrix(rpois(n = 1000*100, lambda = 2), nrow = 100)
+
+m <- apply(X, 1, mean)
+v<- apply(X, 1, var)
+a <- apply(X, 1, function(x, alpha){alpha*mean(x) + (1-alpha)*var(x)}, alpha = 10)
+
+hist(m)
+hist(v)
+hist(a)
+
+```
 
 **Ejemplo**. (Normal) ¿Cuál estimador tiene menor MSE, $\hat\sigma^2_0$ o $\hat\sigma^2_1$? 
 
-Defina $T_c = cs_n^2$. Si $c = 1/n$, $T_c = \hat\sigma_0$ y si $c = 1/(n-1)$, $T_c = \hat\sigma_1$. De esta manera,
+Defina $T_c = c\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}$. Si $c = 1/n$, $T_c = \hat\sigma_0$ y si $c = 1/(n-1)$, $T_c = \hat\sigma_1$. De esta manera,
 
 \[MSE_{\sigma^2}(T_c) = \mathbb E[(T_c-\sigma^2)^2] =(\mathbb E(T_c)-\sigma^2)^2+\text{Var}(T_c).\]
 
-* $\mathbb E[T_c] = c\mathbb E[s_n^2] = c(n-1)\mathbb E\bigg[\dfrac{s_n^2}{n-1}\bigg] = c(n-1)\sigma^2$.
+\begin{align*}
+  \mathbb E[T_c]
+  &= c\mathbb E[\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}] \\
+  &= c(n-1)\mathbb E\bigg[\dfrac{\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}}{n-1}\bigg] \\
+  &= c(n-1)\sigma^2.
+\end{align*}
 
-* $\text{Var}(T_c) = c^2\text{Var}(s_n) = c^2\text{Var}\Bigg(\sigma^2\underbrace{\sum\dfrac{(X_i-\bar X_n)}{\sigma^2}}_{\sim\chi^2_{n-1}}\Bigg) = 2c^2\sigma^4(n-1)$.
+\begin{align*}
+  \text{Var}(T_c)
+  &= c^2\text{Var}(\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}) \\
+  &= c^2\text{Var}\Bigg(\sigma^2\underbrace{\sum\dfrac{(X_i-\bar X_n)}{\sigma^2}}_{\sim\chi^2_{n-1}}\Bigg) \\
+  &= 2c^2\sigma^4(n-1).
+\end{align*}
 
 Entonces
 
-\[MSE_{\sigma^2}(T_c) = [c(n-1)\sigma^2-\sigma^2]^2+2c^2\sigma^4(n-1) = [[c(n-1)-1]^2+2c^2(n-1)]\sigma^4.\]
+\[\mathrm{MSE}_{\sigma^2}(T_c) = [c(n-1)\sigma^2-\sigma^2]^2+2c^2\sigma^4(n-1) =
+[[c(n-1)-1]^2+2c^2(n-1)]\sigma^4.\]
 
 Optimizando,
 
-\[\min_c MSE (T_c) = \min_c[(n^2-1)c^2-2(n-1)c+1],\]
+\[\min_c \mathrm{MSE}(T_c) = \min_c[(n^2-1)c^2-2(n-1)c+1],\]
 
-se encuentra que $\hat c = \dfrac 1{n+1}$. Así, $T_{\hat c} = \dfrac{s_n^2}{n+1}$ es el mejor estimador de $\sigma^2$ en el sentido de MSE.
+se encuentra que $\hat c = \dfrac 1{n+1}$. Así,
+$T_{\frac{1}{n+1}} = \dfrac{\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}}{n+1}$
+es el mejor estimador de $\sigma^2$ en el sentido de MSE. Aunque se puede
+demostrar que este estimador es inadmisible. 
 
-**Ejercicio**. Compare $\hat\sigma_0^2$ y $\hat\sigma_1^2$.
+**Ejercicio**. Calcule el MSE de  $\hat\sigma_0^2$ y $\hat\sigma_1^2$ y compare
+los resultados. 
 
 ## Información de Fisher
 
