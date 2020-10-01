@@ -267,7 +267,15 @@ Entonces,
 
 Se concluye, además, que $\lambda'(x|\theta)$ es centrada y su varianza es $I(\theta)$.
 
-**Ejemplo**. $X\sim \text{Ber}(p)$.
+**RESULTADO IMPORTANTE**
+
+Si tenemos  \(\lambda(x\vert \theta) = \ln f(x\vert \theta)\), entonces tenemos los siguientes resulados
+
+- \(\lambda'(x\vert \theta)\) es una variable aleatoria.
+- \(\mathbb{E}[\lambda'(x\vert \theta)] =0\).
+- \(\mathrm{Var}[\lambda'(x\vert \theta)] = - \mathbb E[\lambda''(x|\theta)] = I(\theta)\). A esta cantidad se le conoce como la información de Fisher.
+
+**Ejemplo**. Suponga que  $X\sim \text{Bernoulli}(p)$.
 
 * $f(x|p) = p^x(1-p)^{1-x}$, $x=0,1$ satisface supuesto 1.
 
@@ -275,7 +283,7 @@ Se concluye, además, que $\lambda'(x|\theta)$ es centrada y su varianza es $I(\
 
 Entonces,
 
-* $\lambda(x|p) = \ln[p^x(1-p)^x] = x\ln p + (1-x)\ln(1-p)$.
+* $\lambda(x|p) = \ln[p^x(1-p)^{1-x}] = x\ln p + (1-x)\ln(1-p)$.
 
 * $\lambda'(x|p) = \dfrac xp-\dfrac{1-x}{1-p}$.
 
@@ -283,7 +291,7 @@ Entonces,
 
 De esta manera,
 \[I(p) = \mathbb E\bigg[\dfrac xp + \dfrac{1-x}{(1-p)^2}\bigg] = \dfrac p{p^2}+\dfrac{1-p}{(1-p)^2} = \dfrac 1{p(1-p)} = \dfrac 1{\text{Var}(X)}.\]
-
+ 
 **Ejemplo**. $X\sim N(\mu,\sigma^2)$, $\mu$ desconocida, $\sigma^2$ conocida.
 \[f(x|\mu) = \dfrac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\dfrac 1{2\sigma^2}(x-\mu)^2\right)\]
 
@@ -315,17 +323,21 @@ Por lo que
 **Nota**. Observe que
 \[\lambda_n(x|\theta) = \ln f_n(x|\theta) = \sum_{i=1}^{n} \lambda(X_i|\theta)\]
 lo que implica que
-\[\lambda''_n(x|\theta) = \sum_{i=1}^n(X_i|\theta).\]
+\[\lambda''_n(x|\theta) = \sum_{i=1}^n\lambda(X_i|\theta).\]
 De esta forma,
 \[I_n(\theta) = -\mathbb E[\lambda''(x|\theta)] = - \sum_{i=1}^n\mathbb E[\lambda''(X_i|\theta)] = nI(\theta).\]
 
-**Ejemplo**. Clientes que entran a una tienda. Este se modela a partir de un proceso de Poisson. El tiempo de llegada entre cada cliente es independiente y se distribuye como $\text{Exp}(\theta)$. Sea $X$ el tiempo de arribo total de $n$ clientes ($n$) fijo:
-\[X\sim \sum_{i=1}^{n}\text{Exp}(\theta) = \Gamma(n,\theta) .\]
+**Ejemplo**. Suponga que una compañía quiere conocer como se comportan sus clientes en sus tiendas. Hay dos propuestas para este modelo  
 
-Así mismo, sea $Y$ el número de clientes hasta el tiempo $t$: 
-\[Y\sim \text{Poi}(\theta t)\]
+- Un modelo Poisson de parámetro \(t\theta\) (\(t\) es cualquier valor) para determinar la tasa promedio de llegada de clientes. $Y\sim \text{Poisson}(\theta t)$.
 
-¿Cuál variable contiene más información de $\theta$?
+- Un modelo donde cada cliente es una v.a. exponencial con tasa de llegada \(\theta\) y al final se sumará todas las variables para obtener una \(\mathrm{Gamma}(n,\theta)\). $X\sim \sum_{i=1}^{n}\text{Exp}(\theta) = \Gamma(n,\theta)$  
+
+El tiempo de llegada de cada cliente es independiente. 
+
+¿Cuál variable contiene más información de $\theta$ \(X\) o \(Y\)?
+
+_Solución:_
 
 Para $Y$,
 
