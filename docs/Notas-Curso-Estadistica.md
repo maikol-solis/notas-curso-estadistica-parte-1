@@ -2780,7 +2780,7 @@ f(x|\mu,\sigma^2)
 
 La verosimilitud es
 
-\[f_n(x|\mu,\tau) = \left(\dfrac\tau{2\pi}\right)^{\frac n2}\exp\bigg[-\dfrac\tau2\sum_{i=1}^2(x_i-\mu)^2
+\[f_n(x|\mu,\tau) = \left(\dfrac\tau{2\pi}\right)^{\frac n2}\exp\bigg[-\dfrac\tau2\sum_{i=1}^n(x_i-\mu)^2
 \bigg].\]
 
 La previa de la densidad conjunta es $[\mu,\tau]\propto [\mu|\tau]\cdot [\tau]$ y la posterior $[\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]$.
