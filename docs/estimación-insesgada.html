@@ -290,39 +290,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Capítulo 9</span> Estimación insesgada</h1>
 <div id="estimadores-insesgados" class="section level2" number="9.1">
 <h2><span class="header-section-number">9.1</span> Estimadores insesgados</h2>
-<p><strong>Definición</strong>. Un estimador <span class="math inline">\(\delta(x)\)</span> es un <strong>estimador insesgado</strong> de <span class="math inline">\(g(\theta)\)</span> si <span class="math inline">\(\mathbb E_{\theta}[\delta(x)] = g(\theta)\)</span>, <span class="math inline">\(\forall \theta\)</span>. A <span class="math inline">\(\mathbb E_{\theta}[\delta(x)] - g(\theta)\)</span> se le denomina <strong>sesgo</strong>.</p>
-<p><strong>Ejemplo</strong>. Si <span class="math inline">\(X_1,\dots, X_n \overset{i.i.d}{\sim} F_\theta\)</span>, <span class="math inline">\(\mu = \mathbb E[X_1]\)</span>, entonces
-<span class="math display">\[\mathbb E[\bar X_n] = \dfrac 1n \sum_{i=1}^n\mathbb E(X_i) = \mu\]</span>
-<span class="math inline">\(\bar X_n\)</span> es estimador insesgado de <span class="math inline">\(\mu\)</span>.</p>
-<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,X_2,X_3 \overset{i.i.d}{\sim} \text{Exp}(\theta)\)</span>. El MLE de <span class="math inline">\(\theta\)</span> es
-<span class="math display">\[\hat\theta = \dfrac 3T = \dfrac 3{\sum_{i=1}^{3}X_i}\]</span>
-¿Será <span class="math inline">\(\hat\theta\)</span> un estimador insesgado?
-<span class="math display">\[\mathbb E[\hat\theta] = \mathbb E\bigg[\dfrac 3T\bigg]= 3\mathbb E\bigg[\dfrac 1T\bigg], \quad T\sim \Gamma(3,\theta)\]</span>
-Como
-<span class="math inline">\(\dfrac 1T \sim \text{Gamma Inversa}\)</span>, se tiene que
-<span class="math display">\[\mathbb E\bigg[\dfrac 1T\bigg] = \dfrac{\theta}2 \implies \mathbb E[\hat \theta] =\dfrac{3\theta}2 \neq \theta\]</span>
-Por lo que <span class="math inline">\(\hat \theta\)</span> es un estimador sesgado, con sesgo
+<p><strong>Definición</strong>. Un estimador <span class="math inline">\(\delta(x)\)</span> es un <strong>estimador insesgado</strong> de
+<span class="math inline">\(g(\theta)\)</span> si <span class="math inline">\(\mathbb E_{\theta}[\delta(x)] = g(\theta)\)</span>, <span class="math inline">\(\forall \theta\)</span>. A
+<span class="math inline">\(\mathbb E_{\theta}[\delta(x)] - g(\theta)\)</span> se le denomina <strong>sesgo</strong>.</p>
+<p><strong>Ejemplo</strong>. Si <span class="math inline">\(X_1,\dots, X_n \overset{i.i.d}{\sim} F_\theta\)</span>, <span class="math inline">\(\mu = \mathbb E[X_1]\)</span>, entonces</p>
+<p><span class="math display">\[\mathbb E[\bar X_n] = \dfrac 1n \sum_{i=1}^n\mathbb E(X_i) = \mu\]</span></p>
+<p><span class="math inline">\(\bar X_n\)</span> es estimador insesgado de <span class="math inline">\(\mu\)</span>.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,X_2,X_3 \overset{i.i.d}{\sim} \text{Exp}(\theta)\)</span>. El MLE de
+<span class="math inline">\(\theta\)</span> es</p>
+<p><span class="math display">\[\hat\theta = \dfrac 3T = \dfrac 3{\sum_{i=1}^{3}X_i}\]</span></p>
+<p>¿Será <span class="math inline">\(\hat\theta\)</span> un estimador insesgado?</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="estimación-insesgada.html#cb167-1"></a>theta_real &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb167-2"><a href="estimación-insesgada.html#cb167-2"></a>X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rexp</span>(<span class="dt">n =</span> <span class="dv">1000</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span>, <span class="dt">rate =</span> theta_real), </span>
+<span id="cb167-3"><a href="estimación-insesgada.html#cb167-3"></a>    <span class="dt">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb167-4"><a href="estimación-insesgada.html#cb167-4"></a></span>
+<span id="cb167-5"><a href="estimación-insesgada.html#cb167-5"></a>T &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="dt">X =</span> X, <span class="dt">MARGIN =</span> <span class="dv">1</span>, <span class="dt">FUN =</span> sum)</span>
+<span id="cb167-6"><a href="estimación-insesgada.html#cb167-6"></a></span>
+<span id="cb167-7"><a href="estimación-insesgada.html#cb167-7"></a>theta_hat &lt;-<span class="st"> </span><span class="dv">3</span><span class="op">/</span>T</span>
+<span id="cb167-8"><a href="estimación-insesgada.html#cb167-8"></a></span>
+<span id="cb167-9"><a href="estimación-insesgada.html#cb167-9"></a><span class="kw">hist</span>(theta_hat <span class="op">-</span><span class="st"> </span>theta_real, <span class="dt">breaks =</span> <span class="dv">100</span>)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-64-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p>Teoricamente podemos ver que</p>
+<p><span class="math display">\[\mathbb E[\hat\theta] = \mathbb E\bigg[\dfrac 3T\bigg]= 3\mathbb E\bigg[\dfrac
+1T\bigg], \quad T\sim \Gamma(3,\theta)\]</span></p>
+<p>Como <span class="math inline">\(\dfrac 1T \sim \text{Gamma Inversa}(3,\theta)\)</span><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, se tiene que</p>
+<p><span class="math display">\[\mathbb E\bigg[\dfrac 1T\bigg] = \dfrac{\theta}2 \implies \mathbb E[\hat
+\theta] =\dfrac{3\theta}2 \neq \theta\]</span></p>
+<p>Por lo que <span class="math inline">\(\hat \theta\)</span> es un estimador sesgado, con sesgo
 <span class="math display">\[\text{sesgo}(\hat\theta) = \dfrac{3\theta}{2} -\theta = \dfrac \theta 2.\]</span></p>
+<p>Si por ejemplo <span class="math inline">\(\theta=5\)</span>, entonces la diferencia debería ser aproximadamente
+<span class="math inline">\(\dfrac 5 2\)</span>.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="estimación-insesgada.html#cb168-1"></a><span class="kw">mean</span>(theta_hat <span class="op">-</span><span class="st"> </span>theta_real)</span></code></pre></div>
+<pre><code>## [1] 2.515532</code></pre>
 <p>Si <span class="math inline">\(U = \dfrac {2\hat\theta}{3} = \dfrac 23 \cdot \dfrac{3}{T} = \dfrac 2T\)</span>,
-<span class="math display">\[\mathbb E[U] = \dfrac 23 \mathbb E(\hat\theta) =\dfrac 23 \cdot \dfrac 32 \theta.\]</span>
-Entonces <span class="math inline">\(U\)</span> es un estimador insesgado.</p>
-<p>Necesitamos encontrar estimadores en donde <span class="math inline">\(\text{Var}(\delta(x))\to 0\)</span> insesgados. ¿Cómo controlar sesgo y varianza?</p>
+<span class="math display">\[\mathbb E[U] = \dfrac 23 \mathbb E(\hat\theta) =\dfrac 23 \cdot \dfrac 32 \theta.\]</span></p>
+<p>Entonces <span class="math inline">\(U\)</span> es un estimador insesgado.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="estimación-insesgada.html#cb170-1"></a>U &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">/</span>T</span>
+<span id="cb170-2"><a href="estimación-insesgada.html#cb170-2"></a><span class="kw">mean</span>(U <span class="op">-</span><span class="st"> </span>theta_real)</span></code></pre></div>
+<pre><code>## [1] 0.01035435</code></pre>
+<p><strong>Importante:</strong> El caso ideal es encontrar estimadores en donde
+<span class="math inline">\(\text{Var}(\delta(x))\to 0\)</span> y además que sean insesgados.</p>
+<p>¿Cómo controlar sesgo y varianza?</p>
+<p>Defina la siguiente cantidad</p>
 <p><span class="math display">\[\begin{align*}
-\text{sesgo}^2(\delta(x))+\text{Var}(\delta(x)) &amp; = (\mathbb E_\theta[\delta(x)]-\theta)^2 + \mathbb E[[\delta(x)-\mathbb E[\delta(x)]]^2]\\
+\text{Sesgo}^2(\delta(x))+\text{Var}(\delta(x)) &amp; = (\mathbb E_\theta[\delta(x)]-\theta)^2 + \mathbb E[[\delta(x)-\mathbb E[\delta(x)]]^2]\\
 	&amp; =\mathbb E[ \underbrace{(\mathbb E_\theta[\delta(x)]-\theta)^2}_{A^2} + \underbrace{[\delta(x)-\mathbb E[\delta(x)]]^2}_{B^2}]\\
-	&amp; = \mathbb E[A^2+B^2 - 2(\underset{=0}{\mathbb E[\delta(x)]-\theta)(\delta(x)-\mathbb E[\delta(x)]})\\
+	&amp; = \mathbb E[A^2+B^2 - 2(\underset{=0}{\mathbb E[\delta(x)]-\theta)(\delta(x)-\mathbb E[\delta(x)]})]\\
 	&amp; =  \mathbb E[(\mathbb E[\delta(x)]-\theta - \mathbb E[\delta(x)] + \delta(x))^2]\\
 	&amp; = \mathbb E[(\delta(x)-\theta)^2] = MSE(\delta(x))
-\end{align*}\]</span></p>
-<p><strong>Corolario</strong>. Si <span class="math inline">\(\delta\)</span> tiene varianza finita, entonces</p>
-<p><span class="math display">\[MSE_{\theta}(\delta(x)) =\text{sesgo}^2(\delta(x)) + \text{Var}(\delta(x)).\]</span></p>
-<p><strong>Ejemplo</strong>. Comparar <span class="math inline">\(\hat\theta\)</span> y <span class="math inline">\(\delta(x) =\dfrac 2T\)</span> en términos del MSE.</p>
-<p>Dado que <span class="math inline">\(\text{Var}\left(\dfrac 1T\right) = \dfrac{\theta^2}4\)</span>, se tiene</p>
+  * [ ] \end{align*}\]</span></p>
+<p>Si <span class="math inline">\(\delta\)</span> tiene varianza finita, entonces definimos el error cuadrático medio
+(MSE) de <span class="math inline">\(\delta(x)\)</span> como,</p>
+<p><span class="math display">\[MSE_{\theta}(\delta(x)) =\text{Sesgo}^2(\delta(x)) + \text{Var}(\delta(x)).\]</span></p>
+<p><strong>Ejemplo</strong>. Comparar <span class="math inline">\(\hat\theta\)</span> y <span class="math inline">\(U =\dfrac 2T\)</span> en términos del MSE.</p>
+<p>Dado que <span class="math inline">\(\text{Var}\left(\dfrac 1T\right) = \dfrac{\theta^2}4\)</span>,<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> se tiene</p>
 <ul>
-<li><p><span class="math inline">\(MSE(\delta(x)) = \text{Var}\left(\dfrac 2T\right) = 4\dfrac{\theta^2}4 = \theta^2\)</span>.</p></li>
-<li><p><span class="math inline">\(MSE(\hat\theta) = (\text{sesgo}(\hat\theta))^2+\text{Var}\left(\dfrac 3T\right) = \dfrac{\theta^2}{4}+\dfrac{9\theta^2}{4} = \dfrac{5\theta}{2}\)</span>.</p></li>
+<li><span class="math inline">\(\mathrm{MSE}(U) = \text{Var}\left(\dfrac 2T\right) = 4\dfrac{\theta^2}4 = \theta^2\)</span>.</li>
 </ul>
-<p><span class="math inline">\(\delta(x)\)</span> es mejor estimador en términos de MSE que el <span class="math inline">\(\hat\theta\)</span>.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="estimación-insesgada.html#cb172-1"></a><span class="kw">var</span>(U) <span class="op">+</span><span class="st"> </span><span class="kw">mean</span>(U <span class="op">-</span><span class="st"> </span>theta_real)<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 21.90015</code></pre>
+<ul>
+<li><span class="math inline">\(\mathrm{MSE}(\hat\theta) = (\text{Sesgo}(\hat\theta))^2+\text{Var}\left(\dfrac 3T\right) = \dfrac{\theta^2}{4}+\dfrac{9\theta^2}{4} = \dfrac{5\theta^2}{2}\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="estimación-insesgada.html#cb174-1"></a><span class="kw">var</span>(theta_hat) <span class="op">+</span><span class="st"> </span><span class="kw">mean</span>(theta_hat <span class="op">-</span><span class="st"> </span>theta_real)<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 55.603</code></pre>
+<p><span class="math inline">\(U\)</span> es mejor estimador en términos de MSE que el <span class="math inline">\(\hat\theta\)</span>.</p>
+<p><strong>OJO:</strong> El estimado bayesiano es <span class="math inline">\(\theta_{Bayes} = \dfrac{4}{2+T}\)</span> y este es
+un poco más eficiente que los otros dos.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="estimación-insesgada.html#cb176-1"></a>theta_bayes &lt;-<span class="st"> </span><span class="dv">4</span><span class="op">/</span>(<span class="dv">2</span> <span class="op">+</span><span class="st"> </span>T)</span>
+<span id="cb176-2"><a href="estimación-insesgada.html#cb176-2"></a><span class="kw">var</span>(theta_bayes) <span class="op">+</span><span class="st"> </span><span class="kw">mean</span>(theta_bayes <span class="op">-</span><span class="st"> </span>theta_real)<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 11.83203</code></pre>
 </div>
 <div id="estimador-insesgado-de-la-varianza" class="section level2" number="9.2">
 <h2><span class="header-section-number">9.2</span> Estimador insesgado de la varianza</h2>
@@ -330,67 +367,106 @@ Entonces <span class="math inline">\(U\)</span> es un estimador insesgado.</p>
 <span class="math display">\[\hat\sigma_1^2 = \dfrac{1}{n-1}\sum(X_i-\bar X_n)^2\]</span>
 es un estimador insesgado de <span class="math inline">\(\sigma^2\)</span>.</p>
 <p><em>Prueba</em>. Considere que</p>
-<p><span class="math display">\[ \sum (X_i-\mu)^2 = s_n^2 + n(\bar X_n-\mu)^2 \]</span>
-Entonces</p>
-<p><span class="math display">\[\mathbb E[\hat\sigma_0^2] = \mathbb E \bigg[ \dfrac {s_n^2}n \bigg] =  \mathbb E \bigg[ \dfrac 1n \sum(X_i-\mu)^2\bigg] - \mathbb E[(\bar X_n-\mu)^2] = \sigma^2-\dfrac{\sigma^2}n = \left(\dfrac{n-1}n\right)\sigma^2.\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\sum_{i=1}^{n}\left(X_{i}-\mu\right)^{2}=\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}+n\left(\bar{X}_{n}-\mu\right)^{2}
+\end{equation}\]</span></p>
+<p>Entonces si <span class="math inline">\(\sigma_0 ^{2} = \dfrac 1n \sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}\)</span></p>
+<p><span class="math display">\[\mathbb E[\hat\sigma_0^2] = \mathbb E \bigg[ \dfrac {\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}}n \bigg] =  \mathbb E \bigg[ \dfrac 1n \sum(X_i-\mu)^2\bigg] - \mathbb E[(\bar X_n-\mu)^2] = \sigma^2-\dfrac{\sigma^2}n = \left(\dfrac{n-1}n\right)\sigma^2.\]</span></p>
 <p>Para que <span class="math inline">\(\hat\sigma_0^2\)</span> sea insesgado,
 <span class="math display">\[\mathbb E \bigg[\dfrac n{n-1}\hat\sigma_0^2\bigg] = \mathbb E[\hat\sigma_1] = \sigma^2.\]</span></p>
 <p>Entonces <span class="math inline">\(\hat\sigma_1\)</span> es estimador insesgado de <span class="math inline">\(\sigma^2\)</span>.</p>
-<p><strong>Ejemplo</strong>. Sean <span class="math inline">\(X_1,\dots,X_n \overset{i.i.d}{\sim}\text{Poi}(\theta)\)</span>. <span class="math inline">\(\mathbb E(X_i) = \text{Var}(X_i) = \theta\)</span>. Estimadores insesgados de <span class="math inline">\(\theta\)</span> son:</p>
+<p><strong>Ejemplo</strong>. Sean <span class="math inline">\(X_1,\dots,X_n \overset{i.i.d}{\sim}\text{Poi}(\theta)\)</span>.
+<span class="math inline">\(\mathbb E(X_i) = \text{Var}(X_i) = \theta\)</span>. Estimadores insesgados de <span class="math inline">\(\theta\)</span>
+son:</p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(\bar X_n\)</span>.</p></li>
 <li><p><span class="math inline">\(\hat \sigma_1^2\)</span>.</p></li>
-<li><p>Si <span class="math inline">\(\alpha \in (0,1)\)</span>, <span class="math inline">\(T = \alpha\bar X_n + (1-\alpha)\hat\sigma_1^2\)</span> también es un estimador insesgado (corrige otros problemas).</p></li>
+<li><p>Si <span class="math inline">\(\alpha \in (0,1)\)</span>, <span class="math inline">\(T = \alpha\bar X_n + (1-\alpha)\hat\sigma_1^2\)</span>
+también es un estimador insesgado.</p></li>
 </ol>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="estimación-insesgada.html#cb178-1"></a>X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rpois</span>(<span class="dt">n =</span> <span class="dv">1000</span> <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dt">lambda =</span> <span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">100</span>)</span>
+<span id="cb178-2"><a href="estimación-insesgada.html#cb178-2"></a></span>
+<span id="cb178-3"><a href="estimación-insesgada.html#cb178-3"></a>m &lt;-<span class="st"> </span><span class="kw">apply</span>(X, <span class="dv">1</span>, mean)</span>
+<span id="cb178-4"><a href="estimación-insesgada.html#cb178-4"></a>v &lt;-<span class="st"> </span><span class="kw">apply</span>(X, <span class="dv">1</span>, var)</span>
+<span id="cb178-5"><a href="estimación-insesgada.html#cb178-5"></a>a &lt;-<span class="st"> </span><span class="kw">apply</span>(X, <span class="dv">1</span>, <span class="cf">function</span>(x, alpha) {</span>
+<span id="cb178-6"><a href="estimación-insesgada.html#cb178-6"></a>    alpha <span class="op">*</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>alpha) <span class="op">*</span><span class="st"> </span><span class="kw">var</span>(x)</span>
+<span id="cb178-7"><a href="estimación-insesgada.html#cb178-7"></a>}, <span class="dt">alpha =</span> <span class="dv">10</span>)</span>
+<span id="cb178-8"><a href="estimación-insesgada.html#cb178-8"></a></span>
+<span id="cb178-9"><a href="estimación-insesgada.html#cb178-9"></a><span class="kw">hist</span>(m)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-70-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="estimación-insesgada.html#cb179-1"></a><span class="kw">hist</span>(v)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-70-2.svg" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="estimación-insesgada.html#cb180-1"></a><span class="kw">hist</span>(a)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-70-3.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Ejemplo</strong>. (Normal) ¿Cuál estimador tiene menor MSE, <span class="math inline">\(\hat\sigma^2_0\)</span> o <span class="math inline">\(\hat\sigma^2_1\)</span>?</p>
-<p>Defina <span class="math inline">\(T_c = cs_n^2\)</span>. Si <span class="math inline">\(c = 1/n\)</span>, <span class="math inline">\(T_c = \hat\sigma_0\)</span> y si <span class="math inline">\(c = 1/(n-1)\)</span>, <span class="math inline">\(T_c = \hat\sigma_1\)</span>. De esta manera,</p>
+<p>Defina <span class="math inline">\(T_c = c\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}\)</span>. Si <span class="math inline">\(c = 1/n\)</span>, <span class="math inline">\(T_c = \hat\sigma_0\)</span> y si <span class="math inline">\(c = 1/(n-1)\)</span>, <span class="math inline">\(T_c = \hat\sigma_1\)</span>. De esta manera,</p>
 <p><span class="math display">\[MSE_{\sigma^2}(T_c) = \mathbb E[(T_c-\sigma^2)^2] =(\mathbb E(T_c)-\sigma^2)^2+\text{Var}(T_c).\]</span></p>
-<ul>
-<li><p><span class="math inline">\(\mathbb E[T_c] = c\mathbb E[s_n^2] = c(n-1)\mathbb E\bigg[\dfrac{s_n^2}{n-1}\bigg] = c(n-1)\sigma^2\)</span>.</p></li>
-<li><p><span class="math inline">\(\text{Var}(T_c) = c^2\text{Var}(s_n) = c^2\text{Var}\Bigg(\sigma^2\underbrace{\sum\dfrac{(X_i-\bar X_n)}{\sigma^2}}_{\sim\chi^2_{n-1}}\Bigg) = 2c^2\sigma^4(n-1)\)</span>.</p></li>
-</ul>
+<p><span class="math display">\[\begin{align*}
+  \mathbb E[T_c]
+  &amp;= c\mathbb E[\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}] \\
+  &amp;= c(n-1)\mathbb E\bigg[\dfrac{\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}}{n-1}\bigg] \\
+  &amp;= c(n-1)\sigma^2.
+\end{align*}\]</span></p>
+<p><span class="math display">\[\begin{align*}
+  \text{Var}(T_c)
+  &amp;= c^2\text{Var}(\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}) \\
+  &amp;= c^2\text{Var}\Bigg(\sigma^2\underbrace{\sum\dfrac{(X_i-\bar X_n)}{\sigma^2}}_{\sim\chi^2_{n-1}}\Bigg) \\
+  &amp;= 2c^2\sigma^4(n-1).
+\end{align*}\]</span></p>
 <p>Entonces</p>
-<p><span class="math display">\[MSE_{\sigma^2}(T_c) = [c(n-1)\sigma^2-\sigma^2]^2+2c^2\sigma^4(n-1) = [[c(n-1)-1]^2+2c^2(n-1)]\sigma^4.\]</span></p>
+<p><span class="math display">\[\mathrm{MSE}_{\sigma^2}(T_c) = [c(n-1)\sigma^2-\sigma^2]^2+2c^2\sigma^4(n-1) =
+[[c(n-1)-1]^2+2c^2(n-1)]\sigma^4.\]</span></p>
 <p>Optimizando,</p>
-<p><span class="math display">\[\min_c MSE (T_c) = \min_c[(n^2-1)c^2-2(n-1)c+1],\]</span></p>
-<p>se encuentra que <span class="math inline">\(\hat c = \dfrac 1{n+1}\)</span>. Así, <span class="math inline">\(T_{\hat c} = \dfrac{s_n^2}{n+1}\)</span> es el mejor estimador de <span class="math inline">\(\sigma^2\)</span> en el sentido de MSE.</p>
-<p><strong>Ejercicio</strong>. Compare <span class="math inline">\(\hat\sigma_0^2\)</span> y <span class="math inline">\(\hat\sigma_1^2\)</span>.</p>
+<p><span class="math display">\[\min_c \mathrm{MSE}(T_c) = \min_c[(n^2-1)c^2-2(n-1)c+1],\]</span></p>
+<p>se encuentra que <span class="math inline">\(\hat c = \dfrac 1{n+1}\)</span>. Así,
+<span class="math inline">\(T_{\frac{1}{n+1}} = \dfrac{\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}}{n+1}\)</span>
+es el mejor estimador de <span class="math inline">\(\sigma^2\)</span> en el sentido de MSE. Aunque se puede
+demostrar que este estimador es inadmisible.</p>
+<p><strong>Ejercicio</strong>. Calcule el MSE de <span class="math inline">\(\hat\sigma_0^2\)</span> y <span class="math inline">\(\hat\sigma_1^2\)</span> y compare
+los resultados.</p>
 </div>
 <div id="información-de-fisher" class="section level2" number="9.3">
 <h2><span class="header-section-number">9.3</span> Información de Fisher</h2>
 <p>¿Cómo cuantificar la información de un estadístico?</p>
 <p>Sea <span class="math inline">\(X\sim f(x|\theta)\)</span>, <span class="math inline">\(\theta \in \Omega \subset \mathbb R\)</span> parámetro fijo.</p>
 <ul>
-<li><p><em>Supuesto 1</em>: para cada <span class="math inline">\(x \in \mathcal X\)</span> (espacio muestral de <span class="math inline">\(X\)</span>) <span class="math inline">\(f(x|\theta)&gt; 0\)</span> <span class="math inline">\(\forall \theta \in \Omega\)</span>.</p></li>
-<li><p><em>Restricción</em>: la imagen de la variable aleatoria no puede depender de <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p><em>Supuesto 1</em>: para cada <span class="math inline">\(x \in \mathcal X\)</span> (espacio muestral de <span class="math inline">\(X\)</span>) <span class="math inline">\(f(x|\theta)&gt; 0\)</span> <span class="math inline">\(\forall \theta \in \Omega\)</span>. Esto quiere decir que la imagen de la variable aleatoria no puede depender de <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p><em>Supuesto 2</em>: <span class="math inline">\(f(x|\theta)\)</span> es dos veces diferenciable.</p></li>
+<li><p><em>Supuesto 3:</em> <span class="math inline">\(\dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx = \int_{\mathcal X}\dfrac d{d\theta}f(x|\theta)dx\)</span>.</p></li>
 </ul>
-<p><strong>Ejemplo</strong>. <span class="math inline">\(\text{Unif}[0,\theta]\)</span>, <span class="math inline">\(f(x|\theta) = 1_{(0,\theta)}(x)\)</span>. No aplica el supuesto, ya que si <span class="math inline">\(x&gt;\theta\)</span>, <span class="math inline">\(f(x|\theta) = 0\)</span>.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(\text{Unif}[0,\theta]\)</span>, <span class="math inline">\(f(x|\theta) = 1_{(0,\theta)}(x)\)</span>. No
+aplica el supuesto, ya que si <span class="math inline">\(x&gt;\theta\)</span>, <span class="math inline">\(f(x|\theta) = 0\)</span>. En otras palabras
+el dominio de la distribución no debe depender de <span class="math inline">\(\theta\)</span>.</p>
 <p><strong>Definición</strong>. Se define la <strong>función Score</strong>:</p>
-<p><span class="math display">\[\lambda(x|\theta):=\ln f(x|\theta)\]</span></p>
+<p><span class="math display">\[\lambda(x|\theta)=\ln f(x|\theta)\]</span></p>
 <p>cuyas derivadas son</p>
 <p><span class="math display">\[\lambda&#39;(x|\theta) = \dfrac \partial{\partial \theta}\ln f(x|\theta)\]</span>
 <span class="math display">\[\lambda&#39;&#39;(x|\theta) = \dfrac {\partial^2}{\partial \theta^2}\ln f(x|\theta)\]</span></p>
-<ul>
-<li><em>Supuesto 2</em>: <span class="math inline">\(f(x|\theta)\)</span> es dos veces diferenciable.</li>
-</ul>
 <p><strong>Definición</strong>. Si <span class="math inline">\(X\)</span> y <span class="math inline">\(f(x|\theta)\)</span> satisfacen los supuestos anteriores, la <strong>información de Fisher</strong> (<span class="math inline">\(I(\theta)\)</span>) de <span class="math inline">\(X\)</span> es
-<span class="math display">\[I(\theta): =\mathbb E[(\lambda&#39;(x|\theta))^2]\]</span>
+<span class="math display">\[I(\theta) =\mathbb E[(\lambda&#39;(x|\theta))^2]\]</span>
 donde la esperanza es integral o suma, dependiendo de <span class="math inline">\(X\)</span>.</p>
-<p><strong>Teorema</strong>. Bajo las condiciones anteriores, y suponiendo que las dos derivadas de <span class="math inline">\(\int_{\mathcal X}f(x|\theta)dx\)</span> con respecto a <span class="math inline">\(\theta\)</span> (<em>Supuesto 3</em>) se pueden calcular al intercambiar el orden de integración y derivación. Entonces</p>
-<p><span class="math display">\[I(\theta) = -\mathbb E_{\theta}[\lambda&#39;&#39;(x|\theta)] = \text{Var}[\lambda&#39;(x|\theta)].\]</span></p>
+<p>Por ejemplo si <span class="math inline">\(f(x\vert\theta)\)</span>
+<span class="math display">\[\begin{equation}
+I(\theta)=\int_{\mathcal{X}}\left[\lambda^{\prime}(x \mid \theta)\right]^{2} f(x \mid \theta) d x
+\end{equation}\]</span></p>
+<p><strong>Teorema</strong>. Bajo las condiciones anteriores, y suponiendo que las dos derivadas
+de <span class="math inline">\(\int_{\mathcal X}f(x|\theta)dx\)</span> con respecto a <span class="math inline">\(\theta\)</span> (<em>Supuesto 3</em>) se
+pueden calcular al intercambiar el orden de integración y derivación. Entonces</p>
+<p><span class="math display">\[I(\theta) = -\mathbb E_{\theta}[\lambda&#39;&#39;(x|\theta)] = \text{Var}[\lambda&#39;(x|\theta)]\]</span>.</p>
 <p><em>Prueba</em>:</p>
 <p><span class="math display">\[\begin{align*}
-\mathbb E[\lambda&#39;(x|\theta)] &amp; \int_{\mathcal X}\lambda&#39;(x|\theta)f(x|\theta)dx\\
-&amp; = \int_{\mathcal X} \dfrac{f&#39;(x|\theta)}{f(x|\theta)}f(x|\theta)dx\\
-&amp; =  \int_{\mathcal X}f&#39;(x|\theta)dx\\
-&amp; = \dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx \quad \text{por el supuesto}\\
-&amp; = \dfrac d{d\theta}1 = 0
+	\mathbb E[\lambda&#39;(x|\theta)]
+  &amp; = \int_{\mathcal X}\lambda&#39;(x|\theta)f(x|\theta)dx                                            \\
+  &amp; = \int_{\mathcal X} \dfrac{f&#39;(x|\theta)}{f(x|\theta)}f(x|\theta)dx                            \\
+  &amp; =  \int_{\mathcal X}f&#39;(x|\theta)dx                                                            \\
+  &amp; = \dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx \quad \text{(por supuesto 3.)} \\
+  &amp; = \dfrac d{d\theta}1 = 0
 \end{align*}\]</span></p>
 <p>En consecuencia,
 <span class="math display">\[\text{Var}(\lambda&#39;(x|\theta)) = \mathbb E[(\lambda&#39;(x|\theta))^2]-0 = I(\theta).\]</span></p>
 <p>Además,
 <span class="math display">\[\lambda&#39;&#39;(x|\theta)= \left(\dfrac{f&#39;(x|\theta)}{f(x|\theta)}\right)&#39; = \dfrac{f(x|\theta)f&#39;&#39;(x|\theta)-f&#39;(x|\theta)^2}{f^2(x|\theta)} =\dfrac{f&#39;&#39;(x|\theta)}{f(x|\theta)} - (\lambda&#39;(x|\theta))^2 \]</span></p>
-<p>Note que</p>
+<p>Note que (por los supuestos 2 y 3),</p>
 <p><span class="math display">\[\begin{align*}
 \mathbb E\bigg[\dfrac{f&#39;&#39;(x|\theta)}{f(x|\theta)} \bigg] &amp; = \int_{\mathcal X}\dfrac{f&#39;&#39;(x|\theta)}{f(x|\theta)} f(x|\theta)dx \\
 &amp;=\dfrac{d}{d\theta}\bigg[\dfrac{d}{d\theta}\int_{\mathcal X}f(x|\theta)dx\bigg]\\
@@ -399,14 +475,21 @@ donde la esperanza es integral o suma, dependiendo de <span class="math inline">
 <p>Entonces,
 <span class="math display">\[\mathbb E[\lambda&#39;&#39;(x|\theta)] =\mathbb E\bigg[\dfrac{f&#39;&#39;(x|\theta)}{f(x|\theta)} \bigg] - \mathbb E[(\lambda&#39;(x|\theta))^2] = -I(\theta). \]</span></p>
 <p>Se concluye, además, que <span class="math inline">\(\lambda&#39;(x|\theta)\)</span> es centrada y su varianza es <span class="math inline">\(I(\theta)\)</span>.</p>
-<p><strong>Ejemplo</strong>. <span class="math inline">\(X\sim \text{Ber}(p)\)</span>.</p>
+<p><strong>RESULTADO IMPORTANTE</strong></p>
+<p>Si tenemos <span class="math inline">\(\lambda(x\vert \theta) = \ln f(x\vert \theta)\)</span>, entonces tenemos los siguientes resulados</p>
+<ul>
+<li><span class="math inline">\(\lambda&#39;(x\vert \theta)\)</span> es una variable aleatoria.</li>
+<li><span class="math inline">\(\mathbb{E}[\lambda&#39;(x\vert \theta)] =0\)</span>.</li>
+<li><span class="math inline">\(\mathrm{Var}[\lambda&#39;(x\vert \theta)] = - \mathbb E[\lambda&#39;&#39;(x|\theta)] = I(\theta)\)</span>. A esta cantidad se le conoce como la información de Fisher.</li>
+</ul>
+<p><strong>Ejemplo</strong>. Suponga que <span class="math inline">\(X\sim \text{Bernoulli}(p)\)</span>.</p>
 <ul>
 <li><p><span class="math inline">\(f(x|p) = p^x(1-p)^{1-x}\)</span>, <span class="math inline">\(x=0,1\)</span> satisface supuesto 1.</p></li>
 <li><p><span class="math inline">\(\displaystyle\int_{\mathcal X}f(x|p)dx \;``=&quot; f(0|p)+f(1|p)\)</span> satisface el supuesto 3.</p></li>
 </ul>
 <p>Entonces,</p>
 <ul>
-<li><p><span class="math inline">\(\lambda(x|p) = \ln[p^x(1-p)^x] = x\ln p + (1-x)\ln(1-p)\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda(x|p) = \ln[p^x(1-p)^{1-x}] = x\ln p + (1-x)\ln(1-p)\)</span>.</p></li>
 <li><p><span class="math inline">\(\lambda&#39;(x|p) = \dfrac xp-\dfrac{1-x}{1-p}\)</span>.</p></li>
 <li><p><span class="math inline">\(\lambda&#39;&#39;(x|p) = -\dfrac x{p^2}-\dfrac{1-x}{(1-p)^2}\)</span>.</p></li>
 </ul>
@@ -434,14 +517,17 @@ donde la esperanza es integral o suma, dependiendo de <span class="math inline">
 <p><strong>Nota</strong>. Observe que
 <span class="math display">\[\lambda_n(x|\theta) = \ln f_n(x|\theta) = \sum_{i=1}^{n} \lambda(X_i|\theta)\]</span>
 lo que implica que
-<span class="math display">\[\lambda&#39;&#39;_n(x|\theta) = \sum_{i=1}^n(X_i|\theta).\]</span>
+<span class="math display">\[\lambda&#39;&#39;_n(x|\theta) = \sum_{i=1}^n\lambda(X_i|\theta).\]</span>
 De esta forma,
 <span class="math display">\[I_n(\theta) = -\mathbb E[\lambda&#39;&#39;(x|\theta)] = - \sum_{i=1}^n\mathbb E[\lambda&#39;&#39;(X_i|\theta)] = nI(\theta).\]</span></p>
-<p><strong>Ejemplo</strong>. Clientes que entran a una tienda. Este se modela a partir de un proceso de Poisson. El tiempo de llegada entre cada cliente es independiente y se distribuye como <span class="math inline">\(\text{Exp}(\theta)\)</span>. Sea <span class="math inline">\(X\)</span> el tiempo de arribo total de <span class="math inline">\(n\)</span> clientes (<span class="math inline">\(n\)</span>) fijo:
-<span class="math display">\[X\sim \sum_{i=1}^{n}\text{Exp}(\theta) = \Gamma(n,\theta) .\]</span></p>
-<p>Así mismo, sea <span class="math inline">\(Y\)</span> el número de clientes hasta el tiempo <span class="math inline">\(t\)</span>:
-<span class="math display">\[Y\sim \text{Poi}(\theta t)\]</span></p>
-<p>¿Cuál variable contiene más información de <span class="math inline">\(\theta\)</span>?</p>
+<p><strong>Ejemplo</strong>. Suponga que una compañía quiere conocer como se comportan sus clientes en sus tiendas. Hay dos propuestas para este modelo</p>
+<ul>
+<li><p>Un modelo Poisson de parámetro <span class="math inline">\(t\theta\)</span> (<span class="math inline">\(t\)</span> es cualquier valor) para determinar la tasa promedio de llegada de clientes. <span class="math inline">\(Y\sim \text{Poisson}(\theta t)\)</span>.</p></li>
+<li><p>Un modelo donde cada cliente es una v.a. exponencial con tasa de llegada <span class="math inline">\(\theta\)</span> y al final se sumará todas las variables para obtener una <span class="math inline">\(\mathrm{Gamma}(n,\theta)\)</span>. <span class="math inline">\(X\sim \sum_{i=1}^{n}\text{Exp}(\theta) = \Gamma(n,\theta)\)</span></p></li>
+</ul>
+<p>El tiempo de llegada de cada cliente es independiente.</p>
+<p>¿Cuál variable contiene más información de <span class="math inline">\(\theta\)</span> <span class="math inline">\(X\)</span> o <span class="math inline">\(Y\)</span>?</p>
+<p><em>Solución:</em></p>
 <p>Para <span class="math inline">\(Y\)</span>,</p>
 <ul>
 <li><p><span class="math inline">\(f(y|\theta) = e^{-t\theta}\dfrac{(t\theta)^y}{y!}\)</span>.</p></li>
@@ -453,7 +539,33 @@ De esta forma,
 <span class="math display">\[I_Y(\theta) =-\mathbb E[ \lambda&#39;&#39;(y|\theta)] = \dfrac{\mathbb E[Y]}{\theta^2} = \dfrac{t}\theta.\]</span></p>
 <p>Como ejercicio, verifique que <span class="math inline">\(I_X(\theta) = \dfrac n{\theta^2}\)</span>.</p>
 <p>Ambas variables tienen la misma información si</p>
-<p><span class="math display">\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = t\theta.\]</span></p>
+<p><span class="math display">\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = \dfrac{\theta t}{\theta ^{2}} = \dfrac t\theta.\]</span></p>
+<p>A partir de este ejercicio vamos a hacer un pequeño ejemplo de simulación.</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="estimación-insesgada.html#cb181-1"></a>t &lt;-<span class="st"> </span><span class="dv">20</span></span>
+<span id="cb181-2"><a href="estimación-insesgada.html#cb181-2"></a>theta &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb181-3"><a href="estimación-insesgada.html#cb181-3"></a>n &lt;-<span class="st"> </span>t <span class="op">*</span><span class="st"> </span>theta</span>
+<span id="cb181-4"><a href="estimación-insesgada.html#cb181-4"></a></span>
+<span id="cb181-5"><a href="estimación-insesgada.html#cb181-5"></a>Y &lt;-<span class="st"> </span><span class="kw">rpois</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">lambda =</span> t <span class="op">*</span><span class="st"> </span>theta)</span>
+<span id="cb181-6"><a href="estimación-insesgada.html#cb181-6"></a>X &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">shape =</span> n, <span class="dt">rate =</span> theta)</span></code></pre></div>
+<p>Ojo que según lo estimado ambas informaciones de Fisher debería dar
+aproximadamente igualdad.</p>
+<p>Para <span class="math inline">\(Y\)</span> tenemos que</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="estimación-insesgada.html#cb182-1"></a><span class="kw">mean</span>(Y<span class="op">/</span>theta<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 3.99068</code></pre>
+<p>Para <span class="math inline">\(X\)</span> por otro lado la información de Fisher es constante (¿Por qué?)</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="estimación-insesgada.html#cb184-1"></a>n<span class="op">/</span>theta<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Entonces bajo este criterio, ambas variables contienen la misma información,
+aunque modelen el problema desde ópticas diferentes.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="estimación-insesgada.html#cb186-1"></a><span class="kw">hist</span>(Y)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-74-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="estimación-insesgada.html#cb187-1"></a><span class="kw">hist</span>(X)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-74-2.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><em>Ejercicio:</em> Basado en los valores de la simulación, proponga dos valores de <span class="math inline">\(t\)</span> para que</p>
+<ul>
+<li><span class="math inline">\(X\)</span> tenga más información que <span class="math inline">\(Y\)</span>.</li>
+<li><span class="math inline">\(Y\)</span> tenga más información que <span class="math inline">\(X\)</span>.</li>
+</ul>
 </div>
 <div id="desigualdad-de-cramer-rao" class="section level2" number="9.4">
 <h2><span class="header-section-number">9.4</span> Desigualdad de Cramer-Rao</h2>
@@ -465,15 +577,34 @@ De esta forma,
 <span class="math display">\[\int_{\mathcal X}f&#39;(x|\theta)dx = 0.\]</span></p>
 <p>Para el caso multivariado:</p>
 <p><span class="math display">\[\begin{align*}
-\int_{\mathcal X^n}f&#39;_n(x|\theta)dx_1\cdots dx_n &amp; =\int_{\mathcal X^n}[f(x1|\theta)\cdots f(x_n|\theta)]&#39;dx_1\cdots dx_n \\
-&amp; \dfrac d{d\theta} \int_{\mathcal X^n}f(x1|\theta)\cdots f(x_n|\theta)dx_1\cdots dx_n = 0.
+\int_{\mathcal X^n}f&#39;_n(x|\theta)dx_1\cdots dx_n &amp; =\int_{\mathcal X^n}[f(x_1|\theta)\cdots f(x_n|\theta)]&#39;dx_1\cdots dx_n \\
+&amp; = \dfrac d{d\theta} \int_{\mathcal X^n}f(x_1|\theta)\cdots f(x_n|\theta)dx_1\cdots dx_n \\
+&amp;= \dfrac d{d\theta} 1 \\
+&amp;= 0.
 \end{align*}\]</span></p>
 <p>Entonces</p>
-<p><span class="math display">\[\mathbb E[\lambda_n&#39;(X|\theta)] = \int_{\mathcal X^n}\dfrac{f&#39;_n(x|\theta)}{f(x|\theta)}dx_1\cdots dx_n = 0\]</span></p>
+<p><span class="math display">\[\mathbb E[\lambda_n&#39;(X|\theta)] = \int_{\mathcal X^n}\dfrac{f&#39;_n(x|\theta)}{f(x|\theta)} f_{n}(x\vert \theta)dx_1\cdots dx_n = 0\]</span></p>
 <p>Por lo tanto,</p>
-<p><span class="math display">\[\begin{align*}
-\text{Cov}[T,\lambda_n&#39;(X|\theta)] &amp; = \mathbb E [T\lambda_n&#39;(X|\theta)] - \mathbb E[T]\cdot 0\\
+<p>Ahora
+<span class="math display">\[\begin{align*}
+\operatorname{Cov}_{\theta}\left[T, \lambda_{n}^{\prime}(\boldsymbol{X} \mid
+\theta)\right] \\
+&amp;=E_{\theta}\left[T \lambda_{n}^{\prime}(\boldsymbol{X} \mid \theta)\right] \\
+&amp;=\int_{\mathcal{X}^n} \ldots \int_{\mathcal{X}^n} r(\boldsymbol{x}) \lambda_{n}^{\prime}(\boldsymbol{x} \mid \theta) f_{n}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n} \\
 &amp; =\int_{\mathcal X^n}r(x)\dfrac{f&#39;_n(x|\theta)}{f_n(x|\theta)}f_n(x|\theta)dx_1\cdots dx_n\\
+&amp;=\int_{\mathcal{X}^n} \ldots \int_{\mathcal{X}^n} r(\boldsymbol{x}) f_{n}^{\prime}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n}
+\end{align*}\]</span></p>
+<p>Escriba la expresión</p>
+<p><span class="math display">\[\begin{equation*}
+m(\theta)=\int_{\mathcal{X}^n} \ldots \int_{S} r(\boldsymbol{x}) f_{n}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n}
+\end{equation*}\]</span></p>
+<p>Usando el supuesto de intercabio de integrales, tenemos que
+<span class="math display">\[\begin{equation*}
+m^{\prime}(\theta)=\int_{\mathcal{X}^n} \ldots \int_{S} r(\boldsymbol{x}) f_{n}^{\prime}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n}
+\end{equation*}\]</span></p>
+<p>Entonces tenemos que</p>
+<p><span class="math display">\[\begin{align*}
+\text{Cov}[T,\lambda_n&#39;(X|\theta)] 
 &amp; =  \dfrac d{d\theta}\int_{\mathcal X^n}r(x)f_n(x|\theta)dx_1\cdots dx_n\\
 &amp; = \dfrac{d}{d\theta}\mathbb E_\theta[r(X)] = \dfrac{d}{d\theta}E_\theta[T] = m&#39;(\theta)
 \end{align*}\]</span></p>
@@ -495,10 +626,32 @@ Entonces <span class="math inline">\(\text{Var}(T)\geq \dfrac{[m&#39;(\theta)]^2
 <p>y el supuesto 3 se puede verificar por la diferenciabilidad de <span class="math inline">\(1-e^{-\beta u}\)</span>.</p>
 <p>Así,
 <span class="math display">\[I(\beta) = -\mathbb E[\lambda&#39;&#39;(x|\beta)] = \dfrac 1{\beta^2}, \quad I_n(\beta) = \dfrac{n}{\beta^2}.\]</span></p>
+<p>Por ejemplo generemos una secuencia de valores de <span class="math inline">\(\beta\)</span> de 1 hasta 5 para
+observar el comportamiento de su información de Fisher.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="estimación-insesgada.html#cb188-1"></a>beta &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dt">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb188-2"><a href="estimación-insesgada.html#cb188-2"></a>n &lt;-<span class="st"> </span><span class="dv">100</span></span>
+<span id="cb188-3"><a href="estimación-insesgada.html#cb188-3"></a></span>
+<span id="cb188-4"><a href="estimación-insesgada.html#cb188-4"></a>lista_muestras &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dt">X =</span> beta, <span class="dt">FUN =</span> <span class="cf">function</span>(b) {</span>
+<span id="cb188-5"><a href="estimación-insesgada.html#cb188-5"></a>    <span class="kw">matrix</span>(<span class="kw">rexp</span>(<span class="dt">n =</span> n <span class="op">*</span><span class="st"> </span><span class="dv">500</span>, <span class="dt">rate =</span> b), <span class="dt">nrow =</span> <span class="dv">500</span>)</span>
+<span id="cb188-6"><a href="estimación-insesgada.html#cb188-6"></a>})</span>
+<span id="cb188-7"><a href="estimación-insesgada.html#cb188-7"></a></span>
+<span id="cb188-8"><a href="estimación-insesgada.html#cb188-8"></a><span class="kw">plot</span>(beta, n<span class="op">/</span>beta<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-75-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Considere el estadístico <span class="math inline">\(T = \dfrac{n-1}{\sum_{i=1}^n X_i}\)</span> es un estimador insesgado de <span class="math inline">\(\beta\)</span>. La varianza de <span class="math inline">\(T\)</span> es <span class="math inline">\(\dfrac{\beta^2}{n-2}\)</span>.</p>
 <p>La cota de Cramer Rao, si <span class="math inline">\(T\)</span> es insesgado, es</p>
 <p><span class="math display">\[\dfrac 1{I_n(\beta)} = \dfrac{\beta^2}{n},\]</span></p>
 <p>por lo que <span class="math inline">\(T\)</span> no satisface la cota de Cramer Rao.</p>
+<p>Este comportamiento podemos observarlo con nuestro ejemplo numérico.</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="estimación-insesgada.html#cb189-1"></a>estimador1 &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dt">X =</span> lista_muestras, <span class="dt">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb189-2"><a href="estimación-insesgada.html#cb189-2"></a>    <span class="kw">apply</span>(x, <span class="dv">1</span>, <span class="cf">function</span>(xx) (n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span><span class="kw">sum</span>(xx))</span>
+<span id="cb189-3"><a href="estimación-insesgada.html#cb189-3"></a>})</span>
+<span id="cb189-4"><a href="estimación-insesgada.html#cb189-4"></a></span>
+<span id="cb189-5"><a href="estimación-insesgada.html#cb189-5"></a><span class="kw">plot</span>(beta, <span class="kw">apply</span>(<span class="dt">X =</span> estimador1, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> mean))</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-76-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="estimación-insesgada.html#cb190-1"></a><span class="kw">plot</span>(beta, <span class="kw">apply</span>(<span class="dt">X =</span> estimador1, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> var))</span>
+<span id="cb190-2"><a href="estimación-insesgada.html#cb190-2"></a><span class="kw">lines</span>(beta, beta<span class="op">^</span><span class="dv">2</span><span class="op">/</span>n, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb190-3"><a href="estimación-insesgada.html#cb190-3"></a><span class="kw">lines</span>(beta, beta<span class="op">^</span><span class="dv">2</span><span class="op">/</span>(n <span class="op">-</span><span class="st"> </span><span class="dv">2</span>), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-76-2.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Ahora, estime <span class="math inline">\(\theta = \dfrac 1\beta = m(\beta)\)</span>. Un estimador insesgado de <span class="math inline">\(\theta\)</span> es <span class="math inline">\(T =\bar X_n\)</span>:</p>
 <p><span class="math display">\[\mathbb E[\bar X_n] = \mathbb E
 [X_1] = \dfrac 1\beta  = \theta, \quad \text{Var}(\bar X_n) = \dfrac{\text{Var}(\bar X_1) }{n} = \dfrac 1{n\beta^2}.\]</span></p>
@@ -506,6 +659,15 @@ Entonces <span class="math inline">\(\text{Var}(T)\geq \dfrac{[m&#39;(\theta)]^2
 <p><span class="math display">\[\dfrac{(m&#39;(\beta))^2}{I_n(\beta)} = \dfrac{(-1/\beta^2)^2}{n/\beta^2} = \dfrac{\beta^2}{n\beta^4} = \dfrac{1}{n\beta^2}.\]</span></p>
 <p><span class="math inline">\(\bar X_n\)</span> satisface la cota de Cramer-Rao y además
 <span class="math display">\[\lambda&#39;(X|\beta) = \dfrac n\beta - n\bar X_n =\dfrac n\beta - nT \implies T = \underbrace{-\dfrac 1n}_{u(\beta)}\lambda_n&#39;(X|\beta)+ \underbrace{\dfrac 1\beta}_{v(\beta)}. \]</span></p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="estimación-insesgada.html#cb191-1"></a>estimador2 &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dt">X =</span> lista_muestras, <span class="dt">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb191-2"><a href="estimación-insesgada.html#cb191-2"></a>    <span class="kw">apply</span>(x, <span class="dv">1</span>, <span class="cf">function</span>(xx) <span class="kw">mean</span>(xx))</span>
+<span id="cb191-3"><a href="estimación-insesgada.html#cb191-3"></a>})</span>
+<span id="cb191-4"><a href="estimación-insesgada.html#cb191-4"></a></span>
+<span id="cb191-5"><a href="estimación-insesgada.html#cb191-5"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">/</span>beta, <span class="kw">apply</span>(<span class="dt">X =</span> estimador2, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> mean))</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-77-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="estimación-insesgada.html#cb192-1"></a><span class="kw">plot</span>(beta, <span class="kw">apply</span>(<span class="dt">X =</span> estimador2, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> var))</span>
+<span id="cb192-2"><a href="estimación-insesgada.html#cb192-2"></a><span class="kw">lines</span>(beta, <span class="dv">1</span><span class="op">/</span>(n <span class="op">*</span><span class="st"> </span>beta<span class="op">^</span><span class="dv">2</span>), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-77-2.svg" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="estimadores-eficientes" class="section level2" number="9.5">
 <h2><span class="header-section-number">9.5</span> Estimadores eficientes</h2>
@@ -523,7 +685,7 @@ Entonces <span class="math inline">\(\text{Var}(T)\geq \dfrac{[m&#39;(\theta)]^2
 <span class="math display">\[\text{Var}(\bar X_n) = \dfrac{\text{Var}(X_1)}{m} = \dfrac \theta n.\]</span>
 Por lo que <span class="math inline">\(\bar X_n\)</span> es eficiente.</p>
 <p>Los otros candidatos para estimar <span class="math inline">\(\theta\)</span>
-<span class="math display">\[\sigma_1^2=\dfrac 1{n-1}s_n^2 = \dfrac 1{n-1}\sum (X_i-\bar X_n)^2,\]</span>
+<span class="math display">\[\sigma_1^2=\dfrac 1{n-1}\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2} = \dfrac 1{n-1}\sum (X_i-\bar X_n)^2,\]</span>
 y
 <span class="math display">\[\alpha \bar X_n + (1-\alpha)\hat\sigma^2_1\]</span>
 no son lineales con respecto a <span class="math inline">\(\lambda&#39;(X|\theta)\)</span> por lo que tienen mayor varianza que <span class="math inline">\(\bar X_n\)</span>.</p>
@@ -546,17 +708,32 @@ no son lineales con respecto a <span class="math inline">\(\lambda&#39;(X|\theta
 <p><span class="math display">\[\bigg[\dfrac{nI(\theta)}{m&#39;(\theta)^2}\bigg]^{\frac 12}[T-m(\theta)] = \bigg[\dfrac 1 {nI(\theta)}\bigg]^{\frac 12}\lambda&#39;_n(x|\theta) \xrightarrow[n\to\infty]{} N(0,1).\]</span></p>
 <p><strong>Teorema</strong>. Suponga que el MLE <span class="math inline">\(\hat \theta_n\)</span> se obtiene al resolver <span class="math inline">\(\lambda&#39;(x|\theta) = 0\)</span>. Además, <span class="math inline">\(\lambda&#39;&#39;(x|\theta)\)</span> y <span class="math inline">\(\lambda&#39;&#39;&#39;(x|\theta)\)</span> existen y las condiciones anteriores son ciertas.</p>
 <p><span class="math display">\[[nI(\theta)]^{1/2}(\hat\theta-\theta) \to N(0,1).\]</span></p>
-<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \sim N(0,\sigma^2)\)</span>, <span class="math inline">\(\sigma\)</span> desconocida. <span class="math inline">\(\hat\sigma = \bigg[\dfrac 1n s_n^2\bigg]^{1/2}\)</span> es MLE de <span class="math inline">\(\sigma\)</span> y <span class="math inline">\(I(\sigma) = \dfrac 2{\sigma^2}\)</span>.
-Usando el teorema,
-<span class="math display">\[\sqrt{\dfrac{2n}{\sigma^2}}\underset{n\to\infty}{\sim} N\left(\sigma,\dfrac{\sigma^2}{2n}\right).\]</span></p>
-<p>Verifique que
-<span class="math display">\[\hat\sigma_n\pm z_{\frac{1+\gamma}{2}}\sqrt{\dfrac{\sigma^2}{2n}}\]</span>
-es un intervalo de confianza para <span class="math inline">\(\sigma\)</span>.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \sim N(0,\sigma^2)\)</span>, <span class="math inline">\(\sigma\)</span> desconocida. <span class="math inline">\(\hat\sigma = \bigg[\dfrac 1n \sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}\bigg]^{1/2}\)</span> es MLE de <span class="math inline">\(\sigma\)</span> y <span class="math inline">\(I(\sigma) = \dfrac 2{\sigma^2}\)</span>.
+Usando el teorema,</p>
+<p><span class="math display">\[\sqrt{\dfrac{2n}{\sigma^2}} (\hat{\sigma} - \sigma) \underset{n\to\infty}{\sim} N\left(0,1\right).\]</span></p>
+<p>O lo que es equivalente a <span class="math display">\[\hat{\sigma} \underset{n\to\infty}{\sim}
+N\left(\sigma,\dfrac{\sigma^2}{2n}\right).\]</span></p>
+<p><em>Ejercicio:</em> Verifique que
+<span class="math display">\[ \hat\sigma_n\pm z_{\frac{1+\gamma}{2}}\sqrt{\dfrac{\sigma^2}{2n}}\]</span> es un
+intervalo de confianza para <span class="math inline">\(\sigma\)</span>.</p>
+<p><em>Ejercicio:</em> Suponga que se le da los siguientes datos</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="estimación-insesgada.html#cb193-1"></a>X &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">mean =</span> <span class="dv">5</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>Trate de ajustar un intervalo de confianza usando la cota de Cramer-Rao para <span class="math inline">\(\sigma^2\)</span>.</p>
+<p><strong>Sugerencia: Fijese que la varianza de <span class="math inline">\(\hat\sigma\)</span> depende del parámetro
+desconocido <span class="math inline">\(\sigma\)</span>. Entonces, lo mejor ahí es usar el método Delta para
+encontra una función que estabilice la varianza. </strong></p>
 <p><strong>Consecuencia en estimación bayesiana</strong>. La previa de <span class="math inline">\(\theta\)</span> es positiva y diferenciable con respecto a <span class="math inline">\(\theta\)</span>. Bajo todas las condiciones anteriores:
 <span class="math display">\[\theta|X\underset{n\to\infty}{\sim} N\left(\hat\theta_n,\dfrac 1{nI(\hat\theta_n)}\right).\]</span></p>
 <p><strong>Nota</strong>: un IC para <span class="math inline">\(\theta\)</span> en este caso tiene un error estándar que depende del MLE.</p>
 
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>La Gamma Inversa con paramétros <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\beta\)</span> tiene media <span class="math inline">\(\dfrac{\beta}{\alpha-1}.\)</span><a href="estimación-insesgada.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Si <span class="math inline">\(X\sim\text{Gamma-Inversa}(\alpha, \beta)\)</span> entonces <span class="math inline">\(\text{Var}(X)=\dfrac{\beta ^{2}}{(\alpha -1)^2(\alpha-2)}\)</span>.<a href="estimación-insesgada.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 

@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 23 septiembre, 2020"
+date: "Actualizado el 01 October, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -799,7 +799,7 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 10.64715
+## [1] 9.512256
 ```
 
 ```r
@@ -807,7 +807,7 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 0.5654769
+## [1] 0.3965964
 ```
 
 ```r
@@ -841,7 +841,7 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 9.621605
+## [1] 9.038378
 ```
 
 ```r
@@ -850,7 +850,7 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 0.09632134
+## [1] 0.04981766
 ```
 
 ```r
@@ -878,7 +878,7 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 9.994564
+## [1] 10.10505
 ```
 
 ```r
@@ -886,7 +886,7 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 1.060066
+## [1] 0.9770131
 ```
 
 ```r
@@ -920,7 +920,7 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 9.883499
+## [1] 10.0095
 ```
 
 ```r
@@ -929,7 +929,7 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 0.01111253
+## [1] 0.00945529
 ```
 
 ```r
@@ -959,7 +959,7 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```
-## [1] 9.576984
+## [1] 6.857234
 ```
 
 ```r
@@ -967,7 +967,7 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```
-## [1] 7.32444
+## [1] 4.02709
 ```
 
 ```r
@@ -1001,7 +1001,7 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```
-## [1] 1.504693
+## [1] 2.615523
 ```
 
 ```r
@@ -1010,7 +1010,7 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```
-## [1] 0.8428844
+## [1] 0.6185747
 ```
 
 ```r
@@ -1060,11 +1060,11 @@ m <- rgamma(n = 1000, scale = beta, shape = alpha)
 ```
 
 ```
-## [1] 312498.7
+## [1] 313288.2
 ```
 
 
-Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.2000131\times 10^{-6}}.
+Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.1919487\times 10^{-6}}.
 
 **OJO: En este caso la pérdida cuadrática ajusta mejor ya que la distribución que la pérdida absoluta ya que la distribución NO es simétrica. En el caso simétrico los resultados serían muy similares.** 
 
@@ -1925,7 +1925,7 @@ head(X, 20)
 ```
 
 ```
-##  [1] 3 2 3 4 1 5 3 0 3 0 0 0 5 0 2 5 0 3 2 2
+##  [1] 0 3 2 2 1 5 2 0 2 1 2 1 0 2 2 1 1 6 1 0
 ```
 
 ```r
@@ -1952,7 +1952,7 @@ head(Y, 10)
 ```
 
 ```
-##  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+##  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE
 ```
 
 
@@ -1965,7 +1965,7 @@ El objetivo es estimar $p$ donde $p$ es la probabilidad de que $X_i =1$ (solo ll
 ```
 
 ```
-## [1] 0.264
+## [1] 0.2716
 ```
 
 ¿Es el óptimo?
@@ -2000,7 +2000,7 @@ n <- length(X)
 ```
 
 ```
-## [1] 0.2707382
+## [1] 0.2708465
 ```
 
 En este caso \(\delta_0\) es mejor que \(\delta\) bajo una pérdida cuadrática. 
@@ -2492,7 +2492,7 @@ c(0, G_inv/T)
 ```
 
 ```
-## [1] 0.000000 5.702774
+## [1] 0.000000 2.477353
 ```
 
 **Definición**. Sea $X = (X_1,\dots,X_n)$ una muestra de una distribución
@@ -2573,7 +2573,7 @@ gamma2 - gamma1
 ```
 
 ```
-## [1] 4158.789
+## [1] 4103.649
 ```
 
 Finalmente el intervalo es
@@ -2584,7 +2584,7 @@ c(diferencias/chi2_gamma2, diferencias/chi2_gamma1)
 ```
 
 ```
-## [1] 3.820706 4.553580
+## [1] 3.770049 4.493205
 ```
 
 **NOTA: Las cantidades pivotales no siempre existen. Esto ocurre principalemente
@@ -2774,8 +2774,8 @@ Sean $X_1,\dots,X_n\sim N(\mu,\sigma^2) = N(\mu,\tau ^{-1})$. Su densidad corres
 
 \begin{align*}
 f(x|\mu,\sigma^2) 
-&= \left(\dfrac 1{2\pi\sigma^2}\right)\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] \\
-&= \left(\dfrac \tau{2\pi}\right)\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).
+&= \left(\dfrac 1{2\pi\sigma^2}\right)^{\frac12}\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] \\
+&= \left(\dfrac \tau{2\pi}\right)^{\frac12}\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).
 \end{align*}
 
 La verosimilitud es
@@ -2813,7 +2813,7 @@ donde $[\mu|\tau,x] \sim N(\mu_1,\lambda_1\tau)$ con
 
 \[\lambda_1 = \lambda_0+n, \quad \mu_1 = \dfrac{\lambda_0\mu_0 + n\bar x_n}{\lambda_0+n},\]
 y $[\tau] \sim \Gamma(\alpha_1,\beta_1)$,
-\[\alpha_1 = \alpha_0+\dfrac n2, \quad \beta_1 = \beta_0  \dfrac 12s_n^2 + \dfrac{n\lambda_0(\bar X_n-\mu_0)^2}{2(\lambda_0+n)}.\]
+\[\alpha_1 = \alpha_0+\dfrac n2, \quad \beta_1 = \beta_0 +  \dfrac 12s_n^2 + \dfrac{n\lambda_0(\bar X_n-\mu_0)^2}{2(\lambda_0+n)}.\]
 
 *Prueba*. 
 
@@ -3061,12 +3061,12 @@ Los datos de este experimento son $n = 30$, $\bar x_n = 1.442$, $s_n^2 =
 ```
 
 ```r
-(beta_1 <- 0.5 * beta_0 * (n - 1) * s^2 + n * lambda_0 * 
+(beta_1 <- beta_0 + 0.5 * (n - 1) * s^2 + n * lambda_0 * 
     (Xbar - mu_0)/(2 * (lambda_0 + n)))
 ```
 
 ```
-## [1] 0.881641
+## [1] 2.049411
 ```
 
 
@@ -3076,7 +3076,7 @@ Los datos de este experimento son $n = 30$, $\bar x_n = 1.442$, $s_n^2 =
 
 * $\alpha_1 = 15.5$.
 
-* $\beta_1 = 0.881641$
+* $\beta_1 = 2.049411$
 
 La posterior es \[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_1,\lambda_1,\alpha_1,\beta_1).\]
 
@@ -3108,10 +3108,22 @@ es Gamma.
 \begin{align*}
 \mathbb P[\sigma>0.3|x] & = \mathbb P\bigg[\sqrt{\dfrac 1\tau} >0.3\bigg|x\bigg]\\
 & = \mathbb P\bigg[\dfrac 1\tau >0.3^2\bigg|x\bigg]\\ 
-& = \mathbb P\bigg[\tau >\dfrac 1{0.3^2}\bigg|x\bigg] = 0.984
+& = \mathbb P\bigg[\tau <\dfrac 1{0.3^2}\bigg|x\bigg] \\ 
+& = \mathbb P\bigg[\tau <11.11\bigg|x\bigg] \\ 
+&=0.9554296
 \end{align*}
 
-dado que $[\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(15.5,0.881641)$.
+dado que $[\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(15.5,2.049411)$.
+
+En este caso observe que el cálculo es directo usando la función `pgamma`
+
+```r
+pgamma(q = 0.3^(-2), shape = alpha_1, rate = beta_1)
+```
+
+```
+## [1] 0.9554296
+```
 
 
  Lo más importante es que basados en el teorema de las marginales podemos
@@ -3146,7 +3158,7 @@ t_{2\alpha_1, \tfrac{\gamma+1}{2}}
  ```
  
  ```
- ## [1] 1.355114 1.500370
+ ## [1] 1.317011 1.538473
  ```
 **Noten que para este caso, encontramos un intervalo más pequeño que antes. **
  
@@ -3259,7 +3271,7 @@ ggplot(data = data.frame(x = c(0, 4)), aes(x)) + stat_function(fun = dgamma,
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-61-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-62-1} \end{center}
 
 _Ejercicio_ Para hacer este ejercicio sin usar bayes, se debe resolver usando
 una función estabilizadora de la varianza. Encuentre esa función y aplique el
@@ -3340,50 +3352,144 @@ Entonces
 
 ## Estimadores insesgados
 
-**Definición**. Un estimador $\delta(x)$ es un **estimador insesgado** de $g(\theta)$ si $\mathbb E_{\theta}[\delta(x)] = g(\theta)$, $\forall \theta$. A $\mathbb E_{\theta}[\delta(x)] - g(\theta)$ se le denomina **sesgo**.
+**Definición**. Un estimador $\delta(x)$ es un **estimador insesgado** de
+$g(\theta)$ si $\mathbb E_{\theta}[\delta(x)] = g(\theta)$, $\forall \theta$. A
+$\mathbb E_{\theta}[\delta(x)] - g(\theta)$ se le denomina **sesgo**.
 
-**Ejemplo**. Si $X_1,\dots, X_n \overset{i.i.d}{\sim} F_\theta$, $\mu = \mathbb E[X_1]$, entonces
+**Ejemplo**. Si $X_1,\dots, X_n \overset{i.i.d}{\sim} F_\theta$, $\mu = \mathbb
+E[X_1]$, entonces
+
 \[\mathbb E[\bar X_n] = \dfrac 1n \sum_{i=1}^n\mathbb E(X_i) = \mu\]
+
 $\bar X_n$ es estimador insesgado de $\mu$.
 
-**Ejemplo**. $X_1,X_2,X_3 \overset{i.i.d}{\sim} \text{Exp}(\theta)$. El MLE de $\theta$ es
+
+**Ejemplo**. $X_1,X_2,X_3 \overset{i.i.d}{\sim} \text{Exp}(\theta)$. El MLE de
+$\theta$ es
+
 \[\hat\theta = \dfrac 3T = \dfrac 3{\sum_{i=1}^{3}X_i}\]
+
 ¿Será $\hat\theta$ un estimador insesgado?
-\[\mathbb E[\hat\theta] = \mathbb E\bigg[\dfrac 3T\bigg]= 3\mathbb E\bigg[\dfrac 1T\bigg], \quad T\sim \Gamma(3,\theta)\]
-Como
-$\dfrac 1T \sim \text{Gamma Inversa}$, se tiene que
-\[\mathbb E\bigg[\dfrac 1T\bigg] = \dfrac{\theta}2 \implies \mathbb E[\hat \theta] =\dfrac{3\theta}2 \neq \theta\]
+
+
+```r
+theta_real <- 5
+X <- matrix(rexp(n = 1000 * 3, rate = theta_real), 
+    ncol = 3)
+
+T <- apply(X = X, MARGIN = 1, FUN = sum)
+
+theta_hat <- 3/T
+
+hist(theta_hat - theta_real, breaks = 100)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-64-1} \end{center}
+
+Teoricamente podemos ver que 
+
+\[\mathbb E[\hat\theta] = \mathbb E\bigg[\dfrac 3T\bigg]= 3\mathbb E\bigg[\dfrac
+1T\bigg], \quad T\sim \Gamma(3,\theta)\]
+
+Como $\dfrac 1T \sim \text{Gamma Inversa}(3,\theta)$^[La Gamma Inversa con paramétros \(\alpha\) y $\beta$ tiene media \(\dfrac{\beta}{\alpha-1}.\)], se tiene que 
+
+\[\mathbb E\bigg[\dfrac 1T\bigg] = \dfrac{\theta}2 \implies \mathbb E[\hat
+\theta] =\dfrac{3\theta}2 \neq \theta\]
+
 Por lo que $\hat \theta$ es un estimador sesgado, con sesgo
 \[\text{sesgo}(\hat\theta) = \dfrac{3\theta}{2} -\theta = \dfrac \theta 2.\]
 
+Si por ejemplo \(\theta=5\), entonces la diferencia debería ser aproximadamente
+\(\dfrac 5 2 \).
+
+
+```r
+mean(theta_hat - theta_real)
+```
+
+```
+## [1] 2.515532
+```
+
 Si $U = \dfrac {2\hat\theta}{3} = \dfrac 23 \cdot \dfrac{3}{T} = \dfrac 2T$,
 \[\mathbb E[U] = \dfrac 23 \mathbb E(\hat\theta) =\dfrac 23 \cdot \dfrac 32 \theta.\]
+
 Entonces $U$ es un estimador insesgado.
 
-Necesitamos encontrar estimadores en donde $\text{Var}(\delta(x))\to 0$ insesgados. ¿Cómo controlar sesgo y varianza?
+
+```r
+U <- 2/T
+mean(U - theta_real)
+```
+
+```
+## [1] 0.01035435
+```
+
+
+**Importante:** El caso ideal es encontrar estimadores en donde
+$\text{Var}(\delta(x))\to 0$ y además que sean insesgados.
+
+¿Cómo controlar sesgo y varianza?
+
+Defina la siguiente cantidad 
 
 \begin{align*}
-\text{sesgo}^2(\delta(x))+\text{Var}(\delta(x)) & = (\mathbb E_\theta[\delta(x)]-\theta)^2 + \mathbb E[[\delta(x)-\mathbb E[\delta(x)]]^2]\\
+\text{Sesgo}^2(\delta(x))+\text{Var}(\delta(x)) & = (\mathbb E_\theta[\delta(x)]-\theta)^2 + \mathbb E[[\delta(x)-\mathbb E[\delta(x)]]^2]\\
 	& =\mathbb E[ \underbrace{(\mathbb E_\theta[\delta(x)]-\theta)^2}_{A^2} + \underbrace{[\delta(x)-\mathbb E[\delta(x)]]^2}_{B^2}]\\
-	& = \mathbb E[A^2+B^2 - 2(\underset{=0}{\mathbb E[\delta(x)]-\theta)(\delta(x)-\mathbb E[\delta(x)]})\\
+	& = \mathbb E[A^2+B^2 - 2(\underset{=0}{\mathbb E[\delta(x)]-\theta)(\delta(x)-\mathbb E[\delta(x)]})]\\
 	& =  \mathbb E[(\mathbb E[\delta(x)]-\theta - \mathbb E[\delta(x)] + \delta(x))^2]\\
 	& = \mathbb E[(\delta(x)-\theta)^2] = MSE(\delta(x))
-\end{align*}
+  * [ ] \end{align*}
 	
-**Corolario**. Si $\delta$ tiene varianza finita, entonces
+Si $\delta$ tiene varianza finita, entonces definimos el error cuadrático medio
+(MSE) de \(\delta(x)\) como, 
 	
-\[MSE_{\theta}(\delta(x)) =\text{sesgo}^2(\delta(x)) + \text{Var}(\delta(x)).\]
+\[MSE_{\theta}(\delta(x)) =\text{Sesgo}^2(\delta(x)) + \text{Var}(\delta(x)).\]
 	
-**Ejemplo**. Comparar $\hat\theta$ y $\delta(x) =\dfrac 2T$ en términos del MSE.
+**Ejemplo**. Comparar $\hat\theta$ y $U =\dfrac 2T$ en términos del MSE.
 
-Dado que $\text{Var}\left(\dfrac 1T\right) = \dfrac{\theta^2}4$, se tiene
+Dado que $\text{Var}\left(\dfrac 1T\right) = \dfrac{\theta^2}4$,^[Si \(X\sim\text{Gamma-Inversa}(\alpha, \beta)\) entonces \(\text{Var}(X)=\dfrac{\beta ^{2}}{(\alpha -1)^2(\alpha-2)}\).] se tiene
 
-* $MSE(\delta(x)) = \text{Var}\left(\dfrac 2T\right) = 4\dfrac{\theta^2}4 = \theta^2$.
 
-* $MSE(\hat\theta) = (\text{sesgo}(\hat\theta))^2+\text{Var}\left(\dfrac 3T\right) = \dfrac{\theta^2}{4}+\dfrac{9\theta^2}{4} = \dfrac{5\theta}{2}$.
 
-$\delta(x)$ es mejor estimador en términos de MSE que el $\hat\theta$.
+* $\mathrm{MSE}(U) = \text{Var}\left(\dfrac 2T\right) = 4\dfrac{\theta^2}4 = \theta^2$.
 
+
+```r
+var(U) + mean(U - theta_real)^2
+```
+
+```
+## [1] 21.90015
+```
+
+* $\mathrm{MSE}(\hat\theta) = (\text{Sesgo}(\hat\theta))^2+\text{Var}\left(\dfrac 3T\right) = \dfrac{\theta^2}{4}+\dfrac{9\theta^2}{4} = \dfrac{5\theta^2}{2}$.
+
+
+```r
+var(theta_hat) + mean(theta_hat - theta_real)^2
+```
+
+```
+## [1] 55.603
+```
+$U$ es mejor estimador en términos de MSE que el $\hat\theta$.
+
+**OJO:** El estimado bayesiano es \(\theta_{Bayes} = \dfrac{4}{2+T}\) y este es
+un poco más eficiente que los otros dos.  
+
+
+```r
+theta_bayes <- 4/(2 + T)
+var(theta_bayes) + mean(theta_bayes - theta_real)^2
+```
+
+```
+## [1] 11.83203
+```
 ## Estimador insesgado de la varianza
 
 **Teorema**. Si $X_1,\dots, X_n \sim F_{\theta}$ con varianza finita y $g(\theta) = \text{Var}(X_1)$ entonces
@@ -3392,45 +3498,101 @@ es un estimador insesgado de $\sigma^2$.
 
 *Prueba*. Considere que
 
-\[ \sum (X_i-\mu)^2 = s_n^2 + n(\bar X_n-\mu)^2 \]
-Entonces
+ 
+\begin{equation}
+\sum_{i=1}^{n}\left(X_{i}-\mu\right)^{2}=\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}+n\left(\bar{X}_{n}-\mu\right)^{2}
+\end{equation}
 
-\[\mathbb E[\hat\sigma_0^2] = \mathbb E \bigg[ \dfrac {s_n^2}n \bigg] =  \mathbb E \bigg[ \dfrac 1n \sum(X_i-\mu)^2\bigg] - \mathbb E[(\bar X_n-\mu)^2] = \sigma^2-\dfrac{\sigma^2}n = \left(\dfrac{n-1}n\right)\sigma^2.\]
+Entonces si \(\sigma_0 ^{2} = \dfrac 1n \sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}\)
+
+\[\mathbb E[\hat\sigma_0^2] = \mathbb E \bigg[ \dfrac {\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}}n \bigg] =  \mathbb E \bigg[ \dfrac 1n \sum(X_i-\mu)^2\bigg] - \mathbb E[(\bar X_n-\mu)^2] = \sigma^2-\dfrac{\sigma^2}n = \left(\dfrac{n-1}n\right)\sigma^2.\]
 
 Para que $\hat\sigma_0^2$ sea insesgado,
 \[\mathbb E \bigg[\dfrac n{n-1}\hat\sigma_0^2\bigg] = \mathbb E[\hat\sigma_1] = \sigma^2.\]
 
 Entonces $\hat\sigma_1$ es estimador insesgado de $\sigma^2$.
 
-**Ejemplo**. Sean $X_1,\dots,X_n \overset{i.i.d}{\sim}\text{Poi}(\theta)$. $\mathbb E(X_i) = \text{Var}(X_i) = \theta$. Estimadores insesgados de $\theta$ son:
+**Ejemplo**. Sean $X_1,\dots,X_n \overset{i.i.d}{\sim}\text{Poi}(\theta)$.
+$\mathbb E(X_i) = \text{Var}(X_i) = \theta$. Estimadores insesgados de $\theta$
+son:
 
-1) $\bar X_n$.
+1. $\bar X_n$.
 
-2) $\hat \sigma_1^2$.
+2. $\hat \sigma_1^2$.
 
-3) Si $\alpha \in (0,1)$, $T = \alpha\bar X_n + (1-\alpha)\hat\sigma_1^2$ también es un estimador insesgado (corrige otros problemas).
+3. Si $\alpha \in (0,1)$, $T = \alpha\bar X_n + (1-\alpha)\hat\sigma_1^2$
+también es un estimador insesgado. 
+
+
+
+```r
+X <- matrix(rpois(n = 1000 * 100, lambda = 2), nrow = 100)
+
+m <- apply(X, 1, mean)
+v <- apply(X, 1, var)
+a <- apply(X, 1, function(x, alpha) {
+    alpha * mean(x) + (1 - alpha) * var(x)
+}, alpha = 10)
+
+hist(m)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-70-1} \end{center}
+
+```r
+hist(v)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-70-2} \end{center}
+
+```r
+hist(a)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-70-3} \end{center}
 
 **Ejemplo**. (Normal) ¿Cuál estimador tiene menor MSE, $\hat\sigma^2_0$ o $\hat\sigma^2_1$? 
 
-Defina $T_c = cs_n^2$. Si $c = 1/n$, $T_c = \hat\sigma_0$ y si $c = 1/(n-1)$, $T_c = \hat\sigma_1$. De esta manera,
+Defina $T_c = c\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}$. Si $c = 1/n$, $T_c = \hat\sigma_0$ y si $c = 1/(n-1)$, $T_c = \hat\sigma_1$. De esta manera,
 
 \[MSE_{\sigma^2}(T_c) = \mathbb E[(T_c-\sigma^2)^2] =(\mathbb E(T_c)-\sigma^2)^2+\text{Var}(T_c).\]
 
-* $\mathbb E[T_c] = c\mathbb E[s_n^2] = c(n-1)\mathbb E\bigg[\dfrac{s_n^2}{n-1}\bigg] = c(n-1)\sigma^2$.
+\begin{align*}
+  \mathbb E[T_c]
+  &= c\mathbb E[\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}] \\
+  &= c(n-1)\mathbb E\bigg[\dfrac{\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}}{n-1}\bigg] \\
+  &= c(n-1)\sigma^2.
+\end{align*}
 
-* $\text{Var}(T_c) = c^2\text{Var}(s_n) = c^2\text{Var}\Bigg(\sigma^2\underbrace{\sum\dfrac{(X_i-\bar X_n)}{\sigma^2}}_{\sim\chi^2_{n-1}}\Bigg) = 2c^2\sigma^4(n-1)$.
+\begin{align*}
+  \text{Var}(T_c)
+  &= c^2\text{Var}(\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}) \\
+  &= c^2\text{Var}\Bigg(\sigma^2\underbrace{\sum\dfrac{(X_i-\bar X_n)}{\sigma^2}}_{\sim\chi^2_{n-1}}\Bigg) \\
+  &= 2c^2\sigma^4(n-1).
+\end{align*}
 
 Entonces
 
-\[MSE_{\sigma^2}(T_c) = [c(n-1)\sigma^2-\sigma^2]^2+2c^2\sigma^4(n-1) = [[c(n-1)-1]^2+2c^2(n-1)]\sigma^4.\]
+\[\mathrm{MSE}_{\sigma^2}(T_c) = [c(n-1)\sigma^2-\sigma^2]^2+2c^2\sigma^4(n-1) =
+[[c(n-1)-1]^2+2c^2(n-1)]\sigma^4.\]
 
 Optimizando,
 
-\[\min_c MSE (T_c) = \min_c[(n^2-1)c^2-2(n-1)c+1],\]
+\[\min_c \mathrm{MSE}(T_c) = \min_c[(n^2-1)c^2-2(n-1)c+1],\]
 
-se encuentra que $\hat c = \dfrac 1{n+1}$. Así, $T_{\hat c} = \dfrac{s_n^2}{n+1}$ es el mejor estimador de $\sigma^2$ en el sentido de MSE.
+se encuentra que $\hat c = \dfrac 1{n+1}$. Así,
+$T_{\frac{1}{n+1}} = \dfrac{\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}}{n+1}$
+es el mejor estimador de $\sigma^2$ en el sentido de MSE. Aunque se puede
+demostrar que este estimador es inadmisible. 
 
-**Ejercicio**. Compare $\hat\sigma_0^2$ y $\hat\sigma_1^2$.
+**Ejercicio**. Calcule el MSE de  $\hat\sigma_0^2$ y $\hat\sigma_1^2$ y compare
+los resultados. 
 
 ## Información de Fisher
 
@@ -3439,39 +3601,50 @@ se encuentra que $\hat c = \dfrac 1{n+1}$. Así, $T_{\hat c} = \dfrac{s_n^2}{n+1
 
 Sea $X\sim f(x|\theta)$, $\theta \in \Omega \subset \mathbb R$ parámetro fijo.
 
-* *Supuesto 1*: para cada $x \in \mathcal X$ (espacio muestral de $X$) $f(x|\theta)> 0$ $\forall \theta \in \Omega$.
+* *Supuesto 1*: para cada $x \in \mathcal X$ (espacio muestral de $X$) $f(x|\theta)> 0$ $\forall \theta \in \Omega$. Esto quiere decir que la imagen de la variable aleatoria no puede depender de $\theta$.
 
-* *Restricción*: la imagen de la variable aleatoria no puede depender de $\theta$.
+* *Supuesto 2*: $f(x|\theta)$ es dos veces diferenciable.
+* *Supuesto 3:* \(\dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx =  \int_{\mathcal X}\dfrac d{d\theta}f(x|\theta)dx\).
 
-**Ejemplo**. $\text{Unif}[0,\theta]$, $f(x|\theta) = 1_{(0,\theta)}(x)$. No aplica el supuesto, ya que si $x>\theta$, $f(x|\theta) = 0$.
+**Ejemplo**. $\text{Unif}[0,\theta]$, $f(x|\theta) = 1_{(0,\theta)}(x)$. No
+aplica el supuesto, ya que si $x>\theta$, $f(x|\theta) = 0$. En otras palabras
+el dominio de la distribución no debe depender de \(\theta\). 
+
 
 **Definición**. Se define la **función Score**:
 
-\[\lambda(x|\theta):=\ln f(x|\theta)\]
+\[\lambda(x|\theta)=\ln f(x|\theta)\]
 
 cuyas derivadas son
 
-\[\lambda'(x|\theta) = \dfrac \partial{\partial \theta}\ln f(x|\theta)\]
+ \[\lambda'(x|\theta) = \dfrac \partial{\partial \theta}\ln f(x|\theta)\]
 \[\lambda''(x|\theta) = \dfrac {\partial^2}{\partial \theta^2}\ln f(x|\theta)\]
 
-* *Supuesto 2*: $f(x|\theta)$ es dos veces diferenciable.
 
 **Definición**. Si $X$ y $f(x|\theta)$ satisfacen los supuestos anteriores, la **información de Fisher** ($I(\theta)$) de $X$ es
-\[I(\theta): =\mathbb E[(\lambda'(x|\theta))^2]\]
+\[I(\theta) =\mathbb E[(\lambda'(x|\theta))^2]\]
 donde la esperanza es integral o suma, dependiendo de $X$.
 
-**Teorema**. Bajo las condiciones anteriores, y suponiendo que las dos derivadas de $\int_{\mathcal X}f(x|\theta)dx$ con respecto a $\theta$ (*Supuesto 3*) se pueden calcular al intercambiar el orden de integración y derivación. Entonces
+Por ejemplo si \(f(x\vert\theta)\)
+\begin{equation}
+I(\theta)=\int_{\mathcal{X}}\left[\lambda^{\prime}(x \mid \theta)\right]^{2} f(x \mid \theta) d x
+\end{equation}
 
-\[I(\theta) = -\mathbb E_{\theta}[\lambda''(x|\theta)] = \text{Var}[\lambda'(x|\theta)].\]
+**Teorema**. Bajo las condiciones anteriores, y suponiendo que las dos derivadas
+de $\int_{\mathcal X}f(x|\theta)dx$ con respecto a $\theta$ (*Supuesto 3*) se
+pueden calcular al intercambiar el orden de integración y derivación. Entonces
+
+\[I(\theta) = -\mathbb E_{\theta}[\lambda''(x|\theta)] = \text{Var}[\lambda'(x|\theta)]\].
 
 *Prueba*:
 
 \begin{align*}
-\mathbb E[\lambda'(x|\theta)] & \int_{\mathcal X}\lambda'(x|\theta)f(x|\theta)dx\\
-& = \int_{\mathcal X} \dfrac{f'(x|\theta)}{f(x|\theta)}f(x|\theta)dx\\
-& =  \int_{\mathcal X}f'(x|\theta)dx\\
-& = \dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx \quad \text{por el supuesto}\\
-& = \dfrac d{d\theta}1 = 0
+	\mathbb E[\lambda'(x|\theta)]
+  & = \int_{\mathcal X}\lambda'(x|\theta)f(x|\theta)dx                                            \\
+  & = \int_{\mathcal X} \dfrac{f'(x|\theta)}{f(x|\theta)}f(x|\theta)dx                            \\
+  & =  \int_{\mathcal X}f'(x|\theta)dx                                                            \\
+  & = \dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx \quad \text{(por supuesto 3.)} \\
+  & = \dfrac d{d\theta}1 = 0
 \end{align*}
 
 En consecuencia, 
@@ -3480,7 +3653,7 @@ En consecuencia,
 Además,
 \[\lambda''(x|\theta)= \left(\dfrac{f'(x|\theta)}{f(x|\theta)}\right)' = \dfrac{f(x|\theta)f''(x|\theta)-f'(x|\theta)^2}{f^2(x|\theta)} =\dfrac{f''(x|\theta)}{f(x|\theta)} - (\lambda'(x|\theta))^2 \]
 
-Note que
+Note que (por los supuestos 2 y 3),
 
 \begin{align*}
 \mathbb E\bigg[\dfrac{f''(x|\theta)}{f(x|\theta)} \bigg] & = \int_{\mathcal X}\dfrac{f''(x|\theta)}{f(x|\theta)} f(x|\theta)dx \\
@@ -3493,7 +3666,15 @@ Entonces,
 
 Se concluye, además, que $\lambda'(x|\theta)$ es centrada y su varianza es $I(\theta)$.
 
-**Ejemplo**. $X\sim \text{Ber}(p)$.
+**RESULTADO IMPORTANTE**
+
+Si tenemos  \(\lambda(x\vert \theta) = \ln f(x\vert \theta)\), entonces tenemos los siguientes resulados
+
+- \(\lambda'(x\vert \theta)\) es una variable aleatoria.
+- \(\mathbb{E}[\lambda'(x\vert \theta)] =0\).
+- \(\mathrm{Var}[\lambda'(x\vert \theta)] = - \mathbb E[\lambda''(x|\theta)] = I(\theta)\). A esta cantidad se le conoce como la información de Fisher.
+
+**Ejemplo**. Suponga que  $X\sim \text{Bernoulli}(p)$.
 
 * $f(x|p) = p^x(1-p)^{1-x}$, $x=0,1$ satisface supuesto 1.
 
@@ -3501,7 +3682,7 @@ Se concluye, además, que $\lambda'(x|\theta)$ es centrada y su varianza es $I(\
 
 Entonces,
 
-* $\lambda(x|p) = \ln[p^x(1-p)^x] = x\ln p + (1-x)\ln(1-p)$.
+* $\lambda(x|p) = \ln[p^x(1-p)^{1-x}] = x\ln p + (1-x)\ln(1-p)$.
 
 * $\lambda'(x|p) = \dfrac xp-\dfrac{1-x}{1-p}$.
 
@@ -3509,7 +3690,7 @@ Entonces,
 
 De esta manera,
 \[I(p) = \mathbb E\bigg[\dfrac xp + \dfrac{1-x}{(1-p)^2}\bigg] = \dfrac p{p^2}+\dfrac{1-p}{(1-p)^2} = \dfrac 1{p(1-p)} = \dfrac 1{\text{Var}(X)}.\]
-
+ 
 **Ejemplo**. $X\sim N(\mu,\sigma^2)$, $\mu$ desconocida, $\sigma^2$ conocida.
 \[f(x|\mu) = \dfrac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\dfrac 1{2\sigma^2}(x-\mu)^2\right)\]
 
@@ -3541,17 +3722,21 @@ Por lo que
 **Nota**. Observe que
 \[\lambda_n(x|\theta) = \ln f_n(x|\theta) = \sum_{i=1}^{n} \lambda(X_i|\theta)\]
 lo que implica que
-\[\lambda''_n(x|\theta) = \sum_{i=1}^n(X_i|\theta).\]
+\[\lambda''_n(x|\theta) = \sum_{i=1}^n\lambda(X_i|\theta).\]
 De esta forma,
 \[I_n(\theta) = -\mathbb E[\lambda''(x|\theta)] = - \sum_{i=1}^n\mathbb E[\lambda''(X_i|\theta)] = nI(\theta).\]
 
-**Ejemplo**. Clientes que entran a una tienda. Este se modela a partir de un proceso de Poisson. El tiempo de llegada entre cada cliente es independiente y se distribuye como $\text{Exp}(\theta)$. Sea $X$ el tiempo de arribo total de $n$ clientes ($n$) fijo:
-\[X\sim \sum_{i=1}^{n}\text{Exp}(\theta) = \Gamma(n,\theta) .\]
+**Ejemplo**. Suponga que una compañía quiere conocer como se comportan sus clientes en sus tiendas. Hay dos propuestas para este modelo  
 
-Así mismo, sea $Y$ el número de clientes hasta el tiempo $t$: 
-\[Y\sim \text{Poi}(\theta t)\]
+- Un modelo Poisson de parámetro \(t\theta\) (\(t\) es cualquier valor) para determinar la tasa promedio de llegada de clientes. $Y\sim \text{Poisson}(\theta t)$.
 
-¿Cuál variable contiene más información de $\theta$?
+- Un modelo donde cada cliente es una v.a. exponencial con tasa de llegada \(\theta\) y al final se sumará todas las variables para obtener una \(\mathrm{Gamma}(n,\theta)\). $X\sim \sum_{i=1}^{n}\text{Exp}(\theta) = \Gamma(n,\theta)$  
+
+El tiempo de llegada de cada cliente es independiente. 
+
+¿Cuál variable contiene más información de $\theta$ \(X\) o \(Y\)?
+
+_Solución:_
 
 Para $Y$,
 
@@ -3570,7 +3755,67 @@ Como ejercicio, verifique que $I_X(\theta) = \dfrac n{\theta^2}$.
 
 Ambas variables tienen la misma información si
 
-\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = t\theta.\]
+\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = \dfrac{\theta t}{\theta ^{2}} = \dfrac t\theta.\]
+
+A partir de este ejercicio vamos a hacer un pequeño ejemplo de simulación.
+
+
+```r
+t <- 20
+theta <- 5
+n <- t * theta
+
+Y <- rpois(n = 1000, lambda = t * theta)
+X <- rgamma(n = 1000, shape = n, rate = theta)
+```
+Ojo que según lo estimado ambas informaciones de Fisher debería dar
+aproximadamente igualdad. 
+
+Para \(Y\) tenemos que 
+
+```r
+mean(Y/theta^2)
+```
+
+```
+## [1] 3.99068
+```
+
+Para \(X\) por otro lado la información de Fisher es constante (¿Por qué?)
+
+
+```r
+n/theta^2
+```
+
+```
+## [1] 4
+```
+
+Entonces bajo este criterio, ambas variables contienen la misma información,
+aunque modelen el problema desde ópticas diferentes. 
+
+
+```r
+hist(Y)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-74-1} \end{center}
+
+```r
+hist(X)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-74-2} \end{center}
+
+_Ejercicio:_ Basado en los valores de la simulación, proponga dos valores de \(t\) para que 
+  
+  - \(X\) tenga más información que \(Y\). 
+  - \(Y\) tenga más información que \(X\).
 
 ## Desigualdad de Cramer-Rao
 
@@ -3586,19 +3831,46 @@ La igualdad se da si y solo si existen funciones $u(\theta)$ y $v(\theta)$ que s
 Para el caso multivariado:
 
 \begin{align*}
-\int_{\mathcal X^n}f'_n(x|\theta)dx_1\cdots dx_n & =\int_{\mathcal X^n}[f(x1|\theta)\cdots f(x_n|\theta)]'dx_1\cdots dx_n \\
-& \dfrac d{d\theta} \int_{\mathcal X^n}f(x1|\theta)\cdots f(x_n|\theta)dx_1\cdots dx_n = 0.
+\int_{\mathcal X^n}f'_n(x|\theta)dx_1\cdots dx_n & =\int_{\mathcal X^n}[f(x_1|\theta)\cdots f(x_n|\theta)]'dx_1\cdots dx_n \\
+& = \dfrac d{d\theta} \int_{\mathcal X^n}f(x_1|\theta)\cdots f(x_n|\theta)dx_1\cdots dx_n \\
+&= \dfrac d{d\theta} 1 \\
+&= 0.
 \end{align*}
 
 Entonces
 
-\[\mathbb E[\lambda_n'(X|\theta)] = \int_{\mathcal X^n}\dfrac{f'_n(x|\theta)}{f(x|\theta)}dx_1\cdots dx_n = 0\]
+\[\mathbb E[\lambda_n'(X|\theta)] = \int_{\mathcal X^n}\dfrac{f'_n(x|\theta)}{f(x|\theta)} f_{n}(x\vert \theta)dx_1\cdots dx_n = 0\]
 
 Por lo tanto,
 
+
+
+
+Ahora 
 \begin{align*}
-\text{Cov}[T,\lambda_n'(X|\theta)] & = \mathbb E [T\lambda_n'(X|\theta)] - \mathbb E[T]\cdot 0\\
+\operatorname{Cov}_{\theta}\left[T, \lambda_{n}^{\prime}(\boldsymbol{X} \mid
+\theta)\right] \\
+&=E_{\theta}\left[T \lambda_{n}^{\prime}(\boldsymbol{X} \mid \theta)\right] \\
+&=\int_{\mathcal{X}^n} \ldots \int_{\mathcal{X}^n} r(\boldsymbol{x}) \lambda_{n}^{\prime}(\boldsymbol{x} \mid \theta) f_{n}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n} \\
 & =\int_{\mathcal X^n}r(x)\dfrac{f'_n(x|\theta)}{f_n(x|\theta)}f_n(x|\theta)dx_1\cdots dx_n\\
+&=\int_{\mathcal{X}^n} \ldots \int_{\mathcal{X}^n} r(\boldsymbol{x}) f_{n}^{\prime}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n}
+\end{align*}
+
+Escriba la expresión 
+
+\begin{equation*}
+m(\theta)=\int_{\mathcal{X}^n} \ldots \int_{S} r(\boldsymbol{x}) f_{n}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n}
+\end{equation*}
+
+Usando el supuesto de intercabio de integrales, tenemos que 
+\begin{equation*}
+m^{\prime}(\theta)=\int_{\mathcal{X}^n} \ldots \int_{S} r(\boldsymbol{x}) f_{n}^{\prime}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n}
+\end{equation*}
+
+Entonces tenemos que 
+
+\begin{align*}
+\text{Cov}[T,\lambda_n'(X|\theta)] 
 & =  \dfrac d{d\theta}\int_{\mathcal X^n}r(x)f_n(x|\theta)dx_1\cdots dx_n\\
 & = \dfrac{d}{d\theta}\mathbb E_\theta[r(X)] = \dfrac{d}{d\theta}E_\theta[T] = m'(\theta)
 \end{align*}
@@ -3631,13 +3903,58 @@ Vea que
  Así,
  \[I(\beta) = -\mathbb E[\lambda''(x|\beta)] = \dfrac 1{\beta^2}, \quad I_n(\beta) = \dfrac{n}{\beta^2}.\]
  
+Por ejemplo generemos una secuencia de valores de \(\beta\) de 1 hasta 5 para
+observar el comportamiento de su información de Fisher. 
+
+
+```r
+beta <- seq(1, 5, length.out = 100)
+n <- 100
+
+lista_muestras <- lapply(X = beta, FUN = function(b) {
+    matrix(rexp(n = n * 500, rate = b), nrow = 500)
+})
+
+plot(beta, n/beta^2)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-75-1} \end{center}
+
 Considere el estadístico $T = \dfrac{n-1}{\sum_{i=1}^n X_i}$ es un estimador insesgado de $\beta$. La varianza de $T$ es $\dfrac{\beta^2}{n-2}$.
 
 La cota de Cramer Rao, si $T$ es insesgado, es
 
 \[\dfrac 1{I_n(\beta)} = \dfrac{\beta^2}{n},\]
 
+
 por lo que $T$ no satisface la cota de Cramer Rao.
+
+
+Este comportamiento podemos observarlo con nuestro ejemplo numérico. 
+
+```r
+estimador1 <- sapply(X = lista_muestras, FUN = function(x) {
+    apply(x, 1, function(xx) (n - 1)/sum(xx))
+})
+
+plot(beta, apply(X = estimador1, MARGIN = 2, FUN = mean))
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-76-1} \end{center}
+
+```r
+plot(beta, apply(X = estimador1, MARGIN = 2, FUN = var))
+lines(beta, beta^2/n, col = "blue")
+lines(beta, beta^2/(n - 2), col = "red")
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-76-2} \end{center}
 
 Ahora, estime $\theta = \dfrac 1\beta = m(\beta)$. Un estimador insesgado de $\theta$ es $T =\bar X_n$:
 
@@ -3650,6 +3967,28 @@ La cota de Cramer es
 
 $\bar X_n$ satisface la cota de Cramer-Rao y además
 \[\lambda'(X|\beta) = \dfrac n\beta - n\bar X_n =\dfrac n\beta - nT \implies T = \underbrace{-\dfrac 1n}_{u(\beta)}\lambda_n'(X|\beta)+ \underbrace{\dfrac 1\beta}_{v(\beta)}. \]
+
+
+```r
+estimador2 <- sapply(X = lista_muestras, FUN = function(x) {
+    apply(x, 1, function(xx) mean(xx))
+})
+
+plot(1/beta, apply(X = estimador2, MARGIN = 2, FUN = mean))
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-1} \end{center}
+
+```r
+plot(beta, apply(X = estimador2, MARGIN = 2, FUN = var))
+lines(beta, 1/(n * beta^2), col = "blue")
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-2} \end{center}
 
 ## Estimadores eficientes
 
@@ -3673,7 +4012,7 @@ La cota de CR es $\dfrac \theta n$, pero
 Por lo que $\bar X_n$ es eficiente.
 
 Los otros candidatos para estimar $\theta$
-\[\sigma_1^2=\dfrac 1{n-1}s_n^2 = \dfrac 1{n-1}\sum (X_i-\bar X_n)^2,\]
+\[\sigma_1^2=\dfrac 1{n-1}\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2} = \dfrac 1{n-1}\sum (X_i-\bar X_n)^2,\]
 y
 \[\alpha \bar X_n + (1-\alpha)\hat\sigma^2_1\]
 no son lineales con respecto a $\lambda'(X|\theta)$ por lo que tienen mayor varianza que $\bar X_n$. 
@@ -3706,18 +4045,40 @@ Entonces $T = \dfrac{m'(\theta)}{nI(\theta)}\lambda'(X|\theta) + m(\theta)$. Por
 
 \[[nI(\theta)]^{1/2}(\hat\theta-\theta) \to N(0,1).\]
 
-**Ejemplo**. $X_1,\dots, X_n \sim  N(0,\sigma^2)$, $\sigma$ desconocida. $\hat\sigma = \bigg[\dfrac 1n s_n^2\bigg]^{1/2}$ es MLE de $\sigma$ y $I(\sigma) = \dfrac 2{\sigma^2}$.
+**Ejemplo**. $X_1,\dots, X_n \sim  N(0,\sigma^2)$, $\sigma$ desconocida. $\hat\sigma = \bigg[\dfrac 1n \sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}\bigg]^{1/2}$ es MLE de $\sigma$ y $I(\sigma) = \dfrac 2{\sigma^2}$.
 Usando el teorema,
-\[\sqrt{\dfrac{2n}{\sigma^2}}\underset{n\to\infty}{\sim} N\left(\sigma,\dfrac{\sigma^2}{2n}\right).\]
 
-Verifique que 
-\[\hat\sigma_n\pm z_{\frac{1+\gamma}{2}}\sqrt{\dfrac{\sigma^2}{2n}}\]
-es un intervalo de confianza para $\sigma$.
+\[\sqrt{\dfrac{2n}{\sigma^2}} (\hat{\sigma} - \sigma) \underset{n\to\infty}{\sim} N\left(0,1\right).\]
+
+O lo que es equivalente a \[\hat{\sigma} \underset{n\to\infty}{\sim}
+N\left(\sigma,\dfrac{\sigma^2}{2n}\right).\] 
+
+_Ejercicio:_ Verifique que
+\[ \hat\sigma_n\pm z_{\frac{1+\gamma}{2}}\sqrt{\dfrac{\sigma^2}{2n}}\] es un
+intervalo de confianza para $\sigma$.
+
+_Ejercicio:_ Suponga que se le da los siguientes datos
+
+ 
+
+```r
+X <- rnorm(n = 1000, mean = 5, sd = 1)
+```
+
+
+Trate de ajustar un intervalo de confianza usando la cota de Cramer-Rao para $\sigma^2$.
+
+**Sugerencia: Fijese que la varianza de $\hat\sigma$ depende del parámetro
+desconocido $\sigma$. Entonces, lo mejor ahí es usar el método Delta para
+encontra una función que estabilice la varianza. **
+
 
 **Consecuencia en estimación bayesiana**. La previa de $\theta$ es positiva y diferenciable con respecto a $\theta$. Bajo todas las condiciones anteriores:
 \[\theta|X\underset{n\to\infty}{\sim} N\left(\hat\theta_n,\dfrac 1{nI(\hat\theta_n)}\right).\]
 
 **Nota**: un IC para $\theta$ en este caso tiene un error estándar que depende del MLE.
+
+
 
 <!--chapter:end:08-estimacion-insesgada.Rmd-->
 
@@ -4155,7 +4516,7 @@ Del ejemplo de tiempo de servicio, en lugar de rechazar $H_0: \theta = \theta_0$
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-65-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-81-1} \end{center}
 
 Entonces $(*)$ es cierto si $X_1>c$. Se puede comprobar numéricamente que $c\approx5.03$.
 
