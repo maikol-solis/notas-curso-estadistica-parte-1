@@ -3,50 +3,114 @@
 
 ## Estimadores insesgados
 
-**Definición**. Un estimador $\delta(x)$ es un **estimador insesgado** de $g(\theta)$ si $\mathbb E_{\theta}[\delta(x)] = g(\theta)$, $\forall \theta$. A $\mathbb E_{\theta}[\delta(x)] - g(\theta)$ se le denomina **sesgo**.
+**Definición**. Un estimador $\delta(x)$ es un **estimador insesgado** de
+$g(\theta)$ si $\mathbb E_{\theta}[\delta(x)] = g(\theta)$, $\forall \theta$. A
+$\mathbb E_{\theta}[\delta(x)] - g(\theta)$ se le denomina **sesgo**.
 
-**Ejemplo**. Si $X_1,\dots, X_n \overset{i.i.d}{\sim} F_\theta$, $\mu = \mathbb E[X_1]$, entonces
+**Ejemplo**. Si $X_1,\dots, X_n \overset{i.i.d}{\sim} F_\theta$, $\mu = \mathbb
+E[X_1]$, entonces
+
 \[\mathbb E[\bar X_n] = \dfrac 1n \sum_{i=1}^n\mathbb E(X_i) = \mu\]
+
 $\bar X_n$ es estimador insesgado de $\mu$.
 
-**Ejemplo**. $X_1,X_2,X_3 \overset{i.i.d}{\sim} \text{Exp}(\theta)$. El MLE de $\theta$ es
+
+**Ejemplo**. $X_1,X_2,X_3 \overset{i.i.d}{\sim} \text{Exp}(\theta)$. El MLE de
+$\theta$ es
+
 \[\hat\theta = \dfrac 3T = \dfrac 3{\sum_{i=1}^{3}X_i}\]
+
 ¿Será $\hat\theta$ un estimador insesgado?
-\[\mathbb E[\hat\theta] = \mathbb E\bigg[\dfrac 3T\bigg]= 3\mathbb E\bigg[\dfrac 1T\bigg], \quad T\sim \Gamma(3,\theta)\]
-Como
-$\dfrac 1T \sim \text{Gamma Inversa}$, se tiene que
-\[\mathbb E\bigg[\dfrac 1T\bigg] = \dfrac{\theta}2 \implies \mathbb E[\hat \theta] =\dfrac{3\theta}2 \neq \theta\]
+
+```{r }
+theta_real <- 5
+X <- matrix(rexp(n = 1000 * 3, rate = theta_real), ncol = 3)
+
+T <- apply(X = X, MARGIN = 1, FUN = sum)
+
+theta_hat <- 3 / T
+
+hist(theta_hat - theta_real, breaks = 100)
+
+```
+
+Teoricamente podemos ver que 
+
+\[\mathbb E[\hat\theta] = \mathbb E\bigg[\dfrac 3T\bigg]= 3\mathbb E\bigg[\dfrac
+1T\bigg], \quad T\sim \Gamma(3,\theta)\]
+
+Como $\dfrac 1T \sim \text{Gamma Inversa}(3,\theta)$^[La Gamma Inversa con paramétros \(\alpha\) y $\beta$ tiene media \(\dfrac{\beta}{\alpha-1}.\)], se tiene que 
+
+\[\mathbb E\bigg[\dfrac 1T\bigg] = \dfrac{\theta}2 \implies \mathbb E[\hat
+\theta] =\dfrac{3\theta}2 \neq \theta\]
+
 Por lo que $\hat \theta$ es un estimador sesgado, con sesgo
 \[\text{sesgo}(\hat\theta) = \dfrac{3\theta}{2} -\theta = \dfrac \theta 2.\]
 
+Si por ejemplo \(\theta=5\), entonces la diferencia debería ser aproximadamente
+\(\dfrac 5 2 \).
+
+```{r }
+mean(theta_hat - theta_real)
+```
+
 Si $U = \dfrac {2\hat\theta}{3} = \dfrac 23 \cdot \dfrac{3}{T} = \dfrac 2T$,
 \[\mathbb E[U] = \dfrac 23 \mathbb E(\hat\theta) =\dfrac 23 \cdot \dfrac 32 \theta.\]
+
 Entonces $U$ es un estimador insesgado.
 
-Necesitamos encontrar estimadores en donde $\text{Var}(\delta(x))\to 0$ insesgados. ¿Cómo controlar sesgo y varianza?
+```{r }
+U <- 2 / T
+mean(U - theta_real)
+```
+
+
+**Importante:** El caso ideal es encontrar estimadores en donde
+$\text{Var}(\delta(x))\to 0$ y además que sean insesgados.
+
+¿Cómo controlar sesgo y varianza?
+
+Defina la siguiente cantidad 
 
 \begin{align*}
-\text{sesgo}^2(\delta(x))+\text{Var}(\delta(x)) & = (\mathbb E_\theta[\delta(x)]-\theta)^2 + \mathbb E[[\delta(x)-\mathbb E[\delta(x)]]^2]\\
+\text{Sesgo}^2(\delta(x))+\text{Var}(\delta(x)) & = (\mathbb E_\theta[\delta(x)]-\theta)^2 + \mathbb E[[\delta(x)-\mathbb E[\delta(x)]]^2]\\
 	& =\mathbb E[ \underbrace{(\mathbb E_\theta[\delta(x)]-\theta)^2}_{A^2} + \underbrace{[\delta(x)-\mathbb E[\delta(x)]]^2}_{B^2}]\\
-	& = \mathbb E[A^2+B^2 - 2(\underset{=0}{\mathbb E[\delta(x)]-\theta)(\delta(x)-\mathbb E[\delta(x)]})\\
+	& = \mathbb E[A^2+B^2 - 2(\underset{=0}{\mathbb E[\delta(x)]-\theta)(\delta(x)-\mathbb E[\delta(x)]})]\\
 	& =  \mathbb E[(\mathbb E[\delta(x)]-\theta - \mathbb E[\delta(x)] + \delta(x))^2]\\
 	& = \mathbb E[(\delta(x)-\theta)^2] = MSE(\delta(x))
-\end{align*}
+  * [ ] \end{align*}
 	
-**Corolario**. Si $\delta$ tiene varianza finita, entonces
+Si $\delta$ tiene varianza finita, entonces definimos el error cuadrático medio
+(MSE) de \(\delta(x)\) como, 
 	
-\[MSE_{\theta}(\delta(x)) =\text{sesgo}^2(\delta(x)) + \text{Var}(\delta(x)).\]
+\[MSE_{\theta}(\delta(x)) =\text{Sesgo}^2(\delta(x)) + \text{Var}(\delta(x)).\]
 	
-**Ejemplo**. Comparar $\hat\theta$ y $\delta(x) =\dfrac 2T$ en términos del MSE.
+**Ejemplo**. Comparar $\hat\theta$ y $U =\dfrac 2T$ en términos del MSE.
 
-Dado que $\text{Var}\left(\dfrac 1T\right) = \dfrac{\theta^2}4$, se tiene
+Dado que $\text{Var}\left(\dfrac 1T\right) = \dfrac{\theta^2}4$,^[Si \(X\sim\text{Gamma-Inversa}(\alpha, \beta)\) entonces \(\text{Var}(X)=\dfrac{\beta ^{2}}{(\alpha -1)^2(\alpha-2)}\).] se tiene
 
-* $MSE(\delta(x)) = \text{Var}\left(\dfrac 2T\right) = 4\dfrac{\theta^2}4 = \theta^2$.
 
-* $MSE(\hat\theta) = (\text{sesgo}(\hat\theta))^2+\text{Var}\left(\dfrac 3T\right) = \dfrac{\theta^2}{4}+\dfrac{9\theta^2}{4} = \dfrac{5\theta}{2}$.
 
-$\delta(x)$ es mejor estimador en términos de MSE que el $\hat\theta$.
+* $\mathrm{MSE}(U) = \text{Var}\left(\dfrac 2T\right) = 4\dfrac{\theta^2}4 = \theta^2$.
 
+```{r }
+var(U) + mean(U-theta_real)^2
+```
+
+* $\mathrm{MSE}(\hat\theta) = (\text{Sesgo}(\hat\theta))^2+\text{Var}\left(\dfrac 3T\right) = \dfrac{\theta^2}{4}+\dfrac{9\theta^2}{4} = \dfrac{5\theta^2}{2}$.
+
+```{r }
+var(theta_hat) + mean(theta_hat-theta_real)^2
+``` 
+$U$ es mejor estimador en términos de MSE que el $\hat\theta$.
+
+**OJO:** El estimado bayesiano es \(\theta_{Bayes} = \dfrac{4}{2+T}\) y este es
+un poco más eficiente que los otros dos.  
+
+```{r }
+theta_bayes <- 4/(2+T)
+var(theta_bayes) + mean(theta_bayes-theta_real)^2
+``` 
 ## Estimador insesgado de la varianza
 
 **Teorema**. Si $X_1,\dots, X_n \sim F_{\theta}$ con varianza finita y $g(\theta) = \text{Var}(X_1)$ entonces
