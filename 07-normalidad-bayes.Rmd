@@ -49,7 +49,7 @@ donde $[\mu|\tau,x] \sim N(\mu_1,\lambda_1\tau)$ con
 
 \[\lambda_1 = \lambda_0+n, \quad \mu_1 = \dfrac{\lambda_0\mu_0 + n\bar x_n}{\lambda_0+n},\]
 y $[\tau] \sim \Gamma(\alpha_1,\beta_1)$,
-\[\alpha_1 = \alpha_0+\dfrac n2, \quad \beta_1 = \beta_0  \dfrac 12s_n^2 + \dfrac{n\lambda_0(\bar X_n-\mu_0)^2}{2(\lambda_0+n)}.\]
+\[\alpha_1 = \alpha_0+\dfrac n2, \quad \beta_1 = \beta_0 +  \dfrac 12s_n^2 + \dfrac{n\lambda_0(\bar X_n-\mu_0)^2}{2(\lambda_0+n)}.\]
 
 *Prueba*. 
 
@@ -203,7 +203,7 @@ Los datos de este experimento son $n = `r n`$, $\bar x_n = `r Xbar`$, $s_n^2 =
 (mu_1 <- (lambda_0 * mu_0 + n * Xbar) / (lambda_0 + n))
 (lambda_1 <- lambda_0 + n)
 (alpha_1 <- alpha_0 + n / 2)
-(beta_1 <- 0.5 * beta_0 * (n-1)*s^2 + n * lambda_0 * (Xbar - mu_0) / (2 * (lambda_0 + n)))
+(beta_1 <- beta_0 + 0.5 * (n-1)*s^2 + n * lambda_0 * (Xbar - mu_0) / (2 * (lambda_0 + n)))
 ```
 
 
