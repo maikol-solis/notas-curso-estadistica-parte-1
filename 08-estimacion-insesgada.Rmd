@@ -202,39 +202,50 @@ los resultados.
 
 Sea $X\sim f(x|\theta)$, $\theta \in \Omega \subset \mathbb R$ parámetro fijo.
 
-* *Supuesto 1*: para cada $x \in \mathcal X$ (espacio muestral de $X$) $f(x|\theta)> 0$ $\forall \theta \in \Omega$.
+* *Supuesto 1*: para cada $x \in \mathcal X$ (espacio muestral de $X$) $f(x|\theta)> 0$ $\forall \theta \in \Omega$. Esto quiere decir que la imagen de la variable aleatoria no puede depender de $\theta$.
 
-* *Restricción*: la imagen de la variable aleatoria no puede depender de $\theta$.
+* *Supuesto 2*: $f(x|\theta)$ es dos veces diferenciable.
+* *Supuesto 3:* \(\dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx =  \int_{\mathcal X}\dfrac d{d\theta}f(x|\theta)dx\).
 
-**Ejemplo**. $\text{Unif}[0,\theta]$, $f(x|\theta) = 1_{(0,\theta)}(x)$. No aplica el supuesto, ya que si $x>\theta$, $f(x|\theta) = 0$.
+**Ejemplo**. $\text{Unif}[0,\theta]$, $f(x|\theta) = 1_{(0,\theta)}(x)$. No
+aplica el supuesto, ya que si $x>\theta$, $f(x|\theta) = 0$. En otras palabras
+el dominio de la distribución no debe depender de \(\theta\). 
+
 
 **Definición**. Se define la **función Score**:
 
-\[\lambda(x|\theta):=\ln f(x|\theta)\]
+\[\lambda(x|\theta)=\ln f(x|\theta)\]
 
 cuyas derivadas son
 
-\[\lambda'(x|\theta) = \dfrac \partial{\partial \theta}\ln f(x|\theta)\]
+ \[\lambda'(x|\theta) = \dfrac \partial{\partial \theta}\ln f(x|\theta)\]
 \[\lambda''(x|\theta) = \dfrac {\partial^2}{\partial \theta^2}\ln f(x|\theta)\]
 
-* *Supuesto 2*: $f(x|\theta)$ es dos veces diferenciable.
 
 **Definición**. Si $X$ y $f(x|\theta)$ satisfacen los supuestos anteriores, la **información de Fisher** ($I(\theta)$) de $X$ es
-\[I(\theta): =\mathbb E[(\lambda'(x|\theta))^2]\]
+\[I(\theta) =\mathbb E[(\lambda'(x|\theta))^2]\]
 donde la esperanza es integral o suma, dependiendo de $X$.
 
-**Teorema**. Bajo las condiciones anteriores, y suponiendo que las dos derivadas de $\int_{\mathcal X}f(x|\theta)dx$ con respecto a $\theta$ (*Supuesto 3*) se pueden calcular al intercambiar el orden de integración y derivación. Entonces
+Por ejemplo si \(f(x\vert\theta)\)
+\begin{equation}
+I(\theta)=\int_{\mathcal{X}}\left[\lambda^{\prime}(x \mid \theta)\right]^{2} f(x \mid \theta) d x
+\end{equation}
 
-\[I(\theta) = -\mathbb E_{\theta}[\lambda''(x|\theta)] = \text{Var}[\lambda'(x|\theta)].\]
+**Teorema**. Bajo las condiciones anteriores, y suponiendo que las dos derivadas
+de $\int_{\mathcal X}f(x|\theta)dx$ con respecto a $\theta$ (*Supuesto 3*) se
+pueden calcular al intercambiar el orden de integración y derivación. Entonces
+
+\[I(\theta) = -\mathbb E_{\theta}[\lambda''(x|\theta)] = \text{Var}[\lambda'(x|\theta)]\].
 
 *Prueba*:
 
 \begin{align*}
-\mathbb E[\lambda'(x|\theta)] & \int_{\mathcal X}\lambda'(x|\theta)f(x|\theta)dx\\
-& = \int_{\mathcal X} \dfrac{f'(x|\theta)}{f(x|\theta)}f(x|\theta)dx\\
-& =  \int_{\mathcal X}f'(x|\theta)dx\\
-& = \dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx \quad \text{por el supuesto}\\
-& = \dfrac d{d\theta}1 = 0
+	\mathbb E[\lambda'(x|\theta)]
+  & = \int_{\mathcal X}\lambda'(x|\theta)f(x|\theta)dx                                            \\
+  & = \int_{\mathcal X} \dfrac{f'(x|\theta)}{f(x|\theta)}f(x|\theta)dx                            \\
+  & =  \int_{\mathcal X}f'(x|\theta)dx                                                            \\
+  & = \dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx \quad \text{(por supuesto 3.)} \\
+  & = \dfrac d{d\theta}1 = 0
 \end{align*}
 
 En consecuencia, 
@@ -243,7 +254,7 @@ En consecuencia,
 Además,
 \[\lambda''(x|\theta)= \left(\dfrac{f'(x|\theta)}{f(x|\theta)}\right)' = \dfrac{f(x|\theta)f''(x|\theta)-f'(x|\theta)^2}{f^2(x|\theta)} =\dfrac{f''(x|\theta)}{f(x|\theta)} - (\lambda'(x|\theta))^2 \]
 
-Note que
+Note que (por los supuestos 2 y 3),
 
 \begin{align*}
 \mathbb E\bigg[\dfrac{f''(x|\theta)}{f(x|\theta)} \bigg] & = \int_{\mathcal X}\dfrac{f''(x|\theta)}{f(x|\theta)} f(x|\theta)dx \\
@@ -333,7 +344,45 @@ Como ejercicio, verifique que $I_X(\theta) = \dfrac n{\theta^2}$.
 
 Ambas variables tienen la misma información si
 
-\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = t\theta.\]
+\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = \dfrac{\theta t}{\theta ^{2}} = \dfrac t\theta.\]
+
+A partir de este ejercicio vamos a hacer un pequeño ejemplo de simulación.
+
+```{r }
+t <- 20
+theta <- 5
+n <- t * theta
+
+Y <- rpois(n = 1000, lambda = t*theta)
+X <- rgamma(n = 1000, shape = n, rate = theta)
+```
+Ojo que según lo estimado ambas informaciones de Fisher debería dar
+aproximadamente igualdad. 
+
+Para \(Y\) tenemos que 
+```{r }
+mean(Y/theta^2)
+```
+
+Para \(X\) por otro lado la información de Fisher es constante (¿Por qué?)
+
+```{r }
+n /theta^2
+```
+
+Entonces bajo este criterio, ambas variables contienen la misma información,
+aunque modelen el problema desde ópticas diferentes. 
+
+```{r}
+hist(Y)
+hist(X)
+
+```
+
+_Ejercicio:_ Basado en los valores de la simulación, proponga dos valores de \(t\) para que 
+  
+  - \(X\) tenga más información que \(Y\). 
+  - \(Y\) tenga más información que \(X\).
 
 ## Desigualdad de Cramer-Rao
 
