@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 01 October, 2020"
+date: "Actualizado el 07 October, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -645,10 +645,11 @@ En nuestro ejemplo se tenía que \(\mathbb E [\theta] = 0.0002\) y \(\mathrm{Var
 alpha_previa <- 4
 beta_previa <- 20000
 
-ggplot(data = data.frame(x = c(0, 1e+06)), aes(x)) + 
-    stat_function(fun = dgamma, args = list(shape = alpha_previa, 
-        scale = beta_previa)) + ylab("") + scale_y_continuous(breaks = NULL) + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(0, 1e6)), aes(x)) +
+  stat_function(fun = dgamma, args = list(shape = alpha_previa, scale = beta_previa)) +
+  ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal()
 ```
 
 
@@ -661,14 +662,15 @@ Asumiendo que tenemos algunos datos \(X_1, ..., X_n\), asumimos que estos son ex
 
 
 ```r
-x <- c(2911, 3403, 3237, 3509, 3118)
+x  <- c(2911, 3403, 3237, 3509, 3118)
 
-theta <- 1/mean(x)
+theta <- 1 / mean(x)
 
-ggplot(data = data.frame(x = c(0, 1e+05)), aes(x)) + 
-    stat_function(fun = dexp, args = list(rate = theta)) + 
-    ylab("") + scale_y_continuous(breaks = NULL) + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(0, 1e5)), aes(x)) +
+  stat_function(fun = dexp, args = list(rate = theta)) +
+  ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal()
 ```
 
 
@@ -683,7 +685,7 @@ Según los contenidos del curso, se puede estimar los parámetros de la densidad
 
 
 ```r
-(y <- sum(x))
+(y  <- sum(x))
 ```
 
 ```
@@ -716,14 +718,12 @@ Según los contenidos del curso, se puede estimar los parámetros de la densidad
 
 
 ```r
-ggplot(data = data.frame(x = c(0, 750000)), aes(x)) + 
-    stat_function(fun = dgamma, args = list(shape = alpha_previa, 
-        scale = beta_previa), aes(color = "Previa")) + 
-    stat_function(fun = dgamma, args = list(shape = alpha_posterior, 
-        scale = beta_posterior), aes(color = "Posterior")) + 
-    stat_function(fun = dexp, args = list(rate = theta), 
-        aes(color = "Verosimilitud")) + ylim(0, 1.5e-05) + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(0, 7.5e5)), aes(x)) +
+  stat_function(fun = dgamma, args = list(shape = alpha_previa, scale = beta_previa), aes(color = "Previa")) +
+  stat_function(fun = dgamma, args = list(shape = alpha_posterior, scale = beta_posterior), aes(color = "Posterior")) +
+  stat_function(fun = dexp, args = list(rate = theta), aes(color = "Verosimilitud")) +
+  ylim(0, 1.5e-5) +
+  theme_minimal()
 ```
 
 
@@ -770,14 +770,12 @@ Suponga que \(X_6 = 3000\)
 ```
 
 ```r
-ggplot(data = data.frame(x = c(0, 1e+06)), aes(x)) + 
-    stat_function(fun = dgamma, args = list(shape = 4, 
-        scale = 20000), aes(color = "Previa #1")) + 
-    stat_function(fun = dgamma, args = list(shape = alpha_previa, 
-        scale = beta_previa), aes(color = "Previa #2")) + 
-    stat_function(fun = dgamma, args = list(shape = alpha_posterior, 
-        scale = beta_posterior), aes(color = "Posterior")) + 
-    ylim(0, 1.5e-05) + theme_minimal()
+ggplot(data = data.frame(x = c(0, 1e6)), aes(x)) +
+  stat_function(fun = dgamma, args = list(shape = 4, scale = 20000), aes(color = "Previa #1")) +
+  stat_function(fun = dgamma, args = list(shape = alpha_previa, scale = beta_previa), aes(color = "Previa #2")) +
+  stat_function(fun = dgamma, args = list(shape = alpha_posterior, scale = beta_posterior), aes(color = "Posterior")) +
+  ylim(0, 1.5e-5) +
+  theme_minimal()
 ```
 
 
@@ -799,7 +797,7 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 9.512256
+## [1] 10.26207
 ```
 
 ```r
@@ -807,7 +805,7 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 0.3965964
+## [1] 0.5653252
 ```
 
 ```r
@@ -835,33 +833,27 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```r
-(mu_posterior <- ((sigma^2)/(sigma^2 + n * sigma_previa^2)) * 
-    mu_previa + ((n * sigma_previa^2)/(sigma^2 + n * 
-    sigma_previa^2)) * mu)
+(mu_posterior <- ((sigma^2) / (sigma^2 + n * sigma_previa^2)) * mu_previa + ((n * sigma_previa^2) / (sigma^2 + n * sigma_previa^2)) * mu)
 ```
 
 ```
-## [1] 9.038378
+## [1] 9.274089
 ```
 
 ```r
-(sigma2_posterior <- (sigma^2 * sigma_previa^2)/(sigma^2 + 
-    n * sigma_previa^2))
+(sigma2_posterior <- (sigma^2 * sigma_previa^2) / (sigma^2 + n * sigma_previa^2))
 ```
 
 ```
-## [1] 0.04981766
+## [1] 0.09627465
 ```
 
 ```r
-ggplot(data = data.frame(x = c(-5, 15)), aes(x)) + 
-    stat_function(fun = dnorm, args = list(mean = mu_previa, 
-        sd = sigma_previa), aes(color = "Previa")) + 
-    stat_function(fun = dnorm, args = list(mean = mu_posterior, 
-        sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) + 
-    stat_function(fun = dnorm, args = list(mean = mu, 
-        sd = sigma), aes(color = "Verosimilitud")) + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(-5, 15)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = mu_previa, sd = sigma_previa), aes(color = "Previa")) +
+  stat_function(fun = dnorm, args = list(mean = mu_posterior, sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma), aes(color = "Verosimilitud")) +
+  theme_minimal()
 ```
 
 
@@ -878,7 +870,7 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 10.10505
+## [1] 9.982037
 ```
 
 ```r
@@ -886,7 +878,7 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 0.9770131
+## [1] 0.9857844
 ```
 
 ```r
@@ -914,33 +906,27 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```r
-(mu_posterior <- ((sigma^2)/(sigma^2 + n * sigma_previa^2)) * 
-    mu_previa + ((n * sigma_previa^2)/(sigma^2 + n * 
-    sigma_previa^2)) * mu)
+(mu_posterior <- ((sigma^2) / (sigma^2 + n * sigma_previa^2)) * mu_previa + ((n * sigma_previa^2) / (sigma^2 + n * sigma_previa^2)) * mu)
 ```
 
 ```
-## [1] 10.0095
+## [1] 9.885968
 ```
 
 ```r
-(sigma2_posterior <- (sigma^2 * sigma_previa^2)/(sigma^2 + 
-    n * sigma_previa^2))
+(sigma2_posterior <- (sigma^2 * sigma_previa^2) / (sigma^2 + n * sigma_previa^2))
 ```
 
 ```
-## [1] 0.00945529
+## [1] 0.009624183
 ```
 
 ```r
-ggplot(data = data.frame(x = c(-5, 15)), aes(x)) + 
-    stat_function(fun = dnorm, args = list(mean = mu_previa, 
-        sd = sigma_previa), aes(color = "Previa")) + 
-    stat_function(fun = dnorm, args = list(mean = mu_posterior, 
-        sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) + 
-    stat_function(fun = dnorm, args = list(mean = mu, 
-        sd = sigma), aes(color = "Verosimilitud")) + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(-5, 15)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = mu_previa, sd = sigma_previa), aes(color = "Previa")) +
+  stat_function(fun = dnorm, args = list(mean = mu_posterior, sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma), aes(color = "Verosimilitud")) +
+  theme_minimal()
 ```
 
 
@@ -959,7 +945,7 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```
-## [1] 6.857234
+## [1] 9.864745
 ```
 
 ```r
@@ -967,7 +953,7 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```
-## [1] 4.02709
+## [1] 5.864811
 ```
 
 ```r
@@ -995,33 +981,27 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```r
-(mu_posterior <- ((sigma^2)/(sigma^2 + n * sigma_previa^2)) * 
-    mu_previa + ((n * sigma_previa^2)/(sigma^2 + n * 
-    sigma_previa^2)) * mu)
+(mu_posterior <- ((sigma^2) / (sigma^2 + n * sigma_previa^2)) * mu_previa + ((n * sigma_previa^2) / (sigma^2 + n * sigma_previa^2)) * mu)
 ```
 
 ```
-## [1] 2.615523
+## [1] 2.221989
 ```
 
 ```r
-(sigma2_posterior <- (sigma^2 * sigma_previa^2)/(sigma^2 + 
-    n * sigma_previa^2))
+(sigma2_posterior <- (sigma^2 * sigma_previa^2) / (sigma^2 + n * sigma_previa^2))
 ```
 
 ```
-## [1] 0.6185747
+## [1] 0.7747545
 ```
 
 ```r
-ggplot(data = data.frame(x = c(-5, 15)), aes(x)) + 
-    stat_function(fun = dnorm, args = list(mean = mu_previa, 
-        sd = sigma_previa), aes(color = "Previa")) + 
-    stat_function(fun = dnorm, args = list(mean = mu_posterior, 
-        sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) + 
-    stat_function(fun = dnorm, args = list(mean = mu, 
-        sd = sigma), aes(color = "Verosimilitud")) + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(-5, 15)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = mu_previa, sd = sigma_previa), aes(color = "Previa")) +
+  stat_function(fun = dnorm, args = list(mean = mu_posterior, sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma), aes(color = "Verosimilitud")) +
+  theme_minimal()
 ```
 
 
@@ -1042,7 +1022,7 @@ beta <- 36178
 
 
 ```r
-(theta <- alpha/beta)
+(theta <- alpha / beta)
 ```
 
 ```
@@ -1056,15 +1036,15 @@ Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=40
 
 ```r
 m <- rgamma(n = 1000, scale = beta, shape = alpha)
-(theta <- median(m))
+(theta <- median (m))
 ```
 
 ```
-## [1] 313288.2
+## [1] 307640.1
 ```
 
 
-Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.1919487\times 10^{-6}}.
+Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.2505512\times 10^{-6}}.
 
 **OJO: En este caso la pérdida cuadrática ajusta mejor ya que la distribución que la pérdida absoluta ya que la distribución NO es simétrica. En el caso simétrico los resultados serían muy similares.** 
 
@@ -1093,7 +1073,7 @@ Una primera aproximación para la previa es usar una distribución discreta. En 
 ```r
 p <- seq(0.05, 0.95, by = 0.1)
 prior <- c(1, 5.2, 8, 7.2, 4.6, 2.1, 0.7, 0.1, 0, 0)
-prior <- prior/sum(prior)
+prior <- prior / sum(prior)
 plot(p, prior, type = "h", ylab = "Probabilidad Previa")
 ```
 
@@ -1180,8 +1160,8 @@ Para esto ajustaremos los siguientes parámetros
 
 
 ```r
-quantile2 <- list(p = 0.9, x = 0.5)
-quantile1 <- list(p = 0.5, x = 0.3)
+quantile2 <- list(p = .9, x = .5)
+quantile1 <- list(p = .5, x = .3)
 (ab <- beta.select(quantile1, quantile2))
 ```
 
@@ -1200,13 +1180,12 @@ En este caso se obtendra la distribución posterior Beta con paramétros $\alpha
 
 
 ```r
-curve(dbeta(x, a + s, b + f), from = 0, to = 1, xlab = "p", 
-    ylab = "Densidad", lty = 1, lwd = 4)
-curve(dbeta(x, s + 1, f + 1), add = TRUE, lty = 2, 
-    lwd = 4)
+curve(dbeta(x, a + s, b + f), from = 0, to = 1,
+  xlab = "p", ylab = "Densidad", lty = 1, lwd = 4)
+curve(dbeta(x, s + 1, f + 1), add = TRUE, lty = 2, lwd = 4)
 curve(dbeta(x, a, b), add = TRUE, lty = 3, lwd = 4)
-legend(0.7, 4, c("Previa", "Verosimilitud", "Posterior"), 
-    lty = c(3, 2, 1), lwd = c(3, 3, 3))
+legend(.7, 4, c("Previa", "Verosimilitud", "Posterior"),
+  lty = c(3, 2, 1), lwd = c(3, 3, 3))
 ```
 
 
@@ -1281,7 +1260,7 @@ Suponga que se tiene 100 valores con distribución exponencial con parámetro
 
 
 ```r
-x <- rexp(n = 100, rate = 1)
+x  <- rexp(n = 100, rate = 1)
 n <- length(x)
 y <- sum(x)
 theta <- seq(0.5, 1.5, length.out = 1000)
@@ -1290,7 +1269,7 @@ theta <- seq(0.5, 1.5, length.out = 1000)
 
 
 ```r
-L <- theta^(-n) * exp(-y/theta)
+L <- theta^(-n) * exp(-y / theta)
 plot(theta, L)
 ```
 
@@ -1300,7 +1279,7 @@ plot(theta, L)
 
 
 ```r
-l <- -n * log(theta) - y/theta
+l <- -n * log(theta) - y / theta
 plot(theta, l)
 ```
 
@@ -1371,8 +1350,7 @@ sigma <- seq(0.5, 1.5, length.out = 50)
 
 ms <- expand.grid(sigma, mu)
 
-l <- -(n/2) * log(2 * pi/ms[, 1]^2) - (1/(2 * ms[, 
-    1]^2) * sum((x - ms[, 2])^2))
+l <- -(n / 2) * log(2 * pi / ms[, 1]^2) - (1 / (2 * ms[, 1]^2) * sum((x - ms[, 2])^2))
 
 scatterplot3d(ms[, 1], ms[, 2], l, angle = 45)
 ```
@@ -1405,7 +1383,7 @@ theta <- seq(1.5, 2.5, length.out = 1000)
 
 L <- numeric(1000)
 for (k in 1:1000) {
-    L[k] <- 1/theta[k]^n * prod(x < theta[k])
+  L[k] <- 1 / theta[k]^n * prod(x < theta[k])
 }
 
 plot(theta, L)
@@ -1590,10 +1568,8 @@ Suponga que tenemos una tabla con los siguientes datos, los cuales representan l
 
 
 ```r
-(X <- c(rep(0, 14), rep(1, 30), rep(2, 36), rep(3, 
-    68), rep(4, 43), rep(5, 43), rep(6, 30), rep(7, 
-    14), rep(8, 10), rep(9, 6), rep(10, 4), rep(11, 
-    1), rep(12, 1)))
+(X <- c(rep(0, 14), rep(1, 30), rep(2, 36), rep(3, 68), rep(4, 43), rep(5, 43),
+  rep(6, 30), rep(7, 14), rep(8, 10), rep(9, 6), rep(10, 4), rep(11, 1), rep(12, 1)))
 ```
 
 ```
@@ -1621,8 +1597,7 @@ Queremos ajustar esta tabla a una distribución Poisson con función de densidad
 Primero veamos la forma de los datos, 
 
 ```r
-hist(X, main = "histograma del número de giros a la derecha", 
-    right = FALSE, prob = TRUE)
+hist(X, main = "histograma del número de giros a la derecha", right = FALSE, prob = TRUE)
 ```
 
 
@@ -1635,7 +1610,7 @@ Definamos la función correspondiente a $-\log(\mathbb{P}(X=x))$
 ```r
 n <- length(X)
 negloglike <- function(lambda) {
-    n * lambda - sum(X) * log(lambda) + sum(log(factorial(X)))
+  n * lambda - sum(X) * log(lambda) + sum(log(factorial(X)))
 }
 ```
 
@@ -1925,7 +1900,7 @@ head(X, 20)
 ```
 
 ```
-##  [1] 0 3 2 2 1 5 2 0 2 1 2 1 0 2 2 1 1 6 1 0
+##  [1] 0 2 2 0 5 3 3 2 2 3 2 2 2 3 2 1 3 2 3 4
 ```
 
 ```r
@@ -1952,7 +1927,7 @@ head(Y, 10)
 ```
 
 ```
-##  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE
+##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ```
 
 
@@ -1965,7 +1940,7 @@ El objetivo es estimar $p$ donde $p$ es la probabilidad de que $X_i =1$ (solo ll
 ```
 
 ```
-## [1] 0.2716
+## [1] 0.273
 ```
 
 ¿Es el óptimo?
@@ -1996,11 +1971,11 @@ Vea que
 ```r
 T <- sum(X)
 n <- length(X)
-(delta_0 <- (T/n) * (1 - 1/n)^(T - 1))
+(delta_0 <- (T / n) * (1 - 1 / n)^(T - 1))
 ```
 
 ```
-## [1] 0.2708465
+## [1] 0.2666919
 ```
 
 En este caso \(\delta_0\) es mejor que \(\delta\) bajo una pérdida cuadrática. 
@@ -2213,13 +2188,13 @@ Se resuelve numéricamente, y si $n=21$ se cumple.
 
 
 ```r
-ggplot(data = data.frame(x = seq(0, 40, length.out = 1000)), 
-    aes(x)) + stat_function(fun = dchisq, args = list(df = 5), 
-    aes(color = "05 grados de libertad")) + stat_function(fun = dchisq, 
-    args = list(df = 10), aes(color = "10 grados de libertad")) + 
-    stat_function(fun = dchisq, args = list(df = 20), 
-        aes(color = "20 grados de libertad")) + ylab("") + 
-    scale_y_continuous(breaks = NULL) + theme_minimal()
+ggplot(data = data.frame(x = seq(0, 40, length.out = 1000)), aes(x)) +
+  stat_function(fun = dchisq, args = list(df = 5), aes(color = "05 grados de libertad")) +
+  stat_function(fun = dchisq, args = list(df = 10), aes(color = "10 grados de libertad")) +
+  stat_function(fun = dchisq, args = list(df = 20), aes(color = "20 grados de libertad")) +
+  ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal()
 ```
 
 
@@ -2274,14 +2249,14 @@ U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} & = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\
 
 
 ```r
-ggplot(data = data.frame(x = seq(-5, 5, length.out = 1000)), 
-    aes(x)) + stat_function(fun = dnorm, args = list(mean = 0, 
-    sd = 1), aes(color = "Normal(0,1)")) + stat_function(fun = dt, 
-    args = list(df = 1), aes(color = " t con 01 grados de libertad")) + 
-    stat_function(fun = dt, args = list(df = 5), aes(color = " t con 05 grados de libertad")) + 
-    stat_function(fun = dt, args = list(df = 10), aes(color = " t con 10 grados de libertad")) + 
-    ylab("") + scale_y_continuous(breaks = NULL) + 
-    theme_minimal()
+ggplot(data = data.frame(x = seq(-5, 5, length.out = 1000)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1), aes(color = "Normal(0,1)")) +
+  stat_function(fun = dt, args = list(df = 1), aes(color = " t con 01 grados de libertad")) +
+  stat_function(fun = dt, args = list(df = 5), aes(color = " t con 05 grados de libertad")) +
+  stat_function(fun = dt, args = list(df = 10), aes(color = " t con 10 grados de libertad")) +
+  ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal()
 ```
 
 
@@ -2488,11 +2463,11 @@ Entonces el intervalo de confianza para este caso es
 
 
 ```r
-c(0, G_inv/T)
+c(0, G_inv / T)
 ```
 
 ```
-## [1] 0.000000 2.477353
+## [1] 0.000000 2.420941
 ```
 
 **Definición**. Sea $X = (X_1,\dots,X_n)$ una muestra de una distribución
@@ -2573,18 +2548,18 @@ gamma2 - gamma1
 ```
 
 ```
-## [1] 4103.649
+## [1] 3700.114
 ```
 
 Finalmente el intervalo es
 
 
 ```r
-c(diferencias/chi2_gamma2, diferencias/chi2_gamma1)
+c(diferencias / chi2_gamma2, diferencias / chi2_gamma1)
 ```
 
 ```
-## [1] 3.770049 4.493205
+## [1] 3.399319 4.051363
 ```
 
 **NOTA: Las cantidades pivotales no siempre existen. Esto ocurre principalemente
@@ -2658,18 +2633,17 @@ Xbar <- data.frame(n = numeric(), Z = numeric())
 
 idx <- rep(x = c(10, 2000), times = 1000)
 for (k in 1:length(idx)) {
-    muestra <- rpois(n = idx[k], lambda = 5)
-    Xbar[k, "Z"] <- sqrt(idx[k]) * (mean(muestra) - 
-        5)/sqrt(5)
-    Xbar[k, "n"] <- idx[k]
+  muestra <- rpois(n = idx[k], lambda = 5)
+  Xbar[k, "Z"] <- sqrt(idx[k]) * (mean(muestra) - 5) / sqrt(5)
+  Xbar[k, "n"] <- idx[k]
 }
 
 
 
-ggplot(Xbar) + geom_histogram(mapping = aes(x = Z, 
-    y = ..density..), color = "white") + stat_function(fun = dnorm, 
-    args = list(mean = 0, sd = 1), color = "red") + 
-    facet_wrap(. ~ n, scales = "free")
+ggplot(Xbar) +
+  geom_histogram(mapping = aes(x = Z, y = ..density..), color = "white") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1), color = "red") +
+  facet_wrap(. ~ n, scales = "free")
 ```
 
 
@@ -2734,8 +2708,7 @@ X <- rpois(n = 1000, lambda = 5)
 Xbar <- mean(X)
 z <- qnorm(p = 0.975)
 
-c(2 * sqrt(Xbar) - 1/sqrt(1000) * z, 2 * sqrt(Xbar) + 
-    1/sqrt(1000) * z)
+c(2 * sqrt(Xbar) - 1 / sqrt(1000) * z, 2 * sqrt(Xbar) + 1 / sqrt(1000) * z)
 ```
 
 ```
@@ -2751,8 +2724,7 @@ z_{\frac{1+\gamma}2}\right)^2\bigg].\]
 
 
 ```r
-c((1/4) * (2 * sqrt(Xbar) - 1/sqrt(1000) * z)^2, (1/4) * 
-    (2 * sqrt(Xbar) + 1/sqrt(1000) * z)^2)
+c((1 / 4) * (2 * sqrt(Xbar) - 1 / sqrt(1000) * z)^2, (1 / 4) * (2 * sqrt(Xbar) + 1 / sqrt(1000) * z)^2)
 ```
 
 ```
@@ -2990,7 +2962,7 @@ haremos un intervalo de confianza con cuantiles \(t\)-student.
 ```
 
 ```r
-(level <- (gamma + 1)/2)
+(level <- (gamma + 1) / 2)
 ```
 
 ```
@@ -3006,8 +2978,7 @@ haremos un intervalo de confianza con cuantiles \(t\)-student.
 ```
 
 ```r
-c(Xbar - tquantile * s/sqrt(n), Xbar + tquantile * 
-    s/sqrt(n))
+c(Xbar - tquantile * s / sqrt(n), Xbar + tquantile * s / sqrt(n))
 ```
 
 ```
@@ -3029,7 +3000,7 @@ basados en la experiencia previa (que puede ser ninguna).
 
 ```r
 mu_0 <- lambda_0 <- 1
-alpha_0 <- beta_0 <- 1/2
+alpha_0 <- beta_0 <- 1 / 2
 ```
 
 Los datos de este experimento son $n = 30$, $\bar x_n = 1.442$, $s_n^2 =
@@ -3037,7 +3008,7 @@ Los datos de este experimento son $n = 30$, $\bar x_n = 1.442$, $s_n^2 =
 
 
 ```r
-(mu_1 <- (lambda_0 * mu_0 + n * Xbar)/(lambda_0 + n))
+(mu_1 <- (lambda_0 * mu_0 + n * Xbar) / (lambda_0 + n))
 ```
 
 ```
@@ -3053,7 +3024,7 @@ Los datos de este experimento son $n = 30$, $\bar x_n = 1.442$, $s_n^2 =
 ```
 
 ```r
-(alpha_1 <- alpha_0 + n/2)
+(alpha_1 <- alpha_0 + n / 2)
 ```
 
 ```
@@ -3061,8 +3032,7 @@ Los datos de este experimento son $n = 30$, $\bar x_n = 1.442$, $s_n^2 =
 ```
 
 ```r
-(beta_1 <- beta_0 + 0.5 * (n - 1) * s^2 + n * lambda_0 * 
-    (Xbar - mu_0)/(2 * (lambda_0 + n)))
+(beta_1 <- beta_0 + 0.5 * (n - 1) * s^2 + n * lambda_0 * (Xbar - mu_0) / (2 * (lambda_0 + n)))
 ```
 
 ```
@@ -3084,17 +3054,15 @@ La posterior es \[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_1,\lambda_1,\alpha_1
 ```r
 library(NormalGamma)
 
-previa <- dnormgam(par = c(mu_0, sqrt(s2/lambda_0), 
-    alpha_0, 1/beta_0), plot = FALSE)
-posterior <- dnormgam(par = c(mu_1, sqrt(s2/lambda_1), 
-    alpha_1, 1/beta_1), plot = FALSE)
+previa <- dnormgam(par = c(mu_0, sqrt(s2 / lambda_0), alpha_0, 1 / beta_0), plot = FALSE)
+posterior <- dnormgam(par = c(mu_1, sqrt(s2 / lambda_1), alpha_1, 1 / beta_1), plot = FALSE)
 
-df <- rbind(data.frame(distribucion = "Previa", x = previa$xout, 
-    y = previa$dout), data.frame(distribucion = "Posterior", 
-    x = posterior$xout, y = posterior$dout))
+df <- rbind(data.frame(distribucion = "Previa", x = previa$xout, y = previa$dout),
+  data.frame(distribucion = "Posterior", x = posterior$xout, y = posterior$dout))
 
-ggplot(df, aes(x, y, color = distribucion)) + geom_point() + 
-    theme_minimal()
+ggplot(df, aes(x, y, color = distribucion)) +
+  geom_point() +
+  theme_minimal()
 ```
 
 
@@ -3153,8 +3121,10 @@ t_{2\alpha_1, \tfrac{\gamma+1}{2}}
  
  ```r
  tquantile2alpha <- qt(p = level, df = 2 * alpha_1)
- c(mu_1 - tquantile2alpha * (beta_1/(lambda_1 * alpha_1))^(1/2), 
-     mu_1 + tquantile2alpha * (beta_1/(lambda_1 * alpha_1))^(1/2))
+ c(
+   mu_1 - tquantile2alpha * (beta_1 / (lambda_1 * alpha_1))^(1 / 2),
+   mu_1 + tquantile2alpha * (beta_1 / (lambda_1 * alpha_1))^(1 / 2)
+ )
  ```
  
  ```
@@ -3238,12 +3208,12 @@ Y la medía del estimador es
 # Valores dados con paramétro desconocido
 X <- rexp(n = 3, rate = 2)
 gamma <- 0.95
-level <- (gamma + 1)/2
+level <- (gamma + 1) / 2
 
 alpha <- 4
 beta <- 2 + sum(X)
 
-(theta_hat <- alpha/beta)
+(theta_hat <- alpha / beta)
 ```
 
 ```
@@ -3262,11 +3232,12 @@ c(A, B)
 ```
 
 ```r
-ggplot(data = data.frame(x = c(0, 4)), aes(x)) + stat_function(fun = dgamma, 
-    args = list(shape = alpha, rate = beta)) + geom_vline(xintercept = A, 
-    color = "red") + geom_vline(xintercept = B, color = "red") + 
-    geom_vline(xintercept = theta_hat, color = "blue") + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(0, 4)), aes(x)) +
+  stat_function(fun = dgamma, args = list(shape = alpha, rate = beta)) +
+  geom_vline(xintercept = A, color = "red") +
+  geom_vline(xintercept = B, color = "red") +
+  geom_vline(xintercept = theta_hat, color = "blue") +
+  theme_minimal()
 ```
 
 
@@ -3374,12 +3345,11 @@ $\theta$ es
 
 ```r
 theta_real <- 5
-X <- matrix(rexp(n = 1000 * 3, rate = theta_real), 
-    ncol = 3)
+X <- matrix(rexp(n = 1000 * 3, rate = theta_real), ncol = 3)
 
 T <- apply(X = X, MARGIN = 1, FUN = sum)
 
-theta_hat <- 3/T
+theta_hat <- 3 / T
 
 hist(theta_hat - theta_real, breaks = 100)
 ```
@@ -3420,7 +3390,7 @@ Entonces $U$ es un estimador insesgado.
 
 
 ```r
-U <- 2/T
+U <- 2 / T
 mean(U - theta_real)
 ```
 
@@ -3483,7 +3453,7 @@ un poco más eficiente que los otros dos.
 
 
 ```r
-theta_bayes <- 4/(2 + T)
+theta_bayes <- 4 / (2 + T)
 var(theta_bayes) + mean(theta_bayes - theta_real)^2
 ```
 
@@ -3531,7 +3501,7 @@ X <- matrix(rpois(n = 1000 * 100, lambda = 2), nrow = 100)
 m <- apply(X, 1, mean)
 v <- apply(X, 1, var)
 a <- apply(X, 1, function(x, alpha) {
-    alpha * mean(x) + (1 - alpha) * var(x)
+  alpha * mean(x) + (1 - alpha) * var(x)
 }, alpha = 10)
 
 hist(m)
@@ -3766,7 +3736,7 @@ Suponga que \(t\) es el tiempo que se quiere medir la cantidad de clientes (minu
 ```r
 t <- 20
 theta <- 5
-n <- t/theta
+n <- t / theta
 
 Y <- rpois(n = 1000, lambda = t * theta)
 X <- rgamma(n = 1000, shape = n, rate = theta)
@@ -3778,7 +3748,7 @@ aproximadamente igualdad.
 Para \(Y\) tenemos que 
 
 ```r
-mean(Y/theta^2)
+mean(Y / theta^2)
 ```
 
 ```
@@ -3789,11 +3759,11 @@ Para \(X\) por otro lado la información de Fisher es constante (¿Por qué?)
 
 
 ```r
-n/theta^2
+n / theta^2
 ```
 
 ```
-## [1] 4
+## [1] 0.16
 ```
 
 Entonces bajo este criterio, ambas variables contienen la misma información,
@@ -3920,11 +3890,14 @@ observar el comportamiento de su información de Fisher.
 beta <- seq(1, 5, length.out = 100)
 n <- 100
 
-lista_muestras <- lapply(X = beta, FUN = function(b) {
+lista_muestras <- lapply(
+  X = beta,
+  FUN = function(b) {
     matrix(rexp(n = n * 500, rate = b), nrow = 500)
-})
+  }
+)
 
-plot(beta, n/beta^2)
+plot(beta, n / beta^2)
 ```
 
 
@@ -3944,9 +3917,12 @@ por lo que $T$ no satisface la cota de Cramer Rao.
 Este comportamiento podemos observarlo con nuestro ejemplo numérico. 
 
 ```r
-estimador1 <- sapply(X = lista_muestras, FUN = function(x) {
-    apply(x, 1, function(xx) (n - 1)/sum(xx))
-})
+estimador1 <- sapply(
+  X = lista_muestras,
+  FUN = function(x) {
+    apply(x, 1, function(xx) (n - 1) / sum(xx))
+  }
+)
 
 plot(beta, apply(X = estimador1, MARGIN = 2, FUN = mean))
 ```
@@ -3957,8 +3933,8 @@ plot(beta, apply(X = estimador1, MARGIN = 2, FUN = mean))
 
 ```r
 plot(beta, apply(X = estimador1, MARGIN = 2, FUN = var))
-lines(beta, beta^2/n, col = "blue")
-lines(beta, beta^2/(n - 2), col = "red")
+lines(beta, beta^2 / n, col = "blue")
+lines(beta, beta^2 / (n - 2), col = "red")
 ```
 
 
@@ -3979,11 +3955,14 @@ $\bar X_n$ satisface la cota de Cramer-Rao y además
 
 
 ```r
-estimador2 <- sapply(X = lista_muestras, FUN = function(x) {
+estimador2 <- sapply(
+  X = lista_muestras,
+  FUN = function(x) {
     apply(x, 1, function(xx) mean(xx))
-})
+  }
+)
 
-plot(1/beta, apply(X = estimador2, MARGIN = 2, FUN = mean))
+plot(1 / beta, apply(X = estimador2, MARGIN = 2, FUN = mean))
 ```
 
 
@@ -3992,7 +3971,7 @@ plot(1/beta, apply(X = estimador2, MARGIN = 2, FUN = mean))
 
 ```r
 plot(beta, apply(X = estimador2, MARGIN = 2, FUN = var))
-lines(beta, 1/(n * beta^2), col = "blue")
+lines(beta, 1 / (n * beta^2), col = "blue")
 ```
 
 
@@ -4097,63 +4076,354 @@ encontra una función que estabilice la varianza. **
 
 ## Pruebas de hipótesis
 
-Recordando el ejemplo de las nubes rociadas con químicos en donde log-lluvia $\sim N(\mu,\sigma^2)$, $\mu,\sigma$ desconocidos.
+**Ejemplo:** Suponga que se hace un experimento donde se seleccionan 52 nubes al
+azar y 26 se les inyecta nitrato de plata y a las otras 26 no. Entonces se
+quiere saber cuál de los dos grupos produce más lluvia. 
 
-**Hipótesis**: $\mu>4$ (nace a partir de una pregunta), es decir, si $\theta = (\mu,\sigma^2)$, ¿$\theta\in\{(\mu,\sigma^2): \mu>4\}$?
+Los datos de la cantidad de lluvia para este experimento están acá. 
 
-Para el caso bayesiano, ya calculamos $\mathbb P[\mu>4|X]$. ¿Cómo resolverlo en el caso frecuentista?
+```r
+nubes <- read.table(file = "./data/clouds.txt", sep = "\t", header = TRUE)
+head(nubes)
+```
 
-Suponga que $\Omega = \Omega_0 \cup\Omega_1$ conjuntos disjuntos tales que 
-\begin{align*}
-H_0 :  \text{hipótesis en donde }\theta \in \Omega_0.\\
-H_1 : \text{hipótesis en donde }\theta \in \Omega_1.\\
+```
+##   Unseeded.Clouds Seeded.Clouds
+## 1          1202.6        2745.6
+## 2           830.1        1697.8
+## 3           372.4        1656.0
+## 4           345.5         978.0
+## 5           321.2         703.4
+## 6           244.3         489.1
+```
+Sin embargo usaremos los datos en escala logarítmica para facilitar el cálculo 
+
+
+```r
+lognubes <- log(nubes)
+head(lognubes)
+```
+
+```
+##   Unseeded.Clouds Seeded.Clouds
+## 1        7.092241      7.917755
+## 2        6.721546      7.437089
+## 3        5.919969      7.412160
+## 4        5.844993      6.885510
+## 5        5.772064      6.555926
+## 6        5.498397      6.192567
+```
+
+Observe que el comportamiento es distinto en ambos casos.
+
+
+
+```r
+df <- as.data.frame(nubes) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = "tratamiento", values_to = "lluvia"
+  ) %>%
+  mutate(log_lluvia = log(lluvia))
+
+ggplot(data = df) +
+  geom_histogram(aes(
+    x = lluvia,
+    y = ..density..,
+    fill = tratamiento
+  ),
+  color = "black", bins = 10
+  ) +
+  facet_wrap(. ~ tratamiento)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-83-1} \end{center}
+
+```r
+ggplot(data = df) +
+  geom_histogram(aes(
+    x = log_lluvia,
+    y = ..density..,
+    fill = tratamiento
+  ), color = "black", bins = 10) +
+  facet_wrap(. ~ tratamiento)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-83-2} \end{center}
+
+En este caso supondremos que la variable `log_lluvia` se puede modelar como una
+$N(\mu,\sigma^2)$, $\mu,\sigma$ desconocidos.
+
+_Ejercicio:_ Queda como ejercicio calcular \(\mathbb P (\mu > 4 \vert X) \)
+usando un método Bayesiano Normal-Gamma. En este caso la probabilidad tiene que
+dar \(\approx 99\%\). 
+
+
+El valor de $\mu>4$ nace a partir de una pregunta de investigación y se fórmula
+una  **hipótesis** con respecto a los datos. 
+
+En este caso sería $\theta = (\mu,\sigma^2)$, ¿Será cierto que  para $\theta\in\{(\mu,\sigma^2):\mu>4\}$?
+
+Para el caso bayesiano, ya calculamos $\mathbb P[\mu>4|X]$. 
+
+¿Cómo resolverlo en el caso frecuentista?
+
+Suponga que $\Omega = \Omega_0 \cup\Omega_1$ conjuntos disjuntos tales que
+
+\begin{align*} 
+H_0 : \text{hipótesis en donde }\theta \in \Omega_0.\\ H_1 :
+\text{hipótesis en donde }\theta \in \Omega_1.\\ 
 \end{align*}
 
-**Objetivo**. Decidir si $H_0$ o $H_1$ es cierto, con los datos disponibles (problema de pruebas de hipótesis).
+**Objetivo**. Decidir si $H_0$ o $H_1$ es cierto, con los datos disponibles
+(problema de pruebas de hipótesis).
 
-**Definición**. $H_0:$ hipótesis nula. $H_1:$ hipótesis alternativa. Una vez que se ha realizado una prueba de hipótesis si afirmamos $\theta \in \Omega_1$ decimos que *rechazamos* $H_0$. Si $\theta \in \Omega_0$, decimos que *no rechazamos* $H_0$.
+**Definición**. $H_0:$ hipótesis nula. $H_1:$ hipótesis alternativa. Una vez que
+se ha realizado una prueba de hipótesis si afirmamos $\theta \in \Omega_1$
+decimos que *rechazamos* $H_0$. Si $\theta \in \Omega_0$, decimos que *no
+rechazamos* $H_0$.
 
-Suponga que $X_1,\dots, X_n\sim f(x|\theta)$, $\theta \in \Omega$, $\Omega = \Omega_0 \cup\Omega_1$ y queremos probar la hipótesis $H_0: \theta \in \Omega_0$, $H_1: \theta \in \Omega_1$.
+Suponga que $X_1,\dots, X_n\sim f(x|\theta)$, $\theta \in \Omega$,
+$\Omega = \Omega_0 \cup\Omega_1$ y queremos probar la hipótesis
+$H_0: \theta \in \Omega_0$, $H_1: \theta \in \Omega_1$.
 
 **Definición** ($i = 0,1$)
 
-1) Si $\Omega_i$ tiene solamente un valor de $\theta$, $H_i$ es una **hipótesis simple**.
+1. Si $\Omega_i$ tiene solamente un valor de $\theta$, $H_i$ es una **hipótesis
+simple**.
 
-2) Si $\Omega_i$ tiene más de un valor de $\theta$, $H_i$ es una **hipótesis compuesta**.
+2. Si $\Omega_i$ tiene más de un valor de $\theta$, $H_i$ es una **hipótesis
+compuesta**.
 
-3) **Hipótesis compuestas de una cola**. Si $\Omega_0 = (-\infty,\theta_0]$, $H_0: \theta\geq \theta_0$, $H_1: \theta >\theta_0$. Si  $\Omega_0 = [\theta_0,+\infty)$, $H_0: \theta\leq \theta_0$, $H_1: \theta<\theta_0$. 
+3. **Hipótesis compuestas de una cola**. Si $\Omega_0 = (-\infty,\theta_0]$,
+$H_0: \theta\geq \theta_0$, $H_1: \theta >\theta_0$. Si $\Omega_0 =
+[\theta_0,+\infty)$, $H_0: \theta\leq \theta_0$, $H_1: \theta<\theta_0$.
 
-4) Si $H_1: \theta \ne \theta_0$ y $H_0: \theta = \theta_0$ es una **hipótesis de 2 colas**.
+4. Si $H_1: \theta \ne \theta_0$ y $H_0: \theta = \theta_0$ es una **hipótesis
+de 2 colas**.
 
 ## Regiones críticas y estadísticas de prueba
 
-**Ejemplo**. Si $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, $\mu$ desconocido, $\sigma^2$ conocido.
+**Ejemplo**. Si $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, $\mu$ desconocido,
+$\sigma^2$ conocido.
 
-Queremos probar $H_0: \mu = \mu_0$ vs $H_1: \mu\neq \mu_0$. La lógica es: rechazamos $H_0$ si $\mu$ está "muy alejado" de $\mu_0$.
+Queremos probar $H_0: \mu = \mu_0$ vs $H_1: \mu\neq \mu_0$. La lógica es:
+rechazamos $H_0$ si $\mu$ está "muy alejado" de $\mu_0$.
 
-Seleccione un número $c$ tal que se rechaza $H_0$ si $|\bar X_n -\mu_0|>c$. En general, suponga que queremos probar las hipótesis $H_0: \theta \in \Omega_0$ vs $H_1: \theta\in \Omega_1$.
+Seleccione un número $c$ tal que se rechaza $H_0$ si $|\bar X_n -\mu_0|>c$. En
+general, suponga que queremos probar las hipótesis $H_0: \theta \in \Omega_0$ vs
+$H_1: \theta\in \Omega_1$.
 
-En general, supónga que queremos probar las hipótesis $H_0: \theta \in \Omega_0$ vs $H_1: \theta \in \Omega_1$. 
+En general, suponga que queremos probar las hipótesis $H_0: \theta \in \Omega_0$
+vs $H_1: \theta \in \Omega_1$.
 
-Cuando tenemos una muestra $X_1,\dots,X_n \sim f(x|\theta)$. Sea $S_0\subset \mathcal X$: conjunto en donde no se rechaza $H_0$ y $S_1\subset \mathcal X$: conjunto en donde se rechaza $H_0$.
+Cuando tenemos una muestra $X_1,\dots,X_n \sim f(x|\theta)$. Sea
+$S_0\subset \mathcal X$: conjunto en donde no se rechaza $H_0$ y
+$S_1\subset \mathcal X$: conjunto en donde se rechaza $H_0$.
 
 A $S_1$ se le llama **región crítica** de la prueba de hipótesis.
 
-**Nota**. En la mayoría de los casos, la región crítica se define en términos de un estadístico $T = r(x)$.
 
-**Definición**. Sea $ X$ una muestra aleatoria con distribución $f(x|\theta)$ y $T=r(X)$ un estadístico y $R\subset \mathbb R$. Suponga que se puede verificar las hipótesis al afirmar "rechazamos $H_0$ si $T\in R$", entonces $T$ es un **estadístico** de prueba y $R$ es la **región de rechazo** de la prueba.
+En el caso en que se rechaza $H_0$ si $T>c$ con $T = |\bar
+X_n-\mu_0|$ estadístico de prueba y $(c,\infty)$ es la región de rechazo.
 
-**Ejemplo**. En el caso en que se rechaza $H_0$ si $|\bar X_n|>c$, $T = |\bar X_n-\mu_0|$ estadístico de prueba y $(c,\infty)$ es la región de rechazo.
+
+```r
+X <- matrix(rnorm(1000 * 1000, mean = 2, sd = 3), ncol = 1000)
+
+Xbar <- apply(X, 2, mean)
+
+mu0 <- 2
+T <- abs(Xbar - mu0)
+
+c <- seq(-0.25, 0.5, length.out = 1000)
+
+df <- data.frame(c = numeric(), test = logical(), region = character())
+for (k in 1:length(c)) {
+  df <- rbind(df, data.frame(c = c[k], test = mean(T >= c[k]), region = "S_1"))
+}
+
+df <- rbind(df, data.frame(c, test = 1 - df$test, region = "S_0"))
+
+ggplot(df, aes(x = c, y = test, color = region)) +
+  geom_line(size = 2) +
+  ylab("Promedio de veces donde T >= c") +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-84-1} \end{center}
+
+En este caso el valor donde decrece la curva es cercano a 0. Eso quiere decir
+que antes de ese valor, nos encontramos en la región de rechazo. Luego esa
+región se va haciendo cada vez más pequeña 
+\(\vert \overline{X} - \mu \vert \approx 0 \).
+
+
+
+Ojo lo que pasaría si por ejemplo cambiamos a \(\mu = 4\), 
+
+
+```r
+mu0 <- 4
+T <- abs(Xbar - mu0)
+
+c <- seq(-0.25, 3, length.out = 1000)
+
+df <- data.frame(c = numeric(), test = logical(), region = character())
+for (k in 1:length(c)) {
+  df <- rbind(
+    df,
+    data.frame(c = c[k], test = mean(T >= c[k]), region = "S_1")
+  )
+}
+
+df <- rbind(df, data.frame(c, test = 1 - df$test, region = "S_0"))
+
+ggplot(df, aes(x = c, y = test, color = region)) +
+  geom_line(size = 2) +
+  ylab("Promedio de veces donde T >= c") +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-85-1} \end{center}
+
+El valor donde comienza a crecer la curva se desvía a un valor cercano a 2. 
+
+**Nota**. En la mayoría de los casos, la región crítica se define en términos de
+un estadístico $T = r(x)$.
+
+**Definición**. Sea $ X$ una muestra aleatoria con distribución $f(x|\theta)$ y
+$T=r(X)$ un estadístico y $R\subset \mathbb R$. Suponga que se puede verificar
+las hipótesis al afirmar "rechazamos $H_0$ si $T\in R$", entonces $T$ es un
+**estadístico** de prueba y $R$ es la **región de rechazo** de la prueba.
+
+**Continuación del Ejemplo:**. Para el caso del ejemplo de la lluvia definimos
+que
+
+
+\[
+H_0: \mu \leq 4 \text{ versus } H_1: \mu > 4
+\]
+
+
+En este caso podríamos decir que rechazamos \( H_0 \) si la media empírica
+es "más grande" que 4 y no rechazamos \( H_0 \) si la media empírica es "más
+pequeña" que 4.
+
+El problema acá es que "más grande" y "más pequeña" no son términos precisos. 
+
+Tenemos dos opciones 
+
+Construya la región de critica de la forma 
+
+\begin{equation} 
+S_{0}=\left\{\boldsymbol{x}:\leq \bar{X}_{n}-\mu_{0} \leq
+c\right\}, \quad \text { y } \quad S_{1}=S_{0}^{C} 
+\end{equation}
+
+y observe cuál es la probabilidad que ocurra para cada tipo de \( c \).  El
+problema con esta construcción es que requiere conocer todos los posibles
+vectores de datos \( \mathbf{X} \) y construir los conjuntos \( S_0 \) y \( S_1
+\). 
+
+Una mejor opción es tener un estadístico sencillo que cumpla dos condiciones: 
+
+1. Un estadístico sencillo de calcular posiblemente suficiente, minimal y
+eficiente. 
+2. Un estadístico con una distribución conocida. 
+
+
+En ese caso \(\overline{X}_{n} \) funciona muy bien, porque tiene todas las
+buenas propiedades de sufiencia, minimalidad y eficiencia, y además sabemos su
+distribución según lo estudiando en capítulos pasados. Entonces 
+
+\begin{equation*}
+U = \frac{n ^{1/2} (\overline{X}_{n} - \mu_0)}{\sigma^\prime} \sim t_{n-1}
+\end{equation*}
+
+Lo natural debería ser rechazar \( H_{0} \) si \( U \) es grande. 
+
+
+
+```r
+colnames(lognubes)
+```
+
+```
+## [1] "Unseeded.Clouds" "Seeded.Clouds"
+```
+
+```r
+Xbarra1 <- mean(lognubes[, 1])
+Xbarra2 <- mean(lognubes[, 2])
+sigma_prima1 <- sd(lognubes[, 1])
+sigma_prima2 <- sd(lognubes[, 2])
+
+n <- dim(lognubes)[1]
+
+
+(U1 <- sqrt(n) * (Xbarra1 - 4) / sigma_prima1)
+```
+
+```
+## [1] -0.02979683
+```
+
+```r
+(U2 <- sqrt(n) * (Xbarra2 - 4) / sigma_prima2)
+```
+
+```
+## [1] 3.615624
+```
+
+```r
+ggplot(data = data.frame(x = (c(-1, 4))), mapping = aes(x)) +
+  stat_function(
+    fun = dt, args = list(df = n - 1),
+    mapping = aes(color = "Distribucioń t-student"), size = 2
+  ) +
+  geom_vline(mapping = aes(
+    xintercept = U1,
+    color = "Nubes no tratadas"
+  ), size = 2) +
+  geom_vline(mapping = aes(
+    xintercept = U2,
+    color = "Nubes tratadas"
+  ), size = 2) +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-86-1} \end{center}
+
 
 ## Función de potencia y tipos de error
 
-Sea $\delta$ un procedimiento de prueba (basado en una región crítica o en un estadístico de prueba). Sea $\pi(\theta|\delta)$ (**función de potencia**) la probabilidad de que se rechace $H_0$ a través de $\delta$ para $\theta\in \Omega$.
+Sea $\delta$ un procedimiento de prueba (basado en una región crítica o en un
+estadístico de prueba). Sea $\pi(\theta|\delta)$ (**función de potencia**) la
+probabilidad de que se rechace $H_0$ a través de $\delta$ para $\theta\in
+\Omega$.
 
-Si $S_1$ es la región crítica de $\delta$ entonces $\pi(\theta|\delta) = \mathbb P(X\in S_1|\theta)$ para $\theta\in\Omega$.
+Si $S_1$ es la región crítica de $\delta$ entonces
+$\pi(\theta|\delta) = \mathbb P(X\in S_1|\theta)$ para
+$\theta\in\Omega$.
 
-Si $\delta$ se describe a través de un estadístico de prueba $T$ con región de rechazo $R$, entonces $\pi(\theta|\delta) = \mathbb P(T \in R|\theta)$ para $\theta\in\Omega$.
+Si $\delta$ se describe a través de un estadístico de prueba $T$ con región de
+rechazo $R$, entonces $\pi(\theta|\delta) = \mathbb P(T \in R|\theta)$ para
+$\theta\in\Omega$.
 
-**Nota**. Función de potencia ideal: $\pi(\theta|\delta) = 0$ si $\theta\in\Omega_0$, y $\pi(\theta|\delta) = 1$ si $\theta\in\Omega_1$.
+**Nota**. Función de potencia ideal: $\pi(\theta|\delta) = 0$ si
+$\theta\in\Omega_0$, y $\pi(\theta|\delta) = 1$ si $\theta\in\Omega_1$.
 
 **Ejemplo**.
 
@@ -4171,101 +4441,380 @@ Como $X_1,\dots, X_n \sim N(\mu, \sigma^2)$, $\mu$ desconocido, $\sigma^2$ conoc
 & = 1-\Phi\left(\sqrt n \dfrac{(\mu_0+c-\mu)}{\sigma} \right) + \Phi\left(\sqrt n \dfrac{(\mu_0-c-\mu)}{\sigma} \right) 
 \end{align*}
 
-**Ejercicio**: graficar la función de potencia $\pi(\mu|\delta)$ para distintos valores de $\mu$.
+
+
+```r
+mu0 <- 4
+c <- 2
+n <- 100
+sigma <- 3
+
+mu <- seq(0, 8, length.out = 1000)
+
+funcion_de_poder <- 1 -
+  pnorm(sqrt(n) * (mu0 + c - mu) / sigma) +
+  pnorm(sqrt(n) * (mu0 - c - mu) / sigma)
+
+df <- data.frame(mu, funcion_de_poder, tipo = "Función de poder")
+
+df <- rbind(df, data.frame(mu,
+  funcion_de_poder = 1 - df$funcion_de_poder,
+  tipo = "1 - Función de poder"
+))
+
+ggplot(df, aes(mu, funcion_de_poder, color = tipo)) +
+  geom_line(size = 2) +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-87-1} \end{center}
+
+```r
+mu <- seq(0, 8, length.out = 100)
+c <- seq(0, 4, length.out = 100)
+
+mu_c <- expand.grid(mu, c)
+
+funcion_de_poder_n_c <- 1 -
+  pnorm(sqrt(n) * (mu0 + mu_c[, 2] - mu_c[, 1]) / sigma) +
+  pnorm(sqrt(n) * (mu0 - mu_c[, 2] - mu_c[, 1]) / sigma)
+
+library(scatterplot3d)
+
+scatterplot3d(mu_c[, 2], mu_c[, 1], funcion_de_poder_n_c,
+  type = "p", angle = 60,
+  xlab = "c", ylab = "mu", zlab = "Función de poder"
+)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-87-2} \end{center}
 
 **Tipos de error**:
+
+En este tipo de pruebas se puede cometer dos tipos de errores, 
 
 * *Error Tipo I*: error de rechazar $H_0$ si $\theta \in \Omega_0$.
 
 * *Error Tipo II*: error de no rechazar $H_0$ si $\theta\in\Omega_1$ en términos de la función de potencia.
 
-Si $\theta \in \Omega_0$: $\pi(\theta|\delta)$ es el error tipo I. Si $\theta \in \Omega_1$: $1-\pi(\theta|\delta)$ es el error tipo II.
+En términos de la función de poder tenemos que 
 
-Recuerde que el objetivo es hacer $\pi(\theta|\delta)$ pequeño cuando $\theta\in\Omega_0$. También se requiere que $\pi(\theta|\delta)$ sea grande cuando $\theta \in\Omega_1$. Una forma de alcanzar ese balance es seleccionar $\alpha_0 \in (0,1)$ tal que
+- Si $\theta \in \Omega_0$: $\pi(\theta|\delta)$ es el error tipo I. 
+- Si $\theta \in \Omega_1$: $1-\pi(\theta|\delta)$ es el error tipo II.
+
+ El objetivo es hacer $\pi(\theta|\delta)$ pequeño cuando $\theta\in\Omega_0$.
+También se requiere que $\pi(\theta|\delta)$ sea grande cuando $\theta
+\in\Omega_1$. Una forma de alcanzar ese balance es seleccionar $\alpha_0 \in
+(0,1)$ tal que
 
 \[\pi(\theta|\delta) \leq \alpha_0\;\forall \theta\in\Omega_0\quad(*)\]
 y entre todas las pruebas que cumplan $(*)$ se selecciona aquella que maximice la potencia para $\theta \in \Omega_1$.
+
+En nuestro ejemplo suponga que elegimos \(\alpha_{0} = 0.1\). La región roja
+  indica donde estaría ubicado \(\pi(\theta\vert \delta)\leq \alpha_{0} \). 
+  
+
+```r
+ggplot() +
+  geom_line(
+    data = df,
+    mapping = aes(x = mu, y = funcion_de_poder, color = tipo), size = 2
+  ) +
+  geom_rect(
+    data = data.frame(xmin = 0, xmax = 8, ymin = 0, ymax = 0.10),
+    mapping = aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+    alpha = 0.5, fill = "red"
+  ) +
+  geom_hline(yintercept = 0.05) +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-88-1} \end{center}
+
 
 Otra forma es minimizar;
 
 \[w_1\cdot\text{Error I } + w_2\cdot\text{Error II};\]
 $w_1,w_2$ constantes.
 
-**Nota**. Bajo la primera solución se produce una asimetría entre las hipótesis, ya que resulta difícil (o muy costoso) que ambas condiciones se cumplan. Por lo general, se le da más énfasis a $(*)$, por lo que se trata de controlar el error más serio (Error tipo I).
+**Nota**. Bajo la primera solución se produce una asimetría entre las hipótesis,
+ya que resulta difícil (o muy costoso) que ambas condiciones se cumplan. Por lo
+general, se le da más énfasis a $(*)$, por lo que se trata de controlar el error
+más serio (Error tipo I).
 
-**Definición**. Una prueba que satisface $(*)$ se llama una **prueba de nivel** $\alpha_0$ y decimos que la prueba está a un **nivel de significancia** $\alpha_0$. Además el tamaño $\alpha(\delta)$ de una prueba $\delta$ se define como:
+**Definición**. Una prueba que satisface $(*)$ se llama una **prueba de nivel**
+$\alpha_0$ y decimos que la prueba está a un **nivel de significancia**
+$\alpha_0$. Además el tamaño $\alpha(\delta)$ de una prueba $\delta$ se define
+como:
 
 \[\alpha(\delta) = \sup_{\theta\in\Omega}\pi(\theta|\delta).\]
 
-**Corolario**. Una prueba $\delta$ es una prueba de nivel $\alpha_0$ si y solo si su tamaño es a lo sumo $\alpha_0$ ($\alpha(\delta)\leq\alpha_0$).
+**Corolario**. Una prueba $\delta$ es una prueba de nivel $\alpha_0$ si y solo
+si su tamaño es a lo sumo $\alpha_0$ ($\alpha(\delta)\leq\alpha_0$).
 
-**Ejemplo**. Suponga $X_1,\dots,X_n\sim \text{Unif}(0,\theta)$, $\theta>0$ desconocido. Se quiere probar las siguientes hipótesis:
+**Ejemplo**. Suponga $X_1,\dots,X_n\sim \text{Unif}(0,\theta)$, $\theta>0$
+desconocido. Se quiere probar las siguientes hipótesis:
 
 \[H_0: 3\leq\theta\leq 4 \quad H_1:\theta<3 \text{ o }\theta>4. \]
 
-El MLE de $\theta$ es $Y_n = X_{(n)}$. Si $n$ es grande, $Y_n$ es muy cercano a $\theta$.
+El MLE de $\theta$ es $Y_n = X_{(n)}$. Si $n$ es grande, $Y_n$ es muy cercano a
+$\theta$.
 
-La prueba $\delta$ no rechaza $H_0$ si $2.9<Y_n<4$ y rechaza $H_0$ si $Y_n\geq4$ o $Y_n\leq2.9$. Entonces $R = (-\infty, 2.9] \cup [4,+\infty)$ y la función de potencia 
-\[\pi(\theta|\delta) = \mathbb P[Y_n\leq 2.9|\theta]+\mathbb P[Y_n\geq4|\theta] \] 
+Suponga que definimos que la prueba $\delta$ no rechaza $H_0$ si $2.9<Y_n<4$ y
+rechaza $H_0$ si $Y_n\geq4$ o $Y_n\leq2.9$. Entonces $R = (-\infty, 2.9] \cup
+[4,+\infty)$ y la función de potencia 
+
+\[
+\pi(\theta|\delta) = \mathbb P[Y_n\leq
+2.9|\theta]+\mathbb P[Y_n\geq4|\theta] 
+\]
 
 $\pi(\theta|\delta)$ se calcula en varios casos:
 
-* Si $\theta\leq 2.9 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1$ y $\mathbb P[Y_n\geq4|\theta] = 0$.
+* Si $\theta\leq 2.9 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1$ y
+$\mathbb P[Y_n\geq4|\theta] = 0$.
 
-* Si $2.9<\theta\leq4 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1 = \prod_{i=1}^n \mathbb P[X_i\leq2.9|\theta] = \left(\dfrac{2.9}{\theta}\right)^n$ y $\mathbb P[Y_n\geq4|\theta] = 0$.
+* Si $2.9<\theta\leq4 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1 - \prod_{i=1}^n
+  \mathbb P[X_i\leq2.9|\theta] = \left(\dfrac{2.9}{\theta}\right)^n$ y $\mathbb
+  P[Y_n\geq4|\theta] = 0$.
 
-* Si $\theta>4 \implies  \mathbb P[Y_n\leq 2.9|\theta] = \left(\dfrac{2.9}{\theta}\right)^n$ y $\mathbb P[Y_n\geq 4|\theta] = 1 - \displaystyle\prod_{i=1}^n \mathbb P[X_i<4|\theta] =  1-\left(\dfrac 4\theta\right)^n$.
+* Si $\theta>4 \implies \mathbb P[Y_n\leq 2.9|\theta] =
+\left(\dfrac{2.9}{\theta}\right)^n$ y $\mathbb P[Y_n\geq 4|\theta] = 1 -
+\displaystyle\prod_{i=1}^n \mathbb P[X_i<4|\theta] = 1-\left(\dfrac
+4\theta\right)^n$.
 
 Entonces
 
-\[\pi(\theta|\delta) = \begin{cases}1 & \text{si } \theta\leq 2.9 \\
+\[
+\pi(\theta|\delta) = \begin{cases}1 & \text{si } \theta\leq 2.9 \\
 \left(\dfrac{2.9}{\theta}\right)^n& \text{si } 2.9 <\theta\leq 4\\
-1+\left(\dfrac{2.9}\theta\right)^n-\left(\dfrac{4}\theta\right)^n & \text{si } \theta >4\end{cases}\]
+1+\left(\dfrac{2.9}\theta\right)^n-\left(\dfrac{4}\theta\right)^n & \text{si } \theta >4\end{cases}
+\]
+
+
+
+
+
+```r
+theta <- seq(1, 5, length.out = 1000)
+n <- 5
+
+funcion_poder <- numeric()
+
+for (k in 1:length(theta)) {
+  if (theta[k] < 2.9) {
+    funcion_poder[k] <- 0
+  } else if (theta[k] > 2.9 & theta[k] <= 4) {
+    funcion_poder[k] <- (2.9 / theta[k])^n
+  } else if (theta[k] > 4) {
+    funcion_poder[k] <- (2.9 / theta[k])^n + 1 - (4 / theta[k])^n
+  }
+}
+
+plot(theta, funcion_poder, type = "l")
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-89-1} \end{center}
 
 
 Note, además, que el tamaño de prueba es
 
-\[\alpha(\delta) = \sup_{3\leq\theta\leq 4} \pi(\theta|\delta) = \sup_{3\leq\theta\leq 4}\left(\dfrac{2.9}{\theta}\right)^n = \left(\dfrac{2.9}{3}\right)^n.\]
+\[\alpha(\delta) = \sup_{3\leq\theta\leq 4} \pi(\theta|\delta) =
+\sup_{3\leq\theta\leq 4}\left(\dfrac{2.9}{\theta}\right)^n =
+\left(\dfrac{2.9}{3}\right)^n.\]
+
+
+```r
+n <- 1:100
+
+plot(n, (2.9 / 3)^n)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-90-1} \end{center}
 
 Si $n = 68 \implies \alpha(\delta)= \left(\dfrac{2.9}{3}\right)^{68} = 0.0997.$
 
-Entonces $\delta$ es una prueba con nivel de significancia $\alpha_0\geq 0.0997$.
+Entonces si \(n = 68\), entonces $\delta$ es una prueba con nivel de
+significancia $\alpha_0\geq 0.0997$.
 
-¿Cómo diseñar una prueba para que tenga un cierto nivel de significancia?
 
-Suponga que queremos probar $H_0: \theta \in \Omega_0$ vs $H_1: \theta\in\Omega_1$. Sea $T$ un estadístico de prueba y suponga que si $T\geq c$, $c$ constante, rechazamos $H_0$.
+
+**Pregunta importante:** ¿Cómo diseñar una prueba para que tenga un cierto nivel
+de significancia?
+
+Suponga que queremos probar $H_0: \theta \in \Omega_0$ vs $H_1:
+\theta\in\Omega_1$. Sea $T$ un estadístico de prueba y suponga que si $T\geq c$,
+$c$ constante, entonces rechazamos $H_0$.
 
 Si queremos que nuestra prueba tenga nivel de significancia $\alpha_0$ entonces:
 
-\[\pi(\theta|\delta) = \mathbb P(T\geq c|\theta)\text{ y } \sup_{\theta \in \Omega_0}\mathbb P[T\geq c|\theta] \leq \alpha_0 \quad (*)\]
+\[\pi(\theta|\delta) = \mathbb P(T\geq c|\theta)\text{ y } \sup_{\theta \in
+\Omega_0}\mathbb P[T\geq c|\theta] \leq \alpha_0 \quad (*)\]
 
-Note que $\pi(\theta|\delta)$ es función no-creciente de $c$, entonces $(*)$ se cumple para valores grandes de $c$, si $\theta\in\Omega_0$. Si $\theta \in \Omega_1$, debemos escoger $c$ pequeño para maximizar $\pi(\theta|\delta)$.
+Note que $\pi(\theta|\delta)$ es función no-creciente de $c$, entonces $(*)$ se
+cumple para valores grandes de $c$, si $\theta\in\Omega_0$. Si $\theta \in
+\Omega_1$, debemos escoger $c$ pequeño para maximizar $\pi(\theta|\delta)$.
 
-**Ejemplo**. En el caso normal, donde $H_0: \mu = \mu_0$ y rechazamos $H_0$ si $|\bar X_n-\mu_0|\geq c$. Entonces:
+**Ejemplo**. En el caso normal, donde $H_0: \mu = \mu_0$ y rechazamos $H_0$ si
+$|\bar X_n-\mu_0|\geq c$. Entonces:
 
-\[\sup_{\theta\in\Omega_0} \mathbb P [T\geq c|\theta] = \mathbb P_{\mu_0}[|\bar X_n-\mu_0|\geq c]\geq \alpha_0.\]
+\[\sup_{\theta\in\Omega_0} \mathbb P [T\geq c|\theta] = \mathbb P_{\mu_0}[|\bar
+X_n-\mu_0|\geq c]\geq \alpha_0.\]
 
-Como bajo $H_0$: $Y = X_n-\mu_0 \sim N\left(0,\dfrac{\sigma^2}{n}\right)$, entonces podemos encontrar $c$ tal que
-\[\mathbb P[|\bar X_n-\mu_0|\geq c] = \alpha_0,\]
-y cualquier $c$ mayor va a cumplir $(*)$.
+Como bajo $H_0$: $Y = X_n-\mu_0 \sim N\left(0,\dfrac{\sigma^2}{n}\right)$,
+entonces podemos encontrar $c$ tal que \[\mathbb P[|\bar X_n-\mu_0|\geq c] =
+\alpha_0,\] y cualquier $c$ mayor va a cumplir $(*)$.
 
-De esta manera el problema se convierte en encontrar $c^*$ tal que $\mathbb P[|Z|>c^*] = \alpha_0$, donde $Z = \dfrac{\bar X_n - \mu_0}{\sigma/\sqrt n}$.
+De esta manera el problema se convierte en encontrar $c^*$ tal que $\mathbb
+P[|Z|>c^*] = \alpha_0$, donde $Z = \dfrac{\bar X_n - \mu_0}{\sigma/\sqrt n}$.
 
-Dado que $\mathbb P[|Z|\geq c^*] = 2[1-\Phi(c^*)] = \alpha_0$, despejando se obtiene 
+Note que 
+
+\begin{align*}
+\alpha_0 
+&= \mathbb{P}(|Z|>c ^{*}) \\
+&=  \mathbb{P}(Z >c ^{*}) + \mathbb{P}(Z < -c ^{*}) \\ 
+&=  1- \mathbb{P}(Z \leq c ^{*}) + \mathbb{P}(Z < -c ^{*}) \\ 
+&=  1- \mathbb{P}(Z \leq c ^{*}) +  1 - \mathbb{P}(Z < c ^{*}) \\ 
+&=  2 - 2 \mathbb{P}(Z \leq c ^{*})  
+\end{align*}
+
+Entonces 
+
+\begin{equation*}
+\mathbb{P}(Z \leq c ^{*}) = 1- \dfrac{\alpha_0}{2}
+\end{equation*}
+
+Por lo tanto el \(c ^{*}\) que se busca es 
+
+\begin{equation*}
+c^* = F^{-1}\left(1- \dfrac{\alpha_0}{2}\right)
+\end{equation*}
+
+ En el caso particular de la normal denotaremos \( F\) como \( \Phi\). Entonces,
+
 
 \[\Phi(c^*) = 1 - \dfrac{\alpha_0}2 \implies c^* = z_{1-\frac{\alpha_0}2}.\]
 
-*Procedimiento*: rechazamos $H_0$ si
-\[|Z| = \bigg| \dfrac{\bar X_n-\mu_0}{\sigma/\sqrt n}\bigg| \geq z_{1-\frac{\alpha_0}2}.\]
+*Procedimiento*: rechazamos $H_0$ si \[|Z| = \bigg| \dfrac{\bar
+X_n-\mu_0}{\sigma/\sqrt n}\bigg| \geq z_{1-\frac{\alpha_0}2}.\]
 
+
+
+```r
+n <- 10
+alpha0 <- 0.05
+X <- rnorm(n = n, mean = 5, sd = 1)
+Xbar <- mean(X)
+mu0 <- 5
+
+Z <- sqrt(n) * (Xbar - mu0) / 1
+
+(q <- qnorm(1 - alpha0 / 2))
+```
+
+```
+## [1] 1.959964
+```
+
+```r
+dnorm_limit <- function(x, q) {
+  y <- dnorm(x)
+  y[-q <= x & x <= q] <- NA
+  return(y)
+}
+
+ggplot(data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(
+    fun = dnorm_limit, geom = "area", args = list(q = q),
+    fill = "blue", alpha = 0.2
+  ) +
+  stat_function(fun = dnorm) +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-91-1} \end{center}
+
+La pregunta que debemos siempre responder es ¿Rechazamos \( H_0\)?
+
+```r
+abs(Z) > q
+```
+
+```
+## [1] FALSE
+```
+
+Si repetimos el ejercicio anterior, pero los datos tiene media igual a 1 y
+dejamos que \(\mu_0 = 5\), entonces
+
+
+```r
+n <- 10
+alpha0 <- 0.05
+X <- rnorm(n = n, mean = 1, sd = 1)
+Xbar <- mean(X)
+mu0 <- 5
+
+Z <- sqrt(n) * (Xbar - mu0) / 1
+```
+
+Si preguntamos ¿Rechazamos \( H_0\)?
+
+```r
+abs(Z) > q
+```
+
+```
+## [1] TRUE
+```
+
+
+
+```r
+mu0 <- 5
+n <- 10
+sigma <- 1
+alpha0 <- 0.05
+c <- qnorm(1 - alpha0 / 2) * sigma / sqrt(n)
+
+mu <- seq(3, 7, length.out = 1000)
+
+funcion_de_poder <- 1 -
+  pnorm(sqrt(n) * (mu0 + c - mu) / sigma) +
+  pnorm(sqrt(n) * (mu0 - c - mu) / sigma)
+
+plot(mu, funcion_de_poder, type = "l", lwd = 2)
+abline(h = 0.05, col = "red", lwd = 2)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-95-1} \end{center}
+ 
 **Ejemplo**. \(X_1,\dots,X_n \sim \text{Ber}(p)\).
-\[H_0: p\leq p_0 \text{ vs } H_1: p>p_0\]
+\[H_0: p\leq p_{0} \text{ vs } H_1: p>p_0\]
 
-Sea $Y = \sum_{i=1}^nX_i \sim \text{Binomial}(n,p)$. Rechazo $H_0$ si $Y\leq c$.
+Sea $Y = \sum_{i=1}^nX_i \sim \text{Binomial}(n,p)$. 
+La idea acá es que entre más grande es \( p \) entonces más grande esperamos que
+sea \( Y\). Podemos definir la regla que rechazo $H_0$ si $Y\geq  c$ para alguna
+constante \( c \).
 
 El error tipo I es
 
-\[\mathbb P[Y\geq x|p] = \sum_{y=0}^n{n\choose y}p^y(1-p)^{n-y} = \sum_{y=0}^n{n\choose y} \underbrace{\left(\dfrac p{1-p}\right)^y(1-p)^n}_{g(p)}\]
+\[\mathbb P[Y\geq c|p] = \sum_{y=c}^n{n\choose y}p^y(1-p)^{n-y} = \sum_{y=c}^n{n\choose y} \underbrace{\left(\dfrac p{1-p}\right)^y(1-p)^n}_{g(p)}\]
 
 $g(p)$ es monótona con respecto a p.Entonces 
 \[\sup_{p\leq p_0} \mathbb P[Y\geq c|p] = \mathbb P [Y\geq c|p_0] \leq \alpha_0.\]
@@ -4277,28 +4826,71 @@ c                       | 0   | 1    | 2    |     3 |   4  | 5   | 6
 ----------------------- | --- |----- |----- | ----- | -----|-----| 
 $\mathbb P[Y\geq c|p_0]$| 1   | 0.97 |0.85  | 0.62  | 0.15 |0.05 |  
 
-Para que el tamaño sea menor que $10\%$ seleccione $c>5$. Si $c\in [5,6]$ entonces el nivel de significancia es a lo sumo $0.15$ y la prueba no cambia (ya que $Y$ es una variable discreta).
+Para que el tamaño sea menor que $10\%$ seleccione $c>5$. Si $c\in [5,6]$
+entonces el nivel de significancia es a lo sumo $0.15$ y la prueba no cambia (ya
+que $Y$ es una variable discreta).
 
-*Procedimiento*: rechazamos $H_0: p = 0.3$ si $Y\geq c$, $c\in[5,6]$ con un nivel de significancia de $10\%$ a lo sumo.
+
+
+```r
+c <- 5
+n <- 10
+alpha0 <- 0.05
+p <- seq(0, 1, length.out = 1000)
+
+funcion_de_poder <- 1 - pbinom(q = c, size = n, prob = p)
+
+plot(p, funcion_de_poder, type = "l", lwd = 2)
+abline(h = 0.05, col = "red", lwd = 2)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-96-1} \end{center}
+*Procedimiento*: rechazamos $H_0: p \leq 0.3$ si $Y\geq c$, $c\in(5,6]$ con un
+nivel de significancia de $10\%$ a lo sumo.
 
 
 ## Valor $p$
 
 **Restricción**. El procedimiento de prueba depende de $\alpha_0$.
 
-**Pregunta**. ¿Será posible construir un estadístico que resuma el grado de evidencia en los datos en contra de $H_0$?
+**Pregunta**. ¿Será posible construir un estadístico que resuma el grado de
+evidencia en los datos en contra de $H_0$?
 
 **Respuesta**. Cualquier procedimiento usa las siguientes dos fuentes:
 
-1) El valor observado del estadístico de prueba.
+1. El valor observado del estadístico de prueba.
 
-2) Todos los valores de $\alpha_0$ en donde rechazamos la nula.
+2. Todos los valores de $\alpha_0$ en donde rechazamos la nula.
 
-**Ejemplo** (Normal). Si $Z=2.78$, entonces se rechaza $H_0: \mu = \mu_0$ si $|Z| = 2.78>z_{1-\frac{\alpha_0}2}$, para cualquier $\alpha_0$. Entonces,
-\[\Phi(2.78) >1-d\frac{\alpha_0}2 \implies \alpha_0\geq 0.0054\]
-que es el valor observado de significancia.
+**Ejemplo** (Caso Normal). Se rechaza $H_0: \mu = \mu_0$ si \(|Z|>z_{1-\frac{\alpha_0}2}\)
 
-**Definición**. El **valor-$p$** es el nivel más pequeño de significancia en donde rechazaríamos $H_0$ bajo los datos observados.
+Ahora si \(\alpha_0 = 0.05\) y \(z_{1-\frac{\alpha_0}2} = 1.96\), entonces para
+\(Z = 1.97\) y \(Z = 2.78 \) y \( Z = 6.97\) todos cumplen esa condición. 
+
+¿Entonces la pregunta es cuál es mejor?
+
+Una forma de estimar esa "fuerza", es partir del cuantil real de la distribución 
+
+\begin{align*}
+\Phi(Z) &> 1-\dfrac{\alpha_0}2 \\
+\alpha_0 &> 2(1-\Phi(Z)) 
+\end{align*}
+
+
+- Si $Z=1.97$ entonces \(\alpha _{0} =0.0488384\)
+- Si $Z=2.78$ entonces \(\alpha _{0} =0.0054359\)
+- Si $Z=6.97$ entonces \(\alpha _{0} =\ensuremath{3.1694647\times 10^{-12}}\)
+
+
+En cada caso se estimó usando el comando `2*(1-pnorm(1.97))` por ejemplo. 
+
+
+El valor \(\alpha_0\) se le conoce como valor de significancia. 
+
+**Definición**. El **valor-$p$** es el nivel más pequeño de significancia en
+donde rechazaríamos $H_0$ bajo los datos observados.
 
 **Nota**. El valor-$p$ es un estadístico.
 
@@ -4311,7 +4903,8 @@ que es el valor observado de significancia.
 
 * Región de rechazo: $T\geq c$.
 
-* Decisión de rechazo (*ejercicio*): para cada $t$, rechazamos $H_0$ si $T\geq t$ con $t\geq F^{-1}(1-\alpha_0)$, $F$ distribución de $T$.
+* Decisión de rechazo: para cada $t$, rechazamos $H_0$ si $T\geq t$ con $t\geq
+  F^{-1}(1-\alpha_0)$, $F$ distribución de $T$.
 
 Entonces
 
@@ -4319,27 +4912,43 @@ Entonces
 
 El tamaño de la prueba es $c=t$.
 
-**Ejemplo**. Retomando el ejemplo con las variables aleatorias Bernouilli, rechazamos $H_0: p\leq p_0$ si $Y\geq c$. Así,
+**Ejemplo**. Retomando el ejemplo con las variables aleatorias Bernouilli,
+rechazamos $H_0: p\leq p_0$ si $Y\geq c$. Así,
 
-\[\text{valor-$p$} = \sup_{p\in\Omega}P_{p}[Y\geq y] =P_{p}[Y\geq y] \]
-Si $p_0 = 0.3, n=10, y =6$, el valor-$p$ es $\text{pbinom}(y = 6, p_0 =3,n=10) = 0.0473$.
+\[\text{valor-$p$} = \sup_{p\in\Omega}P_{p}[Y\geq y] =P_{p}[Y\geq y] \] 
+
+Si $p_0 = 0.3, n=10, y =6$, entonces el valor correspondiente es $P_{p}[Y\geq 6]
+0.047349$. El código R es
+`pbinom(q = 5, size = 10, prob = 0.3, lower.tail = FALSE)`
 
 ## Dualidad entre pruebas de hipótesis y regiones de confianza
 
-**Teorema**. Sea $X = (X_1,\dots,X_n)$ una muestra con distribución $F_\theta$. Sea $g(\theta)$ una función tal que para cada valor $g_0$ de $g(\theta)$, existe una prueba con nivel $\alpha_0$ de las hipótesis:
+**Teorema**. Sea $X = (X_1,\dots,X_n)$ una muestra con distribución $F_\theta$.
+Sea $g(\theta)$ una función tal que para cada valor $g_0$ de $g(\theta)$, existe
+una prueba con nivel $\alpha_0$ de las hipótesis:
 
 \[H_{0,g_0}: g(\theta) = g_0 \text{ vs } H_{1,g_0}: g(\theta) \neq g_0. \]
+
 Defina para cada $x\in X$
-\[\omega(x) = \{g_0: \delta_{g_0} \text{ no rechaza }H_{0,g_0}\text{ si }X=x\} \quad (*)\]
 
-Sea $\gamma = 1-\alpha_0$. Entonces
-\[\mathbb P[g(\theta_0)\in \omega(x)|\theta = \theta_0 ] \geq \gamma, \;\forall \theta_0 \in \Omega.\]
+\[\omega(x) = \{g_0: \delta_{g_0} \text{ no rechaza
+}H_{0,g_0}\text{ si }X=x\} \quad (*)\]
 
-**Definición**. Si $\omega(x)$ satisface $(*)$ $\forall \theta_0 \in \Omega$, entonces $\omega(x)$ es un **conjunto de confianza** con coeficiente $\gamma$ donde $\gamma = 1-\alpha_0$.
+Sea $\gamma = 1-\alpha_0$. Entonces \[\mathbb P[g(\theta_0)\in \omega(x)|\theta
+= \theta_0 ] \geq \gamma, \;\forall \theta_0 \in \Omega.\]
 
-**Teorema**. Bajo las condiciones anteriores, si $\omega(x)$ es un conjunto de confianza para $g_0$, entonces construimos $\delta_{g_0}$: no rechazo $H_{0,g_0}$ si y solo si $g_0 \in \omega(X)$, entonces $\delta_{g_0}$ es una prueba con nivel $\alpha_0 = 1-\gamma$ para $H_{0,g_0}$.
+**Definición**. Si $\omega(x)$ satisface $(*)$ $\forall \theta_0 \in \Omega$,
+entonces $\omega(x)$ es un **conjunto de confianza** con coeficiente $\gamma$
+donde $\gamma = 1-\alpha_0$.
 
-**Ejemplo**. $X_1,\dots,X_n\sim N(\mu,\sigma^2)$, $\theta = (\mu,\sigma^2)$ (desconocidos). En este caso $g(\theta) = \mu$. El intervalo de confianza con nivel $gamma$ es
+**Teorema**. Bajo las condiciones anteriores, si $\omega(x)$ es un conjunto de
+confianza para $g_0$, entonces construimos $\delta_{g_0}$: no rechazo
+$H_{0,g_0}$ si y solo si $g_0 \in \omega(X)$, entonces $\delta_{g_0}$ es una
+prueba con nivel $\alpha_0 = 1-\gamma$ para $H_{0,g_0}$.
+
+**Ejemplo**. $X_1,\dots,X_n\sim N(\mu,\sigma^2)$, $\theta = (\mu,\sigma^2)$
+(desconocidos). En este caso $g(\theta) = \mu$. El intervalo de confianza con
+nivel $gamma$ es
 
 \[\bar X_n\pm t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n}.\]
 
@@ -4347,14 +4956,100 @@ La hipótesis de interés corresponde a
 
 \[ H_0: \mu = \mu_0 \text{ vs } H_1: \mu \ne \mu_0.\]
 
-Por los teoremas anteriores, $H_0$ se rechaza si  $\mu_0$ no está en el IC, es decir, si y solo si
+Por los teoremas anteriores, $H_0$ se rechaza si $\mu_0$ no está en el IC, es
+decir, si y solo si
 
-\[\mu_0 > \bar X_n+ t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n} \text{ o } \mu_0 < \bar X_n- t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n},\]
-que se puede resumir como
+\[\mu_0 > \bar X_n+ t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n} \text{ o }
+\mu_0 < \bar X_n- t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n},\] que se
+puede resumir como
 
 \[\bigg|\dfrac{\bar X_n-\mu_0}{\sigma'/\sqrt n}\bigg|>t_{n-1,1-\frac{\alpha}2}.\]
 
-**Ejemplo**. $X_1,\dots,X_n\sim N(\mu,\sigma^2)$, $\mu$ desconocido, $\sigma^2$ conocido. Construta un intervalo de confianza con nivel $\gamma$ a partir de \[ H_0: \mu = \mu_0 \text{ vs } H_1: \mu \ne \mu_0.\]
+
+
+
+```r
+n <- 1000
+gamma <- 0.95
+alpha <- 0.95
+X <- rnorm(n = n, mean = 1, sd = 2)
+mu0 <- 1
+
+Xbar <- mean(X)
+sigma_prima <- sd(X)
+
+
+
+t_quantil <- qt(p = (1 + gamma) / 2, df = n - 1)
+```
+El intervalo de confianza es 
+
+
+```r
+c(Xbar - t_quantil * sigma_prima / sqrt(n), Xbar + t_quantil * sigma_prima / sqrt(n))
+```
+
+```
+## [1] 0.7678789 1.0139517
+```
+
+\[ H_0: \mu = 1 \text{ vs } H_1: \mu \ne 1.\]
+
+Para probar esta prueba se debe comprobar que 
+
+
+```r
+Z <- abs ((Xbar - mu0) / (sigma_prima / sqrt(n)))
+```
+
+Preguntamos ¿Rechazamos \( H_0\)?
+
+
+```r
+Z > t_quantil
+```
+
+```
+## [1] FALSE
+```
+
+Si tuvieramos otros datos con otra media, el resultado será diferente. 
+
+
+```r
+n <- 1000
+gamma <- 0.95
+alpha <- 0.95
+X <- rnorm(n = n, mean = 5, sd = 2)
+mu0 <- 1
+
+Xbar <- mean(X)
+sigma_prima <- sd(X)
+
+t_quantil <- qt(p = (1 + gamma) / 2, df = n - 1)
+
+c(Xbar - t_quantil * sigma_prima / sqrt(n),
+  Xbar + t_quantil * sigma_prima / sqrt(n))
+```
+
+```
+## [1] 4.853676 5.103191
+```
+
+¿Rechazamos \( H_0\)?
+
+
+```r
+Z <- abs ((Xbar - mu0) / (sigma_prima / sqrt(n)))
+
+Z > t_quantil
+```
+
+```
+## [1] TRUE
+```
+
+**Ejemplo**. $X_1,\dots,X_n\sim N(\mu,\sigma^2)$, $\mu$ desconocido, $\sigma^2$ conocido. Construya un intervalo de confianza con nivel $\gamma$ a partir de \[ H_0: \mu = \mu_0 \text{ vs } H_1: \mu \ne \mu_0.\]
 
 Rechazamos $H_0$ si
 \[\bigg|\dfrac{\bar X_n-\mu_0}{\sigma/\sqrt n}\bigg|\geq z_{1-\frac{\alpha_0}2}.\]
@@ -4373,7 +5068,7 @@ que es el IC con nivel $\gamma$ para $\mu$.
 
 ### Dualidad en pruebas unilaterales
 
-Si $X = (X_1,\dots, X_n)$ es una muestra según $F_\theta$ y $g(\theta)$ es una función de variable real, suponga que para cada $g_0\in I_m(g)$ existe una prueba $\delta_{g_0}$ con nivel $\alpha_0$ de las hipótesis anteriores. Si
+Si $X = (X_1,\dots, X_n)$ es una muestra según $F_\theta$ y $g(\theta)$ es una función de variable real, suponga que para cada $g_0\in Im(g)$ existe una prueba $\delta_{g_0}$ con nivel $\alpha_0$ de las hipótesis anteriores. Si
 \[\omega(x) = \{g_0: \delta_{g_0} \text{ no rechaza }H_{0,g_0}\text{ si }X=x\}\]
 
 y si $\gamma = 1-\alpha_0$, entonces $\omega(x)$ es una región de confianza para $g(\theta)$ con nivel $\gamma$.
@@ -4435,10 +5130,94 @@ Una prueba de cociente de verosimilitud rechaza $H_0$ si $\Lambda(x)\leq k$, par
 
 Si $n=10$, $\theta_0 = 0.3$, $y = 6$, $\alpha_0=0.05$.
 
-| $y$ | $0$     | $1$     | $2$     | $3$     | $4$     | $5$     | $6$     | $7$     | $8$     | $9$    | $10$   |
-|---|-------|-------|-------|-------|-------|-------|-------|-------|-------|------|------|
-| $\Lambda(y)$ | $0.028$ | $0.312$ | $0.773$ | $1$     | $0.797$ | $0.418$ | $0.147$ | $0.034$ | $0.005$ | $3\times 10^{-4}$ | $6\times10^{-6}$ |
-| $\mathbb P[Y=y|\theta=0.3]$| $0.028$ | $0.121$ | $0.233$ | $0.267$ | $0.200$ | $0.103$ |$0.037$ | $0.009$ | $0.001$ | $1\times 10^{-4}$| $6\times10^{-6}$|
+
+
+```r
+n <- 10
+p0 <- 0.3
+y <- 0:10
+alpha0 <- 0.05
+
+p <- choose(n, y) * p0^y * (1 - p0)^(n - y)
+
+
+Lambda <- numeric(n)
+Lambda[y == 0] <- (1 - p0)^n
+ym1 <- y[y != 0]
+Lambda[y != 0] <- (n * p0 / ym1)^ym1 * ((n * (1 - p0)) / (n - ym1))^(n - ym1)
+
+plot(y, Lambda, type = "l", col = "blue")
+lines(y, p, type = "l", col = "red")
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-103-1} \end{center}
+
+```r
+knitr::kable(cbind(y, Lambda, p))
+```
+
+
+\begin{tabular}{r|r|r}
+\hline
+y & Lambda & p\\
+\hline
+0 & 0.0282475 & 0.0282475\\
+\hline
+1 & 0.3124791 & 0.1210608\\
+\hline
+2 & 0.7731201 & 0.2334744\\
+\hline
+3 & 1.0000000 & 0.2668279\\
+\hline
+4 & 0.7978583 & 0.2001209\\
+\hline
+5 & 0.4182119 & 0.1029193\\
+\hline
+6 & 0.1465454 & 0.0367569\\
+\hline
+7 & 0.0337359 & 0.0090017\\
+\hline
+8 & 0.0047906 & 0.0014467\\
+\hline
+9 & 0.0003556 & 0.0001378\\
+\hline
+10 & 0.0000059 & 0.0000059\\
+\hline
+\end{tabular}
+
+```r
+ix <- order(p)
+knitr::kable(cbind(y[ix], cumsum(p[ix])))
+```
+
+
+\begin{tabular}{r|r}
+\hline
+10 & 0.0000059\\
+\hline
+9 & 0.0001437\\
+\hline
+8 & 0.0015904\\
+\hline
+7 & 0.0105921\\
+\hline
+0 & 0.0388396\\
+\hline
+6 & 0.0755965\\
+\hline
+5 & 0.1785159\\
+\hline
+1 & 0.2995767\\
+\hline
+4 & 0.4996976\\
+\hline
+2 & 0.7331721\\
+\hline
+3 & 1.0000000\\
+\hline
+\end{tabular}
 
 Rechazamos $H_0$ con nivel $\alpha_0 = 0.05$ en $y \in\{10,9,8,7,0\}$ y $k\in [0.028,0.147)$ si rechazo cuando $\Lambda(y)\leq k$. El tamaño de prueba es
 \[\mathbb P_{0.3}[\text{Rechazo}] = \mathbb{P}_{0.3}[Y\in \{10,9,8,7,0\}] = 0.039.\]
@@ -4452,6 +5231,57 @@ Rechazamos $H_0$ con nivel $\alpha_0 = 0.05$ en $y \in\{10,9,8,7,0\}$ y $k\in [0
 Rechazamos $H_0$ bajo la misma región del ejemplo anterior.
 
 
+
+```r
+-2 * log(Lambda)
+```
+
+```
+##  [1]  7.1334989  2.3264351  0.5146418  0.0000000  0.4516484  1.7435339
+##  [7]  3.8408399  6.7783829 10.6822162 15.8832009 24.0794561
+```
+
+```r
+qchisq(p = 0.95, df = 1)
+```
+
+```
+## [1] 3.841459
+```
+¿Rechazamos \( H_0\)?
+
+```r
+knitr::kable(data.frame(y, test = -2 * log(Lambda) > qchisq(p = 0.95, df = 1)))
+```
+
+
+\begin{tabular}{r|l}
+\hline
+y & test\\
+\hline
+0 & TRUE\\
+\hline
+1 & FALSE\\
+\hline
+2 & FALSE\\
+\hline
+3 & FALSE\\
+\hline
+4 & FALSE\\
+\hline
+5 & FALSE\\
+\hline
+6 & FALSE\\
+\hline
+7 & TRUE\\
+\hline
+8 & TRUE\\
+\hline
+9 & TRUE\\
+\hline
+10 & TRUE\\
+\hline
+\end{tabular}
 
 <!--chapter:end:09-pruebas-hipotesis.Rmd-->
 
@@ -4525,7 +5355,7 @@ Del ejemplo de tiempo de servicio, en lugar de rechazar $H_0: \theta = \theta_0$
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-82-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-107-1} \end{center}
 
 Entonces $(*)$ es cierto si $X_1>c$. Se puede comprobar numéricamente que $c\approx5.03$.
 
@@ -5208,7 +6038,7 @@ Y despejando la expresión tenemos que
 
 
 ```r
-tquantile/sqrt(20)
+tquantile / sqrt(20)
 ```
 
 ```

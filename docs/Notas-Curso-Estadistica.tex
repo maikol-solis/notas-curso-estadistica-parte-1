@@ -187,7 +187,7 @@
 
 \title{Notas Curso de Estadística (Parte I)}
 \author{Maikol Solís}
-\date{Actualizado el 01 October, 2020}
+\date{Actualizado el 07 October, 2020}
 
 \begin{document}
 \maketitle
@@ -937,10 +937,11 @@ En nuestro ejemplo se tenía que \(\mathbb E [\theta] = 0.0002\) y \(\mathrm{Var
 \NormalTok{alpha\_previa \textless{}{-}}\StringTok{ }\DecValTok{4}
 \NormalTok{beta\_previa \textless{}{-}}\StringTok{ }\DecValTok{20000}
 
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1e+06}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_previa, }
-        \DataTypeTok{scale =}\NormalTok{ beta\_previa)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale\_y\_continuous}\NormalTok{(}\DataTypeTok{breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1e6}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_previa, }\DataTypeTok{scale =}\NormalTok{ beta\_previa)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale\_y\_continuous}\NormalTok{(}\DataTypeTok{breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -953,14 +954,15 @@ Asumiendo que tenemos algunos datos \(X_1, ..., X_n\), asumimos que estos son ex
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2911}\NormalTok{, }\DecValTok{3403}\NormalTok{, }\DecValTok{3237}\NormalTok{, }\DecValTok{3509}\NormalTok{, }\DecValTok{3118}\NormalTok{)}
+\NormalTok{x  \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2911}\NormalTok{, }\DecValTok{3403}\NormalTok{, }\DecValTok{3237}\NormalTok{, }\DecValTok{3509}\NormalTok{, }\DecValTok{3118}\NormalTok{)}
 
-\NormalTok{theta \textless{}{-}}\StringTok{ }\DecValTok{1}\OperatorTok{/}\KeywordTok{mean}\NormalTok{(x)}
+\NormalTok{theta \textless{}{-}}\StringTok{ }\DecValTok{1} \OperatorTok{/}\StringTok{ }\KeywordTok{mean}\NormalTok{(x)}
 
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1e+05}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dexp, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{rate =}\NormalTok{ theta)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale\_y\_continuous}\NormalTok{(}\DataTypeTok{breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1e5}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dexp, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{rate =}\NormalTok{ theta)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale\_y\_continuous}\NormalTok{(}\DataTypeTok{breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -973,7 +975,7 @@ Según los contenidos del curso, se puede estimar los parámetros de la densidad
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(y \textless{}{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(x))}
+\NormalTok{(y  \textless{}{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(x))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1013,14 +1015,12 @@ Según los contenidos del curso, se puede estimar los parámetros de la densidad
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{750000}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_previa, }
-        \DataTypeTok{scale =}\NormalTok{ beta\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_posterior, }
-        \DataTypeTok{scale =}\NormalTok{ beta\_posterior), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dexp, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{rate =}\NormalTok{ theta), }
-        \KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Verosimilitud"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1.5e{-}05}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{7.5e5}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_previa, }\DataTypeTok{scale =}\NormalTok{ beta\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_posterior, }\DataTypeTok{scale =}\NormalTok{ beta\_posterior), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dexp, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{rate =}\NormalTok{ theta), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Verosimilitud"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1.5e{-}5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1075,14 +1075,12 @@ Suponga que \(X_6 = 3000\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1e+06}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =} \DecValTok{4}\NormalTok{, }
-        \DataTypeTok{scale =} \DecValTok{20000}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa \#1"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_previa, }
-        \DataTypeTok{scale =}\NormalTok{ beta\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa \#2"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_posterior, }
-        \DataTypeTok{scale =}\NormalTok{ beta\_posterior), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1.5e{-}05}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme\_minimal}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1e6}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =} \DecValTok{4}\NormalTok{, }\DataTypeTok{scale =} \DecValTok{20000}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa \#1"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_previa, }\DataTypeTok{scale =}\NormalTok{ beta\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa \#2"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha\_posterior, }\DataTypeTok{scale =}\NormalTok{ beta\_posterior), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{1.5e{-}5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1102,7 +1100,7 @@ Si tenemos pocos datos, la información previa es la que ``prevalece''.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 9.512256
+## [1] 10.26207
 \end{verbatim}
 
 \begin{Shaded}
@@ -1112,7 +1110,7 @@ Si tenemos pocos datos, la información previa es la que ``prevalece''.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.3965964
+## [1] 0.5653252
 \end{verbatim}
 
 \begin{Shaded}
@@ -1147,37 +1145,31 @@ Si tenemos pocos datos, la información previa es la que ``prevalece''.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(mu\_posterior \textless{}{-}}\StringTok{ }\NormalTok{((sigma}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }
-\StringTok{    }\NormalTok{mu\_previa }\OperatorTok{+}\StringTok{ }\NormalTok{((n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }
-\StringTok{    }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{mu)}
+\NormalTok{(mu\_posterior \textless{}{-}}\StringTok{ }\NormalTok{((sigma}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{mu\_previa }\OperatorTok{+}\StringTok{ }\NormalTok{((n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{mu)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 9.038378
+## [1] 9.274089
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(sigma2\_posterior \textless{}{-}}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }
-\StringTok{    }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
+\NormalTok{(sigma2\_posterior \textless{}{-}}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.04981766
+## [1] 0.09627465
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_previa, }
-        \DataTypeTok{sd =}\NormalTok{ sigma\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_posterior, }
-        \DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(sigma2\_posterior)), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu, }
-        \DataTypeTok{sd =}\NormalTok{ sigma), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Verosimilitud"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_previa, }\DataTypeTok{sd =}\NormalTok{ sigma\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_posterior, }\DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(sigma2\_posterior)), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu, }\DataTypeTok{sd =}\NormalTok{ sigma), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Verosimilitud"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1194,7 +1186,7 @@ Con más datos, la distribución se ajusta a esto y le quita importancia a la in
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 10.10505
+## [1] 9.982037
 \end{verbatim}
 
 \begin{Shaded}
@@ -1204,7 +1196,7 @@ Con más datos, la distribución se ajusta a esto y le quita importancia a la in
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9770131
+## [1] 0.9857844
 \end{verbatim}
 
 \begin{Shaded}
@@ -1239,37 +1231,31 @@ Con más datos, la distribución se ajusta a esto y le quita importancia a la in
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(mu\_posterior \textless{}{-}}\StringTok{ }\NormalTok{((sigma}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }
-\StringTok{    }\NormalTok{mu\_previa }\OperatorTok{+}\StringTok{ }\NormalTok{((n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }
-\StringTok{    }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{mu)}
+\NormalTok{(mu\_posterior \textless{}{-}}\StringTok{ }\NormalTok{((sigma}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{mu\_previa }\OperatorTok{+}\StringTok{ }\NormalTok{((n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{mu)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 10.0095
+## [1] 9.885968
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(sigma2\_posterior \textless{}{-}}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }
-\StringTok{    }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
+\NormalTok{(sigma2\_posterior \textless{}{-}}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.00945529
+## [1] 0.009624183
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_previa, }
-        \DataTypeTok{sd =}\NormalTok{ sigma\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_posterior, }
-        \DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(sigma2\_posterior)), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu, }
-        \DataTypeTok{sd =}\NormalTok{ sigma), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Verosimilitud"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_previa, }\DataTypeTok{sd =}\NormalTok{ sigma\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_posterior, }\DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(sigma2\_posterior)), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu, }\DataTypeTok{sd =}\NormalTok{ sigma), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Verosimilitud"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1287,7 +1273,7 @@ distribución previa en lugar que a la verosimilitud.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 6.857234
+## [1] 9.864745
 \end{verbatim}
 
 \begin{Shaded}
@@ -1297,7 +1283,7 @@ distribución previa en lugar que a la verosimilitud.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.02709
+## [1] 5.864811
 \end{verbatim}
 
 \begin{Shaded}
@@ -1332,37 +1318,31 @@ distribución previa en lugar que a la verosimilitud.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(mu\_posterior \textless{}{-}}\StringTok{ }\NormalTok{((sigma}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }
-\StringTok{    }\NormalTok{mu\_previa }\OperatorTok{+}\StringTok{ }\NormalTok{((n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }
-\StringTok{    }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{mu)}
+\NormalTok{(mu\_posterior \textless{}{-}}\StringTok{ }\NormalTok{((sigma}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{mu\_previa }\OperatorTok{+}\StringTok{ }\NormalTok{((n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)) }\OperatorTok{*}\StringTok{ }\NormalTok{mu)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.615523
+## [1] 2.221989
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(sigma2\_posterior \textless{}{-}}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }
-\StringTok{    }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
+\NormalTok{(sigma2\_posterior \textless{}{-}}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(sigma}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_previa}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.6185747
+## [1] 0.7747545
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_previa, }
-        \DataTypeTok{sd =}\NormalTok{ sigma\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_posterior, }
-        \DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(sigma2\_posterior)), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu, }
-        \DataTypeTok{sd =}\NormalTok{ sigma), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Verosimilitud"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{15}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_previa, }\DataTypeTok{sd =}\NormalTok{ sigma\_previa), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Previa"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu\_posterior, }\DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(sigma2\_posterior)), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Posterior"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ mu, }\DataTypeTok{sd =}\NormalTok{ sigma), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Verosimilitud"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1388,7 +1368,7 @@ Lo más importante acá es que dependiendo de la función de pérdida podemos co
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(theta \textless{}{-}}\StringTok{ }\NormalTok{alpha}\OperatorTok{/}\NormalTok{beta)}
+\NormalTok{(theta \textless{}{-}}\StringTok{ }\NormalTok{alpha }\OperatorTok{/}\StringTok{ }\NormalTok{beta)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1407,15 +1387,15 @@ Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=40
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{m \textless{}{-}}\StringTok{ }\KeywordTok{rgamma}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{scale =}\NormalTok{ beta, }\DataTypeTok{shape =}\NormalTok{ alpha)}
-\NormalTok{(theta \textless{}{-}}\StringTok{ }\KeywordTok{median}\NormalTok{(m))}
+\NormalTok{(theta \textless{}{-}}\StringTok{ }\KeywordTok{median}\NormalTok{ (m))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 313288.2
+## [1] 307640.1
 \end{verbatim}
 
-Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.1919487\times 10^{-6}}.
+Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.2505512\times 10^{-6}}.
 
 \textbf{OJO: En este caso la pérdida cuadrática ajusta mejor ya que la distribución que la pérdida absoluta ya que la distribución NO es simétrica. En el caso simétrico los resultados serían muy similares.}
 
@@ -1446,7 +1426,7 @@ Una primera aproximación para la previa es usar una distribución discreta. En 
 \begin{Highlighting}[]
 \NormalTok{p \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\FloatTok{0.95}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
 \NormalTok{prior \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{5.2}\NormalTok{, }\DecValTok{8}\NormalTok{, }\FloatTok{7.2}\NormalTok{, }\FloatTok{4.6}\NormalTok{, }\FloatTok{2.1}\NormalTok{, }\FloatTok{0.7}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)}
-\NormalTok{prior \textless{}{-}}\StringTok{ }\NormalTok{prior}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(prior)}
+\NormalTok{prior \textless{}{-}}\StringTok{ }\NormalTok{prior }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(prior)}
 \KeywordTok{plot}\NormalTok{(p, prior, }\DataTypeTok{type =} \StringTok{"h"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Probabilidad Previa"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1528,8 +1508,8 @@ Para esto ajustaremos los siguientes parámetros
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{quantile2 \textless{}{-}}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{p =} \FloatTok{0.9}\NormalTok{, }\DataTypeTok{x =} \FloatTok{0.5}\NormalTok{)}
-\NormalTok{quantile1 \textless{}{-}}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{p =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{x =} \FloatTok{0.3}\NormalTok{)}
+\NormalTok{quantile2 \textless{}{-}}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{p =} \FloatTok{.9}\NormalTok{, }\DataTypeTok{x =} \FloatTok{.5}\NormalTok{)}
+\NormalTok{quantile1 \textless{}{-}}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{p =} \FloatTok{.5}\NormalTok{, }\DataTypeTok{x =} \FloatTok{.3}\NormalTok{)}
 \NormalTok{(ab \textless{}{-}}\StringTok{ }\KeywordTok{beta.select}\NormalTok{(quantile1, quantile2))}
 \end{Highlighting}
 \end{Shaded}
@@ -1551,13 +1531,12 @@ En este caso se obtendra la distribución posterior Beta con paramétros \(\alph
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{curve}\NormalTok{(}\KeywordTok{dbeta}\NormalTok{(x, a }\OperatorTok{+}\StringTok{ }\NormalTok{s, b }\OperatorTok{+}\StringTok{ }\NormalTok{f), }\DataTypeTok{from =} \DecValTok{0}\NormalTok{, }\DataTypeTok{to =} \DecValTok{1}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"p"}\NormalTok{, }
-    \DataTypeTok{ylab =} \StringTok{"Densidad"}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{4}\NormalTok{)}
-\KeywordTok{curve}\NormalTok{(}\KeywordTok{dbeta}\NormalTok{(x, s }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{, f }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{), }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }
-    \DataTypeTok{lwd =} \DecValTok{4}\NormalTok{)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dbeta}\NormalTok{(x, a }\OperatorTok{+}\StringTok{ }\NormalTok{s, b }\OperatorTok{+}\StringTok{ }\NormalTok{f), }\DataTypeTok{from =} \DecValTok{0}\NormalTok{, }\DataTypeTok{to =} \DecValTok{1}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"p"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Densidad"}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{4}\NormalTok{)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dbeta}\NormalTok{(x, s }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{, f }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{), }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{4}\NormalTok{)}
 \KeywordTok{curve}\NormalTok{(}\KeywordTok{dbeta}\NormalTok{(x, a, b), }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{3}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{4}\NormalTok{)}
-\KeywordTok{legend}\NormalTok{(}\FloatTok{0.7}\NormalTok{, }\DecValTok{4}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\StringTok{"Previa"}\NormalTok{, }\StringTok{"Verosimilitud"}\NormalTok{, }\StringTok{"Posterior"}\NormalTok{), }
-    \DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{lwd =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+\KeywordTok{legend}\NormalTok{(.}\DecValTok{7}\NormalTok{, }\DecValTok{4}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\StringTok{"Previa"}\NormalTok{, }\StringTok{"Verosimilitud"}\NormalTok{, }\StringTok{"Posterior"}\NormalTok{),}
+  \DataTypeTok{lty =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{lwd =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1626,7 +1605,7 @@ Suponga que se tiene 100 valores con distribución exponencial con parámetro
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{rexp}\NormalTok{(}\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{rate =} \DecValTok{1}\NormalTok{)}
+\NormalTok{x  \textless{}{-}}\StringTok{ }\KeywordTok{rexp}\NormalTok{(}\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{rate =} \DecValTok{1}\NormalTok{)}
 \NormalTok{n \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
 \NormalTok{y \textless{}{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(x)}
 \NormalTok{theta \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{1.5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)}
@@ -1635,7 +1614,7 @@ Suponga que se tiene 100 valores con distribución exponencial con parámetro
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{L \textless{}{-}}\StringTok{ }\NormalTok{theta}\OperatorTok{\^{}}\NormalTok{(}\OperatorTok{{-}}\NormalTok{n) }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{{-}}\NormalTok{y}\OperatorTok{/}\NormalTok{theta)}
+\NormalTok{L \textless{}{-}}\StringTok{ }\NormalTok{theta}\OperatorTok{\^{}}\NormalTok{(}\OperatorTok{{-}}\NormalTok{n) }\OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{{-}}\NormalTok{y }\OperatorTok{/}\StringTok{ }\NormalTok{theta)}
 \KeywordTok{plot}\NormalTok{(theta, L)}
 \end{Highlighting}
 \end{Shaded}
@@ -1644,7 +1623,7 @@ Suponga que se tiene 100 valores con distribución exponencial con parámetro
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{l \textless{}{-}}\StringTok{ }\OperatorTok{{-}}\NormalTok{n }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(theta) }\OperatorTok{{-}}\StringTok{ }\NormalTok{y}\OperatorTok{/}\NormalTok{theta}
+\NormalTok{l \textless{}{-}}\StringTok{ }\OperatorTok{{-}}\NormalTok{n }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(theta) }\OperatorTok{{-}}\StringTok{ }\NormalTok{y }\OperatorTok{/}\StringTok{ }\NormalTok{theta}
 \KeywordTok{plot}\NormalTok{(theta, l)}
 \end{Highlighting}
 \end{Shaded}
@@ -1710,8 +1689,7 @@ El MLE de \(\dfrac{\sigma}{\mu} = \dfrac{\hat \sigma}{\bar x_n}\).
 
 \NormalTok{ms \textless{}{-}}\StringTok{ }\KeywordTok{expand.grid}\NormalTok{(sigma, mu)}
 
-\NormalTok{l \textless{}{-}}\StringTok{ }\OperatorTok{{-}}\NormalTok{(n}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{pi}\OperatorTok{/}\NormalTok{ms[, }\DecValTok{1}\NormalTok{]}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{{-}}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{ms[, }
-    \DecValTok{1}\NormalTok{]}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\KeywordTok{sum}\NormalTok{((x }\OperatorTok{{-}}\StringTok{ }\NormalTok{ms[, }\DecValTok{2}\NormalTok{])}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
+\NormalTok{l \textless{}{-}}\StringTok{ }\OperatorTok{{-}}\NormalTok{(n }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{pi }\OperatorTok{/}\StringTok{ }\NormalTok{ms[, }\DecValTok{1}\NormalTok{]}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{{-}}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{ms[, }\DecValTok{1}\NormalTok{]}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\KeywordTok{sum}\NormalTok{((x }\OperatorTok{{-}}\StringTok{ }\NormalTok{ms[, }\DecValTok{2}\NormalTok{])}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{))}
 
 \KeywordTok{scatterplot3d}\NormalTok{(ms[, }\DecValTok{1}\NormalTok{], ms[, }\DecValTok{2}\NormalTok{], l, }\DataTypeTok{angle =} \DecValTok{45}\NormalTok{)}
 \end{Highlighting}
@@ -1743,7 +1721,7 @@ este caso, \(X_{(n)} = \max\{X_1,\dots, X_n\}\). Entonces \(\hat\theta_{MLE} = x
 
 \NormalTok{L \textless{}{-}}\StringTok{ }\KeywordTok{numeric}\NormalTok{(}\DecValTok{1000}\NormalTok{)}
 \ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{) \{}
-\NormalTok{    L[k] \textless{}{-}}\StringTok{ }\DecValTok{1}\OperatorTok{/}\NormalTok{theta[k]}\OperatorTok{\^{}}\NormalTok{n }\OperatorTok{*}\StringTok{ }\KeywordTok{prod}\NormalTok{(x }\OperatorTok{\textless{}}\StringTok{ }\NormalTok{theta[k])}
+\NormalTok{  L[k] \textless{}{-}}\StringTok{ }\DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{theta[k]}\OperatorTok{\^{}}\NormalTok{n }\OperatorTok{*}\StringTok{ }\KeywordTok{prod}\NormalTok{(x }\OperatorTok{\textless{}}\StringTok{ }\NormalTok{theta[k])}
 \NormalTok{\}}
 
 \KeywordTok{plot}\NormalTok{(theta, L)}
@@ -1934,10 +1912,8 @@ Suponga que tenemos una tabla con los siguientes datos, los cuales representan l
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(X \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{14}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{30}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{36}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{3}\NormalTok{, }
-    \DecValTok{68}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{43}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{43}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DecValTok{30}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{7}\NormalTok{, }
-    \DecValTok{14}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{10}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{9}\NormalTok{, }\DecValTok{6}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{4}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{11}\NormalTok{, }
-    \DecValTok{1}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{)))}
+\NormalTok{(X \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{14}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{30}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{36}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{68}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{43}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{43}\NormalTok{),}
+  \KeywordTok{rep}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DecValTok{30}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{7}\NormalTok{, }\DecValTok{14}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{10}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{9}\NormalTok{, }\DecValTok{6}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{4}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{11}\NormalTok{, }\DecValTok{1}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{)))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1968,8 +1944,7 @@ Primero veamos la forma de los datos,
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{hist}\NormalTok{(X, }\DataTypeTok{main =} \StringTok{"histograma del número de giros a la derecha"}\NormalTok{, }
-    \DataTypeTok{right =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{prob =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(X, }\DataTypeTok{main =} \StringTok{"histograma del número de giros a la derecha"}\NormalTok{, }\DataTypeTok{right =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{prob =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1981,7 +1956,7 @@ Definamos la función correspondiente a \(-\log(\mathbb{P}(X=x))\)
 \begin{Highlighting}[]
 \NormalTok{n \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(X)}
 \NormalTok{negloglike \textless{}{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(lambda) \{}
-\NormalTok{    n }\OperatorTok{*}\StringTok{ }\NormalTok{lambda }\OperatorTok{{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(X) }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(lambda) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(}\KeywordTok{factorial}\NormalTok{(X)))}
+\NormalTok{  n }\OperatorTok{*}\StringTok{ }\NormalTok{lambda }\OperatorTok{{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(X) }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(lambda) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(}\KeywordTok{factorial}\NormalTok{(X)))}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -2279,7 +2254,7 @@ Numericamente podemos hacer el ejemplo con \(\theta = 2\) y una muestra de \(n =
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0 3 2 2 1 5 2 0 2 1 2 1 0 2 2 1 1 6 1 0
+##  [1] 0 2 2 0 5 3 3 2 2 3 2 2 2 3 2 1 3 2 3 4
 \end{verbatim}
 
 \begin{Shaded}
@@ -2306,7 +2281,7 @@ Esta \(Y\) se calcula de la forma
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE
+##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 \end{verbatim}
 
 El objetivo es estimar \(p\) donde \(p\) es la probabilidad de que \(X_i =1\) (solo llegue un cliente por hora). Un estimador de \(p\) (MLE) es
@@ -2319,7 +2294,7 @@ El objetivo es estimar \(p\) donde \(p\) es la probabilidad de que \(X_i =1\) (s
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.2716
+## [1] 0.273
 \end{verbatim}
 
 ¿Es el óptimo?
@@ -2353,12 +2328,12 @@ es el estadístico con MSE mínimo.
 \begin{Highlighting}[]
 \NormalTok{T \textless{}{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(X)}
 \NormalTok{n \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(X)}
-\NormalTok{(delta\_}\DecValTok{0}\NormalTok{ \textless{}{-}}\StringTok{ }\NormalTok{(T}\OperatorTok{/}\NormalTok{n) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\DecValTok{1}\OperatorTok{/}\NormalTok{n)}\OperatorTok{\^{}}\NormalTok{(T }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{))}
+\NormalTok{(delta\_}\DecValTok{0}\NormalTok{ \textless{}{-}}\StringTok{ }\NormalTok{(T }\OperatorTok{/}\StringTok{ }\NormalTok{n) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{n)}\OperatorTok{\^{}}\NormalTok{(T }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.2708465
+## [1] 0.2666919
 \end{verbatim}
 
 En este caso \(\delta_0\) es mejor que \(\delta\) bajo una pérdida cuadrática.
@@ -2578,13 +2553,13 @@ Se resuelve numéricamente, y si \(n=21\) se cumple.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)), }
-    \KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dchisq, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{5}\NormalTok{), }
-    \KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"05 grados de libertad"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dchisq, }
-    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{10}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"10 grados de libertad"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dchisq, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{20}\NormalTok{), }
-        \KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"20 grados de libertad"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{scale\_y\_continuous}\NormalTok{(}\DataTypeTok{breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme\_minimal}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dchisq, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{5}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"05 grados de libertad"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dchisq, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{10}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"10 grados de libertad"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dchisq, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{20}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"20 grados de libertad"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale\_y\_continuous}\NormalTok{(}\DataTypeTok{breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2643,14 +2618,14 @@ U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} & = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{seq}\NormalTok{(}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)), }
-    \KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }
-    \DataTypeTok{sd =} \DecValTok{1}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Normal(0,1)"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dt, }
-    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{1}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{" t con 01 grados de libertad"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dt, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{5}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{" t con 05 grados de libertad"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dt, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{10}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{" t con 10 grados de libertad"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale\_y\_continuous}\NormalTok{(}\DataTypeTok{breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{seq}\NormalTok{(}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Normal(0,1)"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dt, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{1}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{" t con 01 grados de libertad"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dt, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{5}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{" t con 05 grados de libertad"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dt, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =} \DecValTok{10}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{" t con 10 grados de libertad"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale\_y\_continuous}\NormalTok{(}\DataTypeTok{breaks =} \OtherTok{NULL}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2860,12 +2835,12 @@ Entonces el intervalo de confianza para este caso es
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, G\_inv}\OperatorTok{/}\NormalTok{T)}
+\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, G\_inv }\OperatorTok{/}\StringTok{ }\NormalTok{T)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.000000 2.477353
+## [1] 0.000000 2.420941
 \end{verbatim}
 
 \textbf{Definición}. Sea \(X = (X_1,\dots,X_n)\) una muestra de una distribución
@@ -2950,19 +2925,19 @@ Por ejemplo
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4103.649
+## [1] 3700.114
 \end{verbatim}
 
 Finalmente el intervalo es
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{c}\NormalTok{(diferencias}\OperatorTok{/}\NormalTok{chi2\_gamma2, diferencias}\OperatorTok{/}\NormalTok{chi2\_gamma1)}
+\KeywordTok{c}\NormalTok{(diferencias }\OperatorTok{/}\StringTok{ }\NormalTok{chi2\_gamma2, diferencias }\OperatorTok{/}\StringTok{ }\NormalTok{chi2\_gamma1)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.770049 4.493205
+## [1] 3.399319 4.051363
 \end{verbatim}
 
 \textbf{NOTA: Las cantidades pivotales no siempre existen. Esto ocurre principalemente
@@ -3037,18 +3012,17 @@ apropiadamente) converge a una normal estándar.
 
 \NormalTok{idx \textless{}{-}}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{2000}\NormalTok{), }\DataTypeTok{times =} \DecValTok{1000}\NormalTok{)}
 \ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(idx)) \{}
-\NormalTok{    muestra \textless{}{-}}\StringTok{ }\KeywordTok{rpois}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ idx[k], }\DataTypeTok{lambda =} \DecValTok{5}\NormalTok{)}
-\NormalTok{    Xbar[k, }\StringTok{"Z"}\NormalTok{] \textless{}{-}}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(idx[k]) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\KeywordTok{mean}\NormalTok{(muestra) }\OperatorTok{{-}}\StringTok{ }
-\StringTok{        }\DecValTok{5}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{5}\NormalTok{)}
-\NormalTok{    Xbar[k, }\StringTok{"n"}\NormalTok{] \textless{}{-}}\StringTok{ }\NormalTok{idx[k]}
+\NormalTok{  muestra \textless{}{-}}\StringTok{ }\KeywordTok{rpois}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ idx[k], }\DataTypeTok{lambda =} \DecValTok{5}\NormalTok{)}
+\NormalTok{  Xbar[k, }\StringTok{"Z"}\NormalTok{] \textless{}{-}}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(idx[k]) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\KeywordTok{mean}\NormalTok{(muestra) }\OperatorTok{{-}}\StringTok{ }\DecValTok{5}\NormalTok{) }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\NormalTok{  Xbar[k, }\StringTok{"n"}\NormalTok{] \textless{}{-}}\StringTok{ }\NormalTok{idx[k]}
 \NormalTok{\}}
 
 
 
-\KeywordTok{ggplot}\NormalTok{(Xbar) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom\_histogram}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Z, }
-    \DataTypeTok{y =}\NormalTok{ ..density..), }\DataTypeTok{color =} \StringTok{"white"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }
-    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{), }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{facet\_wrap}\NormalTok{(. }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{n, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{)}
+\KeywordTok{ggplot}\NormalTok{(Xbar) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_histogram}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Z, }\DataTypeTok{y =}\NormalTok{ ..density..), }\DataTypeTok{color =} \StringTok{"white"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{), }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet\_wrap}\NormalTok{(. }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{n, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3113,8 +3087,7 @@ z_{\frac{1+\gamma}2}\bigg]\]
 \NormalTok{Xbar \textless{}{-}}\StringTok{ }\KeywordTok{mean}\NormalTok{(X)}
 \NormalTok{z \textless{}{-}}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\DataTypeTok{p =} \FloatTok{0.975}\NormalTok{)}
 
-\KeywordTok{c}\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Xbar) }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{z, }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Xbar) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{z)}
+\KeywordTok{c}\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Xbar) }\OperatorTok{{-}}\StringTok{ }\DecValTok{1} \OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{z, }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Xbar) }\OperatorTok{+}\StringTok{ }\DecValTok{1} \OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{z)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3130,8 +3103,7 @@ z_{\frac{1+\gamma}2}\right)^2\bigg].\]
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{c}\NormalTok{((}\DecValTok{1}\OperatorTok{/}\DecValTok{4}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Xbar) }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{z)}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{, (}\DecValTok{1}\OperatorTok{/}\DecValTok{4}\NormalTok{) }\OperatorTok{*}\StringTok{ }
-\StringTok{    }\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Xbar) }\OperatorTok{+}\StringTok{ }\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{z)}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}
+\KeywordTok{c}\NormalTok{((}\DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Xbar) }\OperatorTok{{-}}\StringTok{ }\DecValTok{1} \OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{z)}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{, (}\DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(Xbar) }\OperatorTok{+}\StringTok{ }\DecValTok{1} \OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{z)}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3388,7 +3360,7 @@ haremos un intervalo de confianza con cuantiles \(t\)-student.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(level \textless{}{-}}\StringTok{ }\NormalTok{(gamma }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{)}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+\NormalTok{(level \textless{}{-}}\StringTok{ }\NormalTok{(gamma }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3408,8 +3380,7 @@ haremos un intervalo de confianza con cuantiles \(t\)-student.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{c}\NormalTok{(Xbar }\OperatorTok{{-}}\StringTok{ }\NormalTok{tquantile }\OperatorTok{*}\StringTok{ }\NormalTok{s}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(n), Xbar }\OperatorTok{+}\StringTok{ }\NormalTok{tquantile }\OperatorTok{*}\StringTok{ }
-\StringTok{    }\NormalTok{s}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(n))}
+\KeywordTok{c}\NormalTok{(Xbar }\OperatorTok{{-}}\StringTok{ }\NormalTok{tquantile }\OperatorTok{*}\StringTok{ }\NormalTok{s }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n), Xbar }\OperatorTok{+}\StringTok{ }\NormalTok{tquantile }\OperatorTok{*}\StringTok{ }\NormalTok{s }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3431,7 +3402,7 @@ basados en la experiencia previa (que puede ser ninguna).
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{mu\_}\DecValTok{0}\NormalTok{ \textless{}{-}}\StringTok{ }\NormalTok{lambda\_}\DecValTok{0}\NormalTok{ \textless{}{-}}\StringTok{ }\DecValTok{1}
-\NormalTok{alpha\_}\DecValTok{0}\NormalTok{ \textless{}{-}}\StringTok{ }\NormalTok{beta\_}\DecValTok{0}\NormalTok{ \textless{}{-}}\StringTok{ }\DecValTok{1}\OperatorTok{/}\DecValTok{2}
+\NormalTok{alpha\_}\DecValTok{0}\NormalTok{ \textless{}{-}}\StringTok{ }\NormalTok{beta\_}\DecValTok{0}\NormalTok{ \textless{}{-}}\StringTok{ }\DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3439,7 +3410,7 @@ Los datos de este experimento son \(n = 30\), \(\bar x_n = 1.442\), \(s_n^2 = 0.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(mu\_}\DecValTok{1}\NormalTok{ \textless{}{-}}\StringTok{ }\NormalTok{(lambda\_}\DecValTok{0} \OperatorTok{*}\StringTok{ }\NormalTok{mu\_}\DecValTok{0} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{Xbar)}\OperatorTok{/}\NormalTok{(lambda\_}\DecValTok{0} \OperatorTok{+}\StringTok{ }\NormalTok{n))}
+\NormalTok{(mu\_}\DecValTok{1}\NormalTok{ \textless{}{-}}\StringTok{ }\NormalTok{(lambda\_}\DecValTok{0} \OperatorTok{*}\StringTok{ }\NormalTok{mu\_}\DecValTok{0} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{Xbar) }\OperatorTok{/}\StringTok{ }\NormalTok{(lambda\_}\DecValTok{0} \OperatorTok{+}\StringTok{ }\NormalTok{n))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3459,7 +3430,7 @@ Los datos de este experimento son \(n = 30\), \(\bar x_n = 1.442\), \(s_n^2 = 0.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(alpha\_}\DecValTok{1}\NormalTok{ \textless{}{-}}\StringTok{ }\NormalTok{alpha\_}\DecValTok{0} \OperatorTok{+}\StringTok{ }\NormalTok{n}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+\NormalTok{(alpha\_}\DecValTok{1}\NormalTok{ \textless{}{-}}\StringTok{ }\NormalTok{alpha\_}\DecValTok{0} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3469,8 +3440,7 @@ Los datos de este experimento son \(n = 30\), \(\bar x_n = 1.442\), \(s_n^2 = 0.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(beta\_}\DecValTok{1}\NormalTok{ \textless{}{-}}\StringTok{ }\NormalTok{beta\_}\DecValTok{0} \OperatorTok{+}\StringTok{ }\FloatTok{0.5} \OperatorTok{*}\StringTok{ }\NormalTok{(n }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{s}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{lambda\_}\DecValTok{0} \OperatorTok{*}\StringTok{ }
-\StringTok{    }\NormalTok{(Xbar }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu\_}\DecValTok{0}\NormalTok{)}\OperatorTok{/}\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{(lambda\_}\DecValTok{0} \OperatorTok{+}\StringTok{ }\NormalTok{n)))}
+\NormalTok{(beta\_}\DecValTok{1}\NormalTok{ \textless{}{-}}\StringTok{ }\NormalTok{beta\_}\DecValTok{0} \OperatorTok{+}\StringTok{ }\FloatTok{0.5} \OperatorTok{*}\StringTok{ }\NormalTok{(n }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{s}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{lambda\_}\DecValTok{0} \OperatorTok{*}\StringTok{ }\NormalTok{(Xbar }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu\_}\DecValTok{0}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{(lambda\_}\DecValTok{0} \OperatorTok{+}\StringTok{ }\NormalTok{n)))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3495,17 +3465,15 @@ La posterior es \[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_1,\lambda_1,\alpha_1
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(NormalGamma)}
 
-\NormalTok{previa \textless{}{-}}\StringTok{ }\KeywordTok{dnormgam}\NormalTok{(}\DataTypeTok{par =} \KeywordTok{c}\NormalTok{(mu\_}\DecValTok{0}\NormalTok{, }\KeywordTok{sqrt}\NormalTok{(s2}\OperatorTok{/}\NormalTok{lambda\_}\DecValTok{0}\NormalTok{), }
-\NormalTok{    alpha\_}\DecValTok{0}\NormalTok{, }\DecValTok{1}\OperatorTok{/}\NormalTok{beta\_}\DecValTok{0}\NormalTok{), }\DataTypeTok{plot =} \OtherTok{FALSE}\NormalTok{)}
-\NormalTok{posterior \textless{}{-}}\StringTok{ }\KeywordTok{dnormgam}\NormalTok{(}\DataTypeTok{par =} \KeywordTok{c}\NormalTok{(mu\_}\DecValTok{1}\NormalTok{, }\KeywordTok{sqrt}\NormalTok{(s2}\OperatorTok{/}\NormalTok{lambda\_}\DecValTok{1}\NormalTok{), }
-\NormalTok{    alpha\_}\DecValTok{1}\NormalTok{, }\DecValTok{1}\OperatorTok{/}\NormalTok{beta\_}\DecValTok{1}\NormalTok{), }\DataTypeTok{plot =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{previa \textless{}{-}}\StringTok{ }\KeywordTok{dnormgam}\NormalTok{(}\DataTypeTok{par =} \KeywordTok{c}\NormalTok{(mu\_}\DecValTok{0}\NormalTok{, }\KeywordTok{sqrt}\NormalTok{(s2 }\OperatorTok{/}\StringTok{ }\NormalTok{lambda\_}\DecValTok{0}\NormalTok{), alpha\_}\DecValTok{0}\NormalTok{, }\DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{beta\_}\DecValTok{0}\NormalTok{), }\DataTypeTok{plot =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{posterior \textless{}{-}}\StringTok{ }\KeywordTok{dnormgam}\NormalTok{(}\DataTypeTok{par =} \KeywordTok{c}\NormalTok{(mu\_}\DecValTok{1}\NormalTok{, }\KeywordTok{sqrt}\NormalTok{(s2 }\OperatorTok{/}\StringTok{ }\NormalTok{lambda\_}\DecValTok{1}\NormalTok{), alpha\_}\DecValTok{1}\NormalTok{, }\DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{beta\_}\DecValTok{1}\NormalTok{), }\DataTypeTok{plot =} \OtherTok{FALSE}\NormalTok{)}
 
-\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{rbind}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{distribucion =} \StringTok{"Previa"}\NormalTok{, }\DataTypeTok{x =}\NormalTok{ previa}\OperatorTok{$}\NormalTok{xout, }
-    \DataTypeTok{y =}\NormalTok{ previa}\OperatorTok{$}\NormalTok{dout), }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{distribucion =} \StringTok{"Posterior"}\NormalTok{, }
-    \DataTypeTok{x =}\NormalTok{ posterior}\OperatorTok{$}\NormalTok{xout, }\DataTypeTok{y =}\NormalTok{ posterior}\OperatorTok{$}\NormalTok{dout))}
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{rbind}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{distribucion =} \StringTok{"Previa"}\NormalTok{, }\DataTypeTok{x =}\NormalTok{ previa}\OperatorTok{$}\NormalTok{xout, }\DataTypeTok{y =}\NormalTok{ previa}\OperatorTok{$}\NormalTok{dout),}
+  \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{distribucion =} \StringTok{"Posterior"}\NormalTok{, }\DataTypeTok{x =}\NormalTok{ posterior}\OperatorTok{$}\NormalTok{xout, }\DataTypeTok{y =}\NormalTok{ posterior}\OperatorTok{$}\NormalTok{dout))}
 
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(x, y, }\DataTypeTok{color =}\NormalTok{ distribucion)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom\_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(x, y, }\DataTypeTok{color =}\NormalTok{ distribucion)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3562,8 +3530,10 @@ t_{2\alpha_1, \tfrac{\gamma+1}{2}}
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{tquantile2alpha \textless{}{-}}\StringTok{ }\KeywordTok{qt}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ level, }\DataTypeTok{df =} \DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{alpha\_}\DecValTok{1}\NormalTok{)}
-\KeywordTok{c}\NormalTok{(mu\_}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{tquantile2alpha }\OperatorTok{*}\StringTok{ }\NormalTok{(beta\_}\DecValTok{1}\OperatorTok{/}\NormalTok{(lambda\_}\DecValTok{1} \OperatorTok{*}\StringTok{ }\NormalTok{alpha\_}\DecValTok{1}\NormalTok{))}\OperatorTok{\^{}}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{), }
-\NormalTok{    mu\_}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{tquantile2alpha }\OperatorTok{*}\StringTok{ }\NormalTok{(beta\_}\DecValTok{1}\OperatorTok{/}\NormalTok{(lambda\_}\DecValTok{1} \OperatorTok{*}\StringTok{ }\NormalTok{alpha\_}\DecValTok{1}\NormalTok{))}\OperatorTok{\^{}}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{))}
+\KeywordTok{c}\NormalTok{(}
+\NormalTok{  mu\_}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{tquantile2alpha }\OperatorTok{*}\StringTok{ }\NormalTok{(beta\_}\DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{(lambda\_}\DecValTok{1} \OperatorTok{*}\StringTok{ }\NormalTok{alpha\_}\DecValTok{1}\NormalTok{))}\OperatorTok{\^{}}\NormalTok{(}\DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{),}
+\NormalTok{  mu\_}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{tquantile2alpha }\OperatorTok{*}\StringTok{ }\NormalTok{(beta\_}\DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{(lambda\_}\DecValTok{1} \OperatorTok{*}\StringTok{ }\NormalTok{alpha\_}\DecValTok{1}\NormalTok{))}\OperatorTok{\^{}}\NormalTok{(}\DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3649,12 +3619,12 @@ Y la medía del estimador es
 \CommentTok{\# Valores dados con paramétro desconocido}
 \NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{rexp}\NormalTok{(}\DataTypeTok{n =} \DecValTok{3}\NormalTok{, }\DataTypeTok{rate =} \DecValTok{2}\NormalTok{)}
 \NormalTok{gamma \textless{}{-}}\StringTok{ }\FloatTok{0.95}
-\NormalTok{level \textless{}{-}}\StringTok{ }\NormalTok{(gamma }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{)}\OperatorTok{/}\DecValTok{2}
+\NormalTok{level \textless{}{-}}\StringTok{ }\NormalTok{(gamma }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{/}\StringTok{ }\DecValTok{2}
 
 \NormalTok{alpha \textless{}{-}}\StringTok{ }\DecValTok{4}
 \NormalTok{beta \textless{}{-}}\StringTok{ }\DecValTok{2} \OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(X)}
 
-\NormalTok{(theta\_hat \textless{}{-}}\StringTok{ }\NormalTok{alpha}\OperatorTok{/}\NormalTok{beta)}
+\NormalTok{(theta\_hat \textless{}{-}}\StringTok{ }\NormalTok{alpha }\OperatorTok{/}\StringTok{ }\NormalTok{beta)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3677,11 +3647,12 @@ Y la medía del estimador es
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{4}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}\StringTok{ }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }
-    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha, }\DataTypeTok{rate =}\NormalTok{ beta)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom\_vline}\NormalTok{(}\DataTypeTok{xintercept =}\NormalTok{ A, }
-    \DataTypeTok{color =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom\_vline}\NormalTok{(}\DataTypeTok{xintercept =}\NormalTok{ B, }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{geom\_vline}\NormalTok{(}\DataTypeTok{xintercept =}\NormalTok{ theta\_hat, }\DataTypeTok{color =} \StringTok{"blue"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{theme\_minimal}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{4}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ alpha, }\DataTypeTok{rate =}\NormalTok{ beta)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_vline}\NormalTok{(}\DataTypeTok{xintercept =}\NormalTok{ A, }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_vline}\NormalTok{(}\DataTypeTok{xintercept =}\NormalTok{ B, }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_vline}\NormalTok{(}\DataTypeTok{xintercept =}\NormalTok{ theta\_hat, }\DataTypeTok{color =} \StringTok{"blue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3783,12 +3754,11 @@ Entonces
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{theta\_real \textless{}{-}}\StringTok{ }\DecValTok{5}
-\NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rexp}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1000} \OperatorTok{*}\StringTok{ }\DecValTok{3}\NormalTok{, }\DataTypeTok{rate =}\NormalTok{ theta\_real), }
-    \DataTypeTok{ncol =} \DecValTok{3}\NormalTok{)}
+\NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rexp}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1000} \OperatorTok{*}\StringTok{ }\DecValTok{3}\NormalTok{, }\DataTypeTok{rate =}\NormalTok{ theta\_real), }\DataTypeTok{ncol =} \DecValTok{3}\NormalTok{)}
 
 \NormalTok{T \textless{}{-}}\StringTok{ }\KeywordTok{apply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ X, }\DataTypeTok{MARGIN =} \DecValTok{1}\NormalTok{, }\DataTypeTok{FUN =}\NormalTok{ sum)}
 
-\NormalTok{theta\_hat \textless{}{-}}\StringTok{ }\DecValTok{3}\OperatorTok{/}\NormalTok{T}
+\NormalTok{theta\_hat \textless{}{-}}\StringTok{ }\DecValTok{3} \OperatorTok{/}\StringTok{ }\NormalTok{T}
 
 \KeywordTok{hist}\NormalTok{(theta\_hat }\OperatorTok{{-}}\StringTok{ }\NormalTok{theta\_real, }\DataTypeTok{breaks =} \DecValTok{100}\NormalTok{)}
 \end{Highlighting}
@@ -3829,7 +3799,7 @@ Entonces \(U\) es un estimador insesgado.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{U \textless{}{-}}\StringTok{ }\DecValTok{2}\OperatorTok{/}\NormalTok{T}
+\NormalTok{U \textless{}{-}}\StringTok{ }\DecValTok{2} \OperatorTok{/}\StringTok{ }\NormalTok{T}
 \KeywordTok{mean}\NormalTok{(U }\OperatorTok{{-}}\StringTok{ }\NormalTok{theta\_real)}
 \end{Highlighting}
 \end{Shaded}
@@ -3901,7 +3871,7 @@ un poco más eficiente que los otros dos.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{theta\_bayes \textless{}{-}}\StringTok{ }\DecValTok{4}\OperatorTok{/}\NormalTok{(}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{T)}
+\NormalTok{theta\_bayes \textless{}{-}}\StringTok{ }\DecValTok{4} \OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{T)}
 \KeywordTok{var}\NormalTok{(theta\_bayes) }\OperatorTok{+}\StringTok{ }\KeywordTok{mean}\NormalTok{(theta\_bayes }\OperatorTok{{-}}\StringTok{ }\NormalTok{theta\_real)}\OperatorTok{\^{}}\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
@@ -3954,7 +3924,7 @@ son:
 \NormalTok{m \textless{}{-}}\StringTok{ }\KeywordTok{apply}\NormalTok{(X, }\DecValTok{1}\NormalTok{, mean)}
 \NormalTok{v \textless{}{-}}\StringTok{ }\KeywordTok{apply}\NormalTok{(X, }\DecValTok{1}\NormalTok{, var)}
 \NormalTok{a \textless{}{-}}\StringTok{ }\KeywordTok{apply}\NormalTok{(X, }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x, alpha) \{}
-\NormalTok{    alpha }\OperatorTok{*}\StringTok{ }\KeywordTok{mean}\NormalTok{(x) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{alpha) }\OperatorTok{*}\StringTok{ }\KeywordTok{var}\NormalTok{(x)}
+\NormalTok{  alpha }\OperatorTok{*}\StringTok{ }\KeywordTok{mean}\NormalTok{(x) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{alpha) }\OperatorTok{*}\StringTok{ }\KeywordTok{var}\NormalTok{(x)}
 \NormalTok{\}, }\DataTypeTok{alpha =} \DecValTok{10}\NormalTok{)}
 
 \KeywordTok{hist}\NormalTok{(m)}
@@ -4210,7 +4180,7 @@ Suponga que \(t\) es el tiempo que se quiere medir la cantidad de clientes (minu
 \begin{Highlighting}[]
 \NormalTok{t \textless{}{-}}\StringTok{ }\DecValTok{20}
 \NormalTok{theta \textless{}{-}}\StringTok{ }\DecValTok{5}
-\NormalTok{n \textless{}{-}}\StringTok{ }\NormalTok{t}\OperatorTok{/}\NormalTok{theta}
+\NormalTok{n \textless{}{-}}\StringTok{ }\NormalTok{t }\OperatorTok{/}\StringTok{ }\NormalTok{theta}
 
 \NormalTok{Y \textless{}{-}}\StringTok{ }\KeywordTok{rpois}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{lambda =}\NormalTok{ t }\OperatorTok{*}\StringTok{ }\NormalTok{theta)}
 \NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{rgamma}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{shape =}\NormalTok{ n, }\DataTypeTok{rate =}\NormalTok{ theta)}
@@ -4224,7 +4194,7 @@ Para \(Y\) tenemos que
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(Y}\OperatorTok{/}\NormalTok{theta}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}
+\KeywordTok{mean}\NormalTok{(Y }\OperatorTok{/}\StringTok{ }\NormalTok{theta}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4236,12 +4206,12 @@ Para \(X\) por otro lado la información de Fisher es constante (¿Por qué?)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{n}\OperatorTok{/}\NormalTok{theta}\OperatorTok{\^{}}\DecValTok{2}
+\NormalTok{n }\OperatorTok{/}\StringTok{ }\NormalTok{theta}\OperatorTok{\^{}}\DecValTok{2}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4
+## [1] 0.16
 \end{verbatim}
 
 Entonces bajo este criterio, ambas variables contienen la misma información,
@@ -4372,11 +4342,14 @@ observar el comportamiento de su información de Fisher.
 \NormalTok{beta \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{100}\NormalTok{)}
 \NormalTok{n \textless{}{-}}\StringTok{ }\DecValTok{100}
 
-\NormalTok{lista\_muestras \textless{}{-}}\StringTok{ }\KeywordTok{lapply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ beta, }\DataTypeTok{FUN =} \ControlFlowTok{function}\NormalTok{(b) \{}
+\NormalTok{lista\_muestras \textless{}{-}}\StringTok{ }\KeywordTok{lapply}\NormalTok{(}
+  \DataTypeTok{X =}\NormalTok{ beta,}
+  \DataTypeTok{FUN =} \ControlFlowTok{function}\NormalTok{(b) \{}
     \KeywordTok{matrix}\NormalTok{(}\KeywordTok{rexp}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ n }\OperatorTok{*}\StringTok{ }\DecValTok{500}\NormalTok{, }\DataTypeTok{rate =}\NormalTok{ b), }\DataTypeTok{nrow =} \DecValTok{500}\NormalTok{)}
-\NormalTok{\})}
+\NormalTok{  \}}
+\NormalTok{)}
 
-\KeywordTok{plot}\NormalTok{(beta, n}\OperatorTok{/}\NormalTok{beta}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(beta, n }\OperatorTok{/}\StringTok{ }\NormalTok{beta}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4394,9 +4367,12 @@ Este comportamiento podemos observarlo con nuestro ejemplo numérico.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{estimador1 \textless{}{-}}\StringTok{ }\KeywordTok{sapply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ lista\_muestras, }\DataTypeTok{FUN =} \ControlFlowTok{function}\NormalTok{(x) \{}
-    \KeywordTok{apply}\NormalTok{(x, }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(xx) (n }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{)}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(xx))}
-\NormalTok{\})}
+\NormalTok{estimador1 \textless{}{-}}\StringTok{ }\KeywordTok{sapply}\NormalTok{(}
+  \DataTypeTok{X =}\NormalTok{ lista\_muestras,}
+  \DataTypeTok{FUN =} \ControlFlowTok{function}\NormalTok{(x) \{}
+    \KeywordTok{apply}\NormalTok{(x, }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(xx) (n }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(xx))}
+\NormalTok{  \}}
+\NormalTok{)}
 
 \KeywordTok{plot}\NormalTok{(beta, }\KeywordTok{apply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ estimador1, }\DataTypeTok{MARGIN =} \DecValTok{2}\NormalTok{, }\DataTypeTok{FUN =}\NormalTok{ mean))}
 \end{Highlighting}
@@ -4407,8 +4383,8 @@ Este comportamiento podemos observarlo con nuestro ejemplo numérico.
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(beta, }\KeywordTok{apply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ estimador1, }\DataTypeTok{MARGIN =} \DecValTok{2}\NormalTok{, }\DataTypeTok{FUN =}\NormalTok{ var))}
-\KeywordTok{lines}\NormalTok{(beta, beta}\OperatorTok{\^{}}\DecValTok{2}\OperatorTok{/}\NormalTok{n, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
-\KeywordTok{lines}\NormalTok{(beta, beta}\OperatorTok{\^{}}\DecValTok{2}\OperatorTok{/}\NormalTok{(n }\OperatorTok{{-}}\StringTok{ }\DecValTok{2}\NormalTok{), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(beta, beta}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{/}\StringTok{ }\NormalTok{n, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(beta, beta}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{/}\StringTok{ }\NormalTok{(n }\OperatorTok{{-}}\StringTok{ }\DecValTok{2}\NormalTok{), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4428,11 +4404,14 @@ La cota de Cramer es
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{estimador2 \textless{}{-}}\StringTok{ }\KeywordTok{sapply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ lista\_muestras, }\DataTypeTok{FUN =} \ControlFlowTok{function}\NormalTok{(x) \{}
+\NormalTok{estimador2 \textless{}{-}}\StringTok{ }\KeywordTok{sapply}\NormalTok{(}
+  \DataTypeTok{X =}\NormalTok{ lista\_muestras,}
+  \DataTypeTok{FUN =} \ControlFlowTok{function}\NormalTok{(x) \{}
     \KeywordTok{apply}\NormalTok{(x, }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(xx) }\KeywordTok{mean}\NormalTok{(xx))}
-\NormalTok{\})}
+\NormalTok{  \}}
+\NormalTok{)}
 
-\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{beta, }\KeywordTok{apply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ estimador2, }\DataTypeTok{MARGIN =} \DecValTok{2}\NormalTok{, }\DataTypeTok{FUN =}\NormalTok{ mean))}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{beta, }\KeywordTok{apply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ estimador2, }\DataTypeTok{MARGIN =} \DecValTok{2}\NormalTok{, }\DataTypeTok{FUN =}\NormalTok{ mean))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4441,7 +4420,7 @@ La cota de Cramer es
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(beta, }\KeywordTok{apply}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ estimador2, }\DataTypeTok{MARGIN =} \DecValTok{2}\NormalTok{, }\DataTypeTok{FUN =}\NormalTok{ var))}
-\KeywordTok{lines}\NormalTok{(beta, }\DecValTok{1}\OperatorTok{/}\NormalTok{(n }\OperatorTok{*}\StringTok{ }\NormalTok{beta}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{), }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(beta, }\DecValTok{1} \OperatorTok{/}\StringTok{ }\NormalTok{(n }\OperatorTok{*}\StringTok{ }\NormalTok{beta}\OperatorTok{\^{}}\DecValTok{2}\NormalTok{), }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4547,69 +4526,358 @@ encontra una función que estabilice la varianza. }
 \hypertarget{pruebas-de-hipuxf3tesis-1}{%
 \section{Pruebas de hipótesis}\label{pruebas-de-hipuxf3tesis-1}}
 
-Recordando el ejemplo de las nubes rociadas con químicos en donde log-lluvia \(\sim N(\mu,\sigma^2)\), \(\mu,\sigma\) desconocidos.
+\textbf{Ejemplo:} Suponga que se hace un experimento donde se seleccionan 52 nubes al
+azar y 26 se les inyecta nitrato de plata y a las otras 26 no. Entonces se
+quiere saber cuál de los dos grupos produce más lluvia.
 
-\textbf{Hipótesis}: \(\mu>4\) (nace a partir de una pregunta), es decir, si \(\theta = (\mu,\sigma^2)\), ¿\(\theta\in\{(\mu,\sigma^2): \mu>4\}\)?
+Los datos de la cantidad de lluvia para este experimento están acá.
 
-Para el caso bayesiano, ya calculamos \(\mathbb P[\mu>4|X]\). ¿Cómo resolverlo en el caso frecuentista?
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nubes \textless{}{-}}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\DataTypeTok{file =} \StringTok{"./data/clouds.txt"}\NormalTok{, }\DataTypeTok{sep =} \StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(nubes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Unseeded.Clouds Seeded.Clouds
+## 1          1202.6        2745.6
+## 2           830.1        1697.8
+## 3           372.4        1656.0
+## 4           345.5         978.0
+## 5           321.2         703.4
+## 6           244.3         489.1
+\end{verbatim}
+
+Sin embargo usaremos los datos en escala logarítmica para facilitar el cálculo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lognubes \textless{}{-}}\StringTok{ }\KeywordTok{log}\NormalTok{(nubes)}
+\KeywordTok{head}\NormalTok{(lognubes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Unseeded.Clouds Seeded.Clouds
+## 1        7.092241      7.917755
+## 2        6.721546      7.437089
+## 3        5.919969      7.412160
+## 4        5.844993      6.885510
+## 5        5.772064      6.555926
+## 6        5.498397      6.192567
+\end{verbatim}
+
+Observe que el comportamiento es distinto en ambos casos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(nubes) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{pivot\_longer}\NormalTok{(}
+    \DataTypeTok{cols =} \KeywordTok{everything}\NormalTok{(),}
+    \DataTypeTok{names\_to =} \StringTok{"tratamiento"}\NormalTok{, }\DataTypeTok{values\_to =} \StringTok{"lluvia"}
+\NormalTok{  ) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{log\_lluvia =} \KeywordTok{log}\NormalTok{(lluvia))}
+
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ df) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ lluvia,}
+    \DataTypeTok{y =}\NormalTok{ ..density..,}
+    \DataTypeTok{fill =}\NormalTok{ tratamiento}
+\NormalTok{  ),}
+  \DataTypeTok{color =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{bins =} \DecValTok{10}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet\_wrap}\NormalTok{(. }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{tratamiento)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-83-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ df) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ log\_lluvia,}
+    \DataTypeTok{y =}\NormalTok{ ..density..,}
+    \DataTypeTok{fill =}\NormalTok{ tratamiento}
+\NormalTok{  ), }\DataTypeTok{color =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{bins =} \DecValTok{10}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet\_wrap}\NormalTok{(. }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{tratamiento)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-83-2} \end{center}
+
+En este caso supondremos que la variable \texttt{log\_lluvia} se puede modelar como una
+\(N(\mu,\sigma^2)\), \(\mu,\sigma\) desconocidos.
+
+\emph{Ejercicio:} Queda como ejercicio calcular \(\mathbb P (\mu > 4 \vert X)\)
+usando un método Bayesiano Normal-Gamma. En este caso la probabilidad tiene que
+dar \(\approx 99\%\).
+
+El valor de \(\mu>4\) nace a partir de una pregunta de investigación y se fórmula
+una \textbf{hipótesis} con respecto a los datos.
+
+En este caso sería \(\theta = (\mu,\sigma^2)\), ¿Será cierto que para \(\theta\in\{(\mu,\sigma^2):\mu>4\}\)?
+
+Para el caso bayesiano, ya calculamos \(\mathbb P[\mu>4|X]\).
+
+¿Cómo resolverlo en el caso frecuentista?
 
 Suponga que \(\Omega = \Omega_0 \cup\Omega_1\) conjuntos disjuntos tales que
-\begin{align*}
-H_0 :  \text{hipótesis en donde }\theta \in \Omega_0.\\
-H_1 : \text{hipótesis en donde }\theta \in \Omega_1.\\
+
+\begin{align*} 
+H_0 : \text{hipótesis en donde }\theta \in \Omega_0.\\ H_1 :
+\text{hipótesis en donde }\theta \in \Omega_1.\\ 
 \end{align*}
 
-\textbf{Objetivo}. Decidir si \(H_0\) o \(H_1\) es cierto, con los datos disponibles (problema de pruebas de hipótesis).
+\textbf{Objetivo}. Decidir si \(H_0\) o \(H_1\) es cierto, con los datos disponibles
+(problema de pruebas de hipótesis).
 
-\textbf{Definición}. \(H_0:\) hipótesis nula. \(H_1:\) hipótesis alternativa. Una vez que se ha realizado una prueba de hipótesis si afirmamos \(\theta \in \Omega_1\) decimos que \emph{rechazamos} \(H_0\). Si \(\theta \in \Omega_0\), decimos que \emph{no rechazamos} \(H_0\).
+\textbf{Definición}. \(H_0:\) hipótesis nula. \(H_1:\) hipótesis alternativa. Una vez que
+se ha realizado una prueba de hipótesis si afirmamos \(\theta \in \Omega_1\)
+decimos que \emph{rechazamos} \(H_0\). Si \(\theta \in \Omega_0\), decimos que \emph{no
+rechazamos} \(H_0\).
 
-Suponga que \(X_1,\dots, X_n\sim f(x|\theta)\), \(\theta \in \Omega\), \(\Omega = \Omega_0 \cup\Omega_1\) y queremos probar la hipótesis \(H_0: \theta \in \Omega_0\), \(H_1: \theta \in \Omega_1\).
+Suponga que \(X_1,\dots, X_n\sim f(x|\theta)\), \(\theta \in \Omega\),
+\(\Omega = \Omega_0 \cup\Omega_1\) y queremos probar la hipótesis
+\(H_0: \theta \in \Omega_0\), \(H_1: \theta \in \Omega_1\).
 
 \textbf{Definición} (\(i = 0,1\))
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
+\def\labelenumi{\arabic{enumi}.}
 \item
-  Si \(\Omega_i\) tiene solamente un valor de \(\theta\), \(H_i\) es una \textbf{hipótesis simple}.
+  Si \(\Omega_i\) tiene solamente un valor de \(\theta\), \(H_i\) es una \textbf{hipótesis
+  simple}.
 \item
-  Si \(\Omega_i\) tiene más de un valor de \(\theta\), \(H_i\) es una \textbf{hipótesis compuesta}.
+  Si \(\Omega_i\) tiene más de un valor de \(\theta\), \(H_i\) es una \textbf{hipótesis
+  compuesta}.
 \item
-  \textbf{Hipótesis compuestas de una cola}. Si \(\Omega_0 = (-\infty,\theta_0]\), \(H_0: \theta\geq \theta_0\), \(H_1: \theta >\theta_0\). Si \(\Omega_0 = [\theta_0,+\infty)\), \(H_0: \theta\leq \theta_0\), \(H_1: \theta<\theta_0\).
+  \textbf{Hipótesis compuestas de una cola}. Si \(\Omega_0 = (-\infty,\theta_0]\),
+  \(H_0: \theta\geq \theta_0\), \(H_1: \theta >\theta_0\). Si \(\Omega_0 = [\theta_0,+\infty)\), \(H_0: \theta\leq \theta_0\), \(H_1: \theta<\theta_0\).
 \item
-  Si \(H_1: \theta \ne \theta_0\) y \(H_0: \theta = \theta_0\) es una \textbf{hipótesis de 2 colas}.
+  Si \(H_1: \theta \ne \theta_0\) y \(H_0: \theta = \theta_0\) es una \textbf{hipótesis
+  de 2 colas}.
 \end{enumerate}
 
 \hypertarget{regiones-cruxedticas-y-estaduxedsticas-de-prueba}{%
 \section{Regiones críticas y estadísticas de prueba}\label{regiones-cruxedticas-y-estaduxedsticas-de-prueba}}
 
-\textbf{Ejemplo}. Si \(X_1,\dots, X_n \sim N(\mu,\sigma^2)\), \(\mu\) desconocido, \(\sigma^2\) conocido.
+\textbf{Ejemplo}. Si \(X_1,\dots, X_n \sim N(\mu,\sigma^2)\), \(\mu\) desconocido,
+\(\sigma^2\) conocido.
 
-Queremos probar \(H_0: \mu = \mu_0\) vs \(H_1: \mu\neq \mu_0\). La lógica es: rechazamos \(H_0\) si \(\mu\) está ``muy alejado'' de \(\mu_0\).
+Queremos probar \(H_0: \mu = \mu_0\) vs \(H_1: \mu\neq \mu_0\). La lógica es:
+rechazamos \(H_0\) si \(\mu\) está ``muy alejado'' de \(\mu_0\).
 
-Seleccione un número \(c\) tal que se rechaza \(H_0\) si \(|\bar X_n -\mu_0|>c\). En general, suponga que queremos probar las hipótesis \(H_0: \theta \in \Omega_0\) vs \(H_1: \theta\in \Omega_1\).
+Seleccione un número \(c\) tal que se rechaza \(H_0\) si \(|\bar X_n -\mu_0|>c\). En
+general, suponga que queremos probar las hipótesis \(H_0: \theta \in \Omega_0\) vs
+\(H_1: \theta\in \Omega_1\).
 
-En general, supónga que queremos probar las hipótesis \(H_0: \theta \in \Omega_0\) vs \(H_1: \theta \in \Omega_1\).
+En general, suponga que queremos probar las hipótesis \(H_0: \theta \in \Omega_0\)
+vs \(H_1: \theta \in \Omega_1\).
 
-Cuando tenemos una muestra \(X_1,\dots,X_n \sim f(x|\theta)\). Sea \(S_0\subset \mathcal X\): conjunto en donde no se rechaza \(H_0\) y \(S_1\subset \mathcal X\): conjunto en donde se rechaza \(H_0\).
+Cuando tenemos una muestra \(X_1,\dots,X_n \sim f(x|\theta)\). Sea
+\(S_0\subset \mathcal X\): conjunto en donde no se rechaza \(H_0\) y
+\(S_1\subset \mathcal X\): conjunto en donde se rechaza \(H_0\).
 
 A \(S_1\) se le llama \textbf{región crítica} de la prueba de hipótesis.
 
-\textbf{Nota}. En la mayoría de los casos, la región crítica se define en términos de un estadístico \(T = r(x)\).
+En el caso en que se rechaza \(H_0\) si \(T>c\) con \(T = |\bar X_n-\mu_0|\) estadístico de prueba y \((c,\infty)\) es la región de rechazo.
 
-\textbf{Definición}. Sea \$ X\$ una muestra aleatoria con distribución \(f(x|\theta)\) y \(T=r(X)\) un estadístico y \(R\subset \mathbb R\). Suponga que se puede verificar las hipótesis al afirmar ``rechazamos \(H_0\) si \(T\in R\)'', entonces \(T\) es un \textbf{estadístico} de prueba y \(R\) es la \textbf{región de rechazo} de la prueba.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1000} \OperatorTok{*}\StringTok{ }\DecValTok{1000}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{2}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{3}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{1000}\NormalTok{)}
 
-\textbf{Ejemplo}. En el caso en que se rechaza \(H_0\) si \(|\bar X_n|>c\), \(T = |\bar X_n-\mu_0|\) estadístico de prueba y \((c,\infty)\) es la región de rechazo.
+\NormalTok{Xbar \textless{}{-}}\StringTok{ }\KeywordTok{apply}\NormalTok{(X, }\DecValTok{2}\NormalTok{, mean)}
+
+\NormalTok{mu0 \textless{}{-}}\StringTok{ }\DecValTok{2}
+\NormalTok{T \textless{}{-}}\StringTok{ }\KeywordTok{abs}\NormalTok{(Xbar }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu0)}
+
+\NormalTok{c \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{{-}}\FloatTok{0.25}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)}
+
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{c =} \KeywordTok{numeric}\NormalTok{(), }\DataTypeTok{test =} \KeywordTok{logical}\NormalTok{(), }\DataTypeTok{region =} \KeywordTok{character}\NormalTok{())}
+\ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(c)) \{}
+\NormalTok{  df \textless{}{-}}\StringTok{ }\KeywordTok{rbind}\NormalTok{(df, }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{c =}\NormalTok{ c[k], }\DataTypeTok{test =} \KeywordTok{mean}\NormalTok{(T }\OperatorTok{\textgreater{}=}\StringTok{ }\NormalTok{c[k]), }\DataTypeTok{region =} \StringTok{"S\_1"}\NormalTok{))}
+\NormalTok{\}}
+
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{rbind}\NormalTok{(df, }\KeywordTok{data.frame}\NormalTok{(c, }\DataTypeTok{test =} \DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{test, }\DataTypeTok{region =} \StringTok{"S\_0"}\NormalTok{))}
+
+\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ c, }\DataTypeTok{y =}\NormalTok{ test, }\DataTypeTok{color =}\NormalTok{ region)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_line}\NormalTok{(}\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Promedio de veces donde T \textgreater{}= c"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-84-1} \end{center}
+
+En este caso el valor donde decrece la curva es cercano a 0. Eso quiere decir
+que antes de ese valor, nos encontramos en la región de rechazo. Luego esa
+región se va haciendo cada vez más pequeña
+\(\vert \overline{X} - \mu \vert \approx 0\).
+
+Ojo lo que pasaría si por ejemplo cambiamos a \(\mu = 4\),
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu0 \textless{}{-}}\StringTok{ }\DecValTok{4}
+\NormalTok{T \textless{}{-}}\StringTok{ }\KeywordTok{abs}\NormalTok{(Xbar }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu0)}
+
+\NormalTok{c \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{{-}}\FloatTok{0.25}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)}
+
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{c =} \KeywordTok{numeric}\NormalTok{(), }\DataTypeTok{test =} \KeywordTok{logical}\NormalTok{(), }\DataTypeTok{region =} \KeywordTok{character}\NormalTok{())}
+\ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(c)) \{}
+\NormalTok{  df \textless{}{-}}\StringTok{ }\KeywordTok{rbind}\NormalTok{(}
+\NormalTok{    df,}
+    \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{c =}\NormalTok{ c[k], }\DataTypeTok{test =} \KeywordTok{mean}\NormalTok{(T }\OperatorTok{\textgreater{}=}\StringTok{ }\NormalTok{c[k]), }\DataTypeTok{region =} \StringTok{"S\_1"}\NormalTok{)}
+\NormalTok{  )}
+\NormalTok{\}}
+
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{rbind}\NormalTok{(df, }\KeywordTok{data.frame}\NormalTok{(c, }\DataTypeTok{test =} \DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{test, }\DataTypeTok{region =} \StringTok{"S\_0"}\NormalTok{))}
+
+\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ c, }\DataTypeTok{y =}\NormalTok{ test, }\DataTypeTok{color =}\NormalTok{ region)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_line}\NormalTok{(}\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Promedio de veces donde T \textgreater{}= c"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-85-1} \end{center}
+
+El valor donde comienza a crecer la curva se desvía a un valor cercano a 2.
+
+\textbf{Nota}. En la mayoría de los casos, la región crítica se define en términos de
+un estadístico \(T = r(x)\).
+
+\textbf{Definición}. Sea \$ X\$ una muestra aleatoria con distribución \(f(x|\theta)\) y
+\(T=r(X)\) un estadístico y \(R\subset \mathbb R\). Suponga que se puede verificar
+las hipótesis al afirmar ``rechazamos \(H_0\) si \(T\in R\)'', entonces \(T\) es un
+\textbf{estadístico} de prueba y \(R\) es la \textbf{región de rechazo} de la prueba.
+
+\textbf{Continuación del Ejemplo:}. Para el caso del ejemplo de la lluvia definimos
+que
+
+\[
+H_0: \mu \leq 4 \text{ versus } H_1: \mu > 4
+\]
+
+En este caso podríamos decir que rechazamos \(H_0\) si la media empírica
+es ``más grande'' que 4 y no rechazamos \(H_0\) si la media empírica es ``más
+pequeña'' que 4.
+
+El problema acá es que ``más grande'' y ``más pequeña'' no son términos precisos.
+
+Tenemos dos opciones
+
+Construya la región de critica de la forma
+
+\begin{equation} 
+S_{0}=\left\{\boldsymbol{x}:\leq \bar{X}_{n}-\mu_{0} \leq
+c\right\}, \quad \text { y } \quad S_{1}=S_{0}^{C} 
+\end{equation}
+
+y observe cuál es la probabilidad que ocurra para cada tipo de \(c\). El
+problema con esta construcción es que requiere conocer todos los posibles
+vectores de datos \(\mathbf{X}\) y construir los conjuntos \(S_0\) y \(S_1\).
+
+Una mejor opción es tener un estadístico sencillo que cumpla dos condiciones:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Un estadístico sencillo de calcular posiblemente suficiente, minimal y
+  eficiente.
+\item
+  Un estadístico con una distribución conocida.
+\end{enumerate}
+
+En ese caso \(\overline{X}_{n}\) funciona muy bien, porque tiene todas las
+buenas propiedades de sufiencia, minimalidad y eficiencia, y además sabemos su
+distribución según lo estudiando en capítulos pasados. Entonces
+
+\begin{equation*}
+U = \frac{n ^{1/2} (\overline{X}_{n} - \mu_0)}{\sigma^\prime} \sim t_{n-1}
+\end{equation*}
+
+Lo natural debería ser rechazar \(H_{0}\) si \(U\) es grande.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{colnames}\NormalTok{(lognubes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Unseeded.Clouds" "Seeded.Clouds"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Xbarra1 \textless{}{-}}\StringTok{ }\KeywordTok{mean}\NormalTok{(lognubes[, }\DecValTok{1}\NormalTok{])}
+\NormalTok{Xbarra2 \textless{}{-}}\StringTok{ }\KeywordTok{mean}\NormalTok{(lognubes[, }\DecValTok{2}\NormalTok{])}
+\NormalTok{sigma\_prima1 \textless{}{-}}\StringTok{ }\KeywordTok{sd}\NormalTok{(lognubes[, }\DecValTok{1}\NormalTok{])}
+\NormalTok{sigma\_prima2 \textless{}{-}}\StringTok{ }\KeywordTok{sd}\NormalTok{(lognubes[, }\DecValTok{2}\NormalTok{])}
+
+\NormalTok{n \textless{}{-}}\StringTok{ }\KeywordTok{dim}\NormalTok{(lognubes)[}\DecValTok{1}\NormalTok{]}
+
+
+\NormalTok{(U1 \textless{}{-}}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(Xbarra1 }\OperatorTok{{-}}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{sigma\_prima1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.02979683
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(U2 \textless{}{-}}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(Xbarra2 }\OperatorTok{{-}}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{sigma\_prima2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.615624
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ (}\KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{))), }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}
+    \DataTypeTok{fun =}\NormalTok{ dt, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{df =}\NormalTok{ n }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{),}
+    \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Distribucioń t{-}student"}\NormalTok{), }\DataTypeTok{size =} \DecValTok{2}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_vline}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{xintercept =}\NormalTok{ U1,}
+    \DataTypeTok{color =} \StringTok{"Nubes no tratadas"}
+\NormalTok{  ), }\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_vline}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{xintercept =}\NormalTok{ U2,}
+    \DataTypeTok{color =} \StringTok{"Nubes tratadas"}
+\NormalTok{  ), }\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-86-1} \end{center}
 
 \hypertarget{funciuxf3n-de-potencia-y-tipos-de-error}{%
 \section{Función de potencia y tipos de error}\label{funciuxf3n-de-potencia-y-tipos-de-error}}
 
-Sea \(\delta\) un procedimiento de prueba (basado en una región crítica o en un estadístico de prueba). Sea \(\pi(\theta|\delta)\) (\textbf{función de potencia}) la probabilidad de que se rechace \(H_0\) a través de \(\delta\) para \(\theta\in \Omega\).
+Sea \(\delta\) un procedimiento de prueba (basado en una región crítica o en un
+estadístico de prueba). Sea \(\pi(\theta|\delta)\) (\textbf{función de potencia}) la
+probabilidad de que se rechace \(H_0\) a través de \(\delta\) para \(\theta\in \Omega\).
 
-Si \(S_1\) es la región crítica de \(\delta\) entonces \(\pi(\theta|\delta) = \mathbb P(X\in S_1|\theta)\) para \(\theta\in\Omega\).
+Si \(S_1\) es la región crítica de \(\delta\) entonces
+\(\pi(\theta|\delta) = \mathbb P(X\in S_1|\theta)\) para
+\(\theta\in\Omega\).
 
-Si \(\delta\) se describe a través de un estadístico de prueba \(T\) con región de rechazo \(R\), entonces \(\pi(\theta|\delta) = \mathbb P(T \in R|\theta)\) para \(\theta\in\Omega\).
+Si \(\delta\) se describe a través de un estadístico de prueba \(T\) con región de
+rechazo \(R\), entonces \(\pi(\theta|\delta) = \mathbb P(T \in R|\theta)\) para
+\(\theta\in\Omega\).
 
-\textbf{Nota}. Función de potencia ideal: \(\pi(\theta|\delta) = 0\) si \(\theta\in\Omega_0\), y \(\pi(\theta|\delta) = 1\) si \(\theta\in\Omega_1\).
+\textbf{Nota}. Función de potencia ideal: \(\pi(\theta|\delta) = 0\) si
+\(\theta\in\Omega_0\), y \(\pi(\theta|\delta) = 1\) si \(\theta\in\Omega_1\).
 
 \textbf{Ejemplo}.
 
@@ -4634,9 +4902,59 @@ Como \(X_1,\dots, X_n \sim N(\mu, \sigma^2)\), \(\mu\) desconocido, \(\sigma^2\)
 & = 1-\Phi\left(\sqrt n \dfrac{(\mu_0+c-\mu)}{\sigma} \right) + \Phi\left(\sqrt n \dfrac{(\mu_0-c-\mu)}{\sigma} \right) 
 \end{align*}
 
-\textbf{Ejercicio}: graficar la función de potencia \(\pi(\mu|\delta)\) para distintos valores de \(\mu\).
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu0 \textless{}{-}}\StringTok{ }\DecValTok{4}
+\NormalTok{c \textless{}{-}}\StringTok{ }\DecValTok{2}
+\NormalTok{n \textless{}{-}}\StringTok{ }\DecValTok{100}
+\NormalTok{sigma \textless{}{-}}\StringTok{ }\DecValTok{3}
+
+\NormalTok{mu \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)}
+
+\NormalTok{funcion\_de\_poder \textless{}{-}}\StringTok{ }\DecValTok{1} \OperatorTok{{-}}
+\StringTok{  }\KeywordTok{pnorm}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(mu0 }\OperatorTok{+}\StringTok{ }\NormalTok{c }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu) }\OperatorTok{/}\StringTok{ }\NormalTok{sigma) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{pnorm}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(mu0 }\OperatorTok{{-}}\StringTok{ }\NormalTok{c }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu) }\OperatorTok{/}\StringTok{ }\NormalTok{sigma)}
+
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(mu, funcion\_de\_poder, }\DataTypeTok{tipo =} \StringTok{"Función de poder"}\NormalTok{)}
+
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{rbind}\NormalTok{(df, }\KeywordTok{data.frame}\NormalTok{(mu,}
+  \DataTypeTok{funcion\_de\_poder =} \DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{funcion\_de\_poder,}
+  \DataTypeTok{tipo =} \StringTok{"1 {-} Función de poder"}
+\NormalTok{))}
+
+\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(mu, funcion\_de\_poder, }\DataTypeTok{color =}\NormalTok{ tipo)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_line}\NormalTok{(}\DataTypeTok{size =} \DecValTok{2}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-87-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{100}\NormalTok{)}
+\NormalTok{c \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{100}\NormalTok{)}
+
+\NormalTok{mu\_c \textless{}{-}}\StringTok{ }\KeywordTok{expand.grid}\NormalTok{(mu, c)}
+
+\NormalTok{funcion\_de\_poder\_n\_c \textless{}{-}}\StringTok{ }\DecValTok{1} \OperatorTok{{-}}
+\StringTok{  }\KeywordTok{pnorm}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(mu0 }\OperatorTok{+}\StringTok{ }\NormalTok{mu\_c[, }\DecValTok{2}\NormalTok{] }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu\_c[, }\DecValTok{1}\NormalTok{]) }\OperatorTok{/}\StringTok{ }\NormalTok{sigma) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{pnorm}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(mu0 }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu\_c[, }\DecValTok{2}\NormalTok{] }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu\_c[, }\DecValTok{1}\NormalTok{]) }\OperatorTok{/}\StringTok{ }\NormalTok{sigma)}
+
+\KeywordTok{library}\NormalTok{(scatterplot3d)}
+
+\KeywordTok{scatterplot3d}\NormalTok{(mu\_c[, }\DecValTok{2}\NormalTok{], mu\_c[, }\DecValTok{1}\NormalTok{], funcion\_de\_poder\_n\_c,}
+  \DataTypeTok{type =} \StringTok{"p"}\NormalTok{, }\DataTypeTok{angle =} \DecValTok{60}\NormalTok{,}
+  \DataTypeTok{xlab =} \StringTok{"c"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"mu"}\NormalTok{, }\DataTypeTok{zlab =} \StringTok{"Función de poder"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-87-2} \end{center}
 
 \textbf{Tipos de error}:
+
+En este tipo de pruebas se puede cometer dos tipos de errores,
 
 \begin{itemize}
 \item
@@ -4645,95 +4963,309 @@ Como \(X_1,\dots, X_n \sim N(\mu, \sigma^2)\), \(\mu\) desconocido, \(\sigma^2\)
   \emph{Error Tipo II}: error de no rechazar \(H_0\) si \(\theta\in\Omega_1\) en términos de la función de potencia.
 \end{itemize}
 
-Si \(\theta \in \Omega_0\): \(\pi(\theta|\delta)\) es el error tipo I. Si \(\theta \in \Omega_1\): \(1-\pi(\theta|\delta)\) es el error tipo II.
+En términos de la función de poder tenemos que
 
-Recuerde que el objetivo es hacer \(\pi(\theta|\delta)\) pequeño cuando \(\theta\in\Omega_0\). También se requiere que \(\pi(\theta|\delta)\) sea grande cuando \(\theta \in\Omega_1\). Una forma de alcanzar ese balance es seleccionar \(\alpha_0 \in (0,1)\) tal que
+\begin{itemize}
+\tightlist
+\item
+  Si \(\theta \in \Omega_0\): \(\pi(\theta|\delta)\) es el error tipo I.
+\item
+  Si \(\theta \in \Omega_1\): \(1-\pi(\theta|\delta)\) es el error tipo II.
+\end{itemize}
+
+El objetivo es hacer \(\pi(\theta|\delta)\) pequeño cuando \(\theta\in\Omega_0\).
+También se requiere que \(\pi(\theta|\delta)\) sea grande cuando \(\theta \in\Omega_1\). Una forma de alcanzar ese balance es seleccionar \(\alpha_0 \in (0,1)\) tal que
 
 \[\pi(\theta|\delta) \leq \alpha_0\;\forall \theta\in\Omega_0\quad(*)\]
 y entre todas las pruebas que cumplan \((*)\) se selecciona aquella que maximice la potencia para \(\theta \in \Omega_1\).
+
+En nuestro ejemplo suponga que elegimos \(\alpha_{0} = 0.1\). La región roja
+indica donde estaría ubicado \(\pi(\theta\vert \delta)\leq \alpha_{0}\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_line}\NormalTok{(}
+    \DataTypeTok{data =}\NormalTok{ df,}
+    \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mu, }\DataTypeTok{y =}\NormalTok{ funcion\_de\_poder, }\DataTypeTok{color =}\NormalTok{ tipo), }\DataTypeTok{size =} \DecValTok{2}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_rect}\NormalTok{(}
+    \DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{xmin =} \DecValTok{0}\NormalTok{, }\DataTypeTok{xmax =} \DecValTok{8}\NormalTok{, }\DataTypeTok{ymin =} \DecValTok{0}\NormalTok{, }\DataTypeTok{ymax =} \FloatTok{0.10}\NormalTok{),}
+    \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{xmin =}\NormalTok{ xmin, }\DataTypeTok{xmax =}\NormalTok{ xmax, }\DataTypeTok{ymin =}\NormalTok{ ymin, }\DataTypeTok{ymax =}\NormalTok{ ymax),}
+    \DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{fill =} \StringTok{"red"}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_hline}\NormalTok{(}\DataTypeTok{yintercept =} \FloatTok{0.05}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-88-1} \end{center}
 
 Otra forma es minimizar;
 
 \[w_1\cdot\text{Error I } + w_2\cdot\text{Error II};\]
 \(w_1,w_2\) constantes.
 
-\textbf{Nota}. Bajo la primera solución se produce una asimetría entre las hipótesis, ya que resulta difícil (o muy costoso) que ambas condiciones se cumplan. Por lo general, se le da más énfasis a \((*)\), por lo que se trata de controlar el error más serio (Error tipo I).
+\textbf{Nota}. Bajo la primera solución se produce una asimetría entre las hipótesis,
+ya que resulta difícil (o muy costoso) que ambas condiciones se cumplan. Por lo
+general, se le da más énfasis a \((*)\), por lo que se trata de controlar el error
+más serio (Error tipo I).
 
-\textbf{Definición}. Una prueba que satisface \((*)\) se llama una \textbf{prueba de nivel} \(\alpha_0\) y decimos que la prueba está a un \textbf{nivel de significancia} \(\alpha_0\). Además el tamaño \(\alpha(\delta)\) de una prueba \(\delta\) se define como:
+\textbf{Definición}. Una prueba que satisface \((*)\) se llama una \textbf{prueba de nivel}
+\(\alpha_0\) y decimos que la prueba está a un \textbf{nivel de significancia}
+\(\alpha_0\). Además el tamaño \(\alpha(\delta)\) de una prueba \(\delta\) se define
+como:
 
 \[\alpha(\delta) = \sup_{\theta\in\Omega}\pi(\theta|\delta).\]
 
-\textbf{Corolario}. Una prueba \(\delta\) es una prueba de nivel \(\alpha_0\) si y solo si su tamaño es a lo sumo \(\alpha_0\) (\(\alpha(\delta)\leq\alpha_0\)).
+\textbf{Corolario}. Una prueba \(\delta\) es una prueba de nivel \(\alpha_0\) si y solo
+si su tamaño es a lo sumo \(\alpha_0\) (\(\alpha(\delta)\leq\alpha_0\)).
 
-\textbf{Ejemplo}. Suponga \(X_1,\dots,X_n\sim \text{Unif}(0,\theta)\), \(\theta>0\) desconocido. Se quiere probar las siguientes hipótesis:
+\textbf{Ejemplo}. Suponga \(X_1,\dots,X_n\sim \text{Unif}(0,\theta)\), \(\theta>0\)
+desconocido. Se quiere probar las siguientes hipótesis:
 
 \[H_0: 3\leq\theta\leq 4 \quad H_1:\theta<3 \text{ o }\theta>4. \]
 
-El MLE de \(\theta\) es \(Y_n = X_{(n)}\). Si \(n\) es grande, \(Y_n\) es muy cercano a \(\theta\).
+El MLE de \(\theta\) es \(Y_n = X_{(n)}\). Si \(n\) es grande, \(Y_n\) es muy cercano a
+\(\theta\).
 
-La prueba \(\delta\) no rechaza \(H_0\) si \(2.9<Y_n<4\) y rechaza \(H_0\) si \(Y_n\geq4\) o \(Y_n\leq2.9\). Entonces \(R = (-\infty, 2.9] \cup [4,+\infty)\) y la función de potencia
-\[\pi(\theta|\delta) = \mathbb P[Y_n\leq 2.9|\theta]+\mathbb P[Y_n\geq4|\theta] \]
+Suponga que definimos que la prueba \(\delta\) no rechaza \(H_0\) si \(2.9<Y_n<4\) y
+rechaza \(H_0\) si \(Y_n\geq4\) o \(Y_n\leq2.9\). Entonces \(R = (-\infty, 2.9] \cup [4,+\infty)\) y la función de potencia
+
+\[
+\pi(\theta|\delta) = \mathbb P[Y_n\leq
+2.9|\theta]+\mathbb P[Y_n\geq4|\theta] 
+\]
 
 \(\pi(\theta|\delta)\) se calcula en varios casos:
 
 \begin{itemize}
 \item
-  Si \(\theta\leq 2.9 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1\) y \(\mathbb P[Y_n\geq4|\theta] = 0\).
+  Si \(\theta\leq 2.9 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1\) y
+  \(\mathbb P[Y_n\geq4|\theta] = 0\).
 \item
-  Si \(2.9<\theta\leq4 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1 = \prod_{i=1}^n \mathbb P[X_i\leq2.9|\theta] = \left(\dfrac{2.9}{\theta}\right)^n\) y \(\mathbb P[Y_n\geq4|\theta] = 0\).
+  Si \(2.9<\theta\leq4 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1 - \prod_{i=1}^n \mathbb P[X_i\leq2.9|\theta] = \left(\dfrac{2.9}{\theta}\right)^n\) y \(\mathbb P[Y_n\geq4|\theta] = 0\).
 \item
   Si \(\theta>4 \implies \mathbb P[Y_n\leq 2.9|\theta] = \left(\dfrac{2.9}{\theta}\right)^n\) y \(\mathbb P[Y_n\geq 4|\theta] = 1 - \displaystyle\prod_{i=1}^n \mathbb P[X_i<4|\theta] = 1-\left(\dfrac 4\theta\right)^n\).
 \end{itemize}
 
 Entonces
 
-\[\pi(\theta|\delta) = \begin{cases}1 & \text{si } \theta\leq 2.9 \\
+\[
+\pi(\theta|\delta) = \begin{cases}1 & \text{si } \theta\leq 2.9 \\
 \left(\dfrac{2.9}{\theta}\right)^n& \text{si } 2.9 <\theta\leq 4\\
-1+\left(\dfrac{2.9}\theta\right)^n-\left(\dfrac{4}\theta\right)^n & \text{si } \theta >4\end{cases}\]
+1+\left(\dfrac{2.9}\theta\right)^n-\left(\dfrac{4}\theta\right)^n & \text{si } \theta >4\end{cases}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{theta \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)}
+\NormalTok{n \textless{}{-}}\StringTok{ }\DecValTok{5}
+
+\NormalTok{funcion\_poder \textless{}{-}}\StringTok{ }\KeywordTok{numeric}\NormalTok{()}
+
+\ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(theta)) \{}
+  \ControlFlowTok{if}\NormalTok{ (theta[k] }\OperatorTok{\textless{}}\StringTok{ }\FloatTok{2.9}\NormalTok{) \{}
+\NormalTok{    funcion\_poder[k] \textless{}{-}}\StringTok{ }\DecValTok{0}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (theta[k] }\OperatorTok{\textgreater{}}\StringTok{ }\FloatTok{2.9} \OperatorTok{\&}\StringTok{ }\NormalTok{theta[k] }\OperatorTok{\textless{}=}\StringTok{ }\DecValTok{4}\NormalTok{) \{}
+\NormalTok{    funcion\_poder[k] \textless{}{-}}\StringTok{ }\NormalTok{(}\FloatTok{2.9} \OperatorTok{/}\StringTok{ }\NormalTok{theta[k])}\OperatorTok{\^{}}\NormalTok{n}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (theta[k] }\OperatorTok{\textgreater{}}\StringTok{ }\DecValTok{4}\NormalTok{) \{}
+\NormalTok{    funcion\_poder[k] \textless{}{-}}\StringTok{ }\NormalTok{(}\FloatTok{2.9} \OperatorTok{/}\StringTok{ }\NormalTok{theta[k])}\OperatorTok{\^{}}\NormalTok{n }\OperatorTok{+}\StringTok{ }\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{(}\DecValTok{4} \OperatorTok{/}\StringTok{ }\NormalTok{theta[k])}\OperatorTok{\^{}}\NormalTok{n}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\KeywordTok{plot}\NormalTok{(theta, funcion\_poder, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-89-1} \end{center}
 
 Note, además, que el tamaño de prueba es
 
-\[\alpha(\delta) = \sup_{3\leq\theta\leq 4} \pi(\theta|\delta) = \sup_{3\leq\theta\leq 4}\left(\dfrac{2.9}{\theta}\right)^n = \left(\dfrac{2.9}{3}\right)^n.\]
+\[\alpha(\delta) = \sup_{3\leq\theta\leq 4} \pi(\theta|\delta) =
+\sup_{3\leq\theta\leq 4}\left(\dfrac{2.9}{\theta}\right)^n =
+\left(\dfrac{2.9}{3}\right)^n.\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n \textless{}{-}}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{100}
+
+\KeywordTok{plot}\NormalTok{(n, (}\FloatTok{2.9} \OperatorTok{/}\StringTok{ }\DecValTok{3}\NormalTok{)}\OperatorTok{\^{}}\NormalTok{n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-90-1} \end{center}
 
 Si \(n = 68 \implies \alpha(\delta)= \left(\dfrac{2.9}{3}\right)^{68} = 0.0997.\)
 
-Entonces \(\delta\) es una prueba con nivel de significancia \(\alpha_0\geq 0.0997\).
+Entonces si \(n = 68\), entonces \(\delta\) es una prueba con nivel de
+significancia \(\alpha_0\geq 0.0997\).
 
-¿Cómo diseñar una prueba para que tenga un cierto nivel de significancia?
+\textbf{Pregunta importante:} ¿Cómo diseñar una prueba para que tenga un cierto nivel
+de significancia?
 
-Suponga que queremos probar \(H_0: \theta \in \Omega_0\) vs \(H_1: \theta\in\Omega_1\). Sea \(T\) un estadístico de prueba y suponga que si \(T\geq c\), \(c\) constante, rechazamos \(H_0\).
+Suponga que queremos probar \(H_0: \theta \in \Omega_0\) vs \(H_1: \theta\in\Omega_1\). Sea \(T\) un estadístico de prueba y suponga que si \(T\geq c\),
+\(c\) constante, entonces rechazamos \(H_0\).
 
 Si queremos que nuestra prueba tenga nivel de significancia \(\alpha_0\) entonces:
 
-\[\pi(\theta|\delta) = \mathbb P(T\geq c|\theta)\text{ y } \sup_{\theta \in \Omega_0}\mathbb P[T\geq c|\theta] \leq \alpha_0 \quad (*)\]
+\[\pi(\theta|\delta) = \mathbb P(T\geq c|\theta)\text{ y } \sup_{\theta \in
+\Omega_0}\mathbb P[T\geq c|\theta] \leq \alpha_0 \quad (*)\]
 
-Note que \(\pi(\theta|\delta)\) es función no-creciente de \(c\), entonces \((*)\) se cumple para valores grandes de \(c\), si \(\theta\in\Omega_0\). Si \(\theta \in \Omega_1\), debemos escoger \(c\) pequeño para maximizar \(\pi(\theta|\delta)\).
+Note que \(\pi(\theta|\delta)\) es función no-creciente de \(c\), entonces \((*)\) se
+cumple para valores grandes de \(c\), si \(\theta\in\Omega_0\). Si \(\theta \in \Omega_1\), debemos escoger \(c\) pequeño para maximizar \(\pi(\theta|\delta)\).
 
-\textbf{Ejemplo}. En el caso normal, donde \(H_0: \mu = \mu_0\) y rechazamos \(H_0\) si \(|\bar X_n-\mu_0|\geq c\). Entonces:
+\textbf{Ejemplo}. En el caso normal, donde \(H_0: \mu = \mu_0\) y rechazamos \(H_0\) si
+\(|\bar X_n-\mu_0|\geq c\). Entonces:
 
-\[\sup_{\theta\in\Omega_0} \mathbb P [T\geq c|\theta] = \mathbb P_{\mu_0}[|\bar X_n-\mu_0|\geq c]\geq \alpha_0.\]
+\[\sup_{\theta\in\Omega_0} \mathbb P [T\geq c|\theta] = \mathbb P_{\mu_0}[|\bar
+X_n-\mu_0|\geq c]\geq \alpha_0.\]
 
-Como bajo \(H_0\): \(Y = X_n-\mu_0 \sim N\left(0,\dfrac{\sigma^2}{n}\right)\), entonces podemos encontrar \(c\) tal que
-\[\mathbb P[|\bar X_n-\mu_0|\geq c] = \alpha_0,\]
-y cualquier \(c\) mayor va a cumplir \((*)\).
+Como bajo \(H_0\): \(Y = X_n-\mu_0 \sim N\left(0,\dfrac{\sigma^2}{n}\right)\),
+entonces podemos encontrar \(c\) tal que \[\mathbb P[|\bar X_n-\mu_0|\geq c] =
+\alpha_0,\] y cualquier \(c\) mayor va a cumplir \((*)\).
 
 De esta manera el problema se convierte en encontrar \(c^*\) tal que \(\mathbb P[|Z|>c^*] = \alpha_0\), donde \(Z = \dfrac{\bar X_n - \mu_0}{\sigma/\sqrt n}\).
 
-Dado que \(\mathbb P[|Z|\geq c^*] = 2[1-\Phi(c^*)] = \alpha_0\), despejando se obtiene
+Note que
+
+\begin{align*}
+\alpha_0 
+&= \mathbb{P}(|Z|>c ^{*}) \\
+&=  \mathbb{P}(Z >c ^{*}) + \mathbb{P}(Z < -c ^{*}) \\ 
+&=  1- \mathbb{P}(Z \leq c ^{*}) + \mathbb{P}(Z < -c ^{*}) \\ 
+&=  1- \mathbb{P}(Z \leq c ^{*}) +  1 - \mathbb{P}(Z < c ^{*}) \\ 
+&=  2 - 2 \mathbb{P}(Z \leq c ^{*})  
+\end{align*}
+
+Entonces
+
+\begin{equation*}
+\mathbb{P}(Z \leq c ^{*}) = 1- \dfrac{\alpha_0}{2}
+\end{equation*}
+
+Por lo tanto el \(c ^{*}\) que se busca es
+
+\begin{equation*}
+c^* = F^{-1}\left(1- \dfrac{\alpha_0}{2}\right)
+\end{equation*}
+
+En el caso particular de la normal denotaremos \(F\) como \(\Phi\). Entonces,
 
 \[\Phi(c^*) = 1 - \dfrac{\alpha_0}2 \implies c^* = z_{1-\frac{\alpha_0}2}.\]
 
-\emph{Procedimiento}: rechazamos \(H_0\) si
-\[|Z| = \bigg| \dfrac{\bar X_n-\mu_0}{\sigma/\sqrt n}\bigg| \geq z_{1-\frac{\alpha_0}2}.\]
+\emph{Procedimiento}: rechazamos \(H_0\) si \[|Z| = \bigg| \dfrac{\bar
+X_n-\mu_0}{\sigma/\sqrt n}\bigg| \geq z_{1-\frac{\alpha_0}2}.\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n \textless{}{-}}\StringTok{ }\DecValTok{10}
+\NormalTok{alpha0 \textless{}{-}}\StringTok{ }\FloatTok{0.05}
+\NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ n, }\DataTypeTok{mean =} \DecValTok{5}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+\NormalTok{Xbar \textless{}{-}}\StringTok{ }\KeywordTok{mean}\NormalTok{(X)}
+\NormalTok{mu0 \textless{}{-}}\StringTok{ }\DecValTok{5}
+
+\NormalTok{Z \textless{}{-}}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(Xbar }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu0) }\OperatorTok{/}\StringTok{ }\DecValTok{1}
+
+\NormalTok{(q \textless{}{-}}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{alpha0 }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.959964
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dnorm\_limit \textless{}{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, q) \{}
+\NormalTok{  y \textless{}{-}}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x)}
+\NormalTok{  y[}\OperatorTok{{-}}\NormalTok{q }\OperatorTok{\textless{}=}\StringTok{ }\NormalTok{x }\OperatorTok{\&}\StringTok{ }\NormalTok{x }\OperatorTok{\textless{}=}\StringTok{ }\NormalTok{q] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+  \KeywordTok{return}\NormalTok{(y)}
+\NormalTok{\}}
+
+\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}
+    \DataTypeTok{fun =}\NormalTok{ dnorm\_limit, }\DataTypeTok{geom =} \StringTok{"area"}\NormalTok{, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ q),}
+    \DataTypeTok{fill =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.2}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-91-1} \end{center}
+
+La pregunta que debemos siempre responder es ¿Rechazamos \(H_0\)?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{abs}\NormalTok{(Z) }\OperatorTok{\textgreater{}}\StringTok{ }\NormalTok{q}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+Si repetimos el ejercicio anterior, pero los datos tiene media igual a 1 y
+dejamos que \(\mu_0 = 5\), entonces
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n \textless{}{-}}\StringTok{ }\DecValTok{10}
+\NormalTok{alpha0 \textless{}{-}}\StringTok{ }\FloatTok{0.05}
+\NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ n, }\DataTypeTok{mean =} \DecValTok{1}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+\NormalTok{Xbar \textless{}{-}}\StringTok{ }\KeywordTok{mean}\NormalTok{(X)}
+\NormalTok{mu0 \textless{}{-}}\StringTok{ }\DecValTok{5}
+
+\NormalTok{Z \textless{}{-}}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(Xbar }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu0) }\OperatorTok{/}\StringTok{ }\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+Si preguntamos ¿Rechazamos \(H_0\)?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{abs}\NormalTok{(Z) }\OperatorTok{\textgreater{}}\StringTok{ }\NormalTok{q}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu0 \textless{}{-}}\StringTok{ }\DecValTok{5}
+\NormalTok{n \textless{}{-}}\StringTok{ }\DecValTok{10}
+\NormalTok{sigma \textless{}{-}}\StringTok{ }\DecValTok{1}
+\NormalTok{alpha0 \textless{}{-}}\StringTok{ }\FloatTok{0.05}
+\NormalTok{c \textless{}{-}}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{alpha0 }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{sigma }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n)}
+
+\NormalTok{mu \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)}
+
+\NormalTok{funcion\_de\_poder \textless{}{-}}\StringTok{ }\DecValTok{1} \OperatorTok{{-}}
+\StringTok{  }\KeywordTok{pnorm}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(mu0 }\OperatorTok{+}\StringTok{ }\NormalTok{c }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu) }\OperatorTok{/}\StringTok{ }\NormalTok{sigma) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{pnorm}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(mu0 }\OperatorTok{{-}}\StringTok{ }\NormalTok{c }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu) }\OperatorTok{/}\StringTok{ }\NormalTok{sigma)}
+
+\KeywordTok{plot}\NormalTok{(mu, funcion\_de\_poder, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \FloatTok{0.05}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-95-1} \end{center}
 
 \textbf{Ejemplo}. \(X_1,\dots,X_n \sim \text{Ber}(p)\).
-\[H_0: p\leq p_0 \text{ vs } H_1: p>p_0\]
+\[H_0: p\leq p_{0} \text{ vs } H_1: p>p_0\]
 
-Sea \(Y = \sum_{i=1}^nX_i \sim \text{Binomial}(n,p)\). Rechazo \(H_0\) si \(Y\leq c\).
+Sea \(Y = \sum_{i=1}^nX_i \sim \text{Binomial}(n,p)\).
+La idea acá es que entre más grande es \(p\) entonces más grande esperamos que
+sea \(Y\). Podemos definir la regla que rechazo \(H_0\) si \(Y\geq c\) para alguna
+constante \(c\).
 
 El error tipo I es
 
-\[\mathbb P[Y\geq x|p] = \sum_{y=0}^n{n\choose y}p^y(1-p)^{n-y} = \sum_{y=0}^n{n\choose y} \underbrace{\left(\dfrac p{1-p}\right)^y(1-p)^n}_{g(p)}\]
+\[\mathbb P[Y\geq c|p] = \sum_{y=c}^n{n\choose y}p^y(1-p)^{n-y} = \sum_{y=c}^n{n\choose y} \underbrace{\left(\dfrac p{1-p}\right)^y(1-p)^n}_{g(p)}\]
 
 \(g(p)\) es monótona con respecto a p.Entonces
 \[\sup_{p\leq p_0} \mathbb P[Y\geq c|p] = \mathbb P [Y\geq c|p_0] \leq \alpha_0.\]
@@ -4749,32 +5281,77 @@ c & 0 & 1 & 2 & 3 & 4 & 5\tabularnewline
 \bottomrule
 \end{longtable}
 
-Para que el tamaño sea menor que \(10\%\) seleccione \(c>5\). Si \(c\in [5,6]\) entonces el nivel de significancia es a lo sumo \(0.15\) y la prueba no cambia (ya que \(Y\) es una variable discreta).
+Para que el tamaño sea menor que \(10\%\) seleccione \(c>5\). Si \(c\in [5,6]\)
+entonces el nivel de significancia es a lo sumo \(0.15\) y la prueba no cambia (ya
+que \(Y\) es una variable discreta).
 
-\emph{Procedimiento}: rechazamos \(H_0: p = 0.3\) si \(Y\geq c\), \(c\in[5,6]\) con un nivel de significancia de \(10\%\) a lo sumo.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{c \textless{}{-}}\StringTok{ }\DecValTok{5}
+\NormalTok{n \textless{}{-}}\StringTok{ }\DecValTok{10}
+\NormalTok{alpha0 \textless{}{-}}\StringTok{ }\FloatTok{0.05}
+\NormalTok{p \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)}
+
+\NormalTok{funcion\_de\_poder \textless{}{-}}\StringTok{ }\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\KeywordTok{pbinom}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ c, }\DataTypeTok{size =}\NormalTok{ n, }\DataTypeTok{prob =}\NormalTok{ p)}
+
+\KeywordTok{plot}\NormalTok{(p, funcion\_de\_poder, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \FloatTok{0.05}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-96-1} \end{center}
+
+\emph{Procedimiento}: rechazamos \(H_0: p \leq 0.3\) si \(Y\geq c\), \(c\in(5,6]\) con un
+nivel de significancia de \(10\%\) a lo sumo.
 
 \hypertarget{valor-p}{%
 \section{\texorpdfstring{Valor \(p\)}{Valor p}}\label{valor-p}}
 
 \textbf{Restricción}. El procedimiento de prueba depende de \(\alpha_0\).
 
-\textbf{Pregunta}. ¿Será posible construir un estadístico que resuma el grado de evidencia en los datos en contra de \(H_0\)?
+\textbf{Pregunta}. ¿Será posible construir un estadístico que resuma el grado de
+evidencia en los datos en contra de \(H_0\)?
 
 \textbf{Respuesta}. Cualquier procedimiento usa las siguientes dos fuentes:
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
+\def\labelenumi{\arabic{enumi}.}
 \item
   El valor observado del estadístico de prueba.
 \item
   Todos los valores de \(\alpha_0\) en donde rechazamos la nula.
 \end{enumerate}
 
-\textbf{Ejemplo} (Normal). Si \(Z=2.78\), entonces se rechaza \(H_0: \mu = \mu_0\) si \(|Z| = 2.78>z_{1-\frac{\alpha_0}2}\), para cualquier \(\alpha_0\). Entonces,
-\[\Phi(2.78) >1-d\frac{\alpha_0}2 \implies \alpha_0\geq 0.0054\]
-que es el valor observado de significancia.
+\textbf{Ejemplo} (Caso Normal). Se rechaza \(H_0: \mu = \mu_0\) si \(|Z|>z_{1-\frac{\alpha_0}2}\)
 
-\textbf{Definición}. El \textbf{valor-\(p\)} es el nivel más pequeño de significancia en donde rechazaríamos \(H_0\) bajo los datos observados.
+Ahora si \(\alpha_0 = 0.05\) y \(z_{1-\frac{\alpha_0}2} = 1.96\), entonces para
+\(Z = 1.97\) y \(Z = 2.78\) y \(Z = 6.97\) todos cumplen esa condición.
+
+¿Entonces la pregunta es cuál es mejor?
+
+Una forma de estimar esa ``fuerza'', es partir del cuantil real de la distribución
+
+\begin{align*}
+\Phi(Z) &> 1-\dfrac{\alpha_0}2 \\
+\alpha_0 &> 2(1-\Phi(Z)) 
+\end{align*}
+
+\begin{itemize}
+\tightlist
+\item
+  Si \(Z=1.97\) entonces \(\alpha _{0} =0.0488384\)
+\item
+  Si \(Z=2.78\) entonces \(\alpha _{0} =0.0054359\)
+\item
+  Si \(Z=6.97\) entonces \(\alpha _{0} =\ensuremath{3.1694647\times 10^{-12}}\)
+\end{itemize}
+
+En cada caso se estimó usando el comando \texttt{2*(1-pnorm(1.97))} por ejemplo.
+
+El valor \(\alpha_0\) se le conoce como valor de significancia.
+
+\textbf{Definición}. El \textbf{valor-\(p\)} es el nivel más pequeño de significancia en
+donde rechazaríamos \(H_0\) bajo los datos observados.
 
 \textbf{Nota}. El valor-\(p\) es un estadístico.
 
@@ -4791,7 +5368,7 @@ que es el valor observado de significancia.
 \item
   Región de rechazo: \(T\geq c\).
 \item
-  Decisión de rechazo (\emph{ejercicio}): para cada \(t\), rechazamos \(H_0\) si \(T\geq t\) con \(t\geq F^{-1}(1-\alpha_0)\), \(F\) distribución de \(T\).
+  Decisión de rechazo: para cada \(t\), rechazamos \(H_0\) si \(T\geq t\) con \(t\geq F^{-1}(1-\alpha_0)\), \(F\) distribución de \(T\).
 \end{itemize}
 
 Entonces
@@ -4800,28 +5377,43 @@ Entonces
 
 El tamaño de la prueba es \(c=t\).
 
-\textbf{Ejemplo}. Retomando el ejemplo con las variables aleatorias Bernouilli, rechazamos \(H_0: p\leq p_0\) si \(Y\geq c\). Así,
+\textbf{Ejemplo}. Retomando el ejemplo con las variables aleatorias Bernouilli,
+rechazamos \(H_0: p\leq p_0\) si \(Y\geq c\). Así,
 
 \[\text{valor-$p$} = \sup_{p\in\Omega}P_{p}[Y\geq y] =P_{p}[Y\geq y] \]
-Si \(p_0 = 0.3, n=10, y =6\), el valor-\(p\) es \(\text{pbinom}(y = 6, p_0 =3,n=10) = 0.0473\).
+
+Si \(p_0 = 0.3, n=10, y =6\), entonces el valor correspondiente es \(P_{p}[Y\geq 6] 0.047349\). El código R es
+\texttt{pbinom(q\ =\ 5,\ size\ =\ 10,\ prob\ =\ 0.3,\ lower.tail\ =\ FALSE)}
 
 \hypertarget{dualidad-entre-pruebas-de-hipuxf3tesis-y-regiones-de-confianza}{%
 \section{Dualidad entre pruebas de hipótesis y regiones de confianza}\label{dualidad-entre-pruebas-de-hipuxf3tesis-y-regiones-de-confianza}}
 
-\textbf{Teorema}. Sea \(X = (X_1,\dots,X_n)\) una muestra con distribución \(F_\theta\). Sea \(g(\theta)\) una función tal que para cada valor \(g_0\) de \(g(\theta)\), existe una prueba con nivel \(\alpha_0\) de las hipótesis:
+\textbf{Teorema}. Sea \(X = (X_1,\dots,X_n)\) una muestra con distribución \(F_\theta\).
+Sea \(g(\theta)\) una función tal que para cada valor \(g_0\) de \(g(\theta)\), existe
+una prueba con nivel \(\alpha_0\) de las hipótesis:
 
 \[H_{0,g_0}: g(\theta) = g_0 \text{ vs } H_{1,g_0}: g(\theta) \neq g_0. \]
+
 Defina para cada \(x\in X\)
-\[\omega(x) = \{g_0: \delta_{g_0} \text{ no rechaza }H_{0,g_0}\text{ si }X=x\} \quad (*)\]
 
-Sea \(\gamma = 1-\alpha_0\). Entonces
-\[\mathbb P[g(\theta_0)\in \omega(x)|\theta = \theta_0 ] \geq \gamma, \;\forall \theta_0 \in \Omega.\]
+\[\omega(x) = \{g_0: \delta_{g_0} \text{ no rechaza
+}H_{0,g_0}\text{ si }X=x\} \quad (*)\]
 
-\textbf{Definición}. Si \(\omega(x)\) satisface \((*)\) \(\forall \theta_0 \in \Omega\), entonces \(\omega(x)\) es un \textbf{conjunto de confianza} con coeficiente \(\gamma\) donde \(\gamma = 1-\alpha_0\).
+Sea \(\gamma = 1-\alpha_0\). Entonces \[\mathbb P[g(\theta_0)\in \omega(x)|\theta
+= \theta_0 ] \geq \gamma, \;\forall \theta_0 \in \Omega.\]
 
-\textbf{Teorema}. Bajo las condiciones anteriores, si \(\omega(x)\) es un conjunto de confianza para \(g_0\), entonces construimos \(\delta_{g_0}\): no rechazo \(H_{0,g_0}\) si y solo si \(g_0 \in \omega(X)\), entonces \(\delta_{g_0}\) es una prueba con nivel \(\alpha_0 = 1-\gamma\) para \(H_{0,g_0}\).
+\textbf{Definición}. Si \(\omega(x)\) satisface \((*)\) \(\forall \theta_0 \in \Omega\),
+entonces \(\omega(x)\) es un \textbf{conjunto de confianza} con coeficiente \(\gamma\)
+donde \(\gamma = 1-\alpha_0\).
 
-\textbf{Ejemplo}. \(X_1,\dots,X_n\sim N(\mu,\sigma^2)\), \(\theta = (\mu,\sigma^2)\) (desconocidos). En este caso \(g(\theta) = \mu\). El intervalo de confianza con nivel \(gamma\) es
+\textbf{Teorema}. Bajo las condiciones anteriores, si \(\omega(x)\) es un conjunto de
+confianza para \(g_0\), entonces construimos \(\delta_{g_0}\): no rechazo
+\(H_{0,g_0}\) si y solo si \(g_0 \in \omega(X)\), entonces \(\delta_{g_0}\) es una
+prueba con nivel \(\alpha_0 = 1-\gamma\) para \(H_{0,g_0}\).
+
+\textbf{Ejemplo}. \(X_1,\dots,X_n\sim N(\mu,\sigma^2)\), \(\theta = (\mu,\sigma^2)\)
+(desconocidos). En este caso \(g(\theta) = \mu\). El intervalo de confianza con
+nivel \(gamma\) es
 
 \[\bar X_n\pm t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n}.\]
 
@@ -4829,14 +5421,105 @@ La hipótesis de interés corresponde a
 
 \[ H_0: \mu = \mu_0 \text{ vs } H_1: \mu \ne \mu_0.\]
 
-Por los teoremas anteriores, \(H_0\) se rechaza si \(\mu_0\) no está en el IC, es decir, si y solo si
+Por los teoremas anteriores, \(H_0\) se rechaza si \(\mu_0\) no está en el IC, es
+decir, si y solo si
 
-\[\mu_0 > \bar X_n+ t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n} \text{ o } \mu_0 < \bar X_n- t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n},\]
-que se puede resumir como
+\[\mu_0 > \bar X_n+ t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n} \text{ o }
+\mu_0 < \bar X_n- t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n},\] que se
+puede resumir como
 
 \[\bigg|\dfrac{\bar X_n-\mu_0}{\sigma'/\sqrt n}\bigg|>t_{n-1,1-\frac{\alpha}2}.\]
 
-\textbf{Ejemplo}. \(X_1,\dots,X_n\sim N(\mu,\sigma^2)\), \(\mu\) desconocido, \(\sigma^2\) conocido. Construta un intervalo de confianza con nivel \(\gamma\) a partir de \[ H_0: \mu = \mu_0 \text{ vs } H_1: \mu \ne \mu_0.\]
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n \textless{}{-}}\StringTok{ }\DecValTok{1000}
+\NormalTok{gamma \textless{}{-}}\StringTok{ }\FloatTok{0.95}
+\NormalTok{alpha \textless{}{-}}\StringTok{ }\FloatTok{0.95}
+\NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ n, }\DataTypeTok{mean =} \DecValTok{1}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{2}\NormalTok{)}
+\NormalTok{mu0 \textless{}{-}}\StringTok{ }\DecValTok{1}
+
+\NormalTok{Xbar \textless{}{-}}\StringTok{ }\KeywordTok{mean}\NormalTok{(X)}
+\NormalTok{sigma\_prima \textless{}{-}}\StringTok{ }\KeywordTok{sd}\NormalTok{(X)}
+
+
+
+\NormalTok{t\_quantil \textless{}{-}}\StringTok{ }\KeywordTok{qt}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ (}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{gamma) }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{, }\DataTypeTok{df =}\NormalTok{ n }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+El intervalo de confianza es
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{c}\NormalTok{(Xbar }\OperatorTok{{-}}\StringTok{ }\NormalTok{t\_quantil }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_prima }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n), Xbar }\OperatorTok{+}\StringTok{ }\NormalTok{t\_quantil }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_prima }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7678789 1.0139517
+\end{verbatim}
+
+\[ H_0: \mu = 1 \text{ vs } H_1: \mu \ne 1.\]
+
+Para probar esta prueba se debe comprobar que
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Z \textless{}{-}}\StringTok{ }\KeywordTok{abs}\NormalTok{ ((Xbar }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu0) }\OperatorTok{/}\StringTok{ }\NormalTok{(sigma\_prima }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+Preguntamos ¿Rechazamos \(H_0\)?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Z }\OperatorTok{\textgreater{}}\StringTok{ }\NormalTok{t\_quantil}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+Si tuvieramos otros datos con otra media, el resultado será diferente.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n \textless{}{-}}\StringTok{ }\DecValTok{1000}
+\NormalTok{gamma \textless{}{-}}\StringTok{ }\FloatTok{0.95}
+\NormalTok{alpha \textless{}{-}}\StringTok{ }\FloatTok{0.95}
+\NormalTok{X \textless{}{-}}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ n, }\DataTypeTok{mean =} \DecValTok{5}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{2}\NormalTok{)}
+\NormalTok{mu0 \textless{}{-}}\StringTok{ }\DecValTok{1}
+
+\NormalTok{Xbar \textless{}{-}}\StringTok{ }\KeywordTok{mean}\NormalTok{(X)}
+\NormalTok{sigma\_prima \textless{}{-}}\StringTok{ }\KeywordTok{sd}\NormalTok{(X)}
+
+\NormalTok{t\_quantil \textless{}{-}}\StringTok{ }\KeywordTok{qt}\NormalTok{(}\DataTypeTok{p =}\NormalTok{ (}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{gamma) }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{, }\DataTypeTok{df =}\NormalTok{ n }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{)}
+
+\KeywordTok{c}\NormalTok{(Xbar }\OperatorTok{{-}}\StringTok{ }\NormalTok{t\_quantil }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_prima }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n),}
+\NormalTok{  Xbar }\OperatorTok{+}\StringTok{ }\NormalTok{t\_quantil }\OperatorTok{*}\StringTok{ }\NormalTok{sigma\_prima }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.853676 5.103191
+\end{verbatim}
+
+¿Rechazamos \(H_0\)?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Z \textless{}{-}}\StringTok{ }\KeywordTok{abs}\NormalTok{ ((Xbar }\OperatorTok{{-}}\StringTok{ }\NormalTok{mu0) }\OperatorTok{/}\StringTok{ }\NormalTok{(sigma\_prima }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n)))}
+
+\NormalTok{Z }\OperatorTok{\textgreater{}}\StringTok{ }\NormalTok{t\_quantil}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\textbf{Ejemplo}. \(X_1,\dots,X_n\sim N(\mu,\sigma^2)\), \(\mu\) desconocido, \(\sigma^2\) conocido. Construya un intervalo de confianza con nivel \(\gamma\) a partir de \[ H_0: \mu = \mu_0 \text{ vs } H_1: \mu \ne \mu_0.\]
 
 Rechazamos \(H_0\) si
 \[\bigg|\dfrac{\bar X_n-\mu_0}{\sigma/\sqrt n}\bigg|\geq z_{1-\frac{\alpha_0}2}.\]
@@ -4856,7 +5539,7 @@ que es el IC con nivel \(\gamma\) para \(\mu\).
 \hypertarget{dualidad-en-pruebas-unilaterales}{%
 \subsection{Dualidad en pruebas unilaterales}\label{dualidad-en-pruebas-unilaterales}}
 
-Si \(X = (X_1,\dots, X_n)\) es una muestra según \(F_\theta\) y \(g(\theta)\) es una función de variable real, suponga que para cada \(g_0\in I_m(g)\) existe una prueba \(\delta_{g_0}\) con nivel \(\alpha_0\) de las hipótesis anteriores. Si
+Si \(X = (X_1,\dots, X_n)\) es una muestra según \(F_\theta\) y \(g(\theta)\) es una función de variable real, suponga que para cada \(g_0\in Im(g)\) existe una prueba \(\delta_{g_0}\) con nivel \(\alpha_0\) de las hipótesis anteriores. Si
 \[\omega(x) = \{g_0: \delta_{g_0} \text{ no rechaza }H_{0,g_0}\text{ si }X=x\}\]
 
 y si \(\gamma = 1-\alpha_0\), entonces \(\omega(x)\) es una región de confianza para \(g(\theta)\) con nivel \(\gamma\).
@@ -4922,87 +5605,94 @@ Una prueba de cociente de verosimilitud rechaza \(H_0\) si \(\Lambda(x)\leq k\),
 
 Si \(n=10\), \(\theta_0 = 0.3\), \(y = 6\), \(\alpha_0=0.05\).
 
-\begin{longtable}[]{@{}llllllllllll@{}}
-\toprule
-\begin{minipage}[b]{0.03\columnwidth}\raggedright
-\(y\)\strut
-\end{minipage} & \begin{minipage}[b]{0.06\columnwidth}\raggedright
-\(0\)\strut
-\end{minipage} & \begin{minipage}[b]{0.06\columnwidth}\raggedright
-\(1\)\strut
-\end{minipage} & \begin{minipage}[b]{0.06\columnwidth}\raggedright
-\(2\)\strut
-\end{minipage} & \begin{minipage}[b]{0.06\columnwidth}\raggedright
-\(3\)\strut
-\end{minipage} & \begin{minipage}[b]{0.06\columnwidth}\raggedright
-\(4\)\strut
-\end{minipage} & \begin{minipage}[b]{0.06\columnwidth}\raggedright
-\(5\)\strut
-\end{minipage} & \begin{minipage}[b]{0.06\columnwidth}\raggedright
-\(6\)\strut
-\end{minipage} & \begin{minipage}[b]{0.06\columnwidth}\raggedright
-\(7\)\strut
-\end{minipage} & \begin{minipage}[b]{0.06\columnwidth}\raggedright
-\(8\)\strut
-\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright
-\(9\)\strut
-\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright
-\(10\)\strut
-\end{minipage}\tabularnewline
-\midrule
-\endhead
-\begin{minipage}[t]{0.03\columnwidth}\raggedright
-\(\Lambda(y)\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.028\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.312\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.773\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(1\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.797\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.418\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.147\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.034\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.005\)\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-\(3\times 10^{-4}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-\(6\times10^{-6}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.03\columnwidth}\raggedright
-\(\mathbb P[Y=y|\theta=0.3]\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.028\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.121\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.233\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.267\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.200\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.103\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.037\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.009\)\strut
-\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright
-\(0.001\)\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-\(1\times 10^{-4}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright
-\(6\times10^{-6}\)\strut
-\end{minipage}\tabularnewline
-\bottomrule
-\end{longtable}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n \textless{}{-}}\StringTok{ }\DecValTok{10}
+\NormalTok{p0 \textless{}{-}}\StringTok{ }\FloatTok{0.3}
+\NormalTok{y \textless{}{-}}\StringTok{ }\DecValTok{0}\OperatorTok{:}\DecValTok{10}
+\NormalTok{alpha0 \textless{}{-}}\StringTok{ }\FloatTok{0.05}
+
+\NormalTok{p \textless{}{-}}\StringTok{ }\KeywordTok{choose}\NormalTok{(n, y) }\OperatorTok{*}\StringTok{ }\NormalTok{p0}\OperatorTok{\^{}}\NormalTok{y }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{p0)}\OperatorTok{\^{}}\NormalTok{(n }\OperatorTok{{-}}\StringTok{ }\NormalTok{y)}
+
+
+\NormalTok{Lambda \textless{}{-}}\StringTok{ }\KeywordTok{numeric}\NormalTok{(n)}
+\NormalTok{Lambda[y }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{] \textless{}{-}}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{p0)}\OperatorTok{\^{}}\NormalTok{n}
+\NormalTok{ym1 \textless{}{-}}\StringTok{ }\NormalTok{y[y }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{]}
+\NormalTok{Lambda[y }\OperatorTok{!=}\StringTok{ }\DecValTok{0}\NormalTok{] \textless{}{-}}\StringTok{ }\NormalTok{(n }\OperatorTok{*}\StringTok{ }\NormalTok{p0 }\OperatorTok{/}\StringTok{ }\NormalTok{ym1)}\OperatorTok{\^{}}\NormalTok{ym1 }\OperatorTok{*}\StringTok{ }\NormalTok{((n }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{p0)) }\OperatorTok{/}\StringTok{ }\NormalTok{(n }\OperatorTok{{-}}\StringTok{ }\NormalTok{ym1))}\OperatorTok{\^{}}\NormalTok{(n }\OperatorTok{{-}}\StringTok{ }\NormalTok{ym1)}
+
+\KeywordTok{plot}\NormalTok{(y, Lambda, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(y, p, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-103-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(y, Lambda, p))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{r|r|r}
+\hline
+y & Lambda & p\\
+\hline
+0 & 0.0282475 & 0.0282475\\
+\hline
+1 & 0.3124791 & 0.1210608\\
+\hline
+2 & 0.7731201 & 0.2334744\\
+\hline
+3 & 1.0000000 & 0.2668279\\
+\hline
+4 & 0.7978583 & 0.2001209\\
+\hline
+5 & 0.4182119 & 0.1029193\\
+\hline
+6 & 0.1465454 & 0.0367569\\
+\hline
+7 & 0.0337359 & 0.0090017\\
+\hline
+8 & 0.0047906 & 0.0014467\\
+\hline
+9 & 0.0003556 & 0.0001378\\
+\hline
+10 & 0.0000059 & 0.0000059\\
+\hline
+\end{tabular}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ix \textless{}{-}}\StringTok{ }\KeywordTok{order}\NormalTok{(p)}
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(y[ix], }\KeywordTok{cumsum}\NormalTok{(p[ix])))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{r|r}
+\hline
+10 & 0.0000059\\
+\hline
+9 & 0.0001437\\
+\hline
+8 & 0.0015904\\
+\hline
+7 & 0.0105921\\
+\hline
+0 & 0.0388396\\
+\hline
+6 & 0.0755965\\
+\hline
+5 & 0.1785159\\
+\hline
+1 & 0.2995767\\
+\hline
+4 & 0.4996976\\
+\hline
+2 & 0.7331721\\
+\hline
+3 & 1.0000000\\
+\hline
+\end{tabular}
 
 Rechazamos \(H_0\) con nivel \(\alpha_0 = 0.05\) en \(y \in\{10,9,8,7,0\}\) y \(k\in [0.028,0.147)\) si rechazo cuando \(\Lambda(y)\leq k\). El tamaño de prueba es
 \[\mathbb P_{0.3}[\text{Rechazo}] = \mathbb{P}_{0.3}[Y\in \{10,9,8,7,0\}] = 0.039.\]
@@ -5014,6 +5704,63 @@ Rechazamos \(H_0\) con nivel \(\alpha_0 = 0.05\) en \(y \in\{10,9,8,7,0\}\) y \(
 \[-2\ln \Lambda(y)>\chi^2_{1,1-0.05} = F^{-1}_{\chi^2_1}(0.95) = 3.841.\]
 
 Rechazamos \(H_0\) bajo la misma región del ejemplo anterior.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{{-}2} \OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(Lambda)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  7.1334989  2.3264351  0.5146418  0.0000000  0.4516484  1.7435339
+##  [7]  3.8408399  6.7783829 10.6822162 15.8832009 24.0794561
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qchisq}\NormalTok{(}\DataTypeTok{p =} \FloatTok{0.95}\NormalTok{, }\DataTypeTok{df =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.841459
+\end{verbatim}
+
+¿Rechazamos \(H_0\)?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(y, }\DataTypeTok{test =} \DecValTok{{-}2} \OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(Lambda) }\OperatorTok{\textgreater{}}\StringTok{ }\KeywordTok{qchisq}\NormalTok{(}\DataTypeTok{p =} \FloatTok{0.95}\NormalTok{, }\DataTypeTok{df =} \DecValTok{1}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{r|l}
+\hline
+y & test\\
+\hline
+0 & TRUE\\
+\hline
+1 & FALSE\\
+\hline
+2 & FALSE\\
+\hline
+3 & FALSE\\
+\hline
+4 & FALSE\\
+\hline
+5 & FALSE\\
+\hline
+6 & FALSE\\
+\hline
+7 & TRUE\\
+\hline
+8 & TRUE\\
+\hline
+9 & TRUE\\
+\hline
+10 & TRUE\\
+\hline
+\end{tabular}
 
 \hypertarget{pruebas-con-hipuxf3tesis-simples}{%
 \chapter{Pruebas con hipótesis simples}\label{pruebas-con-hipuxf3tesis-simples}}
@@ -5085,7 +5832,7 @@ Note que el estadístico LR está relacionado con el anterior de la siguiente fo
 Del ejemplo de tiempo de servicio, en lugar de rechazar \(H_0: \theta = \theta_0\) si \(X_1>4\) tome \(a>b\) en el corolario anterior y rechace \(H_0\) si
 \[\dfrac{f_1(x)}{f_0(x)}>1\Leftrightarrow \dfrac 4{(2+X_1)^2}\exp\left(\dfrac{X_1}2\right)>1\quad(*)\]
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-82-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-107-1} \end{center}
 
 Entonces \((*)\) es cierto si \(X_1>c\). Se puede comprobar numéricamente que \(c\approx5.03\).
 
@@ -5854,7 +6601,7 @@ Y despejando la expresión tenemos que
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tquantile}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{20}\NormalTok{)}
+\NormalTok{tquantile }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{20}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
