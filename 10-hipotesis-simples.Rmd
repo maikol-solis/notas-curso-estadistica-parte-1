@@ -3,21 +3,44 @@
 
 ## Hipótesis simples
 
-**Ejemplo**. Sea $X_i$ el tiempo de servicio del cliente #i en el sistema. El supuesto de independencia es poco válida.
+**Ejemplo**. Sea $X_1,\dots, X_n$ el tiempo de servicio del cliente #i en el sistema. 
+El administrador del sistema no sabe si la distribución con que se atienden a
+los clientes es 
 
-Si no hay independencia y si $X_1,\dots, X_n$ son observados
 
-\[f_1(x) = \begin{cases}\dfrac{2(n!)}{(2+\sum X_i)^{n+1}} & X_i>0\\0 & \text{si no}\end{cases}\]
+\[f_1(x) = \begin{cases}\dfrac{2(n!)}{(2+\sum X_i)^{n+1}} & X_i>0\\0 & \text{si
+no}\end{cases}\]
 
-Se asume que $X_i\sim\text{Exp}(1/2)$.
+O si es una $sim\text{Exp}(1/2)$.
 
-\[f_0(x)=\begin{cases}\dfrac 1{2^n}e^{-\frac12\sum X_i} & \text{si }X_i>0\\0 & \text{si no} \end{cases}\]
+\[f_0(x)=\begin{cases}\dfrac 1{2^n}e^{-\frac12\sum X_i} & \text{si }X_i>0\\0 &
+\text{si no} \end{cases}\]
 
 Si $H_0: f=f_0$ vs $H_1:f=f_1$, ¿Cuál hipótesis es cierta?
 
-Podemos redefinir las hipótesis si $\Omega=\{\theta_0,\theta_1\}$ donde si $\theta = \theta_i$, seleccionamos $f = f_i$ y se prueba $H_0: \theta=\theta_0$ vs $H_1:\theta=\theta_1$.
+```{r }
+n<-1
+x<- seq(0,10, length.out = 1000)
 
-Asuma que $X_1,\dots,X_n\sim f_i(X)$ donde se pueden tener dos posibilidades $(i=0,1)$. Sea $\Omega =\{\theta_0,\theta_1\}$ donde $\theta_1$ es el parámetro que indica a cuál densidad se selecciona como hipótesis.
+f1 <-  2/(2+x)^2
+
+f0 <- 1/2 * exp(-1/2*x)
+
+df <- data.frame(x = c(x,x), f = c(f0, f1), `Distribución` = c(rep("f_0", 1000), rep("f_1", 1000)))
+
+ggplot(df, aes(x, f, color = `Distribución`)) +
+  geom_line()+
+  theme_minimal()
+
+```
+
+Podemos redefinir las hipótesis si $\Omega=\{\theta_0,\theta_1\}$ donde si
+$\theta = \theta_i$, seleccionamos $f = f_i$ y se prueba $H_0: \theta=\theta_0$
+vs $H_1:\theta=\theta_1$.
+
+Asuma que $X_1,\dots,X_n\sim f_i(X)$ donde se pueden tener dos posibilidades
+$(i=0,1)$. Sea $\Omega =\{\theta_0,\theta_1\}$ donde $\theta_1$ es el parámetro
+que indica a cuál densidad se selecciona como hipótesis.
 
 \[H_0: \theta=\theta_0 \text{ vs } H_1:\theta=\theta_1\]
 
@@ -27,18 +50,52 @@ Si $\delta$ es un procedimiento de prueba, se denota los errores tipo I y II:
 
 * $\beta(\delta) = \mathbb P[\text{No rechazo }H_0|\theta=\theta_1 ]$.
 
-Del ejemplo anterior, si se asume (o se comprueba) que $f_1$ da probabilidades más altas que $f_0$ entonces un criterio de rechazo puede ser $X_1>4$ si se observa solo $n=1$.
+Del ejemplo anterior, si se asume (o se comprueba) que $f_1$ da probabilidades
+más altas que $f_0$ entonces un criterio de rechazo puede ser $X_1>4$ si se
+observa solo $n=1$.
 
-En este caso, 
+En este caso,
 
-\[\alpha(\delta) = \mathbb P[X_1>4|\theta=\theta_0] = 1-(1-e^{-0.5\cdot 4}) = 0.135\]
+\[\alpha(\delta) = \mathbb P[X_1>4|\theta=\theta_0] = 1-(1-e^{-0.5\cdot 4}) =
+  0.135\]
+  
+```{r }
+1-pexp(q = 4, rate = 1/2)
+```
 
-\[\beta(\delta) =  \mathbb P[X_1<4|\theta=\theta_1] = \int_{0}^{4}\dfrac2{(2+x_1)^2}dx_1=0.667.\]
 
-**Objetivo**. Encontrar un procedimiento de prueba $\delta$ tal que $\alpha(\delta)$ y $\beta(\delta)$ se reduzcan simultáneamente o al menos si $a,b>0$, que $a\alpha(\delta) + b\beta(\delta)$ sea mínimo.
+\[\beta(\delta) = \mathbb P[X_1<4|\theta=\theta_1] = \int_{0}^{4}\dfrac2{(2+x_1)^2}dx_1=0.667.\]
 
-**Teorema**. Sea $\delta^*$ un procedimiento de prueba tal que no se rechaza $H_0:\theta=\theta_0$ si $af_0(x) > bf_1(x)$ y se rechaza $H_0$ si $af_0(x) < bf_1(x)$. Si $af_0(x) = bf_1(x)$ se puede rechazar o no $H_0$. Entonces para cualquier otro procedimiento de prueba $\delta$
-\[a\alpha(\delta^*) + b\beta(\delta^*) \leq a\alpha(\delta) + b\beta(\delta). \]
+**Observación:** Para densidades no usuales, hay dos formas de calcular los
+valores 
+
+- Teóricamente calculando la integral directamente. 
+- Si la integral es muy díficil y solo se necesita una aproximación númerica se
+  puede usar `integrate`:
+  
+  ```{r }
+  densidad_f1 <- function(x) {
+    2 / (x + 2)^2
+  }
+
+  integrate(densidad_f1, lower=0, upper = 4)
+  ```
+
+
+*Nota: Esta distribución se debe estimar teóricamente ya que no hay fórmula
+predefinida en `R`.*
+
+
+
+**Objetivo**. Encontrar un procedimiento de prueba $\delta$ tal que
+$\alpha(\delta)$ y $\beta(\delta)$ se reduzcan simultáneamente o al menos si
+$a,b>0$, que $a\alpha(\delta) + b\beta(\delta)$ sea mínimo.
+
+**Teorema**. Sea $\delta^*$ un procedimiento de prueba tal que no se rechaza
+$H_0:\theta=\theta_0$ si $af_0(x) > bf_1(x)$ y se rechaza $H_0$ si $af_0(x) <
+bf_1(x)$. Si $af_0(x) = bf_1(x)$ se puede rechazar o no $H_0$. Entonces para
+cualquier otro procedimiento de prueba $\delta$ \[a\alpha(\delta^*) +
+b\beta(\delta^*) \leq a\alpha(\delta) + b\beta(\delta). \]
 
 
 *Prueba*. Caso discreto solamente.
@@ -51,19 +108,35 @@ a\alpha(\delta) + b\beta(\delta) & = a\sum_{x\in S_1}f_0(x) + b\sum_{x\in S_1^c}
 & = b + \sum_{x\in S_1}(af_0-bf_1(x)) 
 \end{align*}
 
-y lo anterior es mínimo si $af_0(x)-bf_1(x)<0$ en toda la muestra y no hay punto en donde $af_0(x)-bf_1(x)>0$.
+y lo anterior es mínimo si $af_0(x)-bf_1(x)<0$ en toda la muestra y no hay punto
+en donde $af_0(x)-bf_1(x)>0$. $\qedsymbol$
 
-**Definición**. **Cociente de verosimilitud**:
+
+
+
+
+**Definición**. Define el Cociente de verosimilitud como:
 \[\dfrac{f_1(x)}{f_0(x)}.\]
 
-Note que el estadístico LR está relacionado con el anterior de la siguiente forma:
+Note que el estadístico del cociente de verosimilitud (LR) está relacionado con
+el anterior de la siguiente forma:
 
 \[\Lambda(x) = \dfrac{f_0(x)}{\max\{f_0(x),f_1(x)\}} = \dfrac{\sup_{\Omega_0}f(x|\theta)}{\sup_{\Omega}f(x|\theta)}.\]
 
-**Corolario**. Bajo las condiciones del teorema anterior, si $a,b>0$ entonces la prueba $\delta$ para la cual $a\alpha(\delta) + b\beta(\delta)$ es un mínimo rechaza $H_0$ si el cociente de verosimilitud es mayor a $\dfrac ab$.
+**Corolario**. Bajo las condiciones del teorema anterior, si $a,b>0$ entonces la
+prueba $\delta$ para la cual $a\alpha(\delta) + b\beta(\delta)$ es un mínimo
+rechaza $H_0$ si el cociente de verosimilitud es mayor a $\dfrac ab$.
 
-Del ejemplo de tiempo de servicio, en lugar de rechazar $H_0: \theta = \theta_0$ si $X_1>4$ tome $a>b$ en el corolario anterior y rechace $H_0$ si
-\[\dfrac{f_1(x)}{f_0(x)}>1\Leftrightarrow \dfrac 4{(2+X_1)^2}\exp\left(\dfrac{X_1}2\right)>1\quad(*)\]
+**Ejemplo:** Continuando con el ejemplo del servicio al cliente. 
+
+En lugar de rechazar $H_0: \theta = \theta_0$ si $X_1>4$ hay que encontrar $a$ y
+$b$ que puedan balancear ambos tipos de errores. 
+
+Supogamos que tomamos $a=b$, entonces basado en el colorario anterior rechace
+$H_0$ si
+
+\[\dfrac{f_1(x)}{f_0(x)}>1\Leftrightarrow
+\dfrac 4{(2+X_1)^2}\exp\left(\dfrac{X_1}2\right)>1\quad(*)\]
 
 
 ```{r,echo=FALSE}
@@ -86,33 +159,63 @@ Entonces $(*)$ es cierto si $X_1>c$. Se puede comprobar numéricamente que $c\ap
 
 Por lo tanto, rechazamos $H_0$ si $X_1>5.03$.
 
-**Criterio de Neyman-Pearson**. Encontrar un procedimiento $\delta$ tal que 
+En este caso $\alpha(\delta^*)$ es igual a 
+
+```{r }
+1 - pexp(q = 5.03, rate = 1 / 2)
+```
+
+y $\beta(\delta^*)$
+
+  ```{r }
+  densidad_f1 <- function(x) {
+    2 / (x + 2)^2
+  }
+
+  integrate(densidad_f1, lower = 0, upper = 5.03)
+  ```
+  
+## Criterio de Neyman-Pearson
+
+Encontrar un procedimiento $\delta$ tal que 
 
 1) $\alpha(\delta) \leq \alpha_0$ ($\alpha_0$: nivel de significancia).
 
 2) $\beta(\delta)$ es mínimo.
 
-**Lema de Neyman-Pearson**. Suponga que $\delta'$ es un procedimiento de prueba que no rechaza $H_0$ si $f_1(x)<kf_0(x)$ rechaza $H_0$. Si $f_1(x)>kf_0(x)$ y decide cualquiera de los dos si $f_1(x)=kf_0(x)$ para $k>0$. Si $\delta$ es otro procedimiento de prueba tal que $\alpha(\delta)\leq \alpha(\delta')$, entonces $\beta(\delta)\geq \beta(\delta')$. Si $\alpha(\delta) <\alpha(\delta')$, $\beta(\delta)> \beta(\delta')$.
+**Lema de Neyman-Pearson**. Suponga que $\delta'$ es un procedimiento de prueba
+que no rechaza $H_0$ si $f_1(x)<kf_0(x)$ rechaza $H_0$. Si $f_1(x)>kf_0(x)$ y
+decide cualquiera de los dos si $f_1(x)=kf_0(x)$ para $k>0$. Si $\delta$ es otro
+procedimiento de prueba tal que $\alpha(\delta)\leq \alpha(\delta')$, entonces
+$\beta(\delta)\geq \beta(\delta')$. Si $\alpha(\delta) <\alpha(\delta')$,
+$\beta(\delta)> \beta(\delta')$.
 
 *Prueba*. Tome $a=k$ y $b=1$ en el corolario y teoremas anteriores. Como
 \[k\alpha(\delta')+\beta(\delta')\leq k\alpha(\delta')+\beta(\delta'),\]
 entonces
 \[\alpha(\delta)\leq \alpha(\delta')\implies \beta(\delta')\geq \beta(\delta').\]
 
-**Consecuencia**. Si queremos encontrar una prueba $\delta'$ que satisfaga el criterio de Neyman-Pearson, debemos encontrar $k$ tal que $\alpha(\delta') = \alpha_0$, y se rechace $H_0$ si $f_1(x)>kf_0(x) \Leftrightarrow\dfrac{f_0(x)}{f_1(x)}<k^{-1}$.
+**Consecuencia**. Si queremos encontrar una prueba $\delta'$ que satisfaga el
+criterio de Neyman-Pearson, debemos encontrar $k$ tal que $\alpha(\delta') =
+\alpha_0$, y se rechace $H_0$ si $f_1(x)>kf_0(x)
+\Leftrightarrow\dfrac{f_0(x)}{f_1(x)}<k^{-1}$.
 
-**Ejemplo**. Suponga que $X_1,\dots,X_n\sim N(\theta,1)$ y se quiere probar $H_0: \theta = 0$ vs $H_1: \theta = 1$ usando una prueba según el criterio de Neyman-Pearson con $\alpha = 0.05$.
+**Ejemplo**. Suponga que $X_1,\dots,X_n\sim N(\theta,1)$ y se quiere probar
+$H_0: \theta = 0$ vs $H_1: \theta = 1$ usando una prueba según el criterio de
+Neyman-Pearson con $\alpha = 0.05$.
 
 Note que
 
-* $f_0(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum X_i^2\bigg]$.
-* $f_1(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum (X_i-1)^2\bigg]$.
+* $f_0(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum_{i=1}^{n} X_i^2\bigg]$.
+* $f_1(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum_{i=1}^{n} (X_i-1)^2\bigg]$.
 
 Entonces
 
 \begin{align*}
-\dfrac{f_1(x)}{f_0(x)}& = \exp\bigg[-\dfrac 12 \sum (X_i^2-2X_i+1-X_1^2)\bigg]\\
-& = \exp\bigg[n\bar X_n - \dfrac n2\bigg] = \exp\bigg[n\left(\bar X_n - \dfrac 12\right)\bigg] 
+\dfrac{f_1(x)}{f_0(x)}
+&= \exp\bigg[-\dfrac 12 \sum_{i=1}^{n} (X_i^2-2X_i+1-X_1^2)\bigg]\\
+&= \exp\bigg[n\bar X_n - \dfrac n2\bigg] \\
+&= \exp\bigg[n\left(\bar X_n - \dfrac 12\right)\bigg] 
 \end{align*}
 
 Rechazamos $H_0$ si
@@ -124,7 +227,8 @@ Entonces buscamos $k'$ tal que
 Despejando,
 \[k'\sqrt n= z_{0.95} \implies k'=\dfrac{z_{0.95}}{\sqrt n}.\]
 
-Entonces, entre todas las pruebas en donde $\alpha(\delta)\leq 0.05$, la que tiene el error tipo II más pequeño es la que rechaza $H_0$ si
+Entonces, entre todas las pruebas en donde $\alpha(\delta)\leq 0.05$, la que
+tiene el error tipo II más pequeño es la que rechaza $H_0$ si
 
 \[\bar X_n > \dfrac{z_{0.95}}{\sqrt n} = \dfrac{1.645}{\sqrt n}.\]
 
@@ -139,7 +243,8 @@ Si $n=9$, por ejemplo, $\beta(\delta') = \Phi(1.645-3) =0.0877.$
 **Ejemplo**. $X_1,\dots,X_n\sim\text{Ber}(p)$ y considere las hipótesis
 \[H_0: p = 0.2 \text{ vs } H_1: p = 0.4.\]
 
-Queremos encontrar un procedimiento de prueba en donde $\alpha(\delta) = 0.05$ y $\beta(\delta)$ es mínimo. Sea $y = \sum X_i$.
+Queremos encontrar un procedimiento de prueba en donde $\alpha(\delta) = 0.05$ y
+$\beta(\delta)$ es mínimo. Sea $y = \sum_{i=1}^{n} X_i$.
 
 \[f_0(x) = 0.2^y0.8^{n-y}\]
 \[f_1(x) = 0.4^y0.6^{n-y}\]
@@ -161,15 +266,18 @@ pero como $Y$ es una variable discreta (Binomial), no es posible encontrar ese $
 \[\mathbb P(Y>4|p=0.2) = 0.0328\]
 \[\mathbb P(Y>3|p=0.2) = 0.1209\]
 
-Por lo tanto, se puede especificar una prueba con nivel 0.05, $\alpha(\delta) = 0.0328$ y potencia mínima si $Y>4$ como región de rechazo.
+Por lo tanto, se puede especificar una prueba con nivel 0.05, $\alpha(\delta) =
+0.0328$ y potencia mínima si $Y>4$ como región de rechazo.
 
 ## Prueba $t$
 
-Suponga que $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, con $(\mu,\sigma^2)$ desconocidos, y considere las siguientes hipótesis:
+Suponga que $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, con $(\mu,\sigma^2)$
+desconocidos, y considere las siguientes hipótesis:
 
 \[H_0: \mu\leq\mu_0 \text{ vs } H_1:\mu>\mu_0.\]
 
-Recuerde que si $U = \dfrac{\bar X_n -\mu_0}{\sigma' /\sqrt n}$, entonces la prueba rechaza $H_0$ si $U\geq c$. Si $\mu=\mu_0$ entonces $U \sim t_{n-1}$.
+Recuerde que si $U = \dfrac{\bar X_n -\mu_0}{\sigma' /\sqrt n}$, entonces la
+prueba rechaza $H_0$ si $U\geq c$. Si $\mu=\mu_0$ entonces $U \sim t_{n-1}$.
 
 Si $H_0: \mu\geq\mu_0$ vs $H_1: \mu<\mu_0$, entonces se rechaza $H_0$ si $U\leq c$.
 
