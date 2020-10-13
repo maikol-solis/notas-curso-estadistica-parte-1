@@ -187,7 +187,7 @@
 
 \title{Notas Curso de Estadística (Parte I)}
 \author{Maikol Solís}
-\date{Actualizado el 07 October, 2020}
+\date{Actualizado el 13 October, 2020}
 
 \begin{document}
 \maketitle
@@ -5762,27 +5762,54 @@ y & test\\
 \hline
 \end{tabular}
 
+\$ \$
+
 \hypertarget{pruebas-con-hipuxf3tesis-simples}{%
 \chapter{Pruebas con hipótesis simples}\label{pruebas-con-hipuxf3tesis-simples}}
 
 \hypertarget{hipuxf3tesis-simples}{%
 \section{Hipótesis simples}\label{hipuxf3tesis-simples}}
 
-\textbf{Ejemplo}. Sea \(X_i\) el tiempo de servicio del cliente \#i en el sistema. El supuesto de independencia es poco válida.
+\textbf{Ejemplo}. Sea \(X_1,\dots, X_n\) el tiempo de servicio del cliente \#i en el sistema.
+El administrador del sistema no sabe si la distribución con que se atienden a
+los clientes es
 
-Si no hay independencia y si \(X_1,\dots, X_n\) son observados
+\[f_1(x) = \begin{cases}\dfrac{2(n!)}{(2+\sum X_i)^{n+1}} & X_i>0\\0 & \text{si
+no}\end{cases}\]
 
-\[f_1(x) = \begin{cases}\dfrac{2(n!)}{(2+\sum X_i)^{n+1}} & X_i>0\\0 & \text{si no}\end{cases}\]
+O si es una \(sim\text{Exp}(1/2)\).
 
-Se asume que \(X_i\sim\text{Exp}(1/2)\).
-
-\[f_0(x)=\begin{cases}\dfrac 1{2^n}e^{-\frac12\sum X_i} & \text{si }X_i>0\\0 & \text{si no} \end{cases}\]
+\[f_0(x)=\begin{cases}\dfrac 1{2^n}e^{-\frac12\sum X_i} & \text{si }X_i>0\\0 &
+\text{si no} \end{cases}\]
 
 Si \(H_0: f=f_0\) vs \(H_1:f=f_1\), ¿Cuál hipótesis es cierta?
 
-Podemos redefinir las hipótesis si \(\Omega=\{\theta_0,\theta_1\}\) donde si \(\theta = \theta_i\), seleccionamos \(f = f_i\) y se prueba \(H_0: \theta=\theta_0\) vs \(H_1:\theta=\theta_1\).
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n \textless{}{-}}\StringTok{ }\DecValTok{1}
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)}
 
-Asuma que \(X_1,\dots,X_n\sim f_i(X)\) donde se pueden tener dos posibilidades \((i=0,1)\). Sea \(\Omega =\{\theta_0,\theta_1\}\) donde \(\theta_1\) es el parámetro que indica a cuál densidad se selecciona como hipótesis.
+\NormalTok{f1 \textless{}{-}}\StringTok{  }\DecValTok{2} \OperatorTok{/}\StringTok{ }\NormalTok{(}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{x)}\OperatorTok{\^{}}\DecValTok{2}
+
+\NormalTok{f0 \textless{}{-}}\StringTok{ }\DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\OperatorTok{{-}}\DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{x)}
+
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(x, x), }\DataTypeTok{f =} \KeywordTok{c}\NormalTok{(f0, f1), }\StringTok{\textasciigrave{}}\DataTypeTok{Distribución}\StringTok{\textasciigrave{}}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"f\_0"}\NormalTok{, }\DecValTok{1000}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\StringTok{"f\_1"}\NormalTok{, }\DecValTok{1000}\NormalTok{)))}
+
+\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(x, f, }\DataTypeTok{color =} \StringTok{\textasciigrave{}}\DataTypeTok{Distribución}\StringTok{\textasciigrave{}}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-107-1} \end{center}
+
+Podemos redefinir las hipótesis si \(\Omega=\{\theta_0,\theta_1\}\) donde si
+\(\theta = \theta_i\), seleccionamos \(f = f_i\) y se prueba \(H_0: \theta=\theta_0\)
+vs \(H_1:\theta=\theta_1\).
+
+Asuma que \(X_1,\dots,X_n\sim f_i(X)\) donde se pueden tener dos posibilidades
+\((i=0,1)\). Sea \(\Omega =\{\theta_0,\theta_1\}\) donde \(\theta_1\) es el parámetro
+que indica a cuál densidad se selecciona como hipótesis.
 
 \[H_0: \theta=\theta_0 \text{ vs } H_1:\theta=\theta_1\]
 
@@ -5795,18 +5822,63 @@ Si \(\delta\) es un procedimiento de prueba, se denota los errores tipo I y II:
   \(\beta(\delta) = \mathbb P[\text{No rechazo }H_0|\theta=\theta_1 ]\).
 \end{itemize}
 
-Del ejemplo anterior, si se asume (o se comprueba) que \(f_1\) da probabilidades más altas que \(f_0\) entonces un criterio de rechazo puede ser \(X_1>4\) si se observa solo \(n=1\).
+Del ejemplo anterior, si se asume (o se comprueba) que \(f_1\) da probabilidades
+más altas que \(f_0\) entonces un criterio de rechazo puede ser \(X_1>4\) si se
+observa solo \(n=1\).
 
 En este caso,
 
-\[\alpha(\delta) = \mathbb P[X_1>4|\theta=\theta_0] = 1-(1-e^{-0.5\cdot 4}) = 0.135\]
+\[\alpha(\delta) = \mathbb P[X_1>4|\theta=\theta_0] = 1-(1-e^{-0.5\cdot 4}) =
+  0.135\]
 
-\[\beta(\delta) =  \mathbb P[X_1<4|\theta=\theta_1] = \int_{0}^{4}\dfrac2{(2+x_1)^2}dx_1=0.667.\]
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\KeywordTok{pexp}\NormalTok{(}\DataTypeTok{q =} \DecValTok{4}\NormalTok{, }\DataTypeTok{rate =} \DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-\textbf{Objetivo}. Encontrar un procedimiento de prueba \(\delta\) tal que \(\alpha(\delta)\) y \(\beta(\delta)\) se reduzcan simultáneamente o al menos si \(a,b>0\), que \(a\alpha(\delta) + b\beta(\delta)\) sea mínimo.
+\begin{verbatim}
+## [1] 0.1353353
+\end{verbatim}
 
-\textbf{Teorema}. Sea \(\delta^*\) un procedimiento de prueba tal que no se rechaza \(H_0:\theta=\theta_0\) si \(af_0(x) > bf_1(x)\) y se rechaza \(H_0\) si \(af_0(x) < bf_1(x)\). Si \(af_0(x) = bf_1(x)\) se puede rechazar o no \(H_0\). Entonces para cualquier otro procedimiento de prueba \(\delta\)
-\[a\alpha(\delta^*) + b\beta(\delta^*) \leq a\alpha(\delta) + b\beta(\delta). \]
+\[\beta(\delta) = \mathbb P[X_1<4|\theta=\theta_1] = \int_{0}^{4}\dfrac2{(2+x_1)^2}dx_1=0.667.\]
+
+\textbf{Observación:} Para densidades no usuales, hay dos formas de calcular los
+valores
+
+\begin{itemize}
+\item
+  Teóricamente calculando la integral directamente.
+\item
+  Si la integral es muy díficil y solo se necesita una aproximación númerica se
+  puede usar \texttt{integrate}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{densidad\_f1 \textless{}{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+  \DecValTok{2} \OperatorTok{/}\StringTok{ }\NormalTok{(x }\OperatorTok{+}\StringTok{ }\DecValTok{2}\NormalTok{)}\OperatorTok{\^{}}\DecValTok{2}
+\NormalTok{\}}
+
+\KeywordTok{integrate}\NormalTok{(densidad\_f1, }\DataTypeTok{lower =} \DecValTok{0}\NormalTok{, }\DataTypeTok{upper =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 0.6666667 with absolute error < 2.9e-12
+\end{verbatim}
+\end{itemize}
+
+\emph{Nota: Esta distribución se debe estimar teóricamente ya que no hay fórmula
+predefinida en \texttt{R}.}
+
+\textbf{Objetivo}. Encontrar un procedimiento de prueba \(\delta\) tal que
+\(\alpha(\delta)\) y \(\beta(\delta)\) se reduzcan simultáneamente o al menos si
+\(a,b>0\), que \(a\alpha(\delta) + b\beta(\delta)\) sea mínimo.
+
+\textbf{Teorema}. Sea \(\delta^*\) un procedimiento de prueba tal que no se rechaza
+\(H_0:\theta=\theta_0\) si \(af_0(x) > bf_1(x)\) y se rechaza \(H_0\) si \(af_0(x) < bf_1(x)\). Si \(af_0(x) = bf_1(x)\) se puede rechazar o no \(H_0\). Entonces para
+cualquier otro procedimiento de prueba \(\delta\) \[a\alpha(\delta^*) +
+b\beta(\delta^*) \leq a\alpha(\delta) + b\beta(\delta). \]
 
 \emph{Prueba}. Caso discreto solamente.
 
@@ -5818,27 +5890,70 @@ a\alpha(\delta) + b\beta(\delta) & = a\sum_{x\in S_1}f_0(x) + b\sum_{x\in S_1^c}
 & = b + \sum_{x\in S_1}(af_0-bf_1(x)) 
 \end{align*}
 
-y lo anterior es mínimo si \(af_0(x)-bf_1(x)<0\) en toda la muestra y no hay punto en donde \(af_0(x)-bf_1(x)>0\).
+y lo anterior es mínimo si \(af_0(x)-bf_1(x)<0\) en toda la muestra y no hay punto
+en donde \(af_0(x)-bf_1(x)>0\). \(\qedsymbol\)
 
-\textbf{Definición}. \textbf{Cociente de verosimilitud}:
+\textbf{Definición}. Define el Cociente de verosimilitud como:
 \[\dfrac{f_1(x)}{f_0(x)}.\]
 
-Note que el estadístico LR está relacionado con el anterior de la siguiente forma:
+Note que el estadístico del cociente de verosimilitud (LR) está relacionado con
+el anterior de la siguiente forma:
 
 \[\Lambda(x) = \dfrac{f_0(x)}{\max\{f_0(x),f_1(x)\}} = \dfrac{\sup_{\Omega_0}f(x|\theta)}{\sup_{\Omega}f(x|\theta)}.\]
 
-\textbf{Corolario}. Bajo las condiciones del teorema anterior, si \(a,b>0\) entonces la prueba \(\delta\) para la cual \(a\alpha(\delta) + b\beta(\delta)\) es un mínimo rechaza \(H_0\) si el cociente de verosimilitud es mayor a \(\dfrac ab\).
+\textbf{Corolario}. Bajo las condiciones del teorema anterior, si \(a,b>0\) entonces la
+prueba \(\delta\) para la cual \(a\alpha(\delta) + b\beta(\delta)\) es un mínimo
+rechaza \(H_0\) si el cociente de verosimilitud es mayor a \(\dfrac ab\).
 
-Del ejemplo de tiempo de servicio, en lugar de rechazar \(H_0: \theta = \theta_0\) si \(X_1>4\) tome \(a>b\) en el corolario anterior y rechace \(H_0\) si
-\[\dfrac{f_1(x)}{f_0(x)}>1\Leftrightarrow \dfrac 4{(2+X_1)^2}\exp\left(\dfrac{X_1}2\right)>1\quad(*)\]
+\textbf{Ejemplo:} Continuando con el ejemplo del servicio al cliente.
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-107-1} \end{center}
+En lugar de rechazar \(H_0: \theta = \theta_0\) si \(X_1>4\) hay que encontrar \(a\) y
+\(b\) que puedan balancear ambos tipos de errores.
+
+Supogamos que tomamos \(a=b\), entonces basado en el colorario anterior rechace
+\(H_0\) si
+
+\[\dfrac{f_1(x)}{f_0(x)}>1\Leftrightarrow
+\dfrac 4{(2+X_1)^2}\exp\left(\dfrac{X_1}2\right)>1\quad(*)\]
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-110-1} \end{center}
 
 Entonces \((*)\) es cierto si \(X_1>c\). Se puede comprobar numéricamente que \(c\approx5.03\).
 
 Por lo tanto, rechazamos \(H_0\) si \(X_1>5.03\).
 
-\textbf{Criterio de Neyman-Pearson}. Encontrar un procedimiento \(\delta\) tal que
+En este caso \(\alpha(\delta^*)\) es igual a
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\KeywordTok{pexp}\NormalTok{(}\DataTypeTok{q =} \FloatTok{5.03}\NormalTok{, }\DataTypeTok{rate =} \DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.08086291
+\end{verbatim}
+
+y \(\beta(\delta^*)\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{densidad\_f1 \textless{}{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+  \DecValTok{2} \OperatorTok{/}\StringTok{ }\NormalTok{(x }\OperatorTok{+}\StringTok{ }\DecValTok{2}\NormalTok{)}\OperatorTok{\^{}}\DecValTok{2}
+\NormalTok{\}}
+
+\KeywordTok{integrate}\NormalTok{(densidad\_f1, }\DataTypeTok{lower =} \DecValTok{0}\NormalTok{, }\DataTypeTok{upper =} \FloatTok{5.03}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 0.715505 with absolute error < 1.3e-10
+\end{verbatim}
+
+\hypertarget{criterio-de-neyman-pearson}{%
+\section{Criterio de Neyman-Pearson}\label{criterio-de-neyman-pearson}}
+
+Encontrar un procedimiento \(\delta\) tal que
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -5848,32 +5963,42 @@ Por lo tanto, rechazamos \(H_0\) si \(X_1>5.03\).
   \(\beta(\delta)\) es mínimo.
 \end{enumerate}
 
-\textbf{Lema de Neyman-Pearson}. Suponga que \(\delta'\) es un procedimiento de prueba que no rechaza \(H_0\) si \(f_1(x)<kf_0(x)\) rechaza \(H_0\). Si \(f_1(x)>kf_0(x)\) y decide cualquiera de los dos si \(f_1(x)=kf_0(x)\) para \(k>0\). Si \(\delta\) es otro procedimiento de prueba tal que \(\alpha(\delta)\leq \alpha(\delta')\), entonces \(\beta(\delta)\geq \beta(\delta')\). Si \(\alpha(\delta) <\alpha(\delta')\), \(\beta(\delta)> \beta(\delta')\).
+\textbf{Lema de Neyman-Pearson}. Suponga que \(\delta'\) es un procedimiento de prueba
+que no rechaza \(H_0\) si \(f_1(x)<kf_0(x)\) rechaza \(H_0\). Si \(f_1(x)>kf_0(x)\) y
+decide cualquiera de los dos si \(f_1(x)=kf_0(x)\) para \(k>0\). Si \(\delta\) es otro
+procedimiento de prueba tal que \(\alpha(\delta)\leq \alpha(\delta')\), entonces
+\(\beta(\delta)\geq \beta(\delta')\). Si \(\alpha(\delta) <\alpha(\delta')\),
+\(\beta(\delta)> \beta(\delta')\).
 
 \emph{Prueba}. Tome \(a=k\) y \(b=1\) en el corolario y teoremas anteriores. Como
 \[k\alpha(\delta')+\beta(\delta')\leq k\alpha(\delta')+\beta(\delta'),\]
 entonces
 \[\alpha(\delta)\leq \alpha(\delta')\implies \beta(\delta')\geq \beta(\delta').\]
 
-\textbf{Consecuencia}. Si queremos encontrar una prueba \(\delta'\) que satisfaga el criterio de Neyman-Pearson, debemos encontrar \(k\) tal que \(\alpha(\delta') = \alpha_0\), y se rechace \(H_0\) si \(f_1(x)>kf_0(x) \Leftrightarrow\dfrac{f_0(x)}{f_1(x)}<k^{-1}\).
+\textbf{Consecuencia}. Si queremos encontrar una prueba \(\delta'\) que satisfaga el
+criterio de Neyman-Pearson, debemos encontrar \(k\) tal que \(\alpha(\delta') = \alpha_0\), y se rechace \(H_0\) si \(f_1(x)>kf_0(x) \Leftrightarrow\dfrac{f_0(x)}{f_1(x)}<k^{-1}\).
 
-\textbf{Ejemplo}. Suponga que \(X_1,\dots,X_n\sim N(\theta,1)\) y se quiere probar \(H_0: \theta = 0\) vs \(H_1: \theta = 1\) usando una prueba según el criterio de Neyman-Pearson con \(\alpha = 0.05\).
+\textbf{Ejemplo}. Suponga que \(X_1,\dots,X_n\sim N(\theta,1)\) y se quiere probar
+\(H_0: \theta = 0\) vs \(H_1: \theta = 1\) usando una prueba según el criterio de
+Neyman-Pearson con \(\alpha = 0.05\).
 
 Note que
 
 \begin{itemize}
 \tightlist
 \item
-  \(f_0(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum X_i^2\bigg]\).
+  \(f_0(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum_{i=1}^{n} X_i^2\bigg]\).
 \item
-  \(f_1(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum (X_i-1)^2\bigg]\).
+  \(f_1(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum_{i=1}^{n} (X_i-1)^2\bigg]\).
 \end{itemize}
 
 Entonces
 
 \begin{align*}
-\dfrac{f_1(x)}{f_0(x)}& = \exp\bigg[-\dfrac 12 \sum (X_i^2-2X_i+1-X_1^2)\bigg]\\
-& = \exp\bigg[n\bar X_n - \dfrac n2\bigg] = \exp\bigg[n\left(\bar X_n - \dfrac 12\right)\bigg] 
+\dfrac{f_1(x)}{f_0(x)}
+&= \exp\bigg[-\dfrac 12 \sum_{i=1}^{n} (X_i^2-2X_i+1-X_1^2)\bigg]\\
+&= \exp\bigg[n\bar X_n - \dfrac n2\bigg] \\
+&= \exp\bigg[n\left(\bar X_n - \dfrac 12\right)\bigg] 
 \end{align*}
 
 Rechazamos \(H_0\) si
@@ -5885,7 +6010,8 @@ Entonces buscamos \(k'\) tal que
 Despejando,
 \[k'\sqrt n= z_{0.95} \implies k'=\dfrac{z_{0.95}}{\sqrt n}.\]
 
-Entonces, entre todas las pruebas en donde \(\alpha(\delta)\leq 0.05\), la que tiene el error tipo II más pequeño es la que rechaza \(H_0\) si
+Entonces, entre todas las pruebas en donde \(\alpha(\delta)\leq 0.05\), la que
+tiene el error tipo II más pequeño es la que rechaza \(H_0\) si
 
 \[\bar X_n > \dfrac{z_{0.95}}{\sqrt n} = \dfrac{1.645}{\sqrt n}.\]
 
@@ -5900,7 +6026,8 @@ Si \(n=9\), por ejemplo, \(\beta(\delta') = \Phi(1.645-3) =0.0877.\)
 \textbf{Ejemplo}. \(X_1,\dots,X_n\sim\text{Ber}(p)\) y considere las hipótesis
 \[H_0: p = 0.2 \text{ vs } H_1: p = 0.4.\]
 
-Queremos encontrar un procedimiento de prueba en donde \(\alpha(\delta) = 0.05\) y \(\beta(\delta)\) es mínimo. Sea \(y = \sum X_i\).
+Queremos encontrar un procedimiento de prueba en donde \(\alpha(\delta) = 0.05\) y
+\(\beta(\delta)\) es mínimo. Sea \(y = \sum_{i=1}^{n} X_i\).
 
 \[f_0(x) = 0.2^y0.8^{n-y}\]
 \[f_1(x) = 0.4^y0.6^{n-y}\]
@@ -5927,11 +6054,13 @@ Por lo tanto, se puede especificar una prueba con nivel 0.05, \(\alpha(\delta) =
 \hypertarget{prueba-t}{%
 \section{\texorpdfstring{Prueba \(t\)}{Prueba t}}\label{prueba-t}}
 
-Suponga que \(X_1,\dots, X_n \sim N(\mu,\sigma^2)\), con \((\mu,\sigma^2)\) desconocidos, y considere las siguientes hipótesis:
+Suponga que \(X_1,\dots, X_n \sim N(\mu,\sigma^2)\), con \((\mu,\sigma^2)\)
+desconocidos, y considere las siguientes hipótesis:
 
 \[H_0: \mu\leq\mu_0 \text{ vs } H_1:\mu>\mu_0.\]
 
-Recuerde que si \(U = \dfrac{\bar X_n -\mu_0}{\sigma' /\sqrt n}\), entonces la prueba rechaza \(H_0\) si \(U\geq c\). Si \(\mu=\mu_0\) entonces \(U \sim t_{n-1}\).
+Recuerde que si \(U = \dfrac{\bar X_n -\mu_0}{\sigma' /\sqrt n}\), entonces la
+prueba rechaza \(H_0\) si \(U\geq c\). Si \(\mu=\mu_0\) entonces \(U \sim t_{n-1}\).
 
 Si \(H_0: \mu\geq\mu_0\) vs \(H_1: \mu<\mu_0\), entonces se rechaza \(H_0\) si \(U\leq c\).
 
