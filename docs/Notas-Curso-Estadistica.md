@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 23 septiembre, 2020"
+date: "Actualizado el 23 October, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -645,10 +645,11 @@ En nuestro ejemplo se tenía que \(\mathbb E [\theta] = 0.0002\) y \(\mathrm{Var
 alpha_previa <- 4
 beta_previa <- 20000
 
-ggplot(data = data.frame(x = c(0, 1e+06)), aes(x)) + 
-    stat_function(fun = dgamma, args = list(shape = alpha_previa, 
-        scale = beta_previa)) + ylab("") + scale_y_continuous(breaks = NULL) + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(0, 1e6)), aes(x)) +
+  stat_function(fun = dgamma, args = list(shape = alpha_previa, scale = beta_previa)) +
+  ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal()
 ```
 
 
@@ -661,14 +662,15 @@ Asumiendo que tenemos algunos datos \(X_1, ..., X_n\), asumimos que estos son ex
 
 
 ```r
-x <- c(2911, 3403, 3237, 3509, 3118)
+x  <- c(2911, 3403, 3237, 3509, 3118)
 
-theta <- 1/mean(x)
+theta <- 1 / mean(x)
 
-ggplot(data = data.frame(x = c(0, 1e+05)), aes(x)) + 
-    stat_function(fun = dexp, args = list(rate = theta)) + 
-    ylab("") + scale_y_continuous(breaks = NULL) + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(0, 1e5)), aes(x)) +
+  stat_function(fun = dexp, args = list(rate = theta)) +
+  ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal()
 ```
 
 
@@ -683,7 +685,7 @@ Según los contenidos del curso, se puede estimar los parámetros de la densidad
 
 
 ```r
-(y <- sum(x))
+(y  <- sum(x))
 ```
 
 ```
@@ -716,14 +718,12 @@ Según los contenidos del curso, se puede estimar los parámetros de la densidad
 
 
 ```r
-ggplot(data = data.frame(x = c(0, 750000)), aes(x)) + 
-    stat_function(fun = dgamma, args = list(shape = alpha_previa, 
-        scale = beta_previa), aes(color = "Previa")) + 
-    stat_function(fun = dgamma, args = list(shape = alpha_posterior, 
-        scale = beta_posterior), aes(color = "Posterior")) + 
-    stat_function(fun = dexp, args = list(rate = theta), 
-        aes(color = "Verosimilitud")) + ylim(0, 1.5e-05) + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(0, 7.5e5)), aes(x)) +
+  stat_function(fun = dgamma, args = list(shape = alpha_previa, scale = beta_previa), aes(color = "Previa")) +
+  stat_function(fun = dgamma, args = list(shape = alpha_posterior, scale = beta_posterior), aes(color = "Posterior")) +
+  stat_function(fun = dexp, args = list(rate = theta), aes(color = "Verosimilitud")) +
+  ylim(0, 1.5e-5) +
+  theme_minimal()
 ```
 
 
@@ -770,14 +770,12 @@ Suponga que \(X_6 = 3000\)
 ```
 
 ```r
-ggplot(data = data.frame(x = c(0, 1e+06)), aes(x)) + 
-    stat_function(fun = dgamma, args = list(shape = 4, 
-        scale = 20000), aes(color = "Previa #1")) + 
-    stat_function(fun = dgamma, args = list(shape = alpha_previa, 
-        scale = beta_previa), aes(color = "Previa #2")) + 
-    stat_function(fun = dgamma, args = list(shape = alpha_posterior, 
-        scale = beta_posterior), aes(color = "Posterior")) + 
-    ylim(0, 1.5e-05) + theme_minimal()
+ggplot(data = data.frame(x = c(0, 1e6)), aes(x)) +
+  stat_function(fun = dgamma, args = list(shape = 4, scale = 20000), aes(color = "Previa #1")) +
+  stat_function(fun = dgamma, args = list(shape = alpha_previa, scale = beta_previa), aes(color = "Previa #2")) +
+  stat_function(fun = dgamma, args = list(shape = alpha_posterior, scale = beta_posterior), aes(color = "Posterior")) +
+  ylim(0, 1.5e-5) +
+  theme_minimal()
 ```
 
 
@@ -799,7 +797,7 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 10.64715
+## [1] 10.26207
 ```
 
 ```r
@@ -807,7 +805,7 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 0.5654769
+## [1] 0.5653252
 ```
 
 ```r
@@ -835,33 +833,27 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```r
-(mu_posterior <- ((sigma^2)/(sigma^2 + n * sigma_previa^2)) * 
-    mu_previa + ((n * sigma_previa^2)/(sigma^2 + n * 
-    sigma_previa^2)) * mu)
+(mu_posterior <- ((sigma^2) / (sigma^2 + n * sigma_previa^2)) * mu_previa + ((n * sigma_previa^2) / (sigma^2 + n * sigma_previa^2)) * mu)
 ```
 
 ```
-## [1] 9.621605
+## [1] 9.274089
 ```
 
 ```r
-(sigma2_posterior <- (sigma^2 * sigma_previa^2)/(sigma^2 + 
-    n * sigma_previa^2))
+(sigma2_posterior <- (sigma^2 * sigma_previa^2) / (sigma^2 + n * sigma_previa^2))
 ```
 
 ```
-## [1] 0.09632134
+## [1] 0.09627465
 ```
 
 ```r
-ggplot(data = data.frame(x = c(-5, 15)), aes(x)) + 
-    stat_function(fun = dnorm, args = list(mean = mu_previa, 
-        sd = sigma_previa), aes(color = "Previa")) + 
-    stat_function(fun = dnorm, args = list(mean = mu_posterior, 
-        sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) + 
-    stat_function(fun = dnorm, args = list(mean = mu, 
-        sd = sigma), aes(color = "Verosimilitud")) + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(-5, 15)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = mu_previa, sd = sigma_previa), aes(color = "Previa")) +
+  stat_function(fun = dnorm, args = list(mean = mu_posterior, sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma), aes(color = "Verosimilitud")) +
+  theme_minimal()
 ```
 
 
@@ -878,7 +870,7 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 9.994564
+## [1] 9.982037
 ```
 
 ```r
@@ -886,7 +878,7 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 1.060066
+## [1] 0.9857844
 ```
 
 ```r
@@ -914,33 +906,27 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```r
-(mu_posterior <- ((sigma^2)/(sigma^2 + n * sigma_previa^2)) * 
-    mu_previa + ((n * sigma_previa^2)/(sigma^2 + n * 
-    sigma_previa^2)) * mu)
+(mu_posterior <- ((sigma^2) / (sigma^2 + n * sigma_previa^2)) * mu_previa + ((n * sigma_previa^2) / (sigma^2 + n * sigma_previa^2)) * mu)
 ```
 
 ```
-## [1] 9.883499
+## [1] 9.885968
 ```
 
 ```r
-(sigma2_posterior <- (sigma^2 * sigma_previa^2)/(sigma^2 + 
-    n * sigma_previa^2))
+(sigma2_posterior <- (sigma^2 * sigma_previa^2) / (sigma^2 + n * sigma_previa^2))
 ```
 
 ```
-## [1] 0.01111253
+## [1] 0.009624183
 ```
 
 ```r
-ggplot(data = data.frame(x = c(-5, 15)), aes(x)) + 
-    stat_function(fun = dnorm, args = list(mean = mu_previa, 
-        sd = sigma_previa), aes(color = "Previa")) + 
-    stat_function(fun = dnorm, args = list(mean = mu_posterior, 
-        sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) + 
-    stat_function(fun = dnorm, args = list(mean = mu, 
-        sd = sigma), aes(color = "Verosimilitud")) + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(-5, 15)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = mu_previa, sd = sigma_previa), aes(color = "Previa")) +
+  stat_function(fun = dnorm, args = list(mean = mu_posterior, sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma), aes(color = "Verosimilitud")) +
+  theme_minimal()
 ```
 
 
@@ -959,7 +945,7 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```
-## [1] 9.576984
+## [1] 9.864745
 ```
 
 ```r
@@ -967,7 +953,7 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```
-## [1] 7.32444
+## [1] 5.864811
 ```
 
 ```r
@@ -995,33 +981,27 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```r
-(mu_posterior <- ((sigma^2)/(sigma^2 + n * sigma_previa^2)) * 
-    mu_previa + ((n * sigma_previa^2)/(sigma^2 + n * 
-    sigma_previa^2)) * mu)
+(mu_posterior <- ((sigma^2) / (sigma^2 + n * sigma_previa^2)) * mu_previa + ((n * sigma_previa^2) / (sigma^2 + n * sigma_previa^2)) * mu)
 ```
 
 ```
-## [1] 1.504693
+## [1] 2.221989
 ```
 
 ```r
-(sigma2_posterior <- (sigma^2 * sigma_previa^2)/(sigma^2 + 
-    n * sigma_previa^2))
+(sigma2_posterior <- (sigma^2 * sigma_previa^2) / (sigma^2 + n * sigma_previa^2))
 ```
 
 ```
-## [1] 0.8428844
+## [1] 0.7747545
 ```
 
 ```r
-ggplot(data = data.frame(x = c(-5, 15)), aes(x)) + 
-    stat_function(fun = dnorm, args = list(mean = mu_previa, 
-        sd = sigma_previa), aes(color = "Previa")) + 
-    stat_function(fun = dnorm, args = list(mean = mu_posterior, 
-        sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) + 
-    stat_function(fun = dnorm, args = list(mean = mu, 
-        sd = sigma), aes(color = "Verosimilitud")) + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(-5, 15)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = mu_previa, sd = sigma_previa), aes(color = "Previa")) +
+  stat_function(fun = dnorm, args = list(mean = mu_posterior, sd = sqrt(sigma2_posterior)), aes(color = "Posterior")) +
+  stat_function(fun = dnorm, args = list(mean = mu, sd = sigma), aes(color = "Verosimilitud")) +
+  theme_minimal()
 ```
 
 
@@ -1042,7 +1022,7 @@ beta <- 36178
 
 
 ```r
-(theta <- alpha/beta)
+(theta <- alpha / beta)
 ```
 
 ```
@@ -1056,15 +1036,15 @@ Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=40
 
 ```r
 m <- rgamma(n = 1000, scale = beta, shape = alpha)
-(theta <- median(m))
+(theta <- median (m))
 ```
 
 ```
-## [1] 312498.7
+## [1] 307640.1
 ```
 
 
-Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.2000131\times 10^{-6}}.
+Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.2505512\times 10^{-6}}.
 
 **OJO: En este caso la pérdida cuadrática ajusta mejor ya que la distribución que la pérdida absoluta ya que la distribución NO es simétrica. En el caso simétrico los resultados serían muy similares.** 
 
@@ -1093,7 +1073,7 @@ Una primera aproximación para la previa es usar una distribución discreta. En 
 ```r
 p <- seq(0.05, 0.95, by = 0.1)
 prior <- c(1, 5.2, 8, 7.2, 4.6, 2.1, 0.7, 0.1, 0, 0)
-prior <- prior/sum(prior)
+prior <- prior / sum(prior)
 plot(p, prior, type = "h", ylab = "Probabilidad Previa")
 ```
 
@@ -1180,8 +1160,8 @@ Para esto ajustaremos los siguientes parámetros
 
 
 ```r
-quantile2 <- list(p = 0.9, x = 0.5)
-quantile1 <- list(p = 0.5, x = 0.3)
+quantile2 <- list(p = .9, x = .5)
+quantile1 <- list(p = .5, x = .3)
 (ab <- beta.select(quantile1, quantile2))
 ```
 
@@ -1200,13 +1180,12 @@ En este caso se obtendra la distribución posterior Beta con paramétros $\alpha
 
 
 ```r
-curve(dbeta(x, a + s, b + f), from = 0, to = 1, xlab = "p", 
-    ylab = "Densidad", lty = 1, lwd = 4)
-curve(dbeta(x, s + 1, f + 1), add = TRUE, lty = 2, 
-    lwd = 4)
+curve(dbeta(x, a + s, b + f), from = 0, to = 1,
+  xlab = "p", ylab = "Densidad", lty = 1, lwd = 4)
+curve(dbeta(x, s + 1, f + 1), add = TRUE, lty = 2, lwd = 4)
 curve(dbeta(x, a, b), add = TRUE, lty = 3, lwd = 4)
-legend(0.7, 4, c("Previa", "Verosimilitud", "Posterior"), 
-    lty = c(3, 2, 1), lwd = c(3, 3, 3))
+legend(.7, 4, c("Previa", "Verosimilitud", "Posterior"),
+  lty = c(3, 2, 1), lwd = c(3, 3, 3))
 ```
 
 
@@ -1281,7 +1260,7 @@ Suponga que se tiene 100 valores con distribución exponencial con parámetro
 
 
 ```r
-x <- rexp(n = 100, rate = 1)
+x  <- rexp(n = 100, rate = 1)
 n <- length(x)
 y <- sum(x)
 theta <- seq(0.5, 1.5, length.out = 1000)
@@ -1290,7 +1269,7 @@ theta <- seq(0.5, 1.5, length.out = 1000)
 
 
 ```r
-L <- theta^(-n) * exp(-y/theta)
+L <- theta^(-n) * exp(-y / theta)
 plot(theta, L)
 ```
 
@@ -1300,7 +1279,7 @@ plot(theta, L)
 
 
 ```r
-l <- -n * log(theta) - y/theta
+l <- -n * log(theta) - y / theta
 plot(theta, l)
 ```
 
@@ -1371,8 +1350,7 @@ sigma <- seq(0.5, 1.5, length.out = 50)
 
 ms <- expand.grid(sigma, mu)
 
-l <- -(n/2) * log(2 * pi/ms[, 1]^2) - (1/(2 * ms[, 
-    1]^2) * sum((x - ms[, 2])^2))
+l <- -(n / 2) * log(2 * pi / ms[, 1]^2) - (1 / (2 * ms[, 1]^2) * sum((x - ms[, 2])^2))
 
 scatterplot3d(ms[, 1], ms[, 2], l, angle = 45)
 ```
@@ -1405,7 +1383,7 @@ theta <- seq(1.5, 2.5, length.out = 1000)
 
 L <- numeric(1000)
 for (k in 1:1000) {
-    L[k] <- 1/theta[k]^n * prod(x < theta[k])
+  L[k] <- 1 / theta[k]^n * prod(x < theta[k])
 }
 
 plot(theta, L)
@@ -1590,10 +1568,8 @@ Suponga que tenemos una tabla con los siguientes datos, los cuales representan l
 
 
 ```r
-(X <- c(rep(0, 14), rep(1, 30), rep(2, 36), rep(3, 
-    68), rep(4, 43), rep(5, 43), rep(6, 30), rep(7, 
-    14), rep(8, 10), rep(9, 6), rep(10, 4), rep(11, 
-    1), rep(12, 1)))
+(X <- c(rep(0, 14), rep(1, 30), rep(2, 36), rep(3, 68), rep(4, 43), rep(5, 43),
+  rep(6, 30), rep(7, 14), rep(8, 10), rep(9, 6), rep(10, 4), rep(11, 1), rep(12, 1)))
 ```
 
 ```
@@ -1621,8 +1597,7 @@ Queremos ajustar esta tabla a una distribución Poisson con función de densidad
 Primero veamos la forma de los datos, 
 
 ```r
-hist(X, main = "histograma del número de giros a la derecha", 
-    right = FALSE, prob = TRUE)
+hist(X, main = "histograma del número de giros a la derecha", right = FALSE, prob = TRUE)
 ```
 
 
@@ -1635,7 +1610,7 @@ Definamos la función correspondiente a $-\log(\mathbb{P}(X=x))$
 ```r
 n <- length(X)
 negloglike <- function(lambda) {
-    n * lambda - sum(X) * log(lambda) + sum(log(factorial(X)))
+  n * lambda - sum(X) * log(lambda) + sum(log(factorial(X)))
 }
 ```
 
@@ -1925,7 +1900,7 @@ head(X, 20)
 ```
 
 ```
-##  [1] 3 2 3 4 1 5 3 0 3 0 0 0 5 0 2 5 0 3 2 2
+##  [1] 0 2 2 0 5 3 3 2 2 3 2 2 2 3 2 1 3 2 3 4
 ```
 
 ```r
@@ -1952,7 +1927,7 @@ head(Y, 10)
 ```
 
 ```
-##  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ```
 
 
@@ -1965,7 +1940,7 @@ El objetivo es estimar $p$ donde $p$ es la probabilidad de que $X_i =1$ (solo ll
 ```
 
 ```
-## [1] 0.264
+## [1] 0.273
 ```
 
 ¿Es el óptimo?
@@ -1996,11 +1971,11 @@ Vea que
 ```r
 T <- sum(X)
 n <- length(X)
-(delta_0 <- (T/n) * (1 - 1/n)^(T - 1))
+(delta_0 <- (T / n) * (1 - 1 / n)^(T - 1))
 ```
 
 ```
-## [1] 0.2707382
+## [1] 0.2666919
 ```
 
 En este caso \(\delta_0\) es mejor que \(\delta\) bajo una pérdida cuadrática. 
@@ -2213,13 +2188,13 @@ Se resuelve numéricamente, y si $n=21$ se cumple.
 
 
 ```r
-ggplot(data = data.frame(x = seq(0, 40, length.out = 1000)), 
-    aes(x)) + stat_function(fun = dchisq, args = list(df = 5), 
-    aes(color = "05 grados de libertad")) + stat_function(fun = dchisq, 
-    args = list(df = 10), aes(color = "10 grados de libertad")) + 
-    stat_function(fun = dchisq, args = list(df = 20), 
-        aes(color = "20 grados de libertad")) + ylab("") + 
-    scale_y_continuous(breaks = NULL) + theme_minimal()
+ggplot(data = data.frame(x = seq(0, 40, length.out = 1000)), aes(x)) +
+  stat_function(fun = dchisq, args = list(df = 5), aes(color = "05 grados de libertad")) +
+  stat_function(fun = dchisq, args = list(df = 10), aes(color = "10 grados de libertad")) +
+  stat_function(fun = dchisq, args = list(df = 20), aes(color = "20 grados de libertad")) +
+  ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal()
 ```
 
 
@@ -2274,14 +2249,14 @@ U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} & = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\
 
 
 ```r
-ggplot(data = data.frame(x = seq(-5, 5, length.out = 1000)), 
-    aes(x)) + stat_function(fun = dnorm, args = list(mean = 0, 
-    sd = 1), aes(color = "Normal(0,1)")) + stat_function(fun = dt, 
-    args = list(df = 1), aes(color = " t con 01 grados de libertad")) + 
-    stat_function(fun = dt, args = list(df = 5), aes(color = " t con 05 grados de libertad")) + 
-    stat_function(fun = dt, args = list(df = 10), aes(color = " t con 10 grados de libertad")) + 
-    ylab("") + scale_y_continuous(breaks = NULL) + 
-    theme_minimal()
+ggplot(data = data.frame(x = seq(-5, 5, length.out = 1000)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1), aes(color = "Normal(0,1)")) +
+  stat_function(fun = dt, args = list(df = 1), aes(color = " t con 01 grados de libertad")) +
+  stat_function(fun = dt, args = list(df = 5), aes(color = " t con 05 grados de libertad")) +
+  stat_function(fun = dt, args = list(df = 10), aes(color = " t con 10 grados de libertad")) +
+  ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal()
 ```
 
 
@@ -2488,11 +2463,11 @@ Entonces el intervalo de confianza para este caso es
 
 
 ```r
-c(0, G_inv/T)
+c(0, G_inv / T)
 ```
 
 ```
-## [1] 0.000000 5.702774
+## [1] 0.000000 2.420941
 ```
 
 **Definición**. Sea $X = (X_1,\dots,X_n)$ una muestra de una distribución
@@ -2573,18 +2548,18 @@ gamma2 - gamma1
 ```
 
 ```
-## [1] 4158.789
+## [1] 3700.114
 ```
 
 Finalmente el intervalo es
 
 
 ```r
-c(diferencias/chi2_gamma2, diferencias/chi2_gamma1)
+c(diferencias / chi2_gamma2, diferencias / chi2_gamma1)
 ```
 
 ```
-## [1] 3.820706 4.553580
+## [1] 3.399319 4.051363
 ```
 
 **NOTA: Las cantidades pivotales no siempre existen. Esto ocurre principalemente
@@ -2658,18 +2633,17 @@ Xbar <- data.frame(n = numeric(), Z = numeric())
 
 idx <- rep(x = c(10, 2000), times = 1000)
 for (k in 1:length(idx)) {
-    muestra <- rpois(n = idx[k], lambda = 5)
-    Xbar[k, "Z"] <- sqrt(idx[k]) * (mean(muestra) - 
-        5)/sqrt(5)
-    Xbar[k, "n"] <- idx[k]
+  muestra <- rpois(n = idx[k], lambda = 5)
+  Xbar[k, "Z"] <- sqrt(idx[k]) * (mean(muestra) - 5) / sqrt(5)
+  Xbar[k, "n"] <- idx[k]
 }
 
 
 
-ggplot(Xbar) + geom_histogram(mapping = aes(x = Z, 
-    y = ..density..), color = "white") + stat_function(fun = dnorm, 
-    args = list(mean = 0, sd = 1), color = "red") + 
-    facet_wrap(. ~ n, scales = "free")
+ggplot(Xbar) +
+  geom_histogram(mapping = aes(x = Z, y = ..density..), color = "white") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1), color = "red") +
+  facet_wrap(. ~ n, scales = "free")
 ```
 
 
@@ -2734,8 +2708,7 @@ X <- rpois(n = 1000, lambda = 5)
 Xbar <- mean(X)
 z <- qnorm(p = 0.975)
 
-c(2 * sqrt(Xbar) - 1/sqrt(1000) * z, 2 * sqrt(Xbar) + 
-    1/sqrt(1000) * z)
+c(2 * sqrt(Xbar) - 1 / sqrt(1000) * z, 2 * sqrt(Xbar) + 1 / sqrt(1000) * z)
 ```
 
 ```
@@ -2751,8 +2724,7 @@ z_{\frac{1+\gamma}2}\right)^2\bigg].\]
 
 
 ```r
-c((1/4) * (2 * sqrt(Xbar) - 1/sqrt(1000) * z)^2, (1/4) * 
-    (2 * sqrt(Xbar) + 1/sqrt(1000) * z)^2)
+c((1 / 4) * (2 * sqrt(Xbar) - 1 / sqrt(1000) * z)^2, (1 / 4) * (2 * sqrt(Xbar) + 1 / sqrt(1000) * z)^2)
 ```
 
 ```
@@ -2774,13 +2746,13 @@ Sean $X_1,\dots,X_n\sim N(\mu,\sigma^2) = N(\mu,\tau ^{-1})$. Su densidad corres
 
 \begin{align*}
 f(x|\mu,\sigma^2) 
-&= \left(\dfrac 1{2\pi\sigma^2}\right)\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] \\
-&= \left(\dfrac \tau{2\pi}\right)\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).
+&= \left(\dfrac 1{2\pi\sigma^2}\right)^{\frac12}\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] \\
+&= \left(\dfrac \tau{2\pi}\right)^{\frac12}\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).
 \end{align*}
 
 La verosimilitud es
 
-\[f_n(x|\mu,\tau) = \left(\dfrac\tau{2\pi}\right)^{\frac n2}\exp\bigg[-\dfrac\tau2\sum_{i=1}^2(x_i-\mu)^2
+\[f_n(x|\mu,\tau) = \left(\dfrac\tau{2\pi}\right)^{\frac n2}\exp\bigg[-\dfrac\tau2\sum_{i=1}^n(x_i-\mu)^2
 \bigg].\]
 
 La previa de la densidad conjunta es $[\mu,\tau]\propto [\mu|\tau]\cdot [\tau]$ y la posterior $[\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]$.
@@ -2813,7 +2785,7 @@ donde $[\mu|\tau,x] \sim N(\mu_1,\lambda_1\tau)$ con
 
 \[\lambda_1 = \lambda_0+n, \quad \mu_1 = \dfrac{\lambda_0\mu_0 + n\bar x_n}{\lambda_0+n},\]
 y $[\tau] \sim \Gamma(\alpha_1,\beta_1)$,
-\[\alpha_1 = \alpha_0+\dfrac n2, \quad \beta_1 = \beta_0  \dfrac 12s_n^2 + \dfrac{n\lambda_0(\bar X_n-\mu_0)^2}{2(\lambda_0+n)}.\]
+\[\alpha_1 = \alpha_0+\dfrac n2, \quad \beta_1 = \beta_0 +  \dfrac 12s_n^2 + \dfrac{n\lambda_0(\bar X_n-\mu_0)^2}{2(\lambda_0+n)}.\]
 
 *Prueba*. 
 
@@ -2990,7 +2962,7 @@ haremos un intervalo de confianza con cuantiles \(t\)-student.
 ```
 
 ```r
-(level <- (gamma + 1)/2)
+(level <- (gamma + 1) / 2)
 ```
 
 ```
@@ -3006,8 +2978,7 @@ haremos un intervalo de confianza con cuantiles \(t\)-student.
 ```
 
 ```r
-c(Xbar - tquantile * s/sqrt(n), Xbar + tquantile * 
-    s/sqrt(n))
+c(Xbar - tquantile * s / sqrt(n), Xbar + tquantile * s / sqrt(n))
 ```
 
 ```
@@ -3029,7 +3000,7 @@ basados en la experiencia previa (que puede ser ninguna).
 
 ```r
 mu_0 <- lambda_0 <- 1
-alpha_0 <- beta_0 <- 1/2
+alpha_0 <- beta_0 <- 1 / 2
 ```
 
 Los datos de este experimento son $n = 30$, $\bar x_n = 1.442$, $s_n^2 =
@@ -3037,7 +3008,7 @@ Los datos de este experimento son $n = 30$, $\bar x_n = 1.442$, $s_n^2 =
 
 
 ```r
-(mu_1 <- (lambda_0 * mu_0 + n * Xbar)/(lambda_0 + n))
+(mu_1 <- (lambda_0 * mu_0 + n * Xbar) / (lambda_0 + n))
 ```
 
 ```
@@ -3053,7 +3024,7 @@ Los datos de este experimento son $n = 30$, $\bar x_n = 1.442$, $s_n^2 =
 ```
 
 ```r
-(alpha_1 <- alpha_0 + n/2)
+(alpha_1 <- alpha_0 + n / 2)
 ```
 
 ```
@@ -3061,12 +3032,11 @@ Los datos de este experimento son $n = 30$, $\bar x_n = 1.442$, $s_n^2 =
 ```
 
 ```r
-(beta_1 <- 0.5 * beta_0 * (n - 1) * s^2 + n * lambda_0 * 
-    (Xbar - mu_0)/(2 * (lambda_0 + n)))
+(beta_1 <- beta_0 + 0.5 * (n - 1) * s^2 + n * lambda_0 * (Xbar - mu_0) / (2 * (lambda_0 + n)))
 ```
 
 ```
-## [1] 0.881641
+## [1] 2.049411
 ```
 
 
@@ -3076,7 +3046,7 @@ Los datos de este experimento son $n = 30$, $\bar x_n = 1.442$, $s_n^2 =
 
 * $\alpha_1 = 15.5$.
 
-* $\beta_1 = 0.881641$
+* $\beta_1 = 2.049411$
 
 La posterior es \[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_1,\lambda_1,\alpha_1,\beta_1).\]
 
@@ -3084,17 +3054,15 @@ La posterior es \[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_1,\lambda_1,\alpha_1
 ```r
 library(NormalGamma)
 
-previa <- dnormgam(par = c(mu_0, sqrt(s2/lambda_0), 
-    alpha_0, 1/beta_0), plot = FALSE)
-posterior <- dnormgam(par = c(mu_1, sqrt(s2/lambda_1), 
-    alpha_1, 1/beta_1), plot = FALSE)
+previa <- dnormgam(par = c(mu_0, sqrt(s2 / lambda_0), alpha_0, 1 / beta_0), plot = FALSE)
+posterior <- dnormgam(par = c(mu_1, sqrt(s2 / lambda_1), alpha_1, 1 / beta_1), plot = FALSE)
 
-df <- rbind(data.frame(distribucion = "Previa", x = previa$xout, 
-    y = previa$dout), data.frame(distribucion = "Posterior", 
-    x = posterior$xout, y = posterior$dout))
+df <- rbind(data.frame(distribucion = "Previa", x = previa$xout, y = previa$dout),
+  data.frame(distribucion = "Posterior", x = posterior$xout, y = posterior$dout))
 
-ggplot(df, aes(x, y, color = distribucion)) + geom_point() + 
-    theme_minimal()
+ggplot(df, aes(x, y, color = distribucion)) +
+  geom_point() +
+  theme_minimal()
 ```
 
 
@@ -3108,10 +3076,22 @@ es Gamma.
 \begin{align*}
 \mathbb P[\sigma>0.3|x] & = \mathbb P\bigg[\sqrt{\dfrac 1\tau} >0.3\bigg|x\bigg]\\
 & = \mathbb P\bigg[\dfrac 1\tau >0.3^2\bigg|x\bigg]\\ 
-& = \mathbb P\bigg[\tau >\dfrac 1{0.3^2}\bigg|x\bigg] = 0.984
+& = \mathbb P\bigg[\tau <\dfrac 1{0.3^2}\bigg|x\bigg] \\ 
+& = \mathbb P\bigg[\tau <11.11\bigg|x\bigg] \\ 
+&=0.9554296
 \end{align*}
 
-dado que $[\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(15.5,0.881641)$.
+dado que $[\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(15.5,2.049411)$.
+
+En este caso observe que el cálculo es directo usando la función `pgamma`
+
+```r
+pgamma(q = 0.3^(-2), shape = alpha_1, rate = beta_1)
+```
+
+```
+## [1] 0.9554296
+```
 
 
  Lo más importante es que basados en el teorema de las marginales podemos
@@ -3141,12 +3121,14 @@ t_{2\alpha_1, \tfrac{\gamma+1}{2}}
  
  ```r
  tquantile2alpha <- qt(p = level, df = 2 * alpha_1)
- c(mu_1 - tquantile2alpha * (beta_1/(lambda_1 * alpha_1))^(1/2), 
-     mu_1 + tquantile2alpha * (beta_1/(lambda_1 * alpha_1))^(1/2))
+ c(
+   mu_1 - tquantile2alpha * (beta_1 / (lambda_1 * alpha_1))^(1 / 2),
+   mu_1 + tquantile2alpha * (beta_1 / (lambda_1 * alpha_1))^(1 / 2)
+ )
  ```
  
  ```
- ## [1] 1.355114 1.500370
+ ## [1] 1.317011 1.538473
  ```
 **Noten que para este caso, encontramos un intervalo más pequeño que antes. **
  
@@ -3226,12 +3208,12 @@ Y la medía del estimador es
 # Valores dados con paramétro desconocido
 X <- rexp(n = 3, rate = 2)
 gamma <- 0.95
-level <- (gamma + 1)/2
+level <- (gamma + 1) / 2
 
 alpha <- 4
 beta <- 2 + sum(X)
 
-(theta_hat <- alpha/beta)
+(theta_hat <- alpha / beta)
 ```
 
 ```
@@ -3250,16 +3232,17 @@ c(A, B)
 ```
 
 ```r
-ggplot(data = data.frame(x = c(0, 4)), aes(x)) + stat_function(fun = dgamma, 
-    args = list(shape = alpha, rate = beta)) + geom_vline(xintercept = A, 
-    color = "red") + geom_vline(xintercept = B, color = "red") + 
-    geom_vline(xintercept = theta_hat, color = "blue") + 
-    theme_minimal()
+ggplot(data = data.frame(x = c(0, 4)), aes(x)) +
+  stat_function(fun = dgamma, args = list(shape = alpha, rate = beta)) +
+  geom_vline(xintercept = A, color = "red") +
+  geom_vline(xintercept = B, color = "red") +
+  geom_vline(xintercept = theta_hat, color = "blue") +
+  theme_minimal()
 ```
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-61-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-62-1} \end{center}
 
 _Ejercicio_ Para hacer este ejercicio sin usar bayes, se debe resolver usando
 una función estabilizadora de la varianza. Encuentre esa función y aplique el
@@ -3340,50 +3323,143 @@ Entonces
 
 ## Estimadores insesgados
 
-**Definición**. Un estimador $\delta(x)$ es un **estimador insesgado** de $g(\theta)$ si $\mathbb E_{\theta}[\delta(x)] = g(\theta)$, $\forall \theta$. A $\mathbb E_{\theta}[\delta(x)] - g(\theta)$ se le denomina **sesgo**.
+**Definición**. Un estimador $\delta(x)$ es un **estimador insesgado** de
+$g(\theta)$ si $\mathbb E_{\theta}[\delta(x)] = g(\theta)$, $\forall \theta$. A
+$\mathbb E_{\theta}[\delta(x)] - g(\theta)$ se le denomina **sesgo**.
 
-**Ejemplo**. Si $X_1,\dots, X_n \overset{i.i.d}{\sim} F_\theta$, $\mu = \mathbb E[X_1]$, entonces
+**Ejemplo**. Si $X_1,\dots, X_n \overset{i.i.d}{\sim} F_\theta$, $\mu = \mathbb
+E[X_1]$, entonces
+
 \[\mathbb E[\bar X_n] = \dfrac 1n \sum_{i=1}^n\mathbb E(X_i) = \mu\]
+
 $\bar X_n$ es estimador insesgado de $\mu$.
 
-**Ejemplo**. $X_1,X_2,X_3 \overset{i.i.d}{\sim} \text{Exp}(\theta)$. El MLE de $\theta$ es
+
+**Ejemplo**. $X_1,X_2,X_3 \overset{i.i.d}{\sim} \text{Exp}(\theta)$. El MLE de
+$\theta$ es
+
 \[\hat\theta = \dfrac 3T = \dfrac 3{\sum_{i=1}^{3}X_i}\]
+
 ¿Será $\hat\theta$ un estimador insesgado?
-\[\mathbb E[\hat\theta] = \mathbb E\bigg[\dfrac 3T\bigg]= 3\mathbb E\bigg[\dfrac 1T\bigg], \quad T\sim \Gamma(3,\theta)\]
-Como
-$\dfrac 1T \sim \text{Gamma Inversa}$, se tiene que
-\[\mathbb E\bigg[\dfrac 1T\bigg] = \dfrac{\theta}2 \implies \mathbb E[\hat \theta] =\dfrac{3\theta}2 \neq \theta\]
+
+
+```r
+theta_real <- 5
+X <- matrix(rexp(n = 1000 * 3, rate = theta_real), ncol = 3)
+
+T <- apply(X = X, MARGIN = 1, FUN = sum)
+
+theta_hat <- 3 / T
+
+hist(theta_hat - theta_real, breaks = 100)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-64-1} \end{center}
+
+Teoricamente podemos ver que 
+
+\[\mathbb E[\hat\theta] = \mathbb E\bigg[\dfrac 3T\bigg]= 3\mathbb E\bigg[\dfrac
+1T\bigg], \quad T\sim \Gamma(3,\theta)\]
+
+Como $\dfrac 1T \sim \text{Gamma Inversa}(3,\theta)$^[La Gamma Inversa con paramétros \(\alpha\) y $\beta$ tiene media \(\dfrac{\beta}{\alpha-1}.\)], se tiene que 
+
+\[\mathbb E\bigg[\dfrac 1T\bigg] = \dfrac{\theta}2 \implies \mathbb E[\hat
+\theta] =\dfrac{3\theta}2 \neq \theta\]
+
 Por lo que $\hat \theta$ es un estimador sesgado, con sesgo
 \[\text{sesgo}(\hat\theta) = \dfrac{3\theta}{2} -\theta = \dfrac \theta 2.\]
 
+Si por ejemplo \(\theta=5\), entonces la diferencia debería ser aproximadamente
+\(\dfrac 5 2 \).
+
+
+```r
+mean(theta_hat - theta_real)
+```
+
+```
+## [1] 2.515532
+```
+
 Si $U = \dfrac {2\hat\theta}{3} = \dfrac 23 \cdot \dfrac{3}{T} = \dfrac 2T$,
 \[\mathbb E[U] = \dfrac 23 \mathbb E(\hat\theta) =\dfrac 23 \cdot \dfrac 32 \theta.\]
+
 Entonces $U$ es un estimador insesgado.
 
-Necesitamos encontrar estimadores en donde $\text{Var}(\delta(x))\to 0$ insesgados. ¿Cómo controlar sesgo y varianza?
+
+```r
+U <- 2 / T
+mean(U - theta_real)
+```
+
+```
+## [1] 0.01035435
+```
+
+
+**Importante:** El caso ideal es encontrar estimadores en donde
+$\text{Var}(\delta(x))\to 0$ y además que sean insesgados.
+
+¿Cómo controlar sesgo y varianza?
+
+Defina la siguiente cantidad 
 
 \begin{align*}
-\text{sesgo}^2(\delta(x))+\text{Var}(\delta(x)) & = (\mathbb E_\theta[\delta(x)]-\theta)^2 + \mathbb E[[\delta(x)-\mathbb E[\delta(x)]]^2]\\
+\text{Sesgo}^2(\delta(x))+\text{Var}(\delta(x)) & = (\mathbb E_\theta[\delta(x)]-\theta)^2 + \mathbb E[[\delta(x)-\mathbb E[\delta(x)]]^2]\\
 	& =\mathbb E[ \underbrace{(\mathbb E_\theta[\delta(x)]-\theta)^2}_{A^2} + \underbrace{[\delta(x)-\mathbb E[\delta(x)]]^2}_{B^2}]\\
-	& = \mathbb E[A^2+B^2 - 2(\underset{=0}{\mathbb E[\delta(x)]-\theta)(\delta(x)-\mathbb E[\delta(x)]})\\
+	& = \mathbb E[A^2+B^2 - 2(\underset{=0}{\mathbb E[\delta(x)]-\theta)(\delta(x)-\mathbb E[\delta(x)]})]\\
 	& =  \mathbb E[(\mathbb E[\delta(x)]-\theta - \mathbb E[\delta(x)] + \delta(x))^2]\\
 	& = \mathbb E[(\delta(x)-\theta)^2] = MSE(\delta(x))
-\end{align*}
+  * [ ] \end{align*}
 	
-**Corolario**. Si $\delta$ tiene varianza finita, entonces
+Si $\delta$ tiene varianza finita, entonces definimos el error cuadrático medio
+(MSE) de \(\delta(x)\) como, 
 	
-\[MSE_{\theta}(\delta(x)) =\text{sesgo}^2(\delta(x)) + \text{Var}(\delta(x)).\]
+\[MSE_{\theta}(\delta(x)) =\text{Sesgo}^2(\delta(x)) + \text{Var}(\delta(x)).\]
 	
-**Ejemplo**. Comparar $\hat\theta$ y $\delta(x) =\dfrac 2T$ en términos del MSE.
+**Ejemplo**. Comparar $\hat\theta$ y $U =\dfrac 2T$ en términos del MSE.
 
-Dado que $\text{Var}\left(\dfrac 1T\right) = \dfrac{\theta^2}4$, se tiene
+Dado que $\text{Var}\left(\dfrac 1T\right) = \dfrac{\theta^2}4$,^[Si \(X\sim\text{Gamma-Inversa}(\alpha, \beta)\) entonces \(\text{Var}(X)=\dfrac{\beta ^{2}}{(\alpha -1)^2(\alpha-2)}\).] se tiene
 
-* $MSE(\delta(x)) = \text{Var}\left(\dfrac 2T\right) = 4\dfrac{\theta^2}4 = \theta^2$.
 
-* $MSE(\hat\theta) = (\text{sesgo}(\hat\theta))^2+\text{Var}\left(\dfrac 3T\right) = \dfrac{\theta^2}{4}+\dfrac{9\theta^2}{4} = \dfrac{5\theta}{2}$.
 
-$\delta(x)$ es mejor estimador en términos de MSE que el $\hat\theta$.
+* $\mathrm{MSE}(U) = \text{Var}\left(\dfrac 2T\right) = 4\dfrac{\theta^2}4 = \theta^2$.
 
+
+```r
+var(U) + mean(U - theta_real)^2
+```
+
+```
+## [1] 21.90015
+```
+
+* $\mathrm{MSE}(\hat\theta) = (\text{Sesgo}(\hat\theta))^2+\text{Var}\left(\dfrac 3T\right) = \dfrac{\theta^2}{4}+\dfrac{9\theta^2}{4} = \dfrac{5\theta^2}{2}$.
+
+
+```r
+var(theta_hat) + mean(theta_hat - theta_real)^2
+```
+
+```
+## [1] 55.603
+```
+$U$ es mejor estimador en términos de MSE que el $\hat\theta$.
+
+**OJO:** El estimado bayesiano es \(\theta_{Bayes} = \dfrac{4}{2+T}\) y este es
+un poco más eficiente que los otros dos.  
+
+
+```r
+theta_bayes <- 4 / (2 + T)
+var(theta_bayes) + mean(theta_bayes - theta_real)^2
+```
+
+```
+## [1] 11.83203
+```
 ## Estimador insesgado de la varianza
 
 **Teorema**. Si $X_1,\dots, X_n \sim F_{\theta}$ con varianza finita y $g(\theta) = \text{Var}(X_1)$ entonces
@@ -3392,45 +3468,101 @@ es un estimador insesgado de $\sigma^2$.
 
 *Prueba*. Considere que
 
-\[ \sum (X_i-\mu)^2 = s_n^2 + n(\bar X_n-\mu)^2 \]
-Entonces
+ 
+\begin{equation}
+\sum_{i=1}^{n}\left(X_{i}-\mu\right)^{2}=\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}+n\left(\bar{X}_{n}-\mu\right)^{2}
+\end{equation}
 
-\[\mathbb E[\hat\sigma_0^2] = \mathbb E \bigg[ \dfrac {s_n^2}n \bigg] =  \mathbb E \bigg[ \dfrac 1n \sum(X_i-\mu)^2\bigg] - \mathbb E[(\bar X_n-\mu)^2] = \sigma^2-\dfrac{\sigma^2}n = \left(\dfrac{n-1}n\right)\sigma^2.\]
+Entonces si \(\sigma_0 ^{2} = \dfrac 1n \sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}\)
+
+\[\mathbb E[\hat\sigma_0^2] = \mathbb E \bigg[ \dfrac {\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}}n \bigg] =  \mathbb E \bigg[ \dfrac 1n \sum(X_i-\mu)^2\bigg] - \mathbb E[(\bar X_n-\mu)^2] = \sigma^2-\dfrac{\sigma^2}n = \left(\dfrac{n-1}n\right)\sigma^2.\]
 
 Para que $\hat\sigma_0^2$ sea insesgado,
 \[\mathbb E \bigg[\dfrac n{n-1}\hat\sigma_0^2\bigg] = \mathbb E[\hat\sigma_1] = \sigma^2.\]
 
 Entonces $\hat\sigma_1$ es estimador insesgado de $\sigma^2$.
 
-**Ejemplo**. Sean $X_1,\dots,X_n \overset{i.i.d}{\sim}\text{Poi}(\theta)$. $\mathbb E(X_i) = \text{Var}(X_i) = \theta$. Estimadores insesgados de $\theta$ son:
+**Ejemplo**. Sean $X_1,\dots,X_n \overset{i.i.d}{\sim}\text{Poi}(\theta)$.
+$\mathbb E(X_i) = \text{Var}(X_i) = \theta$. Estimadores insesgados de $\theta$
+son:
 
-1) $\bar X_n$.
+1. $\bar X_n$.
 
-2) $\hat \sigma_1^2$.
+2. $\hat \sigma_1^2$.
 
-3) Si $\alpha \in (0,1)$, $T = \alpha\bar X_n + (1-\alpha)\hat\sigma_1^2$ también es un estimador insesgado (corrige otros problemas).
+3. Si $\alpha \in (0,1)$, $T = \alpha\bar X_n + (1-\alpha)\hat\sigma_1^2$
+también es un estimador insesgado. 
+
+
+
+```r
+X <- matrix(rpois(n = 1000 * 100, lambda = 2), nrow = 100)
+
+m <- apply(X, 1, mean)
+v <- apply(X, 1, var)
+a <- apply(X, 1, function(x, alpha) {
+  alpha * mean(x) + (1 - alpha) * var(x)
+}, alpha = 10)
+
+hist(m)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-70-1} \end{center}
+
+```r
+hist(v)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-70-2} \end{center}
+
+```r
+hist(a)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-70-3} \end{center}
 
 **Ejemplo**. (Normal) ¿Cuál estimador tiene menor MSE, $\hat\sigma^2_0$ o $\hat\sigma^2_1$? 
 
-Defina $T_c = cs_n^2$. Si $c = 1/n$, $T_c = \hat\sigma_0$ y si $c = 1/(n-1)$, $T_c = \hat\sigma_1$. De esta manera,
+Defina $T_c = c\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}$. Si $c = 1/n$, $T_c = \hat\sigma_0$ y si $c = 1/(n-1)$, $T_c = \hat\sigma_1$. De esta manera,
 
 \[MSE_{\sigma^2}(T_c) = \mathbb E[(T_c-\sigma^2)^2] =(\mathbb E(T_c)-\sigma^2)^2+\text{Var}(T_c).\]
 
-* $\mathbb E[T_c] = c\mathbb E[s_n^2] = c(n-1)\mathbb E\bigg[\dfrac{s_n^2}{n-1}\bigg] = c(n-1)\sigma^2$.
+\begin{align*}
+  \mathbb E[T_c]
+  &= c\mathbb E[\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}] \\
+  &= c(n-1)\mathbb E\bigg[\dfrac{\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}}{n-1}\bigg] \\
+  &= c(n-1)\sigma^2.
+\end{align*}
 
-* $\text{Var}(T_c) = c^2\text{Var}(s_n) = c^2\text{Var}\Bigg(\sigma^2\underbrace{\sum\dfrac{(X_i-\bar X_n)}{\sigma^2}}_{\sim\chi^2_{n-1}}\Bigg) = 2c^2\sigma^4(n-1)$.
+\begin{align*}
+  \text{Var}(T_c)
+  &= c^2\text{Var}(\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}) \\
+  &= c^2\text{Var}\Bigg(\sigma^2\underbrace{\sum\dfrac{(X_i-\bar X_n)}{\sigma^2}}_{\sim\chi^2_{n-1}}\Bigg) \\
+  &= 2c^2\sigma^4(n-1).
+\end{align*}
 
 Entonces
 
-\[MSE_{\sigma^2}(T_c) = [c(n-1)\sigma^2-\sigma^2]^2+2c^2\sigma^4(n-1) = [[c(n-1)-1]^2+2c^2(n-1)]\sigma^4.\]
+\[\mathrm{MSE}_{\sigma^2}(T_c) = [c(n-1)\sigma^2-\sigma^2]^2+2c^2\sigma^4(n-1) =
+[[c(n-1)-1]^2+2c^2(n-1)]\sigma^4.\]
 
 Optimizando,
 
-\[\min_c MSE (T_c) = \min_c[(n^2-1)c^2-2(n-1)c+1],\]
+\[\min_c \mathrm{MSE}(T_c) = \min_c[(n^2-1)c^2-2(n-1)c+1],\]
 
-se encuentra que $\hat c = \dfrac 1{n+1}$. Así, $T_{\hat c} = \dfrac{s_n^2}{n+1}$ es el mejor estimador de $\sigma^2$ en el sentido de MSE.
+se encuentra que $\hat c = \dfrac 1{n+1}$. Así,
+$T_{\frac{1}{n+1}} = \dfrac{\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}}{n+1}$
+es el mejor estimador de $\sigma^2$ en el sentido de MSE. Aunque se puede
+demostrar que este estimador es inadmisible. 
 
-**Ejercicio**. Compare $\hat\sigma_0^2$ y $\hat\sigma_1^2$.
+**Ejercicio**. Calcule el MSE de  $\hat\sigma_0^2$ y $\hat\sigma_1^2$ y compare
+los resultados. 
 
 ## Información de Fisher
 
@@ -3439,39 +3571,50 @@ se encuentra que $\hat c = \dfrac 1{n+1}$. Así, $T_{\hat c} = \dfrac{s_n^2}{n+1
 
 Sea $X\sim f(x|\theta)$, $\theta \in \Omega \subset \mathbb R$ parámetro fijo.
 
-* *Supuesto 1*: para cada $x \in \mathcal X$ (espacio muestral de $X$) $f(x|\theta)> 0$ $\forall \theta \in \Omega$.
+* *Supuesto 1*: para cada $x \in \mathcal X$ (espacio muestral de $X$) $f(x|\theta)> 0$ $\forall \theta \in \Omega$. Esto quiere decir que la imagen de la variable aleatoria no puede depender de $\theta$.
 
-* *Restricción*: la imagen de la variable aleatoria no puede depender de $\theta$.
+* *Supuesto 2*: $f(x|\theta)$ es dos veces diferenciable.
+* *Supuesto 3:* \(\dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx =  \int_{\mathcal X}\dfrac d{d\theta}f(x|\theta)dx\).
 
-**Ejemplo**. $\text{Unif}[0,\theta]$, $f(x|\theta) = 1_{(0,\theta)}(x)$. No aplica el supuesto, ya que si $x>\theta$, $f(x|\theta) = 0$.
+**Ejemplo**. $\text{Unif}[0,\theta]$, $f(x|\theta) = 1_{(0,\theta)}(x)$. No
+aplica el supuesto, ya que si $x>\theta$, $f(x|\theta) = 0$. En otras palabras
+el dominio de la distribución no debe depender de \(\theta\). 
+
 
 **Definición**. Se define la **función Score**:
 
-\[\lambda(x|\theta):=\ln f(x|\theta)\]
+\[\lambda(x|\theta)=\ln f(x|\theta)\]
 
 cuyas derivadas son
 
-\[\lambda'(x|\theta) = \dfrac \partial{\partial \theta}\ln f(x|\theta)\]
+ \[\lambda'(x|\theta) = \dfrac \partial{\partial \theta}\ln f(x|\theta)\]
 \[\lambda''(x|\theta) = \dfrac {\partial^2}{\partial \theta^2}\ln f(x|\theta)\]
 
-* *Supuesto 2*: $f(x|\theta)$ es dos veces diferenciable.
 
 **Definición**. Si $X$ y $f(x|\theta)$ satisfacen los supuestos anteriores, la **información de Fisher** ($I(\theta)$) de $X$ es
-\[I(\theta): =\mathbb E[(\lambda'(x|\theta))^2]\]
+\[I(\theta) =\mathbb E[(\lambda'(x|\theta))^2]\]
 donde la esperanza es integral o suma, dependiendo de $X$.
 
-**Teorema**. Bajo las condiciones anteriores, y suponiendo que las dos derivadas de $\int_{\mathcal X}f(x|\theta)dx$ con respecto a $\theta$ (*Supuesto 3*) se pueden calcular al intercambiar el orden de integración y derivación. Entonces
+Por ejemplo si \(f(x\vert\theta)\)
+\begin{equation}
+I(\theta)=\int_{\mathcal{X}}\left[\lambda^{\prime}(x \mid \theta)\right]^{2} f(x \mid \theta) d x
+\end{equation}
 
-\[I(\theta) = -\mathbb E_{\theta}[\lambda''(x|\theta)] = \text{Var}[\lambda'(x|\theta)].\]
+**Teorema**. Bajo las condiciones anteriores, y suponiendo que las dos derivadas
+de $\int_{\mathcal X}f(x|\theta)dx$ con respecto a $\theta$ (*Supuesto 3*) se
+pueden calcular al intercambiar el orden de integración y derivación. Entonces
+
+\[I(\theta) = -\mathbb E_{\theta}[\lambda''(x|\theta)] = \text{Var}[\lambda'(x|\theta)]\].
 
 *Prueba*:
 
 \begin{align*}
-\mathbb E[\lambda'(x|\theta)] & \int_{\mathcal X}\lambda'(x|\theta)f(x|\theta)dx\\
-& = \int_{\mathcal X} \dfrac{f'(x|\theta)}{f(x|\theta)}f(x|\theta)dx\\
-& =  \int_{\mathcal X}f'(x|\theta)dx\\
-& = \dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx \quad \text{por el supuesto}\\
-& = \dfrac d{d\theta}1 = 0
+	\mathbb E[\lambda'(x|\theta)]
+  & = \int_{\mathcal X}\lambda'(x|\theta)f(x|\theta)dx                                            \\
+  & = \int_{\mathcal X} \dfrac{f'(x|\theta)}{f(x|\theta)}f(x|\theta)dx                            \\
+  & =  \int_{\mathcal X}f'(x|\theta)dx                                                            \\
+  & = \dfrac d{d\theta}\int_{\mathcal X}f(x|\theta)dx \quad \text{(por supuesto 3.)} \\
+  & = \dfrac d{d\theta}1 = 0
 \end{align*}
 
 En consecuencia, 
@@ -3480,7 +3623,7 @@ En consecuencia,
 Además,
 \[\lambda''(x|\theta)= \left(\dfrac{f'(x|\theta)}{f(x|\theta)}\right)' = \dfrac{f(x|\theta)f''(x|\theta)-f'(x|\theta)^2}{f^2(x|\theta)} =\dfrac{f''(x|\theta)}{f(x|\theta)} - (\lambda'(x|\theta))^2 \]
 
-Note que
+Note que (por los supuestos 2 y 3),
 
 \begin{align*}
 \mathbb E\bigg[\dfrac{f''(x|\theta)}{f(x|\theta)} \bigg] & = \int_{\mathcal X}\dfrac{f''(x|\theta)}{f(x|\theta)} f(x|\theta)dx \\
@@ -3493,7 +3636,15 @@ Entonces,
 
 Se concluye, además, que $\lambda'(x|\theta)$ es centrada y su varianza es $I(\theta)$.
 
-**Ejemplo**. $X\sim \text{Ber}(p)$.
+**RESULTADO IMPORTANTE**
+
+Si tenemos  \(\lambda(x\vert \theta) = \ln f(x\vert \theta)\), entonces tenemos los siguientes resulados
+
+- \(\lambda'(x\vert \theta)\) es una variable aleatoria.
+- \(\mathbb{E}[\lambda'(x\vert \theta)] =0\).
+- \(\mathrm{Var}[\lambda'(x\vert \theta)] = - \mathbb E[\lambda''(x|\theta)] = I(\theta)\). A esta cantidad se le conoce como la información de Fisher.
+
+**Ejemplo**. Suponga que  $X\sim \text{Bernoulli}(p)$.
 
 * $f(x|p) = p^x(1-p)^{1-x}$, $x=0,1$ satisface supuesto 1.
 
@@ -3501,7 +3652,7 @@ Se concluye, además, que $\lambda'(x|\theta)$ es centrada y su varianza es $I(\
 
 Entonces,
 
-* $\lambda(x|p) = \ln[p^x(1-p)^x] = x\ln p + (1-x)\ln(1-p)$.
+* $\lambda(x|p) = \ln[p^x(1-p)^{1-x}] = x\ln p + (1-x)\ln(1-p)$.
 
 * $\lambda'(x|p) = \dfrac xp-\dfrac{1-x}{1-p}$.
 
@@ -3509,7 +3660,7 @@ Entonces,
 
 De esta manera,
 \[I(p) = \mathbb E\bigg[\dfrac xp + \dfrac{1-x}{(1-p)^2}\bigg] = \dfrac p{p^2}+\dfrac{1-p}{(1-p)^2} = \dfrac 1{p(1-p)} = \dfrac 1{\text{Var}(X)}.\]
-
+ 
 **Ejemplo**. $X\sim N(\mu,\sigma^2)$, $\mu$ desconocida, $\sigma^2$ conocida.
 \[f(x|\mu) = \dfrac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\dfrac 1{2\sigma^2}(x-\mu)^2\right)\]
 
@@ -3541,17 +3692,21 @@ Por lo que
 **Nota**. Observe que
 \[\lambda_n(x|\theta) = \ln f_n(x|\theta) = \sum_{i=1}^{n} \lambda(X_i|\theta)\]
 lo que implica que
-\[\lambda''_n(x|\theta) = \sum_{i=1}^n(X_i|\theta).\]
+\[\lambda''_n(x|\theta) = \sum_{i=1}^n\lambda(X_i|\theta).\]
 De esta forma,
 \[I_n(\theta) = -\mathbb E[\lambda''(x|\theta)] = - \sum_{i=1}^n\mathbb E[\lambda''(X_i|\theta)] = nI(\theta).\]
 
-**Ejemplo**. Clientes que entran a una tienda. Este se modela a partir de un proceso de Poisson. El tiempo de llegada entre cada cliente es independiente y se distribuye como $\text{Exp}(\theta)$. Sea $X$ el tiempo de arribo total de $n$ clientes ($n$) fijo:
-\[X\sim \sum_{i=1}^{n}\text{Exp}(\theta) = \Gamma(n,\theta) .\]
+**Ejemplo**. Suponga que una compañía quiere conocer como se comportan sus clientes en sus tiendas. Hay dos propuestas para este modelo  
 
-Así mismo, sea $Y$ el número de clientes hasta el tiempo $t$: 
-\[Y\sim \text{Poi}(\theta t)\]
+- Un modelo Poisson de parámetro \(t\theta\) (\(t\) es cualquier valor) para determinar la tasa promedio de llegada de clientes. $Y\sim \text{Poisson}(\theta t)$.
 
-¿Cuál variable contiene más información de $\theta$?
+- Un modelo donde cada cliente es una v.a. exponencial con tasa de llegada \(\theta\) y al final se sumará todas las variables para obtener una \(\mathrm{Gamma}(n,\theta)\). $X\sim \sum_{i=1}^{n}\text{Exp}(\theta) = \Gamma(n,\theta)$  
+
+El tiempo de llegada de cada cliente es independiente. 
+
+¿Cuál variable contiene más información de $\theta$ \(X\) o \(Y\)?
+
+_Solución:_
 
 Para $Y$,
 
@@ -3570,7 +3725,76 @@ Como ejercicio, verifique que $I_X(\theta) = \dfrac n{\theta^2}$.
 
 Ambas variables tienen la misma información si
 
-\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = t\theta.\]
+\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = \dfrac{\theta t}{\theta ^{2}} = \dfrac t\theta.\]
+
+A partir de este ejercicio vamos a hacer un pequeño ejemplo de simulación.
+
+Suponga que \(t\) es el tiempo que se quiere medir la cantidad de clientes (minutos), \(\theta\) es la cantidad de clientes por minuto y \(n\) es el número de clientes que entran. 
+
+
+
+```r
+t <- 20
+theta <- 5
+n <- t / theta
+
+Y <- rpois(n = 1000, lambda = t * theta)
+X <- rgamma(n = 1000, shape = n, rate = theta)
+```
+
+Ojo que según lo estimado ambas informaciones de Fisher debería dar
+aproximadamente igualdad. 
+
+Para \(Y\) tenemos que 
+
+```r
+mean(Y / theta^2)
+```
+
+```
+## [1] 3.99068
+```
+
+Para \(X\) por otro lado la información de Fisher es constante (¿Por qué?)
+
+
+```r
+n / theta^2
+```
+
+```
+## [1] 0.16
+```
+
+Entonces bajo este criterio, ambas variables contienen la misma información,
+aunque modelen el problema desde ópticas diferentes. 
+
+El proceso \(Y\) (Poisson) modela cuántas personas en total entran a la tienda en 20 minutos, asumiendo una tasa de entrada de 5 personas por minuto. 
+
+
+```r
+hist(Y)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-74-1} \end{center}
+
+El proceso \(X\) (Gamma) modela cuánto tiempo se debe esperar para que 4 personas entren a la tienda, asumiendo una tasa de entrada de 5 por minuto. 
+
+
+```r
+hist(X)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-75-1} \end{center}
+
+_Ejercicio:_ Basado en los valores de la simulación, proponga dos valores de \(t\) para que 
+  
+  - \(X\) tenga más información que \(Y\). 
+  - \(Y\) tenga más información que \(X\).
 
 ## Desigualdad de Cramer-Rao
 
@@ -3586,19 +3810,46 @@ La igualdad se da si y solo si existen funciones $u(\theta)$ y $v(\theta)$ que s
 Para el caso multivariado:
 
 \begin{align*}
-\int_{\mathcal X^n}f'_n(x|\theta)dx_1\cdots dx_n & =\int_{\mathcal X^n}[f(x1|\theta)\cdots f(x_n|\theta)]'dx_1\cdots dx_n \\
-& \dfrac d{d\theta} \int_{\mathcal X^n}f(x1|\theta)\cdots f(x_n|\theta)dx_1\cdots dx_n = 0.
+\int_{\mathcal X^n}f'_n(x|\theta)dx_1\cdots dx_n & =\int_{\mathcal X^n}[f(x_1|\theta)\cdots f(x_n|\theta)]'dx_1\cdots dx_n \\
+& = \dfrac d{d\theta} \int_{\mathcal X^n}f(x_1|\theta)\cdots f(x_n|\theta)dx_1\cdots dx_n \\
+&= \dfrac d{d\theta} 1 \\
+&= 0.
 \end{align*}
 
 Entonces
 
-\[\mathbb E[\lambda_n'(X|\theta)] = \int_{\mathcal X^n}\dfrac{f'_n(x|\theta)}{f(x|\theta)}dx_1\cdots dx_n = 0\]
+\[\mathbb E[\lambda_n'(X|\theta)] = \int_{\mathcal X^n}\dfrac{f'_n(x|\theta)}{f(x|\theta)} f_{n}(x\vert \theta)dx_1\cdots dx_n = 0\]
 
 Por lo tanto,
 
+
+
+
+Ahora 
 \begin{align*}
-\text{Cov}[T,\lambda_n'(X|\theta)] & = \mathbb E [T\lambda_n'(X|\theta)] - \mathbb E[T]\cdot 0\\
+\operatorname{Cov}_{\theta}\left[T, \lambda_{n}^{\prime}(\boldsymbol{X} \mid
+\theta)\right] \\
+&=E_{\theta}\left[T \lambda_{n}^{\prime}(\boldsymbol{X} \mid \theta)\right] \\
+&=\int_{\mathcal{X}^n} \ldots \int_{\mathcal{X}^n} r(\boldsymbol{x}) \lambda_{n}^{\prime}(\boldsymbol{x} \mid \theta) f_{n}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n} \\
 & =\int_{\mathcal X^n}r(x)\dfrac{f'_n(x|\theta)}{f_n(x|\theta)}f_n(x|\theta)dx_1\cdots dx_n\\
+&=\int_{\mathcal{X}^n} \ldots \int_{\mathcal{X}^n} r(\boldsymbol{x}) f_{n}^{\prime}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n}
+\end{align*}
+
+Escriba la expresión 
+
+\begin{equation*}
+m(\theta)=\int_{\mathcal{X}^n} \ldots \int_{S} r(\boldsymbol{x}) f_{n}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n}
+\end{equation*}
+
+Usando el supuesto de intercabio de integrales, tenemos que 
+\begin{equation*}
+m^{\prime}(\theta)=\int_{\mathcal{X}^n} \ldots \int_{S} r(\boldsymbol{x}) f_{n}^{\prime}(\boldsymbol{x} \mid \theta) d x_{1} \ldots d x_{n}
+\end{equation*}
+
+Entonces tenemos que 
+
+\begin{align*}
+\text{Cov}[T,\lambda_n'(X|\theta)] 
 & =  \dfrac d{d\theta}\int_{\mathcal X^n}r(x)f_n(x|\theta)dx_1\cdots dx_n\\
 & = \dfrac{d}{d\theta}\mathbb E_\theta[r(X)] = \dfrac{d}{d\theta}E_\theta[T] = m'(\theta)
 \end{align*}
@@ -3631,13 +3882,64 @@ Vea que
  Así,
  \[I(\beta) = -\mathbb E[\lambda''(x|\beta)] = \dfrac 1{\beta^2}, \quad I_n(\beta) = \dfrac{n}{\beta^2}.\]
  
+Por ejemplo generemos una secuencia de valores de \(\beta\) de 1 hasta 5 para
+observar el comportamiento de su información de Fisher. 
+
+
+```r
+beta <- seq(1, 5, length.out = 100)
+n <- 100
+
+lista_muestras <- lapply(
+  X = beta,
+  FUN = function(b) {
+    matrix(rexp(n = n * 500, rate = b), nrow = 500)
+  }
+)
+
+plot(beta, n / beta^2)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-76-1} \end{center}
+
 Considere el estadístico $T = \dfrac{n-1}{\sum_{i=1}^n X_i}$ es un estimador insesgado de $\beta$. La varianza de $T$ es $\dfrac{\beta^2}{n-2}$.
 
 La cota de Cramer Rao, si $T$ es insesgado, es
 
 \[\dfrac 1{I_n(\beta)} = \dfrac{\beta^2}{n},\]
 
+
 por lo que $T$ no satisface la cota de Cramer Rao.
+
+
+Este comportamiento podemos observarlo con nuestro ejemplo numérico. 
+
+```r
+estimador1 <- sapply(
+  X = lista_muestras,
+  FUN = function(x) {
+    apply(x, 1, function(xx) (n - 1) / sum(xx))
+  }
+)
+
+plot(beta, apply(X = estimador1, MARGIN = 2, FUN = mean))
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-1} \end{center}
+
+```r
+plot(beta, apply(X = estimador1, MARGIN = 2, FUN = var))
+lines(beta, beta^2 / n, col = "blue")
+lines(beta, beta^2 / (n - 2), col = "red")
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-2} \end{center}
 
 Ahora, estime $\theta = \dfrac 1\beta = m(\beta)$. Un estimador insesgado de $\theta$ es $T =\bar X_n$:
 
@@ -3650,6 +3952,31 @@ La cota de Cramer es
 
 $\bar X_n$ satisface la cota de Cramer-Rao y además
 \[\lambda'(X|\beta) = \dfrac n\beta - n\bar X_n =\dfrac n\beta - nT \implies T = \underbrace{-\dfrac 1n}_{u(\beta)}\lambda_n'(X|\beta)+ \underbrace{\dfrac 1\beta}_{v(\beta)}. \]
+
+
+```r
+estimador2 <- sapply(
+  X = lista_muestras,
+  FUN = function(x) {
+    apply(x, 1, function(xx) mean(xx))
+  }
+)
+
+plot(1 / beta, apply(X = estimador2, MARGIN = 2, FUN = mean))
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-78-1} \end{center}
+
+```r
+plot(beta, apply(X = estimador2, MARGIN = 2, FUN = var))
+lines(beta, 1 / (n * beta^2), col = "blue")
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-78-2} \end{center}
 
 ## Estimadores eficientes
 
@@ -3673,7 +4000,7 @@ La cota de CR es $\dfrac \theta n$, pero
 Por lo que $\bar X_n$ es eficiente.
 
 Los otros candidatos para estimar $\theta$
-\[\sigma_1^2=\dfrac 1{n-1}s_n^2 = \dfrac 1{n-1}\sum (X_i-\bar X_n)^2,\]
+\[\sigma_1^2=\dfrac 1{n-1}\sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2} = \dfrac 1{n-1}\sum (X_i-\bar X_n)^2,\]
 y
 \[\alpha \bar X_n + (1-\alpha)\hat\sigma^2_1\]
 no son lineales con respecto a $\lambda'(X|\theta)$ por lo que tienen mayor varianza que $\bar X_n$. 
@@ -3706,18 +4033,40 @@ Entonces $T = \dfrac{m'(\theta)}{nI(\theta)}\lambda'(X|\theta) + m(\theta)$. Por
 
 \[[nI(\theta)]^{1/2}(\hat\theta-\theta) \to N(0,1).\]
 
-**Ejemplo**. $X_1,\dots, X_n \sim  N(0,\sigma^2)$, $\sigma$ desconocida. $\hat\sigma = \bigg[\dfrac 1n s_n^2\bigg]^{1/2}$ es MLE de $\sigma$ y $I(\sigma) = \dfrac 2{\sigma^2}$.
+**Ejemplo**. $X_1,\dots, X_n \sim  N(0,\sigma^2)$, $\sigma$ desconocida. $\hat\sigma = \bigg[\dfrac 1n \sum_{i=1}^{n}\left(X_{i}-\bar{X}_{n}\right)^{2}\bigg]^{1/2}$ es MLE de $\sigma$ y $I(\sigma) = \dfrac 2{\sigma^2}$.
 Usando el teorema,
-\[\sqrt{\dfrac{2n}{\sigma^2}}\underset{n\to\infty}{\sim} N\left(\sigma,\dfrac{\sigma^2}{2n}\right).\]
 
-Verifique que 
-\[\hat\sigma_n\pm z_{\frac{1+\gamma}{2}}\sqrt{\dfrac{\sigma^2}{2n}}\]
-es un intervalo de confianza para $\sigma$.
+\[\sqrt{\dfrac{2n}{\sigma^2}} (\hat{\sigma} - \sigma) \underset{n\to\infty}{\sim} N\left(0,1\right).\]
+
+O lo que es equivalente a \[\hat{\sigma} \underset{n\to\infty}{\sim}
+N\left(\sigma,\dfrac{\sigma^2}{2n}\right).\] 
+
+_Ejercicio:_ Verifique que
+\[ \hat\sigma_n\pm z_{\frac{1+\gamma}{2}}\sqrt{\dfrac{\sigma^2}{2n}}\] es un
+intervalo de confianza para $\sigma$.
+
+_Ejercicio:_ Suponga que se le da los siguientes datos
+
+ 
+
+```r
+X <- rnorm(n = 1000, mean = 5, sd = 1)
+```
+
+
+Trate de ajustar un intervalo de confianza usando la cota de Cramer-Rao para $\sigma^2$.
+
+**Sugerencia: Fijese que la varianza de $\hat\sigma$ depende del parámetro
+desconocido $\sigma$. Entonces, lo mejor ahí es usar el método Delta para
+encontra una función que estabilice la varianza. **
+
 
 **Consecuencia en estimación bayesiana**. La previa de $\theta$ es positiva y diferenciable con respecto a $\theta$. Bajo todas las condiciones anteriores:
 \[\theta|X\underset{n\to\infty}{\sim} N\left(\hat\theta_n,\dfrac 1{nI(\hat\theta_n)}\right).\]
 
 **Nota**: un IC para $\theta$ en este caso tiene un error estándar que depende del MLE.
+
+
 
 <!--chapter:end:08-estimacion-insesgada.Rmd-->
 
@@ -3727,63 +4076,354 @@ es un intervalo de confianza para $\sigma$.
 
 ## Pruebas de hipótesis
 
-Recordando el ejemplo de las nubes rociadas con químicos en donde log-lluvia $\sim N(\mu,\sigma^2)$, $\mu,\sigma$ desconocidos.
+**Ejemplo:** Suponga que se hace un experimento donde se seleccionan 52 nubes al
+azar y 26 se les inyecta nitrato de plata y a las otras 26 no. Entonces se
+quiere saber cuál de los dos grupos produce más lluvia. 
 
-**Hipótesis**: $\mu>4$ (nace a partir de una pregunta), es decir, si $\theta = (\mu,\sigma^2)$, ¿$\theta\in\{(\mu,\sigma^2): \mu>4\}$?
+Los datos de la cantidad de lluvia para este experimento están acá. 
 
-Para el caso bayesiano, ya calculamos $\mathbb P[\mu>4|X]$. ¿Cómo resolverlo en el caso frecuentista?
+```r
+nubes <- read.table(file = "./data/clouds.txt", sep = "\t", header = TRUE)
+head(nubes)
+```
 
-Suponga que $\Omega = \Omega_0 \cup\Omega_1$ conjuntos disjuntos tales que 
-\begin{align*}
-H_0 :  \text{hipótesis en donde }\theta \in \Omega_0.\\
-H_1 : \text{hipótesis en donde }\theta \in \Omega_1.\\
+```
+##   Unseeded.Clouds Seeded.Clouds
+## 1          1202.6        2745.6
+## 2           830.1        1697.8
+## 3           372.4        1656.0
+## 4           345.5         978.0
+## 5           321.2         703.4
+## 6           244.3         489.1
+```
+Sin embargo usaremos los datos en escala logarítmica para facilitar el cálculo 
+
+
+```r
+lognubes <- log(nubes)
+head(lognubes)
+```
+
+```
+##   Unseeded.Clouds Seeded.Clouds
+## 1        7.092241      7.917755
+## 2        6.721546      7.437089
+## 3        5.919969      7.412160
+## 4        5.844993      6.885510
+## 5        5.772064      6.555926
+## 6        5.498397      6.192567
+```
+
+Observe que el comportamiento es distinto en ambos casos.
+
+
+
+```r
+df <- as.data.frame(nubes) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = "tratamiento", values_to = "lluvia"
+  ) %>%
+  mutate(log_lluvia = log(lluvia))
+
+ggplot(data = df) +
+  geom_histogram(aes(
+    x = lluvia,
+    y = ..density..,
+    fill = tratamiento
+  ),
+  color = "black", bins = 10
+  ) +
+  facet_wrap(. ~ tratamiento)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-83-1} \end{center}
+
+```r
+ggplot(data = df) +
+  geom_histogram(aes(
+    x = log_lluvia,
+    y = ..density..,
+    fill = tratamiento
+  ), color = "black", bins = 10) +
+  facet_wrap(. ~ tratamiento)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-83-2} \end{center}
+
+En este caso supondremos que la variable `log_lluvia` se puede modelar como una
+$N(\mu,\sigma^2)$, $\mu,\sigma$ desconocidos.
+
+_Ejercicio:_ Queda como ejercicio calcular \(\mathbb P (\mu > 4 \vert X) \)
+usando un método Bayesiano Normal-Gamma. En este caso la probabilidad tiene que
+dar \(\approx 99\%\). 
+
+
+El valor de $\mu>4$ nace a partir de una pregunta de investigación y se fórmula
+una  **hipótesis** con respecto a los datos. 
+
+En este caso sería $\theta = (\mu,\sigma^2)$, ¿Será cierto que  para $\theta\in\{(\mu,\sigma^2):\mu>4\}$?
+
+Para el caso bayesiano, ya calculamos $\mathbb P[\mu>4|X]$. 
+
+¿Cómo resolverlo en el caso frecuentista?
+
+Suponga que $\Omega = \Omega_0 \cup\Omega_1$ conjuntos disjuntos tales que
+
+\begin{align*} 
+H_0 : \text{hipótesis en donde }\theta \in \Omega_0.\\ H_1 :
+\text{hipótesis en donde }\theta \in \Omega_1.\\ 
 \end{align*}
 
-**Objetivo**. Decidir si $H_0$ o $H_1$ es cierto, con los datos disponibles (problema de pruebas de hipótesis).
+**Objetivo**. Decidir si $H_0$ o $H_1$ es cierto, con los datos disponibles
+(problema de pruebas de hipótesis).
 
-**Definición**. $H_0:$ hipótesis nula. $H_1:$ hipótesis alternativa. Una vez que se ha realizado una prueba de hipótesis si afirmamos $\theta \in \Omega_1$ decimos que *rechazamos* $H_0$. Si $\theta \in \Omega_0$, decimos que *no rechazamos* $H_0$.
+**Definición**. $H_0:$ hipótesis nula. $H_1:$ hipótesis alternativa. Una vez que
+se ha realizado una prueba de hipótesis si afirmamos $\theta \in \Omega_1$
+decimos que *rechazamos* $H_0$. Si $\theta \in \Omega_0$, decimos que *no
+rechazamos* $H_0$.
 
-Suponga que $X_1,\dots, X_n\sim f(x|\theta)$, $\theta \in \Omega$, $\Omega = \Omega_0 \cup\Omega_1$ y queremos probar la hipótesis $H_0: \theta \in \Omega_0$, $H_1: \theta \in \Omega_1$.
+Suponga que $X_1,\dots, X_n\sim f(x|\theta)$, $\theta \in \Omega$,
+$\Omega = \Omega_0 \cup\Omega_1$ y queremos probar la hipótesis
+$H_0: \theta \in \Omega_0$, $H_1: \theta \in \Omega_1$.
 
 **Definición** ($i = 0,1$)
 
-1) Si $\Omega_i$ tiene solamente un valor de $\theta$, $H_i$ es una **hipótesis simple**.
+1. Si $\Omega_i$ tiene solamente un valor de $\theta$, $H_i$ es una **hipótesis
+simple**.
 
-2) Si $\Omega_i$ tiene más de un valor de $\theta$, $H_i$ es una **hipótesis compuesta**.
+2. Si $\Omega_i$ tiene más de un valor de $\theta$, $H_i$ es una **hipótesis
+compuesta**.
 
-3) **Hipótesis compuestas de una cola**. Si $\Omega_0 = (-\infty,\theta_0]$, $H_0: \theta\geq \theta_0$, $H_1: \theta >\theta_0$. Si  $\Omega_0 = [\theta_0,+\infty)$, $H_0: \theta\leq \theta_0$, $H_1: \theta<\theta_0$. 
+3. **Hipótesis compuestas de una cola**. Si $\Omega_0 = (-\infty,\theta_0]$,
+$H_0: \theta\geq \theta_0$, $H_1: \theta >\theta_0$. Si $\Omega_0 =
+[\theta_0,+\infty)$, $H_0: \theta\leq \theta_0$, $H_1: \theta<\theta_0$.
 
-4) Si $H_1: \theta \ne \theta_0$ y $H_0: \theta = \theta_0$ es una **hipótesis de 2 colas**.
+4. Si $H_1: \theta \ne \theta_0$ y $H_0: \theta = \theta_0$ es una **hipótesis
+de 2 colas**.
 
 ## Regiones críticas y estadísticas de prueba
 
-**Ejemplo**. Si $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, $\mu$ desconocido, $\sigma^2$ conocido.
+**Ejemplo**. Si $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, $\mu$ desconocido,
+$\sigma^2$ conocido.
 
-Queremos probar $H_0: \mu = \mu_0$ vs $H_1: \mu\neq \mu_0$. La lógica es: rechazamos $H_0$ si $\mu$ está "muy alejado" de $\mu_0$.
+Queremos probar $H_0: \mu = \mu_0$ vs $H_1: \mu\neq \mu_0$. La lógica es:
+rechazamos $H_0$ si $\mu$ está "muy alejado" de $\mu_0$.
 
-Seleccione un número $c$ tal que se rechaza $H_0$ si $|\bar X_n -\mu_0|>c$. En general, suponga que queremos probar las hipótesis $H_0: \theta \in \Omega_0$ vs $H_1: \theta\in \Omega_1$.
+Seleccione un número $c$ tal que se rechaza $H_0$ si $|\bar X_n -\mu_0|>c$. En
+general, suponga que queremos probar las hipótesis $H_0: \theta \in \Omega_0$ vs
+$H_1: \theta\in \Omega_1$.
 
-En general, supónga que queremos probar las hipótesis $H_0: \theta \in \Omega_0$ vs $H_1: \theta \in \Omega_1$. 
+En general, suponga que queremos probar las hipótesis $H_0: \theta \in \Omega_0$
+vs $H_1: \theta \in \Omega_1$.
 
-Cuando tenemos una muestra $X_1,\dots,X_n \sim f(x|\theta)$. Sea $S_0\subset \mathcal X$: conjunto en donde no se rechaza $H_0$ y $S_1\subset \mathcal X$: conjunto en donde se rechaza $H_0$.
+Cuando tenemos una muestra $X_1,\dots,X_n \sim f(x|\theta)$. Sea
+$S_0\subset \mathcal X$: conjunto en donde no se rechaza $H_0$ y
+$S_1\subset \mathcal X$: conjunto en donde se rechaza $H_0$.
 
 A $S_1$ se le llama **región crítica** de la prueba de hipótesis.
 
-**Nota**. En la mayoría de los casos, la región crítica se define en términos de un estadístico $T = r(x)$.
 
-**Definición**. Sea $ X$ una muestra aleatoria con distribución $f(x|\theta)$ y $T=r(X)$ un estadístico y $R\subset \mathbb R$. Suponga que se puede verificar las hipótesis al afirmar "rechazamos $H_0$ si $T\in R$", entonces $T$ es un **estadístico** de prueba y $R$ es la **región de rechazo** de la prueba.
+En el caso en que se rechaza $H_0$ si $T>c$ con $T = |\bar
+X_n-\mu_0|$ estadístico de prueba y $(c,\infty)$ es la región de rechazo.
 
-**Ejemplo**. En el caso en que se rechaza $H_0$ si $|\bar X_n|>c$, $T = |\bar X_n-\mu_0|$ estadístico de prueba y $(c,\infty)$ es la región de rechazo.
+
+```r
+X <- matrix(rnorm(1000 * 1000, mean = 2, sd = 3), ncol = 1000)
+
+Xbar <- apply(X, 2, mean)
+
+mu0 <- 2
+T <- abs(Xbar - mu0)
+
+c <- seq(-0.25, 0.5, length.out = 1000)
+
+df <- data.frame(c = numeric(), test = logical(), region = character())
+for (k in 1:length(c)) {
+  df <- rbind(df, data.frame(c = c[k], test = mean(T >= c[k]), region = "S_1"))
+}
+
+df <- rbind(df, data.frame(c, test = 1 - df$test, region = "S_0"))
+
+ggplot(df, aes(x = c, y = test, color = region)) +
+  geom_line(size = 2) +
+  ylab("Promedio de veces donde T >= c") +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-84-1} \end{center}
+
+En este caso el valor donde decrece la curva es cercano a 0. Eso quiere decir
+que antes de ese valor, nos encontramos en la región de rechazo. Luego esa
+región se va haciendo cada vez más pequeña 
+\(\vert \overline{X} - \mu \vert \approx 0 \).
+
+
+
+Ojo lo que pasaría si por ejemplo cambiamos a \(\mu = 4\), 
+
+
+```r
+mu0 <- 4
+T <- abs(Xbar - mu0)
+
+c <- seq(-0.25, 3, length.out = 1000)
+
+df <- data.frame(c = numeric(), test = logical(), region = character())
+for (k in 1:length(c)) {
+  df <- rbind(
+    df,
+    data.frame(c = c[k], test = mean(T >= c[k]), region = "S_1")
+  )
+}
+
+df <- rbind(df, data.frame(c, test = 1 - df$test, region = "S_0"))
+
+ggplot(df, aes(x = c, y = test, color = region)) +
+  geom_line(size = 2) +
+  ylab("Promedio de veces donde T >= c") +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-85-1} \end{center}
+
+El valor donde comienza a crecer la curva se desvía a un valor cercano a 2. 
+
+**Nota**. En la mayoría de los casos, la región crítica se define en términos de
+un estadístico $T = r(x)$.
+
+**Definición**. Sea $ X$ una muestra aleatoria con distribución $f(x|\theta)$ y
+$T=r(X)$ un estadístico y $R\subset \mathbb R$. Suponga que se puede verificar
+las hipótesis al afirmar "rechazamos $H_0$ si $T\in R$", entonces $T$ es un
+**estadístico** de prueba y $R$ es la **región de rechazo** de la prueba.
+
+**Continuación del Ejemplo:**. Para el caso del ejemplo de la lluvia definimos
+que
+
+
+\[
+H_0: \mu \leq 4 \text{ versus } H_1: \mu > 4
+\]
+
+
+En este caso podríamos decir que rechazamos \( H_0 \) si la media empírica
+es "más grande" que 4 y no rechazamos \( H_0 \) si la media empírica es "más
+pequeña" que 4.
+
+El problema acá es que "más grande" y "más pequeña" no son términos precisos. 
+
+Tenemos dos opciones 
+
+Construya la región de critica de la forma 
+
+\begin{equation} 
+S_{0}=\left\{\boldsymbol{x}:\leq \bar{X}_{n}-\mu_{0} \leq
+c\right\}, \quad \text { y } \quad S_{1}=S_{0}^{C} 
+\end{equation}
+
+y observe cuál es la probabilidad que ocurra para cada tipo de \( c \).  El
+problema con esta construcción es que requiere conocer todos los posibles
+vectores de datos \( \mathbf{X} \) y construir los conjuntos \( S_0 \) y \( S_1
+\). 
+
+Una mejor opción es tener un estadístico sencillo que cumpla dos condiciones: 
+
+1. Un estadístico sencillo de calcular posiblemente suficiente, minimal y
+eficiente. 
+2. Un estadístico con una distribución conocida. 
+
+
+En ese caso \(\overline{X}_{n} \) funciona muy bien, porque tiene todas las
+buenas propiedades de sufiencia, minimalidad y eficiencia, y además sabemos su
+distribución según lo estudiando en capítulos pasados. Entonces 
+
+\begin{equation*}
+U = \frac{n ^{1/2} (\overline{X}_{n} - \mu_0)}{\sigma^\prime} \sim t_{n-1}
+\end{equation*}
+
+Lo natural debería ser rechazar \( H_{0} \) si \( U \) es grande. 
+
+
+
+```r
+colnames(lognubes)
+```
+
+```
+## [1] "Unseeded.Clouds" "Seeded.Clouds"
+```
+
+```r
+Xbarra1 <- mean(lognubes[, 1])
+Xbarra2 <- mean(lognubes[, 2])
+sigma_prima1 <- sd(lognubes[, 1])
+sigma_prima2 <- sd(lognubes[, 2])
+
+n <- dim(lognubes)[1]
+
+
+(U1 <- sqrt(n) * (Xbarra1 - 4) / sigma_prima1)
+```
+
+```
+## [1] -0.02979683
+```
+
+```r
+(U2 <- sqrt(n) * (Xbarra2 - 4) / sigma_prima2)
+```
+
+```
+## [1] 3.615624
+```
+
+```r
+ggplot(data = data.frame(x = (c(-1, 4))), mapping = aes(x)) +
+  stat_function(
+    fun = dt, args = list(df = n - 1),
+    mapping = aes(color = "Distribucioń t-student"), size = 2
+  ) +
+  geom_vline(mapping = aes(
+    xintercept = U1,
+    color = "Nubes no tratadas"
+  ), size = 2) +
+  geom_vline(mapping = aes(
+    xintercept = U2,
+    color = "Nubes tratadas"
+  ), size = 2) +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-86-1} \end{center}
+
 
 ## Función de potencia y tipos de error
 
-Sea $\delta$ un procedimiento de prueba (basado en una región crítica o en un estadístico de prueba). Sea $\pi(\theta|\delta)$ (**función de potencia**) la probabilidad de que se rechace $H_0$ a través de $\delta$ para $\theta\in \Omega$.
+Sea $\delta$ un procedimiento de prueba (basado en una región crítica o en un
+estadístico de prueba). Sea $\pi(\theta|\delta)$ (**función de potencia**) la
+probabilidad de que se rechace $H_0$ a través de $\delta$ para $\theta\in
+\Omega$.
 
-Si $S_1$ es la región crítica de $\delta$ entonces $\pi(\theta|\delta) = \mathbb P(X\in S_1|\theta)$ para $\theta\in\Omega$.
+Si $S_1$ es la región crítica de $\delta$ entonces
+$\pi(\theta|\delta) = \mathbb P(X\in S_1|\theta)$ para
+$\theta\in\Omega$.
 
-Si $\delta$ se describe a través de un estadístico de prueba $T$ con región de rechazo $R$, entonces $\pi(\theta|\delta) = \mathbb P(T \in R|\theta)$ para $\theta\in\Omega$.
+Si $\delta$ se describe a través de un estadístico de prueba $T$ con región de
+rechazo $R$, entonces $\pi(\theta|\delta) = \mathbb P(T \in R|\theta)$ para
+$\theta\in\Omega$.
 
-**Nota**. Función de potencia ideal: $\pi(\theta|\delta) = 0$ si $\theta\in\Omega_0$, y $\pi(\theta|\delta) = 1$ si $\theta\in\Omega_1$.
+**Nota**. Función de potencia ideal: $\pi(\theta|\delta) = 0$ si
+$\theta\in\Omega_0$, y $\pi(\theta|\delta) = 1$ si $\theta\in\Omega_1$.
 
 **Ejemplo**.
 
@@ -3801,101 +4441,380 @@ Como $X_1,\dots, X_n \sim N(\mu, \sigma^2)$, $\mu$ desconocido, $\sigma^2$ conoc
 & = 1-\Phi\left(\sqrt n \dfrac{(\mu_0+c-\mu)}{\sigma} \right) + \Phi\left(\sqrt n \dfrac{(\mu_0-c-\mu)}{\sigma} \right) 
 \end{align*}
 
-**Ejercicio**: graficar la función de potencia $\pi(\mu|\delta)$ para distintos valores de $\mu$.
+
+
+```r
+mu0 <- 4
+c <- 2
+n <- 100
+sigma <- 3
+
+mu <- seq(0, 8, length.out = 1000)
+
+funcion_de_poder <- 1 -
+  pnorm(sqrt(n) * (mu0 + c - mu) / sigma) +
+  pnorm(sqrt(n) * (mu0 - c - mu) / sigma)
+
+df <- data.frame(mu, funcion_de_poder, tipo = "Función de poder")
+
+df <- rbind(df, data.frame(mu,
+  funcion_de_poder = 1 - df$funcion_de_poder,
+  tipo = "1 - Función de poder"
+))
+
+ggplot(df, aes(mu, funcion_de_poder, color = tipo)) +
+  geom_line(size = 2) +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-87-1} \end{center}
+
+```r
+mu <- seq(0, 8, length.out = 100)
+c <- seq(0, 4, length.out = 100)
+
+mu_c <- expand.grid(mu, c)
+
+funcion_de_poder_n_c <- 1 -
+  pnorm(sqrt(n) * (mu0 + mu_c[, 2] - mu_c[, 1]) / sigma) +
+  pnorm(sqrt(n) * (mu0 - mu_c[, 2] - mu_c[, 1]) / sigma)
+
+library(scatterplot3d)
+
+scatterplot3d(mu_c[, 2], mu_c[, 1], funcion_de_poder_n_c,
+  type = "p", angle = 60,
+  xlab = "c", ylab = "mu", zlab = "Función de poder"
+)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-87-2} \end{center}
 
 **Tipos de error**:
+
+En este tipo de pruebas se puede cometer dos tipos de errores, 
 
 * *Error Tipo I*: error de rechazar $H_0$ si $\theta \in \Omega_0$.
 
 * *Error Tipo II*: error de no rechazar $H_0$ si $\theta\in\Omega_1$ en términos de la función de potencia.
 
-Si $\theta \in \Omega_0$: $\pi(\theta|\delta)$ es el error tipo I. Si $\theta \in \Omega_1$: $1-\pi(\theta|\delta)$ es el error tipo II.
+En términos de la función de poder tenemos que 
 
-Recuerde que el objetivo es hacer $\pi(\theta|\delta)$ pequeño cuando $\theta\in\Omega_0$. También se requiere que $\pi(\theta|\delta)$ sea grande cuando $\theta \in\Omega_1$. Una forma de alcanzar ese balance es seleccionar $\alpha_0 \in (0,1)$ tal que
+- Si $\theta \in \Omega_0$: $\pi(\theta|\delta)$ es el error tipo I. 
+- Si $\theta \in \Omega_1$: $1-\pi(\theta|\delta)$ es el error tipo II.
+
+ El objetivo es hacer $\pi(\theta|\delta)$ pequeño cuando $\theta\in\Omega_0$.
+También se requiere que $\pi(\theta|\delta)$ sea grande cuando $\theta
+\in\Omega_1$. Una forma de alcanzar ese balance es seleccionar $\alpha_0 \in
+(0,1)$ tal que
 
 \[\pi(\theta|\delta) \leq \alpha_0\;\forall \theta\in\Omega_0\quad(*)\]
 y entre todas las pruebas que cumplan $(*)$ se selecciona aquella que maximice la potencia para $\theta \in \Omega_1$.
+
+En nuestro ejemplo suponga que elegimos \(\alpha_{0} = 0.1\). La región roja
+  indica donde estaría ubicado \(\pi(\theta\vert \delta)\leq \alpha_{0} \). 
+  
+
+```r
+ggplot() +
+  geom_line(
+    data = df,
+    mapping = aes(x = mu, y = funcion_de_poder, color = tipo), size = 2
+  ) +
+  geom_rect(
+    data = data.frame(xmin = 0, xmax = 8, ymin = 0, ymax = 0.10),
+    mapping = aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+    alpha = 0.5, fill = "red"
+  ) +
+  geom_hline(yintercept = 0.05) +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-88-1} \end{center}
+
 
 Otra forma es minimizar;
 
 \[w_1\cdot\text{Error I } + w_2\cdot\text{Error II};\]
 $w_1,w_2$ constantes.
 
-**Nota**. Bajo la primera solución se produce una asimetría entre las hipótesis, ya que resulta difícil (o muy costoso) que ambas condiciones se cumplan. Por lo general, se le da más énfasis a $(*)$, por lo que se trata de controlar el error más serio (Error tipo I).
+**Nota**. Bajo la primera solución se produce una asimetría entre las hipótesis,
+ya que resulta difícil (o muy costoso) que ambas condiciones se cumplan. Por lo
+general, se le da más énfasis a $(*)$, por lo que se trata de controlar el error
+más serio (Error tipo I).
 
-**Definición**. Una prueba que satisface $(*)$ se llama una **prueba de nivel** $\alpha_0$ y decimos que la prueba está a un **nivel de significancia** $\alpha_0$. Además el tamaño $\alpha(\delta)$ de una prueba $\delta$ se define como:
+**Definición**. Una prueba que satisface $(*)$ se llama una **prueba de nivel**
+$\alpha_0$ y decimos que la prueba está a un **nivel de significancia**
+$\alpha_0$. Además el tamaño $\alpha(\delta)$ de una prueba $\delta$ se define
+como:
 
 \[\alpha(\delta) = \sup_{\theta\in\Omega}\pi(\theta|\delta).\]
 
-**Corolario**. Una prueba $\delta$ es una prueba de nivel $\alpha_0$ si y solo si su tamaño es a lo sumo $\alpha_0$ ($\alpha(\delta)\leq\alpha_0$).
+**Corolario**. Una prueba $\delta$ es una prueba de nivel $\alpha_0$ si y solo
+si su tamaño es a lo sumo $\alpha_0$ ($\alpha(\delta)\leq\alpha_0$).
 
-**Ejemplo**. Suponga $X_1,\dots,X_n\sim \text{Unif}(0,\theta)$, $\theta>0$ desconocido. Se quiere probar las siguientes hipótesis:
+**Ejemplo**. Suponga $X_1,\dots,X_n\sim \text{Unif}(0,\theta)$, $\theta>0$
+desconocido. Se quiere probar las siguientes hipótesis:
 
 \[H_0: 3\leq\theta\leq 4 \quad H_1:\theta<3 \text{ o }\theta>4. \]
 
-El MLE de $\theta$ es $Y_n = X_{(n)}$. Si $n$ es grande, $Y_n$ es muy cercano a $\theta$.
+El MLE de $\theta$ es $Y_n = X_{(n)}$. Si $n$ es grande, $Y_n$ es muy cercano a
+$\theta$.
 
-La prueba $\delta$ no rechaza $H_0$ si $2.9<Y_n<4$ y rechaza $H_0$ si $Y_n\geq4$ o $Y_n\leq2.9$. Entonces $R = (-\infty, 2.9] \cup [4,+\infty)$ y la función de potencia 
-\[\pi(\theta|\delta) = \mathbb P[Y_n\leq 2.9|\theta]+\mathbb P[Y_n\geq4|\theta] \] 
+Suponga que definimos que la prueba $\delta$ no rechaza $H_0$ si $2.9<Y_n<4$ y
+rechaza $H_0$ si $Y_n\geq4$ o $Y_n\leq2.9$. Entonces $R = (-\infty, 2.9] \cup
+[4,+\infty)$ y la función de potencia 
+
+\[
+\pi(\theta|\delta) = \mathbb P[Y_n\leq
+2.9|\theta]+\mathbb P[Y_n\geq4|\theta] 
+\]
 
 $\pi(\theta|\delta)$ se calcula en varios casos:
 
-* Si $\theta\leq 2.9 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1$ y $\mathbb P[Y_n\geq4|\theta] = 0$.
+* Si $\theta\leq 2.9 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1$ y
+$\mathbb P[Y_n\geq4|\theta] = 0$.
 
-* Si $2.9<\theta\leq4 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1 = \prod_{i=1}^n \mathbb P[X_i\leq2.9|\theta] = \left(\dfrac{2.9}{\theta}\right)^n$ y $\mathbb P[Y_n\geq4|\theta] = 0$.
+* Si $2.9<\theta\leq4 \implies \mathbb P[Y_n\leq 2.9|\theta] = 1 - \prod_{i=1}^n
+  \mathbb P[X_i\leq2.9|\theta] = \left(\dfrac{2.9}{\theta}\right)^n$ y $\mathbb
+  P[Y_n\geq4|\theta] = 0$.
 
-* Si $\theta>4 \implies  \mathbb P[Y_n\leq 2.9|\theta] = \left(\dfrac{2.9}{\theta}\right)^n$ y $\mathbb P[Y_n\geq 4|\theta] = 1 - \displaystyle\prod_{i=1}^n \mathbb P[X_i<4|\theta] =  1-\left(\dfrac 4\theta\right)^n$.
+* Si $\theta>4 \implies \mathbb P[Y_n\leq 2.9|\theta] =
+\left(\dfrac{2.9}{\theta}\right)^n$ y $\mathbb P[Y_n\geq 4|\theta] = 1 -
+\displaystyle\prod_{i=1}^n \mathbb P[X_i<4|\theta] = 1-\left(\dfrac
+4\theta\right)^n$.
 
 Entonces
 
-\[\pi(\theta|\delta) = \begin{cases}1 & \text{si } \theta\leq 2.9 \\
+\[
+\pi(\theta|\delta) = \begin{cases}1 & \text{si } \theta\leq 2.9 \\
 \left(\dfrac{2.9}{\theta}\right)^n& \text{si } 2.9 <\theta\leq 4\\
-1+\left(\dfrac{2.9}\theta\right)^n-\left(\dfrac{4}\theta\right)^n & \text{si } \theta >4\end{cases}\]
+1+\left(\dfrac{2.9}\theta\right)^n-\left(\dfrac{4}\theta\right)^n & \text{si } \theta >4\end{cases}
+\]
+
+
+
+
+
+```r
+theta <- seq(1, 5, length.out = 1000)
+n <- 5
+
+funcion_poder <- numeric()
+
+for (k in 1:length(theta)) {
+  if (theta[k] < 2.9) {
+    funcion_poder[k] <- 0
+  } else if (theta[k] > 2.9 & theta[k] <= 4) {
+    funcion_poder[k] <- (2.9 / theta[k])^n
+  } else if (theta[k] > 4) {
+    funcion_poder[k] <- (2.9 / theta[k])^n + 1 - (4 / theta[k])^n
+  }
+}
+
+plot(theta, funcion_poder, type = "l")
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-89-1} \end{center}
 
 
 Note, además, que el tamaño de prueba es
 
-\[\alpha(\delta) = \sup_{3\leq\theta\leq 4} \pi(\theta|\delta) = \sup_{3\leq\theta\leq 4}\left(\dfrac{2.9}{\theta}\right)^n = \left(\dfrac{2.9}{3}\right)^n.\]
+\[\alpha(\delta) = \sup_{3\leq\theta\leq 4} \pi(\theta|\delta) =
+\sup_{3\leq\theta\leq 4}\left(\dfrac{2.9}{\theta}\right)^n =
+\left(\dfrac{2.9}{3}\right)^n.\]
+
+
+```r
+n <- 1:100
+
+plot(n, (2.9 / 3)^n)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-90-1} \end{center}
 
 Si $n = 68 \implies \alpha(\delta)= \left(\dfrac{2.9}{3}\right)^{68} = 0.0997.$
 
-Entonces $\delta$ es una prueba con nivel de significancia $\alpha_0\geq 0.0997$.
+Entonces si \(n = 68\), entonces $\delta$ es una prueba con nivel de
+significancia $\alpha_0\geq 0.0997$.
 
-¿Cómo diseñar una prueba para que tenga un cierto nivel de significancia?
 
-Suponga que queremos probar $H_0: \theta \in \Omega_0$ vs $H_1: \theta\in\Omega_1$. Sea $T$ un estadístico de prueba y suponga que si $T\geq c$, $c$ constante, rechazamos $H_0$.
+
+**Pregunta importante:** ¿Cómo diseñar una prueba para que tenga un cierto nivel
+de significancia?
+
+Suponga que queremos probar $H_0: \theta \in \Omega_0$ vs $H_1:
+\theta\in\Omega_1$. Sea $T$ un estadístico de prueba y suponga que si $T\geq c$,
+$c$ constante, entonces rechazamos $H_0$.
 
 Si queremos que nuestra prueba tenga nivel de significancia $\alpha_0$ entonces:
 
-\[\pi(\theta|\delta) = \mathbb P(T\geq c|\theta)\text{ y } \sup_{\theta \in \Omega_0}\mathbb P[T\geq c|\theta] \leq \alpha_0 \quad (*)\]
+\[\pi(\theta|\delta) = \mathbb P(T\geq c|\theta)\text{ y } \sup_{\theta \in
+\Omega_0}\mathbb P[T\geq c|\theta] \leq \alpha_0 \quad (*)\]
 
-Note que $\pi(\theta|\delta)$ es función no-creciente de $c$, entonces $(*)$ se cumple para valores grandes de $c$, si $\theta\in\Omega_0$. Si $\theta \in \Omega_1$, debemos escoger $c$ pequeño para maximizar $\pi(\theta|\delta)$.
+Note que $\pi(\theta|\delta)$ es función no-creciente de $c$, entonces $(*)$ se
+cumple para valores grandes de $c$, si $\theta\in\Omega_0$. Si $\theta \in
+\Omega_1$, debemos escoger $c$ pequeño para maximizar $\pi(\theta|\delta)$.
 
-**Ejemplo**. En el caso normal, donde $H_0: \mu = \mu_0$ y rechazamos $H_0$ si $|\bar X_n-\mu_0|\geq c$. Entonces:
+**Ejemplo**. En el caso normal, donde $H_0: \mu = \mu_0$ y rechazamos $H_0$ si
+$|\bar X_n-\mu_0|\geq c$. Entonces:
 
-\[\sup_{\theta\in\Omega_0} \mathbb P [T\geq c|\theta] = \mathbb P_{\mu_0}[|\bar X_n-\mu_0|\geq c]\geq \alpha_0.\]
+\[\sup_{\theta\in\Omega_0} \mathbb P [T\geq c|\theta] = \mathbb P_{\mu_0}[|\bar
+X_n-\mu_0|\geq c]\geq \alpha_0.\]
 
-Como bajo $H_0$: $Y = X_n-\mu_0 \sim N\left(0,\dfrac{\sigma^2}{n}\right)$, entonces podemos encontrar $c$ tal que
-\[\mathbb P[|\bar X_n-\mu_0|\geq c] = \alpha_0,\]
-y cualquier $c$ mayor va a cumplir $(*)$.
+Como bajo $H_0$: $Y = X_n-\mu_0 \sim N\left(0,\dfrac{\sigma^2}{n}\right)$,
+entonces podemos encontrar $c$ tal que \[\mathbb P[|\bar X_n-\mu_0|\geq c] =
+\alpha_0,\] y cualquier $c$ mayor va a cumplir $(*)$.
 
-De esta manera el problema se convierte en encontrar $c^*$ tal que $\mathbb P[|Z|>c^*] = \alpha_0$, donde $Z = \dfrac{\bar X_n - \mu_0}{\sigma/\sqrt n}$.
+De esta manera el problema se convierte en encontrar $c^*$ tal que $\mathbb
+P[|Z|>c^*] = \alpha_0$, donde $Z = \dfrac{\bar X_n - \mu_0}{\sigma/\sqrt n}$.
 
-Dado que $\mathbb P[|Z|\geq c^*] = 2[1-\Phi(c^*)] = \alpha_0$, despejando se obtiene 
+Note que 
+
+\begin{align*}
+\alpha_0 
+&= \mathbb{P}(|Z|>c ^{*}) \\
+&=  \mathbb{P}(Z >c ^{*}) + \mathbb{P}(Z < -c ^{*}) \\ 
+&=  1- \mathbb{P}(Z \leq c ^{*}) + \mathbb{P}(Z < -c ^{*}) \\ 
+&=  1- \mathbb{P}(Z \leq c ^{*}) +  1 - \mathbb{P}(Z < c ^{*}) \\ 
+&=  2 - 2 \mathbb{P}(Z \leq c ^{*})  
+\end{align*}
+
+Entonces 
+
+\begin{equation*}
+\mathbb{P}(Z \leq c ^{*}) = 1- \dfrac{\alpha_0}{2}
+\end{equation*}
+
+Por lo tanto el \(c ^{*}\) que se busca es 
+
+\begin{equation*}
+c^* = F^{-1}\left(1- \dfrac{\alpha_0}{2}\right)
+\end{equation*}
+
+ En el caso particular de la normal denotaremos \( F\) como \( \Phi\). Entonces,
+
 
 \[\Phi(c^*) = 1 - \dfrac{\alpha_0}2 \implies c^* = z_{1-\frac{\alpha_0}2}.\]
 
-*Procedimiento*: rechazamos $H_0$ si
-\[|Z| = \bigg| \dfrac{\bar X_n-\mu_0}{\sigma/\sqrt n}\bigg| \geq z_{1-\frac{\alpha_0}2}.\]
+*Procedimiento*: rechazamos $H_0$ si \[|Z| = \bigg| \dfrac{\bar
+X_n-\mu_0}{\sigma/\sqrt n}\bigg| \geq z_{1-\frac{\alpha_0}2}.\]
 
+
+
+```r
+n <- 10
+alpha0 <- 0.05
+X <- rnorm(n = n, mean = 5, sd = 1)
+Xbar <- mean(X)
+mu0 <- 5
+
+Z <- sqrt(n) * (Xbar - mu0) / 1
+
+(q <- qnorm(1 - alpha0 / 2))
+```
+
+```
+## [1] 1.959964
+```
+
+```r
+dnorm_limit <- function(x, q) {
+  y <- dnorm(x)
+  y[-q <= x & x <= q] <- NA
+  return(y)
+}
+
+ggplot(data.frame(x = c(-3, 3)), aes(x)) +
+  stat_function(
+    fun = dnorm_limit, geom = "area", args = list(q = q),
+    fill = "blue", alpha = 0.2
+  ) +
+  stat_function(fun = dnorm) +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-91-1} \end{center}
+
+La pregunta que debemos siempre responder es ¿Rechazamos \( H_0\)?
+
+```r
+abs(Z) > q
+```
+
+```
+## [1] FALSE
+```
+
+Si repetimos el ejercicio anterior, pero los datos tiene media igual a 1 y
+dejamos que \(\mu_0 = 5\), entonces
+
+
+```r
+n <- 10
+alpha0 <- 0.05
+X <- rnorm(n = n, mean = 1, sd = 1)
+Xbar <- mean(X)
+mu0 <- 5
+
+Z <- sqrt(n) * (Xbar - mu0) / 1
+```
+
+Si preguntamos ¿Rechazamos \( H_0\)?
+
+```r
+abs(Z) > q
+```
+
+```
+## [1] TRUE
+```
+
+
+
+```r
+mu0 <- 5
+n <- 10
+sigma <- 1
+alpha0 <- 0.05
+c <- qnorm(1 - alpha0 / 2) * sigma / sqrt(n)
+
+mu <- seq(3, 7, length.out = 1000)
+
+funcion_de_poder <- 1 -
+  pnorm(sqrt(n) * (mu0 + c - mu) / sigma) +
+  pnorm(sqrt(n) * (mu0 - c - mu) / sigma)
+
+plot(mu, funcion_de_poder, type = "l", lwd = 2)
+abline(h = 0.05, col = "red", lwd = 2)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-95-1} \end{center}
+ 
 **Ejemplo**. \(X_1,\dots,X_n \sim \text{Ber}(p)\).
-\[H_0: p\leq p_0 \text{ vs } H_1: p>p_0\]
+\[H_0: p\leq p_{0} \text{ vs } H_1: p>p_0\]
 
-Sea $Y = \sum_{i=1}^nX_i \sim \text{Binomial}(n,p)$. Rechazo $H_0$ si $Y\leq c$.
+Sea $Y = \sum_{i=1}^nX_i \sim \text{Binomial}(n,p)$. 
+La idea acá es que entre más grande es \( p \) entonces más grande esperamos que
+sea \( Y\). Podemos definir la regla que rechazo $H_0$ si $Y\geq  c$ para alguna
+constante \( c \).
 
 El error tipo I es
 
-\[\mathbb P[Y\geq x|p] = \sum_{y=0}^n{n\choose y}p^y(1-p)^{n-y} = \sum_{y=0}^n{n\choose y} \underbrace{\left(\dfrac p{1-p}\right)^y(1-p)^n}_{g(p)}\]
+\[\mathbb P[Y\geq c|p] = \sum_{y=c}^n{n\choose y}p^y(1-p)^{n-y} = \sum_{y=c}^n{n\choose y} \underbrace{\left(\dfrac p{1-p}\right)^y(1-p)^n}_{g(p)}\]
 
 $g(p)$ es monótona con respecto a p.Entonces 
 \[\sup_{p\leq p_0} \mathbb P[Y\geq c|p] = \mathbb P [Y\geq c|p_0] \leq \alpha_0.\]
@@ -3907,28 +4826,71 @@ c                       | 0   | 1    | 2    |     3 |   4  | 5   | 6
 ----------------------- | --- |----- |----- | ----- | -----|-----| 
 $\mathbb P[Y\geq c|p_0]$| 1   | 0.97 |0.85  | 0.62  | 0.15 |0.05 |  
 
-Para que el tamaño sea menor que $10\%$ seleccione $c>5$. Si $c\in [5,6]$ entonces el nivel de significancia es a lo sumo $0.15$ y la prueba no cambia (ya que $Y$ es una variable discreta).
+Para que el tamaño sea menor que $10\%$ seleccione $c>5$. Si $c\in [5,6]$
+entonces el nivel de significancia es a lo sumo $0.15$ y la prueba no cambia (ya
+que $Y$ es una variable discreta).
 
-*Procedimiento*: rechazamos $H_0: p = 0.3$ si $Y\geq c$, $c\in[5,6]$ con un nivel de significancia de $10\%$ a lo sumo.
+
+
+```r
+c <- 5
+n <- 10
+alpha0 <- 0.05
+p <- seq(0, 1, length.out = 1000)
+
+funcion_de_poder <- 1 - pbinom(q = c, size = n, prob = p)
+
+plot(p, funcion_de_poder, type = "l", lwd = 2)
+abline(h = 0.05, col = "red", lwd = 2)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-96-1} \end{center}
+*Procedimiento*: rechazamos $H_0: p \leq 0.3$ si $Y\geq c$, $c\in(5,6]$ con un
+nivel de significancia de $10\%$ a lo sumo.
 
 
 ## Valor $p$
 
 **Restricción**. El procedimiento de prueba depende de $\alpha_0$.
 
-**Pregunta**. ¿Será posible construir un estadístico que resuma el grado de evidencia en los datos en contra de $H_0$?
+**Pregunta**. ¿Será posible construir un estadístico que resuma el grado de
+evidencia en los datos en contra de $H_0$?
 
 **Respuesta**. Cualquier procedimiento usa las siguientes dos fuentes:
 
-1) El valor observado del estadístico de prueba.
+1. El valor observado del estadístico de prueba.
 
-2) Todos los valores de $\alpha_0$ en donde rechazamos la nula.
+2. Todos los valores de $\alpha_0$ en donde rechazamos la nula.
 
-**Ejemplo** (Normal). Si $Z=2.78$, entonces se rechaza $H_0: \mu = \mu_0$ si $|Z| = 2.78>z_{1-\frac{\alpha_0}2}$, para cualquier $\alpha_0$. Entonces,
-\[\Phi(2.78) >1-d\frac{\alpha_0}2 \implies \alpha_0\geq 0.0054\]
-que es el valor observado de significancia.
+**Ejemplo** (Caso Normal). Se rechaza $H_0: \mu = \mu_0$ si \(|Z|>z_{1-\frac{\alpha_0}2}\)
 
-**Definición**. El **valor-$p$** es el nivel más pequeño de significancia en donde rechazaríamos $H_0$ bajo los datos observados.
+Ahora si \(\alpha_0 = 0.05\) y \(z_{1-\frac{\alpha_0}2} = 1.96\), entonces para
+\(Z = 1.97\) y \(Z = 2.78 \) y \( Z = 6.97\) todos cumplen esa condición. 
+
+¿Entonces la pregunta es cuál es mejor?
+
+Una forma de estimar esa "fuerza", es partir del cuantil real de la distribución 
+
+\begin{align*}
+\Phi(Z) &> 1-\dfrac{\alpha_0}2 \\
+\alpha_0 &> 2(1-\Phi(Z)) 
+\end{align*}
+
+
+- Si $Z=1.97$ entonces \(\alpha _{0} =0.0488384\)
+- Si $Z=2.78$ entonces \(\alpha _{0} =0.0054359\)
+- Si $Z=6.97$ entonces \(\alpha _{0} =\ensuremath{3.1694647\times 10^{-12}}\)
+
+
+En cada caso se estimó usando el comando `2*(1-pnorm(1.97))` por ejemplo. 
+
+
+El valor \(\alpha_0\) se le conoce como valor de significancia. 
+
+**Definición**. El **valor-$p$** es el nivel más pequeño de significancia en
+donde rechazaríamos $H_0$ bajo los datos observados.
 
 **Nota**. El valor-$p$ es un estadístico.
 
@@ -3941,7 +4903,8 @@ que es el valor observado de significancia.
 
 * Región de rechazo: $T\geq c$.
 
-* Decisión de rechazo (*ejercicio*): para cada $t$, rechazamos $H_0$ si $T\geq t$ con $t\geq F^{-1}(1-\alpha_0)$, $F$ distribución de $T$.
+* Decisión de rechazo: para cada $t$, rechazamos $H_0$ si $T\geq t$ con $t\geq
+  F^{-1}(1-\alpha_0)$, $F$ distribución de $T$.
 
 Entonces
 
@@ -3949,27 +4912,43 @@ Entonces
 
 El tamaño de la prueba es $c=t$.
 
-**Ejemplo**. Retomando el ejemplo con las variables aleatorias Bernouilli, rechazamos $H_0: p\leq p_0$ si $Y\geq c$. Así,
+**Ejemplo**. Retomando el ejemplo con las variables aleatorias Bernouilli,
+rechazamos $H_0: p\leq p_0$ si $Y\geq c$. Así,
 
-\[\text{valor-$p$} = \sup_{p\in\Omega}P_{p}[Y\geq y] =P_{p}[Y\geq y] \]
-Si $p_0 = 0.3, n=10, y =6$, el valor-$p$ es $\text{pbinom}(y = 6, p_0 =3,n=10) = 0.0473$.
+\[\text{valor-$p$} = \sup_{p\in\Omega}P_{p}[Y\geq y] =P_{p}[Y\geq y] \] 
+
+Si $p_0 = 0.3, n=10, y =6$, entonces el valor correspondiente es $P_{p}[Y\geq 6]
+0.047349$. El código R es
+`pbinom(q = 5, size = 10, prob = 0.3, lower.tail = FALSE)`
 
 ## Dualidad entre pruebas de hipótesis y regiones de confianza
 
-**Teorema**. Sea $X = (X_1,\dots,X_n)$ una muestra con distribución $F_\theta$. Sea $g(\theta)$ una función tal que para cada valor $g_0$ de $g(\theta)$, existe una prueba con nivel $\alpha_0$ de las hipótesis:
+**Teorema**. Sea $X = (X_1,\dots,X_n)$ una muestra con distribución $F_\theta$.
+Sea $g(\theta)$ una función tal que para cada valor $g_0$ de $g(\theta)$, existe
+una prueba con nivel $\alpha_0$ de las hipótesis:
 
 \[H_{0,g_0}: g(\theta) = g_0 \text{ vs } H_{1,g_0}: g(\theta) \neq g_0. \]
+
 Defina para cada $x\in X$
-\[\omega(x) = \{g_0: \delta_{g_0} \text{ no rechaza }H_{0,g_0}\text{ si }X=x\} \quad (*)\]
 
-Sea $\gamma = 1-\alpha_0$. Entonces
-\[\mathbb P[g(\theta_0)\in \omega(x)|\theta = \theta_0 ] \geq \gamma, \;\forall \theta_0 \in \Omega.\]
+\[\omega(x) = \{g_0: \delta_{g_0} \text{ no rechaza
+}H_{0,g_0}\text{ si }X=x\} \quad (*)\]
 
-**Definición**. Si $\omega(x)$ satisface $(*)$ $\forall \theta_0 \in \Omega$, entonces $\omega(x)$ es un **conjunto de confianza** con coeficiente $\gamma$ donde $\gamma = 1-\alpha_0$.
+Sea $\gamma = 1-\alpha_0$. Entonces \[\mathbb P[g(\theta_0)\in \omega(x)|\theta
+= \theta_0 ] \geq \gamma, \;\forall \theta_0 \in \Omega.\]
 
-**Teorema**. Bajo las condiciones anteriores, si $\omega(x)$ es un conjunto de confianza para $g_0$, entonces construimos $\delta_{g_0}$: no rechazo $H_{0,g_0}$ si y solo si $g_0 \in \omega(X)$, entonces $\delta_{g_0}$ es una prueba con nivel $\alpha_0 = 1-\gamma$ para $H_{0,g_0}$.
+**Definición**. Si $\omega(x)$ satisface $(*)$ $\forall \theta_0 \in \Omega$,
+entonces $\omega(x)$ es un **conjunto de confianza** con coeficiente $\gamma$
+donde $\gamma = 1-\alpha_0$.
 
-**Ejemplo**. $X_1,\dots,X_n\sim N(\mu,\sigma^2)$, $\theta = (\mu,\sigma^2)$ (desconocidos). En este caso $g(\theta) = \mu$. El intervalo de confianza con nivel $gamma$ es
+**Teorema**. Bajo las condiciones anteriores, si $\omega(x)$ es un conjunto de
+confianza para $g_0$, entonces construimos $\delta_{g_0}$: no rechazo
+$H_{0,g_0}$ si y solo si $g_0 \in \omega(X)$, entonces $\delta_{g_0}$ es una
+prueba con nivel $\alpha_0 = 1-\gamma$ para $H_{0,g_0}$.
+
+**Ejemplo**. $X_1,\dots,X_n\sim N(\mu,\sigma^2)$, $\theta = (\mu,\sigma^2)$
+(desconocidos). En este caso $g(\theta) = \mu$. El intervalo de confianza con
+nivel $gamma$ es
 
 \[\bar X_n\pm t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n}.\]
 
@@ -3977,14 +4956,100 @@ La hipótesis de interés corresponde a
 
 \[ H_0: \mu = \mu_0 \text{ vs } H_1: \mu \ne \mu_0.\]
 
-Por los teoremas anteriores, $H_0$ se rechaza si  $\mu_0$ no está en el IC, es decir, si y solo si
+Por los teoremas anteriores, $H_0$ se rechaza si $\mu_0$ no está en el IC, es
+decir, si y solo si
 
-\[\mu_0 > \bar X_n+ t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n} \text{ o } \mu_0 < \bar X_n- t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n},\]
-que se puede resumir como
+\[\mu_0 > \bar X_n+ t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n} \text{ o }
+\mu_0 < \bar X_n- t_{n-1,\frac{1+\gamma}2}\dfrac{\sigma'}{\sqrt n},\] que se
+puede resumir como
 
 \[\bigg|\dfrac{\bar X_n-\mu_0}{\sigma'/\sqrt n}\bigg|>t_{n-1,1-\frac{\alpha}2}.\]
 
-**Ejemplo**. $X_1,\dots,X_n\sim N(\mu,\sigma^2)$, $\mu$ desconocido, $\sigma^2$ conocido. Construta un intervalo de confianza con nivel $\gamma$ a partir de \[ H_0: \mu = \mu_0 \text{ vs } H_1: \mu \ne \mu_0.\]
+
+
+
+```r
+n <- 1000
+gamma <- 0.95
+alpha <- 0.95
+X <- rnorm(n = n, mean = 1, sd = 2)
+mu0 <- 1
+
+Xbar <- mean(X)
+sigma_prima <- sd(X)
+
+
+
+t_quantil <- qt(p = (1 + gamma) / 2, df = n - 1)
+```
+El intervalo de confianza es 
+
+
+```r
+c(Xbar - t_quantil * sigma_prima / sqrt(n), Xbar + t_quantil * sigma_prima / sqrt(n))
+```
+
+```
+## [1] 0.7678789 1.0139517
+```
+
+\[ H_0: \mu = 1 \text{ vs } H_1: \mu \ne 1.\]
+
+Para probar esta prueba se debe comprobar que 
+
+
+```r
+Z <- abs ((Xbar - mu0) / (sigma_prima / sqrt(n)))
+```
+
+Preguntamos ¿Rechazamos \( H_0\)?
+
+
+```r
+Z > t_quantil
+```
+
+```
+## [1] FALSE
+```
+
+Si tuvieramos otros datos con otra media, el resultado será diferente. 
+
+
+```r
+n <- 1000
+gamma <- 0.95
+alpha <- 0.95
+X <- rnorm(n = n, mean = 5, sd = 2)
+mu0 <- 1
+
+Xbar <- mean(X)
+sigma_prima <- sd(X)
+
+t_quantil <- qt(p = (1 + gamma) / 2, df = n - 1)
+
+c(Xbar - t_quantil * sigma_prima / sqrt(n),
+  Xbar + t_quantil * sigma_prima / sqrt(n))
+```
+
+```
+## [1] 4.853676 5.103191
+```
+
+¿Rechazamos \( H_0\)?
+
+
+```r
+Z <- abs ((Xbar - mu0) / (sigma_prima / sqrt(n)))
+
+Z > t_quantil
+```
+
+```
+## [1] TRUE
+```
+
+**Ejemplo**. $X_1,\dots,X_n\sim N(\mu,\sigma^2)$, $\mu$ desconocido, $\sigma^2$ conocido. Construya un intervalo de confianza con nivel $\gamma$ a partir de \[ H_0: \mu = \mu_0 \text{ vs } H_1: \mu \ne \mu_0.\]
 
 Rechazamos $H_0$ si
 \[\bigg|\dfrac{\bar X_n-\mu_0}{\sigma/\sqrt n}\bigg|\geq z_{1-\frac{\alpha_0}2}.\]
@@ -4003,7 +5068,7 @@ que es el IC con nivel $\gamma$ para $\mu$.
 
 ### Dualidad en pruebas unilaterales
 
-Si $X = (X_1,\dots, X_n)$ es una muestra según $F_\theta$ y $g(\theta)$ es una función de variable real, suponga que para cada $g_0\in I_m(g)$ existe una prueba $\delta_{g_0}$ con nivel $\alpha_0$ de las hipótesis anteriores. Si
+Si $X = (X_1,\dots, X_n)$ es una muestra según $F_\theta$ y $g(\theta)$ es una función de variable real, suponga que para cada $g_0\in Im(g)$ existe una prueba $\delta_{g_0}$ con nivel $\alpha_0$ de las hipótesis anteriores. Si
 \[\omega(x) = \{g_0: \delta_{g_0} \text{ no rechaza }H_{0,g_0}\text{ si }X=x\}\]
 
 y si $\gamma = 1-\alpha_0$, entonces $\omega(x)$ es una región de confianza para $g(\theta)$ con nivel $\gamma$.
@@ -4065,10 +5130,94 @@ Una prueba de cociente de verosimilitud rechaza $H_0$ si $\Lambda(x)\leq k$, par
 
 Si $n=10$, $\theta_0 = 0.3$, $y = 6$, $\alpha_0=0.05$.
 
-| $y$ | $0$     | $1$     | $2$     | $3$     | $4$     | $5$     | $6$     | $7$     | $8$     | $9$    | $10$   |
-|---|-------|-------|-------|-------|-------|-------|-------|-------|-------|------|------|
-| $\Lambda(y)$ | $0.028$ | $0.312$ | $0.773$ | $1$     | $0.797$ | $0.418$ | $0.147$ | $0.034$ | $0.005$ | $3\times 10^{-4}$ | $6\times10^{-6}$ |
-| $\mathbb P[Y=y|\theta=0.3]$| $0.028$ | $0.121$ | $0.233$ | $0.267$ | $0.200$ | $0.103$ |$0.037$ | $0.009$ | $0.001$ | $1\times 10^{-4}$| $6\times10^{-6}$|
+
+
+```r
+n <- 10
+p0 <- 0.3
+y <- 0:10
+alpha0 <- 0.05
+
+p <- choose(n, y) * p0^y * (1 - p0)^(n - y)
+
+
+Lambda <- numeric(n)
+Lambda[y == 0] <- (1 - p0)^n
+ym1 <- y[y != 0]
+Lambda[y != 0] <- (n * p0 / ym1)^ym1 * ((n * (1 - p0)) / (n - ym1))^(n - ym1)
+
+plot(y, Lambda, type = "l", col = "blue")
+lines(y, p, type = "l", col = "red")
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-103-1} \end{center}
+
+```r
+knitr::kable(cbind(y, Lambda, p))
+```
+
+
+\begin{tabular}{r|r|r}
+\hline
+y & Lambda & p\\
+\hline
+0 & 0.0282475 & 0.0282475\\
+\hline
+1 & 0.3124791 & 0.1210608\\
+\hline
+2 & 0.7731201 & 0.2334744\\
+\hline
+3 & 1.0000000 & 0.2668279\\
+\hline
+4 & 0.7978583 & 0.2001209\\
+\hline
+5 & 0.4182119 & 0.1029193\\
+\hline
+6 & 0.1465454 & 0.0367569\\
+\hline
+7 & 0.0337359 & 0.0090017\\
+\hline
+8 & 0.0047906 & 0.0014467\\
+\hline
+9 & 0.0003556 & 0.0001378\\
+\hline
+10 & 0.0000059 & 0.0000059\\
+\hline
+\end{tabular}
+
+```r
+ix <- order(p)
+knitr::kable(cbind(y[ix], cumsum(p[ix])))
+```
+
+
+\begin{tabular}{r|r}
+\hline
+10 & 0.0000059\\
+\hline
+9 & 0.0001437\\
+\hline
+8 & 0.0015904\\
+\hline
+7 & 0.0105921\\
+\hline
+0 & 0.0388396\\
+\hline
+6 & 0.0755965\\
+\hline
+5 & 0.1785159\\
+\hline
+1 & 0.2995767\\
+\hline
+4 & 0.4996976\\
+\hline
+2 & 0.7331721\\
+\hline
+3 & 1.0000000\\
+\hline
+\end{tabular}
 
 Rechazamos $H_0$ con nivel $\alpha_0 = 0.05$ en $y \in\{10,9,8,7,0\}$ y $k\in [0.028,0.147)$ si rechazo cuando $\Lambda(y)\leq k$. El tamaño de prueba es
 \[\mathbb P_{0.3}[\text{Rechazo}] = \mathbb{P}_{0.3}[Y\in \{10,9,8,7,0\}] = 0.039.\]
@@ -4083,6 +5232,57 @@ Rechazamos $H_0$ bajo la misma región del ejemplo anterior.
 
 
 
+```r
+-2 * log(Lambda)
+```
+
+```
+##  [1]  7.1334989  2.3264351  0.5146418  0.0000000  0.4516484  1.7435339
+##  [7]  3.8408399  6.7783829 10.6822162 15.8832009 24.0794561
+```
+
+```r
+qchisq(p = 0.95, df = 1)
+```
+
+```
+## [1] 3.841459
+```
+¿Rechazamos \( H_0\)?
+
+```r
+knitr::kable(data.frame(y, test = -2 * log(Lambda) > qchisq(p = 0.95, df = 1)))
+```
+
+
+\begin{tabular}{r|l}
+\hline
+y & test\\
+\hline
+0 & TRUE\\
+\hline
+1 & FALSE\\
+\hline
+2 & FALSE\\
+\hline
+3 & FALSE\\
+\hline
+4 & FALSE\\
+\hline
+5 & FALSE\\
+\hline
+6 & FALSE\\
+\hline
+7 & TRUE\\
+\hline
+8 & TRUE\\
+\hline
+9 & TRUE\\
+\hline
+10 & TRUE\\
+\hline
+\end{tabular}
+
 <!--chapter:end:09-pruebas-hipotesis.Rmd-->
 
 
@@ -4091,21 +5291,48 @@ Rechazamos $H_0$ bajo la misma región del ejemplo anterior.
 
 ## Hipótesis simples
 
-**Ejemplo**. Sea $X_i$ el tiempo de servicio del cliente #i en el sistema. El supuesto de independencia es poco válida.
+**Ejemplo**. Sea $X_1,\dots, X_n$ el tiempo de servicio del cliente #i en el sistema. 
+El administrador del sistema no sabe si la distribución con que se atienden a
+los clientes es 
 
-Si no hay independencia y si $X_1,\dots, X_n$ son observados
 
-\[f_1(x) = \begin{cases}\dfrac{2(n!)}{(2+\sum X_i)^{n+1}} & X_i>0\\0 & \text{si no}\end{cases}\]
+\[f_1(x) = \begin{cases}\dfrac{2(n!)}{(2+\sum X_i)^{n+1}} & X_i>0\\0 & \text{si
+no}\end{cases}\]
 
-Se asume que $X_i\sim\text{Exp}(1/2)$.
+O si es una $\text{Exp}(1/2)$.
 
-\[f_0(x)=\begin{cases}\dfrac 1{2^n}e^{-\frac12\sum X_i} & \text{si }X_i>0\\0 & \text{si no} \end{cases}\]
+\[f_0(x)=\begin{cases}\dfrac 1{2^n}e^{-\frac12\sum X_i} & \text{si }X_i>0\\0 &
+\text{si no} \end{cases}\]
 
 Si $H_0: f=f_0$ vs $H_1:f=f_1$, ¿Cuál hipótesis es cierta?
 
-Podemos redefinir las hipótesis si $\Omega=\{\theta_0,\theta_1\}$ donde si $\theta = \theta_i$, seleccionamos $f = f_i$ y se prueba $H_0: \theta=\theta_0$ vs $H_1:\theta=\theta_1$.
 
-Asuma que $X_1,\dots,X_n\sim f_i(X)$ donde se pueden tener dos posibilidades $(i=0,1)$. Sea $\Omega =\{\theta_0,\theta_1\}$ donde $\theta_1$ es el parámetro que indica a cuál densidad se selecciona como hipótesis.
+```r
+n <- 1
+x <- seq(0, 10, length.out = 1000)
+
+f1 <-  2 / (2 + x)^2
+
+f0 <- 1 / 2 * exp(-1 / 2 * x)
+
+df <- data.frame(x = c(x, x), f = c(f0, f1), `Distribución` = c(rep("f_0", 1000), rep("f_1", 1000)))
+
+ggplot(df, aes(x, f, color = `Distribución`)) +
+  geom_line() +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-107-1} \end{center}
+
+Podemos redefinir las hipótesis si $\Omega=\{\theta_0,\theta_1\}$ donde si
+$\theta = \theta_i$, seleccionamos $f = f_i$ y se prueba $H_0: \theta=\theta_0$
+vs $H_1:\theta=\theta_1$.
+
+Asuma que $X_1,\dots,X_n\sim f_i(X)$ donde se pueden tener dos posibilidades
+$(i=0,1)$. Sea $\Omega =\{\theta_0,\theta_1\}$ donde $\theta_1$ es el parámetro
+que indica a cuál densidad se selecciona como hipótesis.
 
 \[H_0: \theta=\theta_0 \text{ vs } H_1:\theta=\theta_1\]
 
@@ -4115,18 +5342,62 @@ Si $\delta$ es un procedimiento de prueba, se denota los errores tipo I y II:
 
 * $\beta(\delta) = \mathbb P[\text{No rechazo }H_0|\theta=\theta_1 ]$.
 
-Del ejemplo anterior, si se asume (o se comprueba) que $f_1$ da probabilidades más altas que $f_0$ entonces un criterio de rechazo puede ser $X_1>4$ si se observa solo $n=1$.
+Del ejemplo anterior, si se asume (o se comprueba) que $f_1$ da probabilidades
+más altas que $f_0$ entonces un criterio de rechazo puede ser $X_1>4$ si se
+observa solo $n=1$.
 
-En este caso, 
+En este caso,
 
-\[\alpha(\delta) = \mathbb P[X_1>4|\theta=\theta_0] = 1-(1-e^{-0.5\cdot 4}) = 0.135\]
+\[\alpha(\delta) = \mathbb P[X_1>4|\theta=\theta_0] = 1-(1-e^{-0.5\cdot 4}) =
+  0.135\]
+  
 
-\[\beta(\delta) =  \mathbb P[X_1<4|\theta=\theta_1] = \int_{0}^{4}\dfrac2{(2+x_1)^2}dx_1=0.667.\]
+```r
+1 - pexp(q = 4, rate = 1 / 2)
+```
 
-**Objetivo**. Encontrar un procedimiento de prueba $\delta$ tal que $\alpha(\delta)$ y $\beta(\delta)$ se reduzcan simultáneamente o al menos si $a,b>0$, que $a\alpha(\delta) + b\beta(\delta)$ sea mínimo.
+```
+## [1] 0.1353353
+```
 
-**Teorema**. Sea $\delta^*$ un procedimiento de prueba tal que no se rechaza $H_0:\theta=\theta_0$ si $af_0(x) > bf_1(x)$ y se rechaza $H_0$ si $af_0(x) < bf_1(x)$. Si $af_0(x) = bf_1(x)$ se puede rechazar o no $H_0$. Entonces para cualquier otro procedimiento de prueba $\delta$
-\[a\alpha(\delta^*) + b\beta(\delta^*) \leq a\alpha(\delta) + b\beta(\delta). \]
+
+\[\beta(\delta) = \mathbb P[X_1<4|\theta=\theta_1] = \int_{0}^{4}\dfrac2{(2+x_1)^2}dx_1=0.667.\]
+
+**Observación:** Para densidades no usuales, hay dos formas de calcular los
+valores 
+
+- Teóricamente calculando la integral directamente. 
+- Si la integral es muy díficil y solo se necesita una aproximación númerica se
+  puede usar `integrate`:
+  
+  
+  ```r
+  densidad_f1 <- function(x) {
+    2 / (x + 2)^2
+  }
+  
+  integrate(densidad_f1, lower = 0, upper = 4)
+  ```
+  
+  ```
+  ## 0.6666667 with absolute error < 2.9e-12
+  ```
+
+
+*Nota: Esta distribución se debe estimar teóricamente ya que no hay fórmula
+predefinida en `R`.*
+
+
+
+**Objetivo**. Encontrar un procedimiento de prueba $\delta$ tal que
+$\alpha(\delta)$ y $\beta(\delta)$ se reduzcan simultáneamente o al menos si
+$a,b>0$, que $a\alpha(\delta) + b\beta(\delta)$ sea mínimo.
+
+**Teorema**. Sea $\delta^*$ un procedimiento de prueba tal que no se rechaza
+$H_0:\theta=\theta_0$ si $af_0(x) > bf_1(x)$ y se rechaza $H_0$ si $af_0(x) <
+bf_1(x)$. Si $af_0(x) = bf_1(x)$ se puede rechazar o no $H_0$. Entonces para
+cualquier otro procedimiento de prueba $\delta$ \[a\alpha(\delta^*) +
+b\beta(\delta^*) \leq a\alpha(\delta) + b\beta(\delta). \]
 
 
 *Prueba*. Caso discreto solamente.
@@ -4139,67 +5410,124 @@ a\alpha(\delta) + b\beta(\delta) & = a\sum_{x\in S_1}f_0(x) + b\sum_{x\in S_1^c}
 & = b + \sum_{x\in S_1}(af_0-bf_1(x)) 
 \end{align*}
 
-y lo anterior es mínimo si $af_0(x)-bf_1(x)<0$ en toda la muestra y no hay punto en donde $af_0(x)-bf_1(x)>0$.
+y lo anterior es mínimo si $af_0(x)-bf_1(x)<0$ en toda la muestra y no hay punto
+en donde $af_0(x)-bf_1(x)>0$. $\qedsymbol$
 
-**Definición**. **Cociente de verosimilitud**:
+
+
+
+
+**Definición**. Define el Cociente de verosimilitud como:
 \[\dfrac{f_1(x)}{f_0(x)}.\]
 
-Note que el estadístico LR está relacionado con el anterior de la siguiente forma:
+Note que el estadístico del cociente de verosimilitud (LR) está relacionado con
+el anterior de la siguiente forma:
 
 \[\Lambda(x) = \dfrac{f_0(x)}{\max\{f_0(x),f_1(x)\}} = \dfrac{\sup_{\Omega_0}f(x|\theta)}{\sup_{\Omega}f(x|\theta)}.\]
 
-**Corolario**. Bajo las condiciones del teorema anterior, si $a,b>0$ entonces la prueba $\delta$ para la cual $a\alpha(\delta) + b\beta(\delta)$ es un mínimo rechaza $H_0$ si el cociente de verosimilitud es mayor a $\dfrac ab$.
+**Corolario**. Bajo las condiciones del teorema anterior, si $a,b>0$ entonces la
+prueba $\delta$ para la cual $a\alpha(\delta) + b\beta(\delta)$ es un mínimo
+rechaza $H_0$ si el cociente de verosimilitud es mayor a $\dfrac ab$.
 
-Del ejemplo de tiempo de servicio, en lugar de rechazar $H_0: \theta = \theta_0$ si $X_1>4$ tome $a>b$ en el corolario anterior y rechace $H_0$ si
-\[\dfrac{f_1(x)}{f_0(x)}>1\Leftrightarrow \dfrac 4{(2+X_1)^2}\exp\left(\dfrac{X_1}2\right)>1\quad(*)\]
+**Ejemplo:** Continuando con el ejemplo del servicio al cliente. 
+
+En lugar de rechazar $H_0: \theta = \theta_0$ si $X_1>4$ hay que encontrar $a$ y
+$b$ que puedan balancear ambos tipos de errores. 
+
+Supogamos que tomamos $a=b$, entonces basado en el colorario anterior rechace
+$H_0$ si
+
+\[\dfrac{f_1(x)}{f_0(x)}>1\Leftrightarrow
+\dfrac 4{(2+X_1)^2}\exp\left(\dfrac{X_1}2\right)>1\quad(*)\]
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-65-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-110-1} \end{center}
 
 Entonces $(*)$ es cierto si $X_1>c$. Se puede comprobar numéricamente que $c\approx5.03$.
 
 Por lo tanto, rechazamos $H_0$ si $X_1>5.03$.
 
-**Criterio de Neyman-Pearson**. Encontrar un procedimiento $\delta$ tal que 
+En este caso $\alpha(\delta^*)$ es igual a 
+
+
+```r
+1 - pexp(q = 5.03, rate = 1 / 2)
+```
+
+```
+## [1] 0.08086291
+```
+
+y $\beta(\delta^*)$
+
+  
+  ```r
+  densidad_f1 <- function(x) {
+    2 / (x + 2)^2
+  }
+  
+  integrate(densidad_f1, lower = 0, upper = 5.03)
+  ```
+  
+  ```
+  ## 0.715505 with absolute error < 1.3e-10
+  ```
+  
+## Criterio de Neyman-Pearson
+
+Encontrar un procedimiento $\delta$ tal que 
 
 1) $\alpha(\delta) \leq \alpha_0$ ($\alpha_0$: nivel de significancia).
 
 2) $\beta(\delta)$ es mínimo.
 
-**Lema de Neyman-Pearson**. Suponga que $\delta'$ es un procedimiento de prueba que no rechaza $H_0$ si $f_1(x)<kf_0(x)$ rechaza $H_0$. Si $f_1(x)>kf_0(x)$ y decide cualquiera de los dos si $f_1(x)=kf_0(x)$ para $k>0$. Si $\delta$ es otro procedimiento de prueba tal que $\alpha(\delta)\leq \alpha(\delta')$, entonces $\beta(\delta)\geq \beta(\delta')$. Si $\alpha(\delta) <\alpha(\delta')$, $\beta(\delta)> \beta(\delta')$.
+**Lema de Neyman-Pearson**. Suponga que $\delta'$ es un procedimiento de prueba
+que no rechaza $H_0$ si $f_1(x)<kf_0(x)$ rechaza $H_0$. Si $f_1(x)>kf_0(x)$ y
+decide cualquiera de los dos si $f_1(x)=kf_0(x)$ para $k>0$. Si $\delta$ es otro
+procedimiento de prueba tal que $\alpha(\delta)\leq \alpha(\delta')$, entonces
+$\beta(\delta)\geq \beta(\delta')$. Si $\alpha(\delta) <\alpha(\delta')$,
+$\beta(\delta)> \beta(\delta')$.
 
 *Prueba*. Tome $a=k$ y $b=1$ en el corolario y teoremas anteriores. Como
 \[k\alpha(\delta')+\beta(\delta')\leq k\alpha(\delta')+\beta(\delta'),\]
 entonces
 \[\alpha(\delta)\leq \alpha(\delta')\implies \beta(\delta')\geq \beta(\delta').\]
 
-**Consecuencia**. Si queremos encontrar una prueba $\delta'$ que satisfaga el criterio de Neyman-Pearson, debemos encontrar $k$ tal que $\alpha(\delta') = \alpha_0$, y se rechace $H_0$ si $f_1(x)>kf_0(x) \Leftrightarrow\dfrac{f_0(x)}{f_1(x)}<k^{-1}$.
+**Consecuencia**. Si queremos encontrar una prueba $\delta'$ que satisfaga el
+criterio de Neyman-Pearson, debemos encontrar $k$ tal que $\alpha(\delta') =
+\alpha_0$, y se rechace $H_0$ si $f_1(x)>kf_0(x)
+\Leftrightarrow\dfrac{f_0(x)}{f_1(x)}<k^{-1}$.
 
-**Ejemplo**. Suponga que $X_1,\dots,X_n\sim N(\theta,1)$ y se quiere probar $H_0: \theta = 0$ vs $H_1: \theta = 1$ usando una prueba según el criterio de Neyman-Pearson con $\alpha = 0.05$.
+**Ejemplo**. Suponga que $X_1,\dots,X_n\sim N(\theta,1)$ y se quiere probar
+$H_0: \theta = 0$ vs $H_1: \theta = 1$ usando una prueba según el criterio de
+Neyman-Pearson con $\alpha = 0.05$.
 
 Note que
 
-* $f_0(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum X_i^2\bigg]$.
-* $f_1(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum (X_i-1)^2\bigg]$.
+* $f_0(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum_{i=1}^{n} X_i^2\bigg]$.
+* $f_1(x) = (2\pi)^{-n/2}\exp\bigg[-\dfrac 12 \sum_{i=1}^{n} (X_i-1)^2\bigg]$.
 
 Entonces
 
 \begin{align*}
-\dfrac{f_1(x)}{f_0(x)}& = \exp\bigg[-\dfrac 12 \sum (X_i^2-2X_i+1-X_1^2)\bigg]\\
-& = \exp\bigg[n\bar X_n - \dfrac n2\bigg] = \exp\bigg[n\left(\bar X_n - \dfrac 12\right)\bigg] 
+\dfrac{f_1(x)}{f_0(x)}
+&= \exp\bigg[-\dfrac 12 \sum_{i=1}^{n} (X_i^2-2X_i+1-X_1^2)\bigg]\\
+&= \exp\bigg[n\bar X_n - \dfrac n2\bigg] \\
+&= \exp\bigg[n\left(\bar X_n - \dfrac 12\right)\bigg] 
 \end{align*}
 
 Rechazamos $H_0$ si
 
-\[\dfrac{f_1(x)}{f_0(x)} = \exp\bigg[n\left(\bar X_n - \dfrac 12\right)\bigg]>k \Leftrightarrow \bar X_n > \underbrace{\dfrac 12 + \dfrac{\ln k}{n}}_{k'} .\]
+\[\dfrac{f*1(x)}{f_0(x)} = \exp\bigg[n\left(\bar X_n - \dfrac 12\right)\bigg]>k \Leftrightarrow \bar X_n > \underbrace{\dfrac 12 + \dfrac{\ln k}{n}}*{k'} .\]
 
 Entonces buscamos $k'$ tal que
 \[\mathbb P[\bar X_n>k'|\theta = 0]=0.05 \Leftrightarrow\mathbb P\bigg[\dfrac{\bar X_n}{1/\sqrt n}>\dfrac{k'}{1/\sqrt n}\bigg|\theta = 0\bigg]=0.05\]
 Despejando,
 \[k'\sqrt n= z_{0.95} \implies k'=\dfrac{z_{0.95}}{\sqrt n}.\]
 
-Entonces, entre todas las pruebas en donde $\alpha(\delta)\leq 0.05$, la que tiene el error tipo II más pequeño es la que rechaza $H_0$ si
+Entonces, entre todas las pruebas en donde $\alpha(\delta)\leq 0.05$, la que
+tiene el error tipo II más pequeño es la que rechaza $H_0$ si
 
 \[\bar X_n > \dfrac{z_{0.95}}{\sqrt n} = \dfrac{1.645}{\sqrt n}.\]
 
@@ -4214,7 +5542,8 @@ Si $n=9$, por ejemplo, $\beta(\delta') = \Phi(1.645-3) =0.0877.$
 **Ejemplo**. $X_1,\dots,X_n\sim\text{Ber}(p)$ y considere las hipótesis
 \[H_0: p = 0.2 \text{ vs } H_1: p = 0.4.\]
 
-Queremos encontrar un procedimiento de prueba en donde $\alpha(\delta) = 0.05$ y $\beta(\delta)$ es mínimo. Sea $y = \sum X_i$.
+Queremos encontrar un procedimiento de prueba en donde $\alpha(\delta) = 0.05$ y
+$\beta(\delta)$ es mínimo. Sea $y = \sum_{i=1}^{n} X_i$.
 
 \[f_0(x) = 0.2^y0.8^{n-y}\]
 \[f_1(x) = 0.4^y0.6^{n-y}\]
@@ -4236,24 +5565,278 @@ pero como $Y$ es una variable discreta (Binomial), no es posible encontrar ese $
 \[\mathbb P(Y>4|p=0.2) = 0.0328\]
 \[\mathbb P(Y>3|p=0.2) = 0.1209\]
 
-Por lo tanto, se puede especificar una prueba con nivel 0.05, $\alpha(\delta) = 0.0328$ y potencia mínima si $Y>4$ como región de rechazo.
+Por lo tanto, se puede especificar una prueba con nivel 0.05, $\alpha(\delta) =
+0.0328$ y potencia mínima si $Y>4$ como región de rechazo.
 
+## Pruebas insesgadas 
+
+**Definición**. Considere las hipótesis $H_0:\theta \in \Omega_0$ vs $H_1:
+\theta\in \Omega_1$. Decimos que una prueba de hipótesis $\delta$ es
+**insesgada** si $\forall \theta\in\Omega_0$ y $\forall \theta\in \Omega_1$:
+\[\pi(\theta|\delta) \leq \pi(\theta'|\delta).\]
+
+
+Esto quiere decir que la probabilidad de que la prueba \(\delta\) rechace la
+hipótesis nula es siempre más alta cuando la hipótesis alternativa es verdadera
+que cuando la hipótesis nula es verdadera. 
+
+Más simplemente, una prueba **insesgada** dará, en la mayoría de los casos, una
+decisión correcta sin importar si la hipótesis nula es correcta o no. 
+
+Una forma fácil de crear pruebas insesgadas es resolviendo númericamente las ecuaciones 
+
+
+\begin{align*}
+\pi\left(\theta_{0} \mid \delta\right) &=\alpha_{0}, \text { and } \\
+\left.\frac{d}{d \theta} \pi(\theta \mid \delta)\right|_{\theta=\theta_{0}} &=0
+\end{align*}
+
+donde la segunda ecuación es la derivada con respecto al parámetro evaluada en $\theta_0$. 
+
+
+
+**Ejemplo:** Retomando el ejemplo del servicio al cliente, suponga que se
+quiere ver si 
+
+\[
+H_0: \theta = \frac{1}{2} \quad vs \quad H_1: \theta \neq \frac{1}{2}
+\]
+
+La pregunta sería cómo encontrar un test que sea insesgado?
+
+Primero podemos hacer una prueba del cociente de verosimilitud para encontrar
+que tipo de prueba funciona. Definamos \(\Lambda (x) \) como antes de la forma
+con \(t = \sum_{i=1}^{n} X_i \):
+
+
+\[
+\Lambda(\boldsymbol{x})=\frac{(1 / 2)^{n} \exp (-t / 2)}{(n / t)^{n} \exp (-n)}=\left(\frac{t}{2 n}\right)^{n} \exp (n-t / 2)
+\]
+
+
+Esta prueba rechaza \(H_0 \) si \(\Lambda (x) \leq  c \) para algún \( c\) 
+
+
+Por ejemplo, poniendo \( n=10\) y \( c = 0.2\), vemos que \(\Lambda (x) \)
+tiene esta forma. 
+
+
+```r
+n <- 10
+
+t <- 1:50
+
+f <- (t / (2 * n))^n * exp(n - t / 2)
+
+plot(t, f)
+abline(h = 0.2, col = "red")
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-113-1} \end{center}
+Para resolver correctamente el ejercicio se deben encontrar valores \( c_1\) y
+\( c_2\) de modo que 
+
+
+\[
+\left(\frac{c_{1}}{2 n}\right)^{n} \exp \left(n-c_{1} / 2\right)=\left(\frac{c_{2}}{2 n}\right)^{n} \exp \left(n-c_{2} / 2\right)
+\]
+
+
+Además, recuerde que \(T = \sum_{i=1}^{n} X_i \) es \(\Gamma (n, \frac{1}{2}) \) 
+
+Para obtener un nivel  $\alpha$ (e.g. 5\%), $c_{1}$ y  $c_{2}$ deben satisfacer
+
+\begin{align*}
+\mathbb P (T \leq c_1) + \mathbb P(T\geq c_2) =& \alpha
+G\left(c_{1} ; n, 1 / 2\right)+1-G\left(c_{2} ; n, 1 / 2\right)=&\alpha
+\end{align*}
+
+Donde \(G \) es la función de distribución de una gamma. 
+
+Se debe resolver esta dos ecuaciones simulaneamente para \( c_1\) y \( c_2\)
+
+
+```r
+fn <- function(c1, c2, n) {
+  zero <-
+    abs((c1 / (2 * n))^n * exp(n - c1 / 2) -
+      (c2 / (2 * n))^n * exp(n - c2 / 2))
+  alpha <- pgamma(q = c1,
+    shape = n,
+    rate = 1 / 2) +
+    pgamma(
+      q = c2,
+      shape = n,
+      rate = 1 / 2,
+      lower.tail = FALSE
+    )
+
+  return(c(zero, alpha))
+}
+
+fn2 <- function(x, n) {
+  crossprod(fn(x[1], x[2], n) - c(0, 0.05))
+}
+
+
+sol <- optim(c(1, 1), fn2, n = 3)
+
+sol$par
+```
+
+```
+## [1]  1.425302 15.895757
+```
+
+
+Entonces rechazamos $H_0$ si $T\geq  15.895757$ o $T\leq  1.4253018$. 
+
+Ahora si se desea encontrar una prueba insesgada, lo que se debe considerar es encontrar una prueba de modo que se cumplan las ecuaciones vistas en la definición 
+
+
+\begin{align*}
+\pi(\theta \mid \delta)=G\left(c_{1} ; n, \theta\right)+1-G\left(c_{2} ; n, \theta\right) &= \alpha \\
+G\left(c_{1} ; 3,1 / 2\right)+1-G\left(c_{2} ; 3,1 / 2\right)&=0.05
+\end{align*}
+
+
+Derivando cuidadosamente (ver 9.4.13 del libro), se obtiene que 
+
+\begin{equation*}
+\frac{\partial}{\partial \theta} G(x ; n, \theta)=\frac{n}{\theta}[G(x ; n, \theta)-G(x ; n+1, \theta)]
+\end{equation*}
+
+por lo tanto 
+
+\begin{align*}
+\left.\frac{d}{d \theta} \pi(\theta \mid \delta)\right|_{\theta=\theta_{0}} &=0  \\
+G^\prime(c_1; 3, 1/2) - G^\prime(c_2; 3, 1/2)  & = 0 \\
+\end{align*}
+
+Finalmente la ecuación que se debe resolver es 
+
+
+
+\begin{equation*}
+\frac{3}{1/2}[G(c_1 ; 3,1/2)-G(c_1 ; 4,1/2)] -
+\left(\frac{3}{1/2}[G(c_2 ; 3,1/2)-G(c_2 ; 4,1/2)]\right) =  0 
+\end{equation*}
+
+
+
+```r
+fn <- function(c1, c2, n) {
+
+  zero <-  n / 0.5 *
+    abs(
+      pgamma(q = c1, shape = n, rate = 1 / 2) -
+        pgamma(q = c1, shape = n + 1, rate = 1 / 2) -
+        pgamma(q = c2, shape = n, rate = 1 / 2) +
+        pgamma(q = c2, shape = n + 1, rate = 1 / 2)
+    )
+
+  alpha <- pgamma(q = c1, shape = n, rate = 1 / 2) +
+    pgamma(
+      q = c2,
+      shape = n,
+      rate = 1 / 2,
+      lower.tail = FALSE
+    )
+
+  return(c(zero, alpha))
+}
+
+fn2 <- function(x, n) {
+  crossprod(fn(x[1], x[2], n) - c(0, 0.05))
+}
+
+
+sol <- optim(c(1, 1), fn2, n = 3)
+
+sol$par
+```
+
+```
+## [1]  1.424926 15.896302
+```
+ 
+Que son resultan en los mismos valores que la prueba anterior.  
+ 
 ## Prueba $t$
 
-Suponga que $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, con $(\mu,\sigma^2)$ desconocidos, y considere las siguientes hipótesis:
+La prueba \(t\) esta pensada para cuando tanto la media \(\mu\) como la
+desviación estándar \(\sigma\) desconocidas.
+
+
+
+
+Suponga que $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, con $(\mu,\sigma^2)$
+desconocidos, y considere las siguientes hipótesis:
 
 \[H_0: \mu\leq\mu_0 \text{ vs } H_1:\mu>\mu_0.\]
 
-Recuerde que si $U = \dfrac{\bar X_n -\mu_0}{\sigma' /\sqrt n}$, entonces la prueba rechaza $H_0$ si $U\geq c$. Si $\mu=\mu_0$ entonces $U \sim t_{n-1}$.
+Recuerde que si $U = \dfrac{\bar X_n -\mu_0}{\sigma' /\sqrt n}$, entonces la
+prueba rechaza $H_0$ si $U\geq c$. Si $\mu=\mu_0$ entonces $U \sim t_{n-1}$.
 
 Si $H_0: \mu\geq\mu_0$ vs $H_1: \mu<\mu_0$, entonces se rechaza $H_0$ si $U\leq c$.
 
-**Definición**. Considere las hipótesis $H_0:\theta \in \Omega_0$ vs $H_1: \theta\in \Omega_1$. Decimos que una prueba de hipótesis $\delta$ es **insesgada** si $\forall \theta\in\Omega_0$ y $\forall \theta\in \Omega_1$:
-\[\pi(\theta|\delta) \leq \pi(\theta'|\delta).\]
+**Ejemplo:** Recordemos el ejemplo de los días que un paciente tarda en una casa
+de cuido en Nuevo México 
+
+```r
+load("./data/Nursing.rda")
+hist(Nursing$InPatientDays)
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-116-1} \end{center}
+
+Se quiere probar la hipótesis de $H_{0}: \mu \leq 200$ versus $H_{1}: \mu > 200$,
+es decir queremos saber si los pacientes duran más de 200 días en cuidados. 
+
+El estadístico de prueba sería 
+
+\[
+U =  \sqrt{n} \frac{(\overline{X} - \mu)}{\sigma ^{\prime}}
+\]
+
+y el test rechaza \(H_{0}\) si \(U>t_{n-1, 1-\alpha} \). 
+
+
+```r
+x <- Nursing$InPatientDays
+n <- length(x)
+xbar <- mean(x)
+sigma_prima <- sd(x)
+alpha <- 0.1
+mu0 <- 200
+
+quantil_t <- qt(p = 1 - alpha, df = n - 1)
+
+U <- sqrt(n) * (xbar - 200) / sigma_prima
+```
+
+
+¿Rechazamos $H_0$?
+
+
+```r
+U > quantil_t
+```
+
+```
+## [1] FALSE
+```
+
 
 ### Propiedades de las pruebas $t$
 
-**Teorema**. Sea $X_1,\dots,X_n\sim N(\mu,\sigma^2)$. Sea $U$ definido anteriormente, $c=t_{n-1,1-\alpha_0}$. Sea $\delta$ la prueba que rechaza $H_0$ si $U\geq c$. Entonces
+**Teorema**. Sea $X_1,\dots,X_n\sim N(\mu,\sigma^2)$. Sea $U$ definido
+anteriormente, $c=t_{n-1,1-\alpha_0}$. Sea $\delta$ la prueba que rechaza $H_0$
+si $U\geq c$. Entonces
 
 i) $\pi(\mu,\sigma^2|\delta) = \alpha_0$ si $\mu=\mu_0$.
 
@@ -4269,12 +5852,55 @@ Entonces, la prueba tiene tamaño $\alpha_0$ y es insesgada.
 
 *Prueba*. Ver en el libro.
 
-En el caso en donde $H_0:\mu\geq \mu_0$ las desigualdades se intercambian y la prueba también tiene tamaño $\alpha_0$ y es insesgada.
 
-**Teorema**. Bajo cualquiera de los dos casos anteriores, sea $U$ el valor observado de $U$. Entonces, el valor-*p* de la prueba $\delta$ que rechaza $H_0: \mu\leq\mu_0$ es $1-T_{n-1}(u)$ donde $T_{n-1}$ es c.d.f de $t_{n-1}$ y si se rechaza $H_0 \mu\geq \mu_0$, el valor-*p* es $T_{n-1}(u)$.
 
-*Prueba*. El caso $H_0:\mu\leq\mu_0$ es análogo al cálculo del valor-*p* que se hizo en el capítulo anterior. El caso $H_0: \mu\geq \mu_0$ se rechaza si \[U\leq T_{n-1}^{-1}(\alpha_0) \Leftrightarrow T_{n-1}(u)\leq \alpha_0.\]
-Es decir, el nivel más pequeño de significancia observada es $T_{n-1}(u)$
+En el caso en donde $H_0:\mu\geq \mu_0$ las desigualdades se intercambian y la
+prueba también tiene tamaño $\alpha_0$ y es insesgada.
+
+**Teorema**. Bajo cualquiera de los dos casos anteriores, sea $U$ el valor
+observado de $U$. Entonces, el valor-*p* de la prueba $\delta$ que rechaza $H_0:
+\mu\leq\mu_0$ es $1-T_{n-1}(u)$ donde $T_{n-1}$ es c.d.f de $t_{n-1}$ y si se
+rechaza $H_0 \mu\geq \mu_0$, el valor-*p* es $T_{n-1}(u)$.
+
+*Prueba*. El caso $H_0:\mu\leq\mu_0$ es análogo al cálculo del valor-*p* que se
+hizo en el capítulo anterior. El caso $H_0: \mu\geq \mu_0$ se rechaza si \[U\leq
+T_{n-1}^{-1}(\alpha_0) \Leftrightarrow T_{n-1}(u)\leq \alpha_0.\] Es decir, el
+nivel más pequeño de significancia observada es $T_{n-1}(u)$ $\qedsymbol$
+
+
+**Ejemplo:**
+
+¿Cuál es el valor \( p\) del ejemplo de casas de cuido?
+
+
+```r
+1 - pt(q = U, df = n - 1)
+```
+
+```
+## [1] 0.9064029
+```
+
+```r
+t.test(x, alternative = "greater", mu = 200)
+```
+
+```
+## 
+## 	One Sample t-test
+## 
+## data:  x
+## t = -1.3369, df = 51, p-value = 0.9064
+## alternative hypothesis: true mean is greater than 200
+## 95 percent confidence interval:
+##  163.6466      Inf
+## sample estimates:
+## mean of x 
+##  183.8654
+```
+
+
+
 
 Considere el caso $H_0: \mu\geq \mu_0$ vs $H_1: \mu>\mu_0$.
 
@@ -4296,45 +5922,92 @@ Considere el caso $H_0: \mu\geq \mu_0$ vs $H_1: \mu>\mu_0$.
 
 Observe que
 
-\[\Delta = \dfrac{\bar X_n -\mu}{\sigma' /\sqrt n}\cdot\dfrac\sigma\sigma = \dfrac{\dfrac{\sqrt n(\bar X_n-\mu)}{\sigma} \sim N(0,1)}{\dfrac{\sigma'}\sigma = \sqrt{\dfrac{\chi^2}{n-1}}} \sim t_{n-1}.\]
+\[\Delta = \dfrac{\bar X_n -\mu}{\sigma' /\sqrt n}\cdot\dfrac\sigma\sigma = \dfrac{\dfrac{\sqrt n(\bar X_n-\mu)}{\sigma} }{\dfrac{\sigma'}\sigma } \sim \dfrac{N(0,1)}{\sqrt{\dfrac{\chi^2_{n-1}}{n-1}}} \sim t_{n-1}.\]
 
 De igual forma, vea que
 
-\[ U = \dfrac{\dfrac{\sqrt n(\bar X_n-\mu_0)}{\sigma}}{\dfrac{\sigma'}{\sigma}} =  \dfrac{\dfrac{\sqrt n}{\sigma}(\bar X_n-\mu) +\overbrace{\dfrac{\sqrt n}{\sigma}(\mu-\mu_0)}^{\psi}  \sim N(\psi,1)}{\dfrac{\sigma'}{\sigma}}.\]
+\[
+U = \dfrac{\dfrac{\sqrt n(\bar X_n-\mu_0)}{\sigma}}{\dfrac{\sigma'}{\sigma}} = \dfrac{\dfrac{\sqrt n}{\sigma}(\bar X_n-\mu) +\overbrace{\dfrac{\sqrt n}{\sigma}(\mu-\mu_0)}^{\psi}}{\dfrac{\sigma'}{\sigma}} \sim \dfrac{N(\psi,1)}{\sqrt{\dfrac{\chi^2_{n-1}}{n-1}}}.
+\]
 
-**Definición**. Si $Y$, $W$ son independientes con $W\sim N(\psi,1)$ y $Y\sim \chi^2_m$, entonces $X$ se distribuye como una **$t$-Student no centrada** con parámetro $\psi$ si
-\[X = \dfrac W{\sqrt{\dfrac{Y}{m}}}.\]
+**Definición**. Si $Y$, $W$ son independientes con $W\sim N(\psi,1)$ y $Y\sim
+\chi^2_m$, entonces $X$ se distribuye como una **$t$-Student no centrada** con
+parámetro $\psi$ si \[X = \dfrac W{\sqrt{\dfrac{Y}{m}}}.\]
 
 Si $T_m(t|\psi)$ es c.d.f de $X$, entonces
 \[\pi(\mu|\delta)= T_{n-1}(t_{n-1,1-\alpha_0}).\]
 
-En el caso que la prueba sea $H_0: \mu\leq \mu_0$ vs $H_1: \mu<\mu_0$.
+En el caso que la prueba sea $H_0: \mu \geq \mu_0$ vs $H_1: \mu<\mu_0$.
  
 \[\pi(\mu|\delta)= \mathbb P[U\leq t_{n-1,1-\alpha_0}] = T_{n-1}(t_{n-1,\alpha_0}).\]
 
-**Conclusión**: a partir del error tipo II se puede determinar un tamaño de muestra dado, siempre y cuando existan restricciones sobre $\mu$ y $\sigma^2$.
+**Conclusión**: a partir del error tipo II se puede determinar un tamaño de
+muestra dado, siempre y cuando existan restricciones sobre $\mu$ y $\sigma^2$.
 
+En el caso de las casas de cuido, suponga que queremos ver el poder cuando \(\mu = 200 + sigma/2\), entonces el parámetro de no centralidad queda en \(\psi = \dfrac{sqrt{n}}{2}\). 
+
+
+
+```r
+n <- length(x)
+
+alpha0 <- 0.05
+q <- qt(p = 1 - alpha0, df = n - 1)
+
+parametro_no_central <- sqrt(n) / 2
+
+(poder <- pt(q = q, df = n - 1, ncp = parametro_no_central))
+```
+
+```
+## [1] 0.02792138
+```
 ### Prueba $t$ pareada
 
-**Ejemplo**. Considere una muestra de $n$ pacientes que fuman $X$ cantidad al día. Sean $t_1$ el momento de la observación y $t_2$ el tratamiento. El consumo de cigarrillos en el individuo #*i* es
+<!-- **Ejemplo**. Considere una muestra de $n$ pacientes que fuman $X$ cantidad al -->
+<!-- día. Sean $t_1$ el momento de la observación y $t_2$ el tratamiento. El consumo -->
+<!-- de cigarrillos en el individuo #*i* es -->
 
-\[D_i = X_i^{t_2}-X_i^{t_1},\quad i = 1,\dots,n.\]
+<!-- \[D_i = X_i^{t_2}-X_i^{t_1},\quad i = 1,\dots,n.\] -->
 
-Otro ejemplo es tomar $Y_i^{t_1,t_2}$ el log-daño en los muñecos de prueba, donde $t_1$ corresponde al conductor y $t_2$ al acompañante, entonces
+A veces se quiere comparar la misma variable pero medida bajo dos condiciones
+distintas. Es decir ver si la media de un experimento es menor o mayor que la
+otra. 
 
-$X_i = Y_i^{t_1}-Y_i^{t_2} = \ln\left(\dfrac{\text{da}\tilde{\text n}\text{o}^{t_1}}{\text{da}\tilde{\text n}\text{o}^{t_2}}\right) \implies \text{da}\tilde{\text n}\text{o}^{t_2}\cdot e^{X_i} = \text{da}\tilde{\text n}\text{o}^{t_1}$
+Los usual en estos casos es restar ambas medias y hacer una prueba de hipótesis
+con \( \mu_0 = 0\).  
 
-Evaluemos la prueba $H_0:\mu\leq 0$ vs $H_1:\mu>0$ al 1%. Si $X_1,\dots, X_n \sim N(\mu,\sigma^2)$ ambos parámetros desconocidos, y $n=164$, $\bar X_n = 0.2199$, $\sigma'=0.5342$, rechazamos $H_0$ si
 
-\[U = \dfrac{0.2199-0}{\dfrac{0.5342}{\sqrt {164}}} = 5.271 >t_{163,1-0.01} = 2.35.\]
+**Ejemplo:** Suponga que se tiene los datos de muñecos de prueba para probar
+carros en simulaciones de accidentes de tránsito. Defina \(X_i ^{t_1}\) el daño
+reportado al conductor y \(D_i ^{t_2}\) el daño al pasajero. 
+
+Defina el logaritmo del daño como  \( Y_i ^{t_1} = \ln(D_{i}^{t_1})\) y \( Y_i ^{t_2} =
+\ln(D_{i}^{t_2})\)
+$X_i = Y_i^{t_1}-Y_i^{t_2} = \ln\left(\dfrac{D_{i}^{t_1}}{D_{i}^{t_2}}\right) \implies
+D_{i}^{t_2}\cdot e^{X_i} = D_{i}^{t_1}$
+
+Evaluemos la prueba $H_0:\mu\leq 0$ vs $H_1:\mu>0$ al 1%. Si $X_1,\dots, X_n
+\sim N(\mu,\sigma^2)$ ambos parámetros desconocidos, y $n=164$, $\bar X_n =
+0.2199$, $\sigma'=0.5342$, rechazamos $H_0$ si
+
+\[
+U = \dfrac{0.2199-0}{\dfrac{0.5342}{\sqrt {164}}} = 5.271 >t_{163,1-0.01} = 2.35.
+\]
 
 El valor-*p* de la prueba es 
-\[1-\mathbb P[t_{163}<5.271] = 1\times10^{-6}<1\%.\]
-Entonces rechazo $H_0$ con nivel de significancia de $1%$. 
+\[
+1-\mathbb P[t_{163}<5.271] = 1\times10^{-6}<1\%.
+\] 
 
-Suponga que la diferencia media entre conductor y pasajero es $\dfrac\sigma 4$. ¿Cuál es el error tipo II?
+Entonces rechazo $H_0$ con nivel de significancia de $1%$.
 
-\[\mu =\dfrac\sigma 4\implies \psi = \dfrac{\mu-\mu_0}{\sigma/\sqrt n} = \dfrac{\sigma/4-0}{\sigma/\sqrt{164}} = \dfrac{\sqrt{164}}{3} = 3.2.\]
+Suponga que la diferencia media entre conductor y pasajero es $\dfrac\sigma 4$.
+¿Cuál es el error tipo II?
+
+\[
+\mu =\dfrac\sigma 4\implies \psi = \dfrac{\mu-\mu_0}{\sigma/\sqrt n} = \dfrac{\sigma/4-0}{\sigma/\sqrt{164}} = \dfrac{\sqrt{164}}{3} = 3.2.
+\]
 
 El error tipo II es $T_{163}(2.35|\psi =3.2) = 1-0.802 = 0.198$.
 
@@ -4344,37 +6017,51 @@ El error tipo II es $T_{163}(2.35|\psi =3.2) = 1-0.802 = 0.198$.
 
 * Función de potencia:
 
-\[\pi(\mu|\delta) = \mathbb P[U\geq t_{n-1,1-\frac{\alpha_0}2}|\mu]+\mathbb P[U\leq t_{n-1,1-\frac{\alpha_0}2}|\mu] = T_{n-1}(-c|\psi) + 1-T_{n-1}(c|\psi). \]
+\[
+\pi(\mu|\delta) = \mathbb P[U\geq t_{n-1,1-\frac{\alpha_0}2}|\mu]+\mathbb P[U\leq t_{n-1,1-\frac{\alpha_0}2}|\mu] = T_{n-1}(-c|\psi) + 1-T_{n-1}(c|\psi).
+\]
 
 * Valor-*p*: si observamos $U=u$, rechazamos $H_0$ si
 
-\[|u|\geq t_{n-1,1-\frac{\alpha_0}2} \Leftrightarrow T_{n-1}(|U|)\geq 1-\dfrac{\alpha_0}2 \Leftrightarrow \alpha_0\geq \underbrace{2[1-T_{n-1}(|u|)]}_{\text{valor-}p}.\]
+\[
+| u | \geq t_{n-1,1-\frac{\alpha_0}2} \Leftrightarrow T_{n-1}( | U | )\geq 1-\dfrac{\alpha_0}2 \Leftrightarrow \alpha_0\geq \underbrace{2[1-T_{n-1}( | u | )]}_{\text{valor-}p}.
+\] 
 
-**Propiedad**. La prueba-$t$ unilateral es un LRT.
+**Propiedad**. La prueba-$t$  unilateral es equivalente a una prueba de cociente
+de verosimilitud (LRT).  Entonces la prueba 
 
-Sea $f_n(x|\mu)$ la función de verosimilitud de una muestra de distribuciones normales y considere
-\[\Lambda(x) = \dfrac{\sup_{\mu\leq\mu_0}f_n(x|\mu)}{\sup_{\mu}f_n(x|\mu)}. \]
+<!-- Sea $f_n(x|\mu)$ la función de verosimilitud de una muestra de distribuciones -->
+<!-- normales y considere  -->
 
-El MLE en $\Omega$ es $(\bar X_n,\hat\sigma^2)$, entonces
+<!-- \[\Lambda(x) = \dfrac{\sup_{\mu\leq\mu_0}f_n(x|\mu)}{\sup_{\mu}f_n(x|\mu)}. \] -->
 
-\[\sup_{\mu}f_n(x|\mu) = \dfrac1{(2\pi\hat\sigma^2)^{n/2}}e^{-n/2}.\]
+<!-- El MLE en $\Omega$ es $(\bar X_n,\hat\sigma^2)$, entonces -->
 
-El MLE en $\Omega_0$, si $\bar X_n<\mu_0$ es $\bar X_n$, por lo que $\Lambda(x) =1$.
+<!-- \[\sup_{\mu}f_n(x|\mu) = \dfrac1{(2\pi\hat\sigma^2)^{n/2}}e^{-n/2}.\] -->
 
-Si $\bar X_n>\mu_0$, se puede probar que $f_n(x|\mu)$ se maximiza si $\mu$ está lo más cerca posible de $\bar X_n$, que, en el subconjunto $\Omega_0$ sería $\mu_0$. Entonces $\mu = \mu_0$, $\hat\sigma_0 = \dfrac 1n \sum_{i=1}^n(X_i-\mu_0)^2$ y
-\[\sup_{\mu}f_n(x|\mu) = \dfrac1{(2\pi\hat\sigma_0^2)^{n/2}}e^{-n/2}.\]
+<!-- El MLE en $\Omega_0$, si $\bar X_n<\mu_0$ es $\bar X_n$, por lo que $\Lambda(x) -->
+<!-- =1$. -->
 
-Por lo tanto
-$\Lambda(x) = \begin{cases}\left(\dfrac{\hat \sigma^2}{\hat\sigma_0^2}\right)^{n/2}& \text{si }\bar X_n>\mu_0\\ 1 & \text{si no}\end{cases}$
+<!-- Si $\bar X_n>\mu_0$, se puede probar que $f_n(x|\mu)$ se maximiza si $\mu$ está -->
+<!-- lo más cerca posible de $\bar X_n$, que, en el subconjunto $\Omega_0$ sería -->
+<!-- $\mu_0$. Entonces $\mu = \mu_0$, $\displaystyle \hat\sigma_0 = \dfrac 1n -->
+<!-- \sum_{i=1}^n(X_i-\mu_0)^2$ y -->
 
-*Ejercicio*: si $u$ es el valor observado del estadístico $U$, verifique que $\Lambda(x)$ es monótono decreciente con respecto a $u$. 
+<!-- \[\sup_{\mu}f_n(x|\mu) = \dfrac1{(2\pi\hat\sigma_0^2)^{n/2}}e^{-n/2}.\] -->
 
-Por lo tanto, para $k<1$ existe $c$ tal que 
-\[\Lambda(x) \leq k \Leftrightarrow u\geq c.\]
+<!-- Por lo tanto -->
+<!-- $\Lambda(x) = \begin{cases}\left(\dfrac{\hat \sigma^2}{\hat\sigma_0^2}\right)^{n/2}& \text{si }\bar X_n>\mu_0\\ 1 & \text{si no}\end{cases}$ -->
 
-*Ejercicio*: encuentre $c$.
+<!-- *Ejercicio*: si $u$ es el valor observado del estadístico $U$, verifique que -->
+<!-- $\Lambda(x)$ es monótono decreciente con respecto a $u$. -->
 
-Se concluye que LRT es una prueba $t$.
+<!-- Por lo tanto, para $k<1$ existe $c$ tal que  -->
+
+<!-- \[\Lambda(x) \leq k \Leftrightarrow u\geq c.\] -->
+
+<!-- *Ejercicio*: encuentre $c$. -->
+
+<!-- Se concluye que LRT es una prueba $t$. -->
 
 
 <!--chapter:end:10-hipotesis-simples.Rmd-->
@@ -4382,50 +6069,73 @@ Se concluye que LRT es una prueba $t$.
 
 
 # Prueba de comparación de medias en 2 poblaciones
-
+    
 ## Comparación de medias normales
 
-Asuma que $X_1,\dots, X_n\overset{i.i.d}{\sim} N(\mu_1,\sigma^2)$ y $Y_1,\dots, Y_n\overset{i.i.d}{\sim} N(\mu_2,\sigma^2)$. Los parámetros desconocidos son $\mu_1,\mu_2,\sigma^2$. Asuma que $(X_i,Y_i)$ son independientes y la varianza es la misma (homocedasticidad).
+Asuma que $X_1,\dots, X_n\overset{i.i.d}{\sim} N(\mu_1,\sigma^2)$ y $Y_1,\dots,
+Y_n\overset{i.i.d}{\sim} N(\mu_2,\sigma^2)$. Los parámetros desconocidos son
+$\mu_1,\mu_2,\sigma^2$. Asuma que $(X_i,Y_i)$ son independientes y la varianza
+es la misma (homocedasticidad).
 
 **Hipótesis**: $H_0: \mu_1\leq\mu_2$ vs  $H_1: \mu_1>\mu_2$.
 
-**Notación**: $\bar X_m,\bar Y_n$, $S_X^2 = \sum_{i=1}^m(X_i-\bar X_m)^2$, $S_Y^2 = \sum_{i=1}^m(Y_i-\bar Y_n)^2$.
+**Notación**: $\bar X_m,\bar Y_n$, $\displaystyle S_X^2 = \sum_{i=1}^m(X_i-\bar X_m)^2$,
+$\displaystyle S_Y^2 = \sum_{i=1}^m(Y_i-\bar Y_n)^2$.
 
 **Teorema**. Considere 
-\[U = \dfrac{(m+n-2)^{1/2}(\bar X_m-\bar Y_n)}{\left(\dfrac 1m+\dfrac 1n\right)^{1/2}(S_X^2+S_Y^2)^{1/2}}.\]
-Si $\mu_1=\mu_2 \implies U\sim t_{m+n-2}.$
+\[
+U = \dfrac{(m+n-2)^{1/2}(\bar X_m-\bar Y_n)}{\left(\dfrac 1m+\dfrac 1n\right)^{1/2}(S_X^2+S_Y^2)^{1/2}}.
+\] Si
+$\mu_1=\mu_2 \implies U\sim t_{m+n-2}.$
 
-*Prueba*. Vea que, bajo el supuesto que \(\mu_1=\mu_2\), $\bar X_n-\bar Y_n$ se distribuye como una normal con parámetros:
 
-* $\mathbb E[X_n-\bar Y_n] = \mu_1-\mu_2 =0$.
 
-* $\text{Var}(\bar X_m-\bar Y_n) =\text{Var}(\bar X_m) + \text{Var}(\bar Y_n) = \dfrac{\sigma^2}m + \dfrac{\sigma^2}n =\left(\dfrac 1m+\dfrac 1n\right)\sigma^2$.
 
-Entonces
-\[Z = \dfrac{\bar X_m-\bar Y_n}{\sigma\left(\dfrac 1m+\dfrac 1n\right)^{1/2}}\underset{\mu_1 =\mu_2}{\sim} N(0,1).\]
-Así mismo, se sabe que $\dfrac{S_X^2}{\sigma^2}\sim \chi^2_{m-1}$ y  $\dfrac{S_Y^2}{\sigma^2}\sim \chi^2_{n-1}$.
 
-**Nota**: no depende de $H_0$.
+<!-- *Prueba*. Vea que, bajo el supuesto que \(\mu_1=\mu_2\), $\bar X_n-\bar Y_n$ se -->
+<!-- distribuye como una normal con parámetros: -->
 
-Como $(X,Y)$ son independientes, $\dfrac{S_X^2}{\sigma^2}$ y $\dfrac{S_Y^2}{\sigma^2}$ son independientes. Así,
+<!-- * $\mathbb E[X_n-\bar Y_n] = \mu_1-\mu_2 =0$. -->
 
-\[W = \dfrac{S_X^2+S_Y^2}{\sigma^2} \sim \chi^2_{m+n-2}.\]
+<!-- * $\text{Var}(\bar X_m-\bar Y_n) =\text{Var}(\bar X_m) + \text{Var}(\bar Y_n) = \dfrac{\sigma^2}m + \dfrac{\sigma^2}n =\left(\dfrac 1m+\dfrac 1n\right)\sigma^2$. -->
 
-Entonces
+<!-- Entonces  -->
+<!-- \[ -->
+<!-- Z = \dfrac{\bar X_m-\bar Y_n}{\sigma\left(\dfrac 1m+\dfrac 1n\right)^{1/2}}\underset{\mu_1 =\mu_2}{\sim} N(0,1). -->
+<!-- \] -->
 
-\[U = \dfrac{Z}{\sqrt{\dfrac W{m+n-2}}}=\dfrac{\dfrac{\bar X_m-\bar Y_n}{\sigma\left(\dfrac 1m+\dfrac 1n\right)^{1/2}}}{\sqrt{\dfrac 1{m+n-2}\left(\dfrac{S_X^2+S_Y^2}{\sigma^2}\right)}}\sim t_{m+n-1}.\]
+<!-- Así mismo, se sabe que $\dfrac{S_X^2}{\sigma^2}\sim \chi^2_{m-1}$ y -->
+<!-- $\dfrac{S_Y^2}{\sigma^2}\sim \chi^2_{n-1}$. -->
+
+<!-- **Nota**: no depende de $H_0$. -->
+
+<!-- Como $(X,Y)$ son independientes, $\dfrac{S_X^2}{\sigma^2}$ y -->
+<!-- $\dfrac{S_Y^2}{\sigma^2}$ son independientes. Así, -->
+
+<!-- \[W = \dfrac{S_X^2+S_Y^2}{\sigma^2} \sim \chi^2_{m+n-2}.\] -->
+
+<!-- Entonces -->
+
+<!-- \[U = \dfrac{Z}{\sqrt{\dfrac W{m+n-2}}}=\dfrac{\dfrac{\bar X_m-\bar -->
+<!-- Y_n}{\sigma\left(\dfrac 1m+\dfrac 1n\right)^{1/2}}}{\sqrt{\dfrac -->
+<!-- 1{m+n-2}\left(\dfrac{S_X^2+S_Y^2}{\sigma^2}\right)}}\sim t_{m+n-1}.\] -->
+
+
 
 ## Prueba $t$ de dos muestras
 
-Dada una región de rechazo $U\geq c$,
-\begin{align*}
-\sup_{\mu_1\leq \mu_2}\mathbb P[U\geq c|\mu_1,\mu_2,\sigma^2]\leq \alpha_0 & \implies \mathbb P[U\geq c|\mu_1=\mu_2,\sigma^2] = 1-T_{n+m-2}(c) \leq \alpha_0 \\
-& \implies c = T_{n+m-2}^{-1}(1-\alpha_0)
+Dada una región de rechazo $U\geq c$, 
+
+\begin{align*} \sup_{\mu_1\leq
+\mu_2}\mathbb P[U\geq c|\mu_1,\mu_2,\sigma^2]\leq \alpha_0 & \implies 
+\mathbb P[U\geq c|\mu_1=\mu_2,\sigma^2] = 1-T_{n+m-2}(c) \leq \alpha_0 \\ & \implies c =
+T_{n+m-2}^{-1}(1-\alpha_0) 
 \end{align*}
 
 Rechazo $H_0$ si $U> T_{n+m-2}^{-1}(1-\alpha_0): \delta$.
 
-**Teorema**. La función de potencia $\pi(\mu_1,\mu_2,\sigma^2|\delta)$ tiene las siguientes propiedades:
+**Teorema**. La función de potencia $\pi(\mu_1,\mu_2,\sigma^2|\delta)$ tiene las
+siguientes propiedades:
 
 i. $\pi(\mu_1,\mu_2,\sigma^2|\delta) = \alpha_0$ si $\mu_1 = \mu_2$.
 
@@ -4448,21 +6158,122 @@ Los *p*-valores son:
 * Caso II: $T_{n+m-2}(u)$.
 
 
-**Ejemplo**. Considere la log-precipitación de 26 observaciones de nubes con químicos, $X_1,\dots,X_{26}$ y 26 sin químicos $Y_1,\dots,Y_{26}$.
+<!-- **Ejemplo**. Considere la log-precipitación de 26 observaciones de nubes con químicos, $X_1,\dots,X_{26}$ y 26 sin químicos $Y_1,\dots,Y_{26}$. -->
 
-*Supuestos*: $X_i\sim N(\mu_1,\sigma^2)$, $Y_j\sim N(\mu_2,\sigma^2)$.
+<!-- *Supuestos*: $X_i\sim N(\mu_1,\sigma^2)$, $Y_j\sim N(\mu_2,\sigma^2)$. -->
 
-*Hipótesis*:  $H_0: \mu_1\leq\mu_2$ vs  $H_1: \mu_1>\mu_2$.
+<!-- *Hipótesis*:  $H_0: \mu_1\leq\mu_2$ vs  $H_1: \mu_1>\mu_2$. -->
 
-Con los siguientes datos: $\bar X_m = 5.13$, $\bar Y_n = 3.99$, $S_X^2 = 63.96$, $S_Y^2=67.39$, se tiene que
+<!-- Con los siguientes datos: $\bar X_m = 5.13$, $\bar Y_n = 3.99$, $S_X^2 = 63.96$, $S_Y^2=67.39$, se tiene que -->
 
-\[U = \dfrac{50^{1/2}(5.13-3.99)}{\left(\dfrac{1}{26}+\dfrac{1}{26}\right)^{1/2}(63.96+67.39)^{1/2}} = 2.544.\]
+<!-- \[U = \dfrac{50^{1/2}(5.13-3.99)}{\left(\dfrac{1}{26}+\dfrac{1}{26}\right)^{1/2}(63.96+67.39)^{1/2}} = 2.544.\] -->
 
-A un nivel de confianza del 99% ,
+<!-- A un nivel de confianza del 99% , -->
 
-\[ T_{n+m-2}(1-\alpha_0) = T_{50}^{-1}(99\%) = 2.403 \implies U > T^{-1}_{50}(99\%)\]
+<!-- \[ T_{n+m-2}(1-\alpha_0) = T_{50}^{-1}(99\%) = 2.403 \implies U > T^{-1}_{50}(99\%)\] -->
 
-y el valor-*p*: $1-T_{50}(2.544) = 0.007$.
+<!-- y el valor-*p*: $1-T_{50}(2.544) = 0.007$. -->
+
+
+**Ejemplo:** En el caso de las lluvia suponga que queremos probar 
+
+\[
+H_0: \mu_{\text{con trat.}} \leq \mu_{\text{sin trat.}} \quad
+vs \quad
+H_1: \mu_{\text{con trat.}} > \mu_{\text{sin trat.}} 
+\]
+
+
+```r
+nubes <- read.table(
+  file = "./data/clouds.txt",
+  sep = "\t", header = TRUE
+)
+log_lluvia <- log(nubes)
+
+n <- nrow(nubes)
+
+con_tratamiento <- log_lluvia$Seeded.Clouds
+sin_tratamiento <- log_lluvia$Unseeded.Clouds
+
+(Xbar <- mean(con_tratamiento))
+```
+
+```
+## [1] 5.134187
+```
+
+```r
+(Ybar <- mean(sin_tratamiento))
+```
+
+```
+## [1] 3.990406
+```
+
+```r
+(S2_X <- (n - 1) * var(con_tratamiento))
+```
+
+```
+## [1] 63.96109
+```
+
+```r
+(S2_Y <- (n - 1) * var(sin_tratamiento))
+```
+
+```
+## [1] 67.39158
+```
+
+Entonces el estadístico que queremos construir para comparar la medias es (OJO en este caso \( m=n\) porque tienen la misma cantidad de datos:
+)
+
+
+```r
+(U <- sqrt(n + n - 2) * (Xbar - Ybar) /
+  (sqrt(1 / n + 1 / n) * sqrt(S2_X + S2_Y)))
+```
+
+```
+## [1] 2.544369
+```
+
+Por tanto se debe comparar con una \(t\)-student con \( 26+26 - 2 = 50\) grados
+de libertad. Asuma un \( \alpha = 0.01\)
+
+
+
+```r
+(qnt <- qt(p = 1 - 0.01, df = n + n - 2))
+```
+
+```
+## [1] 2.403272
+```
+
+¿ Rechazamos \( H_0\)?
+
+
+```r
+U > qnt
+```
+
+```
+## [1] TRUE
+```
+
+¿Cuál es el \( p\)-valor?
+
+
+```r
+1 - pt(q = U, df = n + n - 2)
+```
+
+```
+## [1] 0.007041329
+```
 
 *Interpretación*: rechazamos al nivel 1% de significancia la hipótesis de que las nubes irradiadas tienen una log-precipitación media menor a la de las nubes no irradiadas.
 
@@ -4474,22 +6285,114 @@ y el valor-*p*: $1-T_{50}(2.544) = 0.007$.
 
 * Valor-*p*: $2-T_{m+n-2}(|u|)$ donde $U=u$.
 
-**Ejemplo**. Menas de cobre. Sean $X_1,\dots,X_8$ la cantidad de cobre (g) en 8 menas en la localización 1, y $X_1,\dots,X_{10}$ en 10 menas en la localización 2. Los datos son $\bar X_8 = 2.6,\bar Y_{10} = 2.3, S_X^2 = 0.32$ y $S_Y^2=0.22$ ¿Las dos localizaciones generan el mismo nivel de cobre?
+**Ejemplo**. Minas de cobre. Sean $X_1,\dots,X_8$ la cantidad de cobre (gramos)
+en 8 minas en un lugar 1, y $X_1,\dots,X_{10}$ en 10 minas en  un lugar 2.
+Después de recolectar los datos se obtiene lo siguiente 
 
-$H_0: \mu_1=\mu_2$, $X_i\sim N(\mu_1,\sigma^2)$, $Y_j\sim N(\mu_2,\sigma^2)$. 
+- $\bar X_8 = 2.6$ 
+- $\bar Y_{10} = 2.3$ 
+- $S_X^2 = 0.32$ y 
+- $S_Y^2=0.22$ 
 
-Se tiene que $U = 3.442$.Si $\alpha_0 = 1\%$, $T^{-1}_{16}\left(1-\dfrac{0.01}2\right) = T_{16}^{-1}(0.995) = 2.921$.
+El ingeniero de la mina se pregunta: ¿Las dos localizaciones generan el mismo
+nivel de cobre?
 
-Rechazamos $H_0$ pero el valor-*p* es $2[1-T_{16}(|3.442|)] = 0.003$.
 
-*Interpretación*: rechazamos al 1% de significancia la hipótesis de una diferencia no significativa entre las cantidades medias de cobre en cada localización.
+Entonces plantea hacer la prueba de hipótesis 
+
+\[
+H_0: \mu_1=\mu_2 \quad H_1: \mu_1\neq\mu_2 
+\]
+
+Con el supuesto que $X_i\sim N(\mu_1,\sigma^2)$, $Y_j\sim N(\mu_2,\sigma^2)$. 
+
+
+
+```r
+n <- 8
+m <- 10
+
+n + m - 2
+```
+
+```
+## [1] 16
+```
+
+```r
+Xbar <- 2.6
+Ybar <- 2.3
+
+S2_X <- 0.32
+S2_Y <- 0.22
+
+(U <- sqrt(n + m - 2) * (Xbar - Ybar) /
+  (sqrt(1 / n + 1 / m) * sqrt(S2_X + S2_Y)))
+```
+
+```
+## [1] 3.442652
+```
+
+
+Si $\alpha_0 = 1\%$
+
+
+```r
+(qnt <- qt(p = 1 - 0.01 / 2, df = n + m - 2))
+```
+
+```
+## [1] 2.920782
+```
+
+Entonces, ¿Rechazamos \( H_0\)?
+
+
+```r
+abs(U) > qnt
+```
+
+```
+## [1] TRUE
+```
+
+El valor \( p\) es $2[1-T_{16}(|3.442|)]$
+
+
+```r
+2 * (1 - pt(q = U, df = n + m - 2))
+```
+
+```
+## [1] 0.003345064
+```
+ 
+*Interpretación*: Rechazamos al 1% de significancia la hipótesis de una
+diferencia no significativa entre las cantidades medias de cobre en cada
+localización.
 
 **Ejercicio**. La prueba $t$ de 2 muestras es un LRT.
 
 ## Prueba $F$
-**Definición** Si $Y$ y $W$ son variables aleatorias independientes, $Y\sim \chi^2_m$ y $W\sim \chi ^2_n$, $m,n\in \mathbb Z^+$. Defina
+
+**Definición** Si $Y$ y $W$ son variables aleatorias independientes, $Y\sim
+\chi^2_m$ y $W\sim \chi ^2_n$, $m,n\in \mathbb Z^+$. Defina 
+
 \[X = \dfrac{Y/m}{W/n}\sim F_{m,n}\]
-$X$ tiene una distribución $F$ con $m$ y $n$ grados de libertad.
+
+$X$ tiene una distribución $F$ con $m$ y
+$n$ grados de libertad.
+
+La función de densidad es 
+
+\begin{equation}
+f(x)= 
+\begin{cases} 
+\displaystyle \frac{\Gamma\left[\frac{1}{2}(m+n)\right] m^{m / 2} n^{n / 2}}{\Gamma\left(\frac{1}{2} m\right) \Gamma\left(\frac{1}{2} n\right)} \cdot \frac{x^{(m / 2)-1}}{(m x+n)^{(m+n) / 2}} & x>0 \\
+0 & x\leq 0.
+\end{cases}
+\end{equation}
 
 **Propiedades**:
 
@@ -4511,9 +6414,10 @@ Bajo el esquema anterior y si $(X,Y)$ son independientes, considere:
 \[H_0: \sigma_1^2\leq \sigma_2^2 \text { vs } H_1: \sigma_1^2> \sigma_2^2 \]
 y tome $\alpha_0 \in (0,1)$.
 
-La lógica de esta prueba es, como $\dfrac{S_X^2}{\sigma_1^2} \sim \chi^2_{m-1}$ y $\dfrac{S_X^2}{\sigma_1^2} \sim \chi^2_{n-1}$, calculamos
+La lógica de esta prueba es, como $\dfrac{S_X^2}{\sigma_1^2} \sim \chi^2_{m-1}$
+y $\dfrac{S_Y^2}{\sigma_2^2} \sim \chi^2_{n-1}$, calculamos
 
-$V^* = \dfrac{\dfrac{S_X^2/\sigma_1^2}{m-1}}{\dfrac{S_Y^2/\sigma_1^2}{n-1}}\sim F_{m-1,n-1}$.
+$V^* = \dfrac{\dfrac{S_X^2/\sigma_1^2}{m-1}}{\dfrac{S_Y^2/\sigma_2^2}{n-1}}\sim F_{m-1,n-1}$.
 Bajo el supuesto de homocedasticidad,
 
 $V = \dfrac{\dfrac{S_X^2}{m-1}}{\dfrac{S_Y^2}{n-1}}\sim F_{m-1,n-1}$.
@@ -4526,11 +6430,12 @@ Usando el $\delta$ anterior
 
 \[\sup_{\sigma_1^2\leq\sigma^2_2}\mathbb P[V\geq c|\mu_1\mu_2,\sigma^2_1,\sigma_2^2]\leq \alpha_0,\]
 resuelve
-\[\mathbb P[V\geq c|\mu_1,\mu_2,\sigma_1^2,\sigma_2^2] = \alpha_0 \implies c = F^{-1}_{m-1,n-1}(1-\alpha_0) =: G^{-1}_{m-1,n-1}(1-\alpha_0).\]
+\[\mathbb P[V\geq c|\mu_1,\mu_2,\sigma_1^2,\sigma_2^2] = \alpha_0 \implies c = F^{-1}_{m-1,n-1}(1-\alpha_0) = G^{-1}_{m-1,n-1}(1-\alpha_0).\]
 
 **Teorema**. si $\delta$ se define según lo anterior, 
 
-i. \begin{align*}
+i. 
+\begin{align*}
 \pi(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2|\delta) & = \mathbb P[V\geq G^{-1}_{m-1,n-1}(1-\alpha_0)]\\
 & = \mathbb P\bigg[V^* \geq \dfrac{\sigma_2^2}{\sigma_1^2}c\bigg]\\
 & = 1-G_{m-1,n-1}\left(\dfrac{\sigma_2^2}{\sigma_1^2}c\right)
@@ -4560,17 +6465,213 @@ El valor-*p* corresponde a $1-G_{5,20}(3) = 0.035.$
 
 Si $\alpha_0 = 1\%$, no rechazo. Si $\alpha_0 = 5\%$ rechazo. 
 
+**Ejemplo:** Suponga que se tienen los siguientes datos 
+
+
+```r
+n <- 10
+m <- 20
+(X <- rnorm(n = n, mean = 0, sd = sqrt(6)))
+```
+
+```
+##  [1] -0.5134500 -0.5302024  1.2389622 -0.4478856  3.4616537  0.5321373
+##  [7]  1.1771667 -2.6328015  2.8802487 -2.5177891
+```
+
+```r
+(Y <- rnorm(n = m, mean = 0, sd = sqrt(2)))
+```
+
+```
+##  [1]  0.49934695 -2.07964091  0.69759310 -1.06023500 -0.48490076 -0.01095625
+##  [7] -0.33443915  0.55764017  2.61011735 -0.16196686 -1.90281594 -0.40659813
+## [13] -3.64025121 -0.45475397  0.82639590 -1.71128919  1.48268026  0.20111826
+## [19]  0.05078990  1.03899702
+```
+
+Es decir tener 10 datos normales con \(\sigma_1^2 = 6\) y 20 datos normales con \(\sigma_2^2
+= 2\).  
+
+En todo caso asuma que \(\sigma\) es desconocidos para cada caso y solo tenemos
+los datos. Además queremos hacer la prueba de hipótesis
+
+\[
+\begin{array}{ll}
+H_{0}: & \sigma_{1}^{2} \leq \sigma_{2}^{2} \\
+H_{1}: & \sigma_{1}^{2}>\sigma_{2}^{2}
+\end{array}
+\]
+
+**OJO: Según la forma que planteamos el ejercicio, deberíamos de rechazar \(H_0\) ya que \(\sigma_1^2 = 6 > 2  = \sigma_2^2 \)**
+
+Calculamos el estadístico \(V\)
+
+
+```r
+(S2_X_divido_m_1 <- var(X))
+```
+
+```
+## [1] 4.088649
+```
+
+```r
+(S2_Y_divido_n_1 <- var(Y))
+```
+
+```
+## [1] 1.944279
+```
+
+```r
+(V <- S2_X_divido_m_1 / S2_Y_divido_n_1)
+```
+
+```
+## [1] 2.102912
+```
+
+Para calcular un cuantil te tamaño \(1-\alpha = 0.95\) se usa la siguiente función 
+
+
+```r
+(qnt <- qf(p = 1 - 0.05, df1 = n - 1, df2 = m - 1))
+```
+
+```
+## [1] 2.422699
+```
+
+¿Rechazamos \(H_0\)?
+
+```r
+V > qnt
+```
+
+```
+## [1] FALSE
+```
+
+y el valor-\(p\) de la prueba es 
+
+
+```r
+1 - pf(q = V, df1 = n - 1, df2 = m - 1)
+```
+
+```
+## [1] 0.08265519
+```
+
+**Interpretación:** Rechazamos la hipótesis que \(\sigma_{1}^{2} \leq
+\sigma_{2}^{2}\) con un valor-$p$ de 0.02.
+
 ### Prueba de 2 colas (prueba de homocedasticidad)
 
-Bajo las hipótesis $H_0: \sigma^2_1=\sigma^2_2$ vs  $H_1: \sigma^2_1\ne\sigma^2_2$, se rechaza si $V\geq c_2$ o $V\leq c_1$ con $c_1,c_2$ tales que 
-\[\mathbb P[V\leq c_1] = \dfrac{\alpha_0}{2} \text{ y } \mathbb P[V\geq c_2] = \dfrac{\alpha_0}{2} \implies c_1 = G_{m-1,n-1}^{-1}\left(\dfrac{\alpha_0}{2}\right) c_1 = G_{m-1,n-1}^{-1}\left(\dfrac{\alpha_0}{2}\right)\]
+Bajo las hipótesis $H_0: \sigma^2_1=\sigma^2_2$ vs
+$H_1: \sigma^2_1\ne\sigma^2_2$, se rechaza si $V\geq c_2$ o $V\leq c_1$ con
+$c_1,c_2$ tales que
+                                                     
+\[\mathbb P[V\leq c_1] = \dfrac{\alpha_0}{2} \text{ y } \mathbb P[V\geq c_2] =
+\dfrac{\alpha_0}{2} \implies c_1 =
+G_{m-1,n-1}^{-1}\left(\dfrac{\alpha_0}{2}\right) \text{ y } c_2 =
+G_{m-1,n-1}^{-1}\left(1-\dfrac{\alpha_0}{2}\right)\]
 
-**Ejemplo**. Mismo ejemplo de las nubes. Queremos probar $H_0:\sigma_1^2 = \sigma_2^2$. Calculamos
+**Ejemplo**. Mismo ejemplo de las nubes.
+
+\[
+H_0: \mu_{\text{con trat.}} = \mu_{\text{sin trat.}} \quad
+vs \quad
+H_1: \mu_{\text{con trat.}} \neq \mu_{\text{sin trat.}} 
+\]
+
+
+```r
+(m <- length(con_tratamiento))
+```
+
+```
+## [1] 26
+```
+
+```r
+(n <- length(sin_tratamiento))
+```
+
+```
+## [1] 26
+```
+
+```r
+(S2_X_divido_m_1 <- var(con_tratamiento))
+```
+
+```
+## [1] 2.558444
+```
+
+```r
+(S2_Y_divido_n_1 <- var(sin_tratamiento))
+```
+
+```
+## [1] 2.695663
+```
+
+```r
+(V <- S2_X_divido_m_1 / S2_Y_divido_n_1)
+```
+
+```
+## [1] 0.9490963
+```
+
 
 \[V = \dfrac{\dfrac{63.96}{25}}{\dfrac{67.39}{25}} = 0.9491\]
 
+
+
+
 Se tiene que $c_1 = G^{-1}_{25,25}(0.0025) = 0.4484$ y $c_2 = G^{-1}_{25,25}(0.975) = 2.23$.
 
+
+```r
+(c1 <- qf(0.025, df1 = m - 1, df2 = n - 1))
+```
+
+```
+## [1] 0.4483698
+```
+
+```r
+(c2 <- qf(0.975, df1 = m - 1, df2 = n - 1))
+```
+
+```
+## [1] 2.230302
+```
+
+¿Rechazamos \(H_0\)?
+
+
+```r
+V < c1
+```
+
+```
+## [1] FALSE
+```
+
+```r
+V > c2
+```
+
+```
+## [1] FALSE
+```
+
+No rechazamos la hipótesis nula. 
 
 Si observamos $V=v$, podemos rechazar si  
 \[
@@ -4579,14 +6680,24 @@ v\leq G^{-1}_{m-1,n-1}\left(\dfrac{\alpha_0}2\right) \implies 2G_{m-1,n-1}(v)\le
 
 o tambien si
 
-\[v\geq G^{-1}_{m-1,n-1}\left(1-\dfrac{\alpha_0}2 \right) \implies G_{m-1,n-1}(v) \geq 1-\dfrac{\alpha_0}2 \implies \alpha_0\geq 2G_{m-1,n-1}(v) \]
+\[v\geq G^{-1}_{m-1,n-1}\left(1-\dfrac{\alpha_0}2 \right) \implies
+G_{m-1,n-1}(v) \geq 1-\dfrac{\alpha_0}2 \implies \alpha_0\geq 2G_{m-1,n-1}(v) \]
 
 Por lo tanto, el *p*-valor es
 \[\text{valor-}p = 2\min[1-G_{m-1,n-1}(v), G_{m-1,n-1}(v)]\]
 
-**Ejercicio**. Verifique que en este caso da 0.9. 
 
-Al ser mayor al 5%, no rechaza la hipótesis de homocedasticidad.
+```r
+2 * min(1 - pf(q = V, df1 = m - 1, df2 = n - 1),
+  pf(q = V, df1 = m - 1, df2 = n - 1))
+```
+
+```
+## [1] 0.8971154
+```
+
+**Interpretación:** La prueba de hipótesis no rechaza la hipótesis de
+homocedasticidad con un nivel de confianza del 5\%.
 
 **Propiedad**. La prueba $F$ es un LRT.
 
@@ -4838,7 +6949,7 @@ Y despejando la expresión tenemos que
 
 
 ```r
-tquantile/sqrt(20)
+tquantile / sqrt(20)
 ```
 
 ```

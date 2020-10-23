@@ -6,8 +6,8 @@ options(knitr.duplicate.label = "allow")
 knitr::opts_chunk$set(
   crop = NULL,
   cache = TRUE,
-  tidy = TRUE,
-  tidy.opts = list(width.cutoff = 50),
+  tidy = "styler",
+  tidy.opts = list(strict = FALSE),
   error = TRUE,
   warning = FALSE,
   message = FALSE,

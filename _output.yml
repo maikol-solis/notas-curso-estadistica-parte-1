@@ -17,4 +17,5 @@ bookdown::pdf_book:
   keep_tex: yes
   keep_md: yes
   dev: cairo_pdf
+  extra_dependencies: ["float"]
 #bookdown::epub_book: default

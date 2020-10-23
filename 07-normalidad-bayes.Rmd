@@ -10,13 +10,13 @@ Sean $X_1,\dots,X_n\sim N(\mu,\sigma^2) = N(\mu,\tau ^{-1})$. Su densidad corres
 
 \begin{align*}
 f(x|\mu,\sigma^2) 
-&= \left(\dfrac 1{2\pi\sigma^2}\right)\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] \\
-&= \left(\dfrac \tau{2\pi}\right)\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).
+&= \left(\dfrac 1{2\pi\sigma^2}\right)^{\frac12}\exp\bigg[-\dfrac1{2\sigma^2}(x-\mu)^2\bigg] \\
+&= \left(\dfrac \tau{2\pi}\right)^{\frac12}\exp\bigg[-\dfrac\tau{2}(x-\mu)^2\bigg]=f(x|\mu,\tau).
 \end{align*}
 
 La verosimilitud es
 
-\[f_n(x|\mu,\tau) = \left(\dfrac\tau{2\pi}\right)^{\frac n2}\exp\bigg[-\dfrac\tau2\sum_{i=1}^2(x_i-\mu)^2
+\[f_n(x|\mu,\tau) = \left(\dfrac\tau{2\pi}\right)^{\frac n2}\exp\bigg[-\dfrac\tau2\sum_{i=1}^n(x_i-\mu)^2
 \bigg].\]
 
 La previa de la densidad conjunta es $[\mu,\tau]\propto [\mu|\tau]\cdot [\tau]$ y la posterior $[\mu,\tau|x] \propto [\mu|\tau,x]\cdot[\tau|x]$.
@@ -49,7 +49,7 @@ donde $[\mu|\tau,x] \sim N(\mu_1,\lambda_1\tau)$ con
 
 \[\lambda_1 = \lambda_0+n, \quad \mu_1 = \dfrac{\lambda_0\mu_0 + n\bar x_n}{\lambda_0+n},\]
 y $[\tau] \sim \Gamma(\alpha_1,\beta_1)$,
-\[\alpha_1 = \alpha_0+\dfrac n2, \quad \beta_1 = \beta_0  \dfrac 12s_n^2 + \dfrac{n\lambda_0(\bar X_n-\mu_0)^2}{2(\lambda_0+n)}.\]
+\[\alpha_1 = \alpha_0+\dfrac n2, \quad \beta_1 = \beta_0 +  \dfrac 12s_n^2 + \dfrac{n\lambda_0(\bar X_n-\mu_0)^2}{2(\lambda_0+n)}.\]
 
 *Prueba*. 
 
@@ -203,7 +203,7 @@ Los datos de este experimento son $n = `r n`$, $\bar x_n = `r Xbar`$, $s_n^2 =
 (mu_1 <- (lambda_0 * mu_0 + n * Xbar) / (lambda_0 + n))
 (lambda_1 <- lambda_0 + n)
 (alpha_1 <- alpha_0 + n / 2)
-(beta_1 <- 0.5 * beta_0 * (n-1)*s^2 + n * lambda_0 * (Xbar - mu_0) / (2 * (lambda_0 + n)))
+(beta_1 <- beta_0 + 0.5 * (n-1)*s^2 + n * lambda_0 * (Xbar - mu_0) / (2 * (lambda_0 + n)))
 ```
 
 
@@ -238,10 +238,17 @@ es Gamma.
 \begin{align*}
 \mathbb P[\sigma>0.3|x] & = \mathbb P\bigg[\sqrt{\dfrac 1\tau} >0.3\bigg|x\bigg]\\
 & = \mathbb P\bigg[\dfrac 1\tau >0.3^2\bigg|x\bigg]\\ 
-& = \mathbb P\bigg[\tau >\dfrac 1{0.3^2}\bigg|x\bigg] = 0.984
+& = \mathbb P\bigg[\tau <\dfrac 1{0.3^2}\bigg|x\bigg] \\ 
+& = \mathbb P\bigg[\tau <11.11\bigg|x\bigg] \\ 
+&=`r pgamma(q = 0.3^(-2), shape = alpha_1, rate = beta_1)`
 \end{align*}
 
 dado que $[\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(`r alpha_1`,`r beta_1`)$.
+
+En este caso observe que el cálculo es directo usando la función `pgamma`
+```{r}
+pgamma(q = 0.3^(-2), shape = alpha_1, rate = beta_1)
+```
 
 
  Lo más importante es que basados en el teorema de las marginales podemos
