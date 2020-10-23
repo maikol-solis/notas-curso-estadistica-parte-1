@@ -212,7 +212,7 @@ donde $u$ es el valor observado de la prueba de 2 muestras en el caso frecuentis
 
 Rechazamos $H_0$ si
 
-\[ T_{m+n-2}(-u)\leq \dfrac{w_1}{w_0+w_1}=\alpha_0 \Leftrightarrow -u\leq T_{m+n-2}^{-1}(\alpha_0) \implies u\geq -T_{m+n-2}^{-1}(\alpha_0) = T_{m+n2-2}^{-1}(1-\alpha_0)\]
+\[ T_{m+n-2}(-u)\leq \dfrac{w_1}{w_0+w_1}=\alpha_0 \Leftrightarrow -u\leq T_{m+n-2}^{-1}(\alpha_0) \implies u\geq -T_{m+n-2}^{-1}(\alpha_0) = T_{m+n-2}^{-1}(1-\alpha_0)\]
 
 Es la misma prueba con $\alpha_0 = \dfrac{w_1}{w_0+w_1}$ con distinta interpretación.
 
