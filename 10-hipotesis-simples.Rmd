@@ -11,7 +11,7 @@ los clientes es
 \[f_1(x) = \begin{cases}\dfrac{2(n!)}{(2+\sum X_i)^{n+1}} & X_i>0\\0 & \text{si
 no}\end{cases}\]
 
-O si es una $sim\text{Exp}(1/2)$.
+O si es una $\text{Exp}(1/2)$.
 
 \[f_0(x)=\begin{cases}\dfrac 1{2^n}e^{-\frac12\sum X_i} & \text{si }X_i>0\\0 &
 \text{si no} \end{cases}\]
@@ -220,7 +220,7 @@ Entonces
 
 Rechazamos $H_0$ si
 
-\[\dfrac{f_1(x)}{f_0(x)} = \exp\bigg[n\left(\bar X_n - \dfrac 12\right)\bigg]>k \Leftrightarrow \bar X_n > \underbrace{\dfrac 12 + \dfrac{\ln k}{n}}_{k'} .\]
+\[\dfrac{f*1(x)}{f_0(x)} = \exp\bigg[n\left(\bar X_n - \dfrac 12\right)\bigg]>k \Leftrightarrow \bar X_n > \underbrace{\dfrac 12 + \dfrac{\ln k}{n}}*{k'} .\]
 
 Entonces buscamos $k'$ tal que
 \[\mathbb P[\bar X_n>k'|\theta = 0]=0.05 \Leftrightarrow\mathbb P\bigg[\dfrac{\bar X_n}{1/\sqrt n}>\dfrac{k'}{1/\sqrt n}\bigg|\theta = 0\bigg]=0.05\]
@@ -269,7 +269,196 @@ pero como $Y$ es una variable discreta (Binomial), no es posible encontrar ese $
 Por lo tanto, se puede especificar una prueba con nivel 0.05, $\alpha(\delta) =
 0.0328$ y potencia mínima si $Y>4$ como región de rechazo.
 
+## Pruebas insesgadas 
+
+**Definición**. Considere las hipótesis $H_0:\theta \in \Omega_0$ vs $H_1:
+\theta\in \Omega_1$. Decimos que una prueba de hipótesis $\delta$ es
+**insesgada** si $\forall \theta\in\Omega_0$ y $\forall \theta\in \Omega_1$:
+\[\pi(\theta|\delta) \leq \pi(\theta'|\delta).\]
+
+
+Esto quiere decir que la probabilidad de que la prueba \(\delta\) rechace la
+hipótesis nula es siempre más alta cuando la hipótesis alternativa es verdadera
+que cuando la hipótesis nula es verdadera. 
+
+Más simplemente, una prueba **insesgada** dará, en la mayoría de los casos, una
+decisión correcta sin importar si la hipótesis nula es correcta o no. 
+
+Una forma fácil de crear pruebas insesgadas es resolviendo númericamente las ecuaciones 
+
+
+\begin{align*}
+\pi\left(\theta_{0} \mid \delta\right) &=\alpha_{0}, \text { and } \\
+\left.\frac{d}{d \theta} \pi(\theta \mid \delta)\right|_{\theta=\theta_{0}} &=0
+\end{align*}
+
+donde la segunda ecuación es la derivada con respecto al parámetro evaluada en $\theta_0$. 
+
+
+
+**Ejemplo:** Retomando el ejemplo del servicio al cliente, suponga que se
+quiere ver si 
+
+\[
+H_0: \theta = \frac{1}{2} \quad vs \quad H_1: \theta \neq \frac{1}{2}
+\]
+
+La pregunta sería cómo encontrar un test que sea insesgado?
+
+Primero podemos hacer una prueba del cociente de verosimilitud para encontrar
+que tipo de prueba funciona. Definamos \(\Lambda (x) \) como antes de la forma
+con \(t = \sum_{i=1}^{n} X_i \):
+
+
+\[
+\Lambda(\boldsymbol{x})=\frac{(1 / 2)^{n} \exp (-t / 2)}{(n / t)^{n} \exp (-n)}=\left(\frac{t}{2 n}\right)^{n} \exp (n-t / 2)
+\]
+
+
+Esta prueba rechaza \(H_0 \) si \(\Lambda (x) \leq  c \) para algún \( c\) 
+
+
+Por ejemplo, poniendo \( n=10\) y \( c = 0.2\), vemos que \(\Lambda (x) \)
+tiene esta forma. 
+
+```{r }
+n <- 10
+
+t <- 1:50
+
+f <- (t/(2*n))^n * exp(n-t/2)
+
+plot(t, f)
+abline(h= 0.2, col = "red" )
+```
+Para resolver correctamente el ejercicio se deben encontrar valores \( c_1\) y
+\( c_2\) de modo que 
+
+
+\[
+\left(\frac{c_{1}}{2 n}\right)^{n} \exp \left(n-c_{1} / 2\right)=\left(\frac{c_{2}}{2 n}\right)^{n} \exp \left(n-c_{2} / 2\right)
+\]
+
+
+Además, recuerde que \(T = \sum_{i=1}^{n} X_i \) es \(\Gamma (n, \frac{1}{2}) \) 
+
+Para obtener un nivel  $\alpha$ (e.g. 5\%), $c_{1}$ y  $c_{2}$ deben satisfacer
+
+\begin{align*}
+\mathbb P (T \leq c_1) + \mathbb P(T\geq c_2) =& \alpha
+G\left(c_{1} ; n, 1 / 2\right)+1-G\left(c_{2} ; n, 1 / 2\right)=&\alpha
+\end{align*}
+
+Donde \(G \) es la función de distribución de una gamma. 
+
+Se debe resolver esta dos ecuaciones simulaneamente para \( c_1\) y \( c_2\)
+
+```{r }
+
+fn <- function (c1, c2, n) {
+  zero <-
+    abs((c1 / (2 * n)) ^ n * exp(n - c1 / 2) -
+          (c2 / (2 * n)) ^ n * exp(n - c2 / 2))
+  alpha <- pgamma(q = c1,
+                  shape = n,
+                  rate = 1 / 2) +
+    pgamma(
+      q = c2,
+      shape = n,
+      rate = 1 / 2,
+      lower.tail = FALSE
+    )
+  
+  return(c(zero, alpha))
+}
+
+fn2 <- function(x, n) {
+  crossprod(fn(x[1], x[2], n) - c(0, 0.05))
+}
+
+
+sol <- optim(c(1, 1), fn2, n = 3)
+
+sol$par
+```
+
+
+Entonces rechazamos $H_0$ si $T\geq  `r sol$par[2]`$ o $T\leq  `r sol$par[1]`$. 
+
+Ahora si se desea encontrar una prueba insesgada, lo que se debe considerar es encontrar una prueba de modo que se cumplan las ecuaciones vistas en la definición 
+
+
+\begin{align*}
+\pi(\theta \mid \delta)=G\left(c_{1} ; n, \theta\right)+1-G\left(c_{2} ; n, \theta\right) &= \alpha \\
+G\left(c_{1} ; 3,1 / 2\right)+1-G\left(c_{2} ; 3,1 / 2\right)&=0.05
+\end{align*}
+
+
+Derivando cuidadosamente (ver 9.4.13 del libro), se obtiene que 
+
+\begin{equation*}
+\frac{\partial}{\partial \theta} G(x ; n, \theta)=\frac{n}{\theta}[G(x ; n, \theta)-G(x ; n+1, \theta)]
+\end{equation*}
+
+por lo tanto 
+
+\begin{align*}
+\left.\frac{d}{d \theta} \pi(\theta \mid \delta)\right|_{\theta=\theta_{0}} &=0  \\
+G^\prime(c_1; 3, 1/2) - G^\prime(c_2; 3, 1/2)  & = 0 \\
+\end{align*}
+
+Finalmente la ecuación que se debe resolver es 
+
+
+
+\begin{equation*}
+\frac{3}{1/2}[G(c_1 ; 3,1/2)-G(c_1 ; 4,1/2)] -
+\left(\frac{3}{1/2}[G(c_2 ; 3,1/2)-G(c_2 ; 4,1/2)]\right) =  0 
+\end{equation*}
+
+
+```{r }
+
+fn <- function (c1, c2, n){
+
+  zero <-  n / 0.5 *
+    abs(
+      pgamma(q = c1, shape = n, rate = 1 / 2) -
+        pgamma(q = c1, shape = n + 1, rate = 1 / 2) -
+        pgamma(q = c2, shape = n, rate = 1 / 2) +
+        pgamma(q = c2, shape = n + 1, rate = 1 / 2)
+    )
+  
+  alpha <- pgamma(q = c1, shape = n, rate = 1 / 2) +
+    pgamma(
+      q = c2,
+      shape = n,
+      rate = 1 / 2,
+      lower.tail = FALSE
+    )
+
+  return(c(zero, alpha))
+}
+
+fn2 <- function(x, n){
+  crossprod(fn(x[1], x[2], n) - c(0, 0.05))
+}
+
+
+sol <- optim(c(1,1), fn2, n = 3)
+
+sol$par
+```
+ 
+Que son resultan en los mismos valores que la prueba anterior.  
+ 
 ## Prueba $t$
+
+La prueba \(t\) esta pensada para cuando tanto la media \(\mu\) como la
+desviación estándar \(\sigma\) desconocidas.
+
+
+
 
 Suponga que $X_1,\dots, X_n \sim N(\mu,\sigma^2)$, con $(\mu,\sigma^2)$
 desconocidos, y considere las siguientes hipótesis:
@@ -281,12 +470,50 @@ prueba rechaza $H_0$ si $U\geq c$. Si $\mu=\mu_0$ entonces $U \sim t_{n-1}$.
 
 Si $H_0: \mu\geq\mu_0$ vs $H_1: \mu<\mu_0$, entonces se rechaza $H_0$ si $U\leq c$.
 
-**Definición**. Considere las hipótesis $H_0:\theta \in \Omega_0$ vs $H_1: \theta\in \Omega_1$. Decimos que una prueba de hipótesis $\delta$ es **insesgada** si $\forall \theta\in\Omega_0$ y $\forall \theta\in \Omega_1$:
-\[\pi(\theta|\delta) \leq \pi(\theta'|\delta).\]
+**Ejemplo:** Recordemos el ejemplo de los días que un paciente tarda en una casa
+de cuido en Nuevo México 
+```{r }
+load("./data/Nursing.rda")
+hist(Nursing$InPatientDays)
+```
+
+Se quiere probar la hipótesis de $H_{0}: \mu \leq 200$ versus $H_{1}: \mu > 200$,
+es decir queremos saber si los pacientes duran más de 200 días en cuidados. 
+
+El estadístico de prueba sería 
+
+\[
+U =  \sqrt{n} \frac{(\overline{X} - \mu)}{\sigma ^{\prime}}
+\]
+
+y el test rechaza \(H_{0}\) si \(U>t_{n-1, 1-\alpha} \). 
+
+```{r }
+x <- Nursing$InPatientDays
+n <- length(x)
+xbar <- mean(x)
+sigma_prima <- sd(x)
+alpha <- 0.1
+mu0 <- 200
+
+quantil_t <- qt(p = 1 - alpha, df = n - 1)
+
+U <- sqrt(n) * (xbar - 200) / sigma_prima
+```
+
+
+¿Rechazamos $H_0$?
+
+```{r}
+U > quantil_t
+```
+
 
 ### Propiedades de las pruebas $t$
 
-**Teorema**. Sea $X_1,\dots,X_n\sim N(\mu,\sigma^2)$. Sea $U$ definido anteriormente, $c=t_{n-1,1-\alpha_0}$. Sea $\delta$ la prueba que rechaza $H_0$ si $U\geq c$. Entonces
+**Teorema**. Sea $X_1,\dots,X_n\sim N(\mu,\sigma^2)$. Sea $U$ definido
+anteriormente, $c=t_{n-1,1-\alpha_0}$. Sea $\delta$ la prueba que rechaza $H_0$
+si $U\geq c$. Entonces
 
 i) $\pi(\mu,\sigma^2|\delta) = \alpha_0$ si $\mu=\mu_0$.
 
@@ -302,12 +529,35 @@ Entonces, la prueba tiene tamaño $\alpha_0$ y es insesgada.
 
 *Prueba*. Ver en el libro.
 
-En el caso en donde $H_0:\mu\geq \mu_0$ las desigualdades se intercambian y la prueba también tiene tamaño $\alpha_0$ y es insesgada.
 
-**Teorema**. Bajo cualquiera de los dos casos anteriores, sea $U$ el valor observado de $U$. Entonces, el valor-*p* de la prueba $\delta$ que rechaza $H_0: \mu\leq\mu_0$ es $1-T_{n-1}(u)$ donde $T_{n-1}$ es c.d.f de $t_{n-1}$ y si se rechaza $H_0 \mu\geq \mu_0$, el valor-*p* es $T_{n-1}(u)$.
 
-*Prueba*. El caso $H_0:\mu\leq\mu_0$ es análogo al cálculo del valor-*p* que se hizo en el capítulo anterior. El caso $H_0: \mu\geq \mu_0$ se rechaza si \[U\leq T_{n-1}^{-1}(\alpha_0) \Leftrightarrow T_{n-1}(u)\leq \alpha_0.\]
-Es decir, el nivel más pequeño de significancia observada es $T_{n-1}(u)$
+En el caso en donde $H_0:\mu\geq \mu_0$ las desigualdades se intercambian y la
+prueba también tiene tamaño $\alpha_0$ y es insesgada.
+
+**Teorema**. Bajo cualquiera de los dos casos anteriores, sea $U$ el valor
+observado de $U$. Entonces, el valor-*p* de la prueba $\delta$ que rechaza $H_0:
+\mu\leq\mu_0$ es $1-T_{n-1}(u)$ donde $T_{n-1}$ es c.d.f de $t_{n-1}$ y si se
+rechaza $H_0 \mu\geq \mu_0$, el valor-*p* es $T_{n-1}(u)$.
+
+*Prueba*. El caso $H_0:\mu\leq\mu_0$ es análogo al cálculo del valor-*p* que se
+hizo en el capítulo anterior. El caso $H_0: \mu\geq \mu_0$ se rechaza si \[U\leq
+T_{n-1}^{-1}(\alpha_0) \Leftrightarrow T_{n-1}(u)\leq \alpha_0.\] Es decir, el
+nivel más pequeño de significancia observada es $T_{n-1}(u)$ $\qedsymbol$
+
+
+**Ejemplo:**
+
+¿Cuál es el valor \( p\) del ejemplo de casas de cuido?
+
+```{r }
+1 - pt(q = U, df = n - 1)
+```
+```{r}
+t.test(x, alternative = "greater", mu = 200)
+```
+
+
+
 
 Considere el caso $H_0: \mu\geq \mu_0$ vs $H_1: \mu>\mu_0$.
 
@@ -329,45 +579,90 @@ Considere el caso $H_0: \mu\geq \mu_0$ vs $H_1: \mu>\mu_0$.
 
 Observe que
 
-\[\Delta = \dfrac{\bar X_n -\mu}{\sigma' /\sqrt n}\cdot\dfrac\sigma\sigma = \dfrac{\dfrac{\sqrt n(\bar X_n-\mu)}{\sigma} \sim N(0,1)}{\dfrac{\sigma'}\sigma = \sqrt{\dfrac{\chi^2}{n-1}}} \sim t_{n-1}.\]
+\[\Delta = \dfrac{\bar X_n -\mu}{\sigma' /\sqrt n}\cdot\dfrac\sigma\sigma = \dfrac{\dfrac{\sqrt n(\bar X_n-\mu)}{\sigma} }{\dfrac{\sigma'}\sigma } \sim \dfrac{N(0,1)}{\sqrt{\dfrac{\chi^2_{n-1}}{n-1}}} \sim t_{n-1}.\]
 
 De igual forma, vea que
 
-\[ U = \dfrac{\dfrac{\sqrt n(\bar X_n-\mu_0)}{\sigma}}{\dfrac{\sigma'}{\sigma}} =  \dfrac{\dfrac{\sqrt n}{\sigma}(\bar X_n-\mu) +\overbrace{\dfrac{\sqrt n}{\sigma}(\mu-\mu_0)}^{\psi}  \sim N(\psi,1)}{\dfrac{\sigma'}{\sigma}}.\]
+\[
+U = \dfrac{\dfrac{\sqrt n(\bar X_n-\mu_0)}{\sigma}}{\dfrac{\sigma'}{\sigma}} = \dfrac{\dfrac{\sqrt n}{\sigma}(\bar X_n-\mu) +\overbrace{\dfrac{\sqrt n}{\sigma}(\mu-\mu_0)}^{\psi}}{\dfrac{\sigma'}{\sigma}} \sim \dfrac{N(\psi,1)}{\sqrt{\dfrac{\chi^2_{n-1}}{n-1}}}.
+\]
 
-**Definición**. Si $Y$, $W$ son independientes con $W\sim N(\psi,1)$ y $Y\sim \chi^2_m$, entonces $X$ se distribuye como una **$t$-Student no centrada** con parámetro $\psi$ si
-\[X = \dfrac W{\sqrt{\dfrac{Y}{m}}}.\]
+**Definición**. Si $Y$, $W$ son independientes con $W\sim N(\psi,1)$ y $Y\sim
+\chi^2_m$, entonces $X$ se distribuye como una **$t$-Student no centrada** con
+parámetro $\psi$ si \[X = \dfrac W{\sqrt{\dfrac{Y}{m}}}.\]
 
 Si $T_m(t|\psi)$ es c.d.f de $X$, entonces
 \[\pi(\mu|\delta)= T_{n-1}(t_{n-1,1-\alpha_0}).\]
 
-En el caso que la prueba sea $H_0: \mu\leq \mu_0$ vs $H_1: \mu<\mu_0$.
+En el caso que la prueba sea $H_0: \mu \geq \mu_0$ vs $H_1: \mu<\mu_0$.
  
 \[\pi(\mu|\delta)= \mathbb P[U\leq t_{n-1,1-\alpha_0}] = T_{n-1}(t_{n-1,\alpha_0}).\]
 
-**Conclusión**: a partir del error tipo II se puede determinar un tamaño de muestra dado, siempre y cuando existan restricciones sobre $\mu$ y $\sigma^2$.
+**Conclusión**: a partir del error tipo II se puede determinar un tamaño de
+muestra dado, siempre y cuando existan restricciones sobre $\mu$ y $\sigma^2$.
 
+En el caso de las casas de cuido, suponga que queremos ver el poder cuando \(\mu = 200 + sigma/2\), entonces el parámetro de no centralidad queda en \(\psi = \dfrac{sqrt{n}}{2}\). 
+
+
+```{r }
+n <- length(x)
+
+alpha0 <- 0.05
+q <- qt(p = 1 - alpha0, df = n - 1)
+
+parametro_no_central <- sqrt(n) / 2
+  
+(poder <- pt(q = q, df = n - 1, ncp = parametro_no_central))
+
+
+
+```
 ### Prueba $t$ pareada
 
-**Ejemplo**. Considere una muestra de $n$ pacientes que fuman $X$ cantidad al día. Sean $t_1$ el momento de la observación y $t_2$ el tratamiento. El consumo de cigarrillos en el individuo #*i* es
+<!-- **Ejemplo**. Considere una muestra de $n$ pacientes que fuman $X$ cantidad al -->
+<!-- día. Sean $t_1$ el momento de la observación y $t_2$ el tratamiento. El consumo -->
+<!-- de cigarrillos en el individuo #*i* es -->
 
-\[D_i = X_i^{t_2}-X_i^{t_1},\quad i = 1,\dots,n.\]
+<!-- \[D_i = X_i^{t_2}-X_i^{t_1},\quad i = 1,\dots,n.\] -->
 
-Otro ejemplo es tomar $Y_i^{t_1,t_2}$ el log-daño en los muñecos de prueba, donde $t_1$ corresponde al conductor y $t_2$ al acompañante, entonces
+A veces se quiere comparar la misma variable pero medida bajo dos condiciones
+distintas. Es decir ver si la media de un experimento es menor o mayor que la
+otra. 
 
-$X_i = Y_i^{t_1}-Y_i^{t_2} = \ln\left(\dfrac{\text{da}\tilde{\text n}\text{o}^{t_1}}{\text{da}\tilde{\text n}\text{o}^{t_2}}\right) \implies \text{da}\tilde{\text n}\text{o}^{t_2}\cdot e^{X_i} = \text{da}\tilde{\text n}\text{o}^{t_1}$
+Los usual en estos casos es restar ambas medias y hacer una prueba de hipótesis
+con \( \mu_0 = 0\).  
 
-Evaluemos la prueba $H_0:\mu\leq 0$ vs $H_1:\mu>0$ al 1%. Si $X_1,\dots, X_n \sim N(\mu,\sigma^2)$ ambos parámetros desconocidos, y $n=164$, $\bar X_n = 0.2199$, $\sigma'=0.5342$, rechazamos $H_0$ si
 
-\[U = \dfrac{0.2199-0}{\dfrac{0.5342}{\sqrt {164}}} = 5.271 >t_{163,1-0.01} = 2.35.\]
+**Ejemplo:** Suponga que se tiene los datos de muñecos de prueba para probar
+carros en simulaciones de accidentes de tránsito. Defina \(X_i ^{t_1}\) el daño
+reportado al conductor y \(D_i ^{t_2}\) el daño al pasajero. 
+
+Defina el logaritmo del daño como  \( Y_i ^{t_1} = \ln(D_{i}^{t_1})\) y \( Y_i ^{t_2} =
+\ln(D_{i}^{t_2})\)
+$X_i = Y_i^{t_1}-Y_i^{t_2} = \ln\left(\dfrac{D_{i}^{t_1}}{D_{i}^{t_2}}\right) \implies
+D_{i}^{t_2}\cdot e^{X_i} = D_{i}^{t_1}$
+
+Evaluemos la prueba $H_0:\mu\leq 0$ vs $H_1:\mu>0$ al 1%. Si $X_1,\dots, X_n
+\sim N(\mu,\sigma^2)$ ambos parámetros desconocidos, y $n=164$, $\bar X_n =
+0.2199$, $\sigma'=0.5342$, rechazamos $H_0$ si
+
+\[
+U = \dfrac{0.2199-0}{\dfrac{0.5342}{\sqrt {164}}} = 5.271 >t_{163,1-0.01} = 2.35.
+\]
 
 El valor-*p* de la prueba es 
-\[1-\mathbb P[t_{163}<5.271] = 1\times10^{-6}<1\%.\]
-Entonces rechazo $H_0$ con nivel de significancia de $1%$. 
+\[
+1-\mathbb P[t_{163}<5.271] = 1\times10^{-6}<1\%.
+\] 
 
-Suponga que la diferencia media entre conductor y pasajero es $\dfrac\sigma 4$. ¿Cuál es el error tipo II?
+Entonces rechazo $H_0$ con nivel de significancia de $1%$.
 
-\[\mu =\dfrac\sigma 4\implies \psi = \dfrac{\mu-\mu_0}{\sigma/\sqrt n} = \dfrac{\sigma/4-0}{\sigma/\sqrt{164}} = \dfrac{\sqrt{164}}{3} = 3.2.\]
+Suponga que la diferencia media entre conductor y pasajero es $\dfrac\sigma 4$.
+¿Cuál es el error tipo II?
+
+\[
+\mu =\dfrac\sigma 4\implies \psi = \dfrac{\mu-\mu_0}{\sigma/\sqrt n} = \dfrac{\sigma/4-0}{\sigma/\sqrt{164}} = \dfrac{\sqrt{164}}{3} = 3.2.
+\]
 
 El error tipo II es $T_{163}(2.35|\psi =3.2) = 1-0.802 = 0.198$.
 
@@ -377,35 +672,49 @@ El error tipo II es $T_{163}(2.35|\psi =3.2) = 1-0.802 = 0.198$.
 
 * Función de potencia:
 
-\[\pi(\mu|\delta) = \mathbb P[U\geq t_{n-1,1-\frac{\alpha_0}2}|\mu]+\mathbb P[U\leq t_{n-1,1-\frac{\alpha_0}2}|\mu] = T_{n-1}(-c|\psi) + 1-T_{n-1}(c|\psi). \]
+\[
+\pi(\mu|\delta) = \mathbb P[U\geq t_{n-1,1-\frac{\alpha_0}2}|\mu]+\mathbb P[U\leq t_{n-1,1-\frac{\alpha_0}2}|\mu] = T_{n-1}(-c|\psi) + 1-T_{n-1}(c|\psi).
+\]
 
 * Valor-*p*: si observamos $U=u$, rechazamos $H_0$ si
 
-\[|u|\geq t_{n-1,1-\frac{\alpha_0}2} \Leftrightarrow T_{n-1}(|U|)\geq 1-\dfrac{\alpha_0}2 \Leftrightarrow \alpha_0\geq \underbrace{2[1-T_{n-1}(|u|)]}_{\text{valor-}p}.\]
+\[
+| u | \geq t_{n-1,1-\frac{\alpha_0}2} \Leftrightarrow T_{n-1}( | U | )\geq 1-\dfrac{\alpha_0}2 \Leftrightarrow \alpha_0\geq \underbrace{2[1-T_{n-1}( | u | )]}_{\text{valor-}p}.
+\] 
 
-**Propiedad**. La prueba-$t$ unilateral es un LRT.
+**Propiedad**. La prueba-$t$  unilateral es equivalente a una prueba de cociente
+de verosimilitud (LRT).  Entonces la prueba 
 
-Sea $f_n(x|\mu)$ la función de verosimilitud de una muestra de distribuciones normales y considere
-\[\Lambda(x) = \dfrac{\sup_{\mu\leq\mu_0}f_n(x|\mu)}{\sup_{\mu}f_n(x|\mu)}. \]
+<!-- Sea $f_n(x|\mu)$ la función de verosimilitud de una muestra de distribuciones -->
+<!-- normales y considere  -->
 
-El MLE en $\Omega$ es $(\bar X_n,\hat\sigma^2)$, entonces
+<!-- \[\Lambda(x) = \dfrac{\sup_{\mu\leq\mu_0}f_n(x|\mu)}{\sup_{\mu}f_n(x|\mu)}. \] -->
 
-\[\sup_{\mu}f_n(x|\mu) = \dfrac1{(2\pi\hat\sigma^2)^{n/2}}e^{-n/2}.\]
+<!-- El MLE en $\Omega$ es $(\bar X_n,\hat\sigma^2)$, entonces -->
 
-El MLE en $\Omega_0$, si $\bar X_n<\mu_0$ es $\bar X_n$, por lo que $\Lambda(x) =1$.
+<!-- \[\sup_{\mu}f_n(x|\mu) = \dfrac1{(2\pi\hat\sigma^2)^{n/2}}e^{-n/2}.\] -->
 
-Si $\bar X_n>\mu_0$, se puede probar que $f_n(x|\mu)$ se maximiza si $\mu$ está lo más cerca posible de $\bar X_n$, que, en el subconjunto $\Omega_0$ sería $\mu_0$. Entonces $\mu = \mu_0$, $\hat\sigma_0 = \dfrac 1n \sum_{i=1}^n(X_i-\mu_0)^2$ y
-\[\sup_{\mu}f_n(x|\mu) = \dfrac1{(2\pi\hat\sigma_0^2)^{n/2}}e^{-n/2}.\]
+<!-- El MLE en $\Omega_0$, si $\bar X_n<\mu_0$ es $\bar X_n$, por lo que $\Lambda(x) -->
+<!-- =1$. -->
 
-Por lo tanto
-$\Lambda(x) = \begin{cases}\left(\dfrac{\hat \sigma^2}{\hat\sigma_0^2}\right)^{n/2}& \text{si }\bar X_n>\mu_0\\ 1 & \text{si no}\end{cases}$
+<!-- Si $\bar X_n>\mu_0$, se puede probar que $f_n(x|\mu)$ se maximiza si $\mu$ está -->
+<!-- lo más cerca posible de $\bar X_n$, que, en el subconjunto $\Omega_0$ sería -->
+<!-- $\mu_0$. Entonces $\mu = \mu_0$, $\displaystyle \hat\sigma_0 = \dfrac 1n -->
+<!-- \sum_{i=1}^n(X_i-\mu_0)^2$ y -->
 
-*Ejercicio*: si $u$ es el valor observado del estadístico $U$, verifique que $\Lambda(x)$ es monótono decreciente con respecto a $u$. 
+<!-- \[\sup_{\mu}f_n(x|\mu) = \dfrac1{(2\pi\hat\sigma_0^2)^{n/2}}e^{-n/2}.\] -->
 
-Por lo tanto, para $k<1$ existe $c$ tal que 
-\[\Lambda(x) \leq k \Leftrightarrow u\geq c.\]
+<!-- Por lo tanto -->
+<!-- $\Lambda(x) = \begin{cases}\left(\dfrac{\hat \sigma^2}{\hat\sigma_0^2}\right)^{n/2}& \text{si }\bar X_n>\mu_0\\ 1 & \text{si no}\end{cases}$ -->
 
-*Ejercicio*: encuentre $c$.
+<!-- *Ejercicio*: si $u$ es el valor observado del estadístico $U$, verifique que -->
+<!-- $\Lambda(x)$ es monótono decreciente con respecto a $u$. -->
 
-Se concluye que LRT es una prueba $t$.
+<!-- Por lo tanto, para $k<1$ existe $c$ tal que  -->
+
+<!-- \[\Lambda(x) \leq k \Leftrightarrow u\geq c.\] -->
+
+<!-- *Ejercicio*: encuentre $c$. -->
+
+<!-- Se concluye que LRT es una prueba $t$. -->
 
