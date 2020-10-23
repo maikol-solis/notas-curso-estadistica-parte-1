@@ -567,7 +567,7 @@ Considere el caso $H_0: \mu\geq \mu_0$ vs $H_1: \mu>\mu_0$.
 
 * Valor-*p*: si observamos $U=u$, se rechaza $H_0$ si $u\geq t_{n-1,1-\alpha_0}$,
 
-\[T_{n-1}(u) \geq T_{n-1}(t_{n-1,1-\alpha_0}) = 1-\alpha_0 \implies 1-T_{n-1(u)} = T_{n-1}(u).\]
+\[T_{n-1}(u) \geq T_{n-1}(t_{n-1,1-\alpha_0}) = 1-\alpha_0 \implies 1-T_{n-1(u)} = \bar T_{n-1}(u).\]
 
 * Función de potencia: 
 
