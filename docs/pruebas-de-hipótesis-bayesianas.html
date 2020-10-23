@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="prueba-de-comparación-de-medias-en-2-poblaciones.html"/>
-<link rel="next" href="ejercicios-varios.html"/>
+<link rel="next" href="bondad-de-ajuste.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -263,11 +263,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-una-cola"><i class="fa fa-check"></i><b>13.2</b> Hipótesis de una cola</a></li>
 <li class="chapter" data-level="13.3" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-2-colas"><i class="fa fa-check"></i><b>13.3</b> Hipótesis de 2 colas</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html"><i class="fa fa-check"></i><b>14</b> Ejercicios varios</a>
+<li class="chapter" data-level="14" data-path="bondad-de-ajuste.html"><a href="bondad-de-ajuste.html"><i class="fa fa-check"></i><b>14</b> Bondad de ajuste</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#capítulo-8"><i class="fa fa-check"></i><b>14.1</b> Capítulo 8</a>
+<li class="chapter" data-level="14.1" data-path="bondad-de-ajuste.html"><a href="bondad-de-ajuste.html#prueba-chi2"><i class="fa fa-check"></i><b>14.1</b> Prueba <span class="math inline">\(\chi^2\)</span></a></li>
+<li class="chapter" data-level="14.2" data-path="bondad-de-ajuste.html"><a href="bondad-de-ajuste.html#pruebas-chi2-con-hipótesis-parametrizadas"><i class="fa fa-check"></i><b>14.2</b> Pruebas <span class="math inline">\(\chi^2\)</span> con hipótesis parametrizadas</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html"><i class="fa fa-check"></i><b>15</b> Tablas de contingencia</a>
 <ul>
-<li class="chapter" data-level="14.1.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#section"><i class="fa fa-check"></i><b>14.1.1</b> 8.4.6</a></li>
+<li class="chapter" data-level="15.1" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html#hipótesis-de-independencia"><i class="fa fa-check"></i><b>15.1</b> Hipótesis de independencia</a></li>
+<li class="chapter" data-level="15.2" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html#prueba-de-homogeneidad"><i class="fa fa-check"></i><b>15.2</b> Prueba de homogeneidad</a></li>
+<li class="chapter" data-level="15.3" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html#comparación-de-proporciones"><i class="fa fa-check"></i><b>15.3</b> Comparación de proporciones</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html"><i class="fa fa-check"></i><b>16</b> Ejercicios varios</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#capítulo-8"><i class="fa fa-check"></i><b>16.1</b> Capítulo 8</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#section"><i class="fa fa-check"></i><b>16.1.1</b> 8.4.6</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -459,7 +470,7 @@ condicionado en <span class="math inline">\((X,Y)\)</span>.</p>
 <span class="math display">\[\mathbb P[\mu_1-\mu_2\leq 0|x,y] = \mathbb P\left[t_{m+n-2}\leq \dfrac{-(\bar X_m-\bar Y_n)}{\left(\dfrac 1m + \dfrac 1n\right)^{1/2}(s_X^2+s_Y^2)^{1/2}}(m+n-2)^{1/2}\right] = T_{m+n-2})(-u).\]</span></p>
 <p>donde <span class="math inline">\(u\)</span> es el valor observado de la prueba de 2 muestras en el caso frecuentista.</p>
 <p>Rechazamos <span class="math inline">\(H_0\)</span> si</p>
-<p><span class="math display">\[ T_{m+n-2}(-u)\leq \dfrac{w_1}{w_0+w_1}=\alpha_0 \Leftrightarrow -u\leq T_{m+n-2}^{-1}(\alpha_0) \implies u\geq -T_{m+n-2}^{-1}(\alpha_0) = T_{m+n2-2}^{-1}(1-\alpha_0)\]</span></p>
+<p><span class="math display">\[ T_{m+n-2}(-u)\leq \dfrac{w_1}{w_0+w_1}=\alpha_0 \Leftrightarrow -u\leq T_{m+n-2}^{-1}(\alpha_0) \implies u\geq -T_{m+n-2}^{-1}(\alpha_0) = T_{m+n-2}^{-1}(1-\alpha_0)\]</span></p>
 <p>Es la misma prueba con <span class="math inline">\(\alpha_0 = \dfrac{w_1}{w_0+w_1}\)</span> con distinta interpretación.</p>
 <p>Otro caso particular es la prueba de varianzas en el caso normal con previas impropias.</p>
 
@@ -471,7 +482,7 @@ condicionado en <span class="math inline">\((X,Y)\)</span>.</p>
         </div>
       </div>
 <a href="prueba-de-comparación-de-medias-en-2-poblaciones.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ejercicios-varios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bondad-de-ajuste.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

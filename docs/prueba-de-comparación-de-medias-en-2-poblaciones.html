@@ -263,11 +263,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-una-cola"><i class="fa fa-check"></i><b>13.2</b> Hipótesis de una cola</a></li>
 <li class="chapter" data-level="13.3" data-path="pruebas-de-hipótesis-bayesianas.html"><a href="pruebas-de-hipótesis-bayesianas.html#hipótesis-de-2-colas"><i class="fa fa-check"></i><b>13.3</b> Hipótesis de 2 colas</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html"><i class="fa fa-check"></i><b>14</b> Ejercicios varios</a>
+<li class="chapter" data-level="14" data-path="bondad-de-ajuste.html"><a href="bondad-de-ajuste.html"><i class="fa fa-check"></i><b>14</b> Bondad de ajuste</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#capítulo-8"><i class="fa fa-check"></i><b>14.1</b> Capítulo 8</a>
+<li class="chapter" data-level="14.1" data-path="bondad-de-ajuste.html"><a href="bondad-de-ajuste.html#prueba-chi2"><i class="fa fa-check"></i><b>14.1</b> Prueba <span class="math inline">\(\chi^2\)</span></a></li>
+<li class="chapter" data-level="14.2" data-path="bondad-de-ajuste.html"><a href="bondad-de-ajuste.html#pruebas-chi2-con-hipótesis-parametrizadas"><i class="fa fa-check"></i><b>14.2</b> Pruebas <span class="math inline">\(\chi^2\)</span> con hipótesis parametrizadas</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html"><i class="fa fa-check"></i><b>15</b> Tablas de contingencia</a>
 <ul>
-<li class="chapter" data-level="14.1.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#section"><i class="fa fa-check"></i><b>14.1.1</b> 8.4.6</a></li>
+<li class="chapter" data-level="15.1" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html#hipótesis-de-independencia"><i class="fa fa-check"></i><b>15.1</b> Hipótesis de independencia</a></li>
+<li class="chapter" data-level="15.2" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html#prueba-de-homogeneidad"><i class="fa fa-check"></i><b>15.2</b> Prueba de homogeneidad</a></li>
+<li class="chapter" data-level="15.3" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html#comparación-de-proporciones"><i class="fa fa-check"></i><b>15.3</b> Comparación de proporciones</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html"><i class="fa fa-check"></i><b>16</b> Ejercicios varios</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#capítulo-8"><i class="fa fa-check"></i><b>16.1</b> Capítulo 8</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#section"><i class="fa fa-check"></i><b>16.1.1</b> 8.4.6</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -402,7 +413,7 @@ de libertad. Asuma un <span class="math inline">\(\alpha = 0.01\)</span></p>
 <p><strong>Hipótesis</strong>. <span class="math inline">\(H_0: \mu_1=\mu_2\)</span> vs <span class="math inline">\(H_1: \mu_1\ne\mu_2\)</span> (Prueba ANOVA).</p>
 <ul>
 <li><p>Prueba. <span class="math inline">\(\delta:\)</span> Rechazo <span class="math inline">\(H_0\)</span> si <span class="math inline">\(|U|\geq T^{-1}_{m+n-2}\left(1-\dfrac{\alpha_0}2\right)\)</span>.</p></li>
-<li><p>Valor-<em>p</em>: <span class="math inline">\(2-T_{m+n-2}(|u|)\)</span> donde <span class="math inline">\(U=u\)</span>.</p></li>
+<li><p>Valor-<em>p</em>: <span class="math inline">\(2[1-T_{m+n-2}(|u|)]\)</span> donde <span class="math inline">\(U=u\)</span>.</p></li>
 </ul>
 <p><strong>Ejemplo</strong>. Minas de cobre. Sean <span class="math inline">\(X_1,\dots,X_8\)</span> la cantidad de cobre (gramos)
 en 8 minas en un lugar 1, y <span class="math inline">\(X_1,\dots,X_{10}\)</span> en 10 minas en un lugar 2.
@@ -589,8 +600,7 @@ H_1: \mu_{\text{con trat.}} \neq \mu_{\text{sin trat.}}
 v\leq G^{-1}_{m-1,n-1}\left(\dfrac{\alpha_0}2\right) \implies 2G_{m-1,n-1}(v)\leq \alpha_0
 \]</span></p>
 <p>o tambien si</p>
-<p><span class="math display">\[v\geq G^{-1}_{m-1,n-1}\left(1-\dfrac{\alpha_0}2 \right) \implies
-G_{m-1,n-1}(v) \geq 1-\dfrac{\alpha_0}2 \implies \alpha_0\geq 2G_{m-1,n-1}(v) \]</span></p>
+<p><span class="math display">\[v\geq G^{-1}_{m-1,n-1}\left(1-\dfrac{\alpha_0}2 \right) \implies G_{m-1,n-1}(v) \geq 1-\dfrac{\alpha_0}2 \implies \alpha_0\geq 2\bar G_{m-1,n-1}(v) \]</span></p>
 <p>Por lo tanto, el <em>p</em>-valor es
 <span class="math display">\[\text{valor-}p = 2\min[1-G_{m-1,n-1}(v), G_{m-1,n-1}(v)]\]</span></p>
 <div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb326-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">min</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pf</span>(<span class="dt">q =</span> V, <span class="dt">df1 =</span> m <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">df2 =</span> n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>),</span>
