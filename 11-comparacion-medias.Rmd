@@ -1,49 +1,72 @@
 
 # Prueba de comparación de medias en 2 poblaciones
-
+    
 ## Comparación de medias normales
 
-Asuma que $X_1,\dots, X_n\overset{i.i.d}{\sim} N(\mu_1,\sigma^2)$ y $Y_1,\dots, Y_n\overset{i.i.d}{\sim} N(\mu_2,\sigma^2)$. Los parámetros desconocidos son $\mu_1,\mu_2,\sigma^2$. Asuma que $(X_i,Y_i)$ son independientes y la varianza es la misma (homocedasticidad).
+Asuma que $X_1,\dots, X_n\overset{i.i.d}{\sim} N(\mu_1,\sigma^2)$ y $Y_1,\dots,
+Y_n\overset{i.i.d}{\sim} N(\mu_2,\sigma^2)$. Los parámetros desconocidos son
+$\mu_1,\mu_2,\sigma^2$. Asuma que $(X_i,Y_i)$ son independientes y la varianza
+es la misma (homocedasticidad).
 
 **Hipótesis**: $H_0: \mu_1\leq\mu_2$ vs  $H_1: \mu_1>\mu_2$.
 
-**Notación**: $\bar X_m,\bar Y_n$, $S_X^2 = \sum_{i=1}^m(X_i-\bar X_m)^2$, $S_Y^2 = \sum_{i=1}^m(Y_i-\bar Y_n)^2$.
+**Notación**: $\bar X_m,\bar Y_n$, $\displaystyle S_X^2 = \sum_{i=1}^m(X_i-\bar X_m)^2$,
+$\displaystyle S_Y^2 = \sum_{i=1}^m(Y_i-\bar Y_n)^2$.
 
 **Teorema**. Considere 
-\[U = \dfrac{(m+n-2)^{1/2}(\bar X_m-\bar Y_n)}{\left(\dfrac 1m+\dfrac 1n\right)^{1/2}(S_X^2+S_Y^2)^{1/2}}.\]
-Si $\mu_1=\mu_2 \implies U\sim t_{m+n-2}.$
+\[
+U = \dfrac{(m+n-2)^{1/2}(\bar X_m-\bar Y_n)}{\left(\dfrac 1m+\dfrac 1n\right)^{1/2}(S_X^2+S_Y^2)^{1/2}}.
+\] Si
+$\mu_1=\mu_2 \implies U\sim t_{m+n-2}.$
 
-*Prueba*. Vea que, bajo el supuesto que \(\mu_1=\mu_2\), $\bar X_n-\bar Y_n$ se distribuye como una normal con parámetros:
 
-* $\mathbb E[X_n-\bar Y_n] = \mu_1-\mu_2 =0$.
 
-* $\text{Var}(\bar X_m-\bar Y_n) =\text{Var}(\bar X_m) + \text{Var}(\bar Y_n) = \dfrac{\sigma^2}m + \dfrac{\sigma^2}n =\left(\dfrac 1m+\dfrac 1n\right)\sigma^2$.
 
-Entonces
-\[Z = \dfrac{\bar X_m-\bar Y_n}{\sigma\left(\dfrac 1m+\dfrac 1n\right)^{1/2}}\underset{\mu_1 =\mu_2}{\sim} N(0,1).\]
-Así mismo, se sabe que $\dfrac{S_X^2}{\sigma^2}\sim \chi^2_{m-1}$ y  $\dfrac{S_Y^2}{\sigma^2}\sim \chi^2_{n-1}$.
 
-**Nota**: no depende de $H_0$.
+<!-- *Prueba*. Vea que, bajo el supuesto que \(\mu_1=\mu_2\), $\bar X_n-\bar Y_n$ se -->
+<!-- distribuye como una normal con parámetros: -->
 
-Como $(X,Y)$ son independientes, $\dfrac{S_X^2}{\sigma^2}$ y $\dfrac{S_Y^2}{\sigma^2}$ son independientes. Así,
+<!-- * $\mathbb E[X_n-\bar Y_n] = \mu_1-\mu_2 =0$. -->
 
-\[W = \dfrac{S_X^2+S_Y^2}{\sigma^2} \sim \chi^2_{m+n-2}.\]
+<!-- * $\text{Var}(\bar X_m-\bar Y_n) =\text{Var}(\bar X_m) + \text{Var}(\bar Y_n) = \dfrac{\sigma^2}m + \dfrac{\sigma^2}n =\left(\dfrac 1m+\dfrac 1n\right)\sigma^2$. -->
 
-Entonces
+<!-- Entonces  -->
+<!-- \[ -->
+<!-- Z = \dfrac{\bar X_m-\bar Y_n}{\sigma\left(\dfrac 1m+\dfrac 1n\right)^{1/2}}\underset{\mu_1 =\mu_2}{\sim} N(0,1). -->
+<!-- \] -->
 
-\[U = \dfrac{Z}{\sqrt{\dfrac W{m+n-2}}}=\dfrac{\dfrac{\bar X_m-\bar Y_n}{\sigma\left(\dfrac 1m+\dfrac 1n\right)^{1/2}}}{\sqrt{\dfrac 1{m+n-2}\left(\dfrac{S_X^2+S_Y^2}{\sigma^2}\right)}}\sim t_{m+n-1}.\]
+<!-- Así mismo, se sabe que $\dfrac{S_X^2}{\sigma^2}\sim \chi^2_{m-1}$ y -->
+<!-- $\dfrac{S_Y^2}{\sigma^2}\sim \chi^2_{n-1}$. -->
+
+<!-- **Nota**: no depende de $H_0$. -->
+
+<!-- Como $(X,Y)$ son independientes, $\dfrac{S_X^2}{\sigma^2}$ y -->
+<!-- $\dfrac{S_Y^2}{\sigma^2}$ son independientes. Así, -->
+
+<!-- \[W = \dfrac{S_X^2+S_Y^2}{\sigma^2} \sim \chi^2_{m+n-2}.\] -->
+
+<!-- Entonces -->
+
+<!-- \[U = \dfrac{Z}{\sqrt{\dfrac W{m+n-2}}}=\dfrac{\dfrac{\bar X_m-\bar -->
+<!-- Y_n}{\sigma\left(\dfrac 1m+\dfrac 1n\right)^{1/2}}}{\sqrt{\dfrac -->
+<!-- 1{m+n-2}\left(\dfrac{S_X^2+S_Y^2}{\sigma^2}\right)}}\sim t_{m+n-1}.\] -->
+
+
 
 ## Prueba $t$ de dos muestras
 
-Dada una región de rechazo $U\geq c$,
-\begin{align*}
-\sup_{\mu_1\leq \mu_2}\mathbb P[U\geq c|\mu_1,\mu_2,\sigma^2]\leq \alpha_0 & \implies \mathbb P[U\geq c|\mu_1=\mu_2,\sigma^2] = 1-T_{n+m-2}(c) \leq \alpha_0 \\
-& \implies c = T_{n+m-2}^{-1}(1-\alpha_0)
+Dada una región de rechazo $U\geq c$, 
+
+\begin{align*} \sup_{\mu_1\leq
+\mu_2}\mathbb P[U\geq c|\mu_1,\mu_2,\sigma^2]\leq \alpha_0 & \implies 
+\mathbb P[U\geq c|\mu_1=\mu_2,\sigma^2] = 1-T_{n+m-2}(c) \leq \alpha_0 \\ & \implies c =
+T_{n+m-2}^{-1}(1-\alpha_0) 
 \end{align*}
 
 Rechazo $H_0$ si $U> T_{n+m-2}^{-1}(1-\alpha_0): \delta$.
 
-**Teorema**. La función de potencia $\pi(\mu_1,\mu_2,\sigma^2|\delta)$ tiene las siguientes propiedades:
+**Teorema**. La función de potencia $\pi(\mu_1,\mu_2,\sigma^2|\delta)$ tiene las
+siguientes propiedades:
 
 i. $\pi(\mu_1,\mu_2,\sigma^2|\delta) = \alpha_0$ si $\mu_1 = \mu_2$.
 
@@ -66,21 +89,77 @@ Los *p*-valores son:
 * Caso II: $T_{n+m-2}(u)$.
 
 
-**Ejemplo**. Considere la log-precipitación de 26 observaciones de nubes con químicos, $X_1,\dots,X_{26}$ y 26 sin químicos $Y_1,\dots,Y_{26}$.
+<!-- **Ejemplo**. Considere la log-precipitación de 26 observaciones de nubes con químicos, $X_1,\dots,X_{26}$ y 26 sin químicos $Y_1,\dots,Y_{26}$. -->
 
-*Supuestos*: $X_i\sim N(\mu_1,\sigma^2)$, $Y_j\sim N(\mu_2,\sigma^2)$.
+<!-- *Supuestos*: $X_i\sim N(\mu_1,\sigma^2)$, $Y_j\sim N(\mu_2,\sigma^2)$. -->
 
-*Hipótesis*:  $H_0: \mu_1\leq\mu_2$ vs  $H_1: \mu_1>\mu_2$.
+<!-- *Hipótesis*:  $H_0: \mu_1\leq\mu_2$ vs  $H_1: \mu_1>\mu_2$. -->
 
-Con los siguientes datos: $\bar X_m = 5.13$, $\bar Y_n = 3.99$, $S_X^2 = 63.96$, $S_Y^2=67.39$, se tiene que
+<!-- Con los siguientes datos: $\bar X_m = 5.13$, $\bar Y_n = 3.99$, $S_X^2 = 63.96$, $S_Y^2=67.39$, se tiene que -->
 
-\[U = \dfrac{50^{1/2}(5.13-3.99)}{\left(\dfrac{1}{26}+\dfrac{1}{26}\right)^{1/2}(63.96+67.39)^{1/2}} = 2.544.\]
+<!-- \[U = \dfrac{50^{1/2}(5.13-3.99)}{\left(\dfrac{1}{26}+\dfrac{1}{26}\right)^{1/2}(63.96+67.39)^{1/2}} = 2.544.\] -->
 
-A un nivel de confianza del 99% ,
+<!-- A un nivel de confianza del 99% , -->
 
-\[ T_{n+m-2}(1-\alpha_0) = T_{50}^{-1}(99\%) = 2.403 \implies U > T^{-1}_{50}(99\%)\]
+<!-- \[ T_{n+m-2}(1-\alpha_0) = T_{50}^{-1}(99\%) = 2.403 \implies U > T^{-1}_{50}(99\%)\] -->
 
-y el valor-*p*: $1-T_{50}(2.544) = 0.007$.
+<!-- y el valor-*p*: $1-T_{50}(2.544) = 0.007$. -->
+
+
+**Ejemplo:** En el caso de las lluvia suponga que queremos probar 
+
+\[
+H_0: \mu_{\text{con trat.}} \leq \mu_{\text{sin trat.}} \quad
+vs \quad
+H_1: \mu_{\text{con trat.}} > \mu_{\text{sin trat.}} 
+\]
+
+```{r }
+nubes <- read.table(
+    file = "./data/clouds.txt",
+    sep = "\t", header = TRUE
+)
+log_lluvia <- log(nubes)
+
+n <- nrow(nubes)
+
+con_tratamiento <- log_lluvia$Seeded.Clouds
+sin_tratamiento <- log_lluvia$Unseeded.Clouds
+
+(Xbar <- mean(con_tratamiento))
+(Ybar <- mean(sin_tratamiento))
+
+(S2_X <- (n - 1) * var(con_tratamiento))
+(S2_Y <- (n - 1) * var(sin_tratamiento))
+```
+
+Entonces el estadístico que queremos construir para comparar la medias es (OJO en este caso \( m=n\) porque tienen la misma cantidad de datos:
+)
+
+```{r }
+(U <- sqrt(n + n - 2) * (Xbar - Ybar) /
+    (sqrt(1 / n + 1 / n) * sqrt(S2_X + S2_Y)))
+```
+
+Por tanto se debe comparar con una \(t\)-student con \( 26+26 - 2 = 50\) grados
+de libertad. Asuma un \( \alpha = 0.01\)
+
+
+```{r }
+(qnt <- qt(p = 1 - 0.01, df = n + n - 2))
+```
+
+¿ Rechazamos \( H_0\)?
+
+```{r }
+U > qnt
+```
+
+¿Cuál es el \( p\)-valor?
+
+```{r }
+1 - pt(q = U, df = n + n - 2)
+```
 
 *Interpretación*: rechazamos al nivel 1% de significancia la hipótesis de que las nubes irradiadas tienen una log-precipitación media menor a la de las nubes no irradiadas.
 
@@ -92,22 +171,88 @@ y el valor-*p*: $1-T_{50}(2.544) = 0.007$.
 
 * Valor-*p*: $2-T_{m+n-2}(|u|)$ donde $U=u$.
 
-**Ejemplo**. Menas de cobre. Sean $X_1,\dots,X_8$ la cantidad de cobre (g) en 8 menas en la localización 1, y $X_1,\dots,X_{10}$ en 10 menas en la localización 2. Los datos son $\bar X_8 = 2.6,\bar Y_{10} = 2.3, S_X^2 = 0.32$ y $S_Y^2=0.22$ ¿Las dos localizaciones generan el mismo nivel de cobre?
+**Ejemplo**. Minas de cobre. Sean $X_1,\dots,X_8$ la cantidad de cobre (gramos)
+en 8 minas en un lugar 1, y $X_1,\dots,X_{10}$ en 10 minas en  un lugar 2.
+Después de recolectar los datos se obtiene lo siguiente 
 
-$H_0: \mu_1=\mu_2$, $X_i\sim N(\mu_1,\sigma^2)$, $Y_j\sim N(\mu_2,\sigma^2)$. 
+- $\bar X_8 = 2.6$ 
+- $\bar Y_{10} = 2.3$ 
+- $S_X^2 = 0.32$ y 
+- $S_Y^2=0.22$ 
 
-Se tiene que $U = 3.442$.Si $\alpha_0 = 1\%$, $T^{-1}_{16}\left(1-\dfrac{0.01}2\right) = T_{16}^{-1}(0.995) = 2.921$.
+El ingeniero de la mina se pregunta: ¿Las dos localizaciones generan el mismo
+nivel de cobre?
 
-Rechazamos $H_0$ pero el valor-*p* es $2[1-T_{16}(|3.442|)] = 0.003$.
 
-*Interpretación*: rechazamos al 1% de significancia la hipótesis de una diferencia no significativa entre las cantidades medias de cobre en cada localización.
+Entonces plantea hacer la prueba de hipótesis 
+
+\[
+H_0: \mu_1=\mu_2 \quad H_1: \mu_1\neq\mu_2 
+\]
+
+Con el supuesto que $X_i\sim N(\mu_1,\sigma^2)$, $Y_j\sim N(\mu_2,\sigma^2)$. 
+
+
+```{r }
+n <- 8
+m <- 10
+
+n + m - 2
+
+Xbar <- 2.6
+Ybar <- 2.3
+
+S2_X <- 0.32
+S2_Y <- 0.22
+
+(U <- sqrt(n + m - 2) * (Xbar - Ybar) /
+    (sqrt(1 / n + 1 / m) * sqrt(S2_X + S2_Y)))
+```
+
+
+Si $\alpha_0 = 1\%$
+
+```{r }
+(qnt <- qt(p = 1 - 0.01 / 2, df = n + m - 2))
+```
+
+Entonces, ¿Rechazamos \( H_0\)?
+
+```{r }
+abs(U) > qnt
+```
+
+El valor \( p\) es $2[1-T_{16}(|3.442|)]$
+
+```{r }
+2 * (1 - pt(q = U, df = n + m - 2))
+```
+ 
+*Interpretación*: Rechazamos al 1% de significancia la hipótesis de una
+diferencia no significativa entre las cantidades medias de cobre en cada
+localización.
 
 **Ejercicio**. La prueba $t$ de 2 muestras es un LRT.
 
 ## Prueba $F$
-**Definición** Si $Y$ y $W$ son variables aleatorias independientes, $Y\sim \chi^2_m$ y $W\sim \chi ^2_n$, $m,n\in \mathbb Z^+$. Defina
+
+**Definición** Si $Y$ y $W$ son variables aleatorias independientes, $Y\sim
+\chi^2_m$ y $W\sim \chi ^2_n$, $m,n\in \mathbb Z^+$. Defina 
+
 \[X = \dfrac{Y/m}{W/n}\sim F_{m,n}\]
-$X$ tiene una distribución $F$ con $m$ y $n$ grados de libertad.
+
+$X$ tiene una distribución $F$ con $m$ y
+$n$ grados de libertad.
+
+La función de densidad es 
+
+\begin{equation}
+f(x)= 
+\begin{cases} 
+\displaystyle \frac{\Gamma\left[\frac{1}{2}(m+n)\right] m^{m / 2} n^{n / 2}}{\Gamma\left(\frac{1}{2} m\right) \Gamma\left(\frac{1}{2} n\right)} \cdot \frac{x^{(m / 2)-1}}{(m x+n)^{(m+n) / 2}} & x>0 \\
+0 & x\leq 0.
+\end{cases}
+\end{equation}
 
 **Propiedades**:
 
@@ -129,9 +274,10 @@ Bajo el esquema anterior y si $(X,Y)$ son independientes, considere:
 \[H_0: \sigma_1^2\leq \sigma_2^2 \text { vs } H_1: \sigma_1^2> \sigma_2^2 \]
 y tome $\alpha_0 \in (0,1)$.
 
-La lógica de esta prueba es, como $\dfrac{S_X^2}{\sigma_1^2} \sim \chi^2_{m-1}$ y $\dfrac{S_X^2}{\sigma_1^2} \sim \chi^2_{n-1}$, calculamos
+La lógica de esta prueba es, como $\dfrac{S_X^2}{\sigma_1^2} \sim \chi^2_{m-1}$
+y $\dfrac{S_Y^2}{\sigma_2^2} \sim \chi^2_{n-1}$, calculamos
 
-$V^* = \dfrac{\dfrac{S_X^2/\sigma_1^2}{m-1}}{\dfrac{S_Y^2/\sigma_1^2}{n-1}}\sim F_{m-1,n-1}$.
+$V^* = \dfrac{\dfrac{S_X^2/\sigma_1^2}{m-1}}{\dfrac{S_Y^2/\sigma_2^2}{n-1}}\sim F_{m-1,n-1}$.
 Bajo el supuesto de homocedasticidad,
 
 $V = \dfrac{\dfrac{S_X^2}{m-1}}{\dfrac{S_Y^2}{n-1}}\sim F_{m-1,n-1}$.
@@ -144,11 +290,12 @@ Usando el $\delta$ anterior
 
 \[\sup_{\sigma_1^2\leq\sigma^2_2}\mathbb P[V\geq c|\mu_1\mu_2,\sigma^2_1,\sigma_2^2]\leq \alpha_0,\]
 resuelve
-\[\mathbb P[V\geq c|\mu_1,\mu_2,\sigma_1^2,\sigma_2^2] = \alpha_0 \implies c = F^{-1}_{m-1,n-1}(1-\alpha_0) =: G^{-1}_{m-1,n-1}(1-\alpha_0).\]
+\[\mathbb P[V\geq c|\mu_1,\mu_2,\sigma_1^2,\sigma_2^2] = \alpha_0 \implies c = F^{-1}_{m-1,n-1}(1-\alpha_0) = G^{-1}_{m-1,n-1}(1-\alpha_0).\]
 
 **Teorema**. si $\delta$ se define según lo anterior, 
 
-i. \begin{align*}
+i. 
+\begin{align*}
 \pi(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2|\delta) & = \mathbb P[V\geq G^{-1}_{m-1,n-1}(1-\alpha_0)]\\
 & = \mathbb P\bigg[V^* \geq \dfrac{\sigma_2^2}{\sigma_1^2}c\bigg]\\
 & = 1-G_{m-1,n-1}\left(\dfrac{\sigma_2^2}{\sigma_1^2}c\right)
@@ -178,17 +325,107 @@ El valor-*p* corresponde a $1-G_{5,20}(3) = 0.035.$
 
 Si $\alpha_0 = 1\%$, no rechazo. Si $\alpha_0 = 5\%$ rechazo. 
 
+**Ejemplo:** Suponga que se tienen los siguientes datos 
+
+```{r }
+n <- 10
+m <- 20
+(X <- rnorm(n = n, mean = 0, sd = sqrt(6)))
+(Y <- rnorm(n = m, mean = 0, sd = sqrt(2)))
+```
+
+Es decir tener `r n` datos normales con \(\sigma_1^2 = 6\) y `r m` datos normales con \(\sigma_2^2
+= 2\).  
+
+En todo caso asuma que \(\sigma\) es desconocidos para cada caso y solo tenemos
+los datos. Además queremos hacer la prueba de hipótesis
+
+\[
+\begin{array}{ll}
+H_{0}: & \sigma_{1}^{2} \leq \sigma_{2}^{2} \\
+H_{1}: & \sigma_{1}^{2}>\sigma_{2}^{2}
+\end{array}
+\]
+
+**OJO: Según la forma que planteamos el ejercicio, deberíamos de rechazar \(H_0\) ya que \(\sigma_1^2 = 6 > 2  = \sigma_2^2 \)**
+
+Calculamos el estadístico \(V\)
+
+```{r }
+(S2_X_divido_m_1 <- var(X))
+(S2_Y_divido_n_1 <- var(Y))
+
+(V <- S2_X_divido_m_1 / S2_Y_divido_n_1)
+```
+
+Para calcular un cuantil te tamaño \(1-\alpha = 0.95\) se usa la siguiente función 
+
+```{r }
+(qnt <- qf(p = 1 - 0.05, df1 = n - 1, df2 = m - 1))
+```
+
+¿Rechazamos \(H_0\)?
+```{r }
+V > qnt
+```
+
+y el valor-\(p\) de la prueba es 
+
+```{r }
+1 - pf(q = V, df1 = n - 1, df2 = m - 1)
+```
+
+**Interpretación:** Rechazamos la hipótesis que \(\sigma_{1}^{2} \leq
+\sigma_{2}^{2}\) con un valor-$p$ de 0.02.
+
 ### Prueba de 2 colas (prueba de homocedasticidad)
 
-Bajo las hipótesis $H_0: \sigma^2_1=\sigma^2_2$ vs  $H_1: \sigma^2_1\ne\sigma^2_2$, se rechaza si $V\geq c_2$ o $V\leq c_1$ con $c_1,c_2$ tales que 
-\[\mathbb P[V\leq c_1] = \dfrac{\alpha_0}{2} \text{ y } \mathbb P[V\geq c_2] = \dfrac{\alpha_0}{2} \implies c_1 = G_{m-1,n-1}^{-1}\left(\dfrac{\alpha_0}{2}\right) c_1 = G_{m-1,n-1}^{-1}\left(\dfrac{\alpha_0}{2}\right)\]
+Bajo las hipótesis $H_0: \sigma^2_1=\sigma^2_2$ vs
+$H_1: \sigma^2_1\ne\sigma^2_2$, se rechaza si $V\geq c_2$ o $V\leq c_1$ con
+$c_1,c_2$ tales que
+                                                     
+\[\mathbb P[V\leq c_1] = \dfrac{\alpha_0}{2} \text{ y } \mathbb P[V\geq c_2] =
+\dfrac{\alpha_0}{2} \implies c_1 =
+G_{m-1,n-1}^{-1}\left(\dfrac{\alpha_0}{2}\right) \text{ y } c_2 =
+G_{m-1,n-1}^{-1}\left(1-\dfrac{\alpha_0}{2}\right)\]
 
-**Ejemplo**. Mismo ejemplo de las nubes. Queremos probar $H_0:\sigma_1^2 = \sigma_2^2$. Calculamos
+**Ejemplo**. Mismo ejemplo de las nubes.
+
+\[
+H_0: \mu_{\text{con trat.}} = \mu_{\text{sin trat.}} \quad
+vs \quad
+H_1: \mu_{\text{con trat.}} \neq \mu_{\text{sin trat.}} 
+\]
+
+```{r }
+(m <- length(con_tratamiento))
+(n <- length(sin_tratamiento))
+(S2_X_divido_m_1 <- var(con_tratamiento))
+(S2_Y_divido_n_1 <- var(sin_tratamiento))
+(V <- S2_X_divido_m_1 / S2_Y_divido_n_1)
+```
+
 
 \[V = \dfrac{\dfrac{63.96}{25}}{\dfrac{67.39}{25}} = 0.9491\]
 
+
+
+
 Se tiene que $c_1 = G^{-1}_{25,25}(0.0025) = 0.4484$ y $c_2 = G^{-1}_{25,25}(0.975) = 2.23$.
 
+```{r }
+(c1 <- qf(0.025, df1 = m - 1, df2 = n - 1))
+(c2 <- qf(0.975, df1 = m - 1, df2 = n - 1))
+```
+
+¿Rechazamos \(H_0\)?
+
+```{r }
+V < c1
+V > c2
+```
+
+No rechazamos la hipótesis nula. 
 
 Si observamos $V=v$, podemos rechazar si  
 \[
@@ -197,14 +434,19 @@ v\leq G^{-1}_{m-1,n-1}\left(\dfrac{\alpha_0}2\right) \implies 2G_{m-1,n-1}(v)\le
 
 o tambien si
 
-\[v\geq G^{-1}_{m-1,n-1}\left(1-\dfrac{\alpha_0}2 \right) \implies G_{m-1,n-1}(v) \geq 1-\dfrac{\alpha_0}2 \implies \alpha_0\geq 2G_{m-1,n-1}(v) \]
+\[v\geq G^{-1}_{m-1,n-1}\left(1-\dfrac{\alpha_0}2 \right) \implies
+G_{m-1,n-1}(v) \geq 1-\dfrac{\alpha_0}2 \implies \alpha_0\geq 2G_{m-1,n-1}(v) \]
 
 Por lo tanto, el *p*-valor es
 \[\text{valor-}p = 2\min[1-G_{m-1,n-1}(v), G_{m-1,n-1}(v)]\]
 
-**Ejercicio**. Verifique que en este caso da 0.9. 
+```{r }
+2 * min(1 - pf(q = V, df1 = m - 1, df2 = n - 1),
+        pf(q = V, df1 = m - 1, df2 = n - 1))
+```
 
-Al ser mayor al 5%, no rechaza la hipótesis de homocedasticidad.
+**Interpretación:** La prueba de hipótesis no rechaza la hipótesis de
+homocedasticidad con un nivel de confianza del 5\%.
 
 **Propiedad**. La prueba $F$ es un LRT.
 
