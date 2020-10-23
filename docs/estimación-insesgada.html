@@ -550,7 +550,7 @@ De esta forma,
 <span class="math display">\[I_Y(\theta) =-\mathbb E[ \lambda&#39;&#39;(y|\theta)] = \dfrac{\mathbb E[Y]}{\theta^2} = \dfrac{t}\theta.\]</span></p>
 <p>Como ejercicio, verifique que <span class="math inline">\(I_X(\theta) = \dfrac n{\theta^2}\)</span>.</p>
 <p>Ambas variables tienen la misma información si</p>
-<p><span class="math display">\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = \dfrac{\theta t}{\theta ^{2}} = \dfrac t\theta.\]</span></p>
+<p><span class="math display">\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = \dfrac{\theta^2 t}{\theta } =  t\theta.\]</span></p>
 <p>A partir de este ejercicio vamos a hacer un pequeño ejemplo de simulación.</p>
 <p>Suponga que <span class="math inline">\(t\)</span> es el tiempo que se quiere medir la cantidad de clientes (minutos), <span class="math inline">\(\theta\)</span> es la cantidad de clientes por minuto y <span class="math inline">\(n\)</span> es el número de clientes que entran.</p>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="estimación-insesgada.html#cb181-1"></a>t &lt;-<span class="st"> </span><span class="dv">20</span></span>

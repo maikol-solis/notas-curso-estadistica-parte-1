@@ -356,7 +356,7 @@ Como ejercicio, verifique que $I_X(\theta) = \dfrac n{\theta^2}$.
 
 Ambas variables tienen la misma información si
 
-\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = \dfrac{\theta t}{\theta ^{2}} = \dfrac t\theta.\]
+\[I_Y(\theta) = I_X(\theta) \implies \dfrac t\theta = \dfrac n{\theta^2} \implies n = \dfrac{\theta^2 t}{\theta } =  t\theta.\]
 
 A partir de este ejercicio vamos a hacer un pequeño ejemplo de simulación.
 
