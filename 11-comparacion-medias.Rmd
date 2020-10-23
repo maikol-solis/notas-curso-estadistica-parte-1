@@ -169,7 +169,7 @@ U > qnt
 
 * Prueba. $\delta:$ Rechazo $H_0$ si $|U|\geq T^{-1}_{m+n-2}\left(1-\dfrac{\alpha_0}2\right)$.
 
-* Valor-*p*: $2-T_{m+n-2}(|u|)$ donde $U=u$.
+* Valor-*p*: $2[1-T_{m+n-2}(|u|)]$ donde $U=u$.
 
 **Ejemplo**. Minas de cobre. Sean $X_1,\dots,X_8$ la cantidad de cobre (gramos)
 en 8 minas en un lugar 1, y $X_1,\dots,X_{10}$ en 10 minas en  un lugar 2.
