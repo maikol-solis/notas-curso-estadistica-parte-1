@@ -1,5 +1,5 @@
 rm(list = ls())
-
+set.seed(NULL)
 options(tinytex.verbose = TRUE)
 
 options(knitr.duplicate.label = "allow")
