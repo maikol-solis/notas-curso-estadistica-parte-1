@@ -32,7 +32,7 @@
   
 <link rel="prev" href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"/>
 <link rel="next" href="estadísticos-suficientes-y-criterio-de-factorización.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -171,14 +172,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedades-del-mle"><i class="fa fa-check"></i><b>4.1</b> Propiedades del MLE</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedad-de-invarianza"><i class="fa fa-check"></i><b>4.1.1</b> Propiedad de invarianza</a></li>
-<li class="chapter" data-level="4.1.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#consistencia-1"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
+<li class="chapter" data-level="4.1.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#cálculo-numérico"><i class="fa fa-check"></i><b>4.2</b> Cálculo numérico</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-de-los-momentos"><i class="fa fa-check"></i><b>4.2.1</b> Método de los momentos</a></li>
 <li class="chapter" data-level="4.2.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-delta"><i class="fa fa-check"></i><b>4.2.2</b> Método Delta</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#laboratorio-1"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
+<li class="chapter" data-level="4.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html"><i class="fa fa-check"></i><b>5</b> Estadísticos Suficientes y Criterio de Factorización</a>
 <ul>
@@ -347,10 +348,10 @@ maximiza si la log-verosimilitud es máxima. Entonces,</p>
 <span id="cb84-4"><a href="estimación-por-máxima-verosimilitud.html#cb84-4"></a>theta &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.5</span>, <span class="fl">1.5</span>, <span class="dt">length.out =</span> <span class="dv">1000</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="estimación-por-máxima-verosimilitud.html#cb85-1"></a>L &lt;-<span class="st"> </span>theta<span class="op">^</span>(<span class="op">-</span>n) <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>y <span class="op">/</span><span class="st"> </span>theta)</span>
 <span id="cb85-2"><a href="estimación-por-máxima-verosimilitud.html#cb85-2"></a><span class="kw">plot</span>(theta, L)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-26-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/03-maxima-verosimilitud-2-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="estimación-por-máxima-verosimilitud.html#cb86-1"></a>l &lt;-<span class="st"> </span><span class="op">-</span>n <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(theta) <span class="op">-</span><span class="st"> </span>y <span class="op">/</span><span class="st"> </span>theta</span>
 <span id="cb86-2"><a href="estimación-por-máxima-verosimilitud.html#cb86-2"></a><span class="kw">plot</span>(theta, l)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-27-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/03-maxima-verosimilitud-3-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Ejemplo</strong>. En una prueba sobre alguna enfermedad, en un <span class="math inline">\(90\%\)</span> da la verdadera condición (enfermo) y en un <span class="math inline">\(10\%\)</span> la prueba se equivoca (que diga que la persona esté enferma cuando está sana). Considere una variable aleatoria <span class="math inline">\(\text{Bernoulli}(\theta)\)</span>,<span class="math inline">\(\theta \in \{0.9,0.1\}\)</span>
 Una muestra sería
 <span class="math display">\[x = \begin{cases}1 &amp; \text{si la prueba es positiva}\\0&amp; \text{si no}\end{cases}\]</span>
@@ -393,7 +394,7 @@ Entonces
 <span id="cb87-11"><a href="estimación-por-máxima-verosimilitud.html#cb87-11"></a>l &lt;-<span class="st"> </span><span class="op">-</span>(n <span class="op">/</span><span class="st"> </span><span class="dv">2</span>) <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>pi <span class="op">/</span><span class="st"> </span>ms[, <span class="dv">1</span>]<span class="op">^</span><span class="dv">2</span>) <span class="op">-</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>ms[, <span class="dv">1</span>]<span class="op">^</span><span class="dv">2</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>((x <span class="op">-</span><span class="st"> </span>ms[, <span class="dv">2</span>])<span class="op">^</span><span class="dv">2</span>))</span>
 <span id="cb87-12"><a href="estimación-por-máxima-verosimilitud.html#cb87-12"></a></span>
 <span id="cb87-13"><a href="estimación-por-máxima-verosimilitud.html#cb87-13"></a><span class="kw">scatterplot3d</span>(ms[, <span class="dv">1</span>], ms[, <span class="dv">2</span>], l, <span class="dt">angle =</span> <span class="dv">45</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-28-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/03-maxima-verosimilitud-4-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \stackrel{i.i.d}{\sim} \text{Unif}(0, \theta)\)</span>. Estime <span class="math inline">\(\theta\)</span> <span class="math inline">\((\theta &gt; 0)\)</span>. Suponga que <span class="math inline">\(x_i&gt;0 \forall i\)</span>.</p>
 <p><span class="math display">\[f(X|\theta) = \dfrac 1\theta \cdot 1_{[0,\theta]}(x)\]</span></p>
 <p>La verosimilitud es
@@ -414,7 +415,7 @@ este caso, <span class="math inline">\(X_{(n)} = \max\{X_1,\dots, X_n\}\)</span>
 <span id="cb88-9"><a href="estimación-por-máxima-verosimilitud.html#cb88-9"></a>}</span>
 <span id="cb88-10"><a href="estimación-por-máxima-verosimilitud.html#cb88-10"></a></span>
 <span id="cb88-11"><a href="estimación-por-máxima-verosimilitud.html#cb88-11"></a><span class="kw">plot</span>(theta, L)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-29-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/03-maxima-verosimilitud-5-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <div id="propiedades-del-mle" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Propiedades del MLE</h2>
 <div id="propiedad-de-invarianza" class="section level3" number="4.1.1">
@@ -454,7 +455,7 @@ máximos en un conjunto con la misma imagen).</p>
 <li><p><span class="math inline">\(h(\mu, \sigma^2) = \mu^2 + \sigma^2\)</span>. <span class="math inline">\(\mathbb{E}[X^2] - \mu^2 = \sigma^2 \implies \mathbb{E}[X^2] = \mu^2 + \sigma^2\)</span>. El MLE de <span class="math inline">\(\mathbb{E}[X^2]\)</span> es <span class="math inline">\(\bar X_n^2 + \hat \sigma ^2\)</span>.</p></li>
 </ul>
 </div>
-<div id="consistencia-1" class="section level3" number="4.1.2">
+<div id="consistencia" class="section level3" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Consistencia</h3>
 <p>Los estimadores bayesianos son de la forma
 <span class="math display">\[EB = W_1\mathbb{E}[\text{Previa}] + W_2\hat X_n.\]</span>
@@ -539,7 +540,7 @@ Por el T.L.C., la distribución posterior <span class="math inline">\(\theta|X\)
 <span class="math display">\[\dfrac 1{y^2/n} = \dfrac{\theta^2}n = \dfrac{V_n(\hat\theta)}{n}.\]</span></p>
 </div>
 </div>
-<div id="laboratorio-1" class="section level2" number="4.3">
+<div id="laboratorio" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Laboratorio</h2>
 <p>Suponga que tenemos una tabla con los siguientes datos, los cuales representan la cantidad de giros hacia la derecha en cierta intersección.</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="estimación-por-máxima-verosimilitud.html#cb89-1"></a>(X &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">14</span>), <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">30</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">36</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">68</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">43</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">43</span>),</span>
@@ -563,7 +564,7 @@ Por el T.L.C., la distribución posterior <span class="math inline">\(\theta|X\)
 <p>Se puede probar que teórico de máxima verosimilitud para <span class="math inline">\(\lambda\)</span> es <span class="math inline">\(\overline{X}\)</span> (Tarea). Queremos estimar este parámetro alternativamente maximizando la función de verosimilitud.</p>
 <p>Primero veamos la forma de los datos,</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="estimación-por-máxima-verosimilitud.html#cb91-1"></a><span class="kw">hist</span>(X, <span class="dt">main =</span> <span class="st">&quot;histograma del número de giros a la derecha&quot;</span>, <span class="dt">right =</span> <span class="ot">FALSE</span>, <span class="dt">prob =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-31-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/03-maxima-verosimilitud-7-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Definamos la función correspondiente a <span class="math inline">\(-\log(\mathbb{P}(X=x))\)</span></p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="estimación-por-máxima-verosimilitud.html#cb92-1"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(X)</span>
 <span id="cb92-2"><a href="estimación-por-máxima-verosimilitud.html#cb92-2"></a>negloglike &lt;-<span class="st"> </span><span class="cf">function</span>(lambda) {</span>

@@ -1,0 +1,200 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {spanish}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Introducción}{7}{chapter.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Inferencia estadística}{9}{chapter.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Ejemplo}{9}{section.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Modelo estadístico}{10}{section.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Estadístico}{12}{section.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Densidades previas conjugadas y estimadores de Bayes}{15}{chapter.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Distribución previa (distribución a priori)}{15}{section.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Densidad posterior}{17}{section.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Proceso de modelación de parámetros.}{19}{section.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Función de verosimilitud}{19}{section.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}Familias conjugadas}{21}{section.3.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.6}Densidades previas impropias}{24}{section.3.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.7}Funciones de pérdida}{25}{section.3.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.1}Función de pérdida cuadrática}{26}{subsection.3.7.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.2}Función de pérdida absoluta}{26}{subsection.3.7.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.3}Otras funciones de pérdida}{27}{subsection.3.7.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.8}Efecto de muestras grandes}{27}{section.3.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.9}Consistencia}{28}{section.3.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.10}Laboratorio}{29}{section.3.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.1}Distribución previa}{29}{subsection.3.10.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.2}Distribución conjunta}{30}{subsection.3.10.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.3}Distribución posterior}{31}{subsection.3.10.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.4}Agregando nuevos datos}{32}{subsection.3.10.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.5}Familias conjugadas normales}{33}{subsection.3.10.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.6}Funciones de pérdida}{38}{subsection.3.10.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.7}Caso concreto}{39}{subsection.3.10.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Estimación por máxima verosimilitud}{45}{chapter.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Propiedades del MLE}{52}{section.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.1}Propiedad de invarianza}{52}{subsection.4.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.2}Consistencia}{53}{subsection.4.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Cálculo numérico}{54}{section.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.1}Método de los momentos}{54}{subsection.4.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.2}Método Delta}{56}{subsection.4.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}Laboratorio}{58}{section.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Estadísticos Suficientes y Criterio de Factorización}{61}{chapter.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Estadísticos suficientes}{61}{section.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Teorema de Factorización de Fisher}{61}{section.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.3}Estadístico suficiente multivariado.}{64}{section.5.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.4}Estadísticos minimales}{66}{section.5.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.5}Mejorando estimadores}{67}{section.5.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Distribución muestral de un estadístico}{71}{chapter.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.1}Distribución muestral}{71}{section.6.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.2}Distribución \(\chi ^2\)}{74}{section.6.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.3}Distribución \(t\)}{78}{section.6.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Intervalos de confianza}{83}{chapter.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}Intervalos de confianza para la media de una distribución normal}{83}{section.7.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}Caso normal.}{83}{section.7.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Intervalos de confianza abiertos}{88}{section.7.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.4}Intervalos de confianza en otros casos}{89}{section.7.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.4.1}Intervalos de confianza aproximados.}{92}{subsection.7.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.4.2}Transformaciones estabilizadoras de la varianza}{94}{subsection.7.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {8}Estimación Bayesiana bajo normalidad}{97}{chapter.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.1}Precisión de una distribución normal}{97}{section.8.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.2}Distribución marginal de \(\mu \)}{100}{section.8.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.3}Intervalos de credibilidad.}{108}{section.8.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.4}Efecto de previas no informativas (Opcional)}{110}{section.8.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {9}Estimación insesgada}{113}{chapter.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.1}Estimadores insesgados}{113}{section.9.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.2}Estimador insesgado de la varianza}{116}{section.9.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.3}Información de Fisher}{120}{section.9.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.4}Desigualdad de Cramer-Rao}{128}{section.9.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.5}Estimadores eficientes}{135}{section.9.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.6}Comportamiento asintótico del MLE}{136}{section.9.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {10}Pruebas de hipótesis}{139}{chapter.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.1}Pruebas de hipótesis}{139}{section.10.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.2}Regiones críticas y estadísticas de prueba}{143}{section.10.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.3}Función de potencia y tipos de error}{149}{section.10.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.4}Valor \(p\)}{162}{section.10.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.5}Dualidad entre pruebas de hipótesis y regiones de confianza}{164}{section.10.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.5.1}Dualidad en pruebas unilaterales}{167}{subsection.10.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.5.2}Pruebas de cociente de verosimilitud (LRT)}{168}{subsection.10.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {11}Pruebas con hipótesis simples}{173}{chapter.11}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.1}Hipótesis simples}{173}{section.11.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.2}Criterio de Neyman-Pearson}{178}{section.11.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.3}Pruebas insesgadas}{181}{section.11.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.4}Prueba \(t\)}{185}{section.11.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.4.1}Propiedades de las pruebas \(t\)}{187}{subsection.11.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.4.2}Prueba \(t\) pareada}{190}{subsection.11.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.4.3}Pruebas \(t\) de dos colas}{191}{subsection.11.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {12}Prueba de comparación de medias en 2 poblaciones}{193}{chapter.12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.1}Comparación de medias normales}{193}{section.12.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.2}Prueba \(t\) de dos muestras}{193}{section.12.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.2.1}Prueba de 2 colas}{196}{subsection.12.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.3}Prueba \(F\)}{197}{section.12.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.3.1}Prueba de 2 colas (prueba de homocedasticidad)}{201}{subsection.12.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {13}Pruebas de hipótesis bayesianas}{205}{chapter.13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.1}Pruebas de hipótesis bayesianas}{205}{section.13.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.2}Hipótesis de una cola}{207}{section.13.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.3}Hipótesis de 2 colas}{210}{section.13.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {14}Bondad de ajuste}{213}{chapter.14}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14.1}Prueba \(\chi ^2\)}{213}{section.14.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14.2}Pruebas \(\chi ^2\) con hipótesis parametrizadas}{217}{section.14.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {15}Tablas de contingencia}{221}{chapter.15}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.1}Hipótesis de independencia}{222}{section.15.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.2}Prueba de homogeneidad}{223}{section.15.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.3}Comparación de proporciones}{224}{section.15.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {16}Ejercicios varios}{227}{chapter.16}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {16.1}Capítulo 8}{227}{section.16.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {16.1.1}8.4.6}{227}{subsection.16.1.1}%

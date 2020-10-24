@@ -32,7 +32,7 @@
   
 <link rel="prev" href="intervalos-de-confianza.html"/>
 <link rel="next" href="estimación-insesgada.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -171,14 +172,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedades-del-mle"><i class="fa fa-check"></i><b>4.1</b> Propiedades del MLE</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedad-de-invarianza"><i class="fa fa-check"></i><b>4.1.1</b> Propiedad de invarianza</a></li>
-<li class="chapter" data-level="4.1.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#consistencia-1"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
+<li class="chapter" data-level="4.1.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#cálculo-numérico"><i class="fa fa-check"></i><b>4.2</b> Cálculo numérico</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-de-los-momentos"><i class="fa fa-check"></i><b>4.2.1</b> Método de los momentos</a></li>
 <li class="chapter" data-level="4.2.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-delta"><i class="fa fa-check"></i><b>4.2.2</b> Método Delta</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#laboratorio-1"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
+<li class="chapter" data-level="4.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html"><i class="fa fa-check"></i><b>5</b> Estadísticos Suficientes y Criterio de Factorización</a>
 <ul>
@@ -410,7 +411,7 @@ queso con respecto a su composición química.</p>
 ## 6    6  25.9  5.697 7.601   1.09</code></pre>
 <p>El químico más importante en este estudio es el ácido láctico (<code>Lactic</code>).</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="estimación-bayesiana-bajo-normalidad.html#cb129-1"></a><span class="kw">hist</span>(cheese<span class="op">$</span>Lactic)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-54-1.svg" width="100%" style="display: block; margin: auto;" />
+<p><img src="Notas-Curso-Estadistica_files/figure-html/07-normalidad-bayes-2-1.svg" width="100%" style="display: block; margin: auto;" />
 <em>Intervalo <span class="math inline">\(t\)</span>-student</em></p>
 <p>Queremos construir un intervalo de confianza al 90% para la media
 de esta variable.</p>
@@ -471,7 +472,7 @@ basados en la experiencia previa (que puede ser ninguna).</p>
 <span id="cb155-9"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-9"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, y, <span class="dt">color =</span> distribucion)) <span class="op">+</span></span>
 <span id="cb155-10"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-10"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb155-11"><a href="estimación-bayesiana-bajo-normalidad.html#cb155-11"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-58-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/07-normalidad-bayes-6-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Podemos calcular inferencias sobre el <span class="math inline">\(\sigma\)</span> usando el hecho que <span class="math inline">\(\tau\)</span>
 es Gamma.</p>
 <p><span class="math display">\[\begin{align*}
@@ -574,7 +575,7 @@ valores <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)
 <span id="cb166-4"><a href="estimación-bayesiana-bajo-normalidad.html#cb166-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> B, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
 <span id="cb166-5"><a href="estimación-bayesiana-bajo-normalidad.html#cb166-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> theta_hat, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
 <span id="cb166-6"><a href="estimación-bayesiana-bajo-normalidad.html#cb166-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-62-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/07-normalidad-bayes-9-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p><em>Ejercicio</em> Para hacer este ejercicio sin usar bayes, se debe resolver usando
 una función estabilizadora de la varianza. Encuentre esa función y aplique el
 procedimiento que vimos el capítulo anterior.</p>

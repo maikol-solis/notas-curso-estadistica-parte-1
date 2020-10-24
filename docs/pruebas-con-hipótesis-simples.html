@@ -32,7 +32,7 @@
   
 <link rel="prev" href="pruebas-de-hipótesis.html"/>
 <link rel="next" href="prueba-de-comparación-de-medias-en-2-poblaciones.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -171,14 +172,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedades-del-mle"><i class="fa fa-check"></i><b>4.1</b> Propiedades del MLE</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedad-de-invarianza"><i class="fa fa-check"></i><b>4.1.1</b> Propiedad de invarianza</a></li>
-<li class="chapter" data-level="4.1.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#consistencia-1"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
+<li class="chapter" data-level="4.1.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#cálculo-numérico"><i class="fa fa-check"></i><b>4.2</b> Cálculo numérico</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-de-los-momentos"><i class="fa fa-check"></i><b>4.2.1</b> Método de los momentos</a></li>
 <li class="chapter" data-level="4.2.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-delta"><i class="fa fa-check"></i><b>4.2.2</b> Método Delta</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#laboratorio-1"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
+<li class="chapter" data-level="4.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html"><i class="fa fa-check"></i><b>5</b> Estadísticos Suficientes y Criterio de Factorización</a>
 <ul>
@@ -323,7 +324,7 @@ no}\end{cases}\]</span></p>
 <span id="cb242-10"><a href="pruebas-con-hipótesis-simples.html#cb242-10"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(x, f, <span class="dt">color =</span> <span class="st">`</span><span class="dt">Distribución</span><span class="st">`</span>)) <span class="op">+</span></span>
 <span id="cb242-11"><a href="pruebas-con-hipótesis-simples.html#cb242-11"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
 <span id="cb242-12"><a href="pruebas-con-hipótesis-simples.html#cb242-12"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-107-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/10-hipotesis-simples-1-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Podemos redefinir las hipótesis si <span class="math inline">\(\Omega=\{\theta_0,\theta_1\}\)</span> donde si
 <span class="math inline">\(\theta = \theta_i\)</span>, seleccionamos <span class="math inline">\(f = f_i\)</span> y se prueba <span class="math inline">\(H_0: \theta=\theta_0\)</span>
 vs <span class="math inline">\(H_1:\theta=\theta_1\)</span>.</p>
@@ -391,7 +392,7 @@ rechaza <span class="math inline">\(H_0\)</span> si el cociente de verosimilitud
 <span class="math inline">\(H_0\)</span> si</p>
 <p><span class="math display">\[\dfrac{f_1(x)}{f_0(x)}&gt;1\Leftrightarrow
 \dfrac 4{(2+X_1)^2}\exp\left(\dfrac{X_1}2\right)&gt;1\quad(*)\]</span></p>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-110-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/10-hipotesis-simples-3-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Entonces <span class="math inline">\((*)\)</span> es cierto si <span class="math inline">\(X_1&gt;c\)</span>. Se puede comprobar numéricamente que <span class="math inline">\(c\approx5.03\)</span>.</p>
 <p>Por lo tanto, rechazamos <span class="math inline">\(H_0\)</span> si <span class="math inline">\(X_1&gt;5.03\)</span>.</p>
 <p>En este caso <span class="math inline">\(\alpha(\delta^*)\)</span> es igual a</p>
@@ -512,7 +513,7 @@ tiene esta forma.</p>
 <span id="cb251-6"><a href="pruebas-con-hipótesis-simples.html#cb251-6"></a></span>
 <span id="cb251-7"><a href="pruebas-con-hipótesis-simples.html#cb251-7"></a><span class="kw">plot</span>(t, f)</span>
 <span id="cb251-8"><a href="pruebas-con-hipótesis-simples.html#cb251-8"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="fl">0.2</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-113-1.svg" width="100%" style="display: block; margin: auto;" />
+<p><img src="Notas-Curso-Estadistica_files/figure-html/10-hipotesis-simples-5-1.svg" width="100%" style="display: block; margin: auto;" />
 Para resolver correctamente el ejercicio se deben encontrar valores <span class="math inline">\(c_1\)</span> y
 <span class="math inline">\(c_2\)</span> de modo que</p>
 <p><span class="math display">\[
@@ -618,7 +619,7 @@ prueba rechaza <span class="math inline">\(H_0\)</span> si <span class="math inl
 de cuido en Nuevo México</p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="pruebas-con-hipótesis-simples.html#cb256-1"></a><span class="kw">load</span>(<span class="st">&quot;./data/Nursing.rda&quot;</span>)</span>
 <span id="cb256-2"><a href="pruebas-con-hipótesis-simples.html#cb256-2"></a><span class="kw">hist</span>(Nursing<span class="op">$</span>InPatientDays)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-116-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/10-hipotesis-simples-8-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Se quiere probar la hipótesis de <span class="math inline">\(H_{0}: \mu \leq 200\)</span> versus <span class="math inline">\(H_{1}: \mu &gt; 200\)</span>,
 es decir queremos saber si los pacientes duran más de 200 días en cuidados.</p>
 <p>El estadístico de prueba sería</p>
@@ -668,7 +669,7 @@ nivel más pequeño de significancia observada es <span class="math inline">\(T_
 <pre><code>## [1] 0.9064029</code></pre>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="pruebas-con-hipótesis-simples.html#cb262-1"></a><span class="kw">t.test</span>(x, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">mu =</span> <span class="dv">200</span>)</span></code></pre></div>
 <pre><code>## 
-##  One Sample t-test
+## 	One Sample t-test
 ## 
 ## data:  x
 ## t = -1.3369, df = 51, p-value = 0.9064

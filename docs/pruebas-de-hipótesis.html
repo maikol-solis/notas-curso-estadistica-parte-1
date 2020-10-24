@@ -32,7 +32,7 @@
   
 <link rel="prev" href="estimación-insesgada.html"/>
 <link rel="next" href="pruebas-con-hipótesis-simples.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -171,14 +172,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedades-del-mle"><i class="fa fa-check"></i><b>4.1</b> Propiedades del MLE</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedad-de-invarianza"><i class="fa fa-check"></i><b>4.1.1</b> Propiedad de invarianza</a></li>
-<li class="chapter" data-level="4.1.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#consistencia-1"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
+<li class="chapter" data-level="4.1.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#cálculo-numérico"><i class="fa fa-check"></i><b>4.2</b> Cálculo numérico</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-de-los-momentos"><i class="fa fa-check"></i><b>4.2.1</b> Método de los momentos</a></li>
 <li class="chapter" data-level="4.2.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-delta"><i class="fa fa-check"></i><b>4.2.2</b> Método Delta</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#laboratorio-1"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
+<li class="chapter" data-level="4.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html"><i class="fa fa-check"></i><b>5</b> Estadísticos Suficientes y Criterio de Factorización</a>
 <ul>
@@ -342,7 +343,7 @@ quiere saber cuál de los dos grupos produce más lluvia.</p>
 <span id="cb198-14"><a href="pruebas-de-hipótesis.html#cb198-14"></a>  <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">bins =</span> <span class="dv">10</span></span>
 <span id="cb198-15"><a href="pruebas-de-hipótesis.html#cb198-15"></a>  ) <span class="op">+</span></span>
 <span id="cb198-16"><a href="pruebas-de-hipótesis.html#cb198-16"></a><span class="st">  </span><span class="kw">facet_wrap</span>(. <span class="op">~</span><span class="st"> </span>tratamiento)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-83-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-3-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="pruebas-de-hipótesis.html#cb199-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> df) <span class="op">+</span></span>
 <span id="cb199-2"><a href="pruebas-de-hipótesis.html#cb199-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(</span>
 <span id="cb199-3"><a href="pruebas-de-hipótesis.html#cb199-3"></a>    <span class="dt">x =</span> log_lluvia,</span>
@@ -350,7 +351,7 @@ quiere saber cuál de los dos grupos produce más lluvia.</p>
 <span id="cb199-5"><a href="pruebas-de-hipótesis.html#cb199-5"></a>    <span class="dt">fill =</span> tratamiento</span>
 <span id="cb199-6"><a href="pruebas-de-hipótesis.html#cb199-6"></a>  ), <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">bins =</span> <span class="dv">10</span>) <span class="op">+</span></span>
 <span id="cb199-7"><a href="pruebas-de-hipótesis.html#cb199-7"></a><span class="st">  </span><span class="kw">facet_wrap</span>(. <span class="op">~</span><span class="st"> </span>tratamiento)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-83-2.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-3-2.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>En este caso supondremos que la variable <code>log_lluvia</code> se puede modelar como una
 <span class="math inline">\(N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\mu,\sigma\)</span> desconocidos.</p>
 <p><em>Ejercicio:</em> Queda como ejercicio calcular <span class="math inline">\(\mathbb P (\mu &gt; 4 \vert X)\)</span>
@@ -423,7 +424,7 @@ vs <span class="math inline">\(H_1: \theta \in \Omega_1\)</span>.</p>
 <span id="cb200-18"><a href="pruebas-de-hipótesis.html#cb200-18"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
 <span id="cb200-19"><a href="pruebas-de-hipótesis.html#cb200-19"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Promedio de veces donde T &gt;= c&quot;</span>) <span class="op">+</span></span>
 <span id="cb200-20"><a href="pruebas-de-hipótesis.html#cb200-20"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-84-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-4-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>En este caso el valor donde decrece la curva es cercano a 0. Eso quiere decir
 que antes de ese valor, nos encontramos en la región de rechazo. Luego esa
 región se va haciendo cada vez más pequeña
@@ -448,7 +449,7 @@ región se va haciendo cada vez más pequeña
 <span id="cb201-17"><a href="pruebas-de-hipótesis.html#cb201-17"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
 <span id="cb201-18"><a href="pruebas-de-hipótesis.html#cb201-18"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Promedio de veces donde T &gt;= c&quot;</span>) <span class="op">+</span></span>
 <span id="cb201-19"><a href="pruebas-de-hipótesis.html#cb201-19"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-85-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-5-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>El valor donde comienza a crecer la curva se desvía a un valor cercano a 2.</p>
 <p><strong>Nota</strong>. En la mayoría de los casos, la región crítica se define en términos de
 un estadístico <span class="math inline">\(T = r(x)\)</span>.</p>
@@ -515,7 +516,7 @@ U = \frac{n ^{1/2} (\overline{X}_{n} - \mu_0)}{\sigma^\prime} \sim t_{n-1}
 <span id="cb208-12"><a href="pruebas-de-hipótesis.html#cb208-12"></a>    <span class="dt">color =</span> <span class="st">&quot;Nubes tratadas&quot;</span></span>
 <span id="cb208-13"><a href="pruebas-de-hipótesis.html#cb208-13"></a>  ), <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
 <span id="cb208-14"><a href="pruebas-de-hipótesis.html#cb208-14"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-86-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-6-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="función-de-potencia-y-tipos-de-error" class="section level2" number="10.3">
 <h2><span class="header-section-number">10.3</span> Función de potencia y tipos de error</h2>
@@ -565,7 +566,7 @@ rechazo <span class="math inline">\(R\)</span>, entonces <span class="math inlin
 <span id="cb209-19"><a href="pruebas-de-hipótesis.html#cb209-19"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(mu, funcion_de_poder, <span class="dt">color =</span> tipo)) <span class="op">+</span></span>
 <span id="cb209-20"><a href="pruebas-de-hipótesis.html#cb209-20"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
 <span id="cb209-21"><a href="pruebas-de-hipótesis.html#cb209-21"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-87-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-7-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="pruebas-de-hipótesis.html#cb210-1"></a>mu &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">8</span>, <span class="dt">length.out =</span> <span class="dv">100</span>)</span>
 <span id="cb210-2"><a href="pruebas-de-hipótesis.html#cb210-2"></a>c &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dt">length.out =</span> <span class="dv">100</span>)</span>
 <span id="cb210-3"><a href="pruebas-de-hipótesis.html#cb210-3"></a></span>
@@ -581,7 +582,7 @@ rechazo <span class="math inline">\(R\)</span>, entonces <span class="math inlin
 <span id="cb210-13"><a href="pruebas-de-hipótesis.html#cb210-13"></a>  <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>, <span class="dt">angle =</span> <span class="dv">60</span>,</span>
 <span id="cb210-14"><a href="pruebas-de-hipótesis.html#cb210-14"></a>  <span class="dt">xlab =</span> <span class="st">&quot;c&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;mu&quot;</span>, <span class="dt">zlab =</span> <span class="st">&quot;Función de poder&quot;</span></span>
 <span id="cb210-15"><a href="pruebas-de-hipótesis.html#cb210-15"></a>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-87-2.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-7-2.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Tipos de error</strong>:</p>
 <p>En este tipo de pruebas se puede cometer dos tipos de errores,</p>
 <ul>
@@ -611,7 +612,7 @@ indica donde estaría ubicado <span class="math inline">\(\pi(\theta\vert \delta
 <span id="cb211-10"><a href="pruebas-de-hipótesis.html#cb211-10"></a>  ) <span class="op">+</span></span>
 <span id="cb211-11"><a href="pruebas-de-hipótesis.html#cb211-11"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="fl">0.05</span>) <span class="op">+</span></span>
 <span id="cb211-12"><a href="pruebas-de-hipótesis.html#cb211-12"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-88-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-8-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Otra forma es minimizar;</p>
 <p><span class="math display">\[w_1\cdot\text{Error I } + w_2\cdot\text{Error II};\]</span>
 <span class="math inline">\(w_1,w_2\)</span> constantes.</p>
@@ -666,7 +667,7 @@ rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(
 <span id="cb212-14"><a href="pruebas-de-hipótesis.html#cb212-14"></a>}</span>
 <span id="cb212-15"><a href="pruebas-de-hipótesis.html#cb212-15"></a></span>
 <span id="cb212-16"><a href="pruebas-de-hipótesis.html#cb212-16"></a><span class="kw">plot</span>(theta, funcion_poder, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-89-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-9-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Note, además, que el tamaño de prueba es</p>
 <p><span class="math display">\[\alpha(\delta) = \sup_{3\leq\theta\leq 4} \pi(\theta|\delta) =
 \sup_{3\leq\theta\leq 4}\left(\dfrac{2.9}{\theta}\right)^n =
@@ -674,7 +675,7 @@ rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="pruebas-de-hipótesis.html#cb213-1"></a>n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></span>
 <span id="cb213-2"><a href="pruebas-de-hipótesis.html#cb213-2"></a></span>
 <span id="cb213-3"><a href="pruebas-de-hipótesis.html#cb213-3"></a><span class="kw">plot</span>(n, (<span class="fl">2.9</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>)<span class="op">^</span>n)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-90-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-10-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Si <span class="math inline">\(n = 68 \implies \alpha(\delta)= \left(\dfrac{2.9}{3}\right)^{68} = 0.0997.\)</span></p>
 <p>Entonces si <span class="math inline">\(n = 68\)</span>, entonces <span class="math inline">\(\delta\)</span> es una prueba con nivel de
 significancia <span class="math inline">\(\alpha_0\geq 0.0997\)</span>.</p>
@@ -739,7 +740,7 @@ X_n-\mu_0}{\sigma/\sqrt n}\bigg| \geq z_{1-\frac{\alpha_0}2}.\]</span></p>
 <span id="cb216-11"><a href="pruebas-de-hipótesis.html#cb216-11"></a>  ) <span class="op">+</span></span>
 <span id="cb216-12"><a href="pruebas-de-hipótesis.html#cb216-12"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm) <span class="op">+</span></span>
 <span id="cb216-13"><a href="pruebas-de-hipótesis.html#cb216-13"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-91-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-11-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>La pregunta que debemos siempre responder es ¿Rechazamos <span class="math inline">\(H_0\)</span>?</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="pruebas-de-hipótesis.html#cb217-1"></a><span class="kw">abs</span>(Z) <span class="op">&gt;</span><span class="st"> </span>q</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
@@ -769,7 +770,7 @@ dejamos que <span class="math inline">\(\mu_0 = 5\)</span>, entonces</p>
 <span id="cb222-12"><a href="pruebas-de-hipótesis.html#cb222-12"></a></span>
 <span id="cb222-13"><a href="pruebas-de-hipótesis.html#cb222-13"></a><span class="kw">plot</span>(mu, funcion_de_poder, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span>
 <span id="cb222-14"><a href="pruebas-de-hipótesis.html#cb222-14"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="fl">0.05</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-95-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-15-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots,X_n \sim \text{Ber}(p)\)</span>.
 <span class="math display">\[H_0: p\leq p_{0} \text{ vs } H_1: p&gt;p_0\]</span></p>
 <p>Sea <span class="math inline">\(Y = \sum_{i=1}^nX_i \sim \text{Binomial}(n,p)\)</span>.
@@ -817,7 +818,7 @@ que <span class="math inline">\(Y\)</span> es una variable discreta).</p>
 <span id="cb223-7"><a href="pruebas-de-hipótesis.html#cb223-7"></a></span>
 <span id="cb223-8"><a href="pruebas-de-hipótesis.html#cb223-8"></a><span class="kw">plot</span>(p, funcion_de_poder, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span>
 <span id="cb223-9"><a href="pruebas-de-hipótesis.html#cb223-9"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="fl">0.05</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-96-1.svg" width="100%" style="display: block; margin: auto;" />
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-16-1.svg" width="100%" style="display: block; margin: auto;" />
 <em>Procedimiento</em>: rechazamos <span class="math inline">\(H_0: p \leq 0.3\)</span> si <span class="math inline">\(Y\geq c\)</span>, <span class="math inline">\(c\in(5,6]\)</span> con un
 nivel de significancia de <span class="math inline">\(10\%\)</span> a lo sumo.</p>
 </div>
@@ -1004,7 +1005,7 @@ Por dualidad, basta con conocer un IC unilateral para <span class="math inline">
 <span id="cb234-13"><a href="pruebas-de-hipótesis.html#cb234-13"></a></span>
 <span id="cb234-14"><a href="pruebas-de-hipótesis.html#cb234-14"></a><span class="kw">plot</span>(y, Lambda, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb234-15"><a href="pruebas-de-hipótesis.html#cb234-15"></a><span class="kw">lines</span>(y, p, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-103-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/09-pruebas-hipotesis-23-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="pruebas-de-hipótesis.html#cb235-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">cbind</span>(y, Lambda, p))</span></code></pre></div>
 <table>
 <thead>

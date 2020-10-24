@@ -32,7 +32,7 @@
   
 <link rel="prev" href="inferencia-estadística.html"/>
 <link rel="next" href="estimación-por-máxima-verosimilitud.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -171,14 +172,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedades-del-mle"><i class="fa fa-check"></i><b>4.1</b> Propiedades del MLE</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedad-de-invarianza"><i class="fa fa-check"></i><b>4.1.1</b> Propiedad de invarianza</a></li>
-<li class="chapter" data-level="4.1.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#consistencia-1"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
+<li class="chapter" data-level="4.1.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#cálculo-numérico"><i class="fa fa-check"></i><b>4.2</b> Cálculo numérico</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-de-los-momentos"><i class="fa fa-check"></i><b>4.2.1</b> Método de los momentos</a></li>
 <li class="chapter" data-level="4.2.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-delta"><i class="fa fa-check"></i><b>4.2.2</b> Método Delta</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#laboratorio-1"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
+<li class="chapter" data-level="4.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html"><i class="fa fa-check"></i><b>5</b> Estadísticos Suficientes y Criterio de Factorización</a>
 <ul>
@@ -379,7 +380,7 @@ que es una <span class="math inline">\(\Gamma(n+4,20000+y)\)</span>.</p>
 <p>Con 5 observaciones (horas): 2911, 3403, 3237, 3509, 3118.
 <span class="math display">\[y = \sum_{i=1}^{5}X_i = 16478, \quad n= 5\]</span>
 por lo que <span class="math inline">\(\theta|X \sim \Gamma(9,36178)\)</span></p>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-4-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/02-distribuciones-previas-posteriores-1-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Es sensible al tamaño de la muestra (una muestra grande implica un efecto de la previa menor).</p>
 <p><strong>Hiperparámetros</strong>: parámetros de la previa o posterior.</p>
 </div>
@@ -674,7 +675,7 @@ Sea <span class="math inline">\(\psi = h(\theta)\)</span>. Un <strong>estimador<
 <span id="cb2-6"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb2-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
 <span id="cb2-7"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb2-7"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
 <span id="cb2-8"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb2-8"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-6-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/02-distribuciones-previas-posteriores-3-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="distribución-conjunta" class="section level3" number="3.10.2">
 <h3><span class="header-section-number">3.10.2</span> Distribución conjunta</h3>
@@ -688,7 +689,7 @@ Sea <span class="math inline">\(\psi = h(\theta)\)</span>. Un <strong>estimador<
 <span id="cb3-7"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb3-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
 <span id="cb3-8"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb3-8"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
 <span id="cb3-9"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb3-9"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-7-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/02-distribuciones-previas-posteriores-4-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="distribución-posterior" class="section level3" number="3.10.3">
 <h3><span class="header-section-number">3.10.3</span> Distribución posterior</h3>
@@ -707,7 +708,7 @@ Sea <span class="math inline">\(\psi = h(\theta)\)</span>. Un <strong>estimador<
 <span id="cb12-4"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb12-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dexp, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">rate =</span> theta), <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Verosimilitud&quot;</span>)) <span class="op">+</span></span>
 <span id="cb12-5"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb12-5"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="fl">1.5e-5</span>) <span class="op">+</span></span>
 <span id="cb12-6"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb12-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-9-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/02-distribuciones-previas-posteriores-6-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="agregando-nuevos-datos" class="section level3" number="3.10.4">
 <h3><span class="header-section-number">3.10.4</span> Agregando nuevos datos</h3>
@@ -727,7 +728,7 @@ Sea <span class="math inline">\(\psi = h(\theta)\)</span>. Un <strong>estimador<
 <span id="cb21-4"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb21-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dgamma, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">shape =</span> alpha_posterior, <span class="dt">scale =</span> beta_posterior), <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Posterior&quot;</span>)) <span class="op">+</span></span>
 <span id="cb21-5"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb21-5"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="fl">1.5e-5</span>) <span class="op">+</span></span>
 <span id="cb21-6"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb21-6"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-10-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/02-distribuciones-previas-posteriores-7-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="familias-conjugadas-normales" class="section level3" number="3.10.5">
 <h3><span class="header-section-number">3.10.5</span> Familias conjugadas normales</h3>
@@ -735,9 +736,9 @@ Sea <span class="math inline">\(\psi = h(\theta)\)</span>. Un <strong>estimador<
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb22-1"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">3</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</span>
 <span id="cb22-2"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb22-2"></a></span>
 <span id="cb22-3"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb22-3"></a>(mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x))</span></code></pre></div>
-<pre><code>## [1] 10.26207</code></pre>
+<pre><code>## [1] 9.952353</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb24-1"></a>(sigma &lt;-<span class="st"> </span><span class="kw">sd</span>(x))</span></code></pre></div>
-<pre><code>## [1] 0.5653252</code></pre>
+<pre><code>## [1] 1.506354</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb26-1"></a>(n &lt;-<span class="st"> </span><span class="kw">length</span>(x))</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb28-1"></a>(mu_previa &lt;-<span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
@@ -745,22 +746,22 @@ Sea <span class="math inline">\(\psi = h(\theta)\)</span>. Un <strong>estimador<
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb30-1"></a>(sigma_previa &lt;-<span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb32-1"></a>(mu_posterior &lt;-<span class="st"> </span>((sigma<span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>(sigma<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>)) <span class="op">*</span><span class="st"> </span>mu_previa <span class="op">+</span><span class="st"> </span>((n <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>(sigma<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>)) <span class="op">*</span><span class="st"> </span>mu)</span></code></pre></div>
-<pre><code>## [1] 9.274089</code></pre>
+<pre><code>## [1] 5.66644</code></pre>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb34-1"></a>(sigma2_posterior &lt;-<span class="st"> </span>(sigma<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>(sigma<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>))</span></code></pre></div>
-<pre><code>## [1] 0.09627465</code></pre>
+<pre><code>## [1] 0.4306432</code></pre>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb36-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">15</span>)), <span class="kw">aes</span>(x)) <span class="op">+</span></span>
 <span id="cb36-2"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb36-2"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> mu_previa, <span class="dt">sd =</span> sigma_previa), <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Previa&quot;</span>)) <span class="op">+</span></span>
 <span id="cb36-3"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb36-3"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> mu_posterior, <span class="dt">sd =</span> <span class="kw">sqrt</span>(sigma2_posterior)), <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Posterior&quot;</span>)) <span class="op">+</span></span>
 <span id="cb36-4"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb36-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma), <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Verosimilitud&quot;</span>)) <span class="op">+</span></span>
 <span id="cb36-5"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb36-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-11-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/02-distribuciones-previas-posteriores-8-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Con más datos, la distribución se ajusta a esto y le quita importancia a la información previa.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb37-1"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</span>
 <span id="cb37-2"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb37-2"></a></span>
 <span id="cb37-3"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb37-3"></a>(mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x))</span></code></pre></div>
-<pre><code>## [1] 9.982037</code></pre>
+<pre><code>## [1] 10.10844</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb39-1"></a>(sigma &lt;-<span class="st"> </span><span class="kw">sd</span>(x))</span></code></pre></div>
-<pre><code>## [1] 0.9857844</code></pre>
+<pre><code>## [1] 1.00343</code></pre>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb41-1"></a>(n &lt;-<span class="st"> </span><span class="kw">length</span>(x))</span></code></pre></div>
 <pre><code>## [1] 100</code></pre>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb43-1"></a>(mu_previa &lt;-<span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
@@ -768,23 +769,23 @@ Sea <span class="math inline">\(\psi = h(\theta)\)</span>. Un <strong>estimador<
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb45-1"></a>(sigma_previa &lt;-<span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb47-1"></a>(mu_posterior &lt;-<span class="st"> </span>((sigma<span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>(sigma<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>)) <span class="op">*</span><span class="st"> </span>mu_previa <span class="op">+</span><span class="st"> </span>((n <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>(sigma<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>)) <span class="op">*</span><span class="st"> </span>mu)</span></code></pre></div>
-<pre><code>## [1] 9.885968</code></pre>
+<pre><code>## [1] 10.00768</code></pre>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb49-1"></a>(sigma2_posterior &lt;-<span class="st"> </span>(sigma<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>(sigma<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>))</span></code></pre></div>
-<pre><code>## [1] 0.009624183</code></pre>
+<pre><code>## [1] 0.009968347</code></pre>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb51-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">15</span>)), <span class="kw">aes</span>(x)) <span class="op">+</span></span>
 <span id="cb51-2"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb51-2"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> mu_previa, <span class="dt">sd =</span> sigma_previa), <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Previa&quot;</span>)) <span class="op">+</span></span>
 <span id="cb51-3"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb51-3"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> mu_posterior, <span class="dt">sd =</span> <span class="kw">sqrt</span>(sigma2_posterior)), <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Posterior&quot;</span>)) <span class="op">+</span></span>
 <span id="cb51-4"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb51-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma), <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Verosimilitud&quot;</span>)) <span class="op">+</span></span>
 <span id="cb51-5"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb51-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-12-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/02-distribuciones-previas-posteriores-9-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Si los datos por si solo son muy variable, la posterior tiende a parecerse a la
 distribución previa en lugar que a la verosimilitud.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb52-1"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">5</span>)</span>
 <span id="cb52-2"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb52-2"></a></span>
 <span id="cb52-3"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb52-3"></a>(mu &lt;-<span class="st"> </span><span class="kw">mean</span>(x))</span></code></pre></div>
-<pre><code>## [1] 9.864745</code></pre>
+<pre><code>## [1] 6.366894</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb54-1"></a>(sigma &lt;-<span class="st"> </span><span class="kw">sd</span>(x))</span></code></pre></div>
-<pre><code>## [1] 5.864811</code></pre>
+<pre><code>## [1] 6.209978</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb56-1"></a>(n &lt;-<span class="st"> </span><span class="kw">length</span>(x))</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb58-1"></a>(mu_previa &lt;-<span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
@@ -792,15 +793,15 @@ distribución previa en lugar que a la verosimilitud.</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb60-1"></a>(sigma_previa &lt;-<span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb62-1"></a>(mu_posterior &lt;-<span class="st"> </span>((sigma<span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>(sigma<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>)) <span class="op">*</span><span class="st"> </span>mu_previa <span class="op">+</span><span class="st"> </span>((n <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>(sigma<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>)) <span class="op">*</span><span class="st"> </span>mu)</span></code></pre></div>
-<pre><code>## [1] 2.221989</code></pre>
+<pre><code>## [1] 1.311036</code></pre>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb64-1"></a>(sigma2_posterior &lt;-<span class="st"> </span>(sigma<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>(sigma<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>sigma_previa<span class="op">^</span><span class="dv">2</span>))</span></code></pre></div>
-<pre><code>## [1] 0.7747545</code></pre>
+<pre><code>## [1] 0.7940854</code></pre>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb66-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">15</span>)), <span class="kw">aes</span>(x)) <span class="op">+</span></span>
 <span id="cb66-2"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb66-2"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> mu_previa, <span class="dt">sd =</span> sigma_previa), <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Previa&quot;</span>)) <span class="op">+</span></span>
 <span id="cb66-3"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb66-3"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> mu_posterior, <span class="dt">sd =</span> <span class="kw">sqrt</span>(sigma2_posterior)), <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Posterior&quot;</span>)) <span class="op">+</span></span>
 <span id="cb66-4"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb66-4"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma), <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Verosimilitud&quot;</span>)) <span class="op">+</span></span>
 <span id="cb66-5"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb66-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-13-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/02-distribuciones-previas-posteriores-10-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="funciones-de-pérdida-1" class="section level3" number="3.10.6">
 <h3><span class="header-section-number">3.10.6</span> Funciones de pérdida</h3>
@@ -818,8 +819,8 @@ distribución previa en lugar que a la verosimilitud.</p>
 </ul>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb70-1"></a>m &lt;-<span class="st"> </span><span class="kw">rgamma</span>(<span class="dt">n =</span> <span class="dv">1000</span>, <span class="dt">scale =</span> beta, <span class="dt">shape =</span> alpha)</span>
 <span id="cb70-2"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb70-2"></a>(theta &lt;-<span class="st"> </span><span class="kw">median</span> (m))</span></code></pre></div>
-<pre><code>## [1] 307640.1</code></pre>
-<p>Y por lo tanto el tiempo promedio del componente electrónico es <span class="math inline">\(1/\theta\)</span>=3.2505512^{-6}.</p>
+<pre><code>## [1] 311778.2</code></pre>
+<p>Y por lo tanto el tiempo promedio del componente electrónico es <span class="math inline">\(1/\theta\)</span>=3.2074086^{-6}.</p>
 <p><strong>OJO: En este caso la pérdida cuadrática ajusta mejor ya que la distribución que la pérdida absoluta ya que la distribución NO es simétrica. En el caso simétrico los resultados serían muy similares.</strong></p>
 </div>
 <div id="caso-concreto" class="section level3" number="3.10.7">
@@ -837,7 +838,7 @@ f(x \vert p) \propto p^s (1-p)^f
 <span id="cb73-2"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb73-2"></a>prior &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">5.2</span>, <span class="dv">8</span>, <span class="fl">7.2</span>, <span class="fl">4.6</span>, <span class="fl">2.1</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
 <span id="cb73-3"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb73-3"></a>prior &lt;-<span class="st"> </span>prior <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(prior)</span>
 <span id="cb73-4"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb73-4"></a><span class="kw">plot</span>(p, prior, <span class="dt">type =</span> <span class="st">&quot;h&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Probabilidad Previa&quot;</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-18-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/02-distribuciones-previas-posteriores-15-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>El paquete <code>LearnBayes</code> tiene la función <code>pdisc</code> que estima la distribución posterior para una previa discreta binomial. Recuerde que el valor 11 representa la cantidad de estudiantes con más de 8 horas de sueño y 16 lo que no duermen esa cantidad.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb74-1"></a>data &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">11</span>, <span class="dv">16</span>)</span>
 <span id="cb74-2"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb74-2"></a>post &lt;-<span class="st"> </span><span class="kw">pdisc</span>(p, prior, data)</span>
@@ -856,7 +857,7 @@ f(x \vert p) \propto p^s (1-p)^f
 <p>Y podemos ver la diferencia entre la previa (negro) y la posterior (roja),</p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb76-1"></a><span class="kw">plot</span>(p, post, <span class="dt">type =</span> <span class="st">&quot;h&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
 <span id="cb76-2"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb76-2"></a><span class="kw">lines</span>(p <span class="op">+</span><span class="st"> </span><span class="fl">0.01</span>, prior, <span class="dt">type =</span> <span class="st">&quot;h&quot;</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-20-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/02-distribuciones-previas-posteriores-17-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>¿Qué se puede deducir de estos resultados?</p>
 <p><strong>Ejercicio:</strong> Suponga que se tiene la base de datos <code>studentdata</code>. Realice los cálculos anteriores con esos datos,</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb77-1"></a><span class="kw">data</span>(<span class="st">&quot;studentdata&quot;</span>)</span>
@@ -866,7 +867,7 @@ f(x \vert p) \propto p^s (1-p)^f
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   2.500   6.500   7.500   7.385   8.500  12.500</code></pre>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb79-1"></a><span class="kw">hist</span>(horas_sueno, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-21-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/02-distribuciones-previas-posteriores-18-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Ahora supongamos que se tiene quiere ajustar una previa continua a este modelo. Para esto usaremos una distribución Beta con parámetros <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\beta\)</span>, de la forma</p>
 <p><span class="math display">\[
 pi(p\vert \alpha, \beta) \propto p^{1-\alpha} (1-p)^{1-\beta}.
@@ -889,7 +890,7 @@ pi(p\vert \alpha, \beta) \propto p^{1-\alpha} (1-p)^{1-\beta}.
 <span id="cb83-4"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb83-4"></a><span class="kw">curve</span>(<span class="kw">dbeta</span>(x, a, b), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">lty =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="dv">4</span>)</span>
 <span id="cb83-5"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb83-5"></a><span class="kw">legend</span>(.<span class="dv">7</span>, <span class="dv">4</span>, <span class="kw">c</span>(<span class="st">&quot;Previa&quot;</span>, <span class="st">&quot;Verosimilitud&quot;</span>, <span class="st">&quot;Posterior&quot;</span>),</span>
 <span id="cb83-6"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#cb83-6"></a>  <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>))</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-23-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/02-distribuciones-previas-posteriores-20-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>

@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 23 October, 2020"
+date: "Actualizado el 24 octubre, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -299,7 +299,7 @@ $$y = \sum_{i=1}^{5}X_i = 16478, \quad n= 5$$
 por lo que $\theta|X \sim \Gamma(9,36178)$
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-4-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/02-distribuciones-previas-posteriores-1-1} \end{center}
 
 Es sensible al tamaño de la muestra (una muestra grande implica un efecto de la previa menor).
 
@@ -654,7 +654,7 @@ ggplot(data = data.frame(x = c(0, 1e6)), aes(x)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-6-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/02-distribuciones-previas-posteriores-3-1} \end{center}
 
 ### Distribución conjunta 
 
@@ -675,7 +675,7 @@ ggplot(data = data.frame(x = c(0, 1e5)), aes(x)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-7-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/02-distribuciones-previas-posteriores-4-1} \end{center}
 
 
 
@@ -728,7 +728,7 @@ ggplot(data = data.frame(x = c(0, 7.5e5)), aes(x)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-9-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/02-distribuciones-previas-posteriores-6-1} \end{center}
 
 ### Agregando nuevos datos 
 
@@ -780,7 +780,7 @@ ggplot(data = data.frame(x = c(0, 1e6)), aes(x)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-10-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/02-distribuciones-previas-posteriores-7-1} \end{center}
 
 
 
@@ -797,7 +797,7 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 10.26207
+## [1] 9.54454
 ```
 
 ```r
@@ -805,7 +805,7 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 0.5653252
+## [1] 0.1919427
 ```
 
 ```r
@@ -837,7 +837,7 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 9.274089
+## [1] 9.428748
 ```
 
 ```r
@@ -845,7 +845,7 @@ x <- rnorm(n = 3, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 0.09627465
+## [1] 0.01213168
 ```
 
 ```r
@@ -858,7 +858,7 @@ ggplot(data = data.frame(x = c(-5, 15)), aes(x)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-11-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/02-distribuciones-previas-posteriores-8-1} \end{center}
 
 Con más datos, la distribución se ajusta a esto y le quita importancia a la información previa. 
 
@@ -870,7 +870,7 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 9.982037
+## [1] 10.05814
 ```
 
 ```r
@@ -878,7 +878,7 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 0.9857844
+## [1] 0.9727496
 ```
 
 ```r
@@ -910,7 +910,7 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 9.885968
+## [1] 9.963861
 ```
 
 ```r
@@ -918,7 +918,7 @@ x <- rnorm(n = 100, mean = 10, sd = 1)
 ```
 
 ```
-## [1] 0.009624183
+## [1] 0.009373719
 ```
 
 ```r
@@ -931,7 +931,7 @@ ggplot(data = data.frame(x = c(-5, 15)), aes(x)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-12-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/02-distribuciones-previas-posteriores-9-1} \end{center}
 
 
 Si los datos por si solo son muy variable, la posterior tiende a parecerse a la
@@ -945,7 +945,7 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```
-## [1] 9.864745
+## [1] 10.58903
 ```
 
 ```r
@@ -953,7 +953,7 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```
-## [1] 5.864811
+## [1] 4.098052
 ```
 
 ```r
@@ -985,7 +985,7 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```
-## [1] 2.221989
+## [1] 3.952011
 ```
 
 ```r
@@ -993,7 +993,7 @@ x <- rnorm(n = 10, mean = 10, sd = 5)
 ```
 
 ```
-## [1] 0.7747545
+## [1] 0.6267826
 ```
 
 ```r
@@ -1006,7 +1006,7 @@ ggplot(data = data.frame(x = c(-5, 15)), aes(x)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-13-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/02-distribuciones-previas-posteriores-10-1} \end{center}
 
 ### Funciones de pérdida
 
@@ -1040,11 +1040,11 @@ m <- rgamma(n = 1000, scale = beta, shape = alpha)
 ```
 
 ```
-## [1] 307640.1
+## [1] 313355.4
 ```
 
 
-Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.2505512\times 10^{-6}}.
+Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=\ensuremath{3.1912648\times 10^{-6}}.
 
 **OJO: En este caso la pérdida cuadrática ajusta mejor ya que la distribución que la pérdida absoluta ya que la distribución NO es simétrica. En el caso simétrico los resultados serían muy similares.** 
 
@@ -1079,7 +1079,7 @@ plot(p, prior, type = "h", ylab = "Probabilidad Previa")
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-18-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/02-distribuciones-previas-posteriores-15-1} \end{center}
 
 El paquete `LearnBayes` tiene la función `pdisc` que estima la distribución posterior para una previa discreta binomial. Recuerde que el valor 11 representa la cantidad de estudiantes con más de 8 horas de sueño y 16 lo que no duermen esa cantidad. 
 
@@ -1115,7 +1115,7 @@ lines(p + 0.01, prior, type = "h")
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-20-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/02-distribuciones-previas-posteriores-17-1} \end{center}
 
 ¿Qué se puede deducir de estos resultados?
 
@@ -1140,7 +1140,7 @@ hist(horas_sueno, main = "")
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-21-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/02-distribuciones-previas-posteriores-18-1} \end{center}
 
 
 Ahora supongamos que se tiene quiere ajustar una previa continua a este modelo. Para esto usaremos una distribución Beta con parámetros $\alpha$ y $\beta$, de la forma 
@@ -1190,7 +1190,7 @@ legend(.7, 4, c("Previa", "Verosimilitud", "Posterior"),
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-23-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/02-distribuciones-previas-posteriores-20-1} \end{center}
 
 <!--chapter:end:02-distribuciones-previas-posteriores.Rmd-->
 
@@ -1275,7 +1275,7 @@ plot(theta, L)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-26-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/03-maxima-verosimilitud-2-1} \end{center}
 
 
 ```r
@@ -1285,7 +1285,7 @@ plot(theta, l)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-27-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/03-maxima-verosimilitud-3-1} \end{center}
 
 **Ejemplo**. En una prueba sobre alguna enfermedad, en un $90\%$ da la verdadera condición (enfermo) y en un $10\%$ la prueba se equivoca (que diga que la persona esté enferma cuando está sana). Considere una variable aleatoria $\text{Bernoulli}(\theta)$,$\theta \in \{0.9,0.1\}$
 Una muestra sería
@@ -1357,7 +1357,7 @@ scatterplot3d(ms[, 1], ms[, 2], l, angle = 45)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-28-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/03-maxima-verosimilitud-4-1} \end{center}
 
 **Ejemplo**. $X_1,\dots, X_n \stackrel{i.i.d}{\sim} \text{Unif}(0, \theta)$. Estime $\theta$ $(\theta > 0)$. Suponga que $x_i>0 \forall i$.
 
@@ -1391,7 +1391,7 @@ plot(theta, L)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-29-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/03-maxima-verosimilitud-5-1} \end{center}
 
 ## Propiedades del MLE
 
@@ -1602,7 +1602,7 @@ hist(X, main = "histograma del número de giros a la derecha", right = FALSE, pr
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-31-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/03-maxima-verosimilitud-7-1} \end{center}
 
 Definamos la función correspondiente a $-\log(\mathbb{P}(X=x))$
 
@@ -1900,7 +1900,7 @@ head(X, 20)
 ```
 
 ```
-##  [1] 0 2 2 0 5 3 3 2 2 3 2 2 2 3 2 1 3 2 3 4
+##  [1] 2 2 2 1 2 3 4 1 2 1 2 3 1 0 1 2 4 2 4 2
 ```
 
 ```r
@@ -1909,7 +1909,7 @@ hist(X)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-36-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/04-estadisticos-suficientes-1-1} \end{center}
 
 
 A partir de la verosimilitud,
@@ -1927,7 +1927,7 @@ head(Y, 10)
 ```
 
 ```
-##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [1] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE
 ```
 
 
@@ -1940,7 +1940,7 @@ El objetivo es estimar $p$ donde $p$ es la probabilidad de que $X_i =1$ (solo ll
 ```
 
 ```
-## [1] 0.273
+## [1] 0.2676
 ```
 
 ¿Es el óptimo?
@@ -1975,7 +1975,7 @@ n <- length(X)
 ```
 
 ```
-## [1] 0.2666919
+## [1] 0.2697231
 ```
 
 En este caso \(\delta_0\) es mejor que \(\delta\) bajo una pérdida cuadrática. 
@@ -2199,7 +2199,7 @@ ggplot(data = data.frame(x = seq(0, 40, length.out = 1000)), aes(x)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-41-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/05-distribucion-muestral-1-1} \end{center}
 
 ## Distribución $t$
 
@@ -2261,7 +2261,7 @@ ggplot(data = data.frame(x = seq(-5, 5, length.out = 1000)), aes(x)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-42-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/05-distribucion-muestral-2-1} \end{center}
 
 <!--chapter:end:05-distribucion-muestral.Rmd-->
 
@@ -2366,7 +2366,7 @@ una tabla de valor de la \(t\)-student o de la expresión `qt(p = 0.975, df =
 26-1)` = $2.06$
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-44-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/06-intervalos-confianza-1-1} \end{center}
 
 El intervalo de confianza para $\mu$ al $95\%$ es \[\bar X_n \pm
 \underbrace{0.404}_{\frac{2.060}{\sqrt{26}}}\sigma'\]
@@ -2467,7 +2467,7 @@ c(0, G_inv / T)
 ```
 
 ```
-## [1] 0.000000 2.420941
+## [1] 0.000000 3.426588
 ```
 
 **Definición**. Sea $X = (X_1,\dots,X_n)$ una muestra de una distribución
@@ -2548,7 +2548,7 @@ gamma2 - gamma1
 ```
 
 ```
-## [1] 3700.114
+## [1] 3864.556
 ```
 
 Finalmente el intervalo es
@@ -2559,7 +2559,7 @@ c(diferencias / chi2_gamma2, diferencias / chi2_gamma1)
 ```
 
 ```
-## [1] 3.399319 4.051363
+## [1] 3.550392 4.231415
 ```
 
 **NOTA: Las cantidades pivotales no siempre existen. Esto ocurre principalemente
@@ -2648,7 +2648,7 @@ ggplot(Xbar) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-49-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/06-intervalos-confianza-6-1} \end{center}
 
 ### Transformaciones estabilizadoras de la varianza
 
@@ -2908,7 +2908,7 @@ hist(cheese$Lactic)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-54-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/07-normalidad-bayes-2-1} \end{center}
 _Intervalo \(t\)-student_
 
 Queremos construir un intervalo de confianza al 90% para la media
@@ -3067,7 +3067,7 @@ ggplot(df, aes(x, y, color = distribucion)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-58-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/07-normalidad-bayes-6-1} \end{center}
 
 
 Podemos calcular inferencias sobre el \(\sigma\)  usando el hecho que \(\tau\)
@@ -3242,7 +3242,7 @@ ggplot(data = data.frame(x = c(0, 4)), aes(x)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-62-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/07-normalidad-bayes-9-1} \end{center}
 
 _Ejercicio_ Para hacer este ejercicio sin usar bayes, se debe resolver usando
 una función estabilizadora de la varianza. Encuentre esa función y aplique el
@@ -3356,7 +3356,7 @@ hist(theta_hat - theta_real, breaks = 100)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-64-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/08-estimacion-insesgada-1-1} \end{center}
 
 Teoricamente podemos ver que 
 
@@ -3509,7 +3509,7 @@ hist(m)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-70-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/08-estimacion-insesgada-7-1} \end{center}
 
 ```r
 hist(v)
@@ -3517,7 +3517,7 @@ hist(v)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-70-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/08-estimacion-insesgada-7-2} \end{center}
 
 ```r
 hist(a)
@@ -3525,7 +3525,7 @@ hist(a)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-70-3} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/08-estimacion-insesgada-7-3} \end{center}
 
 **Ejemplo**. (Normal) ¿Cuál estimador tiene menor MSE, $\hat\sigma^2_0$ o $\hat\sigma^2_1$? 
 
@@ -3778,7 +3778,7 @@ hist(Y)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-74-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/08-estimacion-insesgada-11-1} \end{center}
 
 El proceso \(X\) (Gamma) modela cuánto tiempo se debe esperar para que 4 personas entren a la tienda, asumiendo una tasa de entrada de 5 por minuto. 
 
@@ -3789,7 +3789,7 @@ hist(X)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-75-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/08-estimacion-insesgada-12-1} \end{center}
 
 _Ejercicio:_ Basado en los valores de la simulación, proponga dos valores de \(t\) para que 
   
@@ -3902,7 +3902,7 @@ plot(beta, n / beta^2)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-76-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/08-estimacion-insesgada-13-1} \end{center}
 
 Considere el estadístico $T = \dfrac{n-1}{\sum_{i=1}^n X_i}$ es un estimador insesgado de $\beta$. La varianza de $T$ es $\dfrac{\beta^2}{n-2}$.
 
@@ -3929,7 +3929,7 @@ plot(beta, apply(X = estimador1, MARGIN = 2, FUN = mean))
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/08-estimacion-insesgada-14-1} \end{center}
 
 ```r
 plot(beta, apply(X = estimador1, MARGIN = 2, FUN = var))
@@ -3939,7 +3939,7 @@ lines(beta, beta^2 / (n - 2), col = "red")
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-77-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/08-estimacion-insesgada-14-2} \end{center}
 
 Ahora, estime $\theta = \dfrac 1\beta = m(\beta)$. Un estimador insesgado de $\theta$ es $T =\bar X_n$:
 
@@ -3967,7 +3967,7 @@ plot(1 / beta, apply(X = estimador2, MARGIN = 2, FUN = mean))
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-78-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/08-estimacion-insesgada-15-1} \end{center}
 
 ```r
 plot(beta, apply(X = estimador2, MARGIN = 2, FUN = var))
@@ -3976,7 +3976,7 @@ lines(beta, 1 / (n * beta^2), col = "blue")
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-78-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/08-estimacion-insesgada-15-2} \end{center}
 
 ## Estimadores eficientes
 
@@ -4139,7 +4139,7 @@ ggplot(data = df) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-83-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-3-1} \end{center}
 
 ```r
 ggplot(data = df) +
@@ -4153,7 +4153,7 @@ ggplot(data = df) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-83-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-3-2} \end{center}
 
 En este caso supondremos que la variable `log_lluvia` se puede modelar como una
 $N(\mu,\sigma^2)$, $\mu,\sigma$ desconocidos.
@@ -4257,7 +4257,7 @@ ggplot(df, aes(x = c, y = test, color = region)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-84-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-4-1} \end{center}
 
 En este caso el valor donde decrece la curva es cercano a 0. Eso quiere decir
 que antes de ese valor, nos encontramos en la región de rechazo. Luego esa
@@ -4293,7 +4293,7 @@ ggplot(df, aes(x = c, y = test, color = region)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-85-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-5-1} \end{center}
 
 El valor donde comienza a crecer la curva se desvía a un valor cercano a 2. 
 
@@ -4404,7 +4404,7 @@ ggplot(data = data.frame(x = (c(-1, 4))), mapping = aes(x)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-86-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-6-1} \end{center}
 
 
 ## Función de potencia y tipos de error
@@ -4469,7 +4469,7 @@ ggplot(df, aes(mu, funcion_de_poder, color = tipo)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-87-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-7-1} \end{center}
 
 ```r
 mu <- seq(0, 8, length.out = 100)
@@ -4491,7 +4491,7 @@ scatterplot3d(mu_c[, 2], mu_c[, 1], funcion_de_poder_n_c,
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-87-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-7-2} \end{center}
 
 **Tipos de error**:
 
@@ -4535,7 +4535,7 @@ ggplot() +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-88-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-8-1} \end{center}
 
 
 Otra forma es minimizar;
@@ -4622,7 +4622,7 @@ plot(theta, funcion_poder, type = "l")
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-89-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-9-1} \end{center}
 
 
 Note, además, que el tamaño de prueba es
@@ -4640,7 +4640,7 @@ plot(n, (2.9 / 3)^n)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-90-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-10-1} \end{center}
 
 Si $n = 68 \implies \alpha(\delta)= \left(\dfrac{2.9}{3}\right)^{68} = 0.0997.$
 
@@ -4745,7 +4745,7 @@ ggplot(data.frame(x = c(-3, 3)), aes(x)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-91-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-11-1} \end{center}
 
 La pregunta que debemos siempre responder es ¿Rechazamos \( H_0\)?
 
@@ -4802,7 +4802,7 @@ abline(h = 0.05, col = "red", lwd = 2)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-95-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-15-1} \end{center}
  
 **Ejemplo**. \(X_1,\dots,X_n \sim \text{Ber}(p)\).
 \[H_0: p\leq p_{0} \text{ vs } H_1: p>p_0\]
@@ -4846,7 +4846,7 @@ abline(h = 0.05, col = "red", lwd = 2)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-96-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-16-1} \end{center}
 *Procedimiento*: rechazamos $H_0: p \leq 0.3$ si $Y\geq c$, $c\in(5,6]$ con un
 nivel de significancia de $10\%$ a lo sumo.
 
@@ -5152,7 +5152,7 @@ lines(y, p, type = "l", col = "red")
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-103-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/09-pruebas-hipotesis-23-1} \end{center}
 
 ```r
 knitr::kable(cbind(y, Lambda, p))
@@ -5324,7 +5324,7 @@ ggplot(df, aes(x, f, color = `Distribución`)) +
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-107-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/10-hipotesis-simples-1-1} \end{center}
 
 Podemos redefinir las hipótesis si $\Omega=\{\theta_0,\theta_1\}$ donde si
 $\theta = \theta_i$, seleccionamos $f = f_i$ y se prueba $H_0: \theta=\theta_0$
@@ -5442,7 +5442,7 @@ $H_0$ si
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-110-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/10-hipotesis-simples-3-1} \end{center}
 
 Entonces $(*)$ es cierto si $X_1>c$. Se puede comprobar numéricamente que $c\approx5.03$.
 
@@ -5634,7 +5634,7 @@ abline(h = 0.2, col = "red")
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-113-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/10-hipotesis-simples-5-1} \end{center}
 Para resolver correctamente el ejercicio se deben encontrar valores \( c_1\) y
 \( c_2\) de modo que 
 
@@ -5792,7 +5792,7 @@ hist(Nursing$InPatientDays)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/unnamed-chunk-116-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/10-hipotesis-simples-8-1} \end{center}
 
 Se quiere probar la hipótesis de $H_{0}: \mu \leq 200$ versus $H_{1}: \mu > 200$,
 es decir queremos saber si los pacientes duran más de 200 días en cuidados. 
@@ -6468,29 +6468,30 @@ Si $\alpha_0 = 1\%$, no rechazo. Si $\alpha_0 = 5\%$ rechazo.
 **Ejemplo:** Suponga que se tienen los siguientes datos 
 
 
+
+
+
 ```r
-n <- 10
 m <- 20
-(X <- rnorm(n = n, mean = 0, sd = sqrt(6)))
+X <- rnorm(n = m, mean = 0, sd = sqrt(6))
+head(X)
 ```
 
 ```
-##  [1] -0.5134500 -0.5302024  1.2389622 -0.4478856  3.4616537  0.5321373
-##  [7]  1.1771667 -2.6328015  2.8802487 -2.5177891
+## [1] -1.8800480  0.1243750  1.2007454 -2.1428732 -0.9109823 -0.1702172
 ```
 
 ```r
-(Y <- rnorm(n = m, mean = 0, sd = sqrt(2)))
+n <- 40
+Y <- rnorm(n = n, mean = 10, sd = sqrt(2))
+head(Y)
 ```
 
 ```
-##  [1]  0.49934695 -2.07964091  0.69759310 -1.06023500 -0.48490076 -0.01095625
-##  [7] -0.33443915  0.55764017  2.61011735 -0.16196686 -1.90281594 -0.40659813
-## [13] -3.64025121 -0.45475397  0.82639590 -1.71128919  1.48268026  0.20111826
-## [19]  0.05078990  1.03899702
+## [1]  9.323012  8.197926  9.528390 11.391090 10.571044  9.200532
 ```
 
-Es decir tener 10 datos normales con \(\sigma_1^2 = 6\) y 20 datos normales con \(\sigma_2^2
+Es decir tener 20 datos normales con \(\sigma_1^2 = 6\) y 40 datos normales con \(\sigma_2^2
 = 2\).  
 
 En todo caso asuma que \(\sigma\) es desconocidos para cada caso y solo tenemos
@@ -6513,7 +6514,7 @@ Calculamos el estadístico \(V\)
 ```
 
 ```
-## [1] 4.088649
+## [1] 8.010462
 ```
 
 ```r
@@ -6521,7 +6522,7 @@ Calculamos el estadístico \(V\)
 ```
 
 ```
-## [1] 1.944279
+## [1] 1.696076
 ```
 
 ```r
@@ -6529,18 +6530,18 @@ Calculamos el estadístico \(V\)
 ```
 
 ```
-## [1] 2.102912
+## [1] 4.722938
 ```
 
 Para calcular un cuantil te tamaño \(1-\alpha = 0.95\) se usa la siguiente función 
 
 
 ```r
-(qnt <- qf(p = 1 - 0.05, df1 = n - 1, df2 = m - 1))
+(qnt <- qf(p = 1 - 0.05, df1 = m - 1, df2 = n - 1))
 ```
 
 ```
-## [1] 2.422699
+## [1] 1.85992
 ```
 
 ¿Rechazamos \(H_0\)?
@@ -6550,7 +6551,7 @@ V > qnt
 ```
 
 ```
-## [1] FALSE
+## [1] TRUE
 ```
 
 y el valor-\(p\) de la prueba es 
@@ -6561,7 +6562,7 @@ y el valor-\(p\) de la prueba es
 ```
 
 ```
-## [1] 0.08265519
+## [1] 0.000320363
 ```
 
 **Interpretación:** Rechazamos la hipótesis que \(\sigma_{1}^{2} \leq

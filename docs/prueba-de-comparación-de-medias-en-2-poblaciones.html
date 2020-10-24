@@ -32,7 +32,7 @@
   
 <link rel="prev" href="pruebas-con-hipótesis-simples.html"/>
 <link rel="next" href="pruebas-de-hipótesis-bayesianas.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -171,14 +172,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedades-del-mle"><i class="fa fa-check"></i><b>4.1</b> Propiedades del MLE</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedad-de-invarianza"><i class="fa fa-check"></i><b>4.1.1</b> Propiedad de invarianza</a></li>
-<li class="chapter" data-level="4.1.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#consistencia-1"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
+<li class="chapter" data-level="4.1.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#cálculo-numérico"><i class="fa fa-check"></i><b>4.2</b> Cálculo numérico</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-de-los-momentos"><i class="fa fa-check"></i><b>4.2.1</b> Método de los momentos</a></li>
 <li class="chapter" data-level="4.2.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-delta"><i class="fa fa-check"></i><b>4.2.2</b> Método Delta</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#laboratorio-1"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
+<li class="chapter" data-level="4.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html"><i class="fa fa-check"></i><b>5</b> Estadísticos Suficientes y Criterio de Factorización</a>
 <ul>
@@ -521,17 +522,15 @@ resuelve
 <p>El valor-<em>p</em> corresponde a <span class="math inline">\(1-G_{5,20}(3) = 0.035.\)</span></p>
 <p>Si <span class="math inline">\(\alpha_0 = 1\%\)</span>, no rechazo. Si <span class="math inline">\(\alpha_0 = 5\%\)</span> rechazo.</p>
 <p><strong>Ejemplo:</strong> Suponga que se tienen los siguientes datos</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb292-1"></a>n &lt;-<span class="st"> </span><span class="dv">10</span></span>
-<span id="cb292-2"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb292-2"></a>m &lt;-<span class="st"> </span><span class="dv">20</span></span>
-<span id="cb292-3"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb292-3"></a>(X &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> n, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="dv">6</span>)))</span></code></pre></div>
-<pre><code>##  [1] -0.5134500 -0.5302024  1.2389622 -0.4478856  3.4616537  0.5321373
-##  [7]  1.1771667 -2.6328015  2.8802487 -2.5177891</code></pre>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb294-1"></a>(Y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> m, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="dv">2</span>)))</span></code></pre></div>
-<pre><code>##  [1]  0.49934695 -2.07964091  0.69759310 -1.06023500 -0.48490076 -0.01095625
-##  [7] -0.33443915  0.55764017  2.61011735 -0.16196686 -1.90281594 -0.40659813
-## [13] -3.64025121 -0.45475397  0.82639590 -1.71128919  1.48268026  0.20111826
-## [19]  0.05078990  1.03899702</code></pre>
-<p>Es decir tener 10 datos normales con <span class="math inline">\(\sigma_1^2 = 6\)</span> y 20 datos normales con <span class="math inline">\(\sigma_2^2 = 2\)</span>.</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb292-1"></a>m &lt;-<span class="st"> </span><span class="dv">20</span></span>
+<span id="cb292-2"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb292-2"></a>X &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> m, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="dv">6</span>))</span>
+<span id="cb292-3"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb292-3"></a><span class="kw">head</span>(X)</span></code></pre></div>
+<pre><code>## [1]  1.2357315 -1.5023828 -0.4425341  4.0979017  1.4732579  0.8937449</code></pre>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb294-1"></a>n &lt;-<span class="st"> </span><span class="dv">40</span></span>
+<span id="cb294-2"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb294-2"></a>Y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> n, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="dv">2</span>))</span>
+<span id="cb294-3"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb294-3"></a><span class="kw">head</span>(Y)</span></code></pre></div>
+<pre><code>## [1]  9.858871  8.104590  7.166432 10.397898 12.673469  8.113331</code></pre>
+<p>Es decir tener 20 datos normales con <span class="math inline">\(\sigma_1^2 = 6\)</span> y 40 datos normales con <span class="math inline">\(\sigma_2^2 = 2\)</span>.</p>
 <p>En todo caso asuma que <span class="math inline">\(\sigma\)</span> es desconocidos para cada caso y solo tenemos
 los datos. Además queremos hacer la prueba de hipótesis</p>
 <p><span class="math display">\[
@@ -543,20 +542,20 @@ H_{1}: &amp; \sigma_{1}^{2}&gt;\sigma_{2}^{2}
 <p><strong>OJO: Según la forma que planteamos el ejercicio, deberíamos de rechazar <span class="math inline">\(H_0\)</span> ya que <span class="math inline">\(\sigma_1^2 = 6 &gt; 2 = \sigma_2^2\)</span></strong></p>
 <p>Calculamos el estadístico <span class="math inline">\(V\)</span></p>
 <div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb296-1"></a>(S2_X_divido_m_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">var</span>(X))</span></code></pre></div>
-<pre><code>## [1] 4.088649</code></pre>
+<pre><code>## [1] 3.863891</code></pre>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb298-1"></a>(S2_Y_divido_n_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">var</span>(Y))</span></code></pre></div>
-<pre><code>## [1] 1.944279</code></pre>
+<pre><code>## [1] 1.541968</code></pre>
 <div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb300-1"></a>(V &lt;-<span class="st"> </span>S2_X_divido_m_<span class="dv">1</span> <span class="op">/</span><span class="st"> </span>S2_Y_divido_n_<span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## [1] 2.102912</code></pre>
+<pre><code>## [1] 2.505818</code></pre>
 <p>Para calcular un cuantil te tamaño <span class="math inline">\(1-\alpha = 0.95\)</span> se usa la siguiente función</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb302-1"></a>(qnt &lt;-<span class="st"> </span><span class="kw">qf</span>(<span class="dt">p =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.05</span>, <span class="dt">df1 =</span> n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">df2 =</span> m <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## [1] 2.422699</code></pre>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb302-1"></a>(qnt &lt;-<span class="st"> </span><span class="kw">qf</span>(<span class="dt">p =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.05</span>, <span class="dt">df1 =</span> m <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">df2 =</span> n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## [1] 1.85992</code></pre>
 <p>¿Rechazamos <span class="math inline">\(H_0\)</span>?</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb304-1"></a>V <span class="op">&gt;</span><span class="st"> </span>qnt</span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <p>y el valor-<span class="math inline">\(p\)</span> de la prueba es</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#cb306-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pf</span>(<span class="dt">q =</span> V, <span class="dt">df1 =</span> n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">df2 =</span> m <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## [1] 0.08265519</code></pre>
+<pre><code>## [1] 0.01733705</code></pre>
 <p><strong>Interpretación:</strong> Rechazamos la hipótesis que <span class="math inline">\(\sigma_{1}^{2} \leq \sigma_{2}^{2}\)</span> con un valor-<span class="math inline">\(p\)</span> de 0.02.</p>
 <div id="prueba-de-2-colas-prueba-de-homocedasticidad" class="section level3" number="12.3.1">
 <h3><span class="header-section-number">12.3.1</span> Prueba de 2 colas (prueba de homocedasticidad)</h3>

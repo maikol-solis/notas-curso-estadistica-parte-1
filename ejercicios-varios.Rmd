@@ -1,0 +1,17 @@
+# Ejercicios varios
+
+## Capítulo 8
+
+### 8.4.6   
+
+Sabemos que $U = (20)^{1/2} (\bar{X}-\mu)/\sigma^\prime$ es una distribución t con 19 grados de libertad. 
+
+```{r ejercicios-varios-1}
+(tquantile <- qt(p=0.95, df = 19))
+```
+Y despejando la expresión tenemos que 
+
+```{r ejercicios-varios-2}
+tquantile/sqrt(20)
+```
+
