@@ -18,7 +18,7 @@ O si es una $\text{Exp}(1/2)$.
 
 Si $H_0: f=f_0$ vs $H_1:f=f_1$, ¿Cuál hipótesis es cierta?
 
-```{r }
+```{r 10-hipotesis-simples-1 }
 n<-1
 x<- seq(0,10, length.out = 1000)
 
@@ -59,7 +59,7 @@ En este caso,
 \[\alpha(\delta) = \mathbb P[X_1>4|\theta=\theta_0] = 1-(1-e^{-0.5\cdot 4}) =
   0.135\]
   
-```{r }
+```{r 10-hipotesis-simples-2 }
 1-pexp(q = 4, rate = 1/2)
 ```
 
@@ -139,7 +139,7 @@ $H_0$ si
 \dfrac 4{(2+X_1)^2}\exp\left(\dfrac{X_1}2\right)>1\quad(*)\]
 
 
-```{r,echo=FALSE}
+```{r 10-hipotesis-simples-3,echo=FALSE}
 library(ggplot2)
 library(latex2exp)
 x <- seq(0,6,1/100)
@@ -161,7 +161,7 @@ Por lo tanto, rechazamos $H_0$ si $X_1>5.03$.
 
 En este caso $\alpha(\delta^*)$ es igual a 
 
-```{r }
+```{r 10-hipotesis-simples-4 }
 1 - pexp(q = 5.03, rate = 1 / 2)
 ```
 
@@ -321,7 +321,7 @@ Esta prueba rechaza \(H_0 \) si \(\Lambda (x) \leq  c \) para algún \( c\)
 Por ejemplo, poniendo \( n=10\) y \( c = 0.2\), vemos que \(\Lambda (x) \)
 tiene esta forma. 
 
-```{r }
+```{r 10-hipotesis-simples-5 }
 n <- 10
 
 t <- 1:50
@@ -353,7 +353,7 @@ Donde \(G \) es la función de distribución de una gamma.
 
 Se debe resolver esta dos ecuaciones simulaneamente para \( c_1\) y \( c_2\)
 
-```{r }
+```{r 10-hipotesis-simples-6 }
 
 fn <- function (c1, c2, n) {
   zero <-
@@ -417,7 +417,7 @@ Finalmente la ecuación que se debe resolver es
 \end{equation*}
 
 
-```{r }
+```{r 10-hipotesis-simples-7 }
 
 fn <- function (c1, c2, n){
 
@@ -472,7 +472,7 @@ Si $H_0: \mu\geq\mu_0$ vs $H_1: \mu<\mu_0$, entonces se rechaza $H_0$ si $U\leq 
 
 **Ejemplo:** Recordemos el ejemplo de los días que un paciente tarda en una casa
 de cuido en Nuevo México 
-```{r }
+```{r 10-hipotesis-simples-8 }
 load("./data/Nursing.rda")
 hist(Nursing$InPatientDays)
 ```
@@ -488,7 +488,7 @@ U =  \sqrt{n} \frac{(\overline{X} - \mu)}{\sigma ^{\prime}}
 
 y el test rechaza \(H_{0}\) si \(U>t_{n-1, 1-\alpha} \). 
 
-```{r }
+```{r 10-hipotesis-simples-9 }
 x <- Nursing$InPatientDays
 n <- length(x)
 xbar <- mean(x)
@@ -504,7 +504,7 @@ U <- sqrt(n) * (xbar - 200) / sigma_prima
 
 ¿Rechazamos $H_0$?
 
-```{r}
+```{r 10-hipotesis-simples-10}
 U > quantil_t
 ```
 
@@ -549,10 +549,10 @@ nivel más pequeño de significancia observada es $T_{n-1}(u)$ $\qedsymbol$
 
 ¿Cuál es el valor \( p\) del ejemplo de casas de cuido?
 
-```{r }
+```{r 10-hipotesis-simples-11 }
 1 - pt(q = U, df = n - 1)
 ```
-```{r}
+```{r 10-hipotesis-simples-12}
 t.test(x, alternative = "greater", mu = 200)
 ```
 
@@ -604,7 +604,7 @@ muestra dado, siempre y cuando existan restricciones sobre $\mu$ y $\sigma^2$.
 En el caso de las casas de cuido, suponga que queremos ver el poder cuando \(\mu = 200 + sigma/2\), entonces el parámetro de no centralidad queda en \(\psi = \dfrac{sqrt{n}}{2}\). 
 
 
-```{r }
+```{r 10-hipotesis-simples-13 }
 n <- length(x)
 
 alpha0 <- 0.05

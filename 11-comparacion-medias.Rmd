@@ -114,7 +114,7 @@ vs \quad
 H_1: \mu_{\text{con trat.}} > \mu_{\text{sin trat.}} 
 \]
 
-```{r }
+```{r 11-comparacion-medias-1 }
 nubes <- read.table(
     file = "./data/clouds.txt",
     sep = "\t", header = TRUE
@@ -136,7 +136,7 @@ sin_tratamiento <- log_lluvia$Unseeded.Clouds
 Entonces el estadístico que queremos construir para comparar la medias es (OJO en este caso \( m=n\) porque tienen la misma cantidad de datos:
 )
 
-```{r }
+```{r 11-comparacion-medias-2 }
 (U <- sqrt(n + n - 2) * (Xbar - Ybar) /
     (sqrt(1 / n + 1 / n) * sqrt(S2_X + S2_Y)))
 ```
@@ -145,19 +145,19 @@ Por tanto se debe comparar con una \(t\)-student con \( 26+26 - 2 = 50\) grados
 de libertad. Asuma un \( \alpha = 0.01\)
 
 
-```{r }
+```{r 11-comparacion-medias-3 }
 (qnt <- qt(p = 1 - 0.01, df = n + n - 2))
 ```
 
 ¿ Rechazamos \( H_0\)?
 
-```{r }
+```{r 11-comparacion-medias-4 }
 U > qnt
 ```
 
 ¿Cuál es el \( p\)-valor?
 
-```{r }
+```{r 11-comparacion-medias-5 }
 1 - pt(q = U, df = n + n - 2)
 ```
 
@@ -193,7 +193,7 @@ H_0: \mu_1=\mu_2 \quad H_1: \mu_1\neq\mu_2
 Con el supuesto que $X_i\sim N(\mu_1,\sigma^2)$, $Y_j\sim N(\mu_2,\sigma^2)$. 
 
 
-```{r }
+```{r 11-comparacion-medias-6 }
 n <- 8
 m <- 10
 
@@ -212,19 +212,19 @@ S2_Y <- 0.22
 
 Si $\alpha_0 = 1\%$
 
-```{r }
+```{r 11-comparacion-medias-7 }
 (qnt <- qt(p = 1 - 0.01 / 2, df = n + m - 2))
 ```
 
 Entonces, ¿Rechazamos \( H_0\)?
 
-```{r }
+```{r 11-comparacion-medias-8 }
 abs(U) > qnt
 ```
 
 El valor \( p\) es $2[1-T_{16}(|3.442|)]$
 
-```{r }
+```{r 11-comparacion-medias-9 }
 2 * (1 - pt(q = U, df = n + m - 2))
 ```
  
@@ -327,7 +327,7 @@ Si $\alpha_0 = 1\%$, no rechazo. Si $\alpha_0 = 5\%$ rechazo.
 
 **Ejemplo:** Suponga que se tienen los siguientes datos 
 
-```{r }
+```{r 11-comparacion-medias-10 }
 m <- 20
 X <- rnorm(n = m, mean = 0, sd = sqrt(6))
 head(X)
@@ -353,7 +353,7 @@ H_{1}: & \sigma_{1}^{2}>\sigma_{2}^{2}
 
 Calculamos el estadístico \(V\)
 
-```{r }
+```{r 11-comparacion-medias-11 }
 (S2_X_divido_m_1 <- var(X))
 (S2_Y_divido_n_1 <- var(Y))
 
@@ -362,18 +362,18 @@ Calculamos el estadístico \(V\)
 
 Para calcular un cuantil te tamaño \(1-\alpha = 0.95\) se usa la siguiente función 
 
-```{r }
+```{r 11-comparacion-medias-12 }
 (qnt <- qf(p = 1 - 0.05, df1 = m - 1, df2 = n - 1))
 ```
 
 ¿Rechazamos \(H_0\)?
-```{r }
+```{r 11-comparacion-medias-13 }
 V > qnt
 ```
 
 y el valor-\(p\) de la prueba es 
 
-```{r }
+```{r 11-comparacion-medias-14 }
 1 - pf(q = V, df1 = n - 1, df2 = m - 1)
 ```
 
@@ -399,7 +399,7 @@ vs \quad
 H_1: \sigma^{2}_{\text{con trat.}} \neq \sigma^{2}_{\text{sin trat.}} 
 \]
 
-```{r }
+```{r 11-comparacion-medias-15 }
 (m <- length(con_tratamiento))
 (n <- length(sin_tratamiento))
 (S2_X_divido_m_1 <- var(con_tratamiento))
@@ -415,14 +415,14 @@ H_1: \sigma^{2}_{\text{con trat.}} \neq \sigma^{2}_{\text{sin trat.}}
 
 Se tiene que $c_1 = G^{-1}_{25,25}(0.0025) = 0.4484$ y $c_2 = G^{-1}_{25,25}(0.975) = 2.23$.
 
-```{r }
+```{r 11-comparacion-medias-16 }
 (c1 <- qf(0.025, df1 = m - 1, df2 = n - 1))
 (c2 <- qf(0.975, df1 = m - 1, df2 = n - 1))
 ```
 
 ¿Rechazamos \(H_0\)?
 
-```{r }
+```{r 11-comparacion-medias-17 }
 V < c1
 V > c2
 ```
@@ -441,7 +441,7 @@ o tambien si
 Por lo tanto, el *p*-valor es
 \[\text{valor-}p = 2\min[1-G_{m-1,n-1}(v), G_{m-1,n-1}(v)]\]
 
-```{r }
+```{r 11-comparacion-medias-18 }
 2 * min(1 - pf(q = V, df1 = m - 1, df2 = n - 1),
         pf(q = V, df1 = m - 1, df2 = n - 1))
 ```

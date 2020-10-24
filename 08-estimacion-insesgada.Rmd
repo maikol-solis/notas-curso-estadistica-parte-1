@@ -22,7 +22,7 @@ $\theta$ es
 
 ¿Será $\hat\theta$ un estimador insesgado?
 
-```{r }
+```{r 08-estimacion-insesgada-1 }
 theta_real <- 5
 X <- matrix(rexp(n = 1000 * 3, rate = theta_real), ncol = 3)
 
@@ -50,7 +50,7 @@ Por lo que $\hat \theta$ es un estimador sesgado, con sesgo
 Si por ejemplo \(\theta=5\), entonces la diferencia debería ser aproximadamente
 \(\dfrac 5 2 \).
 
-```{r }
+```{r 08-estimacion-insesgada-2 }
 mean(theta_hat - theta_real)
 ```
 
@@ -59,7 +59,7 @@ Si $U = \dfrac {2\hat\theta}{3} = \dfrac 23 \cdot \dfrac{3}{T} = \dfrac 2T$,
 
 Entonces $U$ es un estimador insesgado.
 
-```{r }
+```{r 08-estimacion-insesgada-3 }
 U <- 2 / T
 mean(U - theta_real)
 ```
@@ -93,13 +93,13 @@ Dado que $\text{Var}\left(\dfrac 1T\right) = \dfrac{\theta^2}4$,^[Si \(X\sim\tex
 
 * $\mathrm{MSE}(U) = \text{Var}\left(\dfrac 2T\right) = 4\dfrac{\theta^2}4 = \theta^2$.
 
-```{r }
+```{r 08-estimacion-insesgada-4 }
 var(U) + mean(U-theta_real)^2
 ```
 
 * $\mathrm{MSE}(\hat\theta) = (\text{Sesgo}(\hat\theta))^2+\text{Var}\left(\dfrac 3T\right) = \dfrac{\theta^2}{4}+\dfrac{9\theta^2}{4} = \dfrac{5\theta^2}{2}$.
 
-```{r }
+```{r 08-estimacion-insesgada-5 }
 var(theta_hat) + mean(theta_hat-theta_real)^2
 ``` 
 $U$ es mejor estimador en términos de MSE que el $\hat\theta$.
@@ -107,7 +107,7 @@ $U$ es mejor estimador en términos de MSE que el $\hat\theta$.
 **OJO:** El estimado bayesiano es \(\theta_{Bayes} = \dfrac{4}{2+T}\) y este es
 un poco más eficiente que los otros dos.  
 
-```{r }
+```{r 08-estimacion-insesgada-6 }
 theta_bayes <- 4/(2+T)
 var(theta_bayes) + mean(theta_bayes-theta_real)^2
 ``` 
@@ -145,7 +145,7 @@ son:
 también es un estimador insesgado. 
 
 
-```{r }
+```{r 08-estimacion-insesgada-7 }
 X <- matrix(rpois(n = 1000*100, lambda = 2), nrow = 100)
 
 m <- apply(X, 1, mean)
@@ -363,7 +363,7 @@ A partir de este ejercicio vamos a hacer un pequeño ejemplo de simulación.
 Suponga que \(t\) es el tiempo que se quiere medir la cantidad de clientes (minutos), \(\theta\) es la cantidad de clientes por minuto y \(n\) es el número de clientes que entran. 
 
 
-```{r }
+```{r 08-estimacion-insesgada-8 }
 t <- 20
 theta <- 5
 n <- t / theta
@@ -376,13 +376,13 @@ Ojo que según lo estimado ambas informaciones de Fisher debería dar
 aproximadamente igualdad. 
 
 Para \(Y\) tenemos que 
-```{r }
+```{r 08-estimacion-insesgada-9 }
 mean(Y/theta^2)
 ```
 
 Para \(X\) por otro lado la información de Fisher es constante (¿Por qué?)
 
-```{r }
+```{r 08-estimacion-insesgada-10 }
 n /theta^2
 ```
 
@@ -391,13 +391,13 @@ aunque modelen el problema desde ópticas diferentes.
 
 El proceso \(Y\) (Poisson) modela cuántas personas en total entran a la tienda en `r t` minutos, asumiendo una tasa de entrada de `r theta` personas por minuto. 
 
-```{r}
+```{r 08-estimacion-insesgada-11}
 hist(Y)
 ```
 
 El proceso \(X\) (Gamma) modela cuánto tiempo se debe esperar para que `r n` personas entren a la tienda, asumiendo una tasa de entrada de `r theta` por minuto. 
 
-```{r}
+```{r 08-estimacion-insesgada-12}
 hist(X)
 ```
 
@@ -495,7 +495,7 @@ Vea que
 Por ejemplo generemos una secuencia de valores de \(\beta\) de 1 hasta 5 para
 observar el comportamiento de su información de Fisher. 
 
-```{r }
+```{r 08-estimacion-insesgada-13 }
 beta <- seq(1, 5, length.out = 100)
 n <- 100
 
@@ -520,7 +520,7 @@ por lo que $T$ no satisface la cota de Cramer Rao.
 
 
 Este comportamiento podemos observarlo con nuestro ejemplo numérico. 
-```{r }
+```{r 08-estimacion-insesgada-14 }
 estimador1 <- sapply(
   X = lista_muestras,
   FUN = function(x) {
@@ -546,7 +546,7 @@ La cota de Cramer es
 $\bar X_n$ satisface la cota de Cramer-Rao y además
 \[\lambda'(X|\beta) = \dfrac n\beta - n\bar X_n =\dfrac n\beta - nT \implies T = \underbrace{-\dfrac 1n}_{u(\beta)}\lambda_n'(X|\beta)+ \underbrace{\dfrac 1\beta}_{v(\beta)}. \]
 
-```{r }
+```{r 08-estimacion-insesgada-15 }
 estimador2 <- sapply(
   X = lista_muestras,
   FUN = function(x) {
@@ -630,7 +630,7 @@ intervalo de confianza para $\sigma$.
 _Ejercicio:_ Suponga que se le da los siguientes datos
 
  
-```{r}
+```{r 08-estimacion-insesgada-16}
 X <- rnorm(n = 1000, mean = 5, sd = 1)
 ```
 

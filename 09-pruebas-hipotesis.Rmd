@@ -8,13 +8,13 @@ azar y 26 se les inyecta nitrato de plata y a las otras 26 no. Entonces se
 quiere saber cuál de los dos grupos produce más lluvia. 
 
 Los datos de la cantidad de lluvia para este experimento están acá. 
-```{r }
+```{r 09-pruebas-hipotesis-1 }
 nubes <- read.table(file = "./data/clouds.txt", sep = "\t",header = TRUE)
 head(nubes)
 ```
 Sin embargo usaremos los datos en escala logarítmica para facilitar el cálculo 
 
-```{r }
+```{r 09-pruebas-hipotesis-2 }
 lognubes <- log(nubes)
 head(lognubes)
 ```
@@ -22,7 +22,7 @@ head(lognubes)
 Observe que el comportamiento es distinto en ambos casos.
 
 
-```{r }
+```{r 09-pruebas-hipotesis-3 }
 df <- as.data.frame(nubes) %>%
     pivot_longer(
         cols = everything(),
@@ -125,7 +125,7 @@ A $S_1$ se le llama **región crítica** de la prueba de hipótesis.
 En el caso en que se rechaza $H_0$ si $T>c$ con $T = |\bar
 X_n-\mu_0|$ estadístico de prueba y $(c,\infty)$ es la región de rechazo.
 
-```{r }
+```{r 09-pruebas-hipotesis-4 }
 X <- matrix(rnorm(1000 * 1000, mean = 2, sd = 3), ncol = 1000)
 
 Xbar <- apply(X, 2, mean)
@@ -158,7 +158,7 @@ región se va haciendo cada vez más pequeña
 
 Ojo lo que pasaría si por ejemplo cambiamos a \(\mu = 4\), 
 
-```{r }
+```{r 09-pruebas-hipotesis-5 }
 mu0 <- 4
 T <- abs(Xbar - mu0)
 
@@ -238,7 +238,7 @@ U = \frac{n ^{1/2} (\overline{X}_{n} - \mu_0)}{\sigma^\prime} \sim t_{n-1}
 Lo natural debería ser rechazar \( H_{0} \) si \( U \) es grande. 
 
 
-```{r }
+```{r 09-pruebas-hipotesis-6 }
 colnames(lognubes)
 
 Xbarra1 <- mean(lognubes[, 1])
@@ -306,7 +306,7 @@ Como $X_1,\dots, X_n \sim N(\mu, \sigma^2)$, $\mu$ desconocido, $\sigma^2$ conoc
 \end{align*}
 
 
-```{r }
+```{r 09-pruebas-hipotesis-7 }
 mu0 <- 4
 c <- 2
 n <- 100
@@ -372,7 +372,7 @@ y entre todas las pruebas que cumplan $(*)$ se selecciona aquella que maximice l
 En nuestro ejemplo suponga que elegimos \(\alpha_{0} = 0.1\). La región roja
   indica donde estaría ubicado \(\pi(\theta\vert \delta)\leq \alpha_{0} \). 
   
-```{r }
+```{r 09-pruebas-hipotesis-8 }
 ggplot() +
     geom_line(
         data = df,
@@ -450,7 +450,7 @@ Entonces
 
 
 
-```{r }
+```{r 09-pruebas-hipotesis-9 }
 theta <- seq(1, 5, length.out = 1000)
 n <- 5
 
@@ -476,7 +476,7 @@ Note, además, que el tamaño de prueba es
 \sup_{3\leq\theta\leq 4}\left(\dfrac{2.9}{\theta}\right)^n =
 \left(\dfrac{2.9}{3}\right)^n.\]
 
-```{r }
+```{r 09-pruebas-hipotesis-10 }
 n <- 1:100
 
 plot(n, (2.9/3)^n)
@@ -550,7 +550,7 @@ c^* = F^{-1}\left(1- \dfrac{\alpha_0}{2}\right)
 X_n-\mu_0}{\sigma/\sqrt n}\bigg| \geq z_{1-\frac{\alpha_0}2}.\]
 
 
-```{r }
+```{r 09-pruebas-hipotesis-11 }
 
 n <- 10
 alpha0 <- 0.05
@@ -578,14 +578,14 @@ ggplot(data.frame(x = c(-3, 3)), aes(x)) +
 ```
 
 La pregunta que debemos siempre responder es ¿Rechazamos \( H_0\)?
-```{r}
+```{r 09-pruebas-hipotesis-12}
 abs(Z) > q
 ```
 
 Si repetimos el ejercicio anterior, pero los datos tiene media igual a 1 y
 dejamos que \(\mu_0 = 5\), entonces
 
-```{r }
+```{r 09-pruebas-hipotesis-13 }
 
 n <- 10
 alpha0 <- 0.05
@@ -598,12 +598,12 @@ Z <- sqrt(n) * (Xbar - mu0) / 1
 ```
 
 Si preguntamos ¿Rechazamos \( H_0\)?
-```{r}
+```{r 09-pruebas-hipotesis-14}
 abs(Z) > q
 ```
 
 
-```{r }
+```{r 09-pruebas-hipotesis-15 }
 mu0 <- 5
 n <- 10
 sigma <- 1
@@ -647,7 +647,7 @@ entonces el nivel de significancia es a lo sumo $0.15$ y la prueba no cambia (ya
 que $Y$ es una variable discreta).
 
 
-```{r }
+```{r 09-pruebas-hipotesis-16 }
 c <- 5
 n <- 10
 alpha0 <- 0.05
@@ -779,7 +779,7 @@ puede resumir como
 
 
 
-```{r }
+```{r 09-pruebas-hipotesis-17 }
 n <- 1000
 gamma <- 0.95
 alpha = 0.95
@@ -796,7 +796,7 @@ t_quantil <- qt(p = (1+gamma)/2, df = n-1)
 ```
 El intervalo de confianza es 
 
-```{r }
+```{r 09-pruebas-hipotesis-18 }
 c(Xbar - t_quantil*sigma_prima/sqrt(n), Xbar + t_quantil*sigma_prima/sqrt(n))
 ```
 
@@ -804,19 +804,19 @@ c(Xbar - t_quantil*sigma_prima/sqrt(n), Xbar + t_quantil*sigma_prima/sqrt(n))
 
 Para probar esta prueba se debe comprobar que 
 
-```{r }
+```{r 09-pruebas-hipotesis-19 }
 Z <- abs ((Xbar - mu0) / (sigma_prima/sqrt(n)))
 ```
 
 Preguntamos ¿Rechazamos \( H_0\)?
 
-```{r }
+```{r 09-pruebas-hipotesis-20 }
 Z > t_quantil
 ```
 
 Si tuvieramos otros datos con otra media, el resultado será diferente. 
 
-```{r }
+```{r 09-pruebas-hipotesis-21 }
 n <- 1000
 gamma <- 0.95
 alpha <- 0.95
@@ -835,7 +835,7 @@ c(Xbar - t_quantil * sigma_prima / sqrt(n),
 
 ¿Rechazamos \( H_0\)?
 
-```{r}
+```{r 09-pruebas-hipotesis-22}
 Z <- abs ((Xbar - mu0) / (sigma_prima/sqrt(n)))
 
 Z > t_quantil
@@ -923,7 +923,7 @@ Una prueba de cociente de verosimilitud rechaza $H_0$ si $\Lambda(x)\leq k$, par
 Si $n=10$, $\theta_0 = 0.3$, $y = 6$, $\alpha_0=0.05$.
 
 
-```{r }
+```{r 09-pruebas-hipotesis-23 }
 n <- 10
 p0 <- 0.3
 y <- 0:10
@@ -957,11 +957,11 @@ Rechazamos $H_0$ con nivel $\alpha_0 = 0.05$ en $y \in\{10,9,8,7,0\}$ y $k\in [0
 Rechazamos $H_0$ bajo la misma región del ejemplo anterior.
 
 
-```{r }
+```{r 09-pruebas-hipotesis-24 }
 -2 * log(Lambda)
 qchisq(p = 0.95, df = 1)
 ```
 ¿Rechazamos \( H_0\)?
-```{r }
+```{r 09-pruebas-hipotesis-25 }
 knitr::kable(data.frame(y, test = -2*log(Lambda) > qchisq(p = 0.95, df = 1)))
 ```

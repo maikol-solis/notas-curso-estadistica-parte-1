@@ -120,7 +120,7 @@ donde $H_0$ es la hipótesis de homogeneidad.
 
 Vea que ambas situaciones no son independientes. Desagregamos el análisis (tabla de confusión):
 
-```{r, echo=FALSE}
+```{r 14-tablas-contingencia-1, echo=FALSE}
 library(kableExtra)
 tabla <- data.frame(antes = rep("Antes del incendio",2), 
                     sat = c("Satisfactorio", "No satisfactorio"),
@@ -136,7 +136,7 @@ kbl(tabla, align = "c") %>%
 
 No se necesita una prueba $\chi^2$ (dependencia trivial), se puede enfocar el análisis en la dinámica
 
-```{r,echo = FALSE}
+```{r 14-tablas-contingencia-2,echo = FALSE}
 tabla <- data.frame(antes = rep("Observado",2), 
                     sat = c("A", "B"),
                     S = c("Precisión","Error"),

@@ -201,7 +201,7 @@ Estime $n$ de manera que
 
 Se resuelve numéricamente, y si $n=21$ se cumple.
 
-```{r }
+```{r 05-distribucion-muestral-1 }
 ggplot(data = data.frame(x = seq(0,40,length.out = 1000)), aes(x)) +
   stat_function(fun = dchisq, args = list(df = 5), aes(color="05 grados de libertad")) +
   stat_function(fun = dchisq, args = list(df = 10), aes(color="10 grados de libertad")) +
@@ -258,7 +258,7 @@ Dado que $Y = \dfrac{S_n^2}{\sigma^2}\sim \chi^2_{n-1}$, entonces
 U = \dfrac{Z}{\sqrt{\dfrac Y{n-1}}} & = \dfrac{\dfrac{\sqrt n}\sigma (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{\sigma^2(n-1)}}} \\ & = \dfrac{\sqrt n (\bar X_n-\mu)}{\sqrt{\dfrac{S_n^2}{n-1}}}\\& = \dfrac{\sqrt n (\bar X_n-\mu)}{\sigma'} \sim t_{n-1}.
 \end{align*}
 
-```{r }
+```{r 05-distribucion-muestral-2 }
 ggplot(data = data.frame(x = seq(-5,5,length.out = 1000)), aes(x)) +
   stat_function(fun = dnorm, args = list(mean = 0, sd=1), aes(color="Normal(0,1)")) +
   stat_function(fun = dt, args = list(df=1), aes(color=" t con 01 grados de libertad")) +

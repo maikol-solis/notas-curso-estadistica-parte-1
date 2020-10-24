@@ -97,7 +97,7 @@ Note que \(\frac{1+\gamma}{2}=\) $`r (1+0.95)/2`$ y el segundo valor se obtiene 
 una tabla de valor de la \(t\)-student o de la expresión `qt(p = 0.975, df =
 26-1)` = $`r round(qt(p = 0.975, df = 26-1),3)`$
 
-```{r,echo=FALSE}
+```{r 06-intervalos-confianza-1,echo=FALSE}
 library(ggplot2)
 library(latex2exp)
 rango <- seq(-3.5,3.5,1/1000)
@@ -194,7 +194,7 @@ Si \(G\) es la función de distribución de la gamma, sabemos que
 
 El límite superior es $\dfrac{G^{-1}(\gamma)}{T}$.
 
-```{r }
+```{r 06-intervalos-confianza-2 }
 theta <- 2
 X <- rexp(3, rate = theta)
 T <- sum(X)
@@ -203,7 +203,7 @@ G_inv <- qgamma(p = 0.95, shape = 3, rate = 1)
 
 Entonces el intervalo de confianza para este caso es
 
-```{r }
+```{r 06-intervalos-confianza-3 }
 c(0, G_inv/T)
 ```
 
@@ -250,7 +250,7 @@ El IC para $\sigma^2$ al $100\delta$ es
 
 Por ejemplo
 
-```{r }
+```{r 06-intervalos-confianza-4 }
 X <- rnorm(n = 1000, 0, 2)
 
 gamma1 <- 0.025
@@ -266,7 +266,7 @@ gamma2 - gamma1
 
 Finalmente el intervalo es
 
-```{r }
+```{r 06-intervalos-confianza-5 }
 c(diferencias/chi2_gamma2, diferencias/chi2_gamma1)
 ```
 
@@ -335,7 +335,7 @@ variable aleatoria. Lo que dice el teorema del límite central es que conforme
 \(n\) es grande, la distribución de \(\bar{X}_n\) (centrada y escalada
 apropiadamente) converge a una normal estándar.
 
-```{r }
+```{r 06-intervalos-confianza-6 }
 Xbar <- data.frame(n=numeric(), Z=numeric())
 
 idx <- rep(x = c(10, 2000), times = 1000)
@@ -405,7 +405,7 @@ El intervalo para $2\theta^{\frac 12}$ es \[\bigg[2\bar X_n^{\frac 12} -\dfrac
 1{\sqrt n} z_{\frac{1+\gamma}2},2\bar X_n^{\frac 12} +\dfrac 1{\sqrt n}
 z_{\frac{1+\gamma}2}\bigg]\]
 
-```{r }
+```{r 06-intervalos-confianza-7 }
 set.seed(42)
 X<- rpois(n = 1000, lambda = 5)
 Xbar <- mean(X)
@@ -421,7 +421,7 @@ Para estimar el IC para $\theta$, vea que si $y=2x^{\frac12} \implies x =
 z_{\frac{1+\gamma}2}\right)^2,\dfrac 14 \left(2\bar X_n^{\frac 12} +\dfrac 1{\sqrt n}
 z_{\frac{1+\gamma}2}\right)^2\bigg].\]
 
-```{r }
+```{r 06-intervalos-confianza-8 }
 
 c((1/4)* (2*sqrt(Xbar) - 1/sqrt(1000)*z)^2, (1/4)* (2*sqrt(Xbar) + 1/sqrt(1000)*z)^2)
 ```

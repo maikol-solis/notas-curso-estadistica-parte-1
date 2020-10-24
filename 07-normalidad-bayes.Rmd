@@ -147,14 +147,14 @@ queso con respecto a su composición química.
 
 Vamos a cargar la base de datos que corresponde a este estudio. 
 
-```{r }
+```{r 07-normalidad-bayes-1 }
 cheese <- read.table("./data/cheese_data.txt", header = TRUE)
 head(cheese)
 ```
 
 El químico más importante en este estudio es el ácido láctico (`Lactic`). 
 
-```{r }
+```{r 07-normalidad-bayes-2 }
 hist(cheese$Lactic)
 ```
 _Intervalo \(t\)-student_
@@ -168,7 +168,7 @@ $X_1,\dots, X_n\sim N(\mu,\sigma^2)$
 Primero empecemos usando la técnica que aprendimos en el capítulo pasado y
 haremos un intervalo de confianza con cuantiles \(t\)-student.
 
-```{r }
+```{r 07-normalidad-bayes-3 }
 (Xbar <- mean(cheese$Lactic))
 (s <- sd(cheese$Lactic))
 (s2 <- var(cheese$Lactic))
@@ -191,7 +191,7 @@ Ahora supongamos que $X_1,\dots, X_n$  es normal con media
 Los hiperparámetros \(\mu_0,\lambda_0, \alpha_0, \beta_0\) son escogidos de
 basados en la experiencia previa (que puede ser ninguna). 
 
-```{r }
+```{r 07-normalidad-bayes-4 }
 mu_0 <- lambda_0 <- 1
 alpha_0 <- beta_0 <- 1/2
 ```
@@ -199,7 +199,7 @@ alpha_0 <- beta_0 <- 1/2
 Los datos de este experimento son $n = `r n`$, $\bar x_n = `r Xbar`$, $s_n^2 =
 `r s2`$. Aplicando las fórmulas del teorema anterior:
 
-```{r }
+```{r 07-normalidad-bayes-5 }
 (mu_1 <- (lambda_0 * mu_0 + n * Xbar) / (lambda_0 + n))
 (lambda_1 <- lambda_0 + n)
 (alpha_1 <- alpha_0 + n / 2)
@@ -217,7 +217,7 @@ Los datos de este experimento son $n = `r n`$, $\bar x_n = `r Xbar`$, $s_n^2 =
 
 La posterior es \[[\mu, \tau]\sim \text{Normal - Gamma}(\mu_1,\lambda_1,\alpha_1,\beta_1).\]
 
-```{r }
+```{r 07-normalidad-bayes-6 }
 library(NormalGamma)
 
 previa <- dnormgam(par = c(mu_0, sqrt(s2/lambda_0), alpha_0, 1/beta_0), plot = FALSE)
@@ -246,7 +246,7 @@ es Gamma.
 dado que $[\tau|x] \sim \Gamma(\alpha_1,\beta_1) = \Gamma(`r alpha_1`,`r beta_1`)$.
 
 En este caso observe que el cálculo es directo usando la función `pgamma`
-```{r}
+```{r 07-normalidad-bayes-7}
 pgamma(q = 0.3^(-2), shape = alpha_1, rate = beta_1)
 ```
 
@@ -321,7 +321,7 @@ Usando los datos de la  variable `InPatientDays` de
 la siguiente base de datos.  
 
 
-```{r }
+```{r 07-normalidad-bayes-8 }
 load("./data/Nursing.rda")
 head(Nursing$InPatientDays)
 ```
@@ -351,7 +351,7 @@ Y la medía del estimador es
 \end{equation*}
 
 
-```{r }
+```{r 07-normalidad-bayes-9 }
 # Valores dados con paramétro desconocido
 X<- rexp(n = 3, rate = 2)
 gamma <- 0.95

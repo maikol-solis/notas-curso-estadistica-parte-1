@@ -114,7 +114,7 @@ Con 5 observaciones (horas): 2911, 3403, 3237, 3509, 3118.
 $$y = \sum_{i=1}^{5}X_i = 16478, \quad n= 5$$
 por lo que $\theta|X \sim \Gamma(9,36178)$
 
-```{r,echo = F}
+```{r 02-distribuciones-previas-posteriores-1,echo = F}
 library(ggplot2)
 library(tidyr)
 rango <- seq(0,1e6,by = 6)
@@ -453,7 +453,7 @@ $$\dfrac{1}{\mathbb{E}(\theta|X)} = \dfrac{8.6}{4} = 2.15.$$
 
 Lo primero es cargar los paquetes necesarios que usaremos en todo el curso
 
-```{r }
+```{r 02-distribuciones-previas-posteriores-2 }
 library(tidyverse)
 ```
 
@@ -466,7 +466,7 @@ En nuestro ejemplo se tenía que \(\mathbb E [\theta] = 0.0002\) y \(\mathrm{Var
 
 
 
-```{r }
+```{r 02-distribuciones-previas-posteriores-3 }
 alpha_previa <- 4
 beta_previa <- 20000
 
@@ -481,7 +481,7 @@ ggplot(data = data.frame(x = c(0, 1e6)), aes(x)) +
 
 Asumiendo que tenemos algunos datos \(X_1, ..., X_n\), asumimos que estos son exponencial recordando que \(\mathbb E [X] = 1/\theta\), entonces una aproximación de esta densidad es 
 
-```{r }
+```{r 02-distribuciones-previas-posteriores-4 }
 x  <- c(2911, 3403, 3237, 3509, 3118)
 
 theta <- 1 / mean(x)
@@ -499,7 +499,7 @@ ggplot(data = data.frame(x = c(0, 1e5)), aes(x)) +
 
 Según los contenidos del curso, se puede estimar los parámetros de la densidad posterior de la forma 
 
-```{r }
+```{r 02-distribuciones-previas-posteriores-5 }
 (y  <- sum(x))
 (n <- length(x))
 
@@ -507,7 +507,7 @@ Según los contenidos del curso, se puede estimar los parámetros de la densidad
 (beta_posterior <- beta_previa + y)
 ```
 
-```{r }
+```{r 02-distribuciones-previas-posteriores-6 }
 ggplot(data = data.frame(x = c(0, 7.5e5)), aes(x)) +
   stat_function(fun = dgamma, args = list(shape = alpha_previa, scale = beta_previa), aes(color="Previa") ) +
   stat_function(fun = dgamma, args = list(shape = alpha_posterior, scale = beta_posterior), aes(color = "Posterior")) +
@@ -522,7 +522,7 @@ Si tenemos un 6to dato, y queremos ver cual es su distribución posterior. Lo pr
 
 Suponga que \(X_6 = 3000\)
 
-```{r }
+```{r 02-distribuciones-previas-posteriores-7 }
 (alpha_previa <- alpha_posterior)
 (beta_previa <- beta_posterior)
 
@@ -545,7 +545,7 @@ ggplot(data = data.frame(x = c(0, 1e6)), aes(x)) +
 
 Si tenemos pocos datos, la información previa es la que "prevalece". 
 
-```{r }
+```{r 02-distribuciones-previas-posteriores-8 }
 
 x <- rnorm(n=3, mean = 10, sd = 1)
 
@@ -569,7 +569,7 @@ ggplot(data = data.frame(x = c(-5, 15)), aes(x)) +
 
 Con más datos, la distribución se ajusta a esto y le quita importancia a la información previa. 
 
-```{r }
+```{r 02-distribuciones-previas-posteriores-9 }
 
 x <- rnorm(n=100, mean = 10, sd = 1)
 
@@ -595,7 +595,7 @@ ggplot(data = data.frame(x = c(-5, 15)), aes(x)) +
 Si los datos por si solo son muy variable, la posterior tiende a parecerse a la
 distribución previa en lugar que a la verosimilitud.
 
-```{r }
+```{r 02-distribuciones-previas-posteriores-10 }
 
 x <- rnorm(n=10, mean = 10, sd = 5)
 
@@ -621,14 +621,14 @@ ggplot(data = data.frame(x = c(-5, 15)), aes(x)) +
 
 Lo más importante acá es que dependiendo de la función de pérdida podemos construir una estimador para \(\theta\). En el caso de los componentes electrónicos recordemos que la posterior nos daba
 
-```{r }
+```{r 02-distribuciones-previas-posteriores-11 }
 alpha <- 9
 beta <- 36178
 ```
 
 - **Pérdida cuadrática:** Recoremos que la media de una gamma es \(\alpha/\beta\) entonces 
 
-```{r }
+```{r 02-distribuciones-previas-posteriores-12 }
 (theta <- alpha/beta)
 ```
 
@@ -636,7 +636,7 @@ Y por lo tanto el tiempo promedio del componente electrónico es \(1/\theta\)=`r
 
 - **Pérdidad absoluta:** La distribución Gamma no tiene una forma cerrada para la mediana, por que se puede aproximar así, 
 
-```{r }
+```{r 02-distribuciones-previas-posteriores-13 }
 m <- rgamma(n = 1000, scale = beta, shape = alpha)
 (theta <- median (m))
 ```
@@ -653,7 +653,7 @@ Suponga que se que quiere averiguar si los estudiantes de cierto colegio duermen
 
 Para esto primero cargaremos el siguiente paquete, 
 
-```{r}
+```{r 02-distribuciones-previas-posteriores-14}
 library(LearnBayes)
 ```
 Suponga que se hace una encuesta a 27 estudiantes y se encuentra que 11 dicen que duermen más de 8 horas diarias y el resto no. Nuestro objetivo es encontrar inferencias sobre la proporción $p$ de estudiantes que duermen al menos 8 horas diarias. El modelo más adecuado es  
@@ -666,7 +666,7 @@ donde $s$ es la cantidad de estudiantes que duermen más de 8 horas y $f$ los qu
 
 Una primera aproximación para la previa es usar una distribución discreta. En este caso, el investigador asigna una probabilidad a cierta cantidad de horas de sueño, según su experiencia. Así, por ejemplo:
 
-```{r}
+```{r 02-distribuciones-previas-posteriores-15}
 
 p <- seq(0.05, 0.95, by = 0.1)
 prior <- c(1, 5.2, 8, 7.2, 4.6, 2.1, 0.7, 0.1, 0, 0)
@@ -678,7 +678,7 @@ plot(p, prior, type = "h", ylab="Probabilidad Previa")
 El paquete `LearnBayes` tiene la función `pdisc` que estima la distribución posterior para una previa discreta binomial. Recuerde que el valor 11 representa la cantidad de estudiantes con más de 8 horas de sueño y 16 lo que no duermen esa cantidad. 
 
 
-```{r}
+```{r 02-distribuciones-previas-posteriores-16}
 data <- c(11, 16)
 post <- pdisc(p, prior, data)
 round(cbind(p, prior, post),2)
@@ -686,7 +686,7 @@ round(cbind(p, prior, post),2)
 
 Y podemos ver la diferencia entre la previa (negro) y la posterior (roja), 
 
-```{r}
+```{r 02-distribuciones-previas-posteriores-17}
  
 plot(p, post, type = "h", col = "red")
 lines(p + 0.01, prior , type = "h")
@@ -697,7 +697,7 @@ lines(p + 0.01, prior , type = "h")
 
 **Ejercicio:** Suponga que se tiene la base de datos `studentdata`. Realice los cálculos anteriores con esos datos, 
 
-```{r}
+```{r 02-distribuciones-previas-posteriores-18}
 data("studentdata")
 horas_sueno <- studentdata$WakeUp - studentdata$ToSleep
 horas_sueno <- na.omit(horas_sueno)
@@ -722,7 +722,7 @@ Para esto ajustaremos los siguientes parámetros
 
 
 
-```{r}
+```{r 02-distribuciones-previas-posteriores-19}
 quantile2 <- list(p = .9, x = .5)
 quantile1 <- list(p = .5, x = .3)
 (ab <- beta.select(quantile1, quantile2))
@@ -736,7 +736,7 @@ quantile1 <- list(p = .5, x = .3)
 
 En este caso se obtendra la distribución posterior Beta con paramétros $\alpha + s$ y $\beta + f$, 
 
-```{r}
+```{r 02-distribuciones-previas-posteriores-20}
 curve(dbeta(x,a + s,b + f), from = 0, to = 1, 
        xlab = "p", ylab = "Densidad",lty = 1, lwd = 4)
 curve(dbeta(x,s + 1, f + 1), add=TRUE, lty = 2, lwd = 4)

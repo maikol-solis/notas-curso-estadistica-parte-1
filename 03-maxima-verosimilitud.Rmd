@@ -61,7 +61,7 @@ Entonces $\hat\theta = \bar X_n$ es el MLE de $\theta$.
 Suponga que se tiene 100 valores con distribución exponencial con parámetro
 \(\theta=1\). 
 
-```{r }
+```{r 03-maxima-verosimilitud-1 }
 x  <- rexp(n = 100, rate = 1)
 n <- length(x)
 y <- sum(x)
@@ -69,12 +69,12 @@ theta <- seq(0.5, 1.5, length.out = 1000)
 ```
 
 
-```{r }
+```{r 03-maxima-verosimilitud-2 }
 L <- theta^(-n) * exp(-y/theta)
 plot(theta, L)
 ```
 
-```{r }
+```{r 03-maxima-verosimilitud-3 }
 l <- -n*log(theta) - y/theta
 plot(theta, l)
 ```
@@ -130,7 +130,7 @@ El MLE de $\dfrac{\sigma}{\mu} = \dfrac{\hat \sigma}{\bar x_n}$.
 
 **Laboratorio:**
 
-```{r }
+```{r 03-maxima-verosimilitud-4 }
 library(scatterplot3d)
 
 x<- rnorm(100)
@@ -161,7 +161,7 @@ este caso, $X_{(n)} = \max\{X_1,\dots, X_n\}$. Entonces $\hat\theta_{MLE} = x_{(
 
 **Laboratorio:** 
 
-```{r }
+```{r 03-maxima-verosimilitud-5 }
 x <- runif(100, 0, 2)
 n <- length(x)
 
@@ -350,7 +350,7 @@ $$\dfrac 1{y^2/n} = \dfrac{\theta^2}n = \dfrac{V_n(\hat\theta)}{n}.$$
 
 Suponga que tenemos una tabla con los siguientes datos, los cuales representan la cantidad de giros hacia la derecha en cierta intersección.
 
-```{r} 
+```{r 03-maxima-verosimilitud-6 }
 (X <- c(rep(0,14), rep(1,30), rep(2,36), rep(3,68), rep(4, 43), rep(5,43), 
        rep(6, 30), rep(7,14), rep(8,10), rep(9, 6), rep(10,4), rep(11,1), rep(12,1)) )
 ```
@@ -363,13 +363,13 @@ Queremos ajustar esta tabla a una distribución Poisson con función de densidad
  Se puede probar que teórico de máxima verosimilitud para $\lambda$ es $\overline{X}$ (Tarea). Queremos estimar este parámetro alternativamente maximizando la función de verosimilitud. 
 
 Primero veamos la forma de los datos, 
-```{r}
+```{r 03-maxima-verosimilitud-7}
 hist(X, main="histograma del número de giros a la derecha", right=FALSE, prob=TRUE) 
 ```
 
 Definamos la función correspondiente a $-\log(\mathbb{P}(X=x))$
 
-```{r}
+```{r 03-maxima-verosimilitud-8}
 n <- length(X)
 negloglike <- function(lambda) {
   n * lambda - sum(X) * log(lambda) + sum(log(factorial(X)))
@@ -377,7 +377,7 @@ negloglike <- function(lambda) {
 ```
 
 Para encontrar el parámetro deseado, basta minimizar la función `negloglike` usando el la instrucción de optimización no lineal `nlm`. 
-```{r}
+```{r 03-maxima-verosimilitud-9}
 lambda.hat <- nlm(negloglike, p = c(0.5), hessian = TRUE) 
 ```
 Aquí el valor `p = c(0.5)` representa un valor inicial de búsqueda y `hessian = TRUE` determina el cálculo explícito de la segunda derivada. 
@@ -385,7 +385,7 @@ Aquí el valor `p = c(0.5)` representa un valor inicial de búsqueda y `hessian 
 Compare el resultado de `lambda.hat$estimate` con `mean(X)`. 
 
 
-```{r}
+```{r 03-maxima-verosimilitud-10}
 lambda.hat$estimate
 mean(X)
 ```
