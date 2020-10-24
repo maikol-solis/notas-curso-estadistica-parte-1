@@ -328,13 +328,15 @@ Si $\alpha_0 = 1\%$, no rechazo. Si $\alpha_0 = 5\%$ rechazo.
 **Ejemplo:** Suponga que se tienen los siguientes datos 
 
 ```{r }
-n <- 10
 m <- 20
-(X <- rnorm(n = n, mean = 0, sd = sqrt(6)))
-(Y <- rnorm(n = m, mean = 0, sd = sqrt(2)))
+X <- rnorm(n = m, mean = 0, sd = sqrt(6))
+head(X)
+n <- 40
+Y <- rnorm(n = n, mean = 10, sd = sqrt(2))
+head(Y)
 ```
 
-Es decir tener `r n` datos normales con \(\sigma_1^2 = 6\) y `r m` datos normales con \(\sigma_2^2
+Es decir tener `r m` datos normales con \(\sigma_1^2 = 6\) y `r n` datos normales con \(\sigma_2^2
 = 2\).  
 
 En todo caso asuma que \(\sigma\) es desconocidos para cada caso y solo tenemos
@@ -361,7 +363,7 @@ Calculamos el estadístico \(V\)
 Para calcular un cuantil te tamaño \(1-\alpha = 0.95\) se usa la siguiente función 
 
 ```{r }
-(qnt <- qf(p = 1 - 0.05, df1 = n - 1, df2 = m - 1))
+(qnt <- qf(p = 1 - 0.05, df1 = m - 1, df2 = n - 1))
 ```
 
 ¿Rechazamos \(H_0\)?
