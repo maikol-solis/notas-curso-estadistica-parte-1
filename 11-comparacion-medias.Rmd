@@ -379,7 +379,7 @@ V > qnt
 y el valor-\(p\) de la prueba es 
 
 ```{r 11-comparacion-medias-15 }
-1 - pf(q = V, df1 = n - 1, df2 = m - 1)
+1 - pf(q = V, df1 = m - 1, df2 = n - 1)
 ```
 
 **Interpretación:** Rechazamos la hipótesis que \(\sigma_{1}^{2} \leq
