@@ -32,7 +32,7 @@
   
 <link rel="prev" href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"/>
 <link rel="next" href="estadísticos-suficientes-y-criterio-de-factorización.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,7 +50,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -172,14 +171,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedades-del-mle"><i class="fa fa-check"></i><b>4.1</b> Propiedades del MLE</a>
 <ul>
 <li class="chapter" data-level="4.1.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedad-de-invarianza"><i class="fa fa-check"></i><b>4.1.1</b> Propiedad de invarianza</a></li>
-<li class="chapter" data-level="4.1.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
+<li class="chapter" data-level="4.1.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#consistencia-1"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#cálculo-numérico"><i class="fa fa-check"></i><b>4.2</b> Cálculo numérico</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-de-los-momentos"><i class="fa fa-check"></i><b>4.2.1</b> Método de los momentos</a></li>
 <li class="chapter" data-level="4.2.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-delta"><i class="fa fa-check"></i><b>4.2.2</b> Método Delta</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
+<li class="chapter" data-level="4.3" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#laboratorio-1"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html"><i class="fa fa-check"></i><b>5</b> Estadísticos Suficientes y Criterio de Factorización</a>
 <ul>
@@ -455,7 +454,7 @@ máximos en un conjunto con la misma imagen).</p>
 <li><p><span class="math inline">\(h(\mu, \sigma^2) = \mu^2 + \sigma^2\)</span>. <span class="math inline">\(\mathbb{E}[X^2] - \mu^2 = \sigma^2 \implies \mathbb{E}[X^2] = \mu^2 + \sigma^2\)</span>. El MLE de <span class="math inline">\(\mathbb{E}[X^2]\)</span> es <span class="math inline">\(\bar X_n^2 + \hat \sigma ^2\)</span>.</p></li>
 </ul>
 </div>
-<div id="consistencia" class="section level3" number="4.1.2">
+<div id="consistencia-1" class="section level3" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Consistencia</h3>
 <p>Los estimadores bayesianos son de la forma
 <span class="math display">\[EB = W_1\mathbb{E}[\text{Previa}] + W_2\hat X_n.\]</span>
@@ -540,7 +539,7 @@ Por el T.L.C., la distribución posterior <span class="math inline">\(\theta|X\)
 <span class="math display">\[\dfrac 1{y^2/n} = \dfrac{\theta^2}n = \dfrac{V_n(\hat\theta)}{n}.\]</span></p>
 </div>
 </div>
-<div id="laboratorio" class="section level2" number="4.3">
+<div id="laboratorio-1" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Laboratorio</h2>
 <p>Suponga que tenemos una tabla con los siguientes datos, los cuales representan la cantidad de giros hacia la derecha en cierta intersección.</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="estimación-por-máxima-verosimilitud.html#cb89-1"></a>(X &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">14</span>), <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">30</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">36</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">68</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">43</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">43</span>),</span>

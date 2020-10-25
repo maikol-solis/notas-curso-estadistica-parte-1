@@ -187,7 +187,7 @@
 
 \title{Notas Curso de Estadística (Parte I)}
 \author{Maikol Solís}
-\date{Actualizado el 24 octubre, 2020}
+\date{Actualizado el 24 October, 2020}
 
 \begin{document}
 \maketitle
@@ -1788,8 +1788,8 @@ máximos en un conjunto con la misma imagen).
   \(h(\mu, \sigma^2) = \mu^2 + \sigma^2\). \(\mathbb{E}[X^2] - \mu^2 = \sigma^2 \implies \mathbb{E}[X^2] = \mu^2 + \sigma^2\). El MLE de \(\mathbb{E}[X^2]\) es \(\bar X_n^2 + \hat \sigma ^2\).
 \end{itemize}
 
-\hypertarget{consistencia}{%
-\subsection{Consistencia}\label{consistencia}}
+\hypertarget{consistencia-1}{%
+\subsection{Consistencia}\label{consistencia-1}}
 
 Los estimadores bayesianos son de la forma
 \[EB = W_1\mathbb{E}[\text{Previa}] + W_2\hat X_n.\]
@@ -1905,8 +1905,8 @@ Por el T.L.C., la distribución posterior \(\theta|X\) se distribuye como una no
 \[\dfrac ny = \dfrac 1{\bar X_1} = \hat\theta_{MLE}\] y la varianza
 \[\dfrac 1{y^2/n} = \dfrac{\theta^2}n = \dfrac{V_n(\hat\theta)}{n}.\]
 
-\hypertarget{laboratorio}{%
-\section{Laboratorio}\label{laboratorio}}
+\hypertarget{laboratorio-1}{%
+\section{Laboratorio}\label{laboratorio-1}}
 
 Suponga que tenemos una tabla con los siguientes datos, los cuales representan la cantidad de giros hacia la derecha en cierta intersección.
 
@@ -3817,10 +3817,10 @@ Defina la siguiente cantidad
 
 \begin{align*}
 \text{Sesgo}^2(\delta(x))+\text{Var}(\delta(x)) & = (\mathbb E_\theta[\delta(x)]-\theta)^2 + \mathbb E[[\delta(x)-\mathbb E[\delta(x)]]^2]\\
-	& =\mathbb E[ \underbrace{(\mathbb E_\theta[\delta(x)]-\theta)^2}_{A^2} + \underbrace{[\delta(x)-\mathbb E[\delta(x)]]^2}_{B^2}]\\
-	& = \mathbb E[A^2+B^2 - 2(\underset{=0}{\mathbb E[\delta(x)]-\theta)(\delta(x)-\mathbb E[\delta(x)]})]\\
-	& =  \mathbb E[(\mathbb E[\delta(x)]-\theta - \mathbb E[\delta(x)] + \delta(x))^2]\\
-	& = \mathbb E[(\delta(x)-\theta)^2] = MSE(\delta(x))
+    & =\mathbb E[ \underbrace{(\mathbb E_\theta[\delta(x)]-\theta)^2}_{A^2} + \underbrace{[\delta(x)-\mathbb E[\delta(x)]]^2}_{B^2}]\\
+    & = \mathbb E[A^2+B^2 - 2(\underset{=0}{\mathbb E[\delta(x)]-\theta)(\delta(x)-\mathbb E[\delta(x)]})]\\
+    & =  \mathbb E[(\mathbb E[\delta(x)]-\theta - \mathbb E[\delta(x)] + \delta(x))^2]\\
+    & = \mathbb E[(\delta(x)-\theta)^2] = MSE(\delta(x))
   * [ ] \end{align*}
 
 Si \(\delta\) tiene varianza finita, entonces definimos el error cuadrático medio
@@ -4033,7 +4033,7 @@ pueden calcular al intercambiar el orden de integración y derivación. Entonces
 \emph{Prueba}:
 
 \begin{align*}
-	\mathbb E[\lambda'(x|\theta)]
+    \mathbb E[\lambda'(x|\theta)]
   & = \int_{\mathcal X}\lambda'(x|\theta)f(x|\theta)dx                                            \\
   & = \int_{\mathcal X} \dfrac{f'(x|\theta)}{f(x|\theta)}f(x|\theta)dx                            \\
   & =  \int_{\mathcal X}f'(x|\theta)dx                                                            \\
@@ -6357,7 +6357,7 @@ nivel más pequeño de significancia observada es \(T_{n-1}(u)\) \(\qedsymbol\)
 
 \begin{verbatim}
 ## 
-## 	One Sample t-test
+##  One Sample t-test
 ## 
 ## data:  x
 ## t = -1.3369, df = 51, p-value = 0.9064
@@ -6994,12 +6994,12 @@ y el valor-\(p\) de la prueba es
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\KeywordTok{pf}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ V, }\DataTypeTok{df1 =}\NormalTok{ n }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{, }\DataTypeTok{df2 =}\NormalTok{ m }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\KeywordTok{pf}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ V, }\DataTypeTok{df1 =}\NormalTok{ m }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{, }\DataTypeTok{df2 =}\NormalTok{ n }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.000320363
+## [1] 2.052492e-05
 \end{verbatim}
 
 \textbf{Interpretación:} Rechazamos la hipótesis que \(\sigma_{1}^{2} \leq \sigma_{2}^{2}\) con un valor-\(p\) de 0.02.

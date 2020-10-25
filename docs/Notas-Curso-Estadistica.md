@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 24 octubre, 2020"
+date: "Actualizado el 24 October, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -6558,11 +6558,11 @@ y el valor-\(p\) de la prueba es
 
 
 ```r
-1 - pf(q = V, df1 = n - 1, df2 = m - 1)
+1 - pf(q = V, df1 = m - 1, df2 = n - 1)
 ```
 
 ```
-## [1] 0.000320363
+## [1] 2.052492e-05
 ```
 
 **Interpretación:** Rechazamos la hipótesis que \(\sigma_{1}^{2} \leq
