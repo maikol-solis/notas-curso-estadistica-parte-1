@@ -302,10 +302,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Capítulo 13</span> Pruebas de hipótesis bayesianas</h1>
 <div id="pruebas-de-hipótesis-bayesianas-1" class="section level2" number="13.1">
 <h2><span class="header-section-number">13.1</span> Pruebas de hipótesis bayesianas</h2>
-<p>Suponga que <span class="math inline">\(\Omega = \{\theta_0,\theta_1\}\)</span>. Si <span class="math inline">\(\theta = \theta_i\)</span> <span class="math inline">\((i = 0,1)\)</span>, <span class="math inline">\(X_1,\dots, X_n\sim f_i(x)\)</span>. Considere las hipótesis
-<span class="math display">\[H_0: \theta = \theta_0 \text{ vs } H_1: \theta =\theta_1.\]</span>
-Hay dos decisiones, <span class="math inline">\(d_0:\)</span> no rechazo <span class="math inline">\(H_0\)</span> y <span class="math inline">\(d_1:\)</span> rechazo <span class="math inline">\(H_0\)</span>.</p>
-<p>Asuma que si selecciono <span class="math inline">\(d_1\)</span> cuando <span class="math inline">\(H_0\)</span> es cierto, la pérdida es <span class="math inline">\(w_0\)</span>. Por el contrario, si selecciono <span class="math inline">\(d_1\)</span> cuando <span class="math inline">\(H_0\)</span> es cierto, la pérdida es <span class="math inline">\(w_1\)</span>.</p>
+<p>Suponga que <span class="math inline">\(\Omega = \{\theta_0,\theta_1\}\)</span>. Si <span class="math inline">\(\theta = \theta_i\)</span>
+<span class="math inline">\((i = 0,1)\)</span>, <span class="math inline">\(X_1,\dots, X_n\sim f_i(x)\)</span>. Considere las hipótesis</p>
+<p><span class="math display">\[H_0: \theta = \theta_0 \text{ vs } H_1: \theta =\theta_1.\]</span></p>
+<p>Hay dos decisiones, <span class="math inline">\(d_0:\)</span> no rechazo <span class="math inline">\(H_0\)</span> y <span class="math inline">\(d_1:\)</span> rechazo <span class="math inline">\(H_0\)</span>.</p>
+<p>Asuma que si selecciono <span class="math inline">\(d_1\)</span> cuando <span class="math inline">\(H_0\)</span> es cierto, la pérdida es <span class="math inline">\(w_0\)</span>
+unidades. Por
+el contrario, si selecciono <span class="math inline">\(d_1\)</span> cuando <span class="math inline">\(H_0\)</span> es cierto, la pérdida es <span class="math inline">\(w_1\)</span>
+unidades.</p>
+<p>Como un ejemplo, se podría pensar <span class="math inline">\(w_0\)</span> y <span class="math inline">\(w_1\)</span> como la pérdida en colones
+que ocurre cuando me equivoco al tomar una desición errónea.</p>
 <table>
 <thead>
 <tr class="header">
@@ -327,52 +333,91 @@ Hay dos decisiones, <span class="math inline">\(d_0:\)</span> no rechazo <span c
 </tr>
 </tbody>
 </table>
-<p>Sean <span class="math inline">\(\pi_0 = \mathbb P[H_0 \text{ es cierta}] = \mathbb P[H_0]\)</span> y <span class="math inline">\(\pi_1 = \mathbb P[H_1 \text{ es cierta}] = 1 -\mathbb P[H_0]\)</span>.</p>
-<p>Considere <span class="math inline">\(\delta\)</span> el procedimiento de prueba. El valor esperado de la pérdida corresponde a</p>
-<p><span class="math display">\[ r(\delta)  = \mathbb E[\text{Pérdida}|H_0] \mathbb P[H_0] + \mathbb E[\text{Pérdida}|H_1]\mathbb P[H_1].\]</span></p>
-<p>Dado <span class="math inline">\(H_0\)</span>,</p>
+<p><strong>Ejemplo:</strong> Recuerden el ejemplo del administrador del  que
+tenía que decidir si <span class="math inline">\(f_0\)</span> o <span class="math inline">\(f_1\)</span> era la distribución correcta para la
+entrada de llamadas. El administrador observa lo siguiente: <span class="math inline">\(f_1\)</span> asigna más
+probabilidad a los tiempos de llamadas largos y extremadamente pequeños con
+respecto a <span class="math inline">\(f_0\)</span>.</p>
+<p>Suponga que el costo de modelar tiempos de servicio extremadamente grandes como
+menos probables de lo que realmente son es el mismo que el costo de modelar
+tiempos de servicio extremadamente grandes para que sean más probables de lo que
+realmente son.</p>
+<p>Entonces el administrador concluye que no hay diferencia en el costo si el se
+escoge la distribución incorrecta para modelar el tiempo, de modo que la pérdida
+para la empresa es <span class="math inline">\(w_0=w_1\)</span> colones independientemente de la escogencia.
+<span class="math inline">\(\hfill\blacktriangleleft\)</span></p>
+<p>Defina las distribuciones previas <span class="math inline">\(\pi_0 = \mathbb P[H_0 \text{ es cierta}]  = \mathbb P[H_0]\)</span> y <span class="math inline">\(\pi_1 = \mathbb P[H_1 \text{ es cierta}] = 1 -\mathbb  P[H_0]\)</span>.</p>
+<p><strong>Ejemplo:</strong> Para el caso del <em>call center</em> suponga que el administrador asigna
+igual probabilidad de equivocarse, por lo tanto define <span class="math inline">\(\pi_0=\pi_1 = 1/2\)</span>.</p>
+<p>Recuerden que <span class="math inline">\(\delta\)</span> es la regla de decisión de la prueba. El valor esperado
+de la pérdida corresponde a</p>
+<p><span class="math display">\[ r(\delta) = \mathbb E[\text{Pérdida}|H_0] \mathbb P[H_0] + \mathbb
+    E[\text{Pérdida}|H_1]\mathbb P[H_1].\]</span></p>
+<p>Asumiendo que <span class="math inline">\(H_0\)</span> es cierto,</p>
 <p><span class="math display">\[\begin{align*}
-\mathbb E[\text{Pérdida}|H_0] &amp; = w_0\cdot \mathbb P[\text{Seleccione } d_1|\theta_0] + 0\cdot \mathbb P[\text{Seleccione } d_0|\theta_0]\\
-&amp; = w_0 \cdot \text{Error I} = w_0\alpha(\delta).
+    \mathbb E[\text{Pérdida}|H_0] &amp; = w_0\cdot \mathbb
+    P[\text{Seleccione } d_1|\theta_0] + 0\cdot \mathbb P[\text{Seleccione }
+    d_0|\theta_0]                                      \\ 
+    &amp; = w_0 \cdot \text{Error Tipo I} = w_0\ \alpha(\delta).
 \end{align*}\]</span>
 Por el otro lado,</p>
 <p><span class="math display">\[\begin{align*}
-\mathbb E[\text{Pérdida}|H_1] &amp; = 0\cdot \mathbb P[\text{Seleccione} d_1|\theta_0] + w_1\cdot \mathbb P[\text{Seleccione} d_0|\theta_0]\\
-&amp; = w_1 \cdot \text{Error II} = w_1\beta(\delta).
+    \mathbb E[\text{Pérdida}|H_1] &amp; = 0\cdot \mathbb P[\text{Seleccione } d_1|\theta_0] + w_1\cdot \mathbb P[\text{Seleccione } d_0|\theta_0] \\
+&amp; = w_1 \cdot \text{Error Tipo II} = w_1\ \beta(\delta).
 \end{align*}\]</span></p>
 <p>Entonces <span class="math inline">\(r(\delta) = w_0\alpha(\delta) + w_1\beta(\delta)\)</span>.</p>
-<p>El procedimiento <span class="math inline">\(\delta\)</span> que minimiza <span class="math inline">\(r(\delta)\)</span> se llama procedimiento de prueba bayesiana. Por el teorema de Neyman-Pearson y tomando <span class="math inline">\(a=\pi_0w_0\)</span> y <span class="math inline">\(b=\pi_1w_1\)</span>, el <span class="math inline">\(\delta\)</span> que soluciona el problema es:</p>
-<p><span class="math display">\[\delta: \text{Rechazo }H_0 \text{ si } \pi_0w_0f_0(x) &lt; \pi_1w_1f_1(x). \]</span></p>
-<p>o si <span class="math inline">\(\pi_0w_0f_0(x) = \pi_1w_1f_1(x)\)</span>, <span class="math inline">\(\dfrac{f_1(x)}{f_0(x)} &gt; \dfrac ab = k\)</span>.</p>
-<p><strong>Nota</strong>. La decisión <span class="math inline">\(\delta\)</span> es invariante a multiplicacione por escalar en el costo.</p>
-<p><strong>Ejemplo</strong>.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Calculemos</li>
-</ol>
-<p><span class="math display">\[\pi(\theta_0|x) = \dfrac{\pi_0f_0(x)}{\pi_0f_0(x)+\pi_1f_1(x)}\]</span>
-<span class="math display">\[\pi(\theta_1|x) = \dfrac{\pi_1f_1(x)}{\pi_0f_0(x)+\pi_1f_1(x)}\]</span></p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>Esperanza de la pérdida</li>
-</ol>
-<p><span class="math display">\[\mathbb E[\text{Pérdida}|x] = \mathbb E[\text{Pérdida}|\theta_0,x] + \mathbb E[\text{Pérdida}|\theta_1,x].\]</span></p>
-<p>Si <span class="math inline">\(\delta = d_0\)</span>,</p>
-<p><span class="math display">\[\mathbb E_\delta[\text{Pérdida}|X] = w_1\pi(\theta_1|x) =  \dfrac{w_1\pi_1f_1(x)}{\pi_0f_0(x)+\pi_1f_1(x)}. \]</span></p>
-<p>Si <span class="math inline">\(\delta = d_1\)</span>,</p>
-<p><span class="math display">\[\mathbb E_\delta[\text{Pérdida}|X] = \dfrac{w_0\pi_0f_0(x)}{\pi_0f_0(x)+\pi_1f_1(x)}. \]</span></p>
-<p>Minimizar <span class="math inline">\(\mathbb E[\text{Pérdida}|x]\)</span> con respecto a <span class="math inline">\(\delta\)</span> es equivalente a rechazar <span class="math inline">\(H_0\)</span> bajo el criterio anterior.</p>
-<p><strong>Conclusión</strong>: es equivalente construir la decisión en cualquiera de los dos criterios (previa o probabilidad posterior).</p>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>Rechazo <span class="math inline">\(H_0\)</span> si <span class="math inline">\(\mathbb P[H_0 \text{ es cierto}|X] \leq \dfrac{w_1}{w_0+w_1}.\)</span></li>
-</ol>
-<p>Rechazamos <span class="math inline">\(H_0\)</span> si
-<span class="math display">\[\dfrac{w_0\pi_0f_0(x)}{\pi_0f_0(x)+\pi_1f_1(x)}\leq \dfrac{w_1\pi_1f_1(x)}{\pi_0f_0(x)+\pi_1f_1(x)}.\]</span></p>
-<p>Entonces</p>
-<p><span class="math display">\[w_0\mathbb P[H_0|x] \leq w_1\mathbb P[H_1|x] = w_1[1-\mathbb P[H_0|x]] \implies\mathbb P[H_0|x]\leq \dfrac{w_1}{w_0+w_1}. \]</span></p>
-<p><em>Caso general</em>: <span class="math inline">\(H_0: \theta \in \Omega_0\)</span> vs <span class="math inline">\(H_1: \theta \in \Omega_1\)</span>.</p>
+<p>El objetivo siempre será minimizar <span class="math inline">\(r(\delta)\)</span> ya que sería la pérdida
+total. A esta minimización es el procedimiento de prueba bayesiana.</p>
+<p>Por el teorema de Neyman-Pearson y tomando <span class="math inline">\(a=\pi_0w_0\)</span> y <span class="math inline">\(b=\pi_1w_1\)</span>, la regla
+de decisión <span class="math inline">\(\delta\)</span> que soluciona el problema es:</p>
+<p><span class="math display">\[\begin{align*}
+\text{Rechazo }H_0 \text{ si } 
+&amp; \pi_0w_0f_0(x) \leq \pi_1w_1f_1(x). \\
+&amp; \dfrac{f_1(x)}{f_0(x)} \geq \dfrac{\pi_0w_0}{\pi_1w_1} \\
+&amp; \dfrac{f_1(x)}{f_0(x)} \geq \dfrac{a}{b} \\
+&amp; \dfrac{f_1(x)}{f_0(x)} \geq k \\
+\end{align*}\]</span></p>
+<p><strong>Nota</strong>. La decisión <span class="math inline">\(\delta\)</span> es invariante a multiplicaciones por escalar en el
+costo.</p>
+<!-- Recordemos como estimar la distribuciones posteriores en el caso bayesiano -->
+<!-- \[\pi(\theta_0|x) = \dfrac{\pi_0f_0(x)}{\pi_0f_0(x)+\pi_1f_1(x)}\] -->
+<!-- \[\pi(\theta_1|x) = \dfrac{\pi_1f_1(x)}{\pi_0f_0(x)+\pi_1f_1(x)}\] -->
+<!-- En este casos la esperanza de la pérdida se calcula como:  -->
+<!-- \[\mathbb E[\text{Pérdida}|x] = \mathbb E[\text{Pérdida}|\theta_0,x] + \mathbb E[\text{Pérdida}|\theta_1,x].\] -->
+<!-- Si escogemos  esta decisión obtenemos que  $\delta = d_0$, -->
+<!-- \[\mathbb E_\delta[\text{Pérdida}|X] = w_1\pi(\theta_1|x) = \dfrac{w_1\pi_1f_1(x)}{\pi_0f_0(x)+\pi_1f_1(x)}. \] -->
+<!-- En el otro caso obtenemos que  $\delta = d_1$, -->
+<!-- \[\mathbb E_\delta[\text{Pérdida}|X] = \dfrac{w_0\pi_0f_0(x)}{\pi_0f_0(x)+\pi_1f_1(x)}. \] -->
+<!-- Minimizar $\mathbb E[\text{Pérdida}|x]$ con respecto a $\delta$ es equivalente a -->
+<!-- rechazar $H_0$ bajo el criterio anterior. -->
+<!-- **Conclusión**: es equivalente construir la decisión en cualquiera de los dos -->
+<!-- criterios (previa o probabilidad posterior). -->
+<!-- c. Rechazo $H_0$ si -->
+<!-- $\mathbb P[H_0 \text{ es cierto}|X] \leq \dfrac{w_1}{w_0+w_1}.$ -->
+<!-- Rechazamos $H_0$ si -->
+<!-- \[\dfrac{w_0\pi_0f_0(x)}{\pi_0f_0(x)+\pi_1f_1(x)}\leq \dfrac{w_1\pi_1f_1(x)}{\pi_0f_0(x)+\pi_1f_1(x)}.\] -->
+<!-- Rechazamos $H_0$ si  -->
+<!-- \begin{align*} -->
+<!-- \dfrac{w_0\pi_0f_0(x)}{\pi_0f_0(x)+\pi_1f_1(x)}  -->
+<!-- & \leq \dfrac{w_1\pi_1f_1(x)}{\pi_0f_0(x)+\pi_1f_1(x)} \\ -->
+<!-- w_0\pi_0f_0(x)   -->
+<!-- & \leq w_1\pi_1f_1(x) \\ -->
+<!-- \dfrac{w_0\pi_0}{w_1\pi_1} &\leq \dfrac{f_1(x)}{f_0(x)} -->
+<!-- \end{align*} -->
+<!-- Entonces -->
+<!-- \[w_0\mathbb P[H_0|x] \leq w_1\mathbb P[H_1|x] = w_1[1-\mathbb P[H_0|x]] -->
+<!-- \implies\mathbb P[H_0|x]\leq \dfrac{w_1}{w_0+w_1}. \] -->
+<p><strong>Ejemplo:</strong> En el ejemplo del <em>call center</em> con las condiciones planteadas la
+regla de decisión bayesiana sería</p>
+<p><span class="math display">\[\begin{align*}
+\dfrac{w_0\pi_0}{w_1\pi_1} &amp;\leq \dfrac{f_1(x)}{f_0(x)} \\
+1 &amp;\leq \dfrac{f_1(x)}{f_0(x)} \\
+\end{align*}\]</span></p>
 </div>
 <div id="hipótesis-de-una-cola" class="section level2" number="13.2">
 <h2><span class="header-section-number">13.2</span> Hipótesis de una cola</h2>
-<p>Asuma la misma función de pérdida <span class="math inline">\(L(\theta,d_i)\)</span>:</p>
+<p><em>Caso general</em>: <span class="math inline">\(H_0: \theta \in \Omega_0\)</span> vs <span class="math inline">\(H_1: \theta \in \Omega_1\)</span>.
+Asuma la misma función de pérdida <span class="math inline">\(L(\theta,d_i)\)</span>:</p>
 <table>
 <thead>
 <tr class="header">
@@ -389,90 +434,129 @@ Por el otro lado,</p>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(H_1\)</span></td>
-<td><span class="math inline">\(w_1\)</span></td>
+<td><span class="math inline">\(&amp;w_1\)</span></td>
 <td>0</td>
 </tr>
 </tbody>
 </table>
 <p>y considere la hipótesis <span class="math inline">\(H_0: \theta \leq \theta_0\)</span> vs <span class="math inline">\(H_1: \theta &gt; \theta_0\)</span>.</p>
-<p><strong>Teorema</strong>. Suponga que <span class="math inline">\(f_n(x|\theta)\)</span> tiene un cociente de verosimilitud monótono con respecto al estadístico <span class="math inline">\(T=r(x)\)</span>. Es decir,
-<span class="math inline">\(R(x) = \dfrac{f_n(x|\theta_1)}{f_n(x|\theta_0)} = g(r(x))\)</span>
-con <span class="math inline">\(g(r(x))\)</span> monótono con respecto a <span class="math inline">\(r(x)\)</span>.</p>
-<p>Asuma la función de pérdida anterior. Entonces el procedimiento bayesiano de prueba rechaza <span class="math inline">\(H_0\)</span> cuando <span class="math inline">\(T\geq c\)</span>.</p>
-<p><strong>Definición</strong>. Si <span class="math inline">\(f_n(x|\theta)\)</span> es una verosimilitud y <span class="math inline">\(T=r(x)\)</span> un estadístico, decimos que <span class="math inline">\(f_n(x|\theta)\)</span> tiene un MLR con respecto a <span class="math inline">\(T\)</span> si para <span class="math inline">\(\theta_1,\theta_2 \in \Omega\)</span> tales que <span class="math inline">\(\theta_1 &lt;\theta_2\)</span>, <span class="math inline">\(\dfrac{f_n(x|\theta_2)}{f_n(x|\theta_1)}\)</span> depende de <span class="math inline">\(x\)</span> a través de <span class="math inline">\(r(x)\)</span> y es una función monótona de <span class="math inline">\(r(x)\)</span>.</p>
-<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\sigma^2\)</span> conocido.
-Si <span class="math inline">\(\mu_1&lt;\mu_2\)</span>:</p>
+<p><strong>Teorema</strong>. Suponga que <span class="math inline">\(f_n(x|\theta)\)</span> tiene un cociente de verosimilitud
+monótono con respecto al estadístico <span class="math inline">\(T=r(x)\)</span>. Es decir, <span class="math inline">\(R(x) =  \dfrac{f_n(x|\theta_1)}{f_n(x|\theta_0)} = g(r(x))\)</span> con <span class="math inline">\(g(r(x))\)</span> monótono con
+respecto a <span class="math inline">\(r(x)\)</span>.</p>
+<p>Asuma la función de pérdida anterior. Entonces el procedimiento bayesiano de
+prueba rechaza <span class="math inline">\(H_0\)</span> cuando <span class="math inline">\(T\geq c\)</span>.</p>
+<p><strong>Definición</strong>. Si <span class="math inline">\(f_n(x|\theta)\)</span> es una verosimilitud y <span class="math inline">\(T=r(x)\)</span> un
+estadístico, decimos que <span class="math inline">\(f_n(x|\theta)\)</span> tiene un MLR con respecto a <span class="math inline">\(T\)</span> si para
+<span class="math inline">\(\theta_1,\theta_2 \in \Omega\)</span> tales que <span class="math inline">\(\theta_1 &lt;\theta_2\)</span>,
+<span class="math inline">\(\dfrac{f_n(x|\theta_2)}{f_n(x|\theta_1)}\)</span> depende de <span class="math inline">\(x\)</span> a través de <span class="math inline">\(r(x)\)</span> y
+es una función monótona de <span class="math inline">\(r(x)\)</span>.</p>
+<p><strong>Ejemplo</strong>. <span class="math inline">\(X_1,\dots, X_n \sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(\sigma^2\)</span> conocido. Si
+<span class="math inline">\(\mu_1&lt;\mu_2\)</span>:</p>
 <p><span class="math display">\[\begin{align*}
-\dfrac{f_n(x|\mu_2)}{f_n(x|\mu_1)} &amp; = \dfrac{(2\pi\sigma^2)^{-n/2}\exp\bigg[-\dfrac 1{2\sigma^2}\sum (X_i-\mu_2)^2\bigg]}{(2\pi\sigma^2)^{-n/2}\exp\bigg[-\dfrac 1{2\sigma^2}\sum (X_i-\mu_1)^2\bigg]}\\
-&amp; = \exp\bigg[\dfrac{n(\mu_2-\mu_1)}{\sigma^2}\bar X_n -\dfrac 12 (\mu_2+\mu_1))\bigg] = g(T)
+    \dfrac{f_n(x|\mu_2)}{f_n(x|\mu_1)} &amp; =
+    \dfrac{(2\pi\sigma^2)^{-n/2}\exp\bigg[-\dfrac 1{2\sigma^2}\sum
+            (X_i-\mu_2)^2\bigg]}{(2\pi\sigma^2)^{-n/2}\exp\bigg[-\dfrac 1{2\sigma^2}\sum
+    (X_i-\mu_1)^2\bigg]}                   \\ &amp; = \exp\bigg[\dfrac{n(\mu_2-\mu_1)}{\sigma^2}\bar X_n
+        -\dfrac 12 (\mu_2+\mu_1))\bigg] = g(T)
 \end{align*}\]</span></p>
-<p>Entonces <span class="math inline">\(g(T)\)</span> es monótono creciente con respecto a <span class="math inline">\(T=\bar X_n\)</span> y por lo tanto tiene un MLE con respecto a <span class="math inline">\(\bar X_n\)</span>.</p>
+<p>Entonces <span class="math inline">\(g(T)\)</span> es monótono creciente con respecto a <span class="math inline">\(T=\bar X_n\)</span> y por lo tanto
+tiene un MLE con respecto a <span class="math inline">\(\bar X_n\)</span>.</p>
 <p><em>Prueba</em>. Recuerde que</p>
 <p><span class="math display">\[\pi(\theta|x) = \dfrac{f_n(x|\theta)\pi(\theta)}{\int f_n(x|\psi)\pi(\psi)d\psi}\]</span></p>
 <p><span class="math display">\[\begin{align*}
-\mathcal L(x) = \dfrac{\mathbb E[\text{Pérdida}|x,d_0]}{\mathbb E[\text{Pérdida}|x,d_1]} &amp; = \dfrac{\dfrac 1{\text{cte}} \displaystyle\int_{\theta_0}^\infty w_1f_n(x|\theta)\pi(\theta)d\theta}{\dfrac 1{\text{cte}} \displaystyle\int_{-\infty}^{\theta_0} w_0f_n(x|\theta)\pi(\theta)d\theta} \\ &amp; = \dfrac{w_1}{w_0}\dfrac{ \displaystyle\int_{\theta_0}^\infty f_n(x|\theta)\pi(\theta)d\theta}{ \displaystyle\int_{-\infty}^{\theta_0} f_n(x|\theta)\pi(\theta)d\theta}  \geq 1
+    \mathcal L(x) = \dfrac{\mathbb E[\text{Pérdida}|x,d_0]}{\mathbb E[\text{Pérdida}|x,d_1]} &amp; = \dfrac{\dfrac 1{\text{cte}} \displaystyle\int_{\theta_0}^\infty w_1f_n(x|\theta)\pi(\theta)d\theta}{\dfrac 1{\text{cte}} \displaystyle\int_{-\infty}^{\theta_0} w_0f_n(x|\theta)\pi(\theta)d\theta} \\ &amp; = \dfrac{w_1}{w_0}\dfrac{ \displaystyle\int_{\theta_0}^\infty f_n(x|\theta)\pi(\theta)d\theta}{ \displaystyle\int_{-\infty}^{\theta_0} f_n(x|\theta)\pi(\theta)d\theta}  \geq 1
 \end{align*}\]</span></p>
-<p>Buscamos rechazar si <span class="math inline">\(l(x)\geq 1\)</span> (prueba bayesiana) y si existe una función monótona tal que <span class="math inline">\(l(x)\geq 1 \Leftrightarrow T\geq c\)</span>, entonces ambas pruebas son iguales. Basta con probar que <span class="math inline">\(l(x)\)</span> es una función monótona creciente de <span class="math inline">\(T\)</span>.</p>
+<p>Buscamos rechazar si <span class="math inline">\(l(x)\geq 1\)</span> (prueba bayesiana) y si existe una función
+monótona tal que <span class="math inline">\(l(x)\geq 1 \Leftrightarrow T\geq c\)</span>, entonces ambas pruebas
+son iguales. Basta con probar que <span class="math inline">\(l(x)\)</span> es una función monótona creciente de
+<span class="math inline">\(T\)</span>.</p>
 <p>Sea <span class="math inline">\(X_1,X_2\in \mathcal X\)</span> tal que <span class="math inline">\(r(X_1)\leq r(X_2)\)</span>. Entonces</p>
-<p><span class="math display">\[l(X_1)-l(X_2) =\dfrac{w_1 \displaystyle\int_{\theta_0}^\infty f_n(x_1|\theta)\pi(\theta)d\theta}{w_0 \displaystyle\int_{-\infty}^{\theta_0} f_n(x_1|\theta)\pi(\theta)d\theta} -\dfrac{w_1 \displaystyle\int_{\theta_0}^\infty f_n(x_2|\theta)\pi(\theta)d\theta}{w_0 \displaystyle\int_{-\infty}^{\theta_0} f_n(x_2|\theta)\pi(\theta)d\theta}\leq 0. \]</span></p>
+<p><span class="math display">\[ l(X_1)-l(X_2) = \dfrac{w_1 \displaystyle\int_{\theta_0}^\infty f_n(x_1|\theta)\pi(\theta)d\theta}{w_0 \displaystyle\int_{-\infty}^{\theta_0} f_n(x_1|\theta)\pi(\theta)d\theta} -\dfrac{w_1 \displaystyle\int_{\theta_0}^\infty f_n(x_2|\theta)\pi(\theta)d\theta}{w_0 \displaystyle\int_{-\infty}^{\theta_0} f_n(x_2|\theta)\pi(\theta)d\theta}\leq 0. \]</span></p>
 <p>Si simplificamos la expresión en una sola fracción, el numerador es de la forma</p>
-<p><span class="math display">\[\int_{\theta_0}^\infty\int_{-\infty}^{\theta_0}\pi(\theta)\pi(\psi)[f_n(x_1|\theta)f_n(x_2|\psi)-f_n(x_2|\theta)f_n(x_1|\psi)]\;d\psi d\theta\]</span></p>
-<p>y el denominador es siempre positivo, por lo que basta con que el numerador sea negativo.</p>
-<p>Como <span class="math inline">\(f_n(x|\theta)\)</span> tiene un MLR, si <span class="math inline">\(r(x_1)\leq r(x_2)\)</span> y <span class="math inline">\(-\infty &lt;\psi\leq \theta_0\leq \theta&lt;+\infty\)</span>,
-<span class="math display">\[\dfrac{f_n(x_1|\theta)}{f_n(x_1|\psi)}\leq\dfrac{f_n(x_2|\theta)}{f_n(x_2|\psi)} \Leftrightarrow f_n(x_1|\theta)f_n(x_2|\psi)\leq f_n(x_2|\theta)f_n(x_1|\psi)  \]</span></p>
+<p><span class="math display">\[\int_{\theta_0}^\infty\int_{-\infty}^{\theta_0}\pi(\theta)\pi(\psi)[f_n(x_1|\theta)f_n(x_2|\psi)-f_n(x_2|\theta)f_n(x_1|\psi)]\;d\psi
+  d\theta\]</span></p>
+<p>y el denominador es siempre positivo, por lo que basta con que el numerador sea
+negativo.</p>
+<p>Como <span class="math inline">\(f_n(x|\theta)\)</span> tiene un MLR, si <span class="math inline">\(r(x_1)\leq r(x_2)\)</span> y
+<span class="math inline">\(-\infty &lt;\psi\leq \theta_0\leq \theta&lt;+\infty\)</span>,
+<span class="math display">\[\dfrac{f_n(x_1|\theta)}{f_n(x_1|\psi)}\leq\dfrac{f_n(x_2|\theta)}{f_n(x_2|\psi)} \Leftrightarrow f_n(x_1|\theta)f_n(x_2|\psi)\leq f_n(x_2|\theta)f_n(x_1|\psi) \]</span></p>
 <p>Entonces <span class="math inline">\(l(x_1)\leq l(x_2)\)</span> y por tanto ambas pruebas son equivalentes.</p>
-<p><strong>Ejemplo</strong>. Diferencias porcentuales entre calorías observadas y calorías en publicidad para 20 productos preparados.</p>
+<p><strong>Ejemplo</strong>. Diferencias porcentuales entre calorías observadas y calorías en
+publicidad para 20 productos preparados.</p>
 <p><span class="math inline">\(X_1,\dots,X_{20}\sim N(\theta,100)\)</span>, <span class="math inline">\(\theta\sim N(0,60)\)</span></p>
-<p>La media posterior es
-<span class="math display">\[\dfrac{100\cdot 0 + 20\cdot 60\bar X_{20}}{100+20\cdot 60} = 0.923\bar X_{20}.\]</span></p>
+<p>La media posterior es</p>
+<p><span class="math display">\[\dfrac{100\cdot 0 + 20\cdot 60\bar X_{20}}{100+20\cdot 60} = 0.923\bar
+X_{20}.\]</span></p>
 <p>y <span class="math inline">\(\sigma_1^2 = 4.62\)</span>.</p>
 <p>La hipótesis de interés es <span class="math inline">\(H_0:\theta\leq 0\)</span> vs <span class="math inline">\(H_1:\theta&gt;0\)</span>.</p>
 <p><span class="math inline">\(\delta\)</span>: Rechazo <span class="math inline">\(H_0\)</span> si <span class="math inline">\(\mathbb P[H_0|\bar X_{20}]\leq \dfrac{w_1}{w_0+w_1}\)</span>, donde</p>
-<p><span class="math display">\[\mathbb P[\theta\leq 0|\bar X_{20}] = \mathbb P\bigg[Z\bigg|\dfrac{-0.923\bar X_{20}}{4.62}\bigg] = \Phi(-0.429\bar X_{20}).\]</span></p>
+<p><span class="math display">\[\mathbb P[\theta\leq 0|\bar X_{20}] = \mathbb P\bigg[Z\bigg|\dfrac{-0.923\bar
+X_{20}}{4.62}\bigg] = \Phi(-0.429\bar X_{20}).\]</span></p>
 <p>Bajo <span class="math inline">\(\delta\)</span>:</p>
-<p><span class="math display">\[\begin{align*}
-\Phi(-0.429\bar X_{20})\leq \dfrac{w_1}{w_0+w_1}=\beta &amp; \implies -0.429\bar X_{20}\leq \Phi^{-1}(\beta)\\
-&amp;\implies \bar X_{20} \geq \dfrac{-\Phi^{-1}(\beta)}{0.429}
+<p><span class="math display">\[\begin{align*} 
+\Phi(-0.429\bar X_{20})\leq \dfrac{w_1}{w_0+w_1}=\beta &amp; \implies
+    -0.429\bar X_{20}\leq \Phi^{-1}(\beta) \\ &amp; \implies \bar X_{20} \geq
+    \dfrac{-\Phi^{-1}(\beta)}{0.429} 
 \end{align*}\]</span></p>
 <p>Si <span class="math inline">\(w_0 = w_1 \implies \beta = 1/2\)</span> y <span class="math inline">\(\Phi(1/2) =0\)</span>. Por lo tanto <span class="math inline">\(\bar X_{20}\geq 0\)</span>.</p>
-<p><strong>Interpretación</strong>. Si <span class="math inline">\(\bar X_{20}\geq c\)</span> entonces aceptamos la hipótesis de que <span class="math inline">\(\theta&gt;0\)</span> (en términos de la aplicación).</p>
+<p><strong>Interpretación</strong>. Si <span class="math inline">\(\bar X_{20}\geq c\)</span> entonces aceptamos la hipótesis de
+que <span class="math inline">\(\theta&gt;0\)</span> (en términos de la aplicación).</p>
 </div>
 <div id="hipótesis-de-2-colas" class="section level2" number="13.3">
 <h2><span class="header-section-number">13.3</span> Hipótesis de 2 colas</h2>
 <p><span class="math display">\[H_0: \theta = \theta_0 \text{ vs } H_1:\theta \ne \theta_0\]</span></p>
-<p>La significancia práctica indica que “ser igual a <span class="math inline">\(\theta_0\)</span> significa estar cerca”.</p>
+<p>La significancia práctica indica que “ser igual a <span class="math inline">\(\theta_0\)</span> significa estar
+cerca”.</p>
 <p>Replanteamos <span class="math inline">\(H_0\)</span>, tomando <span class="math inline">\(d&gt;0\)</span>:
 <span class="math display">\[H_0: |\theta-\theta_0|\leq d \text{ vs } H_1: |\theta-\theta_0|&gt;d.\]</span></p>
 <p>En el ejemplo anterior, <span class="math inline">\((\theta_0 = 0)\)</span></p>
-<p><span class="math display">\[\mathbb P[H_0|\bar X_{20}]=\mathbb P[|\theta|\leq d|\bar X_{20}] = \Phi\left(\dfrac{d-0.1154}{4.62^{1/2}}\right) - \Phi\left(\dfrac{-d-0.1154}{4.62^{1/2}}\right) = g(d)\]</span></p>
-<p>En el caso normal, si <span class="math inline">\(X_1,\dots,X_n\sim N(\mu,\sigma^2)\)</span> ambos parámetros desconocidos y <span class="math inline">\(\tau = \dfrac 1{\sigma^2}\)</span>, recuerde que</p>
-<p><span class="math display">\[[\mu,\tau]\sim \text{Normal-Gamma}(\mu_0,\lambda_0,\alpha_0,\beta_0)\implies \left(\dfrac{\lambda_0\alpha_0}{\beta_0}\right)^{\frac 12}(\mu-\mu_0)\sim t_{2\alpha_0}\]</span>
-y la marginal de <span class="math inline">\(\mu\)</span> se usa en el cálculo <span class="math inline">\(\mathbb P[H_0|x]\)</span>.</p>
-<p><strong>Ejemplo</strong>. Residuos de un pesticida en apio. <span class="math inline">\(X_1,\dots, X_{77}\sim N(\mu,\sigma^2)\)</span>. Usamos una previa impropia de <span class="math inline">\((\mu,\sigma^2)\)</span>,
-<span class="math display">\[\pi(\mu,\tau)\propto \tau^{-1}\]</span>.</p>
+<p><span class="math display">\[\mathbb P[H_0|\bar X_{20}]=\mathbb P[|\theta|\leq d|\bar X_{20}] =
+\Phi\left(\dfrac{d-0.1154}{4.62^{1/2}}\right) -
+\Phi\left(\dfrac{-d-0.1154}{4.62^{1/2}}\right) = g(d)\]</span></p>
+<p>En el caso normal, si <span class="math inline">\(X_1,\dots,X_n\sim N(\mu,\sigma^2)\)</span> ambos parámetros
+desconocidos y <span class="math inline">\(\tau = \dfrac 1{\sigma^2}\)</span>, recuerde que</p>
+<p><span class="math display">\[[\mu,\tau]\sim \text{Normal-Gamma}(\mu_0,\lambda_0,\alpha_0,\beta_0)\implies
+\left(\dfrac{\lambda_0\alpha_0}{\beta_0}\right)^{\frac 12}(\mu-\mu_0)\sim
+t_{2\alpha_0}\]</span></p>
+<p>y la marginal de <span class="math inline">\(\mu\)</span> se usa en el cálculo <span class="math inline">\(\mathbb P[H_0|x]\)</span>.</p>
+<p><strong>Ejemplo</strong>. Residuos de un pesticida en apio. <span class="math inline">\(X_1,\dots, X_{77}\sim N(\mu,\sigma^2)\)</span>. Usamos una previa impropia de <span class="math inline">\((\mu,\sigma^2)\)</span>,</p>
+<p><span class="math display">\[\pi(\mu,\tau)\propto \tau^{-1}\]</span>.</p>
 <p>Recuerde, además, que</p>
 <p><span class="math display">\[U = \left(\dfrac{n(n-1)}{s_n^2}\right)^{\frac 12}(\mu-\bar X_n)\sim t_{n-1}\]</span>
 en el nivel posterior.</p>
 <p>Nos interesa probar <span class="math inline">\(H_0: \mu\geq 55\)</span> vs <span class="math inline">\(H_1:\mu&lt;55\)</span>.</p>
 <p>Los datos son <span class="math inline">\(\bar X_{77} = 50.23\)</span>, <span class="math inline">\(s_{77}^2=34106\)</span>.</p>
 <p><span class="math display">\[\begin{align*}
-\mathbb P[H_0|X] &amp; = \mathbb P[\mu\geq 55|X] \\ &amp; = \mathbb P\left[\dfrac{\mu-\bar X_{77}}{\left(\frac{\sigma_2&#39;}{77}\right)^{1/2}}\right] \leq \mathbb P\left[\dfrac{55-50.23}{\left(\frac{\sigma_2&#39;}{77}\right)^{1/2}}\right] \\ &amp; = 1-T_{76}[1.974] = 0.026
+    \mathbb P[H_0|X] &amp; = \mathbb P[\mu\geq 55|X] \\ &amp; = \mathbb
+     P\left[\dfrac{\mu-\bar
+     X_{77}}{\left(\frac{\sigma_2&#39;}{77}\right)^{1/2}}\right] \leq \mathbb
+     P\left[\dfrac{55-50.23}{\left(\frac{\sigma_2&#39;}{77}\right)^{1/2}}\right] \\
+     &amp; = 1-T_{76}[1.974] = 0.026
 \end{align*}\]</span></p>
-<p>Note que <span class="math inline">\(\dfrac{-\bar X_{77}-\overbrace{55}^{\mu_0} }{\left(\frac{\sigma_2&#39;}{77}\right)^{1/2}} = -U\)</span></p>
+<p>Note que
+<span class="math inline">\(\dfrac{-\bar X_{77}-\overbrace{55}^{\mu_0} }{\left(\frac{\sigma_2&#39;}{77}\right)^{1/2}} = -U\)</span></p>
 <p>donde <span class="math inline">\(U\)</span> es el estadístico de prueba en el caso frecuentista y</p>
 <p><span class="math display">\[\mathbb P[H_0|X] = \mathbb P[\underbrace{t_{n-1}\geq -\overbrace{u}^{\text{Observado}}}_{\text{Región de rechazo}\\\text{en la prueba frecuentista}}|X]\leq \alpha_0\]</span></p>
-<p><em>Interpretación</em>: aceptamos la hipótesis de que el valor medio del pesticida es menor o igual a 55 ante una función de pérdida en donde <span class="math inline">\(w_0 = w_1\)</span>.</p>
-<p><strong>Teorema</strong>. Sean <span class="math inline">\(X_1,\dots,X_m\sim N(\mu_1,\tau)\)</span> y <span class="math inline">\(Y_1,\dots, Y_n\sim N(\mu_2,\tau)\)</span> dos muestras y <span class="math inline">\(\pi(\mu_1,\mu_2,\tau)\propto \tau^{-1}\)</span>, <span class="math inline">\(\tau &gt; 0\)</span>. Entonces
+<p><em>Interpretación</em>: aceptamos la hipótesis de que el valor medio del pesticida es
+menor o igual a 55 ante una función de pérdida en donde <span class="math inline">\(w_0 = w_1\)</span>.</p>
+<p><strong>Teorema</strong>. Sean <span class="math inline">\(X_1,\dots,X_m\sim N(\mu_1,\tau)\)</span> y
+<span class="math inline">\(Y_1,\dots, Y_n\sim N(\mu_2,\tau)\)</span> dos muestras y
+<span class="math inline">\(\pi(\mu_1,\mu_2,\tau)\propto \tau^{-1}\)</span>, <span class="math inline">\(\tau &gt; 0\)</span>. Entonces
 <span class="math display">\[(m+n-2)^{1/2}\dfrac{\mu_1-\mu_2-(\bar X_{m}-\bar Y_n)}{\left(\dfrac 1m + \dfrac 1n\right)^{1/2}(s_X^2+s_Y^2)^{1/2}}\sim t_{m+n-2}\]</span>
 condicionado en <span class="math inline">\((X,Y)\)</span>.</p>
 <p><em>Prueba</em>: Ejercicio.</p>
-<p><strong>Consecuencia</strong>. Si queremos probar <span class="math inline">\(H_0: \mu_1-\mu_2\leq 0\)</span> vs <span class="math inline">\(H_1:\mu_1-\mu_2&gt;0\)</span>,
-<span class="math display">\[\mathbb P[\mu_1-\mu_2\leq 0|x,y] = \mathbb P\left[t_{m+n-2}\leq \dfrac{-(\bar X_m-\bar Y_n)}{\left(\dfrac 1m + \dfrac 1n\right)^{1/2}(s_X^2+s_Y^2)^{1/2}}(m+n-2)^{1/2}\right] = T_{m+n-2})(-u).\]</span></p>
-<p>donde <span class="math inline">\(u\)</span> es el valor observado de la prueba de 2 muestras en el caso frecuentista.</p>
+<p><strong>Consecuencia</strong>. Si queremos probar <span class="math inline">\(H_0: \mu_1-\mu_2\leq 0\)</span> vs
+<span class="math inline">\(H_1:\mu_1-\mu_2&gt;0\)</span>, <span class="math display">\[\mathbb P[\mu_1-\mu_2\leq 0|x,y] = \mathbb
+P\left[t_{m+n-2}\leq \dfrac{-(\bar X_m-\bar Y_n)}{\left(\dfrac 1m + \dfrac
+1n\right)^{1/2}(s_X^2+s_Y^2)^{1/2}}(m+n-2)^{1/2}\right] = T_{m+n-2})(-u).\]</span></p>
+<p>donde <span class="math inline">\(u\)</span> es el valor observado de la prueba de 2 muestras en el caso
+frecuentista.</p>
 <p>Rechazamos <span class="math inline">\(H_0\)</span> si</p>
 <p><span class="math display">\[ T_{m+n-2}(-u)\leq \dfrac{w_1}{w_0+w_1}=\alpha_0 \Leftrightarrow -u\leq T_{m+n-2}^{-1}(\alpha_0) \implies u\geq -T_{m+n-2}^{-1}(\alpha_0) = T_{m+n-2}^{-1}(1-\alpha_0)\]</span></p>
-<p>Es la misma prueba con <span class="math inline">\(\alpha_0 = \dfrac{w_1}{w_0+w_1}\)</span> con distinta interpretación.</p>
-<p>Otro caso particular es la prueba de varianzas en el caso normal con previas impropias.</p>
+<p>Es la misma prueba con <span class="math inline">\(\alpha_0 = \dfrac{w_1}{w_0+w_1}\)</span> con distinta
+interpretación.</p>
+<p>Otro caso particular es la prueba de varianzas en el caso normal con previas
+impropias.</p>
 
 </div>
 </div>
