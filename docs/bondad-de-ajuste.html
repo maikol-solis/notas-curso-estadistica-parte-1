@@ -294,36 +294,122 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="bondad-de-ajuste" class="section level1" number="13">
 <h1><span class="header-section-number">Capítulo 13</span> Bondad de ajuste</h1>
-<p><strong>Ejemplo</strong>. 23 dispositivos mecánicos con sus tiempos de fallo (log-tiempo). ¿Los datos son normales? La hipótesis nula es la normalidad, lo que representa un problema no paramétrico.</p>
+<p>En los ejemplos que hemos visto siempre hemos necesitado una distribución de
+referencia que nos permita calcular los cuantiles correspondientes. Sin embargo,
+es posible que ese supuesto no se cumpla, o que la distribución no sea normal
+por ejemplo. En estos casos primero se debe de considerar una prueba de
+hipótesis para revisar las condiciones de nuestros datos. Una familia de
+problemas no paramétricos surgen a partir de esta observación.</p>
+<!-- **Ejemplo**. 23 dispositivos mecánicos con sus tiempos de fallo (log-tiempo). -->
+<!-- ¿Los datos son normales? La hipótesis nula es la normalidad, lo que representa -->
+<!-- un problema no paramétrico. -->
 <div id="prueba-chi2" class="section level2" number="13.1">
 <h2><span class="header-section-number">13.1</span> Prueba <span class="math inline">\(\chi^2\)</span></h2>
-<p><strong>Datos categóricos</strong>: el rango de la variable asume un número finito de categorías o estados</p>
-<p>Suponga que tenemos <span class="math inline">\(k\)</span> categorías,
-<span class="math display">\[p_i = \mathbb P[\text{Categoría }i],\;i=1,\dotsc,k\]</span>
-y <span class="math inline">\(\sum_{i=1}^kp_i = 1\)</span>. Sea <span class="math inline">\(p_1^0,\dotsc,p_k^0\)</span> probabilidades propuestas, <span class="math inline">\(\sum_{i=1}^kp_i^0\)</span>. Suponga
+<p>Suponga que se tienen <strong>datos categóricos</strong> los cuales el rango de la variable
+asume un número finito de categorías o estados</p>
+<p><strong>Ejemplo:</strong> Por ejemplo suponga que tienen la variable de tipo de sangre en la población, entonces</p>
+<table>
+<thead>
+<tr class="header">
+<th>Categoría</th>
+<th>Tipo de sangre</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>B</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>AB</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>O</td>
+</tr>
+</tbody>
+</table>
+<p>Suponga que tenemos <span class="math inline">\(k\)</span> categorías,</p>
+<p><span class="math display">\[p_i = \mathbb P[\text{Categoría }i],\;i=1,\dotsc,k\]</span></p>
+<p>y <span class="math inline">\(\sum_{i=1}^kp_i = 1\)</span>. Sea <span class="math inline">\(p_1^0,\dotsc,p_k^0\)</span>
+probabilidades propuestas, <span class="math inline">\(\sum_{i=1}^kp_i^0\)</span>.</p>
+<p>Suponga
 <span class="math display">\[ H_0: p_i = p_i^0\text{ para } i=1,\dots,k\]</span>
 <span class="math display">\[ H_1: p_i \ne p_i^0\text{ para al menos un }i\]</span></p>
+<p><strong>Ejemplo:</strong> Siguiendo con el ejemplo, suponga que se quiere hacer la siguiente hipótesis de la población</p>
+<table>
+<thead>
+<tr class="header">
+<th>Categoría</th>
+<th>Tipo de sangre</th>
+<th>Hipótesis (<span class="math inline">\(p_i ^{0}\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>A</td>
+<td>1/3</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>B</td>
+<td>1/8</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>AB</td>
+<td>1/24</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>O</td>
+<td>1/2</td>
+</tr>
+</tbody>
+</table>
 <p>Suponga una muestra de <span class="math inline">\(n\)</span> elementos. <span class="math inline">\(N_i\)</span> el número de elementos en la categoría <span class="math inline">\(i\)</span>, <span class="math inline">\(\sum _{i=1}^kN_i = n\)</span>. Note que
-<span class="math display">\[(N_1,\dots,N_k)\sim\text{Multinomial}\]</span></p>
+<span class="math display">\[(N_1,\dots,N_k)\sim\text{Multinomial}(p_1, \dots, p_k)\]</span></p>
+<p><strong>Nota:</strong> Una distribución multinomial tiene la siguiente forma:</p>
+<p><span class="math display">\[\begin{align*}
+\operatorname{Pr}\left(X_{1}=x_{1}, \ldots, X_{k}=x_{k}\right) = 
+\left\{\begin{array}{rlr}
+\binom {n} {x_{1}, \ldots, x_{k}} p_{1}^{x_{1}} \cdots p_{k}^{x_{k}} &amp; \text { if } x_{1}+\cdots+x_{k}=n \\
+0 &amp; \text { otherwise. }
+\end{array}\right.
+\end{align*}\]</span></p>
+<p>donde</p>
+<p><span class="math display">\[\begin{equation*}
+\binom{n}{x_{1}, \ldots, x_{k}}
+=\frac{n !}{x_{1} ! x_{2} ! \cdots x_{k} !}
+\end{equation*}\]</span></p>
 <p>El número esperado de elementos en la celda <span class="math inline">\(i\)</span> es <span class="math inline">\(n\cdot p_i^0\)</span>. Si <span class="math inline">\(N_i -np_i^0\)</span> es cercano a 0 para todo <span class="math inline">\(i\)</span>, es indicador de que <span class="math inline">\(H_0\)</span> es cierto.</p>
 <p>El <strong>estadístico <span class="math inline">\(\chi^2\)</span></strong> se define como</p>
 <p><span class="math display">\[Q = \sum_{i=1}^k\dfrac{(N_i-np_i^0)^2}{np_i^0}.\]</span></p>
-<p>Cuando <span class="math inline">\(n\)</span> es grande y <span class="math inline">\(k\)</span> es “relativamente” pequeño con respecto a <span class="math inline">\(n\)</span>,
-<span class="math display">\[Q \xrightarrow[H_0]{}\chi^2_{k-1}.\]</span></p>
+<p>En 1900, Karl Pearson probó que cuando <span class="math inline">\(n\)</span> es grande y <span class="math inline">\(k\)</span> es “relativamente”
+pequeño con respecto a <span class="math inline">\(n\)</span>,</p>
+<p><span class="math display">\[Q \xrightarrow[H_0]{}\chi^2_{k-1}.\]</span></p>
 <p>En la prueba <span class="math inline">\(\chi^2\)</span>, <span class="math inline">\(\delta\)</span>: Rechazo <span class="math inline">\(H_0\)</span> si <span class="math inline">\(Q\geq c\)</span>. Dado un nivel de significancia <span class="math inline">\(\alpha_0\)</span>,
 <span class="math display">\[\mathbb P_{H_0}[Q\geq c]\le \alpha_0\implies c = F^{-1}_{\chi^2_{k-1}}(1-\alpha_0)\]</span></p>
+<p><strong>Nota:</strong> El estadístico <span class="math inline">\(Q\)</span> se puede interpretar de la forma</p>
+<p><span class="math display">\[Q = \sum_{i=1}^k\dfrac{(\text{observado}_{i} - \text{esperado}_{i})^2}{\text{esperado}_{i}}.\]</span></p>
 <p><strong>Reglas empíricas</strong></p>
 <ol style="list-style-type: decimal">
-<li><p>La aproximación <span class="math inline">\((Q\sim\chi^{k-1})\)</span> funciona muy bien si <span class="math inline">\(np_i^0\ge 5\)</span>.</p></li>
+<li><p>La aproximación <span class="math inline">\((Q\sim\chi^{k-1})\)</span> funciona muy bien si <span class="math inline">\(np_i^0\geq 5\)</span>.</p></li>
 <li><p>La aproximación es buena si <span class="math inline">\(np_i^0\ge 1.5\)</span>, <span class="math inline">\(i=1,\dots,k\)</span>.</p></li>
 </ol>
-<p><strong>Ejemplo</strong>: 6004 personas (gente blanca, California)</p>
+<p><strong>Ejemplo</strong>: Continuando con el ejemplo se observan 6004 personas de raza blanca en California y se obtiene este resultado</p>
 <table>
 <thead>
 <tr class="header">
 <th><span class="math inline">\(\text{Grupo}\)</span></th>
-<th><span class="math inline">\(\text{Observado}\)</span></th>
-<th><span class="math inline">\(\text{Teórico}\)</span></th>
+<th><span class="math inline">\(\text{Observado}\)</span> (<span class="math inline">\(n_i\)</span>)</th>
+<th><span class="math inline">\(\text{Teórico}\)</span> (<span class="math inline">\(p_i ^{0}\)</span>)</th>
 </tr>
 </thead>
 <tbody>
@@ -357,12 +443,25 @@ y <span class="math inline">\(\sum_{i=1}^kp_i = 1\)</span>. Sea <span class="mat
 <li><p><span class="math inline">\(np_4^0 = 6004\cdot1/2 = 3002\)</span>.</p></li>
 </ul>
 <p><span class="math display">\[Q = \dfrac{(2162-2001.3)^2}{2001.3} + \dfrac{(738-750.5)^2}{750.5} + \dfrac{(228-250.2)^2}{250.2} + \dfrac{(2876-3002)^2}{3002} = 20.37.\]</span></p>
-<p>El valor-<em>p</em> es <span class="math inline">\(\bar F_{\chi^2_3(20.37)} = 1.42\times 10^{-4}\)</span>.</p>
-<p>Rechazamos la hipótesis de que las probabilidades teóricas de tipo de sangre son igual al valor hipotético.</p>
+<p>El valor-<em>p</em> es <span class="math inline">\(F_{\chi^2_{3}}(20.37) = 1.42\times 10^{-4}\)</span>.</p>
+<p>En R el test se puede hacer con la función <code>chisq.test</code>:</p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="bondad-de-ajuste.html#cb328-1"></a>observado &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2162</span>, <span class="dv">738</span>, <span class="dv">228</span>, <span class="dv">2876</span>)</span>
+<span id="cb328-2"><a href="bondad-de-ajuste.html#cb328-2"></a></span>
+<span id="cb328-3"><a href="bondad-de-ajuste.html#cb328-3"></a>probabilidad_hipotetica &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">8</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">24</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</span>
+<span id="cb328-4"><a href="bondad-de-ajuste.html#cb328-4"></a></span>
+<span id="cb328-5"><a href="bondad-de-ajuste.html#cb328-5"></a><span class="kw">chisq.test</span>(<span class="dt">x =</span> observado, <span class="dt">p =</span> probabilidad_hipotetica)</span></code></pre></div>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  observado
+## X-squared = 20.359, df = 3, p-value = 0.000143</code></pre>
+<p>Rechazamos la hipótesis de que las probabilidades teóricas de tipo de sangre son
+igual al valor hipotético.</p>
 <p><strong>Ejemplo</strong>. Sean <span class="math inline">\(0&lt;X_i&lt;1\)</span>, <span class="math inline">\(i=1,2,\dots,100\)</span>. <span class="math inline">\(X_i~f\)</span>, <span class="math inline">\(f\)</span> una densidad continua.</p>
 <p><span class="math display">\[H_0: f=\text{Unif}(0,1) \text{ vs } H_1: f \ne\text{Unif}(0,1). \]</span></p>
-<p>Se definen 20 niveles, que corresponden a intervalos de [0,1]. Una observación <span class="math inline">\(X_j\)</span> está en el nivel <span class="math inline">\(i\)</span> si
-<span class="math display">\[\dfrac{i-1}{20}\leq X_j &lt;\dfrac{i}{20}\]</span>.</p>
+<p>Se definen 20 niveles, que corresponden a intervalos de [0,1]. Una observación
+<span class="math inline">\(X_j\)</span> está en el nivel <span class="math inline">\(i\)</span> si</p>
+<p><span class="math display">\[\dfrac{i-1}{20}\leq X_j &lt;\dfrac{i}{20}\]</span>.</p>
 <table>
 <thead>
 <tr class="header">
@@ -426,16 +525,61 @@ y <span class="math inline">\(\sum_{i=1}^kp_i = 1\)</span>. Sea <span class="mat
 <p>Entonces
 <span class="math display">\[Q = \sum_{i=1}^{20}\dfrac{(N_i-5)^2}{5}.\]</span></p>
 <p>Rechazamos la hipótesis <span class="math inline">\(f = \text{Unif}(0,1)\)</span> si <span class="math inline">\(Q&gt;\chi^2_{19}(1-\alpha_0)\)</span>.</p>
-<p><strong>Ejemplo</strong>. Trabajemos con el ejemplo de log-tiempo de vida de los dispositivos.</p>
-<p><span class="math display">\[H_0: f = N(\ln50,0.25)\]</span></p>
-<p>Seleccione <span class="math inline">\(k\)</span> tal que <span class="math inline">\(p_i^0 = \mathbb P[\text{log-tiempo perteneza al }i\text{-ésimo intervalo}]\geq \dfrac 5{23}\approx \dfrac 14.\)</span></p>
+<p><strong>Nota:</strong> Este método funciona para cualquier tipo de distribución. El siguiente
+procedimiento se debe seguir para estos casos</p>
+<ol style="list-style-type: lower-roman">
+<li><p>Particione en <span class="math inline">\(k\)</span> subintervalos disjuntos la recta real o cualquier intervalo
+en el que esté contenidos sus datos de modo que este tenga probalidad 1. Es
+decir, todos sus datos deben estar contenidos en este intervalo.</p></li>
+<li><p>Determine las probabilidades <span class="math inline">\(p_i ^{0}\)</span> hipotéticas que se asignará cada
+subintervalo. El valor teórico para cada subintervalo será <span class="math inline">\(n p_i ^{0}\)</span></p></li>
+<li><p>Cuente las observaciones que caen en cada subintervalo. Llame este valor <span class="math inline">\(N_i\)</span></p></li>
+<li><p>Calcule <span class="math inline">\(Q\)</span> según el procedimiento anterior y tome una decisión con respecto
+a la hipótesis nula. La hipótesis nula deberá tener una distribución <span class="math inline">\(\chi ^{2}\)</span>
+con <span class="math inline">\(k-1\)</span> grados de libertad.</p></li>
+</ol>
+<p><strong>Ejemplo</strong>. Supongamos que tenemos 23 datos de unas partes mecánicas para automóvil. Se registró el sus tiempos de vida útil.</p>
+<p>Trabajemos con el ejemplo de log-tiempo de vida de los dispositivos.</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="bondad-de-ajuste.html#cb330-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">17.88</span>, <span class="fl">28.92</span>, <span class="dv">33</span>, <span class="fl">41.52</span>, <span class="fl">42.12</span>, <span class="fl">45.6</span>, <span class="fl">48.8</span>, <span class="fl">51.84</span>, <span class="fl">51.96</span>, <span class="fl">54.12</span>, <span class="fl">55.56</span>,</span>
+<span id="cb330-2"><a href="bondad-de-ajuste.html#cb330-2"></a>  <span class="fl">67.8</span>, <span class="fl">68.44</span>, <span class="fl">68.64</span>, <span class="fl">68.88</span>, <span class="fl">84.12</span>, <span class="fl">93.12</span>, <span class="fl">98.64</span>, <span class="fl">105.12</span>, <span class="fl">105.84</span>, <span class="fl">127.92</span>,</span>
+<span id="cb330-3"><a href="bondad-de-ajuste.html#cb330-3"></a>  <span class="fl">128.04</span>, <span class="fl">173.4</span>)</span>
+<span id="cb330-4"><a href="bondad-de-ajuste.html#cb330-4"></a></span>
+<span id="cb330-5"><a href="bondad-de-ajuste.html#cb330-5"></a>log_x &lt;-<span class="st"> </span><span class="kw">log</span>(x)</span>
+<span id="cb330-6"><a href="bondad-de-ajuste.html#cb330-6"></a></span>
+<span id="cb330-7"><a href="bondad-de-ajuste.html#cb330-7"></a><span class="kw">hist</span>(x)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/13-bondad-de-ajuste-2-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="bondad-de-ajuste.html#cb331-1"></a><span class="kw">hist</span>(log_x)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/13-bondad-de-ajuste-2-2.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p>Suponga que se quiere hacer la prueba de hipótesis</p>
+<p><span class="math display">\[H_0: f = N(\log(50),0.25) \quad vs \quad H_1: f \neq N(\log(50),0.25)\]</span></p>
+<p>Seleccione <span class="math inline">\(k\)</span> tal que</p>
+<p><span class="math display">\[
+p_i^0 = \mathbb P[\text{log-tiempo perteneza al }i\text{-ésimo intervalo}]\geq \dfrac 5{23}\approx \dfrac 14.
+\]</span></p>
 <p>Podemos tomar <span class="math inline">\(k = 4\)</span> grupos (intervalos regulares)</p>
 <ol style="list-style-type: decimal">
-<li><p>Grupo 1: <span class="math inline">\((-\infty,F^{-1}_{H_0}(0.25)] = (-\infty,3.575]\)</span>.</p></li>
+<li><p>Grupo 1: <span class="math inline">\((F^{-1}_{H_0}(0),F^{-1}_{H_0}(0.25)] = (-\infty,3.575]\)</span>.</p></li>
 <li><p>Grupo 2: <span class="math inline">\((F^{-1}_{H_0}(0.25),F^{-1}_{H_0}(0.5)] = (3.575,3.912]\)</span>.</p></li>
-<li><p>Grupo 3: <span class="math inline">\((3.912,4.249]\)</span>.</p></li>
-<li><p>Grupo 4: <span class="math inline">\((4.249,+\infty)\)</span>.</p></li>
+<li><p>Grupo 3: <span class="math inline">\((F^{-1}_{H_0}(0.5),F^{-1}_{H_0}(0.75)]=(3.912,4.249]\)</span>.</p></li>
+<li><p>Grupo 4: <span class="math inline">\((F^{-1}_{H_0}(0.75),F^{-1}_{H_0}(1))=(4.249,+\infty)\)</span>.</p></li>
 </ol>
+<p>Entonces solo para efectos de construir la partición</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="bondad-de-ajuste.html#cb332-1"></a>cortes &lt;-<span class="st"> </span><span class="kw">qnorm</span>(<span class="dt">p =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">3</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">1</span>),</span>
+<span id="cb332-2"><a href="bondad-de-ajuste.html#cb332-2"></a>  <span class="dt">mean =</span> <span class="kw">log</span>(<span class="dv">50</span>),</span>
+<span id="cb332-3"><a href="bondad-de-ajuste.html#cb332-3"></a>  <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="fl">0.25</span>))</span>
+<span id="cb332-4"><a href="bondad-de-ajuste.html#cb332-4"></a></span>
+<span id="cb332-5"><a href="bondad-de-ajuste.html#cb332-5"></a>(intervalos &lt;-<span class="st"> </span><span class="kw">cut</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="dt">breaks =</span> cortes))</span></code></pre></div>
+<pre><code>## [1] (-Inf,3.57] (4.25, Inf]
+## Levels: (-Inf,3.57] (3.57,3.91] (3.91,4.25] (4.25, Inf]</code></pre>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="bondad-de-ajuste.html#cb334-1"></a>(conteos &lt;-<span class="st"> </span><span class="kw">cut</span>(log_x, <span class="dt">breaks =</span> cortes))</span></code></pre></div>
+<pre><code>##  [1] (-Inf,3.57] (-Inf,3.57] (-Inf,3.57] (3.57,3.91] (3.57,3.91] (3.57,3.91]
+##  [7] (3.57,3.91] (3.91,4.25] (3.91,4.25] (3.91,4.25] (3.91,4.25] (3.91,4.25]
+## [13] (3.91,4.25] (3.91,4.25] (3.91,4.25] (4.25, Inf] (4.25, Inf] (4.25, Inf]
+## [19] (4.25, Inf] (4.25, Inf] (4.25, Inf] (4.25, Inf] (4.25, Inf]
+## Levels: (-Inf,3.57] (3.57,3.91] (3.91,4.25] (4.25, Inf]</code></pre>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="bondad-de-ajuste.html#cb336-1"></a><span class="kw">summary</span>(conteos)</span></code></pre></div>
+<pre><code>## (-Inf,3.57] (3.57,3.91] (3.91,4.25] (4.25, Inf] 
+##           3           4           8           8</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -455,28 +599,55 @@ y <span class="math inline">\(\sum_{i=1}^kp_i = 1\)</span>. Sea <span class="mat
 </tbody>
 </table>
 <p><span class="math display">\[Q = \dfrac{(3-23\cdot1/4)^2}{23\cdot 1/4} +  \dfrac{(4-23\cdot1/4)^2}{23\cdot 1/4}+\dfrac{(8-23\cdot1/4)^2}{23\cdot 1/4} + \dfrac{(8-23\cdot1/4)^2}{23\cdot 1/4}= 3.609.\]</span></p>
-<p>El valor-<em>p</em> corresponde a <span class="math inline">\(\bar F_{\chi^2_3}(3.609) = 0.307\)</span>.</p>
-<p>Con un nivel de 3%, no se rechaza la hipótesis de normalidad bajo esa escogencia de parámetros.</p>
+<p>El valor-<span class="math inline">\(p\)</span> corresponde a <span class="math inline">\(F_{\chi^2_3}(3.609) = 0.307\)</span>.</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="bondad-de-ajuste.html#cb338-1"></a>conteos &lt;-<span class="st"> </span><span class="kw">summary</span>(conteos)</span>
+<span id="cb338-2"><a href="bondad-de-ajuste.html#cb338-2"></a></span>
+<span id="cb338-3"><a href="bondad-de-ajuste.html#cb338-3"></a><span class="kw">chisq.test</span>(conteos)</span></code></pre></div>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  conteos
+## X-squared = 3.6087, df = 3, p-value = 0.3069</code></pre>
+<p><strong>Nota:</strong> La función <code>chisq.test</code> si no se llama con ninguna hipótesis nula <code>p</code>,
+esta asume que <span class="math inline">\(p = 1/n\)</span> para cada categoría. En este caso como son 4
+categorías sería <span class="math inline">\(1/4\)</span>.</p>
+<p>Con un nivel de 30%, no se rechaza la hipótesis de normalidad bajo esa escogencia
+de parámetros.</p>
+<p><strong>Nota:</strong> Otra escogencia de paramétros podría aceptar la hipótesis nula.</p>
 </div>
 <div id="pruebas-chi2-con-hipótesis-parametrizadas" class="section level2" number="13.2">
 <h2><span class="header-section-number">13.2</span> Pruebas <span class="math inline">\(\chi^2\)</span> con hipótesis parametrizadas</h2>
-<p><strong>Ejemplo</strong>. <span class="math inline">\(H_0: f = N(\mu,\sigma^2)\)</span>, ambos desconocidos.</p>
-<p>Cada <span class="math inline">\(p_i\)</span> <span class="math inline">\((i=1,\dots,k)\)</span> se pueden escribir
-<span class="math display">\[p_i = \pi_i(\theta), \theta = (\theta_1,\dots,\theta_s)\]</span>
-Asuma que <span class="math inline">\(s&lt;k-1\)</span>. Las entradas de <span class="math inline">\(\theta\)</span> no se pueden escribir como función de ellas mismas. Además <span class="math inline">\(\sum \pi_i(\theta) = 1\)</span>.</p>
-<p><span class="math display">\[H_0: p_i = \pi_i(\theta)\text{ para algún parámetro }\theta\in \Omega,\;i=1,\dots,k\]</span>
-<span class="math display">\[H_1: \text{lo anterior no es cierto}\]</span></p>
-<p>El estadístico es
-<span class="math display">\[Q = \sum_{i=1}^k\dfrac{[N_i-n\pi_i(\hat\theta)]^2}{n\pi_i(\hat\theta)}\]</span>
-con <span class="math inline">\(\hat\theta\)</span> el MLE de <span class="math inline">\(\theta\)</span> usando la distribución de <span class="math inline">\((N_1,\dots,N_k)\)</span>.</p>
+<p><strong>Ejemplo.</strong> En el caso anterior, probamos que la distribución Normal con media <span class="math inline">\(\log(50) = 3.912023\)</span> y desviación estándar <span class="math inline">\(0.25\)</span> no funcionabapara nuestros datos.</p>
+<p>La pregunta es entonces, ¿Cuáles serían los parámetros correctos? ¿Los datos
+pertenecen a una familia normal?</p>
+<p>En esta sección veremos una técnica para lidiar con este problema.</p>
+<p>Escriba cada <span class="math inline">\(p_i\)</span> <span class="math inline">\((i=1,\dots,k)\)</span> como</p>
+<p><span class="math display">\[p_i = \pi_i(\theta),\quad \theta = (\theta_1,\dots,\theta_s)\]</span></p>
+<p>Es decir, cada probabilidad es igual a una función particular con respecto a
+algunos paramétros <span class="math inline">\(\mathbf{\theta}\)</span>.</p>
+<p>Asuma que <span class="math inline">\(s&lt;k-1\)</span>. Las entradas de <span class="math inline">\(\theta\)</span> no se pueden escribir como función
+de ellas mismas. Además <span class="math inline">\(\sum \pi_i(\theta) = 1\)</span>.</p>
+<p><span class="math display">\[H_0: p_i = \pi_i(\theta)\text{ para algún parámetro }\theta\in
+\Omega,\;i=1,\dots,k\]</span></p>
+<p><span class="math display">\[H_1: \text{lo anterior no es cierto}\]</span></p>
+<p>El estadístico es</p>
+<p><span class="math display">\[Q = \sum_{i=1}^k\dfrac{[N_i-n\pi_i(\hat\theta)]^2}{n\pi_i(\hat\theta)}\]</span></p>
+<p>con <span class="math inline">\(\hat\theta\)</span> el MLE de <span class="math inline">\(\theta\)</span> usando la distribución de <span class="math inline">\((N_1,\dots,N_k)\)</span>.</p>
 <p><strong>Teorema</strong>. Bajo <span class="math inline">\(H_0\)</span>, conforme <span class="math inline">\(n\to \infty\)</span>, <span class="math inline">\(Q\to \chi^2_{k-1-s}\)</span>.</p>
-<p><strong>Ejemplo</strong>. Considere 3 niveles, <span class="math inline">\(0&lt;\theta&lt;1\)</span>.
-<span class="math display">\[p_1 = \underbrace{\theta^2}_{\pi_1(\theta)},\;p_2 = \underbrace{2\theta(1-\theta)}_{\pi_2(\theta)},\;p_3 = \underbrace{(1-\theta)^2}_{\pi_3(\theta)}.\]</span></p>
+<p><strong>Ejemplo</strong>. Suponga que se tienen 3 grupos y defina una parámetro <span class="math inline">\(0&lt;\theta&lt;1\)</span>.
+El análisista hace el siguiente supuesto:</p>
+<p><span class="math display">\[\begin{align*}
+p_1 &amp;= \theta^2=\pi_1(\theta)  , \\
+p_2 &amp;= 2\theta(1-\theta)=\pi_2(\theta),\\
+p_3 &amp;= (1-\theta)^2=\pi_3(\theta).
+\end{align*}\]</span></p>
 <p>Se observa que <span class="math inline">\(p_1+p_2+p_3 = \theta^2 + 2\theta (1-\theta +(1-\theta)^2 =[\theta+(1-\theta)]^2 = 1\)</span>.</p>
 <p><span class="math inline">\(s = 1\)</span>, <span class="math inline">\(\Omega = [0,1]\)</span>.</p>
-<p>Como la distribución de <span class="math inline">\((N_1,\dots,N_k)\underset{H_0}{\sim} \text{Multinomial}(n,p_1,\dots,p_k)\)</span>, se obtiene la verosimilitud</p>
+<p>Como la distribución de
+<span class="math inline">\((N_1,\dots,N_k)\underset{H_0}{\sim} \text{Multinomial}(n,p_1,\dots,p_k)\)</span>, se
+obtiene la verosimilitud</p>
 <p><span class="math display">\[L (\theta|N_1,\dots,N_k) = {n \choose {N_1\cdots N_k}}(\pi_1(\theta))^{N_1}\cdots(\pi_k(\theta))^{N_k}\]</span></p>
-<p><span class="math display">\[\ln L \propto N_1\ln\pi_1(\theta)+\cdots+N_k\ln\pi_k(\theta)\]</span></p>
+<p><span class="math display">\[\ell = \log (L) \propto N_1\ln\pi_1(\theta)+\cdots+N_k\ln\pi_k(\theta)\]</span></p>
 <p>Retomando el ejemplo,</p>
 <p><span class="math display">\[\begin{align*}
 \ln L(\theta) &amp; \propto N_1\ln \theta^2 + N_2 \ln 2\theta(1-\theta) + N_3\ln (1-\theta)^2\\
@@ -484,33 +655,88 @@ con <span class="math inline">\(\hat\theta\)</span> el MLE de <span class="math 
 \end{align*}\]</span></p>
 <p><span class="math display">\[\dfrac{\partial \ln L(\theta)}{\partial\theta} = \dfrac{2N_1+N_2}{\theta}-\dfrac{2N_3+N_2}{1-\theta} = 0 \implies \hat\theta = \dfrac{2N_1+N_2}{2n}\]</span></p>
 <p>Con esto se calcula <span class="math inline">\(\pi_1(\hat \theta)\)</span>,<span class="math inline">\(\pi_2(\hat \theta)\)</span>,<span class="math inline">\(\pi_3(\hat \theta)\)</span> y <span class="math inline">\(Q\)</span>.</p>
-<p><strong>Ejemplo</strong> (Normalidad). Sean <span class="math inline">\(X_1,\dots,X_n\sim f\)</span>, <span class="math inline">\(H_0: f = N(\mu,\sigma^2)\)</span> donde <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> son desconocidos.</p>
-<p>Usando la misma partición (en cuartiles)</p>
+<p><strong>Ejemplo</strong> (Partes de automóvil). Sean <span class="math inline">\(X_1,\dots,X_n\sim f\)</span>, <span class="math inline">\(H_0: f = N(\mu,\sigma^2)\)</span> donde <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> son desconocidos.</p>
+<p>Vamos a construir las funciones <span class="math inline">\(\pi\)</span> tratando de ajustar los cuantiles que
+habíamos definido antes con los valores teóricos de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span>. Entonces,</p>
 <p><span class="math display">\[\pi_i(\mu,\sigma^2) = \int_{a_i}^{b_i}(2\pi\sigma^2)^{-1/2}\exp\left(-\dfrac 1{2\sigma^2}(x-\mu)^2\right)dx = \Phi\left(\dfrac{b_i-\mu}{\sigma}\right)-\Phi\left(\dfrac{a_i-\mu}{\sigma}\right)\]</span></p>
-<p>Asumiendo que la <em>i</em>-ésima partición es <span class="math inline">\((a_i,b_i)\)</span>, los intervalos son
-<span class="math display">\[(-\infty,3.575],(3.575,3.912],(3.912,4.249], (4.249,+\infty).\]</span></p>
-<p>La verosimilitud es
-<span class="math display">\[\ln L(\mu,\sigma^2) = N_1\ln \pi_1(\mu,\sigma^2)+\cdots+N_4\ln\pi_4(\mu,\sigma^2)\]</span></p>
+<p>Asumiendo que la <em>i</em>-ésima partición es <span class="math inline">\((a_i,b_i)\)</span>, los 4 intervalos son</p>
+<p><span class="math display">\[(-\infty,3.575],(3.575,3.912],(3.912,4.249], (4.249,+\infty).\]</span></p>
+<p>La verosimilitud es</p>
+<p><span class="math display">\[\ln L(\mu,\sigma^2) = N_1\ln \pi_1(\mu,\sigma^2)+\cdots+N_4\ln\pi_4(\mu,\sigma^2)\]</span></p>
 <p>y se optimiza numéricamente.</p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="bondad-de-ajuste.html#cb340-1"></a>cortes &lt;-<span class="st"> </span><span class="kw">qnorm</span>(</span>
+<span id="cb340-2"><a href="bondad-de-ajuste.html#cb340-2"></a>  <span class="dt">p =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">3</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">1</span>),</span>
+<span id="cb340-3"><a href="bondad-de-ajuste.html#cb340-3"></a>  <span class="dt">mean =</span> <span class="kw">log</span>(<span class="dv">50</span>),</span>
+<span id="cb340-4"><a href="bondad-de-ajuste.html#cb340-4"></a>  <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="fl">0.25</span>)</span>
+<span id="cb340-5"><a href="bondad-de-ajuste.html#cb340-5"></a>)</span>
+<span id="cb340-6"><a href="bondad-de-ajuste.html#cb340-6"></a></span>
+<span id="cb340-7"><a href="bondad-de-ajuste.html#cb340-7"></a>log_versomilitud &lt;-<span class="st"> </span><span class="cf">function</span>(par, cortes, log_x) {</span>
+<span id="cb340-8"><a href="bondad-de-ajuste.html#cb340-8"></a>  G &lt;-<span class="st"> </span><span class="kw">length</span>(cortes)</span>
+<span id="cb340-9"><a href="bondad-de-ajuste.html#cb340-9"></a>  mu &lt;-<span class="st"> </span>par[<span class="dv">1</span>]</span>
+<span id="cb340-10"><a href="bondad-de-ajuste.html#cb340-10"></a>  sigma &lt;-<span class="st"> </span><span class="kw">sqrt</span>(par[<span class="dv">2</span>])</span>
+<span id="cb340-11"><a href="bondad-de-ajuste.html#cb340-11"></a></span>
+<span id="cb340-12"><a href="bondad-de-ajuste.html#cb340-12"></a>  pi &lt;-<span class="st"> </span><span class="kw">numeric</span>()</span>
+<span id="cb340-13"><a href="bondad-de-ajuste.html#cb340-13"></a>  <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(G <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) {</span>
+<span id="cb340-14"><a href="bondad-de-ajuste.html#cb340-14"></a>    pi[k] &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> cortes[k <span class="op">+</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma) <span class="op">-</span></span>
+<span id="cb340-15"><a href="bondad-de-ajuste.html#cb340-15"></a><span class="st">      </span><span class="kw">pnorm</span>(<span class="dt">q =</span> cortes[k], <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma)</span>
+<span id="cb340-16"><a href="bondad-de-ajuste.html#cb340-16"></a>  }</span>
+<span id="cb340-17"><a href="bondad-de-ajuste.html#cb340-17"></a></span>
+<span id="cb340-18"><a href="bondad-de-ajuste.html#cb340-18"></a>  conteos &lt;-<span class="st"> </span><span class="kw">cut</span>(log_x, <span class="dt">breaks =</span> cortes)</span>
+<span id="cb340-19"><a href="bondad-de-ajuste.html#cb340-19"></a>  conteos &lt;-<span class="st"> </span><span class="kw">summary</span>(conteos)</span>
+<span id="cb340-20"><a href="bondad-de-ajuste.html#cb340-20"></a></span>
+<span id="cb340-21"><a href="bondad-de-ajuste.html#cb340-21"></a>  l &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sum</span>(conteos <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(pi))</span>
+<span id="cb340-22"><a href="bondad-de-ajuste.html#cb340-22"></a></span>
+<span id="cb340-23"><a href="bondad-de-ajuste.html#cb340-23"></a>  <span class="kw">return</span>(l)</span>
+<span id="cb340-24"><a href="bondad-de-ajuste.html#cb340-24"></a>}</span>
+<span id="cb340-25"><a href="bondad-de-ajuste.html#cb340-25"></a></span>
+<span id="cb340-26"><a href="bondad-de-ajuste.html#cb340-26"></a>sol &lt;-<span class="st"> </span><span class="kw">optim</span>(<span class="dt">par =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">fn =</span> log_versomilitud, <span class="dt">cortes =</span> cortes, <span class="dt">log_x =</span> log_x)</span>
+<span id="cb340-27"><a href="bondad-de-ajuste.html#cb340-27"></a></span>
+<span id="cb340-28"><a href="bondad-de-ajuste.html#cb340-28"></a>sol<span class="op">$</span>part</span></code></pre></div>
+<pre><code>## NULL</code></pre>
 <p>Para otra solución, considere el siguiente teorema:</p>
-<p><strong>Teorema</strong> (1954). <span class="math inline">\(X_1,\dots, X_n\sim F_\theta\)</span>, <span class="math inline">\(\theta: p\)</span>-dimensional. <span class="math inline">\(\hat\theta_n\)</span> es el MLE de <span class="math inline">\(\theta\)</span> (basado en <span class="math inline">\(X_1,\dots, X_n\)</span>). Tome una partición de <span class="math inline">\(\mathbb R\)</span> con <span class="math inline">\(k\)</span> intervalos disjuntos <span class="math inline">\((I_1,\dots,I_k)\)</span>. <span class="math inline">\(N_i\)</span> es la cantidad de <span class="math inline">\(X_i\)</span>’s que pertenecen a <span class="math inline">\(I_i\)</span> y <span class="math inline">\(\pi_i(\theta)=\mathbb P_\theta[X_i\in I_i]\)</span>,
-<span class="math display">\[Q&#39; = \sum_{i=1}^k\dfrac{[N_i-n\pi_i(\hat\theta_n)]^2}{n\pi_i(\hat\theta_n)}\]</span></p>
+<p><strong>Teorema</strong> (1954). <span class="math inline">\(X_1,\dots, X_n\sim F_\theta\)</span>, <span class="math inline">\(\theta: p\)</span>-dimensional.
+<span class="math inline">\(\hat\theta_n\)</span> es el MLE de <span class="math inline">\(\theta\)</span> (basado en <span class="math inline">\(X_1,\dots, X_n\)</span>). Tome una
+partición de <span class="math inline">\(\mathbb R\)</span> con <span class="math inline">\(k\)</span> intervalos disjuntos <span class="math inline">\((I_1,\dots,I_k)\)</span>. <span class="math inline">\(N_i\)</span>
+es la cantidad de <span class="math inline">\(X_i\)</span>’s que pertenecen a <span class="math inline">\(I_i\)</span> y <span class="math inline">\(\pi_i(\theta)=\mathbb P_\theta[X_i\in I_i]\)</span>, <span class="math display">\[Q&#39; =
+\sum_{i=1}^k\dfrac{[N_i-n\pi_i(\hat\theta_n)]^2}{n\pi_i(\hat\theta_n)}\]</span></p>
 <p>Bajo las condiciones de regularidad del MLE, si <span class="math inline">\(n\to\infty\)</span>, el cdf de <span class="math inline">\(Q&#39;\)</span> bajo <span class="math inline">\(H_0\)</span> está entre <span class="math inline">\(\chi^2_{k-p-1}\)</span> y <span class="math inline">\(\chi^2_{k-1}\)</span>.</p>
 <p>Del ejemplo anterior (tiempo de vida de los dispositivos), tome <span class="math inline">\(\hat\mu = \bar X_n = 4.15\)</span> y <span class="math inline">\(\hat\sigma^2 = \dfrac{s_n^2}{n} = 0.2722\)</span>.</p>
 <ul>
-<li><p><span class="math inline">\(\pi_1(\hat\mu,\hat\sigma^2) = \Phi\left(\dfrac{3.575-4.15}{0.2722^{1/2}}\right)-\Phi(-\infty) = 0.135\)</span>.</p></li>
-<li><p><span class="math inline">\(\pi_2(\hat\mu,\hat\sigma^2) = \Phi\left(\dfrac{3.912-4.15}{0.2722^{1/2}}\right) - \Phi\left(\dfrac{3.575-4.15}{0.2722^{1/2}}\right) = 0.1888\)</span>.</p></li>
-<li><p><span class="math inline">\(\pi_3(\hat\mu,\hat\sigma^2) = \Phi\left(\dfrac{4.249-4.15}{0.2722^{1/2}}\right) - \Phi\left(\dfrac{3.912-4.15}{0.2722^{1/2}}\right) = 0.2511\)</span>.</p></li>
-<li><p><span class="math inline">\(\pi_4(\hat\mu,\hat\sigma^2) = 1 - \Phi\left(\dfrac{4.249-4.15}{0.2722^{1/2}}\right) = 0.4251\)</span>.</p></li>
+<li><p><span class="math inline">\(\pi_1(\hat\mu,\hat\sigma^2) = \Phi\left(\dfrac{3.575-4.15}{0.2843^{1/2}}\right)-\Phi(-\infty) = 0.14\)</span>.</p></li>
+<li><p><span class="math inline">\(\pi_2(\hat\mu,\hat\sigma^2) = \Phi\left(\dfrac{3.912-4.15}{0.2843^{1/2}}\right) - \Phi\left(\dfrac{3.575-4.15}{0.2843^{1/2}}\right) = 0.187\)</span>.</p></li>
+<li><p><span class="math inline">\(\pi_3(\hat\mu,\hat\sigma^2) = \Phi\left(\dfrac{4.249-4.15}{0.2843^{1/2}}\right) - \Phi\left(\dfrac{3.912-4.15}{0.2843^{1/2}}\right) = 0.246\)</span>.</p></li>
+<li><p><span class="math inline">\(\pi_4(\hat\mu,\hat\sigma^2) = 1 - \Phi\left(\dfrac{4.249-4.15}{0.2843^{1/2}}\right) = 0.4266\)</span>.</p></li>
 </ul>
+<p>Es decir podemos calcular lo siguiente en R</p>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="bondad-de-ajuste.html#cb342-1"></a>G &lt;-<span class="st"> </span><span class="kw">length</span>(cortes)</span>
+<span id="cb342-2"><a href="bondad-de-ajuste.html#cb342-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(log_x)</span>
+<span id="cb342-3"><a href="bondad-de-ajuste.html#cb342-3"></a>sigma &lt;-<span class="st"> </span><span class="kw">sd</span>(log_x)</span>
+<span id="cb342-4"><a href="bondad-de-ajuste.html#cb342-4"></a></span>
+<span id="cb342-5"><a href="bondad-de-ajuste.html#cb342-5"></a>pi &lt;-<span class="st"> </span><span class="kw">numeric</span>()</span>
+<span id="cb342-6"><a href="bondad-de-ajuste.html#cb342-6"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(G <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) {</span>
+<span id="cb342-7"><a href="bondad-de-ajuste.html#cb342-7"></a>  pi[k] &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> cortes[k <span class="op">+</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma) <span class="op">-</span></span>
+<span id="cb342-8"><a href="bondad-de-ajuste.html#cb342-8"></a><span class="st">    </span><span class="kw">pnorm</span>(<span class="dt">q =</span> cortes[k], <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma)</span>
+<span id="cb342-9"><a href="bondad-de-ajuste.html#cb342-9"></a>}</span>
+<span id="cb342-10"><a href="bondad-de-ajuste.html#cb342-10"></a></span>
+<span id="cb342-11"><a href="bondad-de-ajuste.html#cb342-11"></a>pi</span></code></pre></div>
+<pre><code>## [1] 0.1400819 0.1871877 0.2461242 0.4266062</code></pre>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="bondad-de-ajuste.html#cb344-1"></a><span class="kw">chisq.test</span>(conteos, <span class="dt">p =</span> pi)</span></code></pre></div>
+<pre><code>## 
+##  Chi-squared test for given probabilities
+## 
+## data:  conteos
+## X-squared = 1.3381, df = 3, p-value = 0.7201</code></pre>
 <p>Entonces</p>
-<p><span class="math display">\[Q&#39; = \dfrac{(3-23\cdot 0.135)^2}{23\cdot 0.135} + \dfrac{(4-23\cdot 0.1888)^2}{23\cdot 0.1888} + \dfrac{(8-23\cdot 0.2511)^2}{23\cdot 0.2511} +\dfrac{(8-23\cdot 0.4251)^2}{23\cdot 0.4251}  = 1.211.\]</span></p>
+<p><span class="math display">\[Q&#39; = \dfrac{(3-23\cdot 0.14)^2}{23\cdot 0.14} + \dfrac{(4-23\cdot
+0.187)^2}{23\cdot 0.187} + \dfrac{(8-23\cdot 0.246)^2}{23\cdot 0.246}
++\dfrac{(8-23\cdot 0.4266)^2}{23\cdot 0.4266} = 1.3381.\]</span></p>
 <ul>
-<li><p><span class="math inline">\(\text{valor-}p_1 = \bar F_{\chi^2_{4-2-1}}(1.211) = 0.2711\)</span>.</p></li>
-<li><p><span class="math inline">\(\text{valor-}p_2 = \bar F_{\chi^2_{4-1}}(1.211) = 0.7504\)</span>.</p></li>
+<li><p><span class="math inline">\(\text{valor-}p_1 = F_{\chi^2_{4-2-1}}(1.3381) = 0.7526307\)</span>.</p></li>
+<li><p><span class="math inline">\(\text{valor-}p_2 = F_{\chi^2_{4-1}}(1.3381) = 0.2798937\)</span>.</p></li>
 </ul>
-<p>Rechazamos <span class="math inline">\(H_0\)</span> (hipótesis de normalidad) si <span class="math inline">\(\alpha_0&lt;0.2711\)</span>.</p>
-<p><strong>Ejemplo</strong>. Muertes por patadas.</p>
+<p>Rechazamos <span class="math inline">\(H_0\)</span> (hipótesis de normalidad) si <span class="math inline">\(\alpha_0&lt;0.2798\)</span>.</p>
+<p><strong>Ejemplo</strong>. Suponga que se tiene el número de muertes por patadas de caballo en
+el ejercito Prusiano.</p>
 <table>
 <thead>
 <tr class="header">
@@ -551,8 +777,8 @@ Q&#39; &amp; = \dfrac{(144-280\cdot0.4966)^2}{280\cdot0.4966}+\dfrac{(91-280\cdo
 &amp; +\dfrac{(11-280\cdot0.0283)^2}{280\cdot0.0283} +\dfrac{(2-280\cdot0.0058)^2}{280\cdot0.0058} = 1.979.
 \end{align*}\]</span></p>
 <ul>
-<li><p><span class="math inline">\(\text{valor-}p_1 =\bar F_{\chi^2_{5-1-1}}(1.979) = 0.5768\)</span>.</p></li>
-<li><p><span class="math inline">\(\text{valor-}p_2 = \bar F_{\chi^2_{5-1}}(1.979) = 0.7396\)</span>.</p></li>
+<li><p><span class="math inline">\(\text{valor-}p_1 = F_{\chi^2_{5-1-1}}(1.979) = 0.5768\)</span>.</p></li>
+<li><p><span class="math inline">\(\text{valor-}p_2 = F_{\chi^2_{5-1}}(1.979) = 0.7396\)</span>.</p></li>
 </ul>
 <p><em>Interpretación</em>: con un nivel de significancia del 5% no rechazamos la hipótesis Poisson en los datos.</p>
 
