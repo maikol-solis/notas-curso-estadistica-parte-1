@@ -177,16 +177,28 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {13.2}Pruebas \(\chi ^2\) con hipótesis parametrizadas}{213}{section.13.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {14}Tablas de contingencia}{219}{chapter.14}%
+\contentsline {chapter}{\numberline {14}Tablas de contingencia}{223}{chapter.14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14.1}Hipótesis de independencia}{220}{section.14.1}%
+\contentsline {section}{\numberline {14.1}Hipótesis de independencia}{224}{section.14.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14.2}Prueba de homogeneidad}{221}{section.14.2}%
+\contentsline {section}{\numberline {14.2}Prueba de homogeneidad}{225}{section.14.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14.3}Comparación de proporciones}{222}{section.14.3}%
+\contentsline {section}{\numberline {14.3}Comparación de proporciones}{226}{section.14.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {15}Ejercicios varios}{225}{chapter.15}%
+\contentsline {chapter}{\numberline {15}Pruebas de Kolmogorov-Smirnov}{229}{chapter.15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {15.1}Capítulo 8}{225}{section.15.1}%
+\contentsline {section}{\numberline {15.1}Prueba de Kolmogorov-Smirnov para una muestra}{230}{section.15.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.1.1}8.4.6}{225}{subsection.15.1.1}%
+\contentsline {section}{\numberline {15.2}Prueba de 2 muestras}{231}{section.15.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {16}Pruebas no-paramétricas: pruebas de signo y rango}{233}{chapter.16}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {16.1}Prueba de signo}{233}{section.16.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {16.2}Prueba de Wilconxon-Mann-Whitney}{234}{section.16.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {17}Ejercicios varios}{235}{chapter.17}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {17.1}Capítulo 8}{235}{section.17.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {17.1.1}8.4.6}{235}{subsection.17.1.1}%

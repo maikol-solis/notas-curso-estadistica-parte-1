@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 03 November, 2020"
+date: "Actualizado el 04 November, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -7265,18 +7265,24 @@ Trabajemos con el ejemplo de log-tiempo de vida de los dispositivos.
 
 
 ```r
-x <- c(17.88, 28.92, 33, 41.52, 42.12, 45.6, 48.8, 51.84, 51.96, 54.12, 55.56,
+x <- c(
+  17.88, 28.92, 33, 41.52, 42.12, 45.6, 48.8, 51.84, 51.96, 54.12, 55.56,
   67.8, 68.44, 68.64, 68.88, 84.12, 93.12, 98.64, 105.12, 105.84, 127.92,
-  128.04, 173.4)
+  128.04, 173.4
+)
 
 log_x <- log(x)
+```
 
+
+
+```r
 hist(x)
 ```
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-2-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-3-1} \end{center}
 
 ```r
 hist(log_x)
@@ -7284,7 +7290,7 @@ hist(log_x)
 
 
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-2-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-3-2} \end{center}
 
 Suponga que se quiere hacer la prueba de hipótesis 
 
@@ -7313,9 +7319,11 @@ Entonces solo para efectos de construir la partición
 
 
 ```r
-cortes <- qnorm(p = c(0, 1 / 4, 2 / 4, 3 / 4, 1),
+cortes <- qnorm(
+  p = c(0, 1 / 4, 2 / 4, 3 / 4, 1),
   mean = log(50),
-  sd = sqrt(0.25))
+  sd = sqrt(0.25)
+)
 
 (intervalos <- cut(c(0, 10), breaks = cortes))
 ```
@@ -7475,7 +7483,7 @@ cortes <- qnorm(
 log_versomilitud <- function(par, cortes, log_x) {
   G <- length(cortes)
   mu <- par[1]
-  sigma <- sqrt(par[2])
+  sigma <- par[2]
 
   pi <- numeric()
   for (k in 1:(G - 1)) {
@@ -7491,14 +7499,20 @@ log_versomilitud <- function(par, cortes, log_x) {
   return(l)
 }
 
-sol <- optim(par = c(0, 1), fn = log_versomilitud, cortes = cortes, log_x = log_x)
+sol <- optim(
+  par = c(0, 1),
+  fn = log_versomilitud,
+  cortes = cortes,
+  log_x = log_x
+)
 
-sol$part
+sol$par
 ```
 
 ```
-## NULL
+## [1] 4.0926455 0.4331326
 ```
+
 
 
 
@@ -7514,7 +7528,9 @@ P_\theta[X_i\in I_i]$, \[Q' =
 
 Bajo las condiciones de regularidad del MLE, si $n\to\infty$, el cdf de $Q'$ bajo $H_0$ está entre $\chi^2_{k-p-1}$ y $\chi^2_{k-1}$.
 
-Del ejemplo anterior (tiempo de vida de los dispositivos), tome $\hat\mu = \bar X_n = 4.15$ y $\hat\sigma^2 = \dfrac{s_n^2}{n} = 0.2722$.
+Del ejemplo anterior (tiempo de vida de los dispositivos), tome
+$\hat\mu = \bar X_n =4.1506137$ y
+$\hat\sigma^2 = \dfrac{s_n^2}{n} = 0.5332049$.
 
 * $\pi_1(\hat\mu,\hat\sigma^2) = \Phi\left(\dfrac{3.575-4.15}{0.2843^{1/2}}\right)-\Phi(-\infty) = 0.14$.
 
@@ -7571,6 +7587,41 @@ Entonces
 
 Rechazamos $H_0$ (hipótesis de normalidad) si $\alpha_0<0.2798$.
 
+
+
+
+```r
+ggplot(data = data.frame(x = c(2.5, 6)), aes(x)) +
+  geom_histogram(
+    data = data.frame(x = log_x),
+    aes(x, y = ..density..),
+    color = "white"
+  ) +
+  stat_function(
+    fun = dnorm,
+    args = list(mean = log(50), sd = sqrt(0.25)),
+    aes(color = "Hipótesis Manual"),
+    size = 2
+  ) +
+  stat_function(
+    fun = dnorm,
+    args = list(mean = sol$par[1], sd = sol$par[2]),
+    aes(color = "Hipótesis con Optimización"),
+    size = 2
+  ) +
+  stat_function(
+    fun = dnorm,
+    args = list(mean = mean(log_x), sd = sd(log_x)),
+    aes(color = "Hipótesis con MLE"),
+    size = 2
+  ) +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-9-1} \end{center}
+
 **Ejemplo**. Suponga que se tiene el número de muertes por patadas de caballo en
 el ejercito Prusiano. 
 
@@ -7579,6 +7630,24 @@ el ejercito Prusiano.
 | $\text{Núm. de obs.}$ | $144$ | $91$ | $32$ | $11$ | $2$     | $280$          |
 
 ¿Será la variable Poisson?
+
+
+
+```r
+df <- data.frame(
+  conteos = c(0, 1, 2, 3, 4),
+  observaciones = c(144, 91, 32, 11, 2)
+)
+
+ggplot(df, aes(x = conteos, y = observaciones)) +
+  geom_col() +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-10-1} \end{center}
+
 
 $H_0: f = \text{Poisson}(\theta), \theta>0$.
 
@@ -7606,6 +7675,27 @@ Q' & = \dfrac{(144-280\cdot0.4966)^2}{280\cdot0.4966}+\dfrac{(91-280\cdot0.3476)
 * $\text{valor-}p_2 = F_{\chi^2_{5-1}}(1.979) = 0.7396$.
 
 *Interpretación*: con un nivel de significancia del 5% no rechazamos la hipótesis Poisson en los datos.
+
+
+
+```r
+total <- sum(df$observaciones)
+
+ggplot(data = data.frame(x = c(0, 4)), aes(x)) +
+  geom_col(data = df, aes(x = conteos, y = observaciones / total)) +
+  stat_function(
+    fun = dpois,
+    args = list(lambda = 0.7),
+    aes(color = "Hipótesis con MLE"),
+    size = 2,
+    geom = "col"
+  ) +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-11-1} \end{center}
 
 <!--chapter:end:13-bondad-de-ajuste.Rmd-->
 
@@ -7804,6 +7894,136 @@ Si $\mathbb P[A|B] = P[A|B^c]$, entonces
 por lo que no se cumple la paradoja.
 
 <!--chapter:end:14-tablas-contingencia.Rmd-->
+
+
+
+# Pruebas de Kolmogorov-Smirnov
+
+Sean $X_1,\dots,X_n\sim F$, $F$ una cdf continua. Asumimos que los valores observados $x_1,\dots,x_n$ son diferentes.
+
+**Definición**. Sean $x_1,\dots,x_n$ los valores observados de la muestra aleatoria $X_1,\dots, X_n$. Para cada $x$ defina $F_n(x)$ como la proporción de valores observados en la muestra que son menores o iguales a $x$. Es decir, si hay $k$ valores observados menores o iguales a $x$,
+\[F_n(x) = k/n.\]
+
+$F_n$ se conoce como la función de distribución de la muestra (empírica). $F_n$ es una distribución a pasos con salto de magnitud $\dfrac 1n$ entre los valores $x_1,\dots,x_n$. Se puede expresar como
+
+\[F_n(x) = \begin{cases} 
+  0 & \text{si } x<X_{(1)}\\
+ \dfrac 1n \sum_{i=1}^n 1_{\{x_i\leq x\}} & \text{si } X_{(1)}\leq x<X_{(n)}\\
+1 & \text{si} X_{(n)}\geq x
+\end{cases}
+\]
+
+Como $\{x_i\}_{i=1}^n$ son independientes, $\{1_{\{x_i\leq x\}}\}_{i=1}^n$ son independientes. Entonces, por la ley de grandes números
+
+\[F_n(x) = \dfrac 1n \sum_{i=1}^n 1_{\{x_i\leq x\}} \xrightarrow[n\to\infty]{\mathbb P} \mathbb E[1_{X_i\leq x}] = F(x)\]
+
+por lo que $F_n(x)$ es consistente.
+
+**Teorema** (Lema de Glivenko-Cantelli)
+
+Sea $D_n = \sup_{-\infty<x<\infty}|F_n(x)-F(x)|$. Entonces $D_n\xrightarrow[]{\mathbb P} 0$.
+
+## Prueba de Kolmogorov-Smirnov para una muestra 
+
+¿Será $F = F^*$?, $F^*$ distribución candidata. La hipótesis es \[H_0: F = F^* \text{ vs } H_1: F\neq F^*\]
+El estadístico de prueba es
+\[D_n^* = \sup_{-\infty<x<\infty}|F_n(x)-F^*(x)|\]
+Si $H_0$ es cierto, $D_n^*$ no depende de $F^*$.
+
+Sea $Z_i = F^*(X_i)$, $i=1,\dots,n$ $(X_1,\dots,X_n \sim F)$. Vea que
+\[\mathbb P(Z_i\leq z) = \mathbb P(F^*(X_i)\leq z) = \mathbb P(X_i\leq (F^*)^{-1}(z)) = z\]
+Entonces $Z_1,\dots, Z_n \underset{H_0}{\sim} \text{Unif}(0,1)$
+
+Considere la hipótesis $H_0: G = \text{Unif}(0,1)$ donde $G$ es la cdf de $Z_i$. Entonces
+
+\[D_n^{*,G} = \sup_{0<z<1}|G_n(z)-G^*(z)| = \sup_{0<z<1}|G_n(z)-\text{Unif}(0,1)(z)| = \sup_{0<z<1}|G_n(z)-z|\]
+
+Observe que
+
+\[G_n(z) = \dfrac 1n \sum_{i=1}^n 1_{\{Z_i\leq x\}} = \dfrac 1n \sum_{i=1}^n 1_{\{F^*(X_i)\leq z\}} = \sum_{i=1}^n 1_{\{X_i\leq (F^*)^{-1}(z)\}} = F_n((F^*)^{-1}(z))\]
+
+Entonces, 
+
+\[D_n^{*,G} \underset{H_0}{=} \sup|F_n(x)-F^*(x)| = D_n^*\]
+
+por lo que $D_n^*$ no depende de $F^*$ bajo $H_0$.
+
+Rechazamos $H_0$ si $D_n^*\geq C$.
+
+**Teorema** (de Kolmogorov-Smirnov). Si $H_0$ es cierto, para $t>0$,
+\[\lim_{n\to \infty} \mathbb P(n^{1/2}D_n^*\leq t) = 1-2\sum_{i=1}^\infty (-1)^{i-1}e^{-2i^2t^2}.\]
+
+Rechazamos $H_0$ si $n^{1/2}D_n^*\geq C$, $n$ grande. Para un nivel de significancia $\alpha_0$, $c = H^{-1}(1-\alpha_0)$, donde $H$ denota el valor de la parte derecha de la ecuación anterior (ver pág. 661). 
+
+## Prueba de 2 muestras
+
+Sean $X_1,\dots,X_m\sim N(\mu_1,\sigma^2)$ y $Y_1,\dots,Y_n\sim N(\mu_2,\sigma^2)$
+
+La hipótesis nula es $H_0:\mu_1 = \mu_2$, o $H_0: F_1 = F_2$ donde $F_1$ es la distribución de $X$ y $F_2$ la de $Y$.
+
+¿Es posible quitar normalidad? Es decir, para $X_1,\dots,X_m\sim F$ y $Y_1,\dots,Y_m\sim G$ continuas, sin valores en común, probar $H_0: F(x) = G(x)$, $x \in \mathbb R$.
+
+Considere 
+\[D_{mn} = \sup_{-\infty<x<\infty}|F_m(x)-G_n(x)|\]
+Se tiene que $D_{mn}\xrightarrow[]{\mathbb P} 0$, $m,n\to\infty$.
+
+Si $H(t)$ es la distribución límite en el caso de una muestra y $t>0$,
+
+\[\lim_{m,n\to \infty} \mathbb P \left( \left( \dfrac{mn}{m+n}\right)^{\frac 12} D_{mn}\leq t\right) = H(t)\]
+
+Se rechaza si $\left(\dfrac{mn}{m+n}\right)^{\frac 12}D_{mn} \leq c$ $(H^{-1}(1-\alpha_0))$.
+
+# Pruebas no-paramétricas: pruebas de signo y rango
+
+## Prueba de signo
+
+Sean $X_1,\dots,X_n$ una muestra aleatoria de una distribución desconocida continua. Toda distribución continua tiene una mediana $\mu$, una popular medida de ubicación, que satisface 
+\[\mathbb P(X_i\leq \mu)=0,5.\]
+Se desea probar
+$H_0: \mu\leq \mu_0$ vs $H_1: \mu >\mu_0.$
+La prueba se basa en el hecho de que  $\mu\leq \mu_0$ si y solo sí $\mathbb P(X_i<\mu_0)\geq 0,5$.
+
+Para $i=1,\dots,n$, sea $Y_i = 1$ si $X_i\leq \mu_0$ y $Y_i = 0$ si no. Defina $p = \mathbb P(Y_i = 1)$. Entonces, probar que $\mu\leq \mu_0$ es equivalente a probar $p \geq 0,5$. Como $X_1,\dots,X_n$ son independientes, $Y_1,\dots,Y_n$ lo son, entonces 
+\[Y_1,\dots,Y_n\sim B(p).\]
+Entonces sea $W = Y_1+\dots+Y_n$. Se rechaza la hipótesis nula si $W$ es pequeño. Escoja $c$ tal que
+
+\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \alpha_0 < \sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]
+Se rechaza $H_0$ si $W\leq c$.
+
+La prueba descrita es llamada **prueba de signo** pues está basada en el número de observaciones en las cuales $X_i-\mu_0$ es negativo.
+
+Si $H_0: \mu = \mu_0\; (p=1/2)$ vs $H_1: \mu\neq \mu_0 \;(p\neq 1/2)$, se rechaza $H_0$ si $W\leq c$ o $W \geq n-c$ y seleccionamos $c$ tal que
+\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \dfrac{\alpha_0}{2} < \sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]
+
+La función de potencia es 
+\[\mathbb P(W\leq c) =\sum_{w=0}^c{n\choose w}(1-p)^{n-w}p^w \]
+
+## Prueba de Wilconxon-Mann-Whitney
+
+Sean $X_1,\dots,X_n\overset{i.i.d}{\sim} F$ y $X_1,\dots,X_n\overset{i.i.d}{\sim} G$ con $F,G$ continuas. Considere la hipótesis
+$H_0: F = G$ vs $H_1: F\neq G$.
+Asuma que $H_0$ es cierto y unimos las dos muestras
+\[(W_1,\dots,W_n+m) = (X_1,\dots,X_m,Y_1,\dots,Y_n)\]
+
+Considere, además, los índices de posición de las variables aleatorias
+\[X_1,\dots,X_m \rightarrow X_{(1)},\dots,X_{(m)\to \text{Índices de posición}}.\]
+
+Como $X_1,\dots,X_m$ es una muestra, entonces
+\[(I_1,\dots,I_m) \sim \text{Unif}(1,\dots,m)\]
+Bajo $H_0$, $W_1,\dots,W_{n+m}$ tiene índices de posición uniformemente distribuidos sobre los enteros $1,\dots,m+n$. Defina $S = \sum_{i=1}^m I_i$
+
+* $\mathbb E[S] = m\mathbb E[I_1] \overset{H_0}{=} m\left(\dfrac{m+n+1}{2}\right)$.
+
+* $\text{Var}(S) = m\text{Var}(I_1) \overset{H_0}{=} mn\left(\dfrac{m+n+1}{12}\right)$.
+
+Si $m,n$ son grandes,
+\[S\underset{H_0}{\sim}N\left(\dfrac{m(m+n+1)}{2},\dfrac{mn(m+n+1)}{12}\right).\]
+
+
+
+
+
+<!--chapter:end:15-pruebas-ks.Rmd-->
 
 
 # Ejercicios varios

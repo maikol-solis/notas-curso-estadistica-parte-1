@@ -187,7 +187,7 @@
 
 \title{Notas Curso de Estadística (Parte I)}
 \author{Maikol Solís}
-\date{Actualizado el 03 November, 2020}
+\date{Actualizado el 04 November, 2020}
 
 \begin{document}
 \maketitle
@@ -7419,17 +7419,23 @@ Trabajemos con el ejemplo de log-tiempo de vida de los dispositivos.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{17.88}\NormalTok{, }\FloatTok{28.92}\NormalTok{, }\DecValTok{33}\NormalTok{, }\FloatTok{41.52}\NormalTok{, }\FloatTok{42.12}\NormalTok{, }\FloatTok{45.6}\NormalTok{, }\FloatTok{48.8}\NormalTok{, }\FloatTok{51.84}\NormalTok{, }\FloatTok{51.96}\NormalTok{, }\FloatTok{54.12}\NormalTok{, }\FloatTok{55.56}\NormalTok{,}
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+  \FloatTok{17.88}\NormalTok{, }\FloatTok{28.92}\NormalTok{, }\DecValTok{33}\NormalTok{, }\FloatTok{41.52}\NormalTok{, }\FloatTok{42.12}\NormalTok{, }\FloatTok{45.6}\NormalTok{, }\FloatTok{48.8}\NormalTok{, }\FloatTok{51.84}\NormalTok{, }\FloatTok{51.96}\NormalTok{, }\FloatTok{54.12}\NormalTok{, }\FloatTok{55.56}\NormalTok{,}
   \FloatTok{67.8}\NormalTok{, }\FloatTok{68.44}\NormalTok{, }\FloatTok{68.64}\NormalTok{, }\FloatTok{68.88}\NormalTok{, }\FloatTok{84.12}\NormalTok{, }\FloatTok{93.12}\NormalTok{, }\FloatTok{98.64}\NormalTok{, }\FloatTok{105.12}\NormalTok{, }\FloatTok{105.84}\NormalTok{, }\FloatTok{127.92}\NormalTok{,}
-  \FloatTok{128.04}\NormalTok{, }\FloatTok{173.4}\NormalTok{)}
+  \FloatTok{128.04}\NormalTok{, }\FloatTok{173.4}
+\NormalTok{)}
 
 \NormalTok{log\_x \textless{}{-}}\StringTok{ }\KeywordTok{log}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{hist}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-2-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-3-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7437,7 +7443,7 @@ Trabajemos con el ejemplo de log-tiempo de vida de los dispositivos.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-2-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-3-2} \end{center}
 
 Suponga que se quiere hacer la prueba de hipótesis
 
@@ -7467,9 +7473,11 @@ Entonces solo para efectos de construir la partición
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{cortes \textless{}{-}}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\DataTypeTok{p =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{4}\NormalTok{, }\DecValTok{2} \OperatorTok{/}\StringTok{ }\DecValTok{4}\NormalTok{, }\DecValTok{3} \OperatorTok{/}\StringTok{ }\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+\NormalTok{cortes \textless{}{-}}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}
+  \DataTypeTok{p =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{4}\NormalTok{, }\DecValTok{2} \OperatorTok{/}\StringTok{ }\DecValTok{4}\NormalTok{, }\DecValTok{3} \OperatorTok{/}\StringTok{ }\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{),}
   \DataTypeTok{mean =} \KeywordTok{log}\NormalTok{(}\DecValTok{50}\NormalTok{),}
-  \DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(}\FloatTok{0.25}\NormalTok{))}
+  \DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(}\FloatTok{0.25}\NormalTok{)}
+\NormalTok{)}
 
 \NormalTok{(intervalos \textless{}{-}}\StringTok{ }\KeywordTok{cut}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{), }\DataTypeTok{breaks =}\NormalTok{ cortes))}
 \end{Highlighting}
@@ -7636,7 +7644,7 @@ y se optimiza numéricamente.
 \NormalTok{log\_versomilitud \textless{}{-}}\StringTok{ }\ControlFlowTok{function}\NormalTok{(par, cortes, log\_x) \{}
 \NormalTok{  G \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(cortes)}
 \NormalTok{  mu \textless{}{-}}\StringTok{ }\NormalTok{par[}\DecValTok{1}\NormalTok{]}
-\NormalTok{  sigma \textless{}{-}}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(par[}\DecValTok{2}\NormalTok{])}
+\NormalTok{  sigma \textless{}{-}}\StringTok{ }\NormalTok{par[}\DecValTok{2}\NormalTok{]}
 
 \NormalTok{  pi \textless{}{-}}\StringTok{ }\KeywordTok{numeric}\NormalTok{()}
   \ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{(G }\OperatorTok{{-}}\StringTok{ }\DecValTok{1}\NormalTok{)) \{}
@@ -7652,14 +7660,19 @@ y se optimiza numéricamente.
   \KeywordTok{return}\NormalTok{(l)}
 \NormalTok{\}}
 
-\NormalTok{sol \textless{}{-}}\StringTok{ }\KeywordTok{optim}\NormalTok{(}\DataTypeTok{par =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{fn =}\NormalTok{ log\_versomilitud, }\DataTypeTok{cortes =}\NormalTok{ cortes, }\DataTypeTok{log\_x =}\NormalTok{ log\_x)}
+\NormalTok{sol \textless{}{-}}\StringTok{ }\KeywordTok{optim}\NormalTok{(}
+  \DataTypeTok{par =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+  \DataTypeTok{fn =}\NormalTok{ log\_versomilitud,}
+  \DataTypeTok{cortes =}\NormalTok{ cortes,}
+  \DataTypeTok{log\_x =}\NormalTok{ log\_x}
+\NormalTok{)}
 
-\NormalTok{sol}\OperatorTok{$}\NormalTok{part}
+\NormalTok{sol}\OperatorTok{$}\NormalTok{par}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## NULL
+## [1] 4.0926455 0.4331326
 \end{verbatim}
 
 Para otra solución, considere el siguiente teorema:
@@ -7672,7 +7685,9 @@ es la cantidad de \(X_i\)'s que pertenecen a \(I_i\) y \(\pi_i(\theta)=\mathbb P
 
 Bajo las condiciones de regularidad del MLE, si \(n\to\infty\), el cdf de \(Q'\) bajo \(H_0\) está entre \(\chi^2_{k-p-1}\) y \(\chi^2_{k-1}\).
 
-Del ejemplo anterior (tiempo de vida de los dispositivos), tome \(\hat\mu = \bar X_n = 4.15\) y \(\hat\sigma^2 = \dfrac{s_n^2}{n} = 0.2722\).
+Del ejemplo anterior (tiempo de vida de los dispositivos), tome
+\(\hat\mu = \bar X_n =4.1506137\) y
+\(\hat\sigma^2 = \dfrac{s_n^2}{n} = 0.5332049\).
 
 \begin{itemize}
 \item
@@ -7736,6 +7751,38 @@ Entonces
 
 Rechazamos \(H_0\) (hipótesis de normalidad) si \(\alpha_0<0.2798\).
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\FloatTok{2.5}\NormalTok{, }\DecValTok{6}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_histogram}\NormalTok{(}
+    \DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ log\_x),}
+    \KeywordTok{aes}\NormalTok{(x, }\DataTypeTok{y =}\NormalTok{ ..density..),}
+    \DataTypeTok{color =} \StringTok{"white"}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}
+    \DataTypeTok{fun =}\NormalTok{ dnorm,}
+    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =} \KeywordTok{log}\NormalTok{(}\DecValTok{50}\NormalTok{), }\DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(}\FloatTok{0.25}\NormalTok{)),}
+    \KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Hipótesis Manual"}\NormalTok{),}
+    \DataTypeTok{size =} \DecValTok{2}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}
+    \DataTypeTok{fun =}\NormalTok{ dnorm,}
+    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ sol}\OperatorTok{$}\NormalTok{par[}\DecValTok{1}\NormalTok{], }\DataTypeTok{sd =}\NormalTok{ sol}\OperatorTok{$}\NormalTok{par[}\DecValTok{2}\NormalTok{]),}
+    \KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Hipótesis con Optimización"}\NormalTok{),}
+    \DataTypeTok{size =} \DecValTok{2}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}
+    \DataTypeTok{fun =}\NormalTok{ dnorm,}
+    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =} \KeywordTok{mean}\NormalTok{(log\_x), }\DataTypeTok{sd =} \KeywordTok{sd}\NormalTok{(log\_x)),}
+    \KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Hipótesis con MLE"}\NormalTok{),}
+    \DataTypeTok{size =} \DecValTok{2}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-9-1} \end{center}
+
 \textbf{Ejemplo}. Suponga que se tiene el número de muertes por patadas de caballo en
 el ejercito Prusiano.
 
@@ -7749,6 +7796,21 @@ el ejercito Prusiano.
 \end{longtable}
 
 ¿Será la variable Poisson?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{conteos =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{),}
+  \DataTypeTok{observaciones =} \KeywordTok{c}\NormalTok{(}\DecValTok{144}\NormalTok{, }\DecValTok{91}\NormalTok{, }\DecValTok{32}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{)}
+
+\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ conteos, }\DataTypeTok{y =}\NormalTok{ observaciones)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-10-1} \end{center}
 
 \(H_0: f = \text{Poisson}(\theta), \theta>0\).
 
@@ -7782,6 +7844,25 @@ Q' & = \dfrac{(144-280\cdot0.4966)^2}{280\cdot0.4966}+\dfrac{(91-280\cdot0.3476)
 \end{itemize}
 
 \emph{Interpretación}: con un nivel de significancia del 5\% no rechazamos la hipótesis Poisson en los datos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{total \textless{}{-}}\StringTok{ }\KeywordTok{sum}\NormalTok{(df}\OperatorTok{$}\NormalTok{observaciones)}
+
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{4}\NormalTok{)), }\KeywordTok{aes}\NormalTok{(x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_col}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ conteos, }\DataTypeTok{y =}\NormalTok{ observaciones }\OperatorTok{/}\StringTok{ }\NormalTok{total)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat\_function}\NormalTok{(}
+    \DataTypeTok{fun =}\NormalTok{ dpois,}
+    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{lambda =} \FloatTok{0.7}\NormalTok{),}
+    \KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"Hipótesis con MLE"}\NormalTok{),}
+    \DataTypeTok{size =} \DecValTok{2}\NormalTok{,}
+    \DataTypeTok{geom =} \StringTok{"col"}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/13-bondad-de-ajuste-11-1} \end{center}
 
 \hypertarget{tablas-de-contingencia}{%
 \chapter{Tablas de contingencia}\label{tablas-de-contingencia}}
@@ -8021,6 +8102,137 @@ Si \(\mathbb P[A|B] = P[A|B^c]\), entonces
 & = \mathbb P[I|B^c]
 \end{align*}
 por lo que no se cumple la paradoja.
+
+\hypertarget{pruebas-de-kolmogorov-smirnov}{%
+\chapter{Pruebas de Kolmogorov-Smirnov}\label{pruebas-de-kolmogorov-smirnov}}
+
+Sean \(X_1,\dots,X_n\sim F\), \(F\) una cdf continua. Asumimos que los valores observados \(x_1,\dots,x_n\) son diferentes.
+
+\textbf{Definición}. Sean \(x_1,\dots,x_n\) los valores observados de la muestra aleatoria \(X_1,\dots, X_n\). Para cada \(x\) defina \(F_n(x)\) como la proporción de valores observados en la muestra que son menores o iguales a \(x\). Es decir, si hay \(k\) valores observados menores o iguales a \(x\),
+\[F_n(x) = k/n.\]
+
+\(F_n\) se conoce como la función de distribución de la muestra (empírica). \(F_n\) es una distribución a pasos con salto de magnitud \(\dfrac 1n\) entre los valores \(x_1,\dots,x_n\). Se puede expresar como
+
+\[F_n(x) = \begin{cases} 
+  0 & \text{si } x<X_{(1)}\\
+ \dfrac 1n \sum_{i=1}^n 1_{\{x_i\leq x\}} & \text{si } X_{(1)}\leq x<X_{(n)}\\
+1 & \text{si} X_{(n)}\geq x
+\end{cases}
+\]
+
+Como \(\{x_i\}_{i=1}^n\) son independientes, \(\{1_{\{x_i\leq x\}}\}_{i=1}^n\) son independientes. Entonces, por la ley de grandes números
+
+\[F_n(x) = \dfrac 1n \sum_{i=1}^n 1_{\{x_i\leq x\}} \xrightarrow[n\to\infty]{\mathbb P} \mathbb E[1_{X_i\leq x}] = F(x)\]
+
+por lo que \(F_n(x)\) es consistente.
+
+\textbf{Teorema} (Lema de Glivenko-Cantelli)
+
+Sea \(D_n = \sup_{-\infty<x<\infty}|F_n(x)-F(x)|\). Entonces \(D_n\xrightarrow[]{\mathbb P} 0\).
+
+\hypertarget{prueba-de-kolmogorov-smirnov-para-una-muestra}{%
+\section{Prueba de Kolmogorov-Smirnov para una muestra}\label{prueba-de-kolmogorov-smirnov-para-una-muestra}}
+
+¿Será \(F = F^*\)?, \(F^*\) distribución candidata. La hipótesis es \[H_0: F = F^* \text{ vs } H_1: F\neq F^*\]
+El estadístico de prueba es
+\[D_n^* = \sup_{-\infty<x<\infty}|F_n(x)-F^*(x)|\]
+Si \(H_0\) es cierto, \(D_n^*\) no depende de \(F^*\).
+
+Sea \(Z_i = F^*(X_i)\), \(i=1,\dots,n\) \((X_1,\dots,X_n \sim F)\). Vea que
+\[\mathbb P(Z_i\leq z) = \mathbb P(F^*(X_i)\leq z) = \mathbb P(X_i\leq (F^*)^{-1}(z)) = z\]
+Entonces \(Z_1,\dots, Z_n \underset{H_0}{\sim} \text{Unif}(0,1)\)
+
+Considere la hipótesis \(H_0: G = \text{Unif}(0,1)\) donde \(G\) es la cdf de \(Z_i\). Entonces
+
+\[D_n^{*,G} = \sup_{0<z<1}|G_n(z)-G^*(z)| = \sup_{0<z<1}|G_n(z)-\text{Unif}(0,1)(z)| = \sup_{0<z<1}|G_n(z)-z|\]
+
+Observe que
+
+\[G_n(z) = \dfrac 1n \sum_{i=1}^n 1_{\{Z_i\leq x\}} = \dfrac 1n \sum_{i=1}^n 1_{\{F^*(X_i)\leq z\}} = \sum_{i=1}^n 1_{\{X_i\leq (F^*)^{-1}(z)\}} = F_n((F^*)^{-1}(z))\]
+
+Entonces,
+
+\[D_n^{*,G} \underset{H_0}{=} \sup|F_n(x)-F^*(x)| = D_n^*\]
+
+por lo que \(D_n^*\) no depende de \(F^*\) bajo \(H_0\).
+
+Rechazamos \(H_0\) si \(D_n^*\geq C\).
+
+\textbf{Teorema} (de Kolmogorov-Smirnov). Si \(H_0\) es cierto, para \(t>0\),
+\[\lim_{n\to \infty} \mathbb P(n^{1/2}D_n^*\leq t) = 1-2\sum_{i=1}^\infty (-1)^{i-1}e^{-2i^2t^2}.\]
+
+Rechazamos \(H_0\) si \(n^{1/2}D_n^*\geq C\), \(n\) grande. Para un nivel de significancia \(\alpha_0\), \(c = H^{-1}(1-\alpha_0)\), donde \(H\) denota el valor de la parte derecha de la ecuación anterior (ver pág. 661).
+
+\hypertarget{prueba-de-2-muestras}{%
+\section{Prueba de 2 muestras}\label{prueba-de-2-muestras}}
+
+Sean \(X_1,\dots,X_m\sim N(\mu_1,\sigma^2)\) y \(Y_1,\dots,Y_n\sim N(\mu_2,\sigma^2)\)
+
+La hipótesis nula es \(H_0:\mu_1 = \mu_2\), o \(H_0: F_1 = F_2\) donde \(F_1\) es la distribución de \(X\) y \(F_2\) la de \(Y\).
+
+¿Es posible quitar normalidad? Es decir, para \(X_1,\dots,X_m\sim F\) y \(Y_1,\dots,Y_m\sim G\) continuas, sin valores en común, probar \(H_0: F(x) = G(x)\), \(x \in \mathbb R\).
+
+Considere
+\[D_{mn} = \sup_{-\infty<x<\infty}|F_m(x)-G_n(x)|\]
+Se tiene que \(D_{mn}\xrightarrow[]{\mathbb P} 0\), \(m,n\to\infty\).
+
+Si \(H(t)\) es la distribución límite en el caso de una muestra y \(t>0\),
+
+\[\lim_{m,n\to \infty} \mathbb P \left( \left( \dfrac{mn}{m+n}\right)^{\frac 12} D_{mn}\leq t\right) = H(t)\]
+
+Se rechaza si \(\left(\dfrac{mn}{m+n}\right)^{\frac 12}D_{mn} \leq c\) \((H^{-1}(1-\alpha_0))\).
+
+\hypertarget{pruebas-no-paramuxe9tricas-pruebas-de-signo-y-rango}{%
+\chapter{Pruebas no-paramétricas: pruebas de signo y rango}\label{pruebas-no-paramuxe9tricas-pruebas-de-signo-y-rango}}
+
+\hypertarget{prueba-de-signo}{%
+\section{Prueba de signo}\label{prueba-de-signo}}
+
+Sean \(X_1,\dots,X_n\) una muestra aleatoria de una distribución desconocida continua. Toda distribución continua tiene una mediana \(\mu\), una popular medida de ubicación, que satisface
+\[\mathbb P(X_i\leq \mu)=0,5.\]
+Se desea probar
+\(H_0: \mu\leq \mu_0\) vs \(H_1: \mu >\mu_0.\)
+La prueba se basa en el hecho de que \(\mu\leq \mu_0\) si y solo sí \(\mathbb P(X_i<\mu_0)\geq 0,5\).
+
+Para \(i=1,\dots,n\), sea \(Y_i = 1\) si \(X_i\leq \mu_0\) y \(Y_i = 0\) si no. Defina \(p = \mathbb P(Y_i = 1)\). Entonces, probar que \(\mu\leq \mu_0\) es equivalente a probar \(p \geq 0,5\). Como \(X_1,\dots,X_n\) son independientes, \(Y_1,\dots,Y_n\) lo son, entonces
+\[Y_1,\dots,Y_n\sim B(p).\]
+Entonces sea \(W = Y_1+\dots+Y_n\). Se rechaza la hipótesis nula si \(W\) es pequeño. Escoja \(c\) tal que
+
+\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \alpha_0 < \sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]
+Se rechaza \(H_0\) si \(W\leq c\).
+
+La prueba descrita es llamada \textbf{prueba de signo} pues está basada en el número de observaciones en las cuales \(X_i-\mu_0\) es negativo.
+
+Si \(H_0: \mu = \mu_0\; (p=1/2)\) vs \(H_1: \mu\neq \mu_0 \;(p\neq 1/2)\), se rechaza \(H_0\) si \(W\leq c\) o \(W \geq n-c\) y seleccionamos \(c\) tal que
+\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \dfrac{\alpha_0}{2} < \sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]
+
+La función de potencia es
+\[\mathbb P(W\leq c) =\sum_{w=0}^c{n\choose w}(1-p)^{n-w}p^w \]
+
+\hypertarget{prueba-de-wilconxon-mann-whitney}{%
+\section{Prueba de Wilconxon-Mann-Whitney}\label{prueba-de-wilconxon-mann-whitney}}
+
+Sean \(X_1,\dots,X_n\overset{i.i.d}{\sim} F\) y \(X_1,\dots,X_n\overset{i.i.d}{\sim} G\) con \(F,G\) continuas. Considere la hipótesis
+\(H_0: F = G\) vs \(H_1: F\neq G\).
+Asuma que \(H_0\) es cierto y unimos las dos muestras
+\[(W_1,\dots,W_n+m) = (X_1,\dots,X_m,Y_1,\dots,Y_n)\]
+
+Considere, además, los índices de posición de las variables aleatorias
+\[X_1,\dots,X_m \rightarrow X_{(1)},\dots,X_{(m)\to \text{Índices de posición}}.\]
+
+Como \(X_1,\dots,X_m\) es una muestra, entonces
+\[(I_1,\dots,I_m) \sim \text{Unif}(1,\dots,m)\]
+Bajo \(H_0\), \(W_1,\dots,W_{n+m}\) tiene índices de posición uniformemente distribuidos sobre los enteros \(1,\dots,m+n\). Defina \(S = \sum_{i=1}^m I_i\)
+
+\begin{itemize}
+\item
+  \(\mathbb E[S] = m\mathbb E[I_1] \overset{H_0}{=} m\left(\dfrac{m+n+1}{2}\right)\).
+\item
+  \(\text{Var}(S) = m\text{Var}(I_1) \overset{H_0}{=} mn\left(\dfrac{m+n+1}{12}\right)\).
+\end{itemize}
+
+Si \(m,n\) son grandes,
+\[S\underset{H_0}{\sim}N\left(\dfrac{m(m+n+1)}{2},\dfrac{mn(m+n+1)}{12}\right).\]
 
 \hypertarget{ejercicios-varios}{%
 \chapter{Ejercicios varios}\label{ejercicios-varios}}

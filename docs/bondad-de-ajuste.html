@@ -268,11 +268,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html#prueba-de-homogeneidad"><i class="fa fa-check"></i><b>14.2</b> Prueba de homogeneidad</a></li>
 <li class="chapter" data-level="14.3" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html#comparación-de-proporciones"><i class="fa fa-check"></i><b>14.3</b> Comparación de proporciones</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html"><i class="fa fa-check"></i><b>15</b> Ejercicios varios</a>
+<li class="chapter" data-level="15" data-path="pruebas-de-kolmogorov-smirnov.html"><a href="pruebas-de-kolmogorov-smirnov.html"><i class="fa fa-check"></i><b>15</b> Pruebas de Kolmogorov-Smirnov</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#capítulo-8"><i class="fa fa-check"></i><b>15.1</b> Capítulo 8</a>
+<li class="chapter" data-level="15.1" data-path="pruebas-de-kolmogorov-smirnov.html"><a href="pruebas-de-kolmogorov-smirnov.html#prueba-de-kolmogorov-smirnov-para-una-muestra"><i class="fa fa-check"></i><b>15.1</b> Prueba de Kolmogorov-Smirnov para una muestra</a></li>
+<li class="chapter" data-level="15.2" data-path="pruebas-de-kolmogorov-smirnov.html"><a href="pruebas-de-kolmogorov-smirnov.html#prueba-de-2-muestras"><i class="fa fa-check"></i><b>15.2</b> Prueba de 2 muestras</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html"><i class="fa fa-check"></i><b>16</b> Pruebas no-paramétricas: pruebas de signo y rango</a>
 <ul>
-<li class="chapter" data-level="15.1.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#section"><i class="fa fa-check"></i><b>15.1.1</b> 8.4.6</a></li>
+<li class="chapter" data-level="16.1" data-path="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#prueba-de-signo"><i class="fa fa-check"></i><b>16.1</b> Prueba de signo</a></li>
+<li class="chapter" data-level="16.2" data-path="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#prueba-de-wilconxon-mann-whitney"><i class="fa fa-check"></i><b>16.2</b> Prueba de Wilconxon-Mann-Whitney</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html"><i class="fa fa-check"></i><b>17</b> Ejercicios varios</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#capítulo-8"><i class="fa fa-check"></i><b>17.1</b> Capítulo 8</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#section"><i class="fa fa-check"></i><b>17.1.1</b> 8.4.6</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -540,16 +550,17 @@ con <span class="math inline">\(k-1\)</span> grados de libertad.</p></li>
 </ol>
 <p><strong>Ejemplo</strong>. Supongamos que tenemos 23 datos de unas partes mecánicas para automóvil. Se registró el sus tiempos de vida útil.</p>
 <p>Trabajemos con el ejemplo de log-tiempo de vida de los dispositivos.</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="bondad-de-ajuste.html#cb330-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">17.88</span>, <span class="fl">28.92</span>, <span class="dv">33</span>, <span class="fl">41.52</span>, <span class="fl">42.12</span>, <span class="fl">45.6</span>, <span class="fl">48.8</span>, <span class="fl">51.84</span>, <span class="fl">51.96</span>, <span class="fl">54.12</span>, <span class="fl">55.56</span>,</span>
-<span id="cb330-2"><a href="bondad-de-ajuste.html#cb330-2"></a>  <span class="fl">67.8</span>, <span class="fl">68.44</span>, <span class="fl">68.64</span>, <span class="fl">68.88</span>, <span class="fl">84.12</span>, <span class="fl">93.12</span>, <span class="fl">98.64</span>, <span class="fl">105.12</span>, <span class="fl">105.84</span>, <span class="fl">127.92</span>,</span>
-<span id="cb330-3"><a href="bondad-de-ajuste.html#cb330-3"></a>  <span class="fl">128.04</span>, <span class="fl">173.4</span>)</span>
-<span id="cb330-4"><a href="bondad-de-ajuste.html#cb330-4"></a></span>
-<span id="cb330-5"><a href="bondad-de-ajuste.html#cb330-5"></a>log_x &lt;-<span class="st"> </span><span class="kw">log</span>(x)</span>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="bondad-de-ajuste.html#cb330-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb330-2"><a href="bondad-de-ajuste.html#cb330-2"></a>  <span class="fl">17.88</span>, <span class="fl">28.92</span>, <span class="dv">33</span>, <span class="fl">41.52</span>, <span class="fl">42.12</span>, <span class="fl">45.6</span>, <span class="fl">48.8</span>, <span class="fl">51.84</span>, <span class="fl">51.96</span>, <span class="fl">54.12</span>, <span class="fl">55.56</span>,</span>
+<span id="cb330-3"><a href="bondad-de-ajuste.html#cb330-3"></a>  <span class="fl">67.8</span>, <span class="fl">68.44</span>, <span class="fl">68.64</span>, <span class="fl">68.88</span>, <span class="fl">84.12</span>, <span class="fl">93.12</span>, <span class="fl">98.64</span>, <span class="fl">105.12</span>, <span class="fl">105.84</span>, <span class="fl">127.92</span>,</span>
+<span id="cb330-4"><a href="bondad-de-ajuste.html#cb330-4"></a>  <span class="fl">128.04</span>, <span class="fl">173.4</span></span>
+<span id="cb330-5"><a href="bondad-de-ajuste.html#cb330-5"></a>)</span>
 <span id="cb330-6"><a href="bondad-de-ajuste.html#cb330-6"></a></span>
-<span id="cb330-7"><a href="bondad-de-ajuste.html#cb330-7"></a><span class="kw">hist</span>(x)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/13-bondad-de-ajuste-2-1.svg" width="100%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="bondad-de-ajuste.html#cb331-1"></a><span class="kw">hist</span>(log_x)</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/13-bondad-de-ajuste-2-2.svg" width="100%" style="display: block; margin: auto;" /></p>
+<span id="cb330-7"><a href="bondad-de-ajuste.html#cb330-7"></a>log_x &lt;-<span class="st"> </span><span class="kw">log</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="bondad-de-ajuste.html#cb331-1"></a><span class="kw">hist</span>(x)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/13-bondad-de-ajuste-3-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="bondad-de-ajuste.html#cb332-1"></a><span class="kw">hist</span>(log_x)</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/13-bondad-de-ajuste-3-2.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Suponga que se quiere hacer la prueba de hipótesis</p>
 <p><span class="math display">\[H_0: f = N(\log(50),0.25) \quad vs \quad H_1: f \neq N(\log(50),0.25)\]</span></p>
 <p>Seleccione <span class="math inline">\(k\)</span> tal que</p>
@@ -564,20 +575,22 @@ p_i^0 = \mathbb P[\text{log-tiempo perteneza al }i\text{-ésimo intervalo}]\geq 
 <li><p>Grupo 4: <span class="math inline">\((F^{-1}_{H_0}(0.75),F^{-1}_{H_0}(1))=(4.249,+\infty)\)</span>.</p></li>
 </ol>
 <p>Entonces solo para efectos de construir la partición</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="bondad-de-ajuste.html#cb332-1"></a>cortes &lt;-<span class="st"> </span><span class="kw">qnorm</span>(<span class="dt">p =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">3</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">1</span>),</span>
-<span id="cb332-2"><a href="bondad-de-ajuste.html#cb332-2"></a>  <span class="dt">mean =</span> <span class="kw">log</span>(<span class="dv">50</span>),</span>
-<span id="cb332-3"><a href="bondad-de-ajuste.html#cb332-3"></a>  <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="fl">0.25</span>))</span>
-<span id="cb332-4"><a href="bondad-de-ajuste.html#cb332-4"></a></span>
-<span id="cb332-5"><a href="bondad-de-ajuste.html#cb332-5"></a>(intervalos &lt;-<span class="st"> </span><span class="kw">cut</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="dt">breaks =</span> cortes))</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="bondad-de-ajuste.html#cb333-1"></a>cortes &lt;-<span class="st"> </span><span class="kw">qnorm</span>(</span>
+<span id="cb333-2"><a href="bondad-de-ajuste.html#cb333-2"></a>  <span class="dt">p =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">3</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">1</span>),</span>
+<span id="cb333-3"><a href="bondad-de-ajuste.html#cb333-3"></a>  <span class="dt">mean =</span> <span class="kw">log</span>(<span class="dv">50</span>),</span>
+<span id="cb333-4"><a href="bondad-de-ajuste.html#cb333-4"></a>  <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="fl">0.25</span>)</span>
+<span id="cb333-5"><a href="bondad-de-ajuste.html#cb333-5"></a>)</span>
+<span id="cb333-6"><a href="bondad-de-ajuste.html#cb333-6"></a></span>
+<span id="cb333-7"><a href="bondad-de-ajuste.html#cb333-7"></a>(intervalos &lt;-<span class="st"> </span><span class="kw">cut</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>), <span class="dt">breaks =</span> cortes))</span></code></pre></div>
 <pre><code>## [1] (-Inf,3.57] (4.25, Inf]
 ## Levels: (-Inf,3.57] (3.57,3.91] (3.91,4.25] (4.25, Inf]</code></pre>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="bondad-de-ajuste.html#cb334-1"></a>(conteos &lt;-<span class="st"> </span><span class="kw">cut</span>(log_x, <span class="dt">breaks =</span> cortes))</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="bondad-de-ajuste.html#cb335-1"></a>(conteos &lt;-<span class="st"> </span><span class="kw">cut</span>(log_x, <span class="dt">breaks =</span> cortes))</span></code></pre></div>
 <pre><code>##  [1] (-Inf,3.57] (-Inf,3.57] (-Inf,3.57] (3.57,3.91] (3.57,3.91] (3.57,3.91]
 ##  [7] (3.57,3.91] (3.91,4.25] (3.91,4.25] (3.91,4.25] (3.91,4.25] (3.91,4.25]
 ## [13] (3.91,4.25] (3.91,4.25] (3.91,4.25] (4.25, Inf] (4.25, Inf] (4.25, Inf]
 ## [19] (4.25, Inf] (4.25, Inf] (4.25, Inf] (4.25, Inf] (4.25, Inf]
 ## Levels: (-Inf,3.57] (3.57,3.91] (3.91,4.25] (4.25, Inf]</code></pre>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="bondad-de-ajuste.html#cb336-1"></a><span class="kw">summary</span>(conteos)</span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="bondad-de-ajuste.html#cb337-1"></a><span class="kw">summary</span>(conteos)</span></code></pre></div>
 <pre><code>## (-Inf,3.57] (3.57,3.91] (3.91,4.25] (4.25, Inf] 
 ##           3           4           8           8</code></pre>
 <table>
@@ -600,9 +613,9 @@ p_i^0 = \mathbb P[\text{log-tiempo perteneza al }i\text{-ésimo intervalo}]\geq 
 </table>
 <p><span class="math display">\[Q = \dfrac{(3-23\cdot1/4)^2}{23\cdot 1/4} +  \dfrac{(4-23\cdot1/4)^2}{23\cdot 1/4}+\dfrac{(8-23\cdot1/4)^2}{23\cdot 1/4} + \dfrac{(8-23\cdot1/4)^2}{23\cdot 1/4}= 3.609.\]</span></p>
 <p>El valor-<span class="math inline">\(p\)</span> corresponde a <span class="math inline">\(F_{\chi^2_3}(3.609) = 0.307\)</span>.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="bondad-de-ajuste.html#cb338-1"></a>conteos &lt;-<span class="st"> </span><span class="kw">summary</span>(conteos)</span>
-<span id="cb338-2"><a href="bondad-de-ajuste.html#cb338-2"></a></span>
-<span id="cb338-3"><a href="bondad-de-ajuste.html#cb338-3"></a><span class="kw">chisq.test</span>(conteos)</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="bondad-de-ajuste.html#cb339-1"></a>conteos &lt;-<span class="st"> </span><span class="kw">summary</span>(conteos)</span>
+<span id="cb339-2"><a href="bondad-de-ajuste.html#cb339-2"></a></span>
+<span id="cb339-3"><a href="bondad-de-ajuste.html#cb339-3"></a><span class="kw">chisq.test</span>(conteos)</span></code></pre></div>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
@@ -664,35 +677,40 @@ habíamos definido antes con los valores teóricos de <span class="math inline">
 <p>La verosimilitud es</p>
 <p><span class="math display">\[\ln L(\mu,\sigma^2) = N_1\ln \pi_1(\mu,\sigma^2)+\cdots+N_4\ln\pi_4(\mu,\sigma^2)\]</span></p>
 <p>y se optimiza numéricamente.</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="bondad-de-ajuste.html#cb340-1"></a>cortes &lt;-<span class="st"> </span><span class="kw">qnorm</span>(</span>
-<span id="cb340-2"><a href="bondad-de-ajuste.html#cb340-2"></a>  <span class="dt">p =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">3</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">1</span>),</span>
-<span id="cb340-3"><a href="bondad-de-ajuste.html#cb340-3"></a>  <span class="dt">mean =</span> <span class="kw">log</span>(<span class="dv">50</span>),</span>
-<span id="cb340-4"><a href="bondad-de-ajuste.html#cb340-4"></a>  <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="fl">0.25</span>)</span>
-<span id="cb340-5"><a href="bondad-de-ajuste.html#cb340-5"></a>)</span>
-<span id="cb340-6"><a href="bondad-de-ajuste.html#cb340-6"></a></span>
-<span id="cb340-7"><a href="bondad-de-ajuste.html#cb340-7"></a>log_versomilitud &lt;-<span class="st"> </span><span class="cf">function</span>(par, cortes, log_x) {</span>
-<span id="cb340-8"><a href="bondad-de-ajuste.html#cb340-8"></a>  G &lt;-<span class="st"> </span><span class="kw">length</span>(cortes)</span>
-<span id="cb340-9"><a href="bondad-de-ajuste.html#cb340-9"></a>  mu &lt;-<span class="st"> </span>par[<span class="dv">1</span>]</span>
-<span id="cb340-10"><a href="bondad-de-ajuste.html#cb340-10"></a>  sigma &lt;-<span class="st"> </span><span class="kw">sqrt</span>(par[<span class="dv">2</span>])</span>
-<span id="cb340-11"><a href="bondad-de-ajuste.html#cb340-11"></a></span>
-<span id="cb340-12"><a href="bondad-de-ajuste.html#cb340-12"></a>  pi &lt;-<span class="st"> </span><span class="kw">numeric</span>()</span>
-<span id="cb340-13"><a href="bondad-de-ajuste.html#cb340-13"></a>  <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(G <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) {</span>
-<span id="cb340-14"><a href="bondad-de-ajuste.html#cb340-14"></a>    pi[k] &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> cortes[k <span class="op">+</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma) <span class="op">-</span></span>
-<span id="cb340-15"><a href="bondad-de-ajuste.html#cb340-15"></a><span class="st">      </span><span class="kw">pnorm</span>(<span class="dt">q =</span> cortes[k], <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma)</span>
-<span id="cb340-16"><a href="bondad-de-ajuste.html#cb340-16"></a>  }</span>
-<span id="cb340-17"><a href="bondad-de-ajuste.html#cb340-17"></a></span>
-<span id="cb340-18"><a href="bondad-de-ajuste.html#cb340-18"></a>  conteos &lt;-<span class="st"> </span><span class="kw">cut</span>(log_x, <span class="dt">breaks =</span> cortes)</span>
-<span id="cb340-19"><a href="bondad-de-ajuste.html#cb340-19"></a>  conteos &lt;-<span class="st"> </span><span class="kw">summary</span>(conteos)</span>
-<span id="cb340-20"><a href="bondad-de-ajuste.html#cb340-20"></a></span>
-<span id="cb340-21"><a href="bondad-de-ajuste.html#cb340-21"></a>  l &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sum</span>(conteos <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(pi))</span>
-<span id="cb340-22"><a href="bondad-de-ajuste.html#cb340-22"></a></span>
-<span id="cb340-23"><a href="bondad-de-ajuste.html#cb340-23"></a>  <span class="kw">return</span>(l)</span>
-<span id="cb340-24"><a href="bondad-de-ajuste.html#cb340-24"></a>}</span>
-<span id="cb340-25"><a href="bondad-de-ajuste.html#cb340-25"></a></span>
-<span id="cb340-26"><a href="bondad-de-ajuste.html#cb340-26"></a>sol &lt;-<span class="st"> </span><span class="kw">optim</span>(<span class="dt">par =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">fn =</span> log_versomilitud, <span class="dt">cortes =</span> cortes, <span class="dt">log_x =</span> log_x)</span>
-<span id="cb340-27"><a href="bondad-de-ajuste.html#cb340-27"></a></span>
-<span id="cb340-28"><a href="bondad-de-ajuste.html#cb340-28"></a>sol<span class="op">$</span>part</span></code></pre></div>
-<pre><code>## NULL</code></pre>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="bondad-de-ajuste.html#cb341-1"></a>cortes &lt;-<span class="st"> </span><span class="kw">qnorm</span>(</span>
+<span id="cb341-2"><a href="bondad-de-ajuste.html#cb341-2"></a>  <span class="dt">p =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">2</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">3</span> <span class="op">/</span><span class="st"> </span><span class="dv">4</span>, <span class="dv">1</span>),</span>
+<span id="cb341-3"><a href="bondad-de-ajuste.html#cb341-3"></a>  <span class="dt">mean =</span> <span class="kw">log</span>(<span class="dv">50</span>),</span>
+<span id="cb341-4"><a href="bondad-de-ajuste.html#cb341-4"></a>  <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="fl">0.25</span>)</span>
+<span id="cb341-5"><a href="bondad-de-ajuste.html#cb341-5"></a>)</span>
+<span id="cb341-6"><a href="bondad-de-ajuste.html#cb341-6"></a></span>
+<span id="cb341-7"><a href="bondad-de-ajuste.html#cb341-7"></a>log_versomilitud &lt;-<span class="st"> </span><span class="cf">function</span>(par, cortes, log_x) {</span>
+<span id="cb341-8"><a href="bondad-de-ajuste.html#cb341-8"></a>  G &lt;-<span class="st"> </span><span class="kw">length</span>(cortes)</span>
+<span id="cb341-9"><a href="bondad-de-ajuste.html#cb341-9"></a>  mu &lt;-<span class="st"> </span>par[<span class="dv">1</span>]</span>
+<span id="cb341-10"><a href="bondad-de-ajuste.html#cb341-10"></a>  sigma &lt;-<span class="st"> </span>par[<span class="dv">2</span>]</span>
+<span id="cb341-11"><a href="bondad-de-ajuste.html#cb341-11"></a></span>
+<span id="cb341-12"><a href="bondad-de-ajuste.html#cb341-12"></a>  pi &lt;-<span class="st"> </span><span class="kw">numeric</span>()</span>
+<span id="cb341-13"><a href="bondad-de-ajuste.html#cb341-13"></a>  <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(G <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) {</span>
+<span id="cb341-14"><a href="bondad-de-ajuste.html#cb341-14"></a>    pi[k] &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> cortes[k <span class="op">+</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma) <span class="op">-</span></span>
+<span id="cb341-15"><a href="bondad-de-ajuste.html#cb341-15"></a><span class="st">      </span><span class="kw">pnorm</span>(<span class="dt">q =</span> cortes[k], <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma)</span>
+<span id="cb341-16"><a href="bondad-de-ajuste.html#cb341-16"></a>  }</span>
+<span id="cb341-17"><a href="bondad-de-ajuste.html#cb341-17"></a></span>
+<span id="cb341-18"><a href="bondad-de-ajuste.html#cb341-18"></a>  conteos &lt;-<span class="st"> </span><span class="kw">cut</span>(log_x, <span class="dt">breaks =</span> cortes)</span>
+<span id="cb341-19"><a href="bondad-de-ajuste.html#cb341-19"></a>  conteos &lt;-<span class="st"> </span><span class="kw">summary</span>(conteos)</span>
+<span id="cb341-20"><a href="bondad-de-ajuste.html#cb341-20"></a></span>
+<span id="cb341-21"><a href="bondad-de-ajuste.html#cb341-21"></a>  l &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sum</span>(conteos <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(pi))</span>
+<span id="cb341-22"><a href="bondad-de-ajuste.html#cb341-22"></a></span>
+<span id="cb341-23"><a href="bondad-de-ajuste.html#cb341-23"></a>  <span class="kw">return</span>(l)</span>
+<span id="cb341-24"><a href="bondad-de-ajuste.html#cb341-24"></a>}</span>
+<span id="cb341-25"><a href="bondad-de-ajuste.html#cb341-25"></a></span>
+<span id="cb341-26"><a href="bondad-de-ajuste.html#cb341-26"></a>sol &lt;-<span class="st"> </span><span class="kw">optim</span>(</span>
+<span id="cb341-27"><a href="bondad-de-ajuste.html#cb341-27"></a>  <span class="dt">par =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb341-28"><a href="bondad-de-ajuste.html#cb341-28"></a>  <span class="dt">fn =</span> log_versomilitud,</span>
+<span id="cb341-29"><a href="bondad-de-ajuste.html#cb341-29"></a>  <span class="dt">cortes =</span> cortes,</span>
+<span id="cb341-30"><a href="bondad-de-ajuste.html#cb341-30"></a>  <span class="dt">log_x =</span> log_x</span>
+<span id="cb341-31"><a href="bondad-de-ajuste.html#cb341-31"></a>)</span>
+<span id="cb341-32"><a href="bondad-de-ajuste.html#cb341-32"></a></span>
+<span id="cb341-33"><a href="bondad-de-ajuste.html#cb341-33"></a>sol<span class="op">$</span>par</span></code></pre></div>
+<pre><code>## [1] 4.0926455 0.4331326</code></pre>
 <p>Para otra solución, considere el siguiente teorema:</p>
 <p><strong>Teorema</strong> (1954). <span class="math inline">\(X_1,\dots, X_n\sim F_\theta\)</span>, <span class="math inline">\(\theta: p\)</span>-dimensional.
 <span class="math inline">\(\hat\theta_n\)</span> es el MLE de <span class="math inline">\(\theta\)</span> (basado en <span class="math inline">\(X_1,\dots, X_n\)</span>). Tome una
@@ -700,7 +718,9 @@ partición de <span class="math inline">\(\mathbb R\)</span> con <span class="ma
 es la cantidad de <span class="math inline">\(X_i\)</span>’s que pertenecen a <span class="math inline">\(I_i\)</span> y <span class="math inline">\(\pi_i(\theta)=\mathbb P_\theta[X_i\in I_i]\)</span>, <span class="math display">\[Q&#39; =
 \sum_{i=1}^k\dfrac{[N_i-n\pi_i(\hat\theta_n)]^2}{n\pi_i(\hat\theta_n)}\]</span></p>
 <p>Bajo las condiciones de regularidad del MLE, si <span class="math inline">\(n\to\infty\)</span>, el cdf de <span class="math inline">\(Q&#39;\)</span> bajo <span class="math inline">\(H_0\)</span> está entre <span class="math inline">\(\chi^2_{k-p-1}\)</span> y <span class="math inline">\(\chi^2_{k-1}\)</span>.</p>
-<p>Del ejemplo anterior (tiempo de vida de los dispositivos), tome <span class="math inline">\(\hat\mu = \bar X_n = 4.15\)</span> y <span class="math inline">\(\hat\sigma^2 = \dfrac{s_n^2}{n} = 0.2722\)</span>.</p>
+<p>Del ejemplo anterior (tiempo de vida de los dispositivos), tome
+<span class="math inline">\(\hat\mu = \bar X_n =4.1506137\)</span> y
+<span class="math inline">\(\hat\sigma^2 = \dfrac{s_n^2}{n} = 0.5332049\)</span>.</p>
 <ul>
 <li><p><span class="math inline">\(\pi_1(\hat\mu,\hat\sigma^2) = \Phi\left(\dfrac{3.575-4.15}{0.2843^{1/2}}\right)-\Phi(-\infty) = 0.14\)</span>.</p></li>
 <li><p><span class="math inline">\(\pi_2(\hat\mu,\hat\sigma^2) = \Phi\left(\dfrac{3.912-4.15}{0.2843^{1/2}}\right) - \Phi\left(\dfrac{3.575-4.15}{0.2843^{1/2}}\right) = 0.187\)</span>.</p></li>
@@ -708,19 +728,19 @@ es la cantidad de <span class="math inline">\(X_i\)</span>’s que pertenecen a 
 <li><p><span class="math inline">\(\pi_4(\hat\mu,\hat\sigma^2) = 1 - \Phi\left(\dfrac{4.249-4.15}{0.2843^{1/2}}\right) = 0.4266\)</span>.</p></li>
 </ul>
 <p>Es decir podemos calcular lo siguiente en R</p>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="bondad-de-ajuste.html#cb342-1"></a>G &lt;-<span class="st"> </span><span class="kw">length</span>(cortes)</span>
-<span id="cb342-2"><a href="bondad-de-ajuste.html#cb342-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(log_x)</span>
-<span id="cb342-3"><a href="bondad-de-ajuste.html#cb342-3"></a>sigma &lt;-<span class="st"> </span><span class="kw">sd</span>(log_x)</span>
-<span id="cb342-4"><a href="bondad-de-ajuste.html#cb342-4"></a></span>
-<span id="cb342-5"><a href="bondad-de-ajuste.html#cb342-5"></a>pi &lt;-<span class="st"> </span><span class="kw">numeric</span>()</span>
-<span id="cb342-6"><a href="bondad-de-ajuste.html#cb342-6"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(G <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) {</span>
-<span id="cb342-7"><a href="bondad-de-ajuste.html#cb342-7"></a>  pi[k] &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> cortes[k <span class="op">+</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma) <span class="op">-</span></span>
-<span id="cb342-8"><a href="bondad-de-ajuste.html#cb342-8"></a><span class="st">    </span><span class="kw">pnorm</span>(<span class="dt">q =</span> cortes[k], <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma)</span>
-<span id="cb342-9"><a href="bondad-de-ajuste.html#cb342-9"></a>}</span>
-<span id="cb342-10"><a href="bondad-de-ajuste.html#cb342-10"></a></span>
-<span id="cb342-11"><a href="bondad-de-ajuste.html#cb342-11"></a>pi</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="bondad-de-ajuste.html#cb343-1"></a>G &lt;-<span class="st"> </span><span class="kw">length</span>(cortes)</span>
+<span id="cb343-2"><a href="bondad-de-ajuste.html#cb343-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(log_x)</span>
+<span id="cb343-3"><a href="bondad-de-ajuste.html#cb343-3"></a>sigma &lt;-<span class="st"> </span><span class="kw">sd</span>(log_x)</span>
+<span id="cb343-4"><a href="bondad-de-ajuste.html#cb343-4"></a></span>
+<span id="cb343-5"><a href="bondad-de-ajuste.html#cb343-5"></a>pi &lt;-<span class="st"> </span><span class="kw">numeric</span>()</span>
+<span id="cb343-6"><a href="bondad-de-ajuste.html#cb343-6"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(G <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) {</span>
+<span id="cb343-7"><a href="bondad-de-ajuste.html#cb343-7"></a>  pi[k] &lt;-<span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> cortes[k <span class="op">+</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma) <span class="op">-</span></span>
+<span id="cb343-8"><a href="bondad-de-ajuste.html#cb343-8"></a><span class="st">    </span><span class="kw">pnorm</span>(<span class="dt">q =</span> cortes[k], <span class="dt">mean =</span> mu, <span class="dt">sd =</span> sigma)</span>
+<span id="cb343-9"><a href="bondad-de-ajuste.html#cb343-9"></a>}</span>
+<span id="cb343-10"><a href="bondad-de-ajuste.html#cb343-10"></a></span>
+<span id="cb343-11"><a href="bondad-de-ajuste.html#cb343-11"></a>pi</span></code></pre></div>
 <pre><code>## [1] 0.1400819 0.1871877 0.2461242 0.4266062</code></pre>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="bondad-de-ajuste.html#cb344-1"></a><span class="kw">chisq.test</span>(conteos, <span class="dt">p =</span> pi)</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="bondad-de-ajuste.html#cb345-1"></a><span class="kw">chisq.test</span>(conteos, <span class="dt">p =</span> pi)</span></code></pre></div>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
@@ -735,6 +755,32 @@ es la cantidad de <span class="math inline">\(X_i\)</span>’s que pertenecen a 
 <li><p><span class="math inline">\(\text{valor-}p_2 = F_{\chi^2_{4-1}}(1.3381) = 0.2798937\)</span>.</p></li>
 </ul>
 <p>Rechazamos <span class="math inline">\(H_0\)</span> (hipótesis de normalidad) si <span class="math inline">\(\alpha_0&lt;0.2798\)</span>.</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="bondad-de-ajuste.html#cb347-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="fl">2.5</span>, <span class="dv">6</span>)), <span class="kw">aes</span>(x)) <span class="op">+</span></span>
+<span id="cb347-2"><a href="bondad-de-ajuste.html#cb347-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(</span>
+<span id="cb347-3"><a href="bondad-de-ajuste.html#cb347-3"></a>    <span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> log_x),</span>
+<span id="cb347-4"><a href="bondad-de-ajuste.html#cb347-4"></a>    <span class="kw">aes</span>(x, <span class="dt">y =</span> ..density..),</span>
+<span id="cb347-5"><a href="bondad-de-ajuste.html#cb347-5"></a>    <span class="dt">color =</span> <span class="st">&quot;white&quot;</span></span>
+<span id="cb347-6"><a href="bondad-de-ajuste.html#cb347-6"></a>  ) <span class="op">+</span></span>
+<span id="cb347-7"><a href="bondad-de-ajuste.html#cb347-7"></a><span class="st">  </span><span class="kw">stat_function</span>(</span>
+<span id="cb347-8"><a href="bondad-de-ajuste.html#cb347-8"></a>    <span class="dt">fun =</span> dnorm,</span>
+<span id="cb347-9"><a href="bondad-de-ajuste.html#cb347-9"></a>    <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">log</span>(<span class="dv">50</span>), <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="fl">0.25</span>)),</span>
+<span id="cb347-10"><a href="bondad-de-ajuste.html#cb347-10"></a>    <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Hipótesis Manual&quot;</span>),</span>
+<span id="cb347-11"><a href="bondad-de-ajuste.html#cb347-11"></a>    <span class="dt">size =</span> <span class="dv">2</span></span>
+<span id="cb347-12"><a href="bondad-de-ajuste.html#cb347-12"></a>  ) <span class="op">+</span></span>
+<span id="cb347-13"><a href="bondad-de-ajuste.html#cb347-13"></a><span class="st">  </span><span class="kw">stat_function</span>(</span>
+<span id="cb347-14"><a href="bondad-de-ajuste.html#cb347-14"></a>    <span class="dt">fun =</span> dnorm,</span>
+<span id="cb347-15"><a href="bondad-de-ajuste.html#cb347-15"></a>    <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> sol<span class="op">$</span>par[<span class="dv">1</span>], <span class="dt">sd =</span> sol<span class="op">$</span>par[<span class="dv">2</span>]),</span>
+<span id="cb347-16"><a href="bondad-de-ajuste.html#cb347-16"></a>    <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Hipótesis con Optimización&quot;</span>),</span>
+<span id="cb347-17"><a href="bondad-de-ajuste.html#cb347-17"></a>    <span class="dt">size =</span> <span class="dv">2</span></span>
+<span id="cb347-18"><a href="bondad-de-ajuste.html#cb347-18"></a>  ) <span class="op">+</span></span>
+<span id="cb347-19"><a href="bondad-de-ajuste.html#cb347-19"></a><span class="st">  </span><span class="kw">stat_function</span>(</span>
+<span id="cb347-20"><a href="bondad-de-ajuste.html#cb347-20"></a>    <span class="dt">fun =</span> dnorm,</span>
+<span id="cb347-21"><a href="bondad-de-ajuste.html#cb347-21"></a>    <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(log_x), <span class="dt">sd =</span> <span class="kw">sd</span>(log_x)),</span>
+<span id="cb347-22"><a href="bondad-de-ajuste.html#cb347-22"></a>    <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Hipótesis con MLE&quot;</span>),</span>
+<span id="cb347-23"><a href="bondad-de-ajuste.html#cb347-23"></a>    <span class="dt">size =</span> <span class="dv">2</span></span>
+<span id="cb347-24"><a href="bondad-de-ajuste.html#cb347-24"></a>  ) <span class="op">+</span></span>
+<span id="cb347-25"><a href="bondad-de-ajuste.html#cb347-25"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/13-bondad-de-ajuste-9-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Ejemplo</strong>. Suponga que se tiene el número de muertes por patadas de caballo en
 el ejercito Prusiano.</p>
 <table>
@@ -762,6 +808,15 @@ el ejercito Prusiano.</p>
 </tbody>
 </table>
 <p>¿Será la variable Poisson?</p>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="bondad-de-ajuste.html#cb348-1"></a>df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb348-2"><a href="bondad-de-ajuste.html#cb348-2"></a>  <span class="dt">conteos =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
+<span id="cb348-3"><a href="bondad-de-ajuste.html#cb348-3"></a>  <span class="dt">observaciones =</span> <span class="kw">c</span>(<span class="dv">144</span>, <span class="dv">91</span>, <span class="dv">32</span>, <span class="dv">11</span>, <span class="dv">2</span>)</span>
+<span id="cb348-4"><a href="bondad-de-ajuste.html#cb348-4"></a>)</span>
+<span id="cb348-5"><a href="bondad-de-ajuste.html#cb348-5"></a></span>
+<span id="cb348-6"><a href="bondad-de-ajuste.html#cb348-6"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> conteos, <span class="dt">y =</span> observaciones)) <span class="op">+</span></span>
+<span id="cb348-7"><a href="bondad-de-ajuste.html#cb348-7"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb348-8"><a href="bondad-de-ajuste.html#cb348-8"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/13-bondad-de-ajuste-10-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(H_0: f = \text{Poisson}(\theta), \theta&gt;0\)</span>.</p>
 <p>El MLE de <span class="math inline">\(\hat\theta\)</span> es</p>
 <p><span class="math display">\[\dfrac{0\cdot 144+1\cdot91+2\cdot32+3\cdot 11+2\cdot4}{280} = \dfrac{196}{280} = 0.7\]</span></p>
@@ -781,6 +836,19 @@ Q&#39; &amp; = \dfrac{(144-280\cdot0.4966)^2}{280\cdot0.4966}+\dfrac{(91-280\cdo
 <li><p><span class="math inline">\(\text{valor-}p_2 = F_{\chi^2_{5-1}}(1.979) = 0.7396\)</span>.</p></li>
 </ul>
 <p><em>Interpretación</em>: con un nivel de significancia del 5% no rechazamos la hipótesis Poisson en los datos.</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="bondad-de-ajuste.html#cb349-1"></a>total &lt;-<span class="st"> </span><span class="kw">sum</span>(df<span class="op">$</span>observaciones)</span>
+<span id="cb349-2"><a href="bondad-de-ajuste.html#cb349-2"></a></span>
+<span id="cb349-3"><a href="bondad-de-ajuste.html#cb349-3"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">4</span>)), <span class="kw">aes</span>(x)) <span class="op">+</span></span>
+<span id="cb349-4"><a href="bondad-de-ajuste.html#cb349-4"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">data =</span> df, <span class="kw">aes</span>(<span class="dt">x =</span> conteos, <span class="dt">y =</span> observaciones <span class="op">/</span><span class="st"> </span>total)) <span class="op">+</span></span>
+<span id="cb349-5"><a href="bondad-de-ajuste.html#cb349-5"></a><span class="st">  </span><span class="kw">stat_function</span>(</span>
+<span id="cb349-6"><a href="bondad-de-ajuste.html#cb349-6"></a>    <span class="dt">fun =</span> dpois,</span>
+<span id="cb349-7"><a href="bondad-de-ajuste.html#cb349-7"></a>    <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">lambda =</span> <span class="fl">0.7</span>),</span>
+<span id="cb349-8"><a href="bondad-de-ajuste.html#cb349-8"></a>    <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;Hipótesis con MLE&quot;</span>),</span>
+<span id="cb349-9"><a href="bondad-de-ajuste.html#cb349-9"></a>    <span class="dt">size =</span> <span class="dv">2</span>,</span>
+<span id="cb349-10"><a href="bondad-de-ajuste.html#cb349-10"></a>    <span class="dt">geom =</span> <span class="st">&quot;col&quot;</span></span>
+<span id="cb349-11"><a href="bondad-de-ajuste.html#cb349-11"></a>  ) <span class="op">+</span></span>
+<span id="cb349-12"><a href="bondad-de-ajuste.html#cb349-12"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/13-bondad-de-ajuste-11-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>

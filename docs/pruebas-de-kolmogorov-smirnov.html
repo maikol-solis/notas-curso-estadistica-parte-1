@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 15 Pruebas de Kolmogorov-Smirnov | Notas Curso de Estadística (Parte I)</title>
+  <meta name="description" content="Capítulo 15 Pruebas de Kolmogorov-Smirnov | Notas Curso de Estadística (Parte I)" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 15 Pruebas de Kolmogorov-Smirnov | Notas Curso de Estadística (Parte I)" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 15 Pruebas de Kolmogorov-Smirnov | Notas Curso de Estadística (Parte I)" />
+  
+  
+  
+
+<meta name="author" content="Maikol Solís" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tablas-de-contingencia.html"/>
+<link rel="next" href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso de Estadística</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html"><i class="fa fa-check"></i><b>2</b> Inferencia estadística</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#ejemplo"><i class="fa fa-check"></i><b>2.1</b> Ejemplo</a></li>
+<li class="chapter" data-level="2.2" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#modelo-estadístico"><i class="fa fa-check"></i><b>2.2</b> Modelo estadístico</a></li>
+<li class="chapter" data-level="2.3" data-path="inferencia-estadística.html"><a href="inferencia-estadística.html#estadístico"><i class="fa fa-check"></i><b>2.3</b> Estadístico</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><i class="fa fa-check"></i><b>3</b> Densidades previas conjugadas y estimadores de Bayes</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-previa-distribución-a-priori"><i class="fa fa-check"></i><b>3.1</b> Distribución previa (distribución a priori)</a></li>
+<li class="chapter" data-level="3.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#densidad-posterior"><i class="fa fa-check"></i><b>3.2</b> Densidad posterior</a></li>
+<li class="chapter" data-level="3.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#proceso-de-modelación-de-parámetros."><i class="fa fa-check"></i><b>3.3</b> Proceso de modelación de parámetros.</a></li>
+<li class="chapter" data-level="3.4" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-verosimilitud"><i class="fa fa-check"></i><b>3.4</b> Función de verosimilitud</a></li>
+<li class="chapter" data-level="3.5" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#familias-conjugadas"><i class="fa fa-check"></i><b>3.5</b> Familias conjugadas</a></li>
+<li class="chapter" data-level="3.6" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#densidades-previas-impropias"><i class="fa fa-check"></i><b>3.6</b> Densidades previas impropias</a></li>
+<li class="chapter" data-level="3.7" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#funciones-de-pérdida"><i class="fa fa-check"></i><b>3.7</b> Funciones de pérdida</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-pérdida-cuadrática"><i class="fa fa-check"></i><b>3.7.1</b> Función de pérdida cuadrática</a></li>
+<li class="chapter" data-level="3.7.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#función-de-pérdida-absoluta"><i class="fa fa-check"></i><b>3.7.2</b> Función de pérdida absoluta</a></li>
+<li class="chapter" data-level="3.7.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#otras-funciones-de-pérdida"><i class="fa fa-check"></i><b>3.7.3</b> Otras funciones de pérdida</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#efecto-de-muestras-grandes"><i class="fa fa-check"></i><b>3.8</b> Efecto de muestras grandes</a></li>
+<li class="chapter" data-level="3.9" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#consistencia"><i class="fa fa-check"></i><b>3.9</b> Consistencia</a></li>
+<li class="chapter" data-level="3.10" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#laboratorio"><i class="fa fa-check"></i><b>3.10</b> Laboratorio</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-previa"><i class="fa fa-check"></i><b>3.10.1</b> Distribución previa</a></li>
+<li class="chapter" data-level="3.10.2" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-conjunta"><i class="fa fa-check"></i><b>3.10.2</b> Distribución conjunta</a></li>
+<li class="chapter" data-level="3.10.3" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#distribución-posterior"><i class="fa fa-check"></i><b>3.10.3</b> Distribución posterior</a></li>
+<li class="chapter" data-level="3.10.4" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#agregando-nuevos-datos"><i class="fa fa-check"></i><b>3.10.4</b> Agregando nuevos datos</a></li>
+<li class="chapter" data-level="3.10.5" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#familias-conjugadas-normales"><i class="fa fa-check"></i><b>3.10.5</b> Familias conjugadas normales</a></li>
+<li class="chapter" data-level="3.10.6" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#funciones-de-pérdida-1"><i class="fa fa-check"></i><b>3.10.6</b> Funciones de pérdida</a></li>
+<li class="chapter" data-level="3.10.7" data-path="densidades-previas-conjugadas-y-estimadores-de-bayes.html"><a href="densidades-previas-conjugadas-y-estimadores-de-bayes.html#caso-concreto"><i class="fa fa-check"></i><b>3.10.7</b> Caso concreto</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html"><i class="fa fa-check"></i><b>4</b> Estimación por máxima verosimilitud</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedades-del-mle"><i class="fa fa-check"></i><b>4.1</b> Propiedades del MLE</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#propiedad-de-invarianza"><i class="fa fa-check"></i><b>4.1.1</b> Propiedad de invarianza</a></li>
+<li class="chapter" data-level="4.1.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#consistencia-1"><i class="fa fa-check"></i><b>4.1.2</b> Consistencia</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#cálculo-numérico"><i class="fa fa-check"></i><b>4.2</b> Cálculo numérico</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-de-los-momentos"><i class="fa fa-check"></i><b>4.2.1</b> Método de los momentos</a></li>
+<li class="chapter" data-level="4.2.2" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#método-delta"><i class="fa fa-check"></i><b>4.2.2</b> Método Delta</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="estimación-por-máxima-verosimilitud.html"><a href="estimación-por-máxima-verosimilitud.html#laboratorio-1"><i class="fa fa-check"></i><b>4.3</b> Laboratorio</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html"><i class="fa fa-check"></i><b>5</b> Estadísticos Suficientes y Criterio de Factorización</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html#estadísticos-suficientes"><i class="fa fa-check"></i><b>5.1</b> Estadísticos suficientes</a></li>
+<li class="chapter" data-level="5.2" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html#teorema-de-factorización-de-fisher"><i class="fa fa-check"></i><b>5.2</b> Teorema de Factorización de Fisher</a></li>
+<li class="chapter" data-level="5.3" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html#estadístico-suficiente-multivariado."><i class="fa fa-check"></i><b>5.3</b> Estadístico suficiente multivariado.</a></li>
+<li class="chapter" data-level="5.4" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html#estadísticos-minimales"><i class="fa fa-check"></i><b>5.4</b> Estadísticos minimales</a></li>
+<li class="chapter" data-level="5.5" data-path="estadísticos-suficientes-y-criterio-de-factorización.html"><a href="estadísticos-suficientes-y-criterio-de-factorización.html#mejorando-estimadores"><i class="fa fa-check"></i><b>5.5</b> Mejorando estimadores</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html"><i class="fa fa-check"></i><b>6</b> Distribución muestral de un estadístico</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html#distribución-muestral"><i class="fa fa-check"></i><b>6.1</b> Distribución muestral</a></li>
+<li class="chapter" data-level="6.2" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html#distribución-chi2"><i class="fa fa-check"></i><b>6.2</b> Distribución <span class="math inline">\(\chi^2\)</span></a></li>
+<li class="chapter" data-level="6.3" data-path="distribución-muestral-de-un-estadístico.html"><a href="distribución-muestral-de-un-estadístico.html#distribución-t"><i class="fa fa-check"></i><b>6.3</b> Distribución <span class="math inline">\(t\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>7</b> Intervalos de confianza</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-para-la-media-de-una-distribución-normal"><i class="fa fa-check"></i><b>7.1</b> Intervalos de confianza para la media de una distribución normal</a></li>
+<li class="chapter" data-level="7.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#caso-normal."><i class="fa fa-check"></i><b>7.2</b> Caso normal.</a></li>
+<li class="chapter" data-level="7.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-abiertos"><i class="fa fa-check"></i><b>7.3</b> Intervalos de confianza abiertos</a></li>
+<li class="chapter" data-level="7.4" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-en-otros-casos"><i class="fa fa-check"></i><b>7.4</b> Intervalos de confianza en otros casos</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-aproximados."><i class="fa fa-check"></i><b>7.4.1</b> Intervalos de confianza aproximados.</a></li>
+<li class="chapter" data-level="7.4.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#transformaciones-estabilizadoras-de-la-varianza"><i class="fa fa-check"></i><b>7.4.2</b> Transformaciones estabilizadoras de la varianza</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html"><i class="fa fa-check"></i><b>8</b> Estimación Bayesiana bajo normalidad</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#precisión-de-una-distribución-normal"><i class="fa fa-check"></i><b>8.1</b> Precisión de una distribución normal</a></li>
+<li class="chapter" data-level="8.2" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#distribución-marginal-de-mu"><i class="fa fa-check"></i><b>8.2</b> Distribución marginal de <span class="math inline">\(\mu\)</span></a></li>
+<li class="chapter" data-level="8.3" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#intervalos-de-credibilidad."><i class="fa fa-check"></i><b>8.3</b> Intervalos de credibilidad.</a></li>
+<li class="chapter" data-level="8.4" data-path="estimación-bayesiana-bajo-normalidad.html"><a href="estimación-bayesiana-bajo-normalidad.html#efecto-de-previas-no-informativas-opcional"><i class="fa fa-check"></i><b>8.4</b> Efecto de previas no informativas (Opcional)</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html"><i class="fa fa-check"></i><b>9</b> Estimación insesgada</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#estimadores-insesgados"><i class="fa fa-check"></i><b>9.1</b> Estimadores insesgados</a></li>
+<li class="chapter" data-level="9.2" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#estimador-insesgado-de-la-varianza"><i class="fa fa-check"></i><b>9.2</b> Estimador insesgado de la varianza</a></li>
+<li class="chapter" data-level="9.3" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#información-de-fisher"><i class="fa fa-check"></i><b>9.3</b> Información de Fisher</a></li>
+<li class="chapter" data-level="9.4" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#desigualdad-de-cramer-rao"><i class="fa fa-check"></i><b>9.4</b> Desigualdad de Cramer-Rao</a></li>
+<li class="chapter" data-level="9.5" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#estimadores-eficientes"><i class="fa fa-check"></i><b>9.5</b> Estimadores eficientes</a></li>
+<li class="chapter" data-level="9.6" data-path="estimación-insesgada.html"><a href="estimación-insesgada.html#comportamiento-asintótico-del-mle"><i class="fa fa-check"></i><b>9.6</b> Comportamiento asintótico del MLE</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html"><i class="fa fa-check"></i><b>10</b> Pruebas de hipótesis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#pruebas-de-hipótesis-1"><i class="fa fa-check"></i><b>10.1</b> Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="10.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#regiones-críticas-y-estadísticas-de-prueba"><i class="fa fa-check"></i><b>10.2</b> Regiones críticas y estadísticas de prueba</a></li>
+<li class="chapter" data-level="10.3" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#función-de-potencia-y-tipos-de-error"><i class="fa fa-check"></i><b>10.3</b> Función de potencia y tipos de error</a></li>
+<li class="chapter" data-level="10.4" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#valor-p"><i class="fa fa-check"></i><b>10.4</b> Valor <span class="math inline">\(p\)</span></a></li>
+<li class="chapter" data-level="10.5" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#dualidad-entre-pruebas-de-hipótesis-y-regiones-de-confianza"><i class="fa fa-check"></i><b>10.5</b> Dualidad entre pruebas de hipótesis y regiones de confianza</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#dualidad-en-pruebas-unilaterales"><i class="fa fa-check"></i><b>10.5.1</b> Dualidad en pruebas unilaterales</a></li>
+<li class="chapter" data-level="10.5.2" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html#pruebas-de-cociente-de-verosimilitud-lrt"><i class="fa fa-check"></i><b>10.5.2</b> Pruebas de cociente de verosimilitud (LRT)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html"><i class="fa fa-check"></i><b>11</b> Pruebas con hipótesis simples</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#hipótesis-simples"><i class="fa fa-check"></i><b>11.1</b> Hipótesis simples</a></li>
+<li class="chapter" data-level="11.2" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#criterio-de-neyman-pearson"><i class="fa fa-check"></i><b>11.2</b> Criterio de Neyman-Pearson</a></li>
+<li class="chapter" data-level="11.3" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#pruebas-insesgadas"><i class="fa fa-check"></i><b>11.3</b> Pruebas insesgadas</a></li>
+<li class="chapter" data-level="11.4" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#prueba-t"><i class="fa fa-check"></i><b>11.4</b> Prueba <span class="math inline">\(t\)</span></a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#propiedades-de-las-pruebas-t"><i class="fa fa-check"></i><b>11.4.1</b> Propiedades de las pruebas <span class="math inline">\(t\)</span></a></li>
+<li class="chapter" data-level="11.4.2" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#prueba-t-pareada"><i class="fa fa-check"></i><b>11.4.2</b> Prueba <span class="math inline">\(t\)</span> pareada</a></li>
+<li class="chapter" data-level="11.4.3" data-path="pruebas-con-hipótesis-simples.html"><a href="pruebas-con-hipótesis-simples.html#pruebas-t-de-dos-colas"><i class="fa fa-check"></i><b>11.4.3</b> Pruebas <span class="math inline">\(t\)</span> de dos colas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html"><i class="fa fa-check"></i><b>12</b> Prueba de comparación de medias en 2 poblaciones</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#comparación-de-medias-normales"><i class="fa fa-check"></i><b>12.1</b> Comparación de medias normales</a></li>
+<li class="chapter" data-level="12.2" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-t-de-dos-muestras"><i class="fa fa-check"></i><b>12.2</b> Prueba <span class="math inline">\(t\)</span> de dos muestras</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-de-2-colas"><i class="fa fa-check"></i><b>12.2.1</b> Prueba de 2 colas</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-f"><i class="fa fa-check"></i><b>12.3</b> Prueba <span class="math inline">\(F\)</span></a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="prueba-de-comparación-de-medias-en-2-poblaciones.html"><a href="prueba-de-comparación-de-medias-en-2-poblaciones.html#prueba-de-2-colas-prueba-de-homocedasticidad"><i class="fa fa-check"></i><b>12.3.1</b> Prueba de 2 colas (prueba de homocedasticidad)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bondad-de-ajuste.html"><a href="bondad-de-ajuste.html"><i class="fa fa-check"></i><b>13</b> Bondad de ajuste</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="bondad-de-ajuste.html"><a href="bondad-de-ajuste.html#prueba-chi2"><i class="fa fa-check"></i><b>13.1</b> Prueba <span class="math inline">\(\chi^2\)</span></a></li>
+<li class="chapter" data-level="13.2" data-path="bondad-de-ajuste.html"><a href="bondad-de-ajuste.html#pruebas-chi2-con-hipótesis-parametrizadas"><i class="fa fa-check"></i><b>13.2</b> Pruebas <span class="math inline">\(\chi^2\)</span> con hipótesis parametrizadas</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html"><i class="fa fa-check"></i><b>14</b> Tablas de contingencia</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html#hipótesis-de-independencia"><i class="fa fa-check"></i><b>14.1</b> Hipótesis de independencia</a></li>
+<li class="chapter" data-level="14.2" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html#prueba-de-homogeneidad"><i class="fa fa-check"></i><b>14.2</b> Prueba de homogeneidad</a></li>
+<li class="chapter" data-level="14.3" data-path="tablas-de-contingencia.html"><a href="tablas-de-contingencia.html#comparación-de-proporciones"><i class="fa fa-check"></i><b>14.3</b> Comparación de proporciones</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="pruebas-de-kolmogorov-smirnov.html"><a href="pruebas-de-kolmogorov-smirnov.html"><i class="fa fa-check"></i><b>15</b> Pruebas de Kolmogorov-Smirnov</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="pruebas-de-kolmogorov-smirnov.html"><a href="pruebas-de-kolmogorov-smirnov.html#prueba-de-kolmogorov-smirnov-para-una-muestra"><i class="fa fa-check"></i><b>15.1</b> Prueba de Kolmogorov-Smirnov para una muestra</a></li>
+<li class="chapter" data-level="15.2" data-path="pruebas-de-kolmogorov-smirnov.html"><a href="pruebas-de-kolmogorov-smirnov.html#prueba-de-2-muestras"><i class="fa fa-check"></i><b>15.2</b> Prueba de 2 muestras</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html"><i class="fa fa-check"></i><b>16</b> Pruebas no-paramétricas: pruebas de signo y rango</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#prueba-de-signo"><i class="fa fa-check"></i><b>16.1</b> Prueba de signo</a></li>
+<li class="chapter" data-level="16.2" data-path="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#prueba-de-wilconxon-mann-whitney"><i class="fa fa-check"></i><b>16.2</b> Prueba de Wilconxon-Mann-Whitney</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html"><i class="fa fa-check"></i><b>17</b> Ejercicios varios</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#capítulo-8"><i class="fa fa-check"></i><b>17.1</b> Capítulo 8</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="ejercicios-varios.html"><a href="ejercicios-varios.html#section"><i class="fa fa-check"></i><b>17.1.1</b> 8.4.6</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notas Curso de Estadística (Parte I)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pruebas-de-kolmogorov-smirnov" class="section level1" number="15">
+<h1><span class="header-section-number">Capítulo 15</span> Pruebas de Kolmogorov-Smirnov</h1>
+<p>Sean <span class="math inline">\(X_1,\dots,X_n\sim F\)</span>, <span class="math inline">\(F\)</span> una cdf continua. Asumimos que los valores observados <span class="math inline">\(x_1,\dots,x_n\)</span> son diferentes.</p>
+<p><strong>Definición</strong>. Sean <span class="math inline">\(x_1,\dots,x_n\)</span> los valores observados de la muestra aleatoria <span class="math inline">\(X_1,\dots, X_n\)</span>. Para cada <span class="math inline">\(x\)</span> defina <span class="math inline">\(F_n(x)\)</span> como la proporción de valores observados en la muestra que son menores o iguales a <span class="math inline">\(x\)</span>. Es decir, si hay <span class="math inline">\(k\)</span> valores observados menores o iguales a <span class="math inline">\(x\)</span>,
+<span class="math display">\[F_n(x) = k/n.\]</span></p>
+<p><span class="math inline">\(F_n\)</span> se conoce como la función de distribución de la muestra (empírica). <span class="math inline">\(F_n\)</span> es una distribución a pasos con salto de magnitud <span class="math inline">\(\dfrac 1n\)</span> entre los valores <span class="math inline">\(x_1,\dots,x_n\)</span>. Se puede expresar como</p>
+<p><span class="math display">\[F_n(x) = \begin{cases} 
+  0 &amp; \text{si } x&lt;X_{(1)}\\
+ \dfrac 1n \sum_{i=1}^n 1_{\{x_i\leq x\}} &amp; \text{si } X_{(1)}\leq x&lt;X_{(n)}\\
+1 &amp; \text{si} X_{(n)}\geq x
+\end{cases}
+\]</span></p>
+<p>Como <span class="math inline">\(\{x_i\}_{i=1}^n\)</span> son independientes, <span class="math inline">\(\{1_{\{x_i\leq x\}}\}_{i=1}^n\)</span> son independientes. Entonces, por la ley de grandes números</p>
+<p><span class="math display">\[F_n(x) = \dfrac 1n \sum_{i=1}^n 1_{\{x_i\leq x\}} \xrightarrow[n\to\infty]{\mathbb P} \mathbb E[1_{X_i\leq x}] = F(x)\]</span></p>
+<p>por lo que <span class="math inline">\(F_n(x)\)</span> es consistente.</p>
+<p><strong>Teorema</strong> (Lema de Glivenko-Cantelli)</p>
+<p>Sea <span class="math inline">\(D_n = \sup_{-\infty&lt;x&lt;\infty}|F_n(x)-F(x)|\)</span>. Entonces <span class="math inline">\(D_n\xrightarrow[]{\mathbb P} 0\)</span>.</p>
+<div id="prueba-de-kolmogorov-smirnov-para-una-muestra" class="section level2" number="15.1">
+<h2><span class="header-section-number">15.1</span> Prueba de Kolmogorov-Smirnov para una muestra</h2>
+<p>¿Será <span class="math inline">\(F = F^*\)</span>?, <span class="math inline">\(F^*\)</span> distribución candidata. La hipótesis es <span class="math display">\[H_0: F = F^* \text{ vs } H_1: F\neq F^*\]</span>
+El estadístico de prueba es
+<span class="math display">\[D_n^* = \sup_{-\infty&lt;x&lt;\infty}|F_n(x)-F^*(x)|\]</span>
+Si <span class="math inline">\(H_0\)</span> es cierto, <span class="math inline">\(D_n^*\)</span> no depende de <span class="math inline">\(F^*\)</span>.</p>
+<p>Sea <span class="math inline">\(Z_i = F^*(X_i)\)</span>, <span class="math inline">\(i=1,\dots,n\)</span> <span class="math inline">\((X_1,\dots,X_n \sim F)\)</span>. Vea que
+<span class="math display">\[\mathbb P(Z_i\leq z) = \mathbb P(F^*(X_i)\leq z) = \mathbb P(X_i\leq (F^*)^{-1}(z)) = z\]</span>
+Entonces <span class="math inline">\(Z_1,\dots, Z_n \underset{H_0}{\sim} \text{Unif}(0,1)\)</span></p>
+<p>Considere la hipótesis <span class="math inline">\(H_0: G = \text{Unif}(0,1)\)</span> donde <span class="math inline">\(G\)</span> es la cdf de <span class="math inline">\(Z_i\)</span>. Entonces</p>
+<p><span class="math display">\[D_n^{*,G} = \sup_{0&lt;z&lt;1}|G_n(z)-G^*(z)| = \sup_{0&lt;z&lt;1}|G_n(z)-\text{Unif}(0,1)(z)| = \sup_{0&lt;z&lt;1}|G_n(z)-z|\]</span></p>
+<p>Observe que</p>
+<p><span class="math display">\[G_n(z) = \dfrac 1n \sum_{i=1}^n 1_{\{Z_i\leq x\}} = \dfrac 1n \sum_{i=1}^n 1_{\{F^*(X_i)\leq z\}} = \sum_{i=1}^n 1_{\{X_i\leq (F^*)^{-1}(z)\}} = F_n((F^*)^{-1}(z))\]</span></p>
+<p>Entonces,</p>
+<p><span class="math display">\[D_n^{*,G} \underset{H_0}{=} \sup|F_n(x)-F^*(x)| = D_n^*\]</span></p>
+<p>por lo que <span class="math inline">\(D_n^*\)</span> no depende de <span class="math inline">\(F^*\)</span> bajo <span class="math inline">\(H_0\)</span>.</p>
+<p>Rechazamos <span class="math inline">\(H_0\)</span> si <span class="math inline">\(D_n^*\geq C\)</span>.</p>
+<p><strong>Teorema</strong> (de Kolmogorov-Smirnov). Si <span class="math inline">\(H_0\)</span> es cierto, para <span class="math inline">\(t&gt;0\)</span>,
+<span class="math display">\[\lim_{n\to \infty} \mathbb P(n^{1/2}D_n^*\leq t) = 1-2\sum_{i=1}^\infty (-1)^{i-1}e^{-2i^2t^2}.\]</span></p>
+<p>Rechazamos <span class="math inline">\(H_0\)</span> si <span class="math inline">\(n^{1/2}D_n^*\geq C\)</span>, <span class="math inline">\(n\)</span> grande. Para un nivel de significancia <span class="math inline">\(\alpha_0\)</span>, <span class="math inline">\(c = H^{-1}(1-\alpha_0)\)</span>, donde <span class="math inline">\(H\)</span> denota el valor de la parte derecha de la ecuación anterior (ver pág. 661).</p>
+</div>
+<div id="prueba-de-2-muestras" class="section level2" number="15.2">
+<h2><span class="header-section-number">15.2</span> Prueba de 2 muestras</h2>
+<p>Sean <span class="math inline">\(X_1,\dots,X_m\sim N(\mu_1,\sigma^2)\)</span> y <span class="math inline">\(Y_1,\dots,Y_n\sim N(\mu_2,\sigma^2)\)</span></p>
+<p>La hipótesis nula es <span class="math inline">\(H_0:\mu_1 = \mu_2\)</span>, o <span class="math inline">\(H_0: F_1 = F_2\)</span> donde <span class="math inline">\(F_1\)</span> es la distribución de <span class="math inline">\(X\)</span> y <span class="math inline">\(F_2\)</span> la de <span class="math inline">\(Y\)</span>.</p>
+<p>¿Es posible quitar normalidad? Es decir, para <span class="math inline">\(X_1,\dots,X_m\sim F\)</span> y <span class="math inline">\(Y_1,\dots,Y_m\sim G\)</span> continuas, sin valores en común, probar <span class="math inline">\(H_0: F(x) = G(x)\)</span>, <span class="math inline">\(x \in \mathbb R\)</span>.</p>
+<p>Considere
+<span class="math display">\[D_{mn} = \sup_{-\infty&lt;x&lt;\infty}|F_m(x)-G_n(x)|\]</span>
+Se tiene que <span class="math inline">\(D_{mn}\xrightarrow[]{\mathbb P} 0\)</span>, <span class="math inline">\(m,n\to\infty\)</span>.</p>
+<p>Si <span class="math inline">\(H(t)\)</span> es la distribución límite en el caso de una muestra y <span class="math inline">\(t&gt;0\)</span>,</p>
+<p><span class="math display">\[\lim_{m,n\to \infty} \mathbb P \left( \left( \dfrac{mn}{m+n}\right)^{\frac 12} D_{mn}\leq t\right) = H(t)\]</span></p>
+<p>Se rechaza si <span class="math inline">\(\left(\dfrac{mn}{m+n}\right)^{\frac 12}D_{mn} \leq c\)</span> <span class="math inline">\((H^{-1}(1-\alpha_0))\)</span>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tablas-de-contingencia.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/edit/master/15-pruebas-ks.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/maikol-solis/notas-curso-estadistica-parte-1/blob/master/15-pruebas-ks.Rmd",
+"text": null
+},
+"download": ["Notas-Curso-Estadistica.pdf"],
+"toc": {
+"collapse": "subsection"
+},
+"toc_depth": 5
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
