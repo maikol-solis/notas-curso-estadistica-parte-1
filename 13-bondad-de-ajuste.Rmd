@@ -130,10 +130,9 @@ En R el test se puede hacer con la función `chisq.test`:
 
 observado <- c(2162, 738, 228, 2876)
 
-probabilidad_hipotetica <- c(1/3,1/8, 1/24, 1/2)
+probabilidad_hipotetica <- c(1 / 3, 1 / 8, 1 / 24, 1 / 2)
 
 chisq.test(x = observado, p = probabilidad_hipotetica)
- 
 ```
 
 Rechazamos la hipótesis de que las probabilidades teóricas de tipo de sangre son
@@ -193,16 +192,19 @@ con $k-1$ grados de libertad.
 Trabajemos con el ejemplo de log-tiempo de vida de los dispositivos.
 
 ```{r 13-bondad-de-ajuste-2 }
-x <- c(17.88, 28.92, 33, 41.52, 42.12, 45.6, 48.8, 51.84, 51.96, 54.12, 55.56,
-       67.8, 68.44, 68.64, 68.88, 84.12, 93.12, 98.64, 105.12, 105.84, 127.92,
-       128.04, 173.4)
+x <- c(
+  17.88, 28.92, 33, 41.52, 42.12, 45.6, 48.8, 51.84, 51.96, 54.12, 55.56,
+  67.8, 68.44, 68.64, 68.88, 84.12, 93.12, 98.64, 105.12, 105.84, 127.92,
+  128.04, 173.4
+)
 
 log_x <- log(x)
+```
 
+
+```{r 13-bondad-de-ajuste-3 }
 hist(x)
 hist(log_x)
-
-
 ```
 
 Suponga que se quiere hacer la prueba de hipótesis 
@@ -230,11 +232,13 @@ Podemos tomar $k = 4$ grupos (intervalos regulares)
 
 Entonces solo para efectos de construir la partición 
 
-```{r 13-bondad-de-ajuste-3 }
+```{r 13-bondad-de-ajuste-4 }
 
-cortes <- qnorm(p = c(0, 1/4, 2/4, 3/4, 1),
-                mean = log(50),
-                sd = sqrt(0.25))
+cortes <- qnorm(
+  p = c(0, 1 / 4, 2 / 4, 3 / 4, 1),
+  mean = log(50),
+  sd = sqrt(0.25)
+)
 
 (intervalos <- cut(c(0, 10), breaks = cortes))
 
@@ -252,7 +256,7 @@ summary(conteos)
 
 El valor-\(p\) corresponde a $F_{\chi^2_3}(3.609) = 0.307$.
 
-```{r 13-bondad-de-ajuste-4 }
+```{r 13-bondad-de-ajuste-5 }
 conteos <- summary(conteos)
 
 chisq.test(conteos)
@@ -352,7 +356,7 @@ La verosimilitud es
 
 y se optimiza numéricamente.
 
-```{r 13-bondad-de-ajuste-5 }
+```{r 13-bondad-de-ajuste-6 }
 
 cortes <- qnorm(
     p = c(0, 1 / 4, 2 / 4, 3 / 4, 1),
@@ -361,28 +365,34 @@ cortes <- qnorm(
 )
 
 log_versomilitud <- function(par, cortes, log_x) {
-    G <- length(cortes)
-    mu <- par[1]
-    sigma <- sqrt(par[2])
+  G <- length(cortes)
+  mu <- par[1]
+  sigma <- par[2]
 
-    pi <- numeric()
-    for (k in 1:(G - 1)) {
-        pi[k] <- pnorm(q = cortes[k + 1], mean = mu, sd = sigma) -
-            pnorm(q = cortes[k], mean = mu, sd = sigma)
-    }
+  pi <- numeric()
+  for (k in 1:(G - 1)) {
+    pi[k] <- pnorm(q = cortes[k + 1], mean = mu, sd = sigma) -
+      pnorm(q = cortes[k], mean = mu, sd = sigma)
+  }
 
-    conteos <- cut(log_x, breaks = cortes)
-    conteos <- summary(conteos)
+  conteos <- cut(log_x, breaks = cortes)
+  conteos <- summary(conteos)
 
-    l <- -sum(conteos * log(pi))
+  l <- -sum(conteos * log(pi))
 
-    return(l)
+  return(l)
 }
 
-sol <- optim(par = c(0, 1), fn = log_versomilitud, cortes = cortes, log_x = log_x)
+sol <- optim(
+  par = c(0, 1),
+  fn = log_versomilitud,
+  cortes = cortes,
+  log_x = log_x
+)
 
-sol$part
+sol$par
 ```
+
 
 
 
@@ -398,7 +408,9 @@ P_\theta[X_i\in I_i]$, \[Q' =
 
 Bajo las condiciones de regularidad del MLE, si $n\to\infty$, el cdf de $Q'$ bajo $H_0$ está entre $\chi^2_{k-p-1}$ y $\chi^2_{k-1}$.
 
-Del ejemplo anterior (tiempo de vida de los dispositivos), tome $\hat\mu = \bar X_n = 4.15$ y $\hat\sigma^2 = \dfrac{s_n^2}{n} = 0.2722$.
+Del ejemplo anterior (tiempo de vida de los dispositivos), tome
+$\hat\mu = \bar X_n =`r mean(log_x)`$ y
+$\hat\sigma^2 = \dfrac{s_n^2}{n} = `r sd(log_x)`$.
 
 * $\pi_1(\hat\mu,\hat\sigma^2) = \Phi\left(\dfrac{3.575-4.15}{0.2843^{1/2}}\right)-\Phi(-\infty) = 0.14$.
 
@@ -410,22 +422,22 @@ Del ejemplo anterior (tiempo de vida de los dispositivos), tome $\hat\mu = \bar 
 
 Es decir podemos calcular lo siguiente en R 
 
-```{r 13-bondad-de-ajuste-6 }
-  G <- length(cortes)
-  mu <- mean(log_x)
-  sigma <- sd(log_x)
+```{r 13-bondad-de-ajuste-7 }
+G <- length(cortes)
+mu <- mean(log_x)
+sigma <- sd(log_x)
 
-  pi <- numeric()
-  for (k in 1:(G - 1)) {
-      pi[k] <- pnorm(q = cortes[k + 1], mean = mu, sd = sigma) -
-          pnorm(q = cortes[k], mean = mu, sd = sigma)
-  }
+pi <- numeric()
+for (k in 1:(G - 1)) {
+  pi[k] <- pnorm(q = cortes[k + 1], mean = mu, sd = sigma) -
+    pnorm(q = cortes[k], mean = mu, sd = sigma)
+}
 
-  pi
+pi
 ```
 
 
-```{r 13-bondad-de-ajuste-7 }
+```{r 13-bondad-de-ajuste-8 }
 chisq.test(conteos, p = pi)
 ```
 
@@ -441,6 +453,37 @@ Entonces
 
 Rechazamos $H_0$ (hipótesis de normalidad) si $\alpha_0<0.2798$.
 
+
+
+```{r 13-bondad-de-ajuste-9 }
+
+ggplot(data = data.frame(x = c(2.5, 6)), aes(x)) +
+  geom_histogram(
+    data = data.frame(x = log_x),
+    aes(x, y = ..density..),
+    color = "white"
+  ) +
+  stat_function(
+    fun = dnorm,
+    args = list(mean = log(50), sd = sqrt(0.25)),
+    aes(color = "Hipótesis Manual"),
+    size = 2
+  ) +
+  stat_function(
+    fun = dnorm,
+    args = list(mean = sol$par[1], sd = sol$par[2]),
+    aes(color = "Hipótesis con Optimización"),
+    size = 2
+  ) +
+  stat_function(
+    fun = dnorm,
+    args = list(mean = mean(log_x), sd = sd(log_x)),
+    aes(color = "Hipótesis con MLE"),
+    size = 2
+  ) +
+  theme_minimal()
+```
+
 **Ejemplo**. Suponga que se tiene el número de muertes por patadas de caballo en
 el ejercito Prusiano. 
 
@@ -449,6 +492,19 @@ el ejercito Prusiano.
 | $\text{Núm. de obs.}$ | $144$ | $91$ | $32$ | $11$ | $2$     | $280$          |
 
 ¿Será la variable Poisson?
+
+
+```{r 13-bondad-de-ajuste-10 }
+df <- data.frame(
+  conteos = c(0, 1, 2, 3, 4),
+  observaciones = c(144, 91, 32, 11, 2)
+)
+
+ggplot(df, aes(x = conteos, y = observaciones)) +
+  geom_col() +
+  theme_minimal()
+```
+
 
 $H_0: f = \text{Poisson}(\theta), \theta>0$.
 
@@ -476,3 +532,20 @@ Q' & = \dfrac{(144-280\cdot0.4966)^2}{280\cdot0.4966}+\dfrac{(91-280\cdot0.3476)
 * $\text{valor-}p_2 = F_{\chi^2_{5-1}}(1.979) = 0.7396$.
 
 *Interpretación*: con un nivel de significancia del 5% no rechazamos la hipótesis Poisson en los datos.
+
+
+```{r 13-bondad-de-ajuste-11 }
+
+total <- sum(df$observaciones)
+
+ggplot(data = data.frame(x = c(0, 4)), aes(x)) +
+  geom_col(data = df, aes(x = conteos, y = observaciones / total)) +
+  stat_function(
+    fun = dpois,
+    args = list(lambda = 0.7),
+    aes(color = "Hipótesis con MLE"),
+    size = 2,
+    geom = "col"
+  ) +
+  theme_minimal()
+```
