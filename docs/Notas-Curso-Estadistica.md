@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 04 November, 2020"
+date: "Actualizado el 12 November, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -7702,84 +7702,195 @@ ggplot(data = data.frame(x = c(0, 4)), aes(x)) +
 
 # Tablas de contingencia
 
-**Ejemplo**. Considere una muestra de 200 estudiantes de una población universitaria, según currículum (área de estudio) y candidato preferido (A, B o indeciso).
+En este capítulo veremos cómo hacer un prueba para determinar si dos variables
+categóricas son independientes.  
 
-| Área/Candidato | A | B | Indeciso | Totales|
-|-----------------|:--:|:---:|:----------:|:--------:|
-|Ingeniería|24|23|12|59|
-|Humanidades| 24|14|10|48|
-|Artes|17|8|13|38|
-|Administración|27|19|9|55|
-|Totales|92|64|44|200|
+**Ejemplo**. Considere una muestra de 200 estudiantes de una población
+universitaria, según currículum (área de estudio) y candidato preferido en una
+elecciones universitarias (A, B o indeciso).
 
-**Tabla de contingencia**: arreglo en donde cada observación se puede clasificar de dos o más formas.
 
-**Notación**. $R$ filas y $C$ columnas. 
+| Área/Candidato         | A  | B  | Indeciso | \| Totales |
+|:----------------------:|:--:|:--:|:--------:|:-----------|
+| Ingeniería             | 24 | 23 | 12       | \| 59      |
+| Humanidades            | 24 | 14 | 10       | \| 48      |
+| Artes                  | 17 | 8  | 13       | \| 38      |
+| Administración         | 27 | 19 | 9        | \| 55      |
+| Totales                | 92 | 64 | 44       | \| 200     |
 
-* $p_{ij} = \mathbb P[\text{Individuo en la población pertenezca a la celda }i,j]$, $i=1,\dots,R$; $j=1,\dots, C$.
 
-* $p_{i+} = \mathbb P[\text{Individuo se clasifique en la fila }i] = \sum_{j=1}^C p_{ij}$.
+Antes de continuar con este ejemplo, vamos definimos lo siguiente:
 
-* $p_{+j} = \mathbb P[\text{Individuo se clasifique en la fila }j] = \sum_{i=1}^R p_{ij}$.
+- **Tabla de contingencia**: arreglo en donde cada observación se puede clasificar
+de dos o más formas.
 
-Se cumple que $\sum_{i=1}^R\sum_{j=1}^Cp_{ij} = 1$.
+Declaramos la siguiente notaciones: 
 
-* $N_{ij}$: número de individuos en la muestra clasificados en la fila $i$ y columna $j$.
+* $R$ = El número de filas en la tabla.  
+* $C$ = El número de columnas en la tabla.  
 
-* $N_{i+} = \sum_{j=1}^CN_{ij}$.
+* $N_{ij}$ = número de individuos en la muestra clasificados en la fila $i$ y
+* $\displaystyle N_{i+} = \sum_{j=1}^CN_{ij}$.
+* $\displaystyle N_{+j} = \sum_{i=1}^RN_{ij}$.
+* $\displaystyle \sum_{i=1}^R\sum_{j=1}^C N_{ij} = n$.
 
-* $N_{+j} = \sum_{i=1}^RN_{ij}$.
+* $p_{ij}$ =
+$\displaystyle\mathbb P[\text{Individuo en la población pertenezca a la celda }i,j]$,
+$i=1,\dots,R$; $j=1,\dots, C$. 
 
-Se tiene que $\sum_{i=1}^R\sum_{j=1}^C N_{ij} = n$.
+* $p_{i+}$ =
+$\displaystyle\mathbb P[\text{Individuo se clasifique en la fila }i] = \sum_{j=1}^C p_{ij}$.
 
-## Hipótesis de independencia
+* $p_{+j}$ = $\displaystyle\mathbb P[\text{Individuo se clasifique en la fila }j] =
+  \sum_{i=1}^R p_{ij}$.
+
+  columna $j$.
+
+*  $\displaystyle \sum_{i=1}^R\sum_{j=1}^Cp_{ij} = 1$.
+
+Por ejemplo para la tabla anterior 
+
+* $N_{11} = 24$  son los estudiantes de ingeniería que van a votar por el
+candidatos A. 
+* $N_{2+} = 48$ son todos los estudiantes de Humanidades. 
+* $N_{+3} = 44$ son todos los estudiantes indecisos para votar.
+* $n = N_{++} = 200$ es cualquier estudiante. 
+
+## Prueba de independencia
+
+La hipótesis nula que queremos probar es:
 
 \[H_0: p_{ij} = p_{i+}\cdot p_{+j},\;i=1,\dots,R \; ;j=1,\dots, c\]
 
-Vectorizando la tabla de contingencia se puede utilizar la hipótesis de distribución multinomial. El número de celdas es $k=RC$. El número de parámetros bajo $H_0$ es $R-1+C-1 = R+C-2$.
+Es decir, que las probabilidades conjuntas de la tabla es el producto de las
+probabilidades individuales, i.e., que ambas variables son independientes.  
 
-El MLE corresponde a $\hat p_{i+} = \dfrac{N_{i+}}{n}$ y $\hat p_{+j} = \dfrac{N_{+j}}{n}$.
 
-El MLE del conteo en la celda $i,j$ (valor esperado bajo $H_0$) es
-\[\hat E_{ij} = n\hat p_{i+} \hat p_{+j}  = n\dfrac{N_{i+}}{n}\dfrac{N_{+j}}{n} = \dfrac{N_{i+}N_{+j}}{n}.\]
+Vectorizando la tabla de contingencia se puede utilizar la hipótesis de
+distribución multinomial. El número de celdas es $k=RC$. El número de parámetros
+bajo $H_0$ es $R-1+C-1 = R+C-2$.
+
+El MLE corresponde a $\hat p_{i+} = \dfrac{N_{i+}}{n}$ y
+$\hat p_{+j} = \dfrac{N_{+j}}{n}$.
+
+El MLE del conteo en la celda $i,j$ (valor esperado bajo $H_0$) es 
+
+\[\hat E_{ij} = n\hat p_{i+} \hat p_{+j} = n\dfrac{N_{i+}}{n}\dfrac{N_{+j}}{n} =
+\dfrac{N_{i+}N_{+j}}{n}.\]
 
 El estadístico $\chi^2$ se calcula como
 
-\[Q = \sum_{i=1}^R\sum_{j=1}^C \dfrac{(N_{ij}-\hat E_{ij})^2}{\hat E_{ij}} \underset{n\text{ grande, }H_0}{\sim} \chi^2_{k-s-1}\]
+\[Q = \sum_{i=1}^R\sum_{j=1}^C \dfrac{(N_{ij}-\hat E_{ij})^2}{\hat E_{ij}}
+\underset{n\text{ grande, }H_0}{\sim} \chi^2_{k-s-1}\]
 
-donde $k-s-1 = RC-(R+C-2)-1 = (R-1)(C-1).$ Dado $\alpha_0$, rechazamos $H_0$ si $Q>\chi^2_{(R-1)(C-1)}(1-\alpha_0)$.
+donde $k-s-1 = RC-(R+C-2)-1 = (R-1)(C-1).$
+
+
+Dado $\alpha_0$, rechazamos $H_0$ si $Q>\chi^2_{(R-1)(C-1)}(1-\alpha_0)$.
 
 Del ejemplo anterior, 
 
-$\hat E_{11} = \dfrac{59\cdot92}{200} = 27.14$.
-$\hat E_{32} = \dfrac{38\cdot64}{200} = 12.165$.
+\[\hat E_{11} = \dfrac{59\cdot92}{200} = 27.14\]
+\[\hat E_{32} = \dfrac{38\cdot64}{200} = 12.165\]
 
 La tabla de valores esperados bajo $H_0$ es
 
-| Área/Candidato | A | B | Indeciso | Totales|
-|-----------------|:--:|:---:|:----------:|:--------:|
-|Ingeniería|27.14|18.88|12.98|59|
-|Humanidades| 22.08|15.36|10.56|48|
-|Artes|17.48|12.16|8.36|38|
-|Administración|25.30|17.60|12.10|55|
-|Totales|92|64|44|200|
+| Área/Candidato | A     | B     | Indeciso | Totales |
+|----------------|:-----:|:-----:|:--------:|:-------:|
+| Ingeniería     | 27.14 | 18.88 | 12.98    | 59      |
+| Humanidades    | 22.08 | 15.36 | 10.56    | 48      |
+| Artes          | 17.48 | 12.16 | 8.36     | 38      |
+| Administración | 25.30 | 17.60 | 12.10    | 55      |
+| Totales        | 92    | 64    | 44       | 200     |
 
-\[Q = \dfrac{(24-27.14)^2}{27.14} + \cdots+\dfrac{(8-12.16)^2}{12.16}+\cdots = 6.68\]
+\[Q = \dfrac{(24-27.14)^2}{27.14} + \cdots+\dfrac{(8-12.16)^2}{12.16}+\cdots =
+6.68\]
 
-El valor-*p* es $\bar F_{\chi^2_6}(6.68) = 0.3$. Rechazamos la hipótesis de independencia entre el currículum y la preferencia electoral con un nivel de significancia del 10%.
+El valor-*p* es $\bar F_{\chi^2_6}(6.68) = 0.3$. Rechazamos la hipótesis de
+independencia entre el currículum y la preferencia electoral con un nivel de
+significancia del 10%.
 
+En R este análisis se hace con la función `chisq.test`
+
+Primero definamos la tabla de datos 
+
+```r
+M <- as.table(rbind(
+  c(24, 23, 12),
+  c(24, 14, 10),
+  c(17, 8, 13),
+  c(27, 19, 9)
+))
+
+dimnames(M) <- list(
+  Carrera = c(
+    "Ingeniería",
+    "Humanidades",
+    "Artes",
+    "Administración"
+  ),
+  Voto = c("A", "B", "Indeciso")
+)
+
+knitr::kable(M)
+```
+
+
+\begin{tabular}{l|r|r|r}
+\hline
+  & A & B & Indeciso\\
+\hline
+Ingeniería & 24 & 23 & 12\\
+\hline
+Humanidades & 24 & 14 & 10\\
+\hline
+Artes & 17 & 8 & 13\\
+\hline
+Administración & 27 & 19 & 9\\
+\hline
+\end{tabular}
+
+Luego el test se ejecuta sobre la matriz de los datos
+
+
+```r
+chisq.test(M)
+```
+
+```
+## 
+## 	Pearson's Chi-squared test
+## 
+## data:  M
+## X-squared = 6.6849, df = 6, p-value = 0.351
+```
 ## Prueba de homogeneidad
 
-Siguiendo con el ejemplo anterior, se toma muestras de tamaño 59,48,38 y 55 de cada área. ¿La distribución de la variable preferencia es la misma sin importar el área?
+Suponga que seleccionamos  algunos individuos de distintas poblaciones y cada
+uno de ellos se le observa una variable aleatoria discreta. La pregunta que nos
+interesa es ver si la distribución de esa variable es igual a través de cada una
+de las poblaciones. 
 
-Sean $R$ poblaciones y $C$ tipos de celdas por población. 
 
-\[p_{ij} = \mathbb P[\text{una observación pertenece a la }i\text{-ésima población y a la categoría }j]\]
+**Ejemplo:** Siguiendo con el ejemplo anterior, se toma muestras de tamaño
+59,48,38 y 55 de cada área. ¿La distribución de la variable preferencia es la
+misma sin importar el área? Es decir, la forma en que votan los estudiantes es
+homogénea sin importar la carrera que cursan? 
 
-que cumplen $\sum_{j=1}^Cp_{ij} = 1$, $i=1,\dots,R$.
+Sean $R$ el número de individuos por población y $C$ el número de tipos de celdas por
+población.
+ 
+ Recuerde que definimos 
+\[p_{ij} = \mathbb P[\text{una observación pertenece a la }i\text{-ésima
+población y a la categoría }j]\]
+
+Estas probabilidades cumplen $\sum_{j=1}^Cp_{ij} = 1$, $i=1,\dots,R$.
+
 
 La hipótesis de homogeneidad es 
-\[H_0: p_{1j} = p_{2j} = \dots = p_{Rj} \text{ para }j=1,\dots, C\]
+
+\[H_0: p_{1j} = p_{2j} = \dots = p_{Rj} \text{
+para }j=1,\dots, C\]
 
 para una fila fija $i$ y probabilidades $p_{ij}$ conocidas:
 
@@ -7787,111 +7898,236 @@ para una fila fija $i$ y probabilidades $p_{ij}$ conocidas:
 
 Bajo $H_0$ $Q^{(i)}\sim \chi^2_{C-1}$. 
 
-**Supuesto**. Las poblaciones son independientes. Esto implica que $Q^{(i)}$ son variables independientes y 
-\[Q = \sum_{i=1}^R\sum_{i=1}^C\dfrac{(N_{ij}-N_{i+}p_{ij})^2}{N_{i+}p_{ij}}\sim \chi^2_{R(C-1)}\]
+**Supuesto**. Las poblaciones son independientes. Esto implica que $Q^{(i)}$ son
+variables independientes y \[Q =
+\sum_{i=1}^R\sum_{i=1}^C\dfrac{(N_{ij}-N_{i+}p_{ij})^2}{N_{i+}p_{ij}}\sim
+\chi^2_{R(C-1)}\]
 
-Como los valores $p_{ij}$ no son conocidos, tenemos que estimarlos (MLE sobre $N_{ij}$ y sobre $H_0$): $\hat p_{ij} = \dfrac{N_{+j}}{n}$.
+**Nota:** Este resultado viene del hecho que sumas de variables $\chi ^{2}$  son
+igualmente variables $\chi ^{2}$ con la suma de sus grados de libertad. 
 
-Sustituyendo,
-\[Q = \sum_{i=1}^R\sum_{j=1}^C\dfrac{(N_{ij}-\hat E_{ij})^2}{\hat E_{ij}}\]
-donde $\hat E_{ij} = \dfrac{N_{i+}\cdot N_{+j}}{n}$. Los grados de libertad de la prueba son 
-\[k-1-s = R(C-1)-(C-1) = (R-1)(C-1).\]
+Como los valores $p_{ij}$ no son conocidos, tenemos que estimarlos (MLE sobre
+$N_{ij}$ y sobre $H_0$): $\hat p_{ij} = \dfrac{N_{+j}}{n}$.
+
+Sustituyendo, \[Q = \sum_{i=1}^R\sum_{j=1}^C\dfrac{(N_{ij}-\hat E_{ij})^2}{\hat
+E_{ij}}\] donde $\hat E_{ij} = \dfrac{N_{i+}\cdot N_{+j}}{n}$. Los grados de
+libertad de la prueba son \[k-1-s = R(C-1)-(C-1) = (R-1)(C-1).\]
 
 Se rechaza $H_0$ bajo el mismo criterio de la prueba de independencia.
 
-## Comparación de proporciones
 
-**Ejemplo**. Muestras independientes de adultos en varias ciudades.
-
-| Ciudad | Vio el programa | No lo vio|
-|:---------:|:------:|:---------:|
-|$1$|$N_{11}$|$N_{12}$|
-|$\vdots$|$\vdots$|$\vdots$|
-|$R$|$N_{R_1}$|$N_{R2}$|
-
-¿La proporción de audiencia es la misma en todas las ciudades?
-\[Q = \sum_{i=1}^R\sum_{j=1}^2\dfrac{N_{ij}-\hat E_{ij}}{\hat E_{ij}}\underset{H_0}\sim \chi^2_{R-1}\]
-donde $H_0$ es la hipótesis de homogeneidad.
-
-**Ejemplo**. 100 personas se seleccionan aleatoriamente en una ciudad. Se les pregunta si los bomberos trabajan bien. Ocurre un incendio y después se les pregunta lo mismo.
-
-| |Satisfactoria| No satisfactoria|
-|---|:----------:|:------------:|
-|Antes del incendio | 80|20|
-|Después del incendio|72|28|
-
-Vea que ambas situaciones no son independientes. Desagregamos el análisis (tabla de confusión):
+## Similitudes entre las pruebas de independecia y homogeneidad
 
 
-```
-## Error in library(kableExtra): there is no package called 'kableExtra'
-```
-
-```
-## Error in kbl(tabla, align = "c"): could not find function "kbl"
-```
-
-No se necesita una prueba $\chi^2$ (dependencia trivial), se puede enfocar el análisis en la dinámica
-
-
-```
-## Error in kbl(tabla, align = "c"): could not find function "kbl"
-```
-
- ## Paradoja de Simpson
+ La prueba de independencia  y de homogeneidad se estiman exactamente igual. Sin
+ embargo la interpretación de ambos es ligeramente diferente. 
  
- **Ejemplo**. Experimento para comparar dos tratamiento (nuevo y viejo). La muestra fue de 80 sujetos, a los cuales 40 se les aplicó el tratamiento nuevo y a 40 el viejo. Se evalúa la evolución de cada paciente.
+ Para la prueba de independencia, analiza la hipótesis analiza si la
+ distribución condicional de las columnas y las filas son iguales. 
  
-| | Mejoró| No mejoró | % mejora|
-|--|:------:|:------------:|:---------:|
-|Nuevo| 20| 20 | 50|
-|Viejo|24|16|60|
+ Sin embargo, para la prueba de homogeneidad cada fila es considerada como una
+ subpoblación y se desea analizar si para cada una de esta subpoblaciones la
+ distribución de las columnas son iguales.
+
+## Comparación de dos o más proporciones
+
+**Ejemplo**. Suponga que se hace una encuesta y se pregunta si vieron cierto
+programa o no en varias ciudades. Entonces se tiene la siguiente tabla. 
+
+| Ciudad   | Vio el programa | No lo vio |
+|:--------:|:---------------:|:---------:|
+| $1$      | $N_{11}$        | $N_{12}$  |
+| $\vdots$ | $\vdots$        | $\vdots$  |
+| $R$      | $N_{R_1}$       | $N_{R2}$  |
+
+¿La proporción de audiencia es la misma en todas las ciudades? 
+
+\[Q = \sum_{i=1}^R\sum_{j=1}^2\dfrac{(N_{ij}-\hat E_{ij})^{2}}{\hat
+E_{ij}}\underset{H_0}\sim \chi^2_{R-1}\] donde $H_0$ es la hipótesis de
+homogeneidad.
+
+**Ejemplo**. 100 personas se seleccionan aleatoriamente en una ciudad. Se les
+pregunta si los bomberos trabajan bien. Ocurre un incendio y después se les
+pregunta lo mismo.
+
+|                      | Satisfactoria | No satisfactoria |
+|----------------------|:-------------:|:----------------:|
+| Antes del incendio   | 80            | 20               |
+| Después del incendio | 72            | 28               |
+
+<!-- r 14-tablas-contingencia-1, echo=FALSE} -\-> -->
+<!-- library(kableExtra) -->
+<!-- tabla <- data.frame( -->
+<!--   antes = rep("Antes del incendio", 2), -->
+<!--   sat = c("Satisfactorio", "No satisfactorio"), -->
+<!--   S = c(70, 2), -->
+<!--   N = c(10, 18) -->
+<!-- ) -->
+<!-- names(tabla) <- c(" ", " ", "Satisfactorio", "No satisfactorio") -->
+<!-- kable(tabla) %>% -->
+<!--   add_header_above(c(" " = 2, "Después del incendio" = 2)) %>% -->
+<!--   kable_styling("striped") %>% -->
+<!--   column_spec(1:2, bold = T) %>% -->
+<!--   collapse_rows(columns = 1, valign = "middle") -->
+<!-- ``` -->
+
+ 
+ En este caso no es apropiado hacer una prueba de independencia  u homogeneidad
+ $\chi ^{2}$  porque se sabe directamente que los datos son correlacionados.  Lo
+ que se debe reponder las siguientes preguntas: 
+ 
+ - ¿Cuál es la proporción de personas en la ciudad cambió su opinión sobre el
+ servicio de bomberos después de un incendio?
+ - ¿Cuál cambio de opinión fue la más predominante entre los que cambiaron de
+ decisión?  
+
+Se puede enfocar el análisis usando una tabla de confusión:
+
+|                           |                  | Después del incendio   |                      |
+| :--------------------:    | :--------------- | :--------------------: | :------------------: |
+|                           |                  | Satisfactoria          | No satisfactoria     |
+| \hline Antes del incendio | Satisfactorio    | 70                     | 10                   |
+|                           | No Satisfactorio | 2                      | 28                   |
+
+
+
+Esta tabla sigue la estructura basada en el siguiente esquema. 
+
+|                        |                   | Modelo predictivo      |                      |
+| :--------------------: | :---------------: | :--------------------: | :------------------: |
+|                        |                   | A                      | B                    |
+| \hline Observado       | A                 | Precisión              | Error                |
+|                        | B                 | Error                  | Precisión            |
+
+<!-- ```{r 14-tablas-contingencia-2,echo = FALSE} --> <!-- tabla <- data.frame(
+--> <!-- antes = rep("Observado", 2), --> <!-- sat = c("A", "B"), --> <!-- S =
+c("Precisión", "Error"), --> <!-- N = c("Error", "Precisión") --> <!-- ) -->
+<!-- names(tabla) <- c(" ", " ", "A", "B") --> <!-- kable(tabla) %>% --> <!--
+add_header_above(c(" " = 2, "Modelo predictivo" = 2)) %>% --> <!--
+kable_styling("striped") %>% --> <!-- column_spec(1:2, bold = T) %>% --> <!--
+collapse_rows(columns = 1, valign = "middle") --> <!-- ``` --> 
+
+
+En este caso tenemos que el MLE $\hat{theta}$ de la proporción de personas que
+cambiaron de opinión es $\dfrac{12}{100} = 0.12$. Ya que 10+2 = 12 fueron las
+personas que cambiaron de opinión y teniamos 100 personas encuestadas. De las
+personas que cambiaron de opinión $\dfrac{10}{12} = \dfrac{5}{6} = 0.83$ fueron
+las que cambiaron la opinión de satisfactoria insatisfactoria.
+
+Esto nos permite dar inferencias sobre el comportamiento general de la
+población. 
+
+
+## Paradoja de Simpson
+ 
+ Cuando tabulamos datos discretos, hay que tener cuidado con la forma en que
+ agrupamos estos. 
+ 
+ **Ejemplo** Hacemos un experimento para comparar dos tratamiento (nuevo y
+ viejo). La muestra fue de 80 sujetos, a los cuales 40 se les aplicó el
+ tratamiento nuevo y a 40 el viejo. Se evalúa la evolución de cada paciente.
+ 
+|       | Mejoró | No mejoró | % mejora |
+|-------|:------:|:---------:|:--------:|
+| Nuevo | 20     | 20        | 50       |
+| Viejo | 24     | 16        | 60       |
 
 *Conclusión*: el tratamiento viejo tiene un porcentaje de mejora mayor.
 
 Si vemos estos resultados según el sexo, para hombres
 
-| | Mejoró| No mejoró | % mejora|
-|--|:------:|:------------:|:---------:|
-|Nuevo| 12| 18 | 40|
-|Viejo|3|7|30|
+|       | Mejoró | No mejoró | % mejora |
+|-------|:------:|:---------:|:--------:|
+| Nuevo | 12     | 18        | 40       |
+| Viejo | 3      | 7         | 30       |
 
 y para mujeres
 
-| | Mejoró| No mejoró | % mejora|
-|--|:------:|:------------:|:---------:|
-|Nuevo| 8|2 | 80|
-|Viejo|21|9|70|
+|       | Mejoró | No mejoró | % mejora |
+|-------|:------:|:---------:|:--------:|
+| Nuevo | 8      | 2         | 80       |
+| Viejo | 21     | 9         | 70       |
 
-**Paradoja de Simpson**. Desagregar tablas de contingencia pone en evidencia variables "ocultas".
+A este proceso de separar las tablas se le conoce como **desagregación**. 
 
-La variable "sexo" influye en la capacidad de recuperación (mujeres se recuperan más rápido que los hombres).
+**Paradoja de Simpson**. Desagregar tablas de contingencia pone en evidencia
+variables "ocultas" dentro de los datos. 
 
-**Nota**. La paradoja puede persistir en muestras grandes.
+La variable "sexo" influye en la capacidad de recuperación. Las mujeres se
+recuperan más rápido que los hombres en cualquiera de los procedimientos. 
+
+Además la mayoría de las mujeres recibieron la mayor parte del tratamiento
+viejo, mientras que la mayoría de los hombres recibieron la mayor parte del
+tratamiento nuevo. 
+
+Sin embargo, proporcionalmente el efecto total es mayor porque los hombres
+tuvieron una mayor influencia globalmente con respecto a la efectividad del
+tratamiento viejo. 
+
+
+**Nota**. La paradoja puede persistir en muestras grandes. Es decir, se puede
+obtener este mismo resultado con bases de datos grandes o pequeñas. El problema
+no es la escala de los datos pero si su proporción. 
+
+
+### ¿Cómo evitamos esta paradoja?
+
+Hay un par de condiciones que se deben cumplir para evitar problemas en este caso 
 
 Considere los eventos:
 
-* $A$: evento de seleccionar un hombre.
+* "Hombre" si se selecciona a un hombre.
 
-* $A^c$: evento de seleccionar una mujer.
+* "$\text{Hombre}^c$" si se selecciona a una mujer.
 
-* $B$: tratamiento nuevo.
+* "Nuevo" si es el tratamiento nuevo.
 
-* $I$: hubo mejora.
+* "Mejora" si hubo una mejora en el tratamiento. 
 
 La paradora de Simpson nos dice que es posible tener las siguientes desigualdades:
 
-\[\mathbb P[I|A\cap B]>\mathbb P[I|A\cap B^c]\]
-\[\mathbb P[I|A^c\cap B]>\mathbb P[I|A ^c\cap B^c]\]
-\[\mathbb P[I|B]<\mathbb P[I|B^c]\]
+\[\mathbb P[\text{Mejora}|\text{Hombre}\cap \text{Nuevo}]>\mathbb P[\text{Mejora}|\text{Hombre}\cap \text{Nuevo}^c] \hfill (\star)\]
+\[\mathbb P[\text{Mejora}|\text{Hombre}^c\cap \text{Nuevo}]>\mathbb P[\text{Mejora}|\text{Hombre} ^c\cap \text{Nuevo}^c] \hfill (\star\star)\]
+\[\mathbb P[\text{Mejora}|\text{Nuevo}]<\mathbb P[\text{Mejora}|\text{Nuevo}^c]\hfill (\star\star\star)\]
 
-Si $\mathbb P[A|B] = P[A|B^c]$, entonces
-\begin{align*}
-\mathbb P[I|B] & = \mathbb P[I|B\cap A] \cdot \mathbb P[A|B]  + \mathbb P[I|B\cap A^c] \cdot \mathbb P[A^c|B] \\& > \mathbb P[I|A\cap B^c] \cdot \mathbb P[A|B]  + \mathbb P[I|A^c\cap B^c] \cdot \mathbb P[A^c|B]\\
-& =  \mathbb P[I|A\cap B^c] \cdot \mathbb P[A|B^c]  + \mathbb P[I|A^c\cap B^c] \cdot \mathbb P[A^c|B^c] \\
-& = \mathbb P[I|B^c]
+Si tenemos el supuesto que 
+
+\[
+\mathbb P[\text{Hombre}|\text{Nuevo}] = \mathbb P[\text{Hombre}|\text{Nuevo}^c]\hfill (\triangle)
+\]
+
+entonces
+
+\begin{align*} 
+\mathbb P[\text{Mejora}|\text{Nuevo}]
+& =
+\mathbb P[\text{Mejora}|\text{Hombre} \cap \text{Nuevo}] \cdot \mathbb
+P[\text{Hombre}|\text{Nuevo}] \\
+& \quad + \mathbb P[\text{Mejora}|\text{Hombre}^c \cap \text{Nuevo}] \cdot \mathbb
+P[\text{Hombre}^c|\text{Nuevo}] \\
+\intertext{Usando $(\star)$ y $(\star\star)$, vemos que tenemos la desigualdad}
+& > \mathbb P[\text{Mejora}|\text{Hombre}\cap
+		\text{Nuevo}^c] \cdot \mathbb P[\text{Hombre}|\text{Nuevo}] \\
+& \quad + \mathbb P[\text{Mejora}|\text{Hombre}^c\cap\text{Nuevo}^c] \cdot \mathbb P[\text{Hombre}^c|\text{Nuevo}]\\
+\intertext{Usando el supuesto en ($\triangle$), la igualdad se convierte en}
+& = \mathbb P[\text{Mejora}|\text{Hombre}\cap \text{Nuevo}^c] \cdot \mathbb
+P[\text{Hombre}|\text{Nuevo}^c] \\
+& \quad + \mathbb P[\text{Mejora}|\text{Hombre}^c\cap \text{Nuevo}^c] \cdot
+\mathbb P[\text{Hombre}^c|\text{Nuevo}^c] \\
+\intertext{Finalmente usando la propiedades de probabilidades condicionales, esta expresión se puede escribir como,}
+& = \mathbb
+P[\text{Mejora}|\text{Nuevo}^c] 
 \end{align*}
+ 
+ Resumiendo los cálculos se tiene que 
+\[
+\mathbb P[\text{Mejora}|\text{Nuevo}] > \mathbb P[\text{Mejora}|\text{Nuevo}^{c}]
+\]
+
 por lo que no se cumple la paradoja.
+
+
+**Nota:** Otra forma de que la paradoja nos e cumpla es si $\mathbb{P}[\text{Nuevo}|\text{Hombre}] = \mathbb{P}[\text{Nuevo}|\text{Hombre}^{c}]$. (Tarea)
 
 <!--chapter:end:14-tablas-contingencia.Rmd-->
 
