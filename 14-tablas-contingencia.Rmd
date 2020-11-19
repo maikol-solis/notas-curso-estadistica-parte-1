@@ -111,7 +111,7 @@ significancia del 10%.
 En R este análisis se hace con la función `chisq.test`
 
 Primero definamos la tabla de datos 
-```{r }
+```{r 14-tablas-contingencia-1 }
 M <- as.table(rbind(
   c(24, 23, 12),
   c(24, 14, 10),
@@ -134,7 +134,7 @@ knitr::kable(M)
 
 Luego el test se ejecuta sobre la matriz de los datos
 
-```{r }
+```{r 14-tablas-contingencia-2 }
 chisq.test(M)
 ```
 ## Prueba de homogeneidad

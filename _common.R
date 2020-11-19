@@ -1,6 +1,7 @@
 rm(list = ls())
 set.seed(NULL)
 options(tinytex.verbose = TRUE)
+namer::name_dir_chunks(".")
 
 options(knitr.duplicate.label = "allow")
 knitr::opts_chunk$set(

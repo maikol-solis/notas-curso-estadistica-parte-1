@@ -309,53 +309,318 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="pruebas-de-kolmogorov-smirnov" class="section level1" number="15">
 <h1><span class="header-section-number">Capítulo 15</span> Pruebas de Kolmogorov-Smirnov</h1>
-<p>Sean <span class="math inline">\(X_1,\dots,X_n\sim F\)</span>, <span class="math inline">\(F\)</span> una cdf continua. Asumimos que los valores observados <span class="math inline">\(x_1,\dots,x_n\)</span> son diferentes.</p>
-<p><strong>Definición</strong>. Sean <span class="math inline">\(x_1,\dots,x_n\)</span> los valores observados de la muestra aleatoria <span class="math inline">\(X_1,\dots, X_n\)</span>. Para cada <span class="math inline">\(x\)</span> defina <span class="math inline">\(F_n(x)\)</span> como la proporción de valores observados en la muestra que son menores o iguales a <span class="math inline">\(x\)</span>. Es decir, si hay <span class="math inline">\(k\)</span> valores observados menores o iguales a <span class="math inline">\(x\)</span>,
-<span class="math display">\[F_n(x) = k/n.\]</span></p>
-<p><span class="math inline">\(F_n\)</span> se conoce como la función de distribución de la muestra (empírica). <span class="math inline">\(F_n\)</span> es una distribución a pasos con salto de magnitud <span class="math inline">\(\dfrac 1n\)</span> entre los valores <span class="math inline">\(x_1,\dots,x_n\)</span>. Se puede expresar como</p>
-<p><span class="math display">\[F_n(x) = \begin{cases} 
+<p>En capítulos anteriores, hicimos una prueba <span class="math inline">\(\chi ^2\)</span> para determinar si
+cierto conjunto de datos se ajustaba a una distribución continua o no.</p>
+<p>Una mejor prueba para este caso es la prueba Kolmogorov-Smirnov.</p>
+<p>Sean <span class="math inline">\(X_1,\dots,X_n\sim F\)</span>, <span class="math inline">\(F\)</span> una distribución continua. Asumimos que los valores
+observados <span class="math inline">\(x_1,\dots,x_n\)</span> son diferentes.</p>
+<p><strong>Definición</strong>. Sean <span class="math inline">\(x_1,\dots,x_n\)</span> los valores observados de la muestra
+aleatoria <span class="math inline">\(X_1,\dots, X_n\)</span>. Para cada <span class="math inline">\(x\)</span> defina <span class="math inline">\(F_n(x)\)</span> como la proporción de
+valores observados en la muestra que son menores o iguales a <span class="math inline">\(x\)</span>. Es decir, si
+hay <span class="math inline">\(k\)</span> valores observados menores o iguales a <span class="math inline">\(x\)</span>,</p>
+<p><span class="math display">\[
+F_n(x) = \frac{k}{n}.
+\]</span></p>
+<p>La función <span class="math inline">\(F_n(x)\)</span> se conoce como la función de distribución de la muestra
+(empírica). <span class="math inline">\(F_n\)</span> es una distribución a pasos con salto de magnitud <span class="math inline">\(\dfrac 1n\)</span>
+entre los valores <span class="math inline">\(x_1,\dots,x_n\)</span>. Se puede expresar como</p>
+<p><span class="math display">\[F_n(x) = \begin{cases}
   0 &amp; \text{si } x&lt;X_{(1)}\\
- \dfrac 1n \sum_{i=1}^n 1_{\{x_i\leq x\}} &amp; \text{si } X_{(1)}\leq x&lt;X_{(n)}\\
-1 &amp; \text{si} X_{(n)}\geq x
+ \displaystyle \dfrac 1n \sum_{i=1}^n 1_{\{x_i\leq x\}} &amp; \text{si } X_{(1)}\leq x&lt;X_{(n)}\\
+  1 &amp; \text{si} X_{(n)}\geq x
 \end{cases}
 \]</span></p>
-<p>Como <span class="math inline">\(\{x_i\}_{i=1}^n\)</span> son independientes, <span class="math inline">\(\{1_{\{x_i\leq x\}}\}_{i=1}^n\)</span> son independientes. Entonces, por la ley de grandes números</p>
-<p><span class="math display">\[F_n(x) = \dfrac 1n \sum_{i=1}^n 1_{\{x_i\leq x\}} \xrightarrow[n\to\infty]{\mathbb P} \mathbb E[1_{X_i\leq x}] = F(x)\]</span></p>
+<p>Como <span class="math inline">\(\{x_i\}_{i=1}^n\)</span> son independientes, <span class="math inline">\(\{1_{\{x_i\leq x\}}\}_{i=1}^n\)</span> son
+independientes. Entonces, por la ley de grandes números</p>
+<p><span class="math display">\[
+F_n(x) = \dfrac 1n \sum_{i=1}^n 1_{\{x_i\leq x\}} \xrightarrow[n\to\infty]{\mathbb P} \mathbb E[1_{X_i\leq x}] = F(x)
+\]</span></p>
 <p>por lo que <span class="math inline">\(F_n(x)\)</span> es consistente.</p>
+<p><strong>Ejemplo</strong></p>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb353-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb353-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb353-2"></a>  <span class="fl">17.88</span>, <span class="fl">28.92</span>, <span class="dv">33</span>, <span class="fl">41.52</span>, <span class="fl">42.12</span>, <span class="fl">45.6</span>, <span class="fl">48.8</span>, <span class="fl">51.84</span>, <span class="fl">51.96</span>, <span class="fl">54.12</span>, <span class="fl">55.56</span>,</span>
+<span id="cb353-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb353-3"></a>  <span class="fl">67.8</span>, <span class="fl">68.44</span>, <span class="fl">68.64</span>, <span class="fl">68.88</span>, <span class="fl">84.12</span>, <span class="fl">93.12</span>, <span class="fl">98.64</span>, <span class="fl">105.12</span>, <span class="fl">105.84</span>, <span class="fl">127.92</span>,</span>
+<span id="cb353-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb353-4"></a>  <span class="fl">128.04</span>, <span class="fl">173.4</span></span>
+<span id="cb353-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb353-5"></a>)</span>
+<span id="cb353-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb353-6"></a>df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(x)</span></code></pre></div>
+<p>Para este ejemplo tenemos que <span class="math inline">\(F_n(x)\)</span> se ve de la forma:</p>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb354-1"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb354-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb354-2"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(</span>
+<span id="cb354-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb354-3"></a>    <span class="dt">data =</span> df,</span>
+<span id="cb354-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb354-4"></a>    <span class="dt">mapping =</span> <span class="kw">aes</span>(x, <span class="dt">color =</span> <span class="st">&quot;F_n(x)&quot;</span>),</span>
+<span id="cb354-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb354-5"></a>    <span class="dt">size =</span> <span class="dv">2</span></span>
+<span id="cb354-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb354-6"></a>  ) <span class="op">+</span></span>
+<span id="cb354-7"><a href="pruebas-de-kolmogorov-smirnov.html#cb354-7"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/15-pruebas-ks-2-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p>Y en los capítulos anteriores hicimos una comprobación de que los parámetros
+<span class="math inline">\(\mu =3.912\)</span> y <span class="math inline">\(\sigma ^{2} = 0.25\)</span> se ajustaban bien para los log-valores.
+En este caso podemos comprobar este ajuste</p>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-1"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb355-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-2"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(</span>
+<span id="cb355-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-3"></a>    <span class="dt">data =</span> df,</span>
+<span id="cb355-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-4"></a>    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="kw">log</span>(x), <span class="dt">color =</span> <span class="st">&quot;F_n(x)&quot;</span>),</span>
+<span id="cb355-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-5"></a>    <span class="dt">size =</span> <span class="dv">2</span></span>
+<span id="cb355-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-6"></a>  ) <span class="op">+</span></span>
+<span id="cb355-7"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-7"></a><span class="st">  </span><span class="kw">stat_function</span>(</span>
+<span id="cb355-8"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-8"></a>    <span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)),</span>
+<span id="cb355-9"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-9"></a>    <span class="dt">fun =</span> pnorm,</span>
+<span id="cb355-10"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-10"></a>    <span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;F(x)&quot;</span>),</span>
+<span id="cb355-11"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-11"></a>    <span class="dt">size =</span> <span class="dv">2</span>,</span>
+<span id="cb355-12"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-12"></a>    <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="fl">3.912</span>, <span class="dt">sd =</span> <span class="kw">sqrt</span>(<span class="fl">0.25</span>))</span>
+<span id="cb355-13"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-13"></a>  ) <span class="op">+</span></span>
+<span id="cb355-14"><a href="pruebas-de-kolmogorov-smirnov.html#cb355-14"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/15-pruebas-ks-3-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p>La prueba de Kolmogorov-Smirnov está basada en el siguiente teorema.</p>
 <p><strong>Teorema</strong> (Lema de Glivenko-Cantelli)</p>
-<p>Sea <span class="math inline">\(D_n = \sup_{-\infty&lt;x&lt;\infty}|F_n(x)-F(x)|\)</span>. Entonces <span class="math inline">\(D_n\xrightarrow[]{\mathbb P} 0\)</span>.</p>
+<p>Sea <span class="math inline">\(F_n(x)\)</span> la distribución empírica de una muestra <span class="math inline">\(X_1, \dots , X_n\)</span>
+provenientes de la distribución <span class="math inline">\(F\)</span>. Defina
+<span class="math display">\[
+D_n = \sup_{-\infty&lt;x&lt;\infty}|F_n(x)-F(x)|
+\]</span>
+Entonces</p>
+<p><span class="math inline">\(D_n\xrightarrow[]{\mathbb P} 0\)</span>. <span class="math inline">\(\qed\)</span></p>
+<p>Esto quiere decir que si una distribución empírica <span class="math inline">\(F_n(x)\)</span> realmente es
+tomada de la distribución teórica <span class="math inline">\(F(x)\)</span> entonces la diferencia de estas dos
+van a converger en probabilidad cuando <span class="math inline">\(n \to \infty\)</span>.</p>
+<p>La prueba de esto no es parte del curso, por lo que la omitiremos.</p>
 <div id="prueba-de-kolmogorov-smirnov-para-una-muestra" class="section level2" number="15.1">
 <h2><span class="header-section-number">15.1</span> Prueba de Kolmogorov-Smirnov para una muestra</h2>
-<p>¿Será <span class="math inline">\(F = F^*\)</span>?, <span class="math inline">\(F^*\)</span> distribución candidata. La hipótesis es <span class="math display">\[H_0: F = F^* \text{ vs } H_1: F\neq F^*\]</span>
-El estadístico de prueba es
-<span class="math display">\[D_n^* = \sup_{-\infty&lt;x&lt;\infty}|F_n(x)-F^*(x)|\]</span>
-Si <span class="math inline">\(H_0\)</span> es cierto, <span class="math inline">\(D_n^*\)</span> no depende de <span class="math inline">\(F^*\)</span>.</p>
-<p>Sea <span class="math inline">\(Z_i = F^*(X_i)\)</span>, <span class="math inline">\(i=1,\dots,n\)</span> <span class="math inline">\((X_1,\dots,X_n \sim F)\)</span>. Vea que
-<span class="math display">\[\mathbb P(Z_i\leq z) = \mathbb P(F^*(X_i)\leq z) = \mathbb P(X_i\leq (F^*)^{-1}(z)) = z\]</span>
-Entonces <span class="math inline">\(Z_1,\dots, Z_n \underset{H_0}{\sim} \text{Unif}(0,1)\)</span></p>
-<p>Considere la hipótesis <span class="math inline">\(H_0: G = \text{Unif}(0,1)\)</span> donde <span class="math inline">\(G\)</span> es la cdf de <span class="math inline">\(Z_i\)</span>. Entonces</p>
-<p><span class="math display">\[D_n^{*,G} = \sup_{0&lt;z&lt;1}|G_n(z)-G^*(z)| = \sup_{0&lt;z&lt;1}|G_n(z)-\text{Unif}(0,1)(z)| = \sup_{0&lt;z&lt;1}|G_n(z)-z|\]</span></p>
+<p>La pregunta que responde esta prueba es</p>
+<p>¿Será que <span class="math inline">\(F = F^*\)</span>, donde <span class="math inline">\(F ^{*}\)</span> es una distribución hipotética?.</p>
+<p>La hipótesis es
+<span class="math display">\[
+H_0: F = F^* \text{ vs } H_1: F\neq F^*
+\]</span></p>
+<p>En este caso se define el estadístico<br />
+<span class="math display">\[
+D_n^* = \sup_{-\infty&lt;x&lt;\infty}|F_n(x)-F^*(x)|
+\]</span></p>
+<p><strong>Nota:</strong> Si <span class="math inline">\(H_0\)</span> es cierto, <span class="math inline">\(D_n^*\)</span> no depende de <span class="math inline">\(F^*\)</span>.</p>
+<p>Note que si <span class="math inline">\(Z_i = F^*(X_i)\)</span>, <span class="math inline">\(i=1,\dots,n\)</span> <span class="math inline">\((X_1,\dots,X_n \sim F)\)</span>. Vea que</p>
+<p><span class="math display">\[
+\mathbb P(Z_i\leq z) = \mathbb P(F^*(X_i)\leq z) = \mathbb P(X_i\leq
+((F^*)^{-1}(z))) = z
+\]</span></p>
+<p>Entonces <span class="math inline">\(Z_1,\dots, Z_n \underset{H_0}{\sim} \text{Unif}(0,1)\)</span></p>
+<p>Considere la hipótesis <span class="math inline">\(H_0: G = \text{Unif}(0,1)\)</span> donde <span class="math inline">\(G\)</span> es la distribución
+de <span class="math inline">\(Z_i\)</span>. Entonces</p>
+<p><span class="math display">\[D_n^{*,G} = \sup_{0&lt;z&lt;1}|G_n(z)-G^*(z)| =
+\sup_{0&lt;z&lt;1}|G_n(z)-F_{\text{Unif}(0,1)}(z)| = \sup_{0&lt;z&lt;1}|G_n(z)-z|\]</span></p>
 <p>Observe que</p>
-<p><span class="math display">\[G_n(z) = \dfrac 1n \sum_{i=1}^n 1_{\{Z_i\leq x\}} = \dfrac 1n \sum_{i=1}^n 1_{\{F^*(X_i)\leq z\}} = \sum_{i=1}^n 1_{\{X_i\leq (F^*)^{-1}(z)\}} = F_n((F^*)^{-1}(z))\]</span></p>
+<p><span class="math display">\[G_n(z) = \dfrac 1n \sum_{i=1}^n 1_{\{Z_i\leq x\}} = \dfrac 1n \sum_{i=1}^n
+1_{\{F^*(X_i)\leq z\}} = \sum_{i=1}^n 1_{\{X_i\leq (F^*)^{-1}(z)\}} =
+F_n((F^*)^{-1}(z))\]</span></p>
 <p>Entonces,</p>
 <p><span class="math display">\[D_n^{*,G} \underset{H_0}{=} \sup|F_n(x)-F^*(x)| = D_n^*\]</span></p>
-<p>por lo que <span class="math inline">\(D_n^*\)</span> no depende de <span class="math inline">\(F^*\)</span> bajo <span class="math inline">\(H_0\)</span>.</p>
-<p>Rechazamos <span class="math inline">\(H_0\)</span> si <span class="math inline">\(D_n^*\geq C\)</span>.</p>
-<p><strong>Teorema</strong> (de Kolmogorov-Smirnov). Si <span class="math inline">\(H_0\)</span> es cierto, para <span class="math inline">\(t&gt;0\)</span>,
-<span class="math display">\[\lim_{n\to \infty} \mathbb P(n^{1/2}D_n^*\leq t) = 1-2\sum_{i=1}^\infty (-1)^{i-1}e^{-2i^2t^2}.\]</span></p>
-<p>Rechazamos <span class="math inline">\(H_0\)</span> si <span class="math inline">\(n^{1/2}D_n^*\geq C\)</span>, <span class="math inline">\(n\)</span> grande. Para un nivel de significancia <span class="math inline">\(\alpha_0\)</span>, <span class="math inline">\(c = H^{-1}(1-\alpha_0)\)</span>, donde <span class="math inline">\(H\)</span> denota el valor de la parte derecha de la ecuación anterior (ver pág. 661).</p>
+<p>por lo que <span class="math inline">\(D_n^*\)</span> no depende de <span class="math inline">\(F^*\)</span> bajo <span class="math inline">\(H_0\)</span>. <span class="math inline">\(\qed\)</span></p>
+<p>De manera práctica si la distribución <span class="math inline">\(F_n(x)\)</span> es cercano a <span class="math inline">\(F ^{*}\)</span>
+entonces <span class="math inline">\(D_n ^{*}\)</span> será cercano a 0.</p>
+<p>Entonces la podemos rechazar la hipótesis nula <span class="math inline">\(H_0\)</span> si
+<span class="math inline">\(n^{\frac{1}{2}}D_n^*\geq c\)</span>, para algún valor <span class="math inline">\(c\)</span> particular.</p>
+<p>Este valor en particular se debe estimar a partir de la distribución de
+Kolmogorov-Smirnov.</p>
+<p><strong>Teorema</strong> (de Kolmogorov-Smirnov (1930)). Si <span class="math inline">\(H_0\)</span> es cierto, para <span class="math inline">\(t&gt;0\)</span>,
+<span class="math display">\[\lim_{n\to \infty} \mathbb P(n^{1/2}D_n^*\leq t) = 1-2\sum_{i=1}^\infty
+(-1)^{i-1}e^{-2i^2t^2} = H(t).\]</span></p>
+<p>Rechazamos <span class="math inline">\(H_0\)</span> si <span class="math inline">\(n^{1/2}D_n^*\geq c\)</span>, <span class="math inline">\(n\)</span> grande. Para un nivel de
+significancia <span class="math inline">\(\alpha_0\)</span>, <span class="math inline">\(c = H^{-1}(1-\alpha_0)\)</span>, donde <span class="math inline">\(H\)</span> denota el valor de
+la parte derecha de la ecuación anterior.</p>
+<p>La función <span class="math inline">\(H(t)\)</span> es algo complicada de estimar, y sus cuantiles lo son aún
+más. Estos normalmente son definidos a través de métodos números que están fuera
+del alcance del este curso. La siguiente tabla muestra el conjunto de valores
+estimados para cada <span class="math inline">\(t\)</span></p>
+<p>Los valores más comunes de cuantiles para las pruebas son</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\alpha\)</span></th>
+<th><span class="math inline">\(H^-1(1-\alpha)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.01</td>
+<td>1.63</td>
+</tr>
+<tr class="even">
+<td>0.05</td>
+<td>1.36</td>
+</tr>
+<tr class="odd">
+<td>0.1</td>
+<td>1.22</td>
+</tr>
+</tbody>
+</table>
+<p>Solo como ilustración, el paquete <code>KSgeneral</code> tiene programada la estimación de
+<span class="math inline">\(\mathbb P (D_n \leq t)\)</span>. En este gráfico se presentan algunos ejemplos con
+<span class="math inline">\(n\)</span> igual a 10, 50 y 100.</p>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb356-1"></a><span class="kw">library</span>(KSgeneral)</span>
+<span id="cb356-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb356-2"></a></span>
+<span id="cb356-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb356-3"></a>t &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.001</span>, <span class="fl">0.999</span>, <span class="dt">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb356-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb356-4"></a></span>
+<span id="cb356-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb356-5"></a>df &lt;-<span class="st"> </span><span class="kw">rbind</span>(</span>
+<span id="cb356-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb356-6"></a>  <span class="kw">data.frame</span>(t, <span class="dt">ks =</span> <span class="kw">Vectorize</span>(cont_ks_cdf)(t, <span class="dv">10</span>), <span class="dt">n =</span> <span class="dv">10</span>),</span>
+<span id="cb356-7"><a href="pruebas-de-kolmogorov-smirnov.html#cb356-7"></a>  <span class="kw">data.frame</span>(t, <span class="dt">ks =</span> <span class="kw">Vectorize</span>(cont_ks_cdf)(t, <span class="dv">50</span>), <span class="dt">n =</span> <span class="dv">50</span>),</span>
+<span id="cb356-8"><a href="pruebas-de-kolmogorov-smirnov.html#cb356-8"></a>  <span class="kw">data.frame</span>(t, <span class="dt">ks =</span> <span class="kw">Vectorize</span>(cont_ks_cdf)(t, <span class="dv">100</span>), <span class="dt">n =</span> <span class="dv">100</span>)</span>
+<span id="cb356-9"><a href="pruebas-de-kolmogorov-smirnov.html#cb356-9"></a>)</span></code></pre></div>
+<pre><code>## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.
+## The lower and upper boundaries cross! i=0.</code></pre>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb358-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> t, <span class="dt">y =</span> ks, <span class="dt">color =</span> <span class="kw">as.factor</span>(n))) <span class="op">+</span></span>
+<span id="cb358-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb358-2"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb358-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb358-3"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/15-pruebas-ks-5-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Ejemplo:</strong></p>
+<p>En el caso de las partes mecánicas quisiéramos saber si los log-valores siguen o
+no una distribución normal.</p>
+<p>Dado que queremos comparar estos valores con un
+<span class="math inline">\(N (\hat{\mu } , {\sigma^{&#39;}}^{2})\)</span>, entonces</p>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb359-1"></a><span class="kw">ks.test</span>(</span>
+<span id="cb359-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb359-2"></a>  <span class="dt">x =</span> <span class="kw">log</span>(x),</span>
+<span id="cb359-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb359-3"></a>  <span class="dt">y =</span> <span class="st">&quot;pnorm&quot;</span>,</span>
+<span id="cb359-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb359-4"></a>  <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">log</span>(x)),</span>
+<span id="cb359-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb359-5"></a>  <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">log</span>(x))</span>
+<span id="cb359-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb359-6"></a>)</span></code></pre></div>
+<pre><code>## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  log(x)
+## D = 0.091246, p-value = 0.9815
+## alternative hypothesis: two-sided</code></pre>
+<p>Note que esta localización es muy importante ya que si se quisiera comparar con
+una distribución <span class="math inline">\(N(0,1)\)</span> el resultado es diferente.</p>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb361-1"></a><span class="kw">ks.test</span>(</span>
+<span id="cb361-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb361-2"></a>  <span class="dt">x =</span> <span class="kw">log</span>(x),</span>
+<span id="cb361-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb361-3"></a>  <span class="dt">y =</span> <span class="st">&quot;pnorm&quot;</span>,</span>
+<span id="cb361-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb361-4"></a>  <span class="dt">mean =</span> <span class="dv">0</span>,</span>
+<span id="cb361-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb361-5"></a>  <span class="dt">sd =</span> <span class="dv">1</span></span>
+<span id="cb361-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb361-6"></a>)</span></code></pre></div>
+<pre><code>## 
+##  One-sample Kolmogorov-Smirnov test
+## 
+## data:  log(x)
+## D = 0.99803, p-value = 4.441e-16
+## alternative hypothesis: two-sided</code></pre>
 </div>
 <div id="prueba-de-2-muestras" class="section level2" number="15.2">
 <h2><span class="header-section-number">15.2</span> Prueba de 2 muestras</h2>
-<p>Sean <span class="math inline">\(X_1,\dots,X_m\sim N(\mu_1,\sigma^2)\)</span> y <span class="math inline">\(Y_1,\dots,Y_n\sim N(\mu_2,\sigma^2)\)</span></p>
-<p>La hipótesis nula es <span class="math inline">\(H_0:\mu_1 = \mu_2\)</span>, o <span class="math inline">\(H_0: F_1 = F_2\)</span> donde <span class="math inline">\(F_1\)</span> es la distribución de <span class="math inline">\(X\)</span> y <span class="math inline">\(F_2\)</span> la de <span class="math inline">\(Y\)</span>.</p>
-<p>¿Es posible quitar normalidad? Es decir, para <span class="math inline">\(X_1,\dots,X_m\sim F\)</span> y <span class="math inline">\(Y_1,\dots,Y_m\sim G\)</span> continuas, sin valores en común, probar <span class="math inline">\(H_0: F(x) = G(x)\)</span>, <span class="math inline">\(x \in \mathbb R\)</span>.</p>
+<p>Suponga que se tiene <span class="math inline">\(X_1,\dots,X_m\sim N(\mu_1,\sigma^2)\)</span> y
+<span class="math inline">\(Y_1,\dots,Y_n\sim N(\mu_2,\sigma^2)\)</span> y se desea saber si ambas muestras tienen
+la misma distribución.</p>
+<p>Una opción es probar que
+<span class="math display">\[
+H_0:\mu_1 = \mu_2 \text{ vs  } H_1: \mu_{1} \neq \mu_{2} 
+\]</span></p>
+<p>Uno de los supuestos fuertes para este tipo de pruebas es la normalidad.</p>
+<p>Otra opción es decir que</p>
+<p><span class="math display">\[
+H_0: F_1 = F_2 \text{ vs  } H_1: F_{1} \neq F_{2}
+\]</span></p>
+<p>donde <span class="math inline">\(F_1\)</span> es la distribución de <span class="math inline">\(X\)</span> y <span class="math inline">\(F_2\)</span> la de <span class="math inline">\(Y\)</span>.</p>
+<p>Igual en este caso estamos probando dos distribuciones normales, pero ¿Es
+posible del todo quitar el supuesto de normalidad?</p>
+<p>Es decir, para <span class="math inline">\(X_1,\dots,X_m\sim F\)</span> y <span class="math inline">\(Y_1,\dots,Y_m\sim G\)</span> continuas, sin
+valores en común, probar <span class="math inline">\(H_0: F(x) = G(x)\)</span>, <span class="math inline">\(x \in \mathbb R\)</span>.</p>
 <p>Considere
-<span class="math display">\[D_{mn} = \sup_{-\infty&lt;x&lt;\infty}|F_m(x)-G_n(x)|\]</span>
-Se tiene que <span class="math inline">\(D_{mn}\xrightarrow[]{\mathbb P} 0\)</span>, <span class="math inline">\(m,n\to\infty\)</span>.</p>
-<p>Si <span class="math inline">\(H(t)\)</span> es la distribución límite en el caso de una muestra y <span class="math inline">\(t&gt;0\)</span>,</p>
+<span class="math display">\[
+D_{mn} = \sup_{-\infty&lt;x&lt;\infty}|F_m(x)-G_n(x)|
+\]</span></p>
+<p>Se tiene por el teorema de Glivenko-Cantelli que <span class="math inline">\(D_{mn}\xrightarrow[]{\mathbb P} 0\)</span>, <span class="math inline">\(m,n\to\infty\)</span> cuando <span class="math inline">\(H_0\)</span> es verdadera</p>
+<p>Para el caso de dos muestras se puede probar que si <span class="math inline">\(H(t)\)</span> es la distribución
+límite en el caso de una muestra y <span class="math inline">\(t&gt;0\)</span>, entonces se cumple que</p>
 <p><span class="math display">\[\lim_{m,n\to \infty} \mathbb P \left( \left( \dfrac{mn}{m+n}\right)^{\frac 12} D_{mn}\leq t\right) = H(t)\]</span></p>
-<p>Se rechaza si <span class="math inline">\(\left(\dfrac{mn}{m+n}\right)^{\frac 12}D_{mn} \leq c\)</span> <span class="math inline">\((H^{-1}(1-\alpha_0))\)</span>.</p>
+<p>En este caso se rechaza la hipótesis nula si
+<span class="math inline">\(\left(\dfrac{mn}{m+n}\right)^{\frac 12}D_{mn} \geq H^{-1}(1-\alpha_0)\)</span>.</p>
+<p><strong>Ejemplo</strong> Suponga que se tienen dos grupos de personas a las cuales a unas se
+les dio un tratamiento para la presión arterial y al otro se le dio un placebo.</p>
+<p>Al se midieron las diferencias entre las presiones arteriales al cabo de 12
+semanas de tratamiento.</p>
+<p>Los resultados fueron estos</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb363-1"></a>Medicina &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">-4</span>, <span class="dv">18</span>, <span class="dv">17</span>, <span class="dv">-3</span>, <span class="dv">-5</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">-2</span>)</span>
+<span id="cb363-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb363-2"></a>Placebo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">-1</span>, <span class="dv">-3</span>, <span class="dv">3</span>, <span class="dv">-5</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">-11</span>, <span class="dv">-1</span>, <span class="dv">-3</span>)</span></code></pre></div>
+<p>La pregunta es si ambos conjuntos de datos vienen de la misma distribución.</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb364-1"></a><span class="kw">ks.test</span>(Medicina, Placebo)</span></code></pre></div>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  Medicina and Placebo
+## D = 0.40909, p-value = 0.3446
+## alternative hypothesis: two-sided</code></pre>
+<p>En este caso rechazamos la hipótesis nula de que ambas distribuciones son
+iguales con un nivel de <span class="math inline">\(\alpha \geq 0.346\)</span>.</p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-1"></a>df &lt;-<span class="st"> </span><span class="kw">rbind</span>(</span>
+<span id="cb366-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-2"></a>  <span class="kw">data.frame</span>(<span class="dt">x =</span> Medicina, <span class="dt">Tratamiento =</span> <span class="st">&quot;Medicina&quot;</span>),</span>
+<span id="cb366-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-3"></a>  <span class="kw">data.frame</span>(<span class="dt">x =</span> Placebo, <span class="dt">Tratamiento =</span> <span class="st">&quot;Placebo&quot;</span>)</span>
+<span id="cb366-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-4"></a>)</span>
+<span id="cb366-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-5"></a></span>
+<span id="cb366-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-6"></a><span class="kw">ggplot</span>(df) <span class="op">+</span></span>
+<span id="cb366-7"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-7"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(x, <span class="dt">color =</span> Tratamiento)) <span class="op">+</span></span>
+<span id="cb366-8"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-8"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/15-pruebas-ks-10-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+
 </div>
 </div>
             </section>
