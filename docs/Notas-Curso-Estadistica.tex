@@ -187,7 +187,7 @@
 
 \title{Notas Curso de Estadística (Parte I)}
 \author{Maikol Solís}
-\date{Actualizado el 18 November, 2020}
+\date{Actualizado el 22 November, 2020}
 
 \begin{document}
 \maketitle
@@ -7876,14 +7876,14 @@ elecciones universitarias (A, B o indeciso).
 
 \begin{longtable}[]{@{}ccccl@{}}
 \toprule
-Área/Candidato & A & B & Indeciso & \textbar{} Totales\tabularnewline
+Área/Candidato & A & B & Indeciso & \textbf{Totales}\tabularnewline
 \midrule
 \endhead
-Ingeniería & 24 & 23 & 12 & \textbar{} 59\tabularnewline
-Humanidades & 24 & 14 & 10 & \textbar{} 48\tabularnewline
-Artes & 17 & 8 & 13 & \textbar{} 38\tabularnewline
-Administración & 27 & 19 & 9 & \textbar{} 55\tabularnewline
-Totales & 92 & 64 & 44 & \textbar{} 200\tabularnewline
+Ingeniería & 24 & 23 & 12 & \textbf{59}\tabularnewline
+Humanidades & 24 & 14 & 10 & \textbf{48}\tabularnewline
+Artes & 17 & 8 & 13 & \textbf{38}\tabularnewline
+Administración & 27 & 19 & 9 & \textbf{55}\tabularnewline
+\textbf{Totales} & \textbf{92} & \textbf{64} & \textbf{44} & \textbf{200 }\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -7979,16 +7979,16 @@ Del ejemplo anterior,
 
 La tabla de valores esperados bajo \(H_0\) es
 
-\begin{longtable}[]{@{}lcccc@{}}
+\begin{longtable}[]{@{}lcccr@{}}
 \toprule
-Área/Candidato & A & B & Indeciso & Totales\tabularnewline
+Área/Candidato & A & B & Indeciso & \textbf{Totales}\tabularnewline
 \midrule
 \endhead
-Ingeniería & 27.14 & 18.88 & 12.98 & 59\tabularnewline
-Humanidades & 22.08 & 15.36 & 10.56 & 48\tabularnewline
-Artes & 17.48 & 12.16 & 8.36 & 38\tabularnewline
-Administración & 25.30 & 17.60 & 12.10 & 55\tabularnewline
-Totales & 92 & 64 & 44 & 200\tabularnewline
+Ingeniería & 27.14 & 18.88 & 12.98 & \textbf{59}\tabularnewline
+Humanidades & 22.08 & 15.36 & 10.56 & \textbf{48}\tabularnewline
+Artes & 17.48 & 12.16 & 8.36 & \textbf{38}\tabularnewline
+Administración & 25.30 & 17.60 & 12.10 & \textbf{55}\tabularnewline
+\emph{Totales} & \textbf{92} & \textbf{64} & \textbf{44} & \textbf{200}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -8022,47 +8022,9 @@ Primero definamos la tabla de datos
   \DataTypeTok{Voto =} \KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"Indeciso"}\NormalTok{)}
 \NormalTok{)}
 
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(M)}
+\CommentTok{\#\# knitr::kable(M)}
 \end{Highlighting}
 \end{Shaded}
-
-A
-
-B
-
-Indeciso
-
-Ingeniería
-
-24
-
-23
-
-12
-
-Humanidades
-
-24
-
-14
-
-10
-
-Artes
-
-17
-
-8
-
-13
-
-Administración
-
-27
-
-19
-
-9
 
 Luego el test se ejecuta sobre la matriz de los datos
 
@@ -8565,7 +8527,7 @@ Los valores más comunes de cuantiles para las pruebas son
 
 \begin{longtable}[]{@{}ll@{}}
 \toprule
-\(\alpha\) & \(H^-1(1-\alpha)\)\tabularnewline
+\(\alpha\) & \(H^{-1}(1-\alpha)\)\tabularnewline
 \midrule
 \endhead
 0.01 & 1.63\tabularnewline
@@ -8591,74 +8553,6 @@ Solo como ilustración, el paquete \texttt{KSgeneral} tiene programada la estima
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8817,54 +8711,420 @@ iguales con un nivel de \(\alpha \geq 0.346\).
 \hypertarget{pruebas-no-paramuxe9tricas-pruebas-de-signo-y-rango}{%
 \chapter{Pruebas no-paramétricas: pruebas de signo y rango}\label{pruebas-no-paramuxe9tricas-pruebas-de-signo-y-rango}}
 
+En este capítulo se explorará como hacer hipótesis sobre la distribución de un
+conjunto de datos cuando no se sabe con exactitud la distribución teórica a la
+cual pertenece.
+
 \hypertarget{prueba-de-signo}{%
 \section{Prueba de signo}\label{prueba-de-signo}}
 
-Sean \(X_1,\dots,X_n\) una muestra aleatoria de una distribución desconocida continua. Toda distribución continua tiene una mediana \(\mu\), una popular medida de ubicación, que satisface
+Sean \(X_1,\dots,X_n\) una muestra aleatoria de una distribución desconocida
+continua. Recordemos que no toda distribución tiene media, por ejemplo la
+distribución Cauchy\footnote{La densidad de una distribución Cauchy se define como
+  \(\displaystyle f(x;x_{0},\gamma )={1 \over \pi \gamma }\left[{\gamma ^{2} \over (x-x_{0})^{2}+\gamma ^{2}}\right],\), donde \(x_0\) y \(\gamma\) son parámetros
+  de localización y escala respectivamente. Esta distribución no tiene ningún
+  momento definido y su mediana es \(x_0\).}. Sin embargo, toda distribución
+continua si tiene una mediana \(\mu\)\footnote{\textbf{Importante:} Aunque normalmente se
+  denota \(\mu\) como la media, en este capítulo \(\mu\) es la mediana.} definida.
+
+La mediana es una popular medida de ubicación, que satisface
+
 \[\mathbb P(X_i\leq \mu)=0,5.\]
-Se desea probar
-\(H_0: \mu\leq \mu_0\) vs \(H_1: \mu >\mu_0.\)
-La prueba se basa en el hecho de que \(\mu\leq \mu_0\) si y solo sí \(\mathbb P(X_i<\mu_0)\geq 0,5\).
 
-Para \(i=1,\dots,n\), sea \(Y_i = 1\) si \(X_i\leq \mu_0\) y \(Y_i = 0\) si no. Defina \(p = \mathbb P(Y_i = 1)\). Entonces, probar que \(\mu\leq \mu_0\) es equivalente a probar \(p \geq 0,5\). Como \(X_1,\dots,X_n\) son independientes, \(Y_1,\dots,Y_n\) lo son, entonces
-\[Y_1,\dots,Y_n\sim B(p).\]
-Entonces sea \(W = Y_1+\dots+Y_n\). Se rechaza la hipótesis nula si \(W\) es pequeño. Escoja \(c\) tal que
+Suponga que queremos probar
 
-\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \alpha_0 < \sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]
+\begin{align*}
+H_0: & \mu\leq \mu_{0} \\
+  H_1: & \mu > \mu_{0}
+\end{align*}
+
+¿Por qué esta prueba? Note que esta se basa en el hecho de que \(\mu\leq \mu_0\)
+si y solo si e \(\mathbb P(X_i<\mu_0)\geq 0,5\) para \(i = 1, \dots, n\).
+
+Es decir, que la mediana \(\mu\) es menor que algún valor \(\mu_{0}\) si y solo
+si, la probabilidad de que los valores \(X_i\) sean menores que \(\mu_{0}\) sea
+mayor de 0.5. De forma más gráfica, si tiraramos una moneda, la mitad de la
+veces un valor de \(X\) caería por debajo de \(\mu_{0}\) y la otra mitad por
+encima de \(\mu_{0}\)
+
+Usando esta última observación, para \(i=1,\dots,n\), sea \(Y_i = 1\) si
+\(X_i\leq \mu_0\) y \(Y_i = 0\) si no. Defina \(p = \mathbb P(Y_i = 1)\). Entonces,
+probar que \(\mu\leq \mu_0\) es equivalente a probar \(p \geq 0,5\). Como
+\(X_1,\dots,X_n\) son independientes, \(Y_1,\dots,Y_n\) lo son,
+entonces
+
+\[Y_1,\dots,Y_n\sim \text{Binomial}(n,p).\]
+
+Calculamos \(W = Y_1+\dots+Y_n\) y decimos que rechazamos la hipótesis nula si \(W\)
+es pequeño.
+
+Para tener una prueba de tamaño \(\alpha_{0}\), escoja \(c\) tal que
+
+\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \alpha_0 <
+\sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]
+
 Se rechaza \(H_0\) si \(W\leq c\).
 
-La prueba descrita es llamada \textbf{prueba de signo} pues está basada en el número de observaciones en las cuales \(X_i-\mu_0\) es negativo.
+La prueba descrita es llamada \textbf{prueba de signo} pues está basada en el número
+de observaciones en las cuales \(X_i-\mu_0\) es negativo.
 
-Si \(H_0: \mu = \mu_0\; (p=1/2)\) vs \(H_1: \mu\neq \mu_0 \;(p\neq 1/2)\), se rechaza \(H_0\) si \(W\leq c\) o \(W \geq n-c\) y seleccionamos \(c\) tal que
-\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \dfrac{\alpha_0}{2} < \sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]
+Si se desea hacer una prueba de dos colas
+
+\begin{align*}
+H_0: & \mu \neq \mu_{0} (p = \frac{1}{2}) \\
+H_1: & \mu \neq \mu_{0} (p \neq \frac{1}{2})
+\end{align*}
+
+Se rechaza \(H_0\) si \(W\leq c\) o \(W \geq n-c\) y para obtener un nivel de
+significacia del \(\alpha_{0}\) seleccionamos \(c\) tal que
+
+\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \dfrac{\alpha_0}{2} <
+\sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]
 
 La función de potencia es
+
 \[\mathbb P(W\leq c) =\sum_{w=0}^c{n\choose w}(1-p)^{n-w}p^w \]
+
+\textbf{Ejemplo:} En junio de 1986 la revista \emph{Consumer Reports} reportó las calorías de 20 marcas de salchichas. Este fueros los datos que dieron:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+  \DecValTok{186}\NormalTok{, }\DecValTok{181}\NormalTok{, }\DecValTok{176}\NormalTok{, }\DecValTok{149}\NormalTok{, }\DecValTok{184}\NormalTok{, }\DecValTok{190}\NormalTok{, }\DecValTok{158}\NormalTok{,}
+  \DecValTok{139}\NormalTok{, }\DecValTok{175}\NormalTok{, }\DecValTok{148}\NormalTok{, }\DecValTok{152}\NormalTok{, }\DecValTok{111}\NormalTok{, }\DecValTok{141}\NormalTok{, }\DecValTok{153}\NormalTok{,}
+  \DecValTok{190}\NormalTok{, }\DecValTok{157}\NormalTok{, }\DecValTok{131}\NormalTok{, }\DecValTok{149}\NormalTok{, }\DecValTok{135}\NormalTok{, }\DecValTok{132}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{as.data.frame}\NormalTok{(x), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ x)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/16-pruebas-signo-rango-2-1} \end{center}
+
+Se quiere hacer el supuesto que la mediana es igual a 150 (\(\mu = 150\)). Entonces se plantea la hipótesis
+
+\begin{align*}
+H_0: & \mu = 150 \\
+H_1: & \mu \neq 150 
+\end{align*}
+
+La prueba de signo cuenta cuantas veces \(X_i - 150\) es negativo. Observe que para estos datos tenemos que
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{M \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{diferencias =}\NormalTok{ x }\OperatorTok{{-}}\StringTok{ }\DecValTok{150}\NormalTok{,}
+  \DataTypeTok{signo\_negativo =}\NormalTok{ x }\OperatorTok{{-}}\StringTok{ }\DecValTok{150} \OperatorTok{\textless{}}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\NormalTok{M}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    diferencias signo_negativo
+## 1           36          FALSE
+## 2           31          FALSE
+## 3           26          FALSE
+## 4           -1           TRUE
+## 5           34          FALSE
+## 6           40          FALSE
+## 7            8          FALSE
+## 8          -11           TRUE
+## 9           25          FALSE
+## 10          -2           TRUE
+## 11           2          FALSE
+## 12         -39           TRUE
+## 13          -9           TRUE
+## 14           3          FALSE
+## 15          40          FALSE
+## 16           7          FALSE
+## 17         -19           TRUE
+## 18          -1           TRUE
+## 19         -15           TRUE
+## 20         -18           TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(M}\OperatorTok{$}\NormalTok{signo\_negativo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Mode   FALSE    TRUE 
+## logical      11       9
+\end{verbatim}
+
+Y el valor \(p\) correspondiente es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{pbinom}\NormalTok{(}\DataTypeTok{q =} \DecValTok{9}\NormalTok{, }\DataTypeTok{size =} \DecValTok{20}\NormalTok{, }\DataTypeTok{prob =} \DecValTok{1} \OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8238029
+\end{verbatim}
+
+Rechazamos la hipótesis nula con un nivel \(\alpha_0\geq 0.8238\) a menos que se
+acepte un error tipo I mayor a \(0.8238\).
+
+Este mismo problema se puede resolver con la función \texttt{binom.test} de R (\texttt{x} es el número de signos negativos y \texttt{n} es el número total de datos).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{binom.test}\NormalTok{(}\DataTypeTok{x =} \DecValTok{9}\NormalTok{, }\DataTypeTok{n =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Exact binomial test
+## 
+## data:  9 and 20
+## number of successes = 9, number of trials = 20, p-value = 0.8238
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.2305779 0.6847219
+## sample estimates:
+## probability of success 
+##                   0.45
+\end{verbatim}
 
 \hypertarget{prueba-de-wilconxon-mann-whitney}{%
 \section{Prueba de Wilconxon-Mann-Whitney}\label{prueba-de-wilconxon-mann-whitney}}
 
-Sean \(X_1,\dots,X_n\overset{i.i.d}{\sim} F\) y \(X_1,\dots,X_n\overset{i.i.d}{\sim} G\) con \(F,G\) continuas. Considere la hipótesis
-\(H_0: F = G\) vs \(H_1: F\neq G\).
-Asuma que \(H_0\) es cierto y unimos las dos muestras
+Dado dos conjuntos de variables \(X_1,\dots, X_m\overset{i.i.d}{\sim} F\) y
+\(Y_1, \dots, Y_{n}\overset{i.i.d}{\sim} G\), queremos hacer la hipótesis
+
+\begin{align*}
+  H_0: &  F = G  \\
+  H_1: & F \neq G
+\end{align*}
+
+Esta hipótesis se puede hacer con las pruebas de Kolmogorov-Smirnov o la prueba \(t\) (dependiendo de \(F\) y \(G\)).
+
+Otra forma de hacerlo es usando la prueba de Wilconxon-Mann-Whitney (prueba de
+rango) descubierta por F. Wilcoxon, H. B. Mann y D. R. Whitney en la década de
+1940.
+
+La lógica de la prueba reside en que si unimos los dos conjuntos de valores y ambos tienen la misma distribución, entonces los datos se podrían ordenar de menor a mayor y todos estarían dispersos equitativamente.
+
+Sean \(X_1,\dots,X_n\overset{i.i.d}{\sim} F\) y
+\(X_1,\dots,X_n\overset{i.i.d}{\sim} G\) con \(F,G\) continuas. Considere la
+hipótesis \(H_0: F = G\) vs \(H_1: F\neq G\). Asuma que \(H_0\) es cierto y unimos las
+dos muestras
+
 \[(W_1,\dots,W_n+m) = (X_1,\dots,X_m,Y_1,\dots,Y_n)\]
 
-Considere, además, los índices de posición de las variables aleatorias
-\[X_1,\dots,X_m \rightarrow X_{(1)},\dots,X_{(m)\to \text{Índices de posición}}.\]
+Esta muestra se puede ordernar según los estadísticos de orden
 
-Como \(X_1,\dots,X_m\) es una muestra, entonces
-\[(I_1,\dots,I_m) \sim \text{Unif}(1,\dots,m)\]
-Bajo \(H_0\), \(W_1,\dots,W_{n+m}\) tiene índices de posición uniformemente distribuidos sobre los enteros \(1,\dots,m+n\). Defina \(S = \sum_{i=1}^m I_i\)
+\[
+(W_(1),\dots,W_(n+m))
+\]
+
+\textbf{Ejemplo:} Supongamos que tenemos estos dos conjuntos de datos y queremos ver si tienen la misma distribución.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{2.183}\NormalTok{, }\FloatTok{2.431}\NormalTok{, }\FloatTok{2.556}\NormalTok{, }\FloatTok{2.629}\NormalTok{,}
+  \FloatTok{2.641}\NormalTok{, }\FloatTok{2.715}\NormalTok{, }\FloatTok{2.805}\NormalTok{, }\FloatTok{2.840}\NormalTok{)}
+
+\NormalTok{y \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{2.120}\NormalTok{, }\FloatTok{2.153}\NormalTok{, }\FloatTok{2.213}\NormalTok{, }\FloatTok{2.240}\NormalTok{,}
+  \FloatTok{2.245}\NormalTok{, }\FloatTok{2.266}\NormalTok{, }\FloatTok{2.281}\NormalTok{, }\FloatTok{2.336}\NormalTok{,}
+  \FloatTok{2.558}\NormalTok{, }\FloatTok{2.587}\NormalTok{)}
+
+\NormalTok{dfx \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{W =}\NormalTok{ x, }\DataTypeTok{variable =} \StringTok{"x"}\NormalTok{)}
+
+\NormalTok{dfy \textless{}{-}}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{W =}\NormalTok{ y, }\DataTypeTok{variable =} \StringTok{"y"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Lo primero sería unirlos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfw \textless{}{-}}\StringTok{ }\KeywordTok{full\_join}\NormalTok{(dfx, dfy)}
+\end{Highlighting}
+\end{Shaded}
+
+Y luego ordenarlos y calcular su rango
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfw \textless{}{-}}\StringTok{ }\NormalTok{dfw }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(W) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{rango =} \DecValTok{1}\OperatorTok{:}\KeywordTok{n}\NormalTok{())}
+
+\NormalTok{dfw}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        W variable rango
+## 1  2.120        y     1
+## 2  2.153        y     2
+## 3  2.183        x     3
+## 4  2.213        y     4
+## 5  2.240        y     5
+## 6  2.245        y     6
+## 7  2.266        y     7
+## 8  2.281        y     8
+## 9  2.336        y     9
+## 10 2.431        x    10
+## 11 2.556        x    11
+## 12 2.558        y    12
+## 13 2.587        y    13
+## 14 2.629        x    14
+## 15 2.641        x    15
+## 16 2.715        x    16
+## 17 2.805        x    17
+## 18 2.840        x    18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(dfw, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ W, }\DataTypeTok{fill =}\NormalTok{ variable)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom\_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/16-pruebas-signo-rango-9-1} \end{center}
+
+\(\qed\)
+
+Para una muestra como \(X_1,\dots,X_m\) se tiene que las posiciones de cada uno los datos se puede escribir como variables aleatorias
+
+\[X_1,\dots,X_m \to X_{I_1},\dots,X_{I_m} \to  X_{(1)},\dots,X_{(m)} .\]
+
+Note que estas posiciones se pueden modelar como
+
+\[(I_1,\dots,I_m) \sim \text{Unif. Discreta}(1,\dots,m)\]
+
+Bajo \(H_0\), \(W_1,\dots,W_{n+m}\) tiene índices de posición uniformemente
+distribuidos sobre los enteros \(1,\dots,m+n\).
+
+Defina \(S = \sum_{i=1}^m I_i\), es decir la suma de todos los índices hasta el valor \(m\). Se puede probar que
 
 \begin{itemize}
 \item
-  \(\mathbb E[S] = m\mathbb E[I_1] \overset{H_0}{=} m\left(\dfrac{m+n+1}{2}\right)\).
+  \(\mathbb E[S] \overset{H_0}{=} m\left(\dfrac{m+n+1}{2}\right)\).
 \item
-  \(\text{Var}(S) = m\text{Var}(I_1) \overset{H_0}{=} mn\left(\dfrac{m+n+1}{12}\right)\).
+  \(\text{Var}(S) \overset{H_0}{=} mn\left(\dfrac{m+n+1}{12}\right)\).
 \end{itemize}
 
-Si \(m,n\) son grandes,
+El resultado importante de Mann y Whitney en 1947 fue probar que si \(m,n\) son
+grandes, entonces
+
 \[S\underset{H_0}{\sim}N\left(\dfrac{m(m+n+1)}{2},\dfrac{mn(m+n+1)}{12}\right).\]
+
+Por lo tanto la prueba se convierte en una prueba de normalidad sobre los rangos de los datos.
+
+Rechazamos la hipótesis nula si \(S\) se desvía mucho del valor de la media \(\mathbb E[S]\). En otra palabras rechazamos \(H_0\) si
+
+\[
+\left|S- \frac{m(m+n+1)}{2}\right| \geq (\text{Var}(S))^\frac{1}{2} \Phi^{-1}(1-\frac{\alpha}{2})
+\]
+
+\textbf{Ejemplo} Continuando con nuestro ejemplo definamos el \(m\) y \(n\) de las muestras.
+
+\textbf{OJO: Tomaremos siempre como \(m\) el conjunto de datos más pequeño}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(m \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(n \textless{}{-}}\StringTok{ }\KeywordTok{length}\NormalTok{(y))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10
+\end{verbatim}
+
+Construirmos las medias y varianzas teóricas de los rangos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(media\_S \textless{}{-}}\StringTok{ }\NormalTok{m }\OperatorTok{*}\StringTok{ }\NormalTok{(m }\OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 76
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(var\_S \textless{}{-}}\StringTok{ }\NormalTok{m }\OperatorTok{*}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{(m }\OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 760
+\end{verbatim}
+
+Tomamos la suma de todos los rangos de la muestra más pequeña. En este caso sería sobre los \texttt{x}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{S \textless{}{-}}\StringTok{ }\NormalTok{dfw }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(variable }\OperatorTok{==}\StringTok{ "x"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{ (}\DataTypeTok{S =} \KeywordTok{sum}\NormalTok{(rango))}
+
+\NormalTok{(S \textless{}{-}}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(S))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 104
+\end{verbatim}
+
+La variable \(S\) sigue una distribución \(N(76, \sqrt{760})\). Por lo tanto su \(p\)-valor es
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ (S }\OperatorTok{{-}}\StringTok{ }\NormalTok{media\_S) }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(var\_S)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3097881
+\end{verbatim}
+
+Rechazamos \(H_0\) si el nivel de significacia \(\alpha_0>0.128\)
+
+La función en R \texttt{wilcox.test} calcula la misma prueba, aunque esta hace algunos ajustes adicionales a los rangos, por eso los valores son ligeramente diferentes. Los detalles los pueden consultar en la ayuda de la función.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{wilcox.test}\NormalTok{(x, y, }\DataTypeTok{exact =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Wilcoxon rank sum exact test
+## 
+## data:  x and y
+## W = 68, p-value = 0.01166
+## alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
 
 \hypertarget{ejercicios-varios}{%
 \chapter{Ejercicios varios}\label{ejercicios-varios}}

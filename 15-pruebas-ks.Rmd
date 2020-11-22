@@ -202,7 +202,7 @@ estimados para cada \(t\)
 
 Los valores más comunes de cuantiles para las pruebas son 
 
-| \(\alpha\) | \(H^-1(1-\alpha)\) |
+| \(\alpha\) | \(H^{-1}(1-\alpha)\) |
 |------------+--------------------|
 |       0.01 |               1.63 |
 |       0.05 |               1.36 |
@@ -213,7 +213,7 @@ Solo como ilustración, el paquete `KSgeneral` tiene programada la estimación d
 \(n\) igual a 10, 50 y 100. 
 
 
-```{r 15-pruebas-ks-4 }
+```{r 15-pruebas-ks-4,results='hide',warning=FALSE, error=FALSE, message=FALSE}
 library(KSgeneral)
 
 t <- seq(0.001, 0.999, length.out = 1000)

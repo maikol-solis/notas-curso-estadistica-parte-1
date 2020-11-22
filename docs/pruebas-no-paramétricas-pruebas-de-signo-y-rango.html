@@ -309,43 +309,244 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="pruebas-no-paramétricas-pruebas-de-signo-y-rango" class="section level1" number="16">
 <h1><span class="header-section-number">Capítulo 16</span> Pruebas no-paramétricas: pruebas de signo y rango</h1>
+<p>En este capítulo se explorará como hacer hipótesis sobre la distribución de un
+conjunto de datos cuando no se sabe con exactitud la distribución teórica a la
+cual pertenece.</p>
 <div id="prueba-de-signo" class="section level2" number="16.1">
 <h2><span class="header-section-number">16.1</span> Prueba de signo</h2>
-<p>Sean <span class="math inline">\(X_1,\dots,X_n\)</span> una muestra aleatoria de una distribución desconocida continua. Toda distribución continua tiene una mediana <span class="math inline">\(\mu\)</span>, una popular medida de ubicación, que satisface
-<span class="math display">\[\mathbb P(X_i\leq \mu)=0,5.\]</span>
-Se desea probar
-<span class="math inline">\(H_0: \mu\leq \mu_0\)</span> vs <span class="math inline">\(H_1: \mu &gt;\mu_0.\)</span>
-La prueba se basa en el hecho de que <span class="math inline">\(\mu\leq \mu_0\)</span> si y solo sí <span class="math inline">\(\mathbb P(X_i&lt;\mu_0)\geq 0,5\)</span>.</p>
-<p>Para <span class="math inline">\(i=1,\dots,n\)</span>, sea <span class="math inline">\(Y_i = 1\)</span> si <span class="math inline">\(X_i\leq \mu_0\)</span> y <span class="math inline">\(Y_i = 0\)</span> si no. Defina <span class="math inline">\(p = \mathbb P(Y_i = 1)\)</span>. Entonces, probar que <span class="math inline">\(\mu\leq \mu_0\)</span> es equivalente a probar <span class="math inline">\(p \geq 0,5\)</span>. Como <span class="math inline">\(X_1,\dots,X_n\)</span> son independientes, <span class="math inline">\(Y_1,\dots,Y_n\)</span> lo son, entonces
-<span class="math display">\[Y_1,\dots,Y_n\sim B(p).\]</span>
-Entonces sea <span class="math inline">\(W = Y_1+\dots+Y_n\)</span>. Se rechaza la hipótesis nula si <span class="math inline">\(W\)</span> es pequeño. Escoja <span class="math inline">\(c\)</span> tal que</p>
-<p><span class="math display">\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \alpha_0 &lt; \sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]</span>
-Se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(W\leq c\)</span>.</p>
-<p>La prueba descrita es llamada <strong>prueba de signo</strong> pues está basada en el número de observaciones en las cuales <span class="math inline">\(X_i-\mu_0\)</span> es negativo.</p>
-<p>Si <span class="math inline">\(H_0: \mu = \mu_0\; (p=1/2)\)</span> vs <span class="math inline">\(H_1: \mu\neq \mu_0 \;(p\neq 1/2)\)</span>, se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(W\leq c\)</span> o <span class="math inline">\(W \geq n-c\)</span> y seleccionamos <span class="math inline">\(c\)</span> tal que
-<span class="math display">\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \dfrac{\alpha_0}{2} &lt; \sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]</span></p>
-<p>La función de potencia es
-<span class="math display">\[\mathbb P(W\leq c) =\sum_{w=0}^c{n\choose w}(1-p)^{n-w}p^w \]</span></p>
+<p>Sean <span class="math inline">\(X_1,\dots,X_n\)</span> una muestra aleatoria de una distribución desconocida
+continua. Recordemos que no toda distribución tiene media, por ejemplo la
+distribución Cauchy<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Sin embargo, toda distribución
+continua si tiene una mediana <span class="math inline">\(\mu\)</span><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> definida.</p>
+<p>La mediana es una popular medida de ubicación, que satisface</p>
+<p><span class="math display">\[\mathbb P(X_i\leq \mu)=0,5.\]</span></p>
+<p>Suponga que queremos probar</p>
+<p><span class="math display">\[\begin{align*}
+H_0: &amp; \mu\leq \mu_{0} \\
+  H_1: &amp; \mu &gt; \mu_{0}
+\end{align*}\]</span></p>
+<p>¿Por qué esta prueba? Note que esta se basa en el hecho de que <span class="math inline">\(\mu\leq \mu_0\)</span>
+si y solo si e <span class="math inline">\(\mathbb P(X_i&lt;\mu_0)\geq 0,5\)</span> para <span class="math inline">\(i = 1, \dots, n\)</span>.</p>
+<p>Es decir, que la mediana <span class="math inline">\(\mu\)</span> es menor que algún valor <span class="math inline">\(\mu_{0}\)</span> si y solo
+si, la probabilidad de que los valores <span class="math inline">\(X_i\)</span> sean menores que <span class="math inline">\(\mu_{0}\)</span> sea
+mayor de 0.5. De forma más gráfica, si tiraramos una moneda, la mitad de la
+veces un valor de <span class="math inline">\(X\)</span> caería por debajo de <span class="math inline">\(\mu_{0}\)</span> y la otra mitad por
+encima de <span class="math inline">\(\mu_{0}\)</span></p>
+<p>Usando esta última observación, para <span class="math inline">\(i=1,\dots,n\)</span>, sea <span class="math inline">\(Y_i = 1\)</span> si
+<span class="math inline">\(X_i\leq \mu_0\)</span> y <span class="math inline">\(Y_i = 0\)</span> si no. Defina <span class="math inline">\(p = \mathbb P(Y_i = 1)\)</span>. Entonces,
+probar que <span class="math inline">\(\mu\leq \mu_0\)</span> es equivalente a probar <span class="math inline">\(p \geq 0,5\)</span>. Como
+<span class="math inline">\(X_1,\dots,X_n\)</span> son independientes, <span class="math inline">\(Y_1,\dots,Y_n\)</span> lo son,
+entonces</p>
+<p><span class="math display">\[Y_1,\dots,Y_n\sim \text{Binomial}(n,p).\]</span></p>
+<p>Calculamos <span class="math inline">\(W = Y_1+\dots+Y_n\)</span> y decimos que rechazamos la hipótesis nula si <span class="math inline">\(W\)</span>
+es pequeño.</p>
+<p>Para tener una prueba de tamaño <span class="math inline">\(\alpha_{0}\)</span>, escoja <span class="math inline">\(c\)</span> tal que</p>
+<p><span class="math display">\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \alpha_0 &lt;
+\sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]</span></p>
+<p>Se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(W\leq c\)</span>.</p>
+<p>La prueba descrita es llamada <strong>prueba de signo</strong> pues está basada en el número
+de observaciones en las cuales <span class="math inline">\(X_i-\mu_0\)</span> es negativo.</p>
+<p>Si se desea hacer una prueba de dos colas</p>
+<p><span class="math display">\[\begin{align*}
+H_0: &amp; \mu \neq \mu_{0} (p = \frac{1}{2}) \\
+H_1: &amp; \mu \neq \mu_{0} (p \neq \frac{1}{2})
+\end{align*}\]</span></p>
+<p>Se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(W\leq c\)</span> o <span class="math inline">\(W \geq n-c\)</span> y para obtener un nivel de
+significacia del <span class="math inline">\(\alpha_{0}\)</span> seleccionamos <span class="math inline">\(c\)</span> tal que</p>
+<p><span class="math display">\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \dfrac{\alpha_0}{2} &lt;
+\sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]</span></p>
+<p>La función de potencia es</p>
+<p><span class="math display">\[\mathbb P(W\leq c) =\sum_{w=0}^c{n\choose w}(1-p)^{n-w}p^w \]</span></p>
+<p><strong>Ejemplo:</strong> En junio de 1986 la revista <em>Consumer Reports</em> reportó las calorías de 20 marcas de salchichas. Este fueros los datos que dieron:</p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb366-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb366-2"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb366-2"></a>  <span class="dv">186</span>, <span class="dv">181</span>, <span class="dv">176</span>, <span class="dv">149</span>, <span class="dv">184</span>, <span class="dv">190</span>, <span class="dv">158</span>,</span>
+<span id="cb366-3"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb366-3"></a>  <span class="dv">139</span>, <span class="dv">175</span>, <span class="dv">148</span>, <span class="dv">152</span>, <span class="dv">111</span>, <span class="dv">141</span>, <span class="dv">153</span>,</span>
+<span id="cb366-4"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb366-4"></a>  <span class="dv">190</span>, <span class="dv">157</span>, <span class="dv">131</span>, <span class="dv">149</span>, <span class="dv">135</span>, <span class="dv">132</span></span>
+<span id="cb366-5"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb366-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb367-1"></a><span class="kw">ggplot</span>(<span class="kw">as.data.frame</span>(x), <span class="kw">aes</span>(<span class="dt">y =</span> x)) <span class="op">+</span></span>
+<span id="cb367-2"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb367-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb367-3"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb367-3"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-22-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p>Se quiere hacer el supuesto que la mediana es igual a 150 (<span class="math inline">\(\mu = 150\)</span>). Entonces se plantea la hipótesis</p>
+<p><span class="math display">\[\begin{align*}
+H_0: &amp; \mu = 150 \\
+H_1: &amp; \mu \neq 150 
+\end{align*}\]</span></p>
+<p>La prueba de signo cuenta cuantas veces <span class="math inline">\(X_i - 150\)</span> es negativo. Observe que para estos datos tenemos que</p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb368-1"></a>M &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb368-2"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb368-2"></a>  <span class="dt">diferencias =</span> x <span class="op">-</span><span class="st"> </span><span class="dv">150</span>,</span>
+<span id="cb368-3"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb368-3"></a>  <span class="dt">signo_negativo =</span> x <span class="op">-</span><span class="st"> </span><span class="dv">150</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb368-4"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb368-4"></a>M</span></code></pre></div>
+<pre><code>##    diferencias signo_negativo
+## 1           36          FALSE
+## 2           31          FALSE
+## 3           26          FALSE
+## 4           -1           TRUE
+## 5           34          FALSE
+## 6           40          FALSE
+## 7            8          FALSE
+## 8          -11           TRUE
+## 9           25          FALSE
+## 10          -2           TRUE
+## 11           2          FALSE
+## 12         -39           TRUE
+## 13          -9           TRUE
+## 14           3          FALSE
+## 15          40          FALSE
+## 16           7          FALSE
+## 17         -19           TRUE
+## 18          -1           TRUE
+## 19         -15           TRUE
+## 20         -18           TRUE</code></pre>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb370-1"></a><span class="kw">summary</span>(M<span class="op">$</span>signo_negativo)</span></code></pre></div>
+<pre><code>##    Mode   FALSE    TRUE 
+## logical      11       9</code></pre>
+<p>Y el valor <span class="math inline">\(p\)</span> correspondiente es:</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb372-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dt">q =</span> <span class="dv">9</span>, <span class="dt">size =</span> <span class="dv">20</span>, <span class="dt">prob =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.8238029</code></pre>
+<p>Rechazamos la hipótesis nula con un nivel <span class="math inline">\(\alpha_0\geq 0.8238\)</span> a menos que se
+acepte un error tipo I mayor a <span class="math inline">\(0.8238\)</span>.</p>
+<p>Este mismo problema se puede resolver con la función <code>binom.test</code> de R (<code>x</code> es el número de signos negativos y <code>n</code> es el número total de datos).</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb374-1"></a><span class="kw">binom.test</span>(<span class="dt">x =</span> <span class="dv">9</span>, <span class="dt">n =</span> <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  9 and 20
+## number of successes = 9, number of trials = 20, p-value = 0.8238
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.2305779 0.6847219
+## sample estimates:
+## probability of success 
+##                   0.45</code></pre>
 </div>
 <div id="prueba-de-wilconxon-mann-whitney" class="section level2" number="16.2">
 <h2><span class="header-section-number">16.2</span> Prueba de Wilconxon-Mann-Whitney</h2>
-<p>Sean <span class="math inline">\(X_1,\dots,X_n\overset{i.i.d}{\sim} F\)</span> y <span class="math inline">\(X_1,\dots,X_n\overset{i.i.d}{\sim} G\)</span> con <span class="math inline">\(F,G\)</span> continuas. Considere la hipótesis
-<span class="math inline">\(H_0: F = G\)</span> vs <span class="math inline">\(H_1: F\neq G\)</span>.
-Asuma que <span class="math inline">\(H_0\)</span> es cierto y unimos las dos muestras
-<span class="math display">\[(W_1,\dots,W_n+m) = (X_1,\dots,X_m,Y_1,\dots,Y_n)\]</span></p>
-<p>Considere, además, los índices de posición de las variables aleatorias
-<span class="math display">\[X_1,\dots,X_m \rightarrow X_{(1)},\dots,X_{(m)\to \text{Índices de posición}}.\]</span></p>
-<p>Como <span class="math inline">\(X_1,\dots,X_m\)</span> es una muestra, entonces
-<span class="math display">\[(I_1,\dots,I_m) \sim \text{Unif}(1,\dots,m)\]</span>
-Bajo <span class="math inline">\(H_0\)</span>, <span class="math inline">\(W_1,\dots,W_{n+m}\)</span> tiene índices de posición uniformemente distribuidos sobre los enteros <span class="math inline">\(1,\dots,m+n\)</span>. Defina <span class="math inline">\(S = \sum_{i=1}^m I_i\)</span></p>
+<p>Dado dos conjuntos de variables <span class="math inline">\(X_1,\dots, X_m\overset{i.i.d}{\sim} F\)</span> y
+<span class="math inline">\(Y_1, \dots, Y_{n}\overset{i.i.d}{\sim} G\)</span>, queremos hacer la hipótesis</p>
+<p><span class="math display">\[\begin{align*}
+  H_0: &amp;  F = G  \\
+  H_1: &amp; F \neq G
+\end{align*}\]</span></p>
+<p>Esta hipótesis se puede hacer con las pruebas de Kolmogorov-Smirnov o la prueba <span class="math inline">\(t\)</span> (dependiendo de <span class="math inline">\(F\)</span> y <span class="math inline">\(G\)</span>).</p>
+<p>Otra forma de hacerlo es usando la prueba de Wilconxon-Mann-Whitney (prueba de
+rango) descubierta por F. Wilcoxon, H. B. Mann y D. R. Whitney en la década de
+1940.</p>
+<p>La lógica de la prueba reside en que si unimos los dos conjuntos de valores y ambos tienen la misma distribución, entonces los datos se podrían ordenar de menor a mayor y todos estarían dispersos equitativamente.</p>
+<p>Sean <span class="math inline">\(X_1,\dots,X_n\overset{i.i.d}{\sim} F\)</span> y
+<span class="math inline">\(X_1,\dots,X_n\overset{i.i.d}{\sim} G\)</span> con <span class="math inline">\(F,G\)</span> continuas. Considere la
+hipótesis <span class="math inline">\(H_0: F = G\)</span> vs <span class="math inline">\(H_1: F\neq G\)</span>. Asuma que <span class="math inline">\(H_0\)</span> es cierto y unimos las
+dos muestras</p>
+<p><span class="math display">\[(W_1,\dots,W_n+m) = (X_1,\dots,X_m,Y_1,\dots,Y_n)\]</span></p>
+<p>Esta muestra se puede ordernar según los estadísticos de orden</p>
+<p><span class="math display">\[
+(W_(1),\dots,W_(n+m))
+\]</span></p>
+<p><strong>Ejemplo:</strong> Supongamos que tenemos estos dos conjuntos de datos y queremos ver si tienen la misma distribución.</p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb376-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.183</span>, <span class="fl">2.431</span>, <span class="fl">2.556</span>, <span class="fl">2.629</span>,</span>
+<span id="cb376-2"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb376-2"></a>  <span class="fl">2.641</span>, <span class="fl">2.715</span>, <span class="fl">2.805</span>, <span class="fl">2.840</span>)</span>
+<span id="cb376-3"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb376-3"></a></span>
+<span id="cb376-4"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb376-4"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.120</span>, <span class="fl">2.153</span>, <span class="fl">2.213</span>, <span class="fl">2.240</span>,</span>
+<span id="cb376-5"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb376-5"></a>  <span class="fl">2.245</span>, <span class="fl">2.266</span>, <span class="fl">2.281</span>, <span class="fl">2.336</span>,</span>
+<span id="cb376-6"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb376-6"></a>  <span class="fl">2.558</span>, <span class="fl">2.587</span>)</span>
+<span id="cb376-7"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb376-7"></a></span>
+<span id="cb376-8"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb376-8"></a>dfx &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">W =</span> x, <span class="dt">variable =</span> <span class="st">&quot;x&quot;</span>)</span>
+<span id="cb376-9"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb376-9"></a></span>
+<span id="cb376-10"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb376-10"></a>dfy &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">W =</span> y, <span class="dt">variable =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
+<p>Lo primero sería unirlos</p>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb377-1"></a>dfw &lt;-<span class="st"> </span><span class="kw">full_join</span>(dfx, dfy)</span></code></pre></div>
+<p>Y luego ordenarlos y calcular su rango</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb378-1"></a>dfw &lt;-<span class="st"> </span>dfw <span class="op">%&gt;%</span></span>
+<span id="cb378-2"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb378-2"></a><span class="st">  </span><span class="kw">arrange</span>(W) <span class="op">%&gt;%</span></span>
+<span id="cb378-3"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb378-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rango =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">n</span>())</span>
+<span id="cb378-4"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb378-4"></a></span>
+<span id="cb378-5"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb378-5"></a>dfw</span></code></pre></div>
+<pre><code>##        W variable rango
+## 1  2.120        y     1
+## 2  2.153        y     2
+## 3  2.183        x     3
+## 4  2.213        y     4
+## 5  2.240        y     5
+## 6  2.245        y     6
+## 7  2.266        y     7
+## 8  2.281        y     8
+## 9  2.336        y     9
+## 10 2.431        x    10
+## 11 2.556        x    11
+## 12 2.558        y    12
+## 13 2.587        y    13
+## 14 2.629        x    14
+## 15 2.641        x    15
+## 16 2.715        x    16
+## 17 2.805        x    17
+## 18 2.840        x    18</code></pre>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb380-1"></a><span class="kw">ggplot</span>(dfw, <span class="kw">aes</span>(<span class="dt">y =</span> W, <span class="dt">fill =</span> variable)) <span class="op">+</span></span>
+<span id="cb380-2"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb380-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb380-3"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb380-3"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-29-1.svg" width="100%" style="display: block; margin: auto;" />
+<span class="math inline">\(\qed\)</span></p>
+<p>Para una muestra como <span class="math inline">\(X_1,\dots,X_m\)</span> se tiene que las posiciones de cada uno los datos se puede escribir como variables aleatorias</p>
+<p><span class="math display">\[X_1,\dots,X_m \to X_{I_1},\dots,X_{I_m} \to  X_{(1)},\dots,X_{(m)} .\]</span></p>
+<p>Note que estas posiciones se pueden modelar como</p>
+<p><span class="math display">\[(I_1,\dots,I_m) \sim \text{Unif. Discreta}(1,\dots,m)\]</span></p>
+<p>Bajo <span class="math inline">\(H_0\)</span>, <span class="math inline">\(W_1,\dots,W_{n+m}\)</span> tiene índices de posición uniformemente
+distribuidos sobre los enteros <span class="math inline">\(1,\dots,m+n\)</span>.</p>
+<p>Defina <span class="math inline">\(S = \sum_{i=1}^m I_i\)</span>, es decir la suma de todos los índices hasta el valor <span class="math inline">\(m\)</span>. Se puede probar que</p>
 <ul>
-<li><p><span class="math inline">\(\mathbb E[S] = m\mathbb E[I_1] \overset{H_0}{=} m\left(\dfrac{m+n+1}{2}\right)\)</span>.</p></li>
-<li><p><span class="math inline">\(\text{Var}(S) = m\text{Var}(I_1) \overset{H_0}{=} mn\left(\dfrac{m+n+1}{12}\right)\)</span>.</p></li>
+<li><p><span class="math inline">\(\mathbb E[S] \overset{H_0}{=} m\left(\dfrac{m+n+1}{2}\right)\)</span>.</p></li>
+<li><p><span class="math inline">\(\text{Var}(S) \overset{H_0}{=} mn\left(\dfrac{m+n+1}{12}\right)\)</span>.</p></li>
 </ul>
-<p>Si <span class="math inline">\(m,n\)</span> son grandes,
-<span class="math display">\[S\underset{H_0}{\sim}N\left(\dfrac{m(m+n+1)}{2},\dfrac{mn(m+n+1)}{12}\right).\]</span></p>
+<p>El resultado importante de Mann y Whitney en 1947 fue probar que si <span class="math inline">\(m,n\)</span> son
+grandes, entonces</p>
+<p><span class="math display">\[S\underset{H_0}{\sim}N\left(\dfrac{m(m+n+1)}{2},\dfrac{mn(m+n+1)}{12}\right).\]</span></p>
+<p>Por lo tanto la prueba se convierte en una prueba de normalidad sobre los rangos de los datos.</p>
+<p>Rechazamos la hipótesis nula si <span class="math inline">\(S\)</span> se desvía mucho del valor de la media <span class="math inline">\(\mathbb E[S]\)</span>. En otra palabras rechazamos <span class="math inline">\(H_0\)</span> si</p>
+<p><span class="math display">\[
+\left|S- \frac{m(m+n+1)}{2}\right| \geq (\text{Var}(S))^\frac{1}{2} \Phi^{-1}(1-\frac{\alpha}{2})
+\]</span></p>
+<p><strong>Ejemplo</strong> Continuando con nuestro ejemplo definamos el <span class="math inline">\(m\)</span> y <span class="math inline">\(n\)</span> de las muestras.</p>
+<p><strong>OJO: Tomaremos siempre como <span class="math inline">\(m\)</span> el conjunto de datos más pequeño</strong></p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb381-1"></a>(m &lt;-<span class="st"> </span><span class="kw">length</span>(x))</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb383-1"></a>(n &lt;-<span class="st"> </span><span class="kw">length</span>(y))</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<p>Construirmos las medias y varianzas teóricas de los rangos</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb385-1"></a>(media_S &lt;-<span class="st"> </span>m <span class="op">*</span><span class="st"> </span>(m <span class="op">+</span><span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 76</code></pre>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb387-1"></a>(var_S &lt;-<span class="st"> </span>m <span class="op">*</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>(m <span class="op">+</span><span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 760</code></pre>
+<p>Tomamos la suma de todos los rangos de la muestra más pequeña. En este caso sería sobre los <code>x</code></p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb389-1"></a>S &lt;-<span class="st"> </span>dfw <span class="op">%&gt;%</span></span>
+<span id="cb389-2"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb389-2"></a><span class="st">  </span><span class="kw">filter</span>(variable <span class="op">==</span><span class="st"> &quot;x&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb389-3"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb389-3"></a><span class="st">  </span><span class="kw">summarise</span> (<span class="dt">S =</span> <span class="kw">sum</span>(rango))</span>
+<span id="cb389-4"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb389-4"></a></span>
+<span id="cb389-5"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb389-5"></a>(S &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(S))</span></code></pre></div>
+<pre><code>## [1] 104</code></pre>
+<p>La variable <span class="math inline">\(S\)</span> sigue una distribución <span class="math inline">\(N(76, \sqrt{760})\)</span>. Por lo tanto su <span class="math inline">\(p\)</span>-valor es</p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb391-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> (S <span class="op">-</span><span class="st"> </span>media_S) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(var_S)))</span></code></pre></div>
+<pre><code>## [1] 0.3097881</code></pre>
+<p>Rechazamos <span class="math inline">\(H_0\)</span> si el nivel de significacia <span class="math inline">\(\alpha_0&gt;0.128\)</span></p>
+<p>La función en R <code>wilcox.test</code> calcula la misma prueba, aunque esta hace algunos ajustes adicionales a los rangos, por eso los valores son ligeramente diferentes. Los detalles los pueden consultar en la ayuda de la función.</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb393-1"></a><span class="kw">wilcox.test</span>(x, y, <span class="dt">exact =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Wilcoxon rank sum exact test
+## 
+## data:  x and y
+## W = 68, p-value = 0.01166
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
 
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>La densidad de una distribución Cauchy se define como
+<span class="math inline">\(\displaystyle f(x;x_{0},\gamma )={1 \over \pi \gamma }\left[{\gamma ^{2} \over (x-x_{0})^{2}+\gamma ^{2}}\right],\)</span>, donde <span class="math inline">\(x_0\)</span> y <span class="math inline">\(\gamma\)</span> son parámetros
+de localización y escala respectivamente. Esta distribución no tiene ningún
+momento definido y su mediana es <span class="math inline">\(x_0\)</span>.<a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p><strong>Importante:</strong> Aunque normalmente se
+denota <span class="math inline">\(\mu\)</span> como la media, en este capítulo <span class="math inline">\(\mu\)</span> es la mediana.<a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 

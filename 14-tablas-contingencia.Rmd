@@ -8,13 +8,13 @@ universitaria, según currículum (área de estudio) y candidato preferido en un
 elecciones universitarias (A, B o indeciso).
 
 
-| Área/Candidato         | A  | B  | Indeciso | \| Totales |
-|:----------------------:|:--:|:--:|:--------:|:-----------|
-| Ingeniería             | 24 | 23 | 12       | \| 59      |
-| Humanidades            | 24 | 14 | 10       | \| 48      |
-| Artes                  | 17 | 8  | 13       | \| 38      |
-| Administración         | 27 | 19 | 9        | \| 55      |
-| Totales                | 92 | 64 | 44       | \| 200     |
+| Área/Candidato | A      | B      | Indeciso | **Totales** |
+|:--------------:|:------:|:------:|:--------:|:------------|
+| Ingeniería     | 24     | 23     | 12       | **59**      |
+| Humanidades    | 24     | 14     | 10       | **48**      |
+| Artes          | 17     | 8      | 13       | **38**      |
+| Administración | 27     | 19     | 9        | **55**      |
+| **Totales**    | **92** | **64** | **44**   | **200 **    |
 
 
 Antes de continuar con este ejemplo, vamos definimos lo siguiente:
@@ -93,13 +93,13 @@ Del ejemplo anterior,
 
 La tabla de valores esperados bajo $H_0$ es
 
-| Área/Candidato | A     | B     | Indeciso | Totales |
-|----------------|:-----:|:-----:|:--------:|:-------:|
-| Ingeniería     | 27.14 | 18.88 | 12.98    | 59      |
-| Humanidades    | 22.08 | 15.36 | 10.56    | 48      |
-| Artes          | 17.48 | 12.16 | 8.36     | 38      |
-| Administración | 25.30 | 17.60 | 12.10    | 55      |
-| Totales        | 92    | 64    | 44       | 200     |
+| Área/Candidato   | A        | B        | Indeciso  | **Totales** |
+| :--------------- | :------: | :------: | :-------: | ---------:  |
+| Ingeniería       | 27.14    | 18.88    | 12.98     | **59**      |
+| Humanidades      | 22.08    | 15.36    | 10.56     | **48**      |
+| Artes            | 17.48    | 12.16    | 8.36      | **38**      |
+| Administración   | 25.30    | 17.60    | 12.10     | **55**      |
+| *Totales*        | **92**   | **64**   | **44**    | **200**     |
 
 \[Q = \dfrac{(24-27.14)^2}{27.14} + \cdots+\dfrac{(8-12.16)^2}{12.16}+\cdots =
 6.68\]
@@ -129,7 +129,7 @@ dimnames(M) <- list(
   Voto = c("A", "B", "Indeciso")
 )
 
-knitr::kable(M)
+## knitr::kable(M)
 ```
 
 Luego el test se ejecuta sobre la matriz de los datos
@@ -228,21 +228,6 @@ pregunta lo mismo.
 | Antes del incendio   | 80            | 20               |
 | Después del incendio | 72            | 28               |
 
-<!-- r 14-tablas-contingencia-1, echo=FALSE} -\-> -->
-<!-- library(kableExtra) -->
-<!-- tabla <- data.frame( -->
-<!--   antes = rep("Antes del incendio", 2), -->
-<!--   sat = c("Satisfactorio", "No satisfactorio"), -->
-<!--   S = c(70, 2), -->
-<!--   N = c(10, 18) -->
-<!-- ) -->
-<!-- names(tabla) <- c(" ", " ", "Satisfactorio", "No satisfactorio") -->
-<!-- kable(tabla) %>% -->
-<!--   add_header_above(c(" " = 2, "Después del incendio" = 2)) %>% -->
-<!--   kable_styling("striped") %>% -->
-<!--   column_spec(1:2, bold = T) %>% -->
-<!--   collapse_rows(columns = 1, valign = "middle") -->
-<!-- ``` -->
 
  
  En este caso no es apropiado hacer una prueba de independencia  u homogeneidad

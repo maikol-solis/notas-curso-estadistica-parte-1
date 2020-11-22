@@ -434,7 +434,7 @@ estimados para cada <span class="math inline">\(t\)</span></p>
 <thead>
 <tr class="header">
 <th><span class="math inline">\(\alpha\)</span></th>
-<th><span class="math inline">\(H^-1(1-\alpha)\)</span></th>
+<th><span class="math inline">\(H^{-1}(1-\alpha)\)</span></th>
 </tr>
 </thead>
 <tbody>
@@ -464,86 +464,21 @@ estimados para cada <span class="math inline">\(t\)</span></p>
 <span id="cb356-7"><a href="pruebas-de-kolmogorov-smirnov.html#cb356-7"></a>  <span class="kw">data.frame</span>(t, <span class="dt">ks =</span> <span class="kw">Vectorize</span>(cont_ks_cdf)(t, <span class="dv">50</span>), <span class="dt">n =</span> <span class="dv">50</span>),</span>
 <span id="cb356-8"><a href="pruebas-de-kolmogorov-smirnov.html#cb356-8"></a>  <span class="kw">data.frame</span>(t, <span class="dt">ks =</span> <span class="kw">Vectorize</span>(cont_ks_cdf)(t, <span class="dv">100</span>), <span class="dt">n =</span> <span class="dv">100</span>)</span>
 <span id="cb356-9"><a href="pruebas-de-kolmogorov-smirnov.html#cb356-9"></a>)</span></code></pre></div>
-<pre><code>## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.</code></pre>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb358-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> t, <span class="dt">y =</span> ks, <span class="dt">color =</span> <span class="kw">as.factor</span>(n))) <span class="op">+</span></span>
-<span id="cb358-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb358-2"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb358-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb358-3"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb357-1"></a><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> t, <span class="dt">y =</span> ks, <span class="dt">color =</span> <span class="kw">as.factor</span>(n))) <span class="op">+</span></span>
+<span id="cb357-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb357-2"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb357-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb357-3"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="Notas-Curso-Estadistica_files/figure-html/15-pruebas-ks-5-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p><strong>Ejemplo:</strong></p>
 <p>En el caso de las partes mecánicas quisiéramos saber si los log-valores siguen o
 no una distribución normal.</p>
 <p>Dado que queremos comparar estos valores con un
 <span class="math inline">\(N (\hat{\mu } , {\sigma^{&#39;}}^{2})\)</span>, entonces</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb359-1"></a><span class="kw">ks.test</span>(</span>
-<span id="cb359-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb359-2"></a>  <span class="dt">x =</span> <span class="kw">log</span>(x),</span>
-<span id="cb359-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb359-3"></a>  <span class="dt">y =</span> <span class="st">&quot;pnorm&quot;</span>,</span>
-<span id="cb359-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb359-4"></a>  <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">log</span>(x)),</span>
-<span id="cb359-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb359-5"></a>  <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">log</span>(x))</span>
-<span id="cb359-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb359-6"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb358-1"></a><span class="kw">ks.test</span>(</span>
+<span id="cb358-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb358-2"></a>  <span class="dt">x =</span> <span class="kw">log</span>(x),</span>
+<span id="cb358-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb358-3"></a>  <span class="dt">y =</span> <span class="st">&quot;pnorm&quot;</span>,</span>
+<span id="cb358-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb358-4"></a>  <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">log</span>(x)),</span>
+<span id="cb358-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb358-5"></a>  <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">log</span>(x))</span>
+<span id="cb358-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb358-6"></a>)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
@@ -552,12 +487,12 @@ no una distribución normal.</p>
 ## alternative hypothesis: two-sided</code></pre>
 <p>Note que esta localización es muy importante ya que si se quisiera comparar con
 una distribución <span class="math inline">\(N(0,1)\)</span> el resultado es diferente.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb361-1"></a><span class="kw">ks.test</span>(</span>
-<span id="cb361-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb361-2"></a>  <span class="dt">x =</span> <span class="kw">log</span>(x),</span>
-<span id="cb361-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb361-3"></a>  <span class="dt">y =</span> <span class="st">&quot;pnorm&quot;</span>,</span>
-<span id="cb361-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb361-4"></a>  <span class="dt">mean =</span> <span class="dv">0</span>,</span>
-<span id="cb361-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb361-5"></a>  <span class="dt">sd =</span> <span class="dv">1</span></span>
-<span id="cb361-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb361-6"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb360-1"></a><span class="kw">ks.test</span>(</span>
+<span id="cb360-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb360-2"></a>  <span class="dt">x =</span> <span class="kw">log</span>(x),</span>
+<span id="cb360-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb360-3"></a>  <span class="dt">y =</span> <span class="st">&quot;pnorm&quot;</span>,</span>
+<span id="cb360-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb360-4"></a>  <span class="dt">mean =</span> <span class="dv">0</span>,</span>
+<span id="cb360-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb360-5"></a>  <span class="dt">sd =</span> <span class="dv">1</span></span>
+<span id="cb360-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb360-6"></a>)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample Kolmogorov-Smirnov test
 ## 
@@ -599,10 +534,10 @@ les dio un tratamiento para la presión arterial y al otro se le dio un placebo.
 <p>Al se midieron las diferencias entre las presiones arteriales al cabo de 12
 semanas de tratamiento.</p>
 <p>Los resultados fueron estos</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb363-1"></a>Medicina &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">-4</span>, <span class="dv">18</span>, <span class="dv">17</span>, <span class="dv">-3</span>, <span class="dv">-5</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">-2</span>)</span>
-<span id="cb363-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb363-2"></a>Placebo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">-1</span>, <span class="dv">-3</span>, <span class="dv">3</span>, <span class="dv">-5</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">-11</span>, <span class="dv">-1</span>, <span class="dv">-3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb362-1"></a>Medicina &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">-4</span>, <span class="dv">18</span>, <span class="dv">17</span>, <span class="dv">-3</span>, <span class="dv">-5</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">-2</span>)</span>
+<span id="cb362-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb362-2"></a>Placebo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">-1</span>, <span class="dv">-3</span>, <span class="dv">3</span>, <span class="dv">-5</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">-11</span>, <span class="dv">-1</span>, <span class="dv">-3</span>)</span></code></pre></div>
 <p>La pregunta es si ambos conjuntos de datos vienen de la misma distribución.</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb364-1"></a><span class="kw">ks.test</span>(Medicina, Placebo)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb363-1"></a><span class="kw">ks.test</span>(Medicina, Placebo)</span></code></pre></div>
 <pre><code>## 
 ##  Two-sample Kolmogorov-Smirnov test
 ## 
@@ -611,14 +546,14 @@ semanas de tratamiento.</p>
 ## alternative hypothesis: two-sided</code></pre>
 <p>En este caso rechazamos la hipótesis nula de que ambas distribuciones son
 iguales con un nivel de <span class="math inline">\(\alpha \geq 0.346\)</span>.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-1"></a>df &lt;-<span class="st"> </span><span class="kw">rbind</span>(</span>
-<span id="cb366-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-2"></a>  <span class="kw">data.frame</span>(<span class="dt">x =</span> Medicina, <span class="dt">Tratamiento =</span> <span class="st">&quot;Medicina&quot;</span>),</span>
-<span id="cb366-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-3"></a>  <span class="kw">data.frame</span>(<span class="dt">x =</span> Placebo, <span class="dt">Tratamiento =</span> <span class="st">&quot;Placebo&quot;</span>)</span>
-<span id="cb366-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-4"></a>)</span>
-<span id="cb366-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-5"></a></span>
-<span id="cb366-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-6"></a><span class="kw">ggplot</span>(df) <span class="op">+</span></span>
-<span id="cb366-7"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-7"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(x, <span class="dt">color =</span> Tratamiento)) <span class="op">+</span></span>
-<span id="cb366-8"><a href="pruebas-de-kolmogorov-smirnov.html#cb366-8"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="pruebas-de-kolmogorov-smirnov.html#cb365-1"></a>df &lt;-<span class="st"> </span><span class="kw">rbind</span>(</span>
+<span id="cb365-2"><a href="pruebas-de-kolmogorov-smirnov.html#cb365-2"></a>  <span class="kw">data.frame</span>(<span class="dt">x =</span> Medicina, <span class="dt">Tratamiento =</span> <span class="st">&quot;Medicina&quot;</span>),</span>
+<span id="cb365-3"><a href="pruebas-de-kolmogorov-smirnov.html#cb365-3"></a>  <span class="kw">data.frame</span>(<span class="dt">x =</span> Placebo, <span class="dt">Tratamiento =</span> <span class="st">&quot;Placebo&quot;</span>)</span>
+<span id="cb365-4"><a href="pruebas-de-kolmogorov-smirnov.html#cb365-4"></a>)</span>
+<span id="cb365-5"><a href="pruebas-de-kolmogorov-smirnov.html#cb365-5"></a></span>
+<span id="cb365-6"><a href="pruebas-de-kolmogorov-smirnov.html#cb365-6"></a><span class="kw">ggplot</span>(df) <span class="op">+</span></span>
+<span id="cb365-7"><a href="pruebas-de-kolmogorov-smirnov.html#cb365-7"></a><span class="st">  </span><span class="kw">stat_ecdf</span>(<span class="kw">aes</span>(x, <span class="dt">color =</span> Tratamiento)) <span class="op">+</span></span>
+<span id="cb365-8"><a href="pruebas-de-kolmogorov-smirnov.html#cb365-8"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="Notas-Curso-Estadistica_files/figure-html/15-pruebas-ks-10-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>

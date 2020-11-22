@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 18 November, 2020"
+date: "Actualizado el 22 November, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -7710,13 +7710,13 @@ universitaria, según currículum (área de estudio) y candidato preferido en un
 elecciones universitarias (A, B o indeciso).
 
 
-| Área/Candidato         | A  | B  | Indeciso | \| Totales |
-|:----------------------:|:--:|:--:|:--------:|:-----------|
-| Ingeniería             | 24 | 23 | 12       | \| 59      |
-| Humanidades            | 24 | 14 | 10       | \| 48      |
-| Artes                  | 17 | 8  | 13       | \| 38      |
-| Administración         | 27 | 19 | 9        | \| 55      |
-| Totales                | 92 | 64 | 44       | \| 200     |
+| Área/Candidato | A      | B      | Indeciso | **Totales** |
+|:--------------:|:------:|:------:|:--------:|:------------|
+| Ingeniería     | 24     | 23     | 12       | **59**      |
+| Humanidades    | 24     | 14     | 10       | **48**      |
+| Artes          | 17     | 8      | 13       | **38**      |
+| Administración | 27     | 19     | 9        | **55**      |
+| **Totales**    | **92** | **64** | **44**   | **200 **    |
 
 
 Antes de continuar con este ejemplo, vamos definimos lo siguiente:
@@ -7795,13 +7795,13 @@ Del ejemplo anterior,
 
 La tabla de valores esperados bajo $H_0$ es
 
-| Área/Candidato | A     | B     | Indeciso | Totales |
-|----------------|:-----:|:-----:|:--------:|:-------:|
-| Ingeniería     | 27.14 | 18.88 | 12.98    | 59      |
-| Humanidades    | 22.08 | 15.36 | 10.56    | 48      |
-| Artes          | 17.48 | 12.16 | 8.36     | 38      |
-| Administración | 25.30 | 17.60 | 12.10    | 55      |
-| Totales        | 92    | 64    | 44       | 200     |
+| Área/Candidato   | A        | B        | Indeciso  | **Totales** |
+| :--------------- | :------: | :------: | :-------: | ---------:  |
+| Ingeniería       | 27.14    | 18.88    | 12.98     | **59**      |
+| Humanidades      | 22.08    | 15.36    | 10.56     | **48**      |
+| Artes            | 17.48    | 12.16    | 8.36      | **38**      |
+| Administración   | 25.30    | 17.60    | 12.10     | **55**      |
+| *Totales*        | **92**   | **64**   | **44**    | **200**     |
 
 \[Q = \dfrac{(24-27.14)^2}{27.14} + \cdots+\dfrac{(8-12.16)^2}{12.16}+\cdots =
 6.68\]
@@ -7832,45 +7832,8 @@ dimnames(M) <- list(
   Voto = c("A", "B", "Indeciso")
 )
 
-knitr::kable(M)
+## knitr::kable(M)
 ```
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> A </th>
-   <th style="text-align:right;"> B </th>
-   <th style="text-align:right;"> Indeciso </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Ingeniería </td>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:right;"> 23 </td>
-   <td style="text-align:right;"> 12 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Humanidades </td>
-   <td style="text-align:right;"> 24 </td>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Artes </td>
-   <td style="text-align:right;"> 17 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 13 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Administración </td>
-   <td style="text-align:right;"> 27 </td>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:right;"> 9 </td>
-  </tr>
-</tbody>
-</table>
 
 Luego el test se ejecuta sobre la matriz de los datos
 
@@ -7977,21 +7940,6 @@ pregunta lo mismo.
 | Antes del incendio   | 80            | 20               |
 | Después del incendio | 72            | 28               |
 
-<!-- r 14-tablas-contingencia-1, echo=FALSE} -\-> -->
-<!-- library(kableExtra) -->
-<!-- tabla <- data.frame( -->
-<!--   antes = rep("Antes del incendio", 2), -->
-<!--   sat = c("Satisfactorio", "No satisfactorio"), -->
-<!--   S = c(70, 2), -->
-<!--   N = c(10, 18) -->
-<!-- ) -->
-<!-- names(tabla) <- c(" ", " ", "Satisfactorio", "No satisfactorio") -->
-<!-- kable(tabla) %>% -->
-<!--   add_header_above(c(" " = 2, "Después del incendio" = 2)) %>% -->
-<!--   kable_styling("striped") %>% -->
-<!--   column_spec(1:2, bold = T) %>% -->
-<!--   collapse_rows(columns = 1, valign = "middle") -->
-<!-- ``` -->
 
  
  En este caso no es apropiado hacer una prueba de independencia  u homogeneidad
@@ -8369,7 +8317,7 @@ estimados para cada \(t\)
 
 Los valores más comunes de cuantiles para las pruebas son 
 
-| \(\alpha\) | \(H^-1(1-\alpha)\) |
+| \(\alpha\) | \(H^{-1}(1-\alpha)\) |
 |------------+--------------------|
 |       0.01 |               1.63 |
 |       0.05 |               1.36 |
@@ -8391,74 +8339,6 @@ df <- rbind(
   data.frame(t, ks = Vectorize(cont_ks_cdf)(t, 50), n = 50),
   data.frame(t, ks = Vectorize(cont_ks_cdf)(t, 100), n = 100)
 )
-```
-
-```
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
-## The lower and upper boundaries cross! i=0.
 ```
 
 
@@ -8620,49 +8500,422 @@ ggplot(df) +
 
 # Pruebas no-paramétricas: pruebas de signo y rango
 
+En este capítulo se explorará como hacer hipótesis sobre la distribución de un
+conjunto de datos cuando no se sabe con exactitud la distribución teórica a la
+cual pertenece. 
+
 ## Prueba de signo
 
-Sean $X_1,\dots,X_n$ una muestra aleatoria de una distribución desconocida continua. Toda distribución continua tiene una mediana $\mu$, una popular medida de ubicación, que satisface 
+Sean $X_1,\dots,X_n$ una muestra aleatoria de una distribución desconocida
+continua. Recordemos que no toda distribución tiene media, por ejemplo la
+distribución Cauchy^[La densidad de una distribución Cauchy se define como
+\(\displaystyle f(x;x_{0},\gamma )={1 \over \pi \gamma }\left[{\gamma ^{2} \over
+(x-x_{0})^{2}+\gamma ^{2}}\right],\), donde \(x_0\) y \(\gamma\) son parámetros
+de localización y escala respectivamente. Esta distribución no tiene ningún
+momento definido y su mediana es \(x_0\).]. Sin embargo, toda distribución
+continua si tiene una mediana $\mu$^[**Importante:** Aunque normalmente se
+denota \(\mu\) como la media, en este capítulo \(\mu\) es la mediana.] definida.
+
+
+La mediana es una popular medida de ubicación, que satisface 
+
 \[\mathbb P(X_i\leq \mu)=0,5.\]
-Se desea probar
-$H_0: \mu\leq \mu_0$ vs $H_1: \mu >\mu_0.$
-La prueba se basa en el hecho de que  $\mu\leq \mu_0$ si y solo sí $\mathbb P(X_i<\mu_0)\geq 0,5$.
 
-Para $i=1,\dots,n$, sea $Y_i = 1$ si $X_i\leq \mu_0$ y $Y_i = 0$ si no. Defina $p = \mathbb P(Y_i = 1)$. Entonces, probar que $\mu\leq \mu_0$ es equivalente a probar $p \geq 0,5$. Como $X_1,\dots,X_n$ son independientes, $Y_1,\dots,Y_n$ lo son, entonces 
-\[Y_1,\dots,Y_n\sim B(p).\]
-Entonces sea $W = Y_1+\dots+Y_n$. Se rechaza la hipótesis nula si $W$ es pequeño. Escoja $c$ tal que
+Suponga que queremos probar 
 
-\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \alpha_0 < \sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]
+\begin{align*}
+H_0: & \mu\leq \mu_{0} \\
+  H_1: & \mu > \mu_{0}
+\end{align*}
+
+
+¿Por qué esta prueba? Note que esta se basa en el hecho de que $\mu\leq \mu_0$
+si y solo  si e $\mathbb P(X_i<\mu_0)\geq 0,5$ para \(i = 1, \dots, n\).
+
+Es decir, que la mediana \(\mu\) es menor que algún valor \(\mu_{0}\) si y solo
+si, la probabilidad de que los valores \(X_i\) sean menores que \(\mu_{0}\)  sea
+mayor de 0.5. De forma más gráfica, si tiraramos una moneda, la mitad de la
+veces un valor de \(X\) caería por debajo de \(\mu_{0}\) y la otra mitad por
+encima de \(\mu_{0}\)
+
+Usando esta última observación, para $i=1,\dots,n$, sea $Y_i = 1$ si
+$X_i\leq \mu_0$ y $Y_i = 0$ si no. Defina $p = \mathbb P(Y_i = 1)$. Entonces,
+probar que $\mu\leq \mu_0$ es equivalente a probar $p \geq 0,5$. Como
+$X_1,\dots,X_n$ son independientes, $Y_1,\dots,Y_n$ lo son,
+entonces
+
+\[Y_1,\dots,Y_n\sim \text{Binomial}(n,p).\]
+
+
+
+
+Calculamos $W = Y_1+\dots+Y_n$ y decimos que rechazamos la hipótesis nula si $W$
+es pequeño.
+
+
+Para tener una prueba de tamaño \(\alpha_{0}\), escoja $c$ tal que
+
+\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \alpha_0 <
+\sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\] 
+
 Se rechaza $H_0$ si $W\leq c$.
 
-La prueba descrita es llamada **prueba de signo** pues está basada en el número de observaciones en las cuales $X_i-\mu_0$ es negativo.
+La prueba descrita es llamada **prueba de signo** pues está basada en el número
+de observaciones en las cuales $X_i-\mu_0$ es negativo.
 
-Si $H_0: \mu = \mu_0\; (p=1/2)$ vs $H_1: \mu\neq \mu_0 \;(p\neq 1/2)$, se rechaza $H_0$ si $W\leq c$ o $W \geq n-c$ y seleccionamos $c$ tal que
-\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \dfrac{\alpha_0}{2} < \sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]
+
+Si se desea hacer una prueba de dos colas
+
+\begin{align*}
+H_0: & \mu \neq \mu_{0} (p = \frac{1}{2}) \\
+H_1: & \mu \neq \mu_{0} (p \neq \frac{1}{2})
+\end{align*}
+
+
+Se rechaza $H_0$ si $W\leq c$ o $W \geq n-c$ y para obtener un nivel de
+significacia del \(\alpha_{0}\) seleccionamos $c$ tal que
+
+\[\sum_{w=0}^c{n\choose w}\left( \dfrac 12\right)^n \leq \dfrac{\alpha_0}{2} <
+\sum_{w=0}^{c+1}{n\choose w}\left( \dfrac 12\right)^n\]
+
+
 
 La función de potencia es 
+
 \[\mathbb P(W\leq c) =\sum_{w=0}^c{n\choose w}(1-p)^{n-w}p^w \]
+
+
+**Ejemplo:** En junio de 1986 la revista _Consumer Reports_ reportó las calorías de 20 marcas de salchichas. Este fueros los datos que dieron: 
+
+
+```r
+x <- c(
+  186, 181, 176, 149, 184, 190, 158,
+  139, 175, 148, 152, 111, 141, 153,
+  190, 157, 131, 149, 135, 132
+)
+```
+
+
+```r
+ggplot(as.data.frame(x), aes(y = x)) +
+  geom_boxplot() +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/16-pruebas-signo-rango-2-1} \end{center}
+
+Se quiere hacer el supuesto que la mediana es igual a 150 (\(\mu = 150\)). Entonces se plantea la hipótesis 
+
+\begin{align*}
+H_0: & \mu = 150 \\
+H_1: & \mu \neq 150 
+\end{align*}
+
+La prueba de signo cuenta cuantas veces \(X_i - 150\) es negativo. Observe que para estos datos tenemos que 
+ 
+
+```r
+M <- data.frame(
+  diferencias = x - 150,
+  signo_negativo = x - 150 < 0)
+M
+```
+
+```
+##    diferencias signo_negativo
+## 1           36          FALSE
+## 2           31          FALSE
+## 3           26          FALSE
+## 4           -1           TRUE
+## 5           34          FALSE
+## 6           40          FALSE
+## 7            8          FALSE
+## 8          -11           TRUE
+## 9           25          FALSE
+## 10          -2           TRUE
+## 11           2          FALSE
+## 12         -39           TRUE
+## 13          -9           TRUE
+## 14           3          FALSE
+## 15          40          FALSE
+## 16           7          FALSE
+## 17         -19           TRUE
+## 18          -1           TRUE
+## 19         -15           TRUE
+## 20         -18           TRUE
+```
+
+```r
+summary(M$signo_negativo)
+```
+
+```
+##    Mode   FALSE    TRUE 
+## logical      11       9
+```
+Y el valor \(p\) correspondiente es:
+
+
+```r
+2 * pbinom(q = 9, size = 20, prob = 1 / 2)
+```
+
+```
+## [1] 0.8238029
+```
+
+Rechazamos la hipótesis nula con un nivel \(\alpha_0\geq 0.8238\) a menos que se
+acepte un error tipo I mayor a \(0.8238\).
+
+
+Este mismo problema se puede resolver con la función `binom.test` de R (`x` es el número de signos negativos y `n` es el número total de datos). 
+
+
+```r
+binom.test(x = 9, n = 20)
+```
+
+```
+## 
+## 	Exact binomial test
+## 
+## data:  9 and 20
+## number of successes = 9, number of trials = 20, p-value = 0.8238
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.2305779 0.6847219
+## sample estimates:
+## probability of success 
+##                   0.45
+```
+
+
 
 ## Prueba de Wilconxon-Mann-Whitney
 
-Sean $X_1,\dots,X_n\overset{i.i.d}{\sim} F$ y $X_1,\dots,X_n\overset{i.i.d}{\sim} G$ con $F,G$ continuas. Considere la hipótesis
-$H_0: F = G$ vs $H_1: F\neq G$.
-Asuma que $H_0$ es cierto y unimos las dos muestras
+Dado dos conjuntos de variables \(X_1,\dots, X_m\overset{i.i.d}{\sim} F \) y
+\(Y_1, \dots, Y_{n}\overset{i.i.d}{\sim} G \), queremos hacer la hipótesis
+
+\begin{align*}
+  H_0: &  F = G  \\
+  H_1: & F \neq G
+\end{align*}
+
+Esta hipótesis  se puede hacer con las pruebas de Kolmogorov-Smirnov o la prueba \(t\) (dependiendo de \(F\) y \(G\)). 
+
+
+Otra forma de hacerlo es usando la prueba de Wilconxon-Mann-Whitney (prueba de
+rango) descubierta por F. Wilcoxon, H. B. Mann y D. R. Whitney en la década de
+1940.
+
+La lógica de la prueba reside en que si unimos los dos conjuntos de valores y ambos tienen la misma distribución, entonces los datos se podrían ordenar de menor a mayor y todos estarían dispersos equitativamente. 
+
+
+Sean $X_1,\dots,X_n\overset{i.i.d}{\sim} F$ y
+$X_1,\dots,X_n\overset{i.i.d}{\sim} G$ con $F,G$ continuas. Considere la
+hipótesis $H_0: F = G$ vs $H_1: F\neq G$. Asuma que $H_0$ es cierto y unimos las
+dos muestras
+
 \[(W_1,\dots,W_n+m) = (X_1,\dots,X_m,Y_1,\dots,Y_n)\]
 
-Considere, además, los índices de posición de las variables aleatorias
-\[X_1,\dots,X_m \rightarrow X_{(1)},\dots,X_{(m)\to \text{Índices de posición}}.\]
+Esta muestra se puede ordernar según los estadísticos de orden 
 
-Como $X_1,\dots,X_m$ es una muestra, entonces
-\[(I_1,\dots,I_m) \sim \text{Unif}(1,\dots,m)\]
-Bajo $H_0$, $W_1,\dots,W_{n+m}$ tiene índices de posición uniformemente distribuidos sobre los enteros $1,\dots,m+n$. Defina $S = \sum_{i=1}^m I_i$
+\[
+(W_(1),\dots,W_(n+m))
+\]
 
-* $\mathbb E[S] = m\mathbb E[I_1] \overset{H_0}{=} m\left(\dfrac{m+n+1}{2}\right)$.
+**Ejemplo:** Supongamos que tenemos estos dos conjuntos de datos y queremos ver si tienen la misma distribución. 
+ 
 
-* $\text{Var}(S) = m\text{Var}(I_1) \overset{H_0}{=} mn\left(\dfrac{m+n+1}{12}\right)$.
+```r
+x <- c(2.183, 2.431, 2.556, 2.629,
+  2.641, 2.715, 2.805, 2.840)
 
-Si $m,n$ son grandes,
+y <- c(2.120, 2.153, 2.213, 2.240,
+  2.245, 2.266, 2.281, 2.336,
+  2.558, 2.587)
+
+dfx <- data.frame(W = x, variable = "x")
+
+dfy <- data.frame(W = y, variable = "y")
+```
+
+Lo primero sería unirlos  
+
+
+```r
+dfw <- full_join(dfx, dfy)
+```
+
+Y luego ordenarlos y calcular su rango 
+
+
+```r
+dfw <- dfw %>%
+  arrange(W) %>%
+  mutate(rango = 1:n())
+
+dfw
+```
+
+```
+##        W variable rango
+## 1  2.120        y     1
+## 2  2.153        y     2
+## 3  2.183        x     3
+## 4  2.213        y     4
+## 5  2.240        y     5
+## 6  2.245        y     6
+## 7  2.266        y     7
+## 8  2.281        y     8
+## 9  2.336        y     9
+## 10 2.431        x    10
+## 11 2.556        x    11
+## 12 2.558        y    12
+## 13 2.587        y    13
+## 14 2.629        x    14
+## 15 2.641        x    15
+## 16 2.715        x    16
+## 17 2.805        x    17
+## 18 2.840        x    18
+```
+
+
+```r
+ggplot(dfw, aes(y = W, fill = variable)) +
+  geom_boxplot() +
+  theme_minimal()
+```
+
+
+
+\begin{center}\includegraphics[width=1\linewidth]{Notas-Curso-Estadistica_files/figure-latex/16-pruebas-signo-rango-9-1} \end{center}
+\(\qed\)
+
+Para una muestra  como $X_1,\dots,X_m$ se tiene que las posiciones de cada uno los datos se puede escribir como  variables aleatorias
+
+
+
+
+
+\[X_1,\dots,X_m \to X_{I_1},\dots,X_{I_m} \to  X_{(1)},\dots,X_{(m)} .\]
+
+Note que estas posiciones se pueden modelar como 
+
+\[(I_1,\dots,I_m) \sim \text{Unif. Discreta}(1,\dots,m)\]
+
+
+Bajo $H_0$, $W_1,\dots,W_{n+m}$ tiene índices de posición uniformemente
+distribuidos sobre los enteros $1,\dots,m+n$. 
+
+Defina $S = \sum_{i=1}^m I_i$, es decir la suma de todos los índices hasta el valor \(m\). Se puede probar que  
+
+* $\mathbb E[S]  \overset{H_0}{=}
+  m\left(\dfrac{m+n+1}{2}\right)$.
+
+* $\text{Var}(S) \overset{H_0}{=}
+  mn\left(\dfrac{m+n+1}{12}\right)$.
+
+El resultado importante de Mann y Whitney en 1947 fue probar que si $m,n$ son
+grandes, entonces
+
 \[S\underset{H_0}{\sim}N\left(\dfrac{m(m+n+1)}{2},\dfrac{mn(m+n+1)}{12}\right).\]
+
+
+Por lo tanto la prueba se convierte en una prueba de normalidad sobre los rangos de los datos. 
+
+Rechazamos la hipótesis nula si \(S\) se desvía mucho del valor de la media \(\mathbb E[S]\). En otra palabras rechazamos \(H_0\) si 
+
+\[
+\left|S- \frac{m(m+n+1)}{2}\right| \geq (\text{Var}(S))^\frac{1}{2} \Phi^{-1}(1-\frac{\alpha}{2})
+\]
+
+
+**Ejemplo** Continuando con nuestro ejemplo definamos el \(m\) y \(n\) de las muestras. 
+
+**OJO: Tomaremos siempre como \(m\) el conjunto de datos más pequeño**
+
+
+```r
+(m <- length(x))
+```
+
+```
+## [1] 8
+```
+
+```r
+(n <- length(y))
+```
+
+```
+## [1] 10
+```
+
+Construirmos las medias y varianzas teóricas de los rangos 
+
+
+```r
+(media_S <- m * (m + n + 1) / 2)
+```
+
+```
+## [1] 76
+```
+
+```r
+(var_S <- m * n * (m + n + 1) / 2)
+```
+
+```
+## [1] 760
+```
+
+Tomamos la suma de todos los rangos de la muestra más pequeña. En este caso sería sobre  los `x`
+
+
+```r
+S <- dfw %>%
+  filter(variable == "x") %>%
+  summarise (S = sum(rango))
+
+(S <- as.numeric(S))
+```
+
+```
+## [1] 104
+```
+
+La variable \(S\) sigue una distribución \(N(76, \sqrt{760})\). Por lo tanto su \(p\)-valor es 
+
+
+```r
+2 * (1 - pnorm(q = (S - media_S) / sqrt(var_S)))
+```
+
+```
+## [1] 0.3097881
+```
+ 
+Rechazamos \(H_0\) si el nivel de significacia \(\alpha_0>0.128\)
+
+La función en R `wilcox.test` calcula la misma prueba, aunque esta hace algunos ajustes adicionales a los rangos, por eso los valores son ligeramente diferentes. Los detalles los pueden consultar en la ayuda de la función. 
+
+```r
+wilcox.test(x, y, exact = TRUE)
+```
+
+```
+## 
+## 	Wilcoxon rank sum exact test
+## 
+## data:  x and y
+## W = 68, p-value = 0.01166
+## alternative hypothesis: true location shift is not equal to 0
+```
 
 
 
