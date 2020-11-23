@@ -1,7 +1,7 @@
 --- 
 title: "Notas Curso de Estadística (Parte I)"
 author: "Maikol Solís"
-date: "Actualizado el 22 November, 2020"
+date: "Actualizado el 23 November, 2020"
 site: bookdown::bookdown_site
 documentclass: book
 fontsize: 12pt
@@ -8667,9 +8667,7 @@ Y el valor \(p\) correspondiente es:
 ## [1] 0.8238029
 ```
 
-Rechazamos la hipótesis nula con un nivel \(\alpha_0\geq 0.8238\) a menos que se
-acepte un error tipo I mayor a \(0.8238\).
-
+Rechazamos la hipótesis nula con un nivel \(\alpha_0\geq 0.8238\). 
 
 Este mismo problema se puede resolver con la función `binom.test` de R (`x` es el número de signos negativos y `n` es el número total de datos). 
 
@@ -8867,11 +8865,11 @@ Construirmos las medias y varianzas teóricas de los rangos
 ```
 
 ```r
-(var_S <- m * n * (m + n + 1) / 2)
+(var_S <- m * n * (m + n + 1) / 12)
 ```
 
 ```
-## [1] 760
+## [1] 126.6667
 ```
 
 Tomamos la suma de todos los rangos de la muestra más pequeña. En este caso sería sobre  los `x`
@@ -8889,7 +8887,7 @@ S <- dfw %>%
 ## [1] 104
 ```
 
-La variable \(S\) sigue una distribución \(N(76, \sqrt{760})\). Por lo tanto su \(p\)-valor es 
+La variable \(S\) sigue una distribución \(N(76, \sqrt{126.67})\). Por lo tanto su \(p\)-valor es 
 
 
 ```r
@@ -8897,15 +8895,15 @@ La variable \(S\) sigue una distribución \(N(76, \sqrt{760})\). Por lo tanto su
 ```
 
 ```
-## [1] 0.3097881
+## [1] 0.01285124
 ```
  
-Rechazamos \(H_0\) si el nivel de significacia \(\alpha_0>0.128\)
+Rechazamos \(H_0\) si el nivel de significacia \(\alpha_0>0.0128\)
 
 La función en R `wilcox.test` calcula la misma prueba, aunque esta hace algunos ajustes adicionales a los rangos, por eso los valores son ligeramente diferentes. Los detalles los pueden consultar en la ayuda de la función. 
 
 ```r
-wilcox.test(x, y, exact = TRUE)
+wilcox.test(x, y)
 ```
 
 ```

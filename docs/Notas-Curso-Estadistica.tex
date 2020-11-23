@@ -187,7 +187,7 @@
 
 \title{Notas Curso de Estadística (Parte I)}
 \author{Maikol Solís}
-\date{Actualizado el 22 November, 2020}
+\date{Actualizado el 23 November, 2020}
 
 \begin{document}
 \maketitle
@@ -8872,8 +8872,7 @@ Y el valor \(p\) correspondiente es:
 ## [1] 0.8238029
 \end{verbatim}
 
-Rechazamos la hipótesis nula con un nivel \(\alpha_0\geq 0.8238\) a menos que se
-acepte un error tipo I mayor a \(0.8238\).
+Rechazamos la hipótesis nula con un nivel \(\alpha_0\geq 0.8238\).
 
 Este mismo problema se puede resolver con la función \texttt{binom.test} de R (\texttt{x} es el número de signos negativos y \texttt{n} es el número total de datos).
 
@@ -9071,12 +9070,12 @@ Construirmos las medias y varianzas teóricas de los rangos
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(var\_S \textless{}{-}}\StringTok{ }\NormalTok{m }\OperatorTok{*}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{(m }\OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\NormalTok{(var\_S \textless{}{-}}\StringTok{ }\NormalTok{m }\OperatorTok{*}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{(m }\OperatorTok{+}\StringTok{ }\NormalTok{n }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{/}\StringTok{ }\DecValTok{12}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 760
+## [1] 126.6667
 \end{verbatim}
 
 Tomamos la suma de todos los rangos de la muestra más pequeña. En este caso sería sobre los \texttt{x}
@@ -9095,7 +9094,7 @@ Tomamos la suma de todos los rangos de la muestra más pequeña. En este caso se
 ## [1] 104
 \end{verbatim}
 
-La variable \(S\) sigue una distribución \(N(76, \sqrt{760})\). Por lo tanto su \(p\)-valor es
+La variable \(S\) sigue una distribución \(N(76, \sqrt{126.67})\). Por lo tanto su \(p\)-valor es
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9104,16 +9103,16 @@ La variable \(S\) sigue una distribución \(N(76, \sqrt{760})\). Por lo tanto su
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.3097881
+## [1] 0.01285124
 \end{verbatim}
 
-Rechazamos \(H_0\) si el nivel de significacia \(\alpha_0>0.128\)
+Rechazamos \(H_0\) si el nivel de significacia \(\alpha_0>0.0128\)
 
 La función en R \texttt{wilcox.test} calcula la misma prueba, aunque esta hace algunos ajustes adicionales a los rangos, por eso los valores son ligeramente diferentes. Los detalles los pueden consultar en la ayuda de la función.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{wilcox.test}\NormalTok{(x, y, }\DataTypeTok{exact =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{wilcox.test}\NormalTok{(x, y)}
 \end{Highlighting}
 \end{Shaded}
 

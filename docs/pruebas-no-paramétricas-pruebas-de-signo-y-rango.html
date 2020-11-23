@@ -366,7 +366,7 @@ significacia del <span class="math inline">\(\alpha_{0}\)</span> seleccionamos <
 <div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb367-1"></a><span class="kw">ggplot</span>(<span class="kw">as.data.frame</span>(x), <span class="kw">aes</span>(<span class="dt">y =</span> x)) <span class="op">+</span></span>
 <span id="cb367-2"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb367-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
 <span id="cb367-3"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb367-3"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-22-1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="Notas-Curso-Estadistica_files/figure-html/16-pruebas-signo-rango-2-1.svg" width="100%" style="display: block; margin: auto;" /></p>
 <p>Se quiere hacer el supuesto que la mediana es igual a 150 (<span class="math inline">\(\mu = 150\)</span>). Entonces se plantea la hipótesis</p>
 <p><span class="math display">\[\begin{align*}
 H_0: &amp; \mu = 150 \\
@@ -404,8 +404,7 @@ H_1: &amp; \mu \neq 150
 <p>Y el valor <span class="math inline">\(p\)</span> correspondiente es:</p>
 <div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb372-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dt">q =</span> <span class="dv">9</span>, <span class="dt">size =</span> <span class="dv">20</span>, <span class="dt">prob =</span> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.8238029</code></pre>
-<p>Rechazamos la hipótesis nula con un nivel <span class="math inline">\(\alpha_0\geq 0.8238\)</span> a menos que se
-acepte un error tipo I mayor a <span class="math inline">\(0.8238\)</span>.</p>
+<p>Rechazamos la hipótesis nula con un nivel <span class="math inline">\(\alpha_0\geq 0.8238\)</span>.</p>
 <p>Este mismo problema se puede resolver con la función <code>binom.test</code> de R (<code>x</code> es el número de signos negativos y <code>n</code> es el número total de datos).</p>
 <div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb374-1"></a><span class="kw">binom.test</span>(<span class="dt">x =</span> <span class="dv">9</span>, <span class="dt">n =</span> <span class="dv">20</span>)</span></code></pre></div>
 <pre><code>## 
@@ -483,7 +482,7 @@ dos muestras</p>
 <div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb380-1"></a><span class="kw">ggplot</span>(dfw, <span class="kw">aes</span>(<span class="dt">y =</span> W, <span class="dt">fill =</span> variable)) <span class="op">+</span></span>
 <span id="cb380-2"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb380-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
 <span id="cb380-3"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb380-3"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Notas-Curso-Estadistica_files/figure-html/unnamed-chunk-29-1.svg" width="100%" style="display: block; margin: auto;" />
+<p><img src="Notas-Curso-Estadistica_files/figure-html/16-pruebas-signo-rango-9-1.svg" width="100%" style="display: block; margin: auto;" />
 <span class="math inline">\(\qed\)</span></p>
 <p>Para una muestra como <span class="math inline">\(X_1,\dots,X_m\)</span> se tiene que las posiciones de cada uno los datos se puede escribir como variables aleatorias</p>
 <p><span class="math display">\[X_1,\dots,X_m \to X_{I_1},\dots,X_{I_m} \to  X_{(1)},\dots,X_{(m)} .\]</span></p>
@@ -513,8 +512,8 @@ grandes, entonces</p>
 <p>Construirmos las medias y varianzas teóricas de los rangos</p>
 <div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb385-1"></a>(media_S &lt;-<span class="st"> </span>m <span class="op">*</span><span class="st"> </span>(m <span class="op">+</span><span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 76</code></pre>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb387-1"></a>(var_S &lt;-<span class="st"> </span>m <span class="op">*</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>(m <span class="op">+</span><span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 760</code></pre>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb387-1"></a>(var_S &lt;-<span class="st"> </span>m <span class="op">*</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span>(m <span class="op">+</span><span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="dv">12</span>)</span></code></pre></div>
+<pre><code>## [1] 126.6667</code></pre>
 <p>Tomamos la suma de todos los rangos de la muestra más pequeña. En este caso sería sobre los <code>x</code></p>
 <div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb389-1"></a>S &lt;-<span class="st"> </span>dfw <span class="op">%&gt;%</span></span>
 <span id="cb389-2"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb389-2"></a><span class="st">  </span><span class="kw">filter</span>(variable <span class="op">==</span><span class="st"> &quot;x&quot;</span>) <span class="op">%&gt;%</span></span>
@@ -522,12 +521,12 @@ grandes, entonces</p>
 <span id="cb389-4"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb389-4"></a></span>
 <span id="cb389-5"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb389-5"></a>(S &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(S))</span></code></pre></div>
 <pre><code>## [1] 104</code></pre>
-<p>La variable <span class="math inline">\(S\)</span> sigue una distribución <span class="math inline">\(N(76, \sqrt{760})\)</span>. Por lo tanto su <span class="math inline">\(p\)</span>-valor es</p>
+<p>La variable <span class="math inline">\(S\)</span> sigue una distribución <span class="math inline">\(N(76, \sqrt{126.67})\)</span>. Por lo tanto su <span class="math inline">\(p\)</span>-valor es</p>
 <div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb391-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dt">q =</span> (S <span class="op">-</span><span class="st"> </span>media_S) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(var_S)))</span></code></pre></div>
-<pre><code>## [1] 0.3097881</code></pre>
-<p>Rechazamos <span class="math inline">\(H_0\)</span> si el nivel de significacia <span class="math inline">\(\alpha_0&gt;0.128\)</span></p>
+<pre><code>## [1] 0.01285124</code></pre>
+<p>Rechazamos <span class="math inline">\(H_0\)</span> si el nivel de significacia <span class="math inline">\(\alpha_0&gt;0.0128\)</span></p>
 <p>La función en R <code>wilcox.test</code> calcula la misma prueba, aunque esta hace algunos ajustes adicionales a los rangos, por eso los valores son ligeramente diferentes. Los detalles los pueden consultar en la ayuda de la función.</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb393-1"></a><span class="kw">wilcox.test</span>(x, y, <span class="dt">exact =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="pruebas-no-paramétricas-pruebas-de-signo-y-rango.html#cb393-1"></a><span class="kw">wilcox.test</span>(x, y)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum exact test
 ## 
